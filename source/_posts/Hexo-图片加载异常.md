@@ -26,3 +26,12 @@ hexo server
 ```
 
 接着：Ctrl + F5 刷新页面，问题解决
+
+---
+
+- hexo-asset-image 
+- hexo-asset-img
+ 
+百度搜索的各类帖子中都有提到这两种插件，配合 typora 操作，效果不佳
+
+另外，很好奇 hexo 为什么 typora 有什么直接关联，难道是方便迁移，据说两个格式差不多
