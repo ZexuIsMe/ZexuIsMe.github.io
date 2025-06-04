@@ -46,6 +46,11 @@
   resolved "https://mirrors.huaweicloud.com/repository/npm/@csstools/css-tokenizer/-/css-tokenizer-3.0.4.tgz"
   integrity sha512-Vd/9EVDiu6PPJt9yAh6roZP6El1xHrdvIVGjyBsHR0RYwNHgL7FJPyIIW4fANJNG6FtyZfvlRPpFI4ZM/lubvw==
 
+"@types/trusted-types@^2.0.7":
+  version "2.0.7"
+  resolved "https://mirrors.huaweicloud.com/repository/npm/@types/trusted-types/-/trusted-types-2.0.7.tgz"
+  integrity sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==
+
 a-sync-waterfall@^1.0.0:
   version "1.0.1"
   resolved "https://mirrors.huaweicloud.com/repository/npm/a-sync-waterfall/-/a-sync-waterfall-1.0.1.tgz"
@@ -635,6 +640,11 @@ hasown@^2.0.2:
   dependencies:
     function-bind "^1.1.2"
 
+hexo-asset-img@^1.2.0:
+  version "1.2.0"
+  resolved "https://mirrors.huaweicloud.com/repository/npm/hexo-asset-img/-/hexo-asset-img-1.2.0.tgz"
+  integrity sha512-PfjFF8DvG22KZ9ZldzpCFJUerH+IJ7e4ARw9BsD3PtJsAbYJGLQfLt/XFnel/r9d2dDYjMlQf1urFdLirseqEA==
+
 hexo-cli@^4.3.2:
   version "4.3.2"
   resolved "https://mirrors.huaweicloud.com/repository/npm/hexo-cli/-/hexo-cli-4.3.2.tgz"
@@ -734,7 +744,7 @@ hexo-renderer-ejs@^2.0.0:
   dependencies:
     ejs "^3.1.6"
 
-hexo-renderer-marked@^7.0.0:
+hexo-renderer-marked@^7.0.1:
   version "7.0.1"
   resolved "https://mirrors.huaweicloud.com/repository/npm/hexo-renderer-marked/-/hexo-renderer-marked-7.0.1.tgz"
   integrity sha512-H9IMnDuhjAL24NjWJuqQG0Utdw09159AI531Dbs7jSqmXSXVImoA7SeWIt4XLDRKr1nfWwn+eDziWo4UT6f1fA==
