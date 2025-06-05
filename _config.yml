@@ -40,7 +40,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: true
+post_asset_folder: false
 marked:
   prependRoot: true
   postAsset: true
@@ -48,11 +48,15 @@ relative_link: false
 future: true
 syntax_highlighter: highlight.js
 highlight:
-  line_number: true
+  enable: true
   auto_detect: false
-  tab_replace: ''
+  line_number: false
+  line_threshold: 0
+  tab_replace: "  "
+  exclude_languages:
+    - example
   wrap: true
-  hljs: false
+  hljs: true
 prismjs:
   preprocess: true
   line_number: true

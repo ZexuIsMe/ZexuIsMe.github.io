@@ -1,7 +1,7 @@
 ---
 title: Github：快搭博客
 date: 2025-06-04 13:48:43
-tags: [静态部署, Github托管, Blog, Hexo]
+tags: [Hexo]
 ---
 
 1. 想要一个属于自己的个人网站
@@ -31,7 +31,7 @@ tags: [静态部署, Github托管, Blog, Hexo]
 桌面右击，弹窗中选择：“Git Bash Here”
 
 ``` bash
-$ ssh-keygen -t rsa -C "你的邮箱地址"
+ssh-keygen -t rsa -C "你的邮箱地址"
 ```
 接着敲4下键盘，一般不会出意外
 
@@ -45,9 +45,10 @@ $ ssh-keygen -t rsa -C "你的邮箱地址"
 6. title 名称任意填写
 7. 把前面复制的 SSH 粘贴到 <code>Key</code>的输入框中，点击 <code>Add SSH key</code>
 8. 进入终端输入命令，检测是否连通
+   （注意：如果有用加速器，比如 Steam++，则关掉加速器）
 
 ``` bash
-$ ssh -T git@github.com
+ssh -T git@github.com
 ```
 
 > 出现以下内容，表示通过
@@ -61,20 +62,20 @@ $ ssh -T git@github.com
 
 ### 4.1 安装 hexo
 ``` bash
-$ npm install -g hexo-cli
+npm install -g hexo-cli
 ```
 
 ### 4.2 初始化 hexo
 
 ``` bash
-$ hexo init Blog
+hexo init Blog
 ```
 Blog是你的项目名
 
 进入项目，运行 npm install，并运行
 
 ``` bash
-$ hexo cl; hexo g; hexo s
+hexo cl; hexo g; hexo s
 ```
 点击终端给出的链接，即可查看当前操作是否正确
 
@@ -106,7 +107,7 @@ deploy:
 - <b>注意：</b>如果有用加速器，比如 Steam++，则关掉加速器
 
 ``` bash
-$ hexo cl; hexo g; hexo d
+hexo cl; hexo g; hexo d
 ```
 
 部署完毕后，等待几分钟，输入 “你的Github Username + .github.io” 访问即可，比如：https://ZexuIsMe.github.io
