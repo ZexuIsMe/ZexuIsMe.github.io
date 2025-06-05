@@ -1,0 +1,25 @@
+<!-- Title -->
+<div class="column">
+    <article class="media modify-post-list">
+        <figure class="media-left">
+            <p class="image is-64x64">
+                <span class="fa-stack fa-2x"><i class="fa fa-calendar-o fa-stack-2x"></i>
+                    <strong class="fa-stack-1x" style="margin-top: .3em; "><%= item.date.format("DD") %></strong>
+                </span>
+            </p>
+        </figure>
+        <div class="media-content">
+            <div class="content">
+                <div>
+                    <strong>
+                        <a href="<%- url_for(item.path) %>">
+                            <span class="has-text-info"> <%= item.title %></span>
+                        </a>
+                    </strong>
+                </div>
+                <small><%= item.date.format("YYYY, MMMM") %> </small><br>
+                <!--                    <%- truncate(strip_html(item.content), {length: 100}) %>-->
+            </div>
+        </div>
+    </article>
+</div>

@@ -1,0 +1,33 @@
+.modify-post-title {
+    padding-bottom: 0.872rem;
+}
+
+.modify-post-tag-padding {
+    padding-left: 0.5rem;
+}
+
+.modify-card-overflow {
+    overflow: hidden;
+    max-height: 300px;
+}
+
+.modify-post-content-bottom {
+    padding-bottom: 10rem;
+}
+
+.modify-home-post-column {
+    max-width: 100%;
+}
+
+.modify-post-list {
+    align-items: center
+}
+
+/* https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.3/sass/components/card.sass */
+.card {
+    border-radius: 0.25rem;
+}
+
+.card-header {
+    padding: 4px 8px;
+}

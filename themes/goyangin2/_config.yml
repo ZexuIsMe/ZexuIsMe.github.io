@@ -1,0 +1,35 @@
+# 带图标字体 Awesome 的标题链接 (fa-icon : link)
+# name auto font awesome
+menu:
+  Home: /
+  Archive: /archives
+#  RSS: /atom.xml
+  
+
+grid: 2 # change index columns /line
+logo: img/logo.jpg #logo in header
+gravatar: he_zexu@126.com # 文章中的头像图片
+author: g3xx # 名称 作者 在帖子中（默认）
+excerpt_link: Read More # 更改索引中 “阅读更多” 里的文本
+thumbimg : https://picsum.photos # 随机图片：首页的预览图
+# http://lorempixel.com/640/320/city/
+
+## more need change
+disqus_shortname: goyangin # goyangin.disqus.com
+google_analytics:         # UA-83746351-2
+
+# 如果你想添加更多的个人资料社交媒体（图标与 Fontawesome 相同）
+# 只需要添加，如 : Instagram: https://www.instagram.com/you/
+social:
+  Github: https://ZexuIsMe.github.io.com
+  email: https://he_zexu@126.com
+  #  Twitter: https://twitter.com/you
+  #  Facebook: https://facebook.com/you
+  #  Google-plus: https://plus.google.com/104751165505597913805
+  #  Instagram: https://www.instagram.com/you/
+
+# 代码高亮主题
+#   可用的参数：
+#    default | normal | night | night eighties | night blue | night bright
+# https://github.com/chriskempson/tomorrow-theme
+highlight_theme: night

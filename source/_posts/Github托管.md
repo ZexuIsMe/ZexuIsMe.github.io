@@ -45,7 +45,8 @@ ssh-keygen -t rsa -C "你的邮箱地址"
 6. title 名称任意填写
 7. 把前面复制的 SSH 粘贴到 <code>Key</code>的输入框中，点击 <code>Add SSH key</code>
 8. 进入终端输入命令，检测是否连通
-   （注意：如果有用加速器，比如 Steam++，则关掉加速器）
+   （注意：如果有用加速器，比如 Steam++，则关掉加速器） 
+   （操作完毕后，等待一段时间，给 Github 一些处理的时间）
 
 ``` bash
 ssh -T git@github.com

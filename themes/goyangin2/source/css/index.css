@@ -1,0 +1,48 @@
+.img-circle {
+    display:inline;
+    border-radius: 50%;
+    margin-bottom: 0.625rem;
+    margin-top: 0.625rem;
+    padding: 0;
+    background-color: #e4e5e2;
+    z-index: 500;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+}
+.ifoot{
+    padding : 1.25rem 1.25rem;
+    /*border-top: 1px solid #ddd;*/
+    min-height: 3.875rem;
+}
+
+/* dropdown basic */
+.dropdown {
+  display: none;
+  position: absolute;
+  z-index: 9999;
+}
+
+.dropdown a:hover{
+   background-color: whitesmoke;
+   border-radius: 0.3125rem;
+}
+.has-dropdown:hover .dropdown {
+	display:block;
+	text-decoration:none;
+}
+
+
+
+/* Theme: Solarized - Github
+ * More theme here: https://highlightjs.org/demo
+ */
+pre, code {
+    font-family: initial;
+    line-height: 1.875rem;
+    border-radius: 0.25rem;
+}
+
+td {
+    background-color: #f5f5f5
+}
