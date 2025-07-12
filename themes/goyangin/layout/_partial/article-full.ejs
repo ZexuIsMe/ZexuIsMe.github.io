@@ -1,77 +1,54 @@
-<div aria-description="阅读区域">
+<!-- 渲染：阅读整篇文章 -->
+<% const postDOMId = 'read-post' %>
+
+<div style="height: 80px"></div>
+
+<article id="<%= postDOMId %>" class="v-layout-75 p-4" style="display: grid; grid-template-rows: repeat(auto-fill, 1fr); grid-gap: 36px">
     <!-- Title -->
-    <div class="card-content">
-        <div class="level">
-            <div class="level-left">
-                <div class="media">
-                    <div class="media-content">
-                        <h1 class="title is-4 modify-post-title">
-                            <span class="has-text-info"><%- item.title || '标题缺失，务必添加 Title' %></span>
-                        </h1>
-                        <p class="subtitle is-6">
-                            <span class="icon is-small"><i class="fa fa-calendar"></i></span> <%= item.date.format(config.date_format) %>
-                            &nbsp; &nbsp; &nbsp; &nbsp;
-                            <span class="icon is-small"><i class="fa fa-user"></i></span> <%- item.author ? item.author : config.author  %>
-                        </p>
-                    </div>
-                </div>   
-            </div>
-            <!-- 文章标签 -->
-            <div class="level-right">
-                <%- partial('article-tags', {item: item}) %>
-            </div>
-        </div>
-
-        <!-- 文章：内容 -->
-        <div class="content modify-post-content-bottom">
-            <hr />
-            <!-- Content -->
-            <%- item.content %>
-        </div>
-    </div>
-
-    <div style="padding: 0 1.25rem">
-        <div class="columns is-mobile">
-            <div class="column" style="white-space: nowrap;">
-                <p class="title is-4"><span class="icon is-medium"><i class="fa fa-file-text-o"></i></span>Recents Post
-                </p>
-            </div>
-
-            <!-- TODO 分享操作       -->
-            <!--            <div class="column has-text-right" id="share">-->
-            <!--                -->
-            <!--            <div class="box" id="shared" style="display:none; position:absolute; z-index:999; right:100px;">-->
-            <!--                <div class="field has-addons">-->
-            <!--                    <div class="control is-expanded  is-hidden-touch">-->
-            <!--                        <input class="input is-info" type="text" value="<%- item.permalink %>" id="cur">-->
-            <!--                    </div>-->
-            <!--                    <div class="control">&nbsp;-->
-            <!--                        <a class="button is-info is-outlined" id="fb"><span class="icon"><i class="fa fa-facebook"></i></span></a>-->
-            <!--                        <a class="button is-info is-outlined" id="tw"><span class="icon"><i class="fa fa-twitter"></i></span></a>-->
-            <!--                        <a class="button is-info is-outlined" id="gp"><span class="icon"><i class="fa fa-google-plus"></i></span></a>-->
-            <!--                        <a class="button is-info is-outlined" id="pt"><span class="icon"><i class="fa fa-pinterest"></i></span></a>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
-            <!--                -->
-            <!--            <p class="title is-4" ><span class="icon is-medium"><i class="fa fa-share"></i></span>Share </p>-->
-        </div>
-
-        <% var i = 0; %>
-
-        <% site.posts.sort('date', -1).limit(4).each(function(post){ i++; %>
-            <% if(i % 2 == 1) { %>
-                <div class="columns">
-                    <% } %>
-                    <%- partial('article-archive', {item: post}) %>
-                    <% if( i % 2 == 0) { %>
+    <div class="level">
+        <div class="level-left">
+            <div class="media">
+                <div class="media-content">
+                    <h1 class="title is-4 modify-post-title">
+                        <span class="has-text-info"><%- item.title || '标题缺失，务必添加 Title' %></span>
+                    </h1>
+                    <p class="subtitle is-6">
+                        <span class="icon is-small"><i class="fa fa-calendar"></i></span> <%= item.date.format(config.date_format) %>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        <span class="icon is-small"><i class="fa fa-user"></i></span> <%- item.author ? item.author : config.author  %>
+                    </p>
                 </div>
-            <% } %>
-        <% }) %>
+            </div>
+        </div>
+        <!-- 文章标签 -->
+        <div class="pt-4">
+            <span><%- partial('post/article-tags', {item: item}) %></span>
+            <span><%- partial('post/post-categories', {item: item}) %></span>
+        </div>
     </div>
-
+    <!-- 目录  -->
     <div>
-<!-- TODO 评论区的操作 -->
-<!--        <%- partial('comment') %>-->
+        <%- toc(item.content) %>
     </div>
-</div>
+    <!-- 文章：内容 -->
+    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
+        <hr />
+        <!-- Content -->
+        <%- item.content %>
+    </div>
+    <!-- 文章：声明 -->
+    <%- partial('post/statement.ejs') %>
+    <!-- 文章：文章切换 -->
+    <%- partial('post/toggle.ejs') %>
+</article>
+
+<div style="height: 80px"></div>
+
+<script>
+    class PostEjs extends Blog{
+        constructor() {
+            super();
+        }
+    }
+    const postEjs = new PostEjs();
+</script>

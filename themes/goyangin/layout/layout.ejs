@@ -1,23 +1,18 @@
-<html>
+<html lang="">
 <!-- Head tag -->
 <%- partial('_partial/head') %>
 <body>
-<!-- Blog Header: title and subtitle and menu-->
-<div class="columns is-centered" style="padding: 0 0.75rem">
-    <div class="column is-three-quarters">
-        <%- partial('_partial/header') %>
-        <!-- Menu move to header partial-->
-
-        <!-- body -->
+    <!-- section 1：顶部菜单 -->
+    <%- partial('_partial/index/menu') %>
+    <div id="blog-body">
         <%- body %>
     </div>
-</div>
 
-
-<!-- Footer -->
-<%- partial('_partial/footer') %>
-<!-- After footer scripts -->
-<%- partial('_partial/after-footer') %>
-
+    <% if (page.title !== '碧海苍云录') { %>
+        <!-- 悬浮操作按钮 -->
+        <%- partial('_partial/post/post-flex-btn', { item: { id: 'blog-body' } }) %>
+        <!-- 音乐播放器 -->
+        <%- partial('_partial/music-player') %>
+    <% } %>
 </body>
 </html>

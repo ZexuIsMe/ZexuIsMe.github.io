@@ -1,16 +1,18 @@
 # 带图标字体 Awesome 的标题链接 (fa-icon : link)
 # name auto font awesome
 menu:
-  Home: /
-  Archive: /archives
+  首页: /
+  碧海苍云录: /bhcyl
+  生活大爆炸: /life
+  归档: /archives
+  关于我: /about-me
 #  RSS: /atom.xml
+  # hexo new page 创建的页面通过此处添加链接，注意：链接与page所在文件夹同名且大小字母一样
   
 
-grid: 2 # change index columns /line
-logo: img/logo.jpg #logo in header
+logo: logo/高清Logo/透明底logo.png #logo in header
 gravatar: he_zexu@126.com # 文章中的头像图片
-author: g3xx # 名称 作者 在帖子中（默认）
-excerpt_link: Read More # 更改索引中 “阅读更多” 里的文本
+author: 粥记捣蛋 # 名称 作者 在帖子中（默认）
 thumbimg : https://picsum.photos # 随机图片：首页的预览图
 # http://lorempixel.com/640/320/city/
 
@@ -21,7 +23,7 @@ google_analytics:         # UA-83746351-2
 # 如果你想添加更多的个人资料社交媒体（图标与 Fontawesome 相同）
 # 只需要添加，如 : Instagram: https://www.instagram.com/you/
 social:
-  Github: https://ZexuIsMe.github.io.com
+  Github: https://github.com/ZexuIsMe/ZexuIsMe.github.io
   email: https://he_zexu@126.com
   #  Twitter: https://twitter.com/you
   #  Facebook: https://facebook.com/you
@@ -33,3 +35,33 @@ social:
 #    default | normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
 highlight_theme: night
+
+
+# 粥记捣蛋
+music_data:
+  - path: music/净坛遗恨.mp3
+    name: 净坛遗恨
+    author: 粥记捣蛋
+  - path: music/末日旅人的独白.mp3
+    name: 末日旅人的独白
+    author: 粥记捣蛋
+  - path: music/灯芯上的七彩霜A.mp3
+    name: 灯芯上的七彩霜-A
+    author: 粥记捣蛋
+  - path: music/灯芯上的七彩霜B.mp3
+    name: 灯芯上的七彩霜-B
+    author: 粥记捣蛋
+  - path: music/王权情劫.mp3
+    name: 王权情劫
+    author: 粥记捣蛋
+  - path: music/白骨谣.mp3
+    name: 白骨哀歌 - 女声
+    author: 粥记捣蛋
+  - path: music/白骨谣_男声版.mp3
+    name: 白骨哀歌 - 男声
+    author: 粥记捣蛋
+  - path: music/纯音乐001.mp3
+    name: Darkness Nocturne
+    author: 粥记捣蛋
+my_post:
+  pagination: ['上一篇', '下一篇', '无']

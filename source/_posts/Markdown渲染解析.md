@@ -1,7 +1,11 @@
 ---
-title: Markdown渲染解析
+title: Markdown渲染解析（测试：代码解析）
 date: 2025-06-05 09:05:06
-tags: [Markdown]
+tags: [Markdown, 渲染解析]
+categories:
+  - 前端
+  - Markdown
+  - 渲染解析
 ---
 
 ## Markdown解析：[showdown.js](https://github.com/showdownjs/showdown)
@@ -17,6 +21,8 @@ const converter = new Showdown.Converter({
 })
 document.getElementById('markdown-content').innerHTML = converter.makeHtml(`${payload.data}${text}`)
 ```
+
+<!-- more --> 
 
 ## Markdown样式包
 

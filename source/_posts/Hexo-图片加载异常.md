@@ -1,7 +1,10 @@
 ---
 title: Hexo-图片加载异常
 date: 2025-06-04 17:27:01
-tags: [Hexo]
+tags: [Hexo, 图片加载异常]
+categories:
+  - 前端
+  - Hexo
 ---
 
 > 结论：页面缓存问题，Ctrl + F5 刷新页面

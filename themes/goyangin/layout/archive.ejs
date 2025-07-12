@@ -1,14 +1,101 @@
-<!-- Archive: 文章总览页 -->
-<div>
-    <div class="card-content">
-        <% var i = 0; %>
-        <% page.posts.each(function(item){ i++ %>
-            <% if(i % 2 == 1) {%><div class="columns"><% } %>
-            <%- partial('_partial/article-archive', {item: item}) %>
-            <% if( i % 2 == 0) {%> </div> <% } %>
-        <% }); %>
+<!-- Archive: 归档页 -->
+<div class="container " style="padding: 0 24px">
+    <%- partial('_partial/section-title', { item: { name: `归档 - ${page.tag || page.category || 'All'}`, icon: 'fas fa-boxes' } }) %>
 
+    <div id="article-table" class="table-wrapper">
+        <table class="table is-striped is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th style="text-align: center">
+                        标签（Tags）
+                        <%- partial('_partial/archives/select', {
+                            item: {
+                                data: site.tags.sort('name'),
+                                selectId: 'archivesTags',
+                                options1: '标签（Tags）'
+                            }
+                        }) %>
+                    </th>
+                    <th style="text-align: center" class="d-flex align-center">
+                        分类（Categories）
+                        <%- partial('_partial/archives/select', {
+                            item: {
+                                data: site.categories.sort('name'),
+                                selectId: 'archivesCategories',
+                                options1: '分类（Categories）'
+                            }
+                        }) %>
+                    </th>
+                    <th style="text-align: center">创作时间</th>
+                    <th style="text-align: center">更新时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+
+            <tbody style="font-size: 12px">
+                <% page.posts.sort('-date').forEach(postItem =>{ %>
+                    <tr>
+                        <td>
+                            <a href="<%= url_for(postItem.path) %>">
+                                <%= postItem.title %>
+                            </a>
+                        </td>
+
+                        <td style="width: 150px; ">
+                            <div class="d-flex flex-wrap gap-2">
+                                <%- partial('_partial/post/article-tags', { item: postItem }) %>
+                            </div>
+                        </td>
+
+                        <td style="width: 150px;">
+                            <div class="d-flex flex-wrap gap-2">
+                                <%- partial('_partial/post/post-categories', { item: postItem }) %>
+                            </div>
+                        </td>
+
+                        <td style="text-align: center">
+                            <%= postItem.date.format('YYYY-MM-DD HH:mm') %>
+                        </td>
+
+                        <td style="text-align: center">
+                            <%= postItem.updated.format('YYYY-MM-DD HH:mm') %>
+                        </td>
+
+                        <td style="vertical-align: middle">
+                            <a href="<%= url_for(postItem.path) %>">
+                                <i class="far fa-hand-point-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
     </div>
+
+    <%- partial('_partial/pagination') %>
 </div>
 
-<%- partial('_partial/pagination') %>
+<script>
+    const archiveEjs = {
+        handleChoose (event) {
+            console.log(event.target.value)
+            const value = event.target.value
+
+            if (!value) {
+                console.error('分类参数异常！')
+                return
+            }
+
+            const blog = new Blog()
+
+            blog.createALink(value, '_self')
+        }
+    }
+</script>
+
+<style>
+    #article-table tbody td {
+        padding: 12px;
+    }
+</style>

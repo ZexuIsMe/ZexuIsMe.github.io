@@ -1,3 +1,48 @@
+/** IE10 viewport hack for Surface/desktop Windows 8 bug */
+@import "skeleton.css";
+@import "loading.css";
+@import "tooltip.css";
+
+@import "ie10-viewport-bug-workaround.css";
+
+@import "modify.css";
+@import "my-vuetify.css";
+
+@import "md-table.css";
+@import "highlight/my.css";
+@import "highlight/hexo-block-styles.css";
+
+@import "all.min.css";
+
+/* 隐藏滚动条但保留滚动功能 */
+html {
+    overflow: auto;
+    scrollbar-width: auto; /* Firefox */
+    -ms-overflow-style: auto; /* IE/Edge */
+    scroll-behavior: smooth;
+}
+
+/* WebKit 浏览器（Chrome、Safari） */
+html::-webkit-scrollbar {
+    /*display: ;*/
+}
+
+.v-layout-basic,
+.v-layout-75 {
+    padding: 48px 0 0 0;
+    max-width: 60rem;
+    margin: auto
+}
+.v-layout-75 {
+    max-width: 75rem !important;
+}
+
+.mbl {
+    backdrop-filter: blur(10px);
+    background-color: transparent;
+    border: 1px solid #b4b0b0;
+}
+
 .img-circle {
     display:inline;
     border-radius: 50%;
@@ -6,9 +51,9 @@
     padding: 0;
     background-color: #e4e5e2;
     z-index: 500;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+    /*box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);*/
+    /*-moz-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);*/
+    /*-webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);*/
 }
 .ifoot{
     padding : 1.25rem 1.25rem;
@@ -17,32 +62,17 @@
 }
 
 /* dropdown basic */
-.dropdown {
+.search-dropdown {
   display: none;
   position: absolute;
   z-index: 9999;
 }
 
-.dropdown a:hover{
+.search-dropdown a:hover{
    background-color: whitesmoke;
    border-radius: 0.3125rem;
 }
-.has-dropdown:hover .dropdown {
+.has-dropdown:hover .search-dropdown {
 	display:block;
 	text-decoration:none;
-}
-
-
-
-/* Theme: Solarized - Github
- * More theme here: https://highlightjs.org/demo
- */
-pre, code {
-    font-family: initial;
-    line-height: 1.875rem;
-    border-radius: 0.25rem;
-}
-
-td {
-    background-color: #f5f5f5
 }

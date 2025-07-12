@@ -3,13 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 泽旭
+title: '粥记捣蛋'
 subtitle: ''
 description: ''
 keywords:
-author: 泽旭
+author: 粥记捣蛋
 language: zh-CN
-timezone: ''
+timezone: null
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -28,7 +28,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: life\*
 
 # Writing  文章
 new_post_name: :title.md # File name of new posts
@@ -53,8 +53,10 @@ highlight:
   line_number: false
   line_threshold: 0
   tab_replace: "  "
-  exclude_languages:
-    - example
+  exclude_languages: # 排除不必要的语法高亮
+    - plaintext       # 纯文本
+    - text            # 文本
+    - markdown        # Markdown（避免嵌套高亮）
   wrap: true
   hljs: true
 prismjs:
@@ -97,9 +99,9 @@ pagination_dir: page
 
 # Include / Exclude file(s)
 ## include:/exclude: options only apply to the 'source/' folder
-include:
-exclude:
-ignore:
+include: []
+exclude: []
+ignore: []
 
 # Extensions 扩展
 ## Plugins: https://hexo.io/plugins/

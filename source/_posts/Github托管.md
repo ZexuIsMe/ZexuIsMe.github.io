@@ -2,6 +2,8 @@
 title: Github：快搭博客
 date: 2025-06-04 13:48:43
 tags: [Hexo]
+categories:
+   - Github SSH
 ---
 
 1. 想要一个属于自己的个人网站
@@ -13,6 +15,8 @@ tags: [Hexo]
 创建一个新的项目，名字为 <code>Username.github.io</code>
 
 比如我的名字 ZexuIsMe，那么我的这个仓库命就是<code>ZexuIsMe.github.io</code>
+
+<!-- more --> 
 
 ## 1. Node.js
 
