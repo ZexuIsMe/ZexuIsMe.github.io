@@ -1,0 +1,64 @@
+<% const { website, version } = page.footer %>
+<div id="bhcyl-footer" class="pt-4">
+    <!-- 版本信息 -->
+    <div class="banBen d-flex align-center">
+        <% version.forEach(item => { %>
+            <span class="mr-4"><%= item.name %>：<%= item.value %></span>
+        <% }) %>
+        <div style="width: 100%; height: 1px; background: #b4b0b0"></div>
+    </div>
+    <div id="bhcyl-footer-content" class="d-flex align-center justify-between p-4">
+        <!-- 游戏官网 -->
+        <div
+                id="go-game-website"
+                class="button pr-8"
+                onclick="bhcylHome.method.createALink(`<%= website.url %>`)"
+        >
+            <div class="go-game-website-icon d-flex justify-center align-center mr-4">
+                    <span class="text-white" style="font-size: 12px">
+                        <i class="fas <%= website.icon %>" ></i>
+                    </span>
+            </div>
+            <div style="font-size: 12px"><%= website.name %></div>
+        </div>
+
+        <!-- 首页、攻略、论坛 -->
+        <div class="d-flex gap-4">
+            <% page.footer.button.forEach(item => { %>
+                <div
+                        class="text-center"
+                        style="cursor: pointer"
+                        onclick="bhcylHome.method.createALink(`<%= item.name === '首页' ? url_for('/') : item.url %>`)"
+                >
+                        <span style="color: white; font-size: 28px">
+                            <i class="fas <%= item.icon %>" ></i>
+                        </span>
+                    <div class="text-white mt-1" style="font-size: 12px"><%= item.name %></div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</div>
+
+<style>
+    #bhcyl-footer .banBen > span  {
+        white-space: nowrap;
+        color: #d9d9d9;
+        font-size: 12px;
+    }
+
+    #bhcyl-footer-content {
+        width: 100%;
+    }
+
+    #go-game-website {
+        border-radius: 10px;
+    }
+
+    .go-game-website-icon {
+        width: 24px;
+        height: 24px;
+        background: black;
+        border-radius: 50%
+    }
+</style>

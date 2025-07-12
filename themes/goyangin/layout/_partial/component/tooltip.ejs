@@ -1,0 +1,43 @@
+<% if (item.type === 'text') { %>
+    <div class="tooltip tooltip-<%= item.direction %> " data-tooltip="<%= item.tooltip_text || '缺少 text 参数？' %>">
+        <!-- button is-dark 为 bulma 的样式 -->
+        <% if(item?.tooltip_text.startsWith('http')) { %>
+            <a href="<%= item.tooltip_text %>" >
+                <i
+                        class="<%= item.icon_prefix || 'fab' %> <%= item.icon %>"
+                        style="font-size: <%= item.icon_size || 48 %>px"
+                ></i>
+            </a>
+        <% } else { %>
+            <i
+                    class="<%= item.icon_prefix || 'fab' %> <%= item.icon %>"
+                    style="font-size: <%= item.icon_size || 48 %>px"
+            ></i>
+        <% } %>
+    </div>
+<% } else if (item.type === 'image') { %>
+    <div class="tooltip-image tooltip-image-<%= item.direction %> ">
+        <i
+                class="<%= item.icon_prefix || 'fab' %> <%= item.icon %>"
+                style="font-size: <%= item.icon_size || 48 %>px"
+        ></i>
+        <!-- 图片通过伪元素动态插入，这里用data属性存储图片URL -->
+        <figure class="mbl box">
+            <% if(!item.url) { %>
+                <span>缺少 url 参数？</span>
+            <% } else { %>
+                <img src="<%= item.url %>" alt="图片加载失败..." class="skeleton">
+            <% } %>
+        </figure>
+    </div>
+<% } %>
+
+<!--{-->
+<!--    type: '', // 表示提示输出的类型，参数有 text, image-->
+<!--    direction: '', // 表示toolTip出现的方向-->
+<!--    text: '', // 如果 type === 'text'，用于显示提示文本-->
+<!--    icon: '',  // icon 图标-->
+<!--    icon_prefix: '',  // icon 图标前缀，默认为 fab-->
+<!--    size: '', // 控制图标的大小, 默认为 48-->
+<!--    url: '' // 如果 type === image，图片的链接-->
+<!--}-->

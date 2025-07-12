@@ -1,0 +1,14 @@
+<label for="<%= item.selectId %>">
+    <select
+            id="<%= item.selectId %>"
+            style="width: 21px"
+            onchange="archiveEjs.handleChoose(event)"
+    >
+        <option value="">--<%= item.options1 %>--</option>
+        <option value="/archives/">--ALL--</option>
+        <% item.data.forEach(item => { %>
+            <option value="<%= url_for(item.path) %>"><%= item.name %></option>
+        <% }) %>
+    </select>
+</label>
+<!-- archiveEjs.handleChoose(event)：位于 layout > archive.ejs -->

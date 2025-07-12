@@ -1,0 +1,38 @@
+<!-- 关于我 -->
+<div id="aboutMe">
+    <div class="container" style="overflow: hidden">
+        <%- partial('_partial/section-title', { item: { name: '关于我', icon: 'fas fa-boxes' } }) %>
+
+        <!-- 打字机效果 -->
+        <div style="padding-top: 60px">
+            <%- partial('_partial/aboutMe/description') %>
+        </div>
+
+        <!-- Logo -->
+        <figure style="height: 300px; width: 100%" class="d-flex justify-center">
+            <img src="<%= url_for('logo/高清Logo/透明底裁剪版logo.png') %>" style="object-fit: contain; width: 600px"/>
+        </figure>
+
+        <!-- 人物面板 -->
+        <%- partial('_partial/aboutMe/mianBan') %>
+
+        <!-- 联系我 -->
+        <section style="width: 100%; color: #00586d; padding: 120px 0" class="d-flex justify-center gap-8">
+            <% page.contactMe.forEach(item => { %>
+                <% item.url = url_for(item.url) %>
+                <%- partial('_partial/component/tooltip.ejs', { item: item }) %>
+            <% }) %>
+        </section>
+
+        <!-- 页脚：一些说明 -->
+        <section style="width: 100%; height: 20rem">
+            <%- partial('_partial/footer') %>
+        </section>
+    </div>
+</div>
+
+<style>
+    #aboutMe {
+        height: 100%;
+    }
+</style>

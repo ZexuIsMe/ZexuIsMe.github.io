@@ -1,0 +1,16 @@
+<div id="home-post-list">
+    <div class="container p-4" >
+        <section>
+            <!-- title -->
+            <%- partial('_partial/section-title', { item: { name: 'Markdown', icon: 'fab fa-markdown' } }) %>
+            <!-- content -->
+            <div class="d-flex flex-wrap" style="row-gap: 1rem">
+                <% page.posts.each(item => { %>
+                    <%- partial('_partial/post-card', { item: item }) %>
+                <% }) %>
+            </div>
+        </section>
+        <!-- section：分页信息 -->
+        <%- partial('_partial/pagination') %>
+    </div>
+</div>

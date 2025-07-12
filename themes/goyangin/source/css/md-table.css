@@ -1,0 +1,17 @@
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 24px;
+}
+
+.table-wrapper tr {
+    min-height: 3rem;
+}
+.table-wrapper th,
+.table-wrapper td {
+    vertical-align: middle !important;
+}
+
+.table-wrapper th {
+    min-width: 8.4375rem;
+}

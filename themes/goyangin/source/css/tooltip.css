@@ -1,0 +1,140 @@
+@layer tooltip {
+    .tooltip {
+        position: relative;
+        width: fit-content;
+    }
+
+    .tooltip::before {
+        content: attr(data-tooltip);
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s, transform 0.2s;
+        transform: translateY(5px);
+        background-color: #363636;
+        color: white;
+        padding: 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        z-index: 10;
+    }
+
+    .tooltip:hover::before {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    /* 气泡位置变体 */
+    .tooltip-top::before {
+        bottom: 100%;
+        left: 50%;
+        transform: translate(-50%, 5px);
+        margin-bottom: 0.5rem;
+    }
+
+    .tooltip-top:hover::before {
+        transform: translate(-50%, 0);
+    }
+
+    .tooltip-bottom::before {
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, -5px);
+        margin-top: 0.5rem;
+    }
+
+    .tooltip-bottom:hover::before {
+        transform: translate(-50%, 0);
+    }
+
+    .tooltip-left::before {
+        right: 100%;
+        top: 50%;
+        transform: translate(5px, -50%);
+        margin-right: 0.5rem;
+    }
+
+    .tooltip-left:hover::before {
+        transform: translate(0, -50%);
+    }
+
+    .tooltip-right::before {
+        left: 100%;
+        top: 50%;
+        transform: translate(-5px, -50%);
+        margin-left: 0.5rem;
+    }
+
+    .tooltip-right:hover::before {
+        transform: translate(0, -50%);
+    }
+}
+
+@layer tooltip-image {
+    .tooltip-image {
+        position: relative;
+        width: fit-content;
+    }
+
+    .tooltip-image figure {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        width: 300px;
+        padding: 12px;
+        margin: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        pointer-events: none;
+        z-index: 50;
+    }
+
+    .tooltip-image:hover figure {
+        opacity: 1;
+        visibility: visible;
+        display: block !important;
+        padding: 12px !important;
+        pointer-events: auto;
+    }
+
+    .tooltip-image-top figure {
+        bottom: calc(100% + 0.5rem);
+        left: 50%;
+        transform: translate(-50%, 0.5rem);
+    }
+
+    .tooltip-image-top:hover figure {
+        transform: translate(-50%, 0);
+    }
+
+    .tooltip-image-bottom figure {
+        top: calc(100% + 0.5rem);
+        left: 50%;
+        transform: translate(-50%, -0.5rem);
+    }
+
+    .tooltip-image-bottom:hover figure {
+        transform: translate(-50%, 0);
+    }
+
+    .tooltip-image-left figure {
+        right: calc(100% + 0.5rem);
+        top: 50%;
+        transform: translate(0.5rem, -50%);
+    }
+
+    .tooltip-image-left:hover figure {
+        transform: translate(0, -50%);
+    }
+
+    .tooltip-image-right figure {
+        left: calc(100% + 0.5rem);
+        top: 50%;
+        transform: translate(-0.5rem, -50%);
+    }
+
+    .tooltip-image-right:hover figure {
+        transform: translate(0, -50%);
+    }
+}

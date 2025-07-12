@@ -1,0 +1,32 @@
+<%
+    const prevText = theme.my_post.pagination[0]
+    const nextText = theme.my_post.pagination[1]
+    const nullText = theme.my_post.pagination[2]
+%>
+<!-- 文章阅读页的切换按钮 -->
+<div class="post-toggle d-flex justify-between flex-wrap gap-3">
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('<%= url_for(page.prev?.path) %>')"
+            <%= page.prev?.path ? '' : 'disabled' %>
+    ><%= prevText %>: <%= page.prev?.title ?? nullText %></button>
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('<%= url_for(page.next?.path) %>')"
+            <%= page.next?.path ? '' : 'disabled' %>
+    ><%= nextText %>: <%= page.next?.title ?? nullText %></button>
+</div>
+
+<script>
+    class PostToggleEjs extends Blog {
+        constructor() {
+            super()
+        }
+
+        onclickLink (url) {
+            this.createALink(url, '_self')
+        }
+    }
+
+    const postToggleEjs = new PostToggleEjs()
+</script>

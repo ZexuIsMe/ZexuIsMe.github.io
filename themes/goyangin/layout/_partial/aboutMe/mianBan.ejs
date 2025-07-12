@@ -1,0 +1,89 @@
+<!-- 人物面板 -->
+<section>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+    <div class="columns">
+        <div class="column is-4" style="position: relative">
+            <figure style="height: 500px; width: 100%" class="d-flex justify-center">
+                <img src="<%= url_for('img/home/my.JPG') %>" style="border-radius: 10px; width: auto" class="skeleton"/>
+            </figure>
+            <figure
+                    style="height: 500px; width: 100%; position: absolute; top: 28px; left: 18px; z-index: -1; filter: blur(10px)"
+                    class="d-flex justify-center"
+            >
+                <img src="<%= url_for('img/home/my.JPG') %>" style="border-radius: 10px"/>
+            </figure>
+        </div>
+
+        <div class="column">
+            <div id="spider-chart" style="width: 100%; height: 500px;"></div>
+        </div>
+    </div>
+
+
+    <div style="padding: 5rem 1rem">
+        <div class="subtitle mbl box">职业：码仔（Lv 1）
+            <span style="font-size: 12px">（受时空影响Gap导致职业等级下降，当前状态经验Up）</span>
+        </div>
+        <div class="table-wrapper">
+            <table class="table  is-striped ">
+                <thead>
+                <tr>
+                    <th>技能</th>
+                    <th>等级</th>
+                    <th style="min-width: 220px">技能介绍</th>
+                    <th style="min-width: 220px">--</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% page.mianBan.forEach(item => { %>
+                    <tr>
+                        <td><%= item.name %></td>
+                        <td><%= item.level %></td>
+                        <td><%= item.desc %></td>
+                        <td><%= item.text %></td>
+                    </tr>
+                <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function () {
+        // 初始化图表
+        let chartDom = document.getElementById('spider-chart');
+        let myChart = echarts.init(chartDom);
+
+        // 蜘蛛图配置（可根据需求动态调整）
+        let option = {
+            title: { text: '' },
+            tooltip: {},
+            radar: {
+                indicator: [
+                    { name: '体力', max: 100 },
+                    { name: '精神力', max: 100 },
+                    { name: '压力', max: 100 },
+                    { name: '自我开解', max: 100 },
+                    { name: '前端', max: 100 },
+                ]
+            },
+            series: [
+                {
+                    name: '粥记捣蛋',
+                    type: 'radar',
+                    data: [
+                        {
+                            value: [20, 70, 10, 50, 40], // 模拟数据，可动态传入
+                            name: '粥记捣蛋'
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // 渲染图表
+        myChart.setOption(option);
+    })()
+</script>

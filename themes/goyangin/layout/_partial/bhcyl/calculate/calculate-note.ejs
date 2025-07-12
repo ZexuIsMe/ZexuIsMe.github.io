@@ -1,0 +1,22 @@
+
+<div id="calculate-note">
+        <table class="table is-striped">
+                <tr>
+                        <th class="has-text-grey-light">备注信息</th>
+                        <th class="has-text-grey-light">描述</th>
+                </tr>
+                <% page.ps.forEach(item => { %>
+                        <tr>
+                                <td class="has-text-grey-light"><%= item.name %></td>
+                                <td class="has-text-grey-light"><%= item.desc %></td>
+                        </tr>
+                <% }) %>
+        </table>
+</div>
+
+<style>
+    #calculate-note {
+        line-height: 2.25rem;
+        padding: 60px 24px;
+    }
+</style>

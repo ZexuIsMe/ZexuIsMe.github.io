@@ -1,0 +1,144 @@
+<div class="p-8"></div>
+<!-- 生活大爆炸 -->
+<%
+
+const newsList = site.pages.sort('-date').filter(item => item.layout === 'life' && item.title !== '标题')
+const renderSubtitle = function({ icon, text }) {
+    return `
+<div class="d-flex justify-center gap-2 align-center">
+    <i class="${icon}"></i><span>${text}</span>
+</div>`}
+
+%>
+
+<div id="my-life">
+    <div class="ml-bg d-flex">
+        <img src="<%= url_for('img/svg/hello.svg') %>" style="opacity: 0.2;" alt="svg">
+    </div>
+    <div class="container p-6">
+        <div class="columns">
+            <!-- 新闻显示区域 -->
+            <article class="column">
+                <!-- 新闻标题 -->
+                <div class="text-center" style="padding-top: 100px">
+                    <h1 class="title text-grey-600 pb-6 "><%= page.title  %></h1>
+                    <div class="subtitle is-6 text-grey-400 d-flex justify-center gap-4">
+                        <%- markdown(renderSubtitle({ icon: 'fas fa-user', text: page.author || config.author })) %>
+                        <%- markdown(renderSubtitle({ icon: 'fas fa-clock', text: page.date.format('YYYY-MM-DD HH:mm') })) %>
+                    </div>
+                </div>
+                <!-- 内容加载区域 -->
+                <section id="life-content" style="padding: 100px 12px">
+                    <% page.news_content.forEach(item => { %>
+                        <% if (item.title) { %>
+                            <h1 class="title is-4 p-4 text-primary" style="border-left: 5px solid var(--primary); margin: 1.5rem 0 1.2rem 0; background-color: #00586d12"><%= item.title %></h1>
+                        <% }%>
+                        <!-- 如果该行存在文本 -->
+                        <% if (item.text) { %>
+                            <%- markdown(`${item.text}`) %>
+                        <% } %>
+                        <!-- 如果该行存在图片信息 -->
+                        <% if (Object.keys(item).find(key => key === 'image')) { %>
+                            <%
+                                const image = page.images[item.image]
+                                let imageURL = image?.path
+                                if (!imageURL) return
+                                if (!image?.path.startsWith('http')) imageURL = url_for(image.path)
+                            %>
+                            <figure
+                                    style="width: 100%; backdrop-filter: blur(10px); background-color: transparent"
+                                    class="d-flex align-center flex-column p-4"
+                            >
+                                <img
+                                        src="<%= imageURL %>"
+                                        style="border-radius: 10px; width: auto;"
+                                        alt="图片一张；图片可能加载失败了，网速不佳可能~~~"
+                                        class="skeleton"
+                                />
+                                <p class="subtitle is-6 text-grey-500 my-6" style=""><%= image?.subtitle || '' %></p>
+                            </figure>
+                        <% } %>
+                        <!-- 如果该行存在视频信息的话 -->
+                        <% if (Object.keys(item).find(key => key === 'video')) { %>
+                            <div class="mbl p-4" style="border: none">
+                                <%
+                                    const video = page.videos[item.video]
+                                    let videoURL = video.path
+                                    if (!video.path.startsWith('http')) videoURL = url_for(video.path)
+                                %>
+                                <figure>
+                                    <video
+                                            controls
+                                            src="<%= videoURL %>"
+                                            class="bg-black"
+                                            style="max-height: calc(570px - 116px); width: 100%"
+                                    ></video>
+                                    <p class="subtitle is-6 text-grey-500 my-6" style=""><%= video?.subtitle || '' %></p>
+                                </figure>
+                            </div>
+                        <% }%>
+                    <% }) %>
+                </section>
+            </article>
+            <!-- 新闻列表 -->
+            <aside class="column is-2" style="min-height: calc(100vh - 196px); ">
+                <div class="columns is-multiline">
+                    <!-- pages 中的参数默认按 layout 进行分类，想同的layout 会在相互挨着 -->
+                    <!-- 可以夸文件存放同一个配置信息的markdown，比如我可以把文件放在 bhcyl中，只要它的内容符合life布局就成 -->
+                    <% newsList.forEach(item => { %>
+                        <div
+                                class="column is-12 <%= page.path === item.path ? 'mbl' : 'qqq' %>"
+                                style="border-radius: 6px"
+                        >
+                            <div style="border-radius: 6px" onclick="lifeEjs.onclickNews(`<%= url_for(item.path) %>`)">
+                                <div>
+                                    <% if (Object.keys(item).find(key => key === 'images')) { %>
+                                        <%
+                                            const image = item.images[0]
+                                            let imageURL = image?.path || 'logo/logo配色图.png'
+                                            if (!image?.path.startsWith('http')) imageURL = url_for(image.path)
+                                        %>
+                                        <figure>
+                                            <img src="<%= imageURL %>" alt="" style="border-radius: 6px">
+                                        </figure>
+                                    <% } %>
+                                </div>
+                                <div class="text-center pt-1">
+                                    <div class="title is-6" onclick=""><%= item.title %></div>
+                                    <div class="subTitle is-6"><%= item.date.format('YYYY-MM-DD HH:mm') %></div>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<script>
+    const lifeEjs = {
+        onclickNews: url => {
+            const blog = new Blog()
+            blog.createALink(url, '_self')
+        }
+    }
+</script>
+
+<style>
+    .ml-bg {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        max-width: 50%;
+        max-height: 50%;
+        z-index: -1;
+        transform: translate(-50%, -50%);
+    }
+
+    #life-content p {
+        font-size: 1.25rem;
+        text-indent: 2rem;
+        line-height: 3rem;
+    }
+</style>

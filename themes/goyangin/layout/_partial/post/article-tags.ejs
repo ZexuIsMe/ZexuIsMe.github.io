@@ -1,0 +1,7 @@
+<% if (!!item.tags?.length) { %>
+    <% item.tags.forEach(tagItem => { %>
+        <a class="tag is-info is-light" href="<%= url_for(tagItem.path) %>"><%= tagItem.name%></a>
+    <% }) %>
+<% } else { %>
+    <span>--尚未指定标签--</span>
+<% } %>

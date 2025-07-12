@@ -1,0 +1,22 @@
+<!-- 文章的声明 -->
+<div id="copy-icon-<%= item.title %>" style="display: grid; grid-template-rows: subgrid; grid-row: span 3; grid-gap: 12px">
+    <%- markdown('**作者**：粥记捣蛋') %>
+    <div class="d-flex gap-3">
+        <%- markdown(`**文章链接**：https://ZeXuIsMe.github.io/${item.path}`) %>
+        <div
+                class="d-flex align-center"
+                style="width: fit-content; cursor: pointer"
+                onclick="postEjs.onclickCopy(`#copy-icon-<%= item.title %> a`)"
+        >
+            <%- partial('_partial/component/tooltip.ejs', { item: {
+                    type: 'text',
+                    icon: 'fa-copy',
+                    icon_prefix: 'fas',
+                    icon_size: 21,
+                    tooltip_text: '点击复制',
+                    direction: 'top'
+                } }) %>
+        </div>
+    </div>
+    <%- markdown(`**版权声明**：本网站所有文章除特别声明外,均采用 CC BY-NC-ND 4.0 许可协议。转载请注明出处!`) %>
+</div>

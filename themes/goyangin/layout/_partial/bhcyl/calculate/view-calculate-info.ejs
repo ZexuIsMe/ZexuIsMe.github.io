@@ -1,0 +1,126 @@
+<!--查看计算时的信息-->
+<div id="view-calculate-info" class="px-6">
+    <table id="calculate-table" class="table is-fullwidth">
+        <thead>
+            <tr>
+                <th>参与讯息</th>
+                <th>数值</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div class="py-4 d-flex justify-between">
+       <span> 计算误差：</span>
+    </div>
+
+    <form>
+        <label for="shiJiDamage" class="column is-half d-flex justify-between">
+            <span>实际伤害</span>
+            <input type="number" id="shiJiDamage" oninput="viewCalculate.method.onHandleWuCha(event)"/>
+<!--            TODO： 按单位输入，亿，万，千，-->
+        </label>
+        <label for="wuCha" class="column is-half d-flex justify-between">
+            <span class="has-text-grey-light">误差率：</span>
+            <span id="wuCha">0</span>
+        </label>
+
+        <label style="display: none">
+            <input />
+        </label>
+    </form>
+</div>
+
+<script>
+const viewCalculate = {
+    data: {
+        endDamage: null,
+        basic: []
+    },
+    method: {
+        handleNumberIndent: damageNumber => {
+            // 处理数字的缩进
+            if (damageNumber / 1e4 >= 1 && damageNumber / 1e8 < 1) {
+                // 伤害在 [万，亿]
+                return {
+                    value: (damageNumber / 1e5).toFixed(2),
+                    suffix: '万'
+                }
+            } else if (damageNumber / 1e8 >= 1) {
+                // 伤害超过 亿
+                return {
+                    value: (damageNumber / 1e8).toFixed(2),
+                    suffix: '亿'
+                }
+            } else {
+                return {
+                    value: damageNumber,
+                    suffix: ''
+                }
+            }
+        },
+        // 操作：回显计算参数到页面
+        renderCalculateInfo: item => {
+            viewCalculate.data.endDamage = item.damage
+
+            const damageObj = viewCalculate.method.handleNumberIndent(item.damage)
+
+            const data = new Map()
+            data.set('name', '参数信息')
+            const options = item.options.entries()
+                .reduce((result, [key, value], index) => {
+                    let eg = index + 3
+                    if (key === '基础伤害') eg = 2
+                    result.push({
+                        eg,
+                        name: key,
+                        value: value,
+                        inputType: 'text',
+                        suffix: null,
+                        defaultValue: value
+                    })
+                    return result
+                }, [{ eg: 1, name: '最终伤害', value: `${damageObj.value}${damageObj.suffix}`, inputType: 'text', suffix: null, defaultValue: `${damageObj.value}${damageObj.suffix}` }])
+                .sort((a, b) => a.eg - b.eg) // 升序
+            data.set('options', options)
+
+            document.querySelector('#calculate-table tbody').innerHTML = options.reduce((result, currentItem) => {
+                return result + `
+                    <tr>
+                        <td class="has-text-grey">${currentItem.name}</td>
+                        <td class="has-text-grey">${currentItem.value}</td>
+                    </tr>`
+            }, '')
+
+            // 把参数存起来
+            viewCalculate.method.saveConfig({item, data})
+        },
+
+        // 将结果保存下来
+        saveConfig: ({item, data}) => {
+            const target = sessionStorage.getItem('calculateConfig')
+            const value = {
+                config: item,
+                calculateInfo: data.get('options')
+            }
+            if (!target) {
+                sessionStorage.setItem('calculateConfig', JSON.stringify([value]))
+            } else {
+                const parseTarget = JSON.parse(target)
+                console.log(parseTarget)
+                // parseTarget.push(value)
+                // sessionStorage.setItem('calculateConfig', JSON.stringify(parseTarget.sort((a, b) => a - b)))
+            }
+        },
+
+        // 计算：算出与实际伤害的误差
+        onHandleWuCha: event => {
+            console.log(event.target.value)
+            // 获取实际伤害
+            const { endDamage: damage } = viewCalculate.data
+            // (模拟值 - 实际伤害) / 实际伤害 * 100%
+            document.getElementById('wuCha').innerHTML = ((damage - event.target.value) / event.target.value * 100).toFixed(2)
+        }
+    }
+}
+</script>

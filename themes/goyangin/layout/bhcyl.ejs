@@ -1,0 +1,44 @@
+
+<div id="bhcyl">
+    <div class="" style="height: calc(100% - 120px); overflow-y: auto">
+        <%- partial('_partial/bhcyl/body') %>
+    </div>
+
+    <div class="container px-4" style="position: relative;">
+        <%- partial('_partial/bhcyl/footer') %>
+    </div>
+    <%- partial('_partial/bhcyl/background') %>
+
+    <%- partial('_partial/component/loading', { item: { loadingId: 'bhcyl-loading', zIndex: 99 } }) %>
+</div>
+
+<script>
+    const bhcylHome = {
+        method: {
+            createALink: function (url, target) {
+                const blog = new Blog();
+                blog.createALink(url, target)
+            },
+            bannerLink: function (item) {
+                // TODO
+                bhcylHome.method.createALink(item.url)
+            },
+
+            hideLoading () {
+                const blog = new Blog()
+
+                blog.imagesHideLoading(`<%- url_for('img/bhcyl/狐狸v0.19.jpg') %>`, 'bhcyl-loading')
+            }
+        }
+    }
+
+    bhcylHome.method.hideLoading()
+</script>
+
+<style>
+    #bhcyl {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+    }
+</style>

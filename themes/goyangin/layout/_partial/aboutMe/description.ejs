@@ -1,0 +1,53 @@
+
+<section>
+    <div id="typewriter" style="text-align: center; line-height: 2" class="px-5"> </div>
+</section>
+
+<script>
+    class AboutMePage {
+        constructor() {
+            // ...
+            this.strData = [
+                'Hello, Hello, 啊，已经开始了吗？咳咳，',
+                '大家好呀，我叫Tao，或者粥记捣蛋，都是我，',
+                '不过以前大家都喜欢叫我涛儿，虽然不知道为什么，',
+                '有的时候我在想，我是不是那种生活能够自理的智力障碍患者，因为实在是真的太像了~~~',
+                '因为兜兜转转，快 7 年了，我的博客终于做出一版了，可喜可贺，期间想法很多，想要的也很多，删除了一版又一版。',
+                '要么就搁置了，又重新写，不过，从此刻开始，我不用再想这件事儿了，',
+                'Emmm，也就是 2025.6.27 14:30 开始，虽然看上去很简陋就是了，但是我很喜欢，它很简洁。',
+            ]
+        }
+
+        handleStr () {
+            return this.strData.reduce((result, cur) => {
+                return result + cur + '\n'
+            }, '')
+        }
+
+        typeWriter(elementId, speed) {
+            const element = document.getElementById(elementId);
+            let i = 0; // 当前字符索引
+            const interval = setInterval(() => {
+                if (i < this.handleStr().length) {
+                    element.textContent += this.handleStr().charAt(i); // 逐字符添加文本
+                    i++;
+                } else {
+                    clearInterval(interval); // 完成打字后停止间隔调用
+                }
+            }, speed); // 控制打字速度，例如50毫秒/字符
+        }
+    }
+
+    const aboutMePage = new AboutMePage();
+
+    // 使用函数
+    aboutMePage.typeWriter('typewriter', 100); // 100毫秒/字符速度
+</script>
+
+<style>
+    #typewriter {
+        width: 100%; /* 根据需要调整宽度 */
+        white-space: pre-wrap;
+        overflow: hidden; /* 隐藏溢出的文本 */
+    }
+</style>

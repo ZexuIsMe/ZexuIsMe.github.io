@@ -1,0 +1,7 @@
+<% if (!!item.categories?.length) { %>
+    <% item.categories.forEach(categoryItem => { %>
+        <a class="tag is-warning is-light" href="<%= url_for(categoryItem.path) %>"><%= categoryItem.name%></a>
+    <% }) %>
+<% } else { %>
+    <span>--尚未分类--</span>
+<% } %>

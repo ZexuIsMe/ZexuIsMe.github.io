@@ -1,0 +1,583 @@
+<div id="calculate-page" class="pb-8">
+    <div class="card my-8" style="border-top-left-radius: 70px 92px; ">
+        <div class="card-header">
+            <h3 class="card-header-title has-text-white justify-center">详细属性</h3>
+        </div>
+
+        <div class="px-4">
+            <!-- 面板：基础属性 -->
+            <% page.form.forEach(item => { %>
+                <div class="py-4">
+                    <div class="py-4 d-flex justify-between " style="line-height: 36px">
+                        <div class="calculate-form-title px-2"><%= item.title %></div>
+                        <div onclick="onclickReset('<%= item.formId %>')">重置</div>
+                    </div>
+                    <form id="<%= item.formId %>" name="<%= item.formName %>" class="px-4"></form>
+
+                    <% if (item.formId === 'skill-form') { %>
+                        <form id="skill2-form" name="skill2">
+                            <label id="addSkillAttr" class="column is-half d-flex justify-between">
+                                <span class="has-text-info">追加威力发挥</span>
+                                <select name="追加功法威力发挥" onchange="onchangeSkillOption(event)"  style="width: 159px;">
+                                    <% page.skill.forEach(item => { %>
+                                        <option><%= item %></option>
+                                    <% }) %>
+                                </select>
+                            </label>
+                        </form>
+                    <% }%>
+                </div>
+            <% }) %>
+        </div>
+
+        <div class="card-footer" style="border-bottom: 1px solid #ededed">
+            <a id="reset" class="card-footer-item" onclick="onclickResetAll()">参数重置</a>
+            <a id="calculate" class="card-footer-item" onclick="onclickCalculate()">计算</a>
+        </div>
+    </div>
+
+    <div class="card my-8 py-8">
+        <!-- 面板：信息面板 -->
+        <%- partial('_partial/bhcyl/calculate/view-calculate-info') %>
+    </div>
+
+    <div class="card my-8 py-8" style="border-radius: 100px">
+        <!-- 计算器：备注信息 -->
+        <%- partial('_partial/bhcyl/calculate/calculate-note') %>
+    </div>
+</div>
+
+<script>
+// JS：公共参数
+let record = new Map()
+const feList = ['金', '木', '水', '火', '土'] // fe: five Element
+const systemPower = ['剑', '气', '枪', '锤']
+const bhcylFormName = '#bhcyl form '
+const $ = DOMId => document.getElementById(DOMId)
+
+// JS：面板参数相关数据
+function createParamGroup(name, options) {
+    const group = new Map();
+    group.set('name', name);
+    group.set('options', options);
+    return group;
+}
+
+const SystemPowerName = '主修';
+const HPName = '气血';
+const MPName = '灵力';
+const huDunLimitName = '护盾上限';
+const CritName = '会心';
+const RestraintName = '克制';
+const purifiedName = '精纯';
+const basicAttributes = createParamGroup('基础属性', [
+    { eg: 'SystemPower', name: SystemPowerName, value: null, inputType: 'select', suffix: null, defaultValue: 0, list: systemPower },
+    { eg: 'HP', name: HPName, value: null, inputType: 'number', suffix: null, defaultValue: 0 },
+    { eg: 'MP', name: MPName, value: null, inputType: 'number', suffix: null, defaultValue: 0 },
+    { eg: 'ShieldCapacity', name: huDunLimitName, value: null, inputType: 'number', suffix: '%', defaultValue: 0 },
+    { eg: 'Crit', name: CritName, value: null, inputType: 'number', suffix: '%', defaultValue: 150 },
+    { eg: 'Restraint', name: RestraintName, value: null, inputType: 'number', suffix: '%', defaultValue: 150 },
+    { eg: 'purified', name: purifiedName, value: null, inputType: 'number', suffix: null, defaultValue: 0 },
+])
+
+const spPowerName = '主修威力';
+const JinPowerName = '金系威力';
+const MuPowerName = '木系威力';
+const WaterPowerName = '水系威力';
+const FirePowerName = '火系威力';
+const TuPowerName = '土系威力';
+const fep = createParamGroup('五行威力', [
+    { eg: 'spPower', name: spPowerName, value: null, inputType: 'number', suffix: null, defaultValue: 0 },
+    { eg: 'JinPower', name: JinPowerName, value: null, inputType: 'number', suffix: null, defaultValue: 0 },
+    { eg: 'MuPower', name: MuPowerName, value: null, inputType: 'number', suffix: null, defaultValue: 0 },
+    { eg: 'WaterPower', name: WaterPowerName, value: null, inputType: 'number', suffix: null, defaultValue: 0 },
+    { eg: 'FirePower', name: FirePowerName, value: null, inputType: 'number', suffix: null, defaultValue: 0 },
+    { eg: 'TuPower', name: TuPowerName, value: null, inputType: 'number', suffix: null, defaultValue: 0 },
+])
+
+const spDamagePercentName = '主修提高';
+const JinDamagePercentName = '金提高';
+const MuDamagePercentName = '木提高';
+const WaterDamagePercentName = '水提高';
+const FireDamagePercentName = '火提高';
+const TuDamagePercentName = '土提高';
+const fePowerUp = createParamGroup('各系伤害提高+神宝', [
+    { eg: 'spDamagePercent', name: spDamagePercentName, value: null, inputType: 'number', suffix: '%', defaultValue: 20 },
+    { eg: 'JinDamagePercent', name: JinDamagePercentName, value: null, inputType: 'number', suffix: '%', defaultValue: 30 },
+    { eg: 'MuDamagePercent', name: MuDamagePercentName, value: null, inputType: 'number', suffix: '%', defaultValue: 30 },
+    { eg: 'WaterDamagePercent', name: WaterDamagePercentName, value: null, inputType: 'number', suffix: '%', defaultValue: 30 },
+    { eg: 'FireDamagePercent', name: FireDamagePercentName, value: null, inputType: 'number', suffix: '%', defaultValue: 30 },
+    { eg: 'TuDamagePercent', name: TuDamagePercentName, value: null, inputType: 'number', suffix: '%', defaultValue: 30 }
+])
+
+const bossDamageName = '首领伤害';
+const mpUPName = '灵力灌溉效果';
+const suppressName = '压制伤害';
+const OA = createParamGroup('其他', [
+    { eg: 'bossDamage', name: bossDamageName, value: null, inputType: 'number', suffix: '%', defaultValue: 0 },
+    { eg: 'mpUP', name: mpUPName, value: null, inputType: 'number', suffix: '%', defaultValue: 100 },
+    { eg: 'suppress', name: suppressName, value: null, inputType: 'number', suffix: '%', defaultValue: 200 }
+])
+
+const skillAttributesName = '功法属性';
+const spPercentName = '主修威力发挥';
+const useMPPercentName = '灵力消耗率';
+const skill = createParamGroup('功法', [
+    { eg: 'skillAttributes', name: skillAttributesName, value: null, inputType: 'select', suffix: null, defaultValue: 0, list: feList },
+    { eg: 'spPercent', name: spPercentName, value: null, inputType: 'number', suffix: null, defaultValue: 0 },
+    { eg: 'useMPPercent', name: useMPPercentName, value: null, inputType: 'number', suffix: '%', defaultValue: 0 }
+])
+
+const JinPercentName = '金系威力发挥';
+const MuPercentName = '木系威力发挥';
+const WaterPercentName = '水系威力发挥';
+const FirePercentName = '火系威力发挥';
+const TuPercentName = '土系威力发挥';
+const fepPercentName = '全五行威力发挥';
+const skill2 = createParamGroup('功法:追加参数', [
+    { eg: 'JinPercent', name: JinPercentName, value: null, inputType: 'number', suffix: null, defaultValue: 0 },
+    { eg: 'MuPercent', name: MuPercentName, value: null, inputType: 'number', suffix: null, defaultValue: 0 },
+    { eg: 'WaterPercent', name: WaterPercentName, value: null, inputType: 'number', suffix: null, defaultValue: 0 },
+    { eg: 'FirePercent', name: FirePercentName, value: null, inputType: 'number', suffix: null, defaultValue: 0 },
+    { eg: 'TuPercent', name: TuPercentName, value: null, inputType: 'number', suffix: null, defaultValue: 0 },
+    { eg: 'fepPercent', name: fepPercentName, value: null, inputType: 'number', suffix: null, defaultValue: 0 }
+])
+
+const isCritName = '是否会心';
+const isRestraintName = '是否克制';
+const isSuppressName = '是否压制';
+const isRestraintPercentName = '克制生效率';
+const OForm = createParamGroup('操作台', [
+    { eg: 'isCrit', name: isCritName, value: false, inputType: 'checkbox', suffix: null, defaultValue: false },
+    { eg: 'isRestraint', name: isRestraintName, value: false, inputType: 'checkbox', suffix: null, defaultValue: false },
+    { eg: 'isSuppress', name: isSuppressName, value: false, inputType: 'checkbox', suffix: null, defaultValue: false },
+    { eg: 'isRestraintPercent', name: isRestraintPercentName, value: null, inputType: 'number', suffix: '%', defaultValue: 20 }
+])
+
+const JiuYaoName = '九曜观星冕';
+const GuiShenName = '鬼神巡令';
+const DiYuanName = '地元宝篆';
+const runesVesselsFrom = createParamGroup('器纹', [
+    { eg: 'JiuYao', name: JiuYaoName, value: false, inputType: 'checkbox', suffix: null, defaultValue: false },
+    { eg: 'GuiShen', name: GuiShenName, value: false, inputType: 'checkbox', suffix: null, defaultValue: false },
+    { eg: 'DiYuan', name: DiYuanName, value: false, inputType: 'checkbox', suffix: null, defaultValue: false },
+])
+
+const XieTongName = '完美协同';
+const YanGuanJiName = '岩冠鸡（1.5）';
+const FireGodMonkeyName = '火神苍古猿（1.5）';
+const Tu5Name = '土系仙兽（1.5）';
+const Water5Name = '水系仙兽（1.5）';
+const petForm = createParamGroup('灵兽', [
+    { eg: 'XieTong', name: XieTongName, value: false, inputType: 'checkbox', suffix: null, defaultValue: false },
+    { eg: 'YanGuanJi', name: YanGuanJiName, value: false, inputType: 'checkbox', suffix: null, defaultValue: false },
+    { eg: 'FireGodMonkey', name: FireGodMonkeyName, value: false, inputType: 'checkbox', suffix: null, defaultValue: false },
+    { eg: 'Tu5', name: Tu5Name, value: false, inputType: 'checkbox', suffix: null, defaultValue: false },
+    { eg: 'Water5', name: Water5Name, value: false, inputType: 'checkbox', suffix: null, defaultValue: false },
+]);
+
+const muZhuangConfig = {
+    jianShang: {
+        keZhi: 70,
+        beiKeZhi: 79,
+        tongShuXing: 89,
+        feiKeZhi: 71.03
+    },
+    // 金克木，木克土，土克水，水克火，火克金
+    keZhiGuanXi: {
+        // 比如“金木”，前者为技能的功法属性，后者为木桩属性
+        keZhi: ['金木', '木土', '土水', '水火', '火金'],
+        beiKeZhi: ['木金', '土木', '水土', '火水', ],
+        tongShuXing: ['金金', '木木', '水水', '火火', '土土'],
+        feiKeZhi: ['金水', '金土', '木水', '木火', '土火', '土金', '水金', '水木', '火土', '火木']
+    },
+    fiveElement: {
+        '金': {
+            name: '金系木桩：十阶圆满',
+            type: '木桩',
+            convertPercent: skillAttr => muZhuangConfig.getJianShang(`${skillAttr}金`)
+        },
+        '木': {
+            name: '木系木桩：十阶圆满',
+            type: '木桩',
+            convertPercent: skillAttr => muZhuangConfig.getJianShang(`${skillAttr}木`)
+        },
+        '水': {
+            name: '水系木桩：十阶圆满',
+            type: '木桩',
+            convertPercent: skillAttr => muZhuangConfig.getJianShang(`${skillAttr}水`)
+        },
+        '火': {
+            name: '火系木桩：十阶圆满',
+            type: '木桩',
+            convertPercent: skillAttr => muZhuangConfig.getJianShang(`${skillAttr}火`)
+        },
+        '土': {
+            name: '土系木桩：十阶圆满',
+            type: '木桩',
+            convertPercent: skillAttr => muZhuangConfig.getJianShang(`${skillAttr}土`)
+        }
+    },
+    getKeZhiGuanXi: str => {
+        // 获取功法与木桩的一个克制关系
+        const { keZhi, beiKeZhi , tongShuXing} = muZhuangConfig.keZhiGuanXi
+        if (keZhi.find(value => value === str)) return 'keZhi'
+        else if (beiKeZhi.find(value => value === str)) return 'beiKeZhi'
+        else if (tongShuXing.find(value => value === str)) return 'tongShuXing'
+        else return 'feiKeZhi'
+    },
+    getJianShang: str => (1 - (muZhuangConfig.jianShang[muZhuangConfig.getKeZhiGuanXi(str)] * 0.01)).toFixed(3)
+}
+const getMuZhuangFiveElement = name => muZhuangConfig.fiveElement[name]
+const muZhuangForm = createParamGroup('木桩', [
+    { eg: 'JinMuZhuang', name: getMuZhuangFiveElement('金').name, value: false, inputType: 'checkbox', suffix: null, defaultValue: false },
+    { eg: 'MuMuZhuang', name: getMuZhuangFiveElement('木').name, value: false, inputType: 'checkbox', suffix: null, defaultValue: false },
+    { eg: 'WaterMuZhuang', name: getMuZhuangFiveElement('水').name, value: false, inputType: 'checkbox', suffix: null, defaultValue: false },
+    { eg: 'FireMuZhuang', name: getMuZhuangFiveElement('火').name, value: false, inputType: 'checkbox', suffix: null, defaultValue: false },
+    { eg: 'TuMuZhuang', name: getMuZhuangFiveElement('土').name, value: false, inputType: 'checkbox', suffix: null, defaultValue: false },
+])
+
+// JS：一键渲染页面
+const renderFormList = [
+    { name: 'basic-form', data: basicAttributes },
+    { name: 'fep-form', data: fep },
+    { name: 'powerUp-form', data: fePowerUp },
+    { name: 'OA-form', data: OA },
+    { name: 'skill-form', data: skill },
+    { name: 'operate-form', data: OForm },
+    { name: 'runesVessels-form', data: runesVesselsFrom },
+    { name: 'pet-form', data: petForm },
+    { name: 'muZhuang-form', data: muZhuangForm },
+]
+const getTempLabel = function (obj) {
+    let inputDOM = ''
+    switch (obj.inputType) {
+        case 'select':
+            inputDOM = `
+                    <select style="width: 159px;" name="${obj.name}" id="${obj.eg}">
+                        ${
+                obj.list.reduce((result, currentItem, index) => {
+                    return result + `<option value="${index + 1}" aria-checked="${currentItem.defaultValue}">${currentItem}</option>`
+                }, '<option value="0">--</option>')
+            }
+                    </select>
+                `
+            break
+        case 'text': // 非常规text，用于显示信息
+            inputDOM = `<span>${obj.value || obj.defaultValue}</span>`
+            break
+        default:
+            inputDOM = `<input type="${obj.inputType}" name="${obj.name}" id="${obj.eg}" value="${obj.value || obj.defaultValue}"/>`
+    }
+    return `
+        <label for="${obj.eg}" class="column is-half d-flex justify-between">
+            <span>${obj.name}</span>
+             ${inputDOM}
+        </label>`
+}
+const htmlFormFunc = function (DOMid, options) {
+    $(DOMid).innerHTML += function () {
+        return options.reduce((html, obj) => {
+            return html + getTempLabel(obj)
+        }, '')
+    }()
+}
+const renderForm = () => {
+    renderFormList.forEach(form => {
+        if ($(form.name)) htmlFormFunc(form.name, form.data.get('options'))
+    })
+
+}
+document.addEventListener('DOMContentLoaded', () => {
+    renderForm()
+})
+
+// 补充 Class: form
+document.querySelectorAll(bhcylFormName).forEach(htmlForm => {
+    htmlForm.classList.add('columns')
+    htmlForm.classList.add('is-multiline')
+})
+
+// 操作：功法，按需添加参数
+function stringToNode(html) {
+    const fragment = document.createDocumentFragment();
+
+    const temp = document.createElement('div');
+    temp.innerHTML = html;
+
+    // 将temp的子节点移到fragment中
+    while (temp.firstChild) {
+        fragment.appendChild(temp.firstChild);
+    }
+
+    return fragment;
+}
+const onchangeSkillOption = event => {
+    // 在当前DOM前添加制定的输入框
+    const selectValue = event.target.value
+    if (selectValue === '--') return
+
+    const tempObj = skill2.get('options').find(item => item.name === selectValue)
+    const tempHtml = stringToNode(getTempLabel(tempObj))
+
+    const target = event.target.parentNode
+    target.parentNode.insertBefore(tempHtml, target)
+}
+
+const convertConfig = {
+    // 转伤配置表
+    jingCun: {
+        name: '精纯转伤',
+        type: '灵根',
+        convertPercent: lv => {
+            return lv * 5 * 0.01 + 1
+        },
+        desc: '每点精纯让伤害提升 5% '
+    },
+    mp: {
+      name: '灵力转基础伤',
+      type: '基础属性',
+      convertPercent: (mp, usePercent, upPercent) => Math.round(mp * usePercent * 0.01 * upPercent * 0.01)
+    },
+    tuXian: {
+        name: '土仙转伤',
+        type: '灵兽',
+        convertPercent: (10 * 0.01) * (90 * 0.01),
+        desc: '消耗护盾获得土系威力'
+    },
+    water: {
+        name: '水仙转伤',
+        type: '灵兽',
+        convertPercent: 75 * 0.01,
+        desc: '根据消耗的灵力获得水系威力'
+    },
+    fireGodMonkey: {
+        name: '火猴转伤',
+        type: '灵兽',
+        convertPercent: 45 * 0.01,
+        desc: '气血转基础伤害'
+    },
+    jiuYao: {
+        name: '九曜',
+        type: '器纹',
+        convertPercent: 90 * 0.01 + 1,
+        desc: '造成克制伤害时，累计一层BUFF，10层后清空BUFF，此次攻击必定会心、必定压制且伤害提高90%'
+    },
+    guiShen: {
+        name: '鬼神',
+        type: '器纹',
+        convertPercent: 30 * 0.01 + 1,
+        desc: '会心和压制同时触发时，此次伤害提高 30%'
+    },
+    diYuanBaoZhuan: {
+        name: '地元宝篆转伤',
+        type: '器纹',
+        convertPercent: value => {
+            return Math.round(value / 400)
+        },
+        desc: '每400点护盾可获得 1% 会心伤害'
+    }
+}
+// 操作：处理灵兽转伤
+const handlePetConvert = collect => {
+    const handleFunc = (convertTarget, configInfo) => {
+        // 获取转伤条件，再根据转伤配置中的比例计算转伤所得
+        const convert = Math.floor(collect.get(convertTarget) * configInfo.convertPercent)
+        // 将灵兽转伤的数据收集到 collect 中
+        collect.set(configInfo.name, convert)
+        record.set(configInfo.name, convert)
+    }
+    // 特殊基础点伤来源：灵兽 土5仙兽
+    if (collect.get(Tu5Name)) handleFunc(huDunLimitName, convertConfig.tuXian)
+    // 特殊基础点伤来源：灵兽 水5仙兽
+    if (collect.get(Water5Name)) handleFunc(MPName, convertConfig.water)
+    // 特殊基础点伤来源：灵兽 火神苍古猿，不参与五行威力
+    if (collect.get(FireGodMonkeyName)) handleFunc(HPName, convertConfig.fireGodMonkey)
+}
+// 操作：基础伤害计算
+const getBasicDamage = collect => {
+    let basicDamage = 0
+    // 如果有火神苍古猿的话
+    if (collect.get(FireGodMonkeyName)) basicDamage += collect.get(convertConfig.fireGodMonkey.name)
+    // 来源1：功法主修发挥比例 * 主修威力
+    const systemPowerBasic = Math.floor(collect.get(spPowerName) * collect.get(spPercentName) * 0.01)
+    record.set('主修威力发挥（基础点伤）', systemPowerBasic)
+    basicDamage += systemPowerBasic
+    // 来源2：计算：根据威力发挥获得基础点伤
+    feList.forEach(fiveElement => {
+        const powerPercent = collect.get(`${fiveElement}系威力发挥`)
+        // 如果水系威力发挥有值，那么从 collect 中取出 水系威力，接着相乘，得到技能的水系威力的基础伤害
+        if (!powerPercent) return
+        let power = collect.get(`${fiveElement}系威力`)
+        // if (fiveElement === '土' && collect.get(Tu5Name)) {
+        //     power += collect.get(convertConfig.tuXian.name)
+        // } else if (fiveElement === '水' && collect.get(Water5Name)) {
+        //     power += collect.get(convertConfig.water.name)
+        // }
+        const fePowerBasic = Math.floor(power * powerPercent * 0.01)
+        record.set(`${fiveElement}系威力发挥（基础点伤）`, fePowerBasic)
+        basicDamage += fePowerBasic
+    }) // feList：Five Element List 五行元素列表
+    // 来源2：计算：获取全五行威力发挥的基础点伤
+    const fepPercent = collect.get(fepPercentName)
+    if (fepPercent) {
+        const fePower = feList.reduce((result, currentItem) => {
+            //  = 五行威力 + 是否有对应的五行灵兽转伤
+            result += collect.get(`${currentItem}系威力`)
+            if (currentItem === '土' && collect.get(Tu5Name)) {
+                result += collect.get(convertConfig.tuXian.name)
+            } else if (currentItem === '水' && collect.get(Water5Name)) {
+                result += collect.get(convertConfig.water.name)
+            }
+            // 如果当前是土系威力，且勾选了土系仙兽的情况下
+            return result
+        }, 0)
+        record.set(`全五行威力`, fePower)
+        const fepBasic = Math.floor(fePower * fepPercent* 0.01)
+        record.set(`${fepPercentName}（基础点伤）`, fepBasic)
+        basicDamage += fepBasic
+    }
+    // 来源3：灵力 * 消耗率 * 灌溉比例
+    const mpConvert = convertConfig.mp.convertPercent(collect.get(MPName), collect.get(useMPPercentName), collect.get(mpUPName))
+    basicDamage += mpConvert
+    record.set(convertConfig.mp.name, mpConvert)
+
+    return basicDamage
+}
+// 操作：最终伤害计算
+const onclickCalculate = () => {
+    record = new Map()
+
+    // 一键收集所有表单参数
+    const collect = new Map()
+    document.querySelectorAll(bhcylFormName + 'input').forEach(input => {
+        if (input.type === 'checkbox') {
+            collect.set(input.name, input.checked)
+        } else {
+            let tempValue = input.value || 0
+            if (input.type === 'number') tempValue = Number(input.value)
+            collect.set(input.name, tempValue)
+        }
+    })
+    document.querySelectorAll(bhcylFormName + 'select').forEach(select => {
+        collect.set(select.name, select.value || null)
+    })
+
+    const skillAttr = collect.get(skillAttributesName)
+    if (skillAttr === '0') throw new Error('【功法属性】为必填项！')
+
+    const fiveElement = feList.find((_, index) => `${index + 1}` === skillAttr)
+
+    const restraint = collect.get(RestraintName)
+    const jiuYao = collect.get(JiuYaoName)
+    const guiShen = collect.get(GuiShenName)
+    const diYuan = collect.get(DiYuanName)
+
+    const options = new Map()
+    // 五行伤害提高：根据功法属性确认加入公式的是金木水土中的哪一个伤害提高
+    options.set(`${fiveElement}系伤害提高`, collect.get(`${fiveElement}提高`) * 0.01 + 1)
+    // 减伤率
+    const feMuZhuang = feList.find(fe => collect.get(`${fe}系木桩：十阶圆满`)) || feList[0] // 获取木桩五行：看用户勾选了哪个五行的木桩
+    const targetMuZhuang = getMuZhuangFiveElement(feMuZhuang) // 根据功法属性信息获取对应木桩的减伤信息
+    options.set(targetMuZhuang.name, muZhuangConfig.getJianShang(`${fiveElement}${feMuZhuang}`))
+
+    // 收集：灵兽信息，方便后续操作
+    handlePetConvert(collect)
+    // 收集：公式所需信息
+    options.set('基础伤害', getBasicDamage(collect))
+    options.set('精纯度', convertConfig.jingCun.convertPercent(collect.get(purifiedName)))
+    options.set('首领伤害', collect.get(bossDamageName) * 0.01 + 1)
+    options.set('主修伤害提高', collect.get(spDamagePercentName) * 0.01 + 1)
+    // 会心：是否会心 || 是否九曜 || 是否地元宝篆
+    if (collect.get('是否会心') || jiuYao || diYuan) {
+        let crit = collect.get(CritName)
+        if (diYuan) {
+            const { name, convertPercent } = convertConfig.diYuanBaoZhuan
+            const convertResult = convertPercent(collect.get(huDunLimitName))
+            crit += convertResult
+            record.set(name, convertResult)
+        }
+        options.set('会心伤害', crit * 0.01)
+    }
+    // 克制：是否克制
+    if (collect.get('是否克制')) options.set('克制伤害', restraint * 0.01)
+    else options.set('克制生效率', (restraint * 0.01) * (collect.get(isRestraintPercentName) * 0.01) + 1)
+    // 压制：是否压制 || 是否九曜
+    if (collect.get('是否压制') || jiuYao || guiShen) options.set('压制伤害', collect.get(suppressName) * 0.01)
+    // 器纹 九曜：存在则伤害提升 90%
+    if (jiuYao) options.set(JiuYaoName, convertConfig.jiuYao.convertPercent)
+    // 器纹 神鬼：效果为压制时，伤害提高 30%
+    if (guiShen) options.set(GuiShenName, convertConfig.guiShen.convertPercent)
+    // 灵兽 完美协同
+    if (collect.get('XieTongName')) options.set('完美协同', 1.1)
+    // 灵兽 岩冠鸡
+    if (collect.get('YanGuanJiName')) options.set('完美协同', 1.3)
+
+    // 最终伤害：基础点伤 * 爆伤 * 克制 * 压制伤害 * 首领伤害 * 精纯 * (1 - 减伤率)
+    const endDamage = options.keys().reduce((result, currentItem) => {
+        console.log(currentItem, `result：${result} * ${currentItem}: ${options.get(currentItem)}`, result * options.get(currentItem))
+        return result * options.get(currentItem)
+    }, 1)
+    console.log('最终伤害', endDamage)
+    viewCalculate.method.renderCalculateInfo({
+        damage: Math.round(endDamage),
+        options: new Map([...record, ...options]),
+        collect
+    })
+}
+// 操作：重置
+const resetForm = target => {
+    document.querySelectorAll(`#bhcyl #${target.name} input`)?.forEach(input => {
+        if (input.type === 'checkbox') input.checked = false
+        else input.value = target.data.get('options').find(item => item.name === input.name).defaultValue
+    })
+    document.querySelectorAll(`#bhcyl ${target.name} select`)?.forEach(select => {
+        select.value = target.data.get('options').find(item => item.name === select.name).defaultValue
+    })
+    if (target.name === 'skill-form') {
+        // 重置功法参数，顺带将自定义功法栏清空
+        const skill2DOM = $('skill2-form')
+        for (let i = 0; i < skill2DOM.children.length; i++) {
+            if (skill2DOM.children[i].id !== 'addSkillAttr') {
+                skill2DOM.removeChild(skill2DOM.children[i])
+            }
+        }
+    }
+}
+const onclickReset = (id) => {
+    const target = renderFormList.find(item => item.name === id)
+    if (target) resetForm(target)
+}
+const onclickResetAll = _ => {
+    renderFormList.forEach(item => onclickReset(item.name))
+
+    $('info-form').innerHTML = ''
+}
+</script>
+
+<style>
+    #calculate-page, .card-header {
+        border-top-left-radius: 70px 90px !important;
+    }
+    .calculate-form-title, .card-header {
+        background: linear-gradient(
+                128deg,
+                rgb(173 192 215 / 100%),
+                rgba(255, 255, 255, 0),
+                rgb(173 192 215 / 59%),
+                rgb(173 192 215 / 100%)
+        ), #164c848a;
+        color: white;
+    }
+
+    .calculate-form-title {
+        border-bottom-right-radius: 70px 90px;
+    }
+    .calculate-form-title {
+        width: 200px;
+        height: 36px;
+        line-height: 36px;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+</style>
