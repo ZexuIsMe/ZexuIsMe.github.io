@@ -1,0 +1,68 @@
+/* 复制块的CSS */
+
+.code-block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e3e3e3;
+    color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 4px 4px 0 0;
+    font-size: 0.9rem;
+}
+
+/* 语言标签样式 */
+.code-lang-tag {
+    padding: 2px 8px;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 复制按钮样式 */
+.copy-button {
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.copy-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.copy-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+/* 复制成功状态 */
+.copy-success {
+    background-color: #28a745 !important;
+    color: #fff;
+}
+
+/* 复制失败状态 */
+.copy-error {
+    background-color: #dc3545 !important;
+    color: #fff;
+}
+
+/* 确保代码块有适当的样式 */
+figure[class*="highlight"],
+pre[class*="language-"],
+div[class*="codehilite"] {
+    margin: 1em 0;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+pre[class*="language-"] {
+    margin-top: 0 !important;
+    border-radius: 0 0 4px 4px !important;
+}

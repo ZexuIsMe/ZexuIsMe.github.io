@@ -1,0 +1,4110 @@
+<html lang="">
+<!-- Head tag -->
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="">
+    <meta name="author" content="">
+     
+    <title>碧海苍云录-木桩 | 粥记捣蛋</title>
+
+    
+<script src="/js/index.js" type="module"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+    <!-- 这里的是全局通用的方法 -->
+
+<script type="text/javascript">
+    // // 使用示例
+    // const detector = new DeviceDetector();
+    // console.log('是否是移动设备:', detector.isMobile());
+    // console.log('是否是平板:', detector.isTablet());
+    // console.log('是否是触摸屏设备:', detector.isTouchDevice());
+    // console.log('浏览器:', detector.getBrowserInfo());
+    // console.log('设备信息:', detector.getDeviceInfo());
+    class DeviceDetector {
+        constructor() {
+            this.userAgent = navigator.userAgent.toLowerCase();
+            this.platform = navigator.platform.toLowerCase();
+            this.isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        }
+
+        // 判断是否为移动设备（包括平板）
+        isMobile() {
+            return /mobile|android|iphone|ipad|ipod|blackberry|windows phone/i.test(this.userAgent);
+        }
+
+        // 判断是否为桌面设备
+        isDesktop() {
+            return !this.isMobile();
+        }
+
+        // 判断是否为iOS设备
+        isIOS() {
+            return /iphone|ipad|ipod/i.test(this.userAgent);
+        }
+
+        // 判断是否为Android设备
+        isAndroid() {
+            return /android/i.test(this.userAgent);
+        }
+
+        // 判断是否为平板设备
+        isTablet() {
+            return /tablet|ipad|android(?!.*mobile)|kindle/i.test(this.userAgent);
+        }
+
+        // 判断是否为手机设备
+        isPhone() {
+            return this.isMobile() && !this.isTablet();
+        }
+
+        // 判断是否为触摸屏设备
+        isTouchDevice() {
+            return this.isTouchDevice;
+        }
+
+        // 判断是否为Chrome浏览器
+        isChrome() {
+            return /chrome/i.test(this.userAgent) && !this.isEdge();
+        }
+
+        // 判断是否为Firefox浏览器
+        isFirefox() {
+            return /firefox/i.test(this.userAgent);
+        }
+
+        // 判断是否为Safari浏览器
+        isSafari() {
+            return /safari/i.test(this.userAgent) && !/chrome|chromium/i.test(this.userAgent);
+        }
+
+        // 判断是否为Edge浏览器
+        isEdge() {
+            return /edge|edg/i.test(this.userAgent);
+        }
+
+        // 判断是否为IE浏览器
+        isIE() {
+            return /msie|trident/i.test(this.userAgent);
+        }
+
+        // 获取设备信息摘要
+        getDeviceInfo() {
+            return {
+                userAgent: this.userAgent,
+                isMobile: this.isMobile(),
+                isDesktop: this.isDesktop(),
+                isIOS: this.isIOS(),
+                isAndroid: this.isAndroid(),
+                isTablet: this.isTablet(),
+                isPhone: this.isPhone(),
+                isTouchDevice: this.isTouchDevice,
+                browser: this.getBrowserInfo()
+            };
+        }
+
+        // 获取浏览器信息
+        getBrowserInfo() {
+            if (this.isChrome()) return 'Chrome';
+            if (this.isFirefox()) return 'Firefox';
+            if (this.isSafari()) return 'Safari';
+            if (this.isEdge()) return 'Edge';
+            if (this.isIE()) return 'Internet Explorer';
+            return 'Unknown';
+        }
+    }
+
+    class Blog extends DeviceDetector {
+        constructor() {
+            super();
+            this.messageMap = new Map();
+            this.messageMap.set("info", "has-background-info-light");
+            this.messageMap.set("success", "has-background-success-light");
+            this.messageMap.set("warning", "has-background-warning-light");
+            this.messageMap.set("error", "has-background-danger-light");
+        }
+
+        createALink (url, target = '_self') {
+            if (!url) {
+                console.error('没有链接')
+                return
+            }
+            if (url.startsWith('http')) target = '_blank'
+            const aLink = document.createElement('a')
+            aLink.href = url
+            aLink.target = target;
+            aLink.click()
+        }
+
+        /**
+         *
+         * @param url 图片链接
+         * @param id 你给 loading.ejs 添加的 id
+         */
+        imagesHideLoading (url, id) {
+            const img = new Image()
+            img.src = url
+            document.getElementById(id).classList.add('c-show-loading')
+            img.onload = () => {
+                console.log('加载完毕')
+                setTimeout(() => {
+                    console.log('已执行')
+                    document.getElementById(id).classList.remove('c-show-loading')
+                    document.getElementById(id).classList.add('c-hide-loading')
+                }, 2000)
+            }
+        }
+
+        getMessageParent () {
+            let DOMParent = document.getElementById('blog-message')
+            if (!DOMParent) {
+                DOMParent = document.createElement('div')
+                DOMParent.id = 'blog-message'
+                DOMParent.classList.add('d-flex')
+                DOMParent.classList.add('align-center')
+                DOMParent.classList.add('flex-column')
+                Object.assign(DOMParent.style, {
+                    width: '100%',
+                    height: 'auto',
+                    position: 'fixed',
+                    top: '7.5rem',
+                    left: 0,
+                    zIndex: 999999999999999999,
+                    transition: 'height 0.3s ease'
+                })
+
+                document.body.appendChild(DOMParent)
+            }
+            return DOMParent
+        }
+
+        showMessage ({
+                         type = 'info', // info、success、warning、error
+                         message = '还没有投放文本呢~~',
+                     }) {
+            const parentDOM = this.getMessageParent()
+
+            const DOM = document.createElement('div')
+            DOM.classList.add('py-2')
+            DOM.classList.add('px-4')
+            DOM.classList.add('box')
+            DOM.classList.add(this.messageMap.get(type))
+            Object.assign(DOM.style, {
+                width: 'fit-content',
+                opacity: '0',
+                visibility: 'hidden',
+                transition: 'opacity 0.3s ease, transform 0.3s ease, visibility 0.3s'
+            })
+
+            DOM.innerHTML = message
+            DOM.style.opacity = '1'
+            DOM.style.visibility = 'visible'
+            parentDOM.appendChild(DOM)
+
+            setTimeout(() => {
+                DOM.style.opacity = '0'
+                DOM.style.visibility = 'hidden'
+                setTimeout(() => {
+                    parentDOM.removeChild(DOM)
+                }, 500)
+            }, 1500)
+        }
+
+        onclickCopy (targetName) {
+            const targetDOM = document.querySelector(targetName)
+            if (!targetDOM) {
+                throw new Error('复制的目标不存在！用的是 querySelector，可能是名字用错了呀~')
+            }
+            // 选中文本
+            const range = document.createRange();
+            range.selectNodeContents(targetDOM);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            // 执行复制命令
+            const successful = document.execCommand('copy');
+            // 清理
+            selection.removeAllRanges();
+
+            if (successful) {
+                this.showMessage({ type: 'success', message: '复制成功' });
+            } else {
+                throw new Error('复制失败')
+            }
+        }
+    }
+</script>
+    <![endif]-->
+
+    <!-- 浏览器图标 -->
+    <link rel="shortcut icon" href="/logo/%E9%AB%98%E6%B8%85Logo/%E9%80%8F%E6%98%8E%E5%BA%95logo.png">
+
+    <!-- framework CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">-->
+    <!-- Custom styles for this template -->
+    
+<link rel="stylesheet" href="/css/index.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- section 1：顶部菜单 -->
+    <div class="index-menu px-4">
+    <div id="no-mobile-menu" >
+        <div class="d-flex justify-center align-center gap-4 v-full">
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/"
+                    >首页</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/bhcyl"
+                    >碧海苍云录</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/life"
+                    >生活大爆炸</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/archives"
+                    >归档</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/about-me"
+                    >关于我</a>
+                </div>
+            
+        </div>
+    </div>
+    <div id="mobile-menu">
+        <div class="v-full d-flex justify-end align-center">
+            <div style="width: fit-content; position: relative">
+                <i
+                        class="fas fa-list"
+                        style="color: #00586d"
+                        onclick="event.stopPropagation(); menuEjs.onclickMobileMenu(event)"
+                ></i>
+                <div
+                        id="nav-mobile"
+                        class="py-4"
+                        style=" opacity: 0; visibility: hidden"
+                        onclick="event.stopPropagation();"
+                >
+                    <aside class="menu">
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/" style="color: #00586d ">首页</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/bhcyl" style="color: #00586d ">碧海苍云录</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/life" style="color: #00586d ">生活大爆炸</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/archives" style="color: #00586d ">归档</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/about-me" style="color: #00586d ">关于我</a>
+                            </div>
+                        
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .menu-label:hover {
+        background-color: #EEEEEE;
+        color: #00586d;
+    }
+</style>
+
+<script>
+    // 导航栏吸顶功能实现
+    document.addEventListener('DOMContentLoaded', function() {
+        const navbar = document.querySelector('.index-menu');
+        let lastScrollTop = 0;
+        const threshold = 50; // 滚动阈值，越小越敏感
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // 页面顶部始终显示
+            if (scrollTop <= threshold) {
+                navbar.classList.remove('fixed-header-hidden');
+            }
+            // 向下滚动且超过阈值
+            else if (scrollTop > lastScrollTop && scrollTop > threshold) {
+                navbar.classList.add('fixed-header-hidden');
+            }
+            // 向上滚动
+            else {
+                navbar.classList.remove('fixed-header-hidden');
+            }
+
+            lastScrollTop = scrollTop;
+
+            // 无论是向上还是向下滚动，如果音乐播放器处于展现状态，都要收起来
+            const musicPlayer = document.getElementById('music-player')
+            if(musicPlayer) musicPlayer.style.left = -100 + '%'
+        });
+    });
+
+    const menuEjs = {
+        onclickMobileMenu: event => {
+            console.log('onclickMobileMenu')
+            const targetDOM = document.getElementById('nav-mobile')
+            targetDOM.style.opacity = 1
+            targetDOM.style.visibility = 'visible'
+        }
+    }
+
+    window.addEventListener('click', function() {
+        const targetDOM = document.getElementById('nav-mobile')
+        if (!targetDOM || !targetDOM.style.opacity) return
+        if (targetDOM.style.opacity) {
+            targetDOM.style.opacity = 0
+            targetDOM.style.visibility = 'hidden'
+        }
+    })
+</script>
+
+<style>
+    .index-menu {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100px;
+        backdrop-filter: blur(10px);
+        background-color: transparent;
+        z-index: 99999;
+        transition: transform 0.3s linear, opacity 0.3s linear; /* 线性过渡 */
+    }
+    .index-menu > div {
+        cursor: pointer;
+    }
+
+    .fixed-header-hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    #no-mobile-menu {
+        display: none;
+        width: 100%;
+    }
+    #mobile-menu {
+        display: none;
+        height: 100%;
+    }
+    #nav-mobile {
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        position: absolute;
+        top: 100%;
+        background-color: white;
+        z-index: 2;
+        right: 0;
+    }
+
+    /* 屏幕宽度小于等于400px时 */
+    @media (max-width: 400px) {
+        #mobile-menu {
+            display: block;
+        }
+        #no-mobile-menu {
+            display: none;
+        }
+    }
+
+    /* 屏幕宽度大于400px时 */
+    @media (min-width: 401px) {
+        #mobile-menu {
+            display: none;
+        }
+        #no-mobile-menu {
+            display: block;
+        }
+    }
+</style>
+    <div id="blog-body">
+        <!-- 渲染：阅读整篇文章 -->
+
+
+<div style="height: 80px"></div>
+
+<article id="read-post" class="v-layout-75 p-4" style="display: grid; grid-template-rows: repeat(auto-fill, 1fr); grid-gap: 36px">
+    <!-- Title -->
+    <div class="level">
+        <div class="level-left">
+            <div class="media">
+                <div class="media-content">
+                    <h1 class="title is-4 modify-post-title">
+                        <span class="has-text-info">碧海苍云录-木桩</span>
+                    </h1>
+                    <p class="subtitle is-6">
+                        <span class="icon is-small"><i class="fa fa-calendar"></i></span> 2025-06-21
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        <span class="icon is-small"><i class="fa fa-user"></i></span> 粥记捣蛋
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- 文章标签 -->
+        <div class="pt-4">
+            <span>
+    
+        <a class="tag is-info is-light" href="/tags/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/">碧海苍云录</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E6%9C%A8%E6%A1%A9/">木桩</a>
+    
+</span>
+            <span>
+    
+        <a class="tag is-warning is-light" href="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/">碧海苍云录</a>
+    
+        <a class="tag is-warning is-light" href="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E6%9C%A8%E6%A1%A9/">木桩</a>
+    
+</span>
+        </div>
+    </div>
+    <!-- 目录  -->
+    <div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B0%B4%E7%B3%BB%E6%9C%A8%E6%A1%A9"><span class="toc-number">1.</span> <span class="toc-text">水系木桩</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90%EF%BC%9A%E5%A4%8F%E9%9D%92%E8%90%9D"><span class="toc-number">1.1.</span> <span class="toc-text">数据来源：夏青萝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90%EF%BC%9A%E6%A5%9A%E8%8A%B8"><span class="toc-number">1.2.</span> <span class="toc-text">数据来源：楚芸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90%EF%BC%9A%E6%B4%9B%E5%B8%88%E5%A7%90"><span class="toc-number">1.3.</span> <span class="toc-text">数据来源：洛师姐</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%9C%A8%E6%A1%A9%E6%95%B0%E6%8D%AE%EF%BC%9A%E5%A4%8F%E9%9D%92%E8%90%9D"><span class="toc-number">2.</span> <span class="toc-text">其他木桩数据：夏青萝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A2%AB%E5%85%8B%E5%88%B6%E6%97%B6%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90%EF%BC%9A%E5%A4%8F%E9%9D%92%E8%90%9D"><span class="toc-number">3.</span> <span class="toc-text">被克制时数据来源：夏青萝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%8B%E5%88%B6%E6%97%B6%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90%EF%BC%9A%E5%A4%8F%E9%9D%92%E8%90%9D"><span class="toc-number">4.</span> <span class="toc-text">克制时数据来源：夏青萝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E8%A1%8C%E6%8A%97%E6%80%A7%E8%A1%A8"><span class="toc-number">5.</span> <span class="toc-text">五行抗性表</span></a></li></ol>
+    </div>
+    <!-- 文章：内容 -->
+    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
+        <hr />
+        <!-- Content -->
+        <blockquote>
+<p>木桩五行减伤表：水系木桩</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>阶数层数</th>
+<th>非克制木桩（金）</th>
+<th>非克制木桩（木）</th>
+<th>同属性木桩（水）</th>
+<th>克制木桩（火）</th>
+<th>被木桩克制（土）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>十阶圆满</strong></td>
+<td>71.03%</td>
+<td>71.03%</td>
+<td>89.6±0.3%</td>
+<td>65.80%</td>
+<td>79.02%</td>
+</tr>
+</tbody></table>
+<ul>
+<li>功法属性对非同属性非克制关系的木桩伤害几乎保持一致，故，得出木桩抗性除了同属性抗性外均为一致的结论</li>
+</ul>
+<span id="more"></span>
+
+<blockquote>
+<p>如下所示，为首领木桩主属性的减伤率</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>阶数&#x2F;层数（同属性木桩）</th>
+<th>一层</th>
+<th>二层</th>
+<th>三层</th>
+<th>四层</th>
+<th>五层</th>
+<th>六层</th>
+<th>七层</th>
+<th>八层</th>
+<th>九层</th>
+<th>圆满</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>一阶</strong></td>
+<td>14.3±0.8%</td>
+<td>18.3±0.4%</td>
+<td>21.1±0.3%</td>
+<td>24.5±0.4%</td>
+<td>27.0±0.4%</td>
+<td>29.8±0.4%</td>
+<td>31.8±0.4%</td>
+<td>34.2±0.3%</td>
+<td>36.0±0.3%</td>
+<td>38.4±0.3%</td>
+</tr>
+<tr>
+<td><strong>二阶</strong></td>
+<td>40.5±0.5%</td>
+<td>42.3±0.3%</td>
+<td>43.9±0.3%</td>
+<td>45.6±0.3%</td>
+<td>47.0±0.2%</td>
+<td>48.5±0.3%</td>
+<td>49.7±0.3%</td>
+<td>51.1±0.3%</td>
+<td>52.2±0.3%</td>
+<td>53.6±0.3%</td>
+</tr>
+<tr>
+<td><strong>三阶</strong></td>
+<td>54.4±0.5%</td>
+<td>55.6±0.3%</td>
+<td>56.6±0.3%</td>
+<td>57.8±0.3%</td>
+<td>58.7±0.3%</td>
+<td>59.8±0.3%</td>
+<td>60.6±0.3%</td>
+<td>61.6±0.3%</td>
+<td>62.4±0.3%</td>
+<td>63.3±0.3%</td>
+</tr>
+<tr>
+<td><strong>四阶</strong></td>
+<td>69.1±0.5%</td>
+<td>69.8±0.3%</td>
+<td>70.4±0.3%</td>
+<td>71.1±0.3%</td>
+<td>71.7±0.3%</td>
+<td>72.3±0.3%</td>
+<td>72.9±0.3%</td>
+<td>73.5±0.3%</td>
+<td>74.1±0.3%</td>
+<td>74.8±0.3%</td>
+</tr>
+<tr>
+<td><strong>五阶</strong></td>
+<td>74.6±0.3%</td>
+<td>75.1±0.3%</td>
+<td>75.5±0.3%</td>
+<td>76.0±0.3%</td>
+<td>76.4±0.3%</td>
+<td>76.9±0.3%</td>
+<td>77.3±0.3%</td>
+<td>77.7±0.3%</td>
+<td>78.2±0.3%</td>
+<td>78.6±0.3%</td>
+</tr>
+<tr>
+<td><strong>六阶</strong></td>
+<td>80.6±0.3%</td>
+<td>80.9±0.3%</td>
+<td>81.3±0.3%</td>
+<td>81.6±0.3%</td>
+<td>81.9±0.3%</td>
+<td>82.2±0.3%</td>
+<td>82.6±0.3%</td>
+<td>82.9±0.3%</td>
+<td>83.2±0.3%</td>
+<td>83.6±0.3%</td>
+</tr>
+<tr>
+<td><strong>七阶</strong></td>
+<td>83.3±0.3%</td>
+<td>83.6±0.3%</td>
+<td>83.9±0.3%</td>
+<td>84.2±0.3%</td>
+<td>84.4±0.3%</td>
+<td>84.7±0.3%</td>
+<td>84.9±0.3%</td>
+<td>85.2±0.3%</td>
+<td>85.4±0.3%</td>
+<td>85.7±0.3%</td>
+</tr>
+<tr>
+<td><strong>八阶</strong></td>
+<td>85.3±0.3%</td>
+<td>85.5±0.3%</td>
+<td>85.7±0.3%</td>
+<td>85.9±0.3%</td>
+<td>86.1±0.3%</td>
+<td>86.3±0.3%</td>
+<td>86.5±0.3%</td>
+<td>86.7±0.3%</td>
+<td>86.9±0.3%</td>
+<td>87.1±0.3%</td>
+</tr>
+<tr>
+<td><strong>九阶</strong></td>
+<td>87.1±0.3%</td>
+<td>87.3±0.3%</td>
+<td>87.5±0.3%</td>
+<td>87.7±0.3%</td>
+<td>87.8±0.3%</td>
+<td>88.0±0.3%</td>
+<td>88.2±0.3%</td>
+<td>87.4±0.5%</td>
+<td>88.5±0.3%</td>
+<td>88.7±0.3%</td>
+</tr>
+<tr>
+<td><strong>十阶</strong></td>
+<td>88.0±0.3%</td>
+<td>88.2±0.3%</td>
+<td>88.4±0.3%</td>
+<td>88.6±0.3%</td>
+<td>88.8±0.3%</td>
+<td>89.0±0.3%</td>
+<td>89.0±0.3%</td>
+<td>89.2±0.3%</td>
+<td>89.4±0.3%</td>
+<td>89.6±0.3%</td>
+</tr>
+</tbody></table>
+<h2 id="水系木桩"><a href="#水系木桩" class="headerlink" title="水系木桩"></a>水系木桩</h2><h3 id="数据来源：夏青萝"><a href="#数据来源：夏青萝" class="headerlink" title="数据来源：夏青萝"></a>数据来源：夏青萝</h3><ul>
+<li>修为：练气一层</li>
+<li>水威：1120</li>
+<li>剑威：54</li>
+<li>武技剑威发挥：50% (54 * 0.5 &#x3D; 27)</li>
+<li>武技水威发挥：40% (1120 * 0.4 &#x3D; 448)</li>
+<li>武技灵力灌溉：0% (0%：表示释放武技不消耗灵力，即不会获得灵力增伤)</li>
+<li>精纯：0</li>
+<li>首领：0</li>
+<li>会心：无</li>
+<li>水系伤害提高：0.3（水系神宝：30%） + 1 &#x3D; 1.3</li>
+<li>剑系伤害提高：0.2（剑系神宝：20%） + 1 &#x3D; 1.2</li>
+<li>克制生效率：1.5 * 0.2（金阳旗：20%） + 1 &#x3D; 1.3</li>
+<li>克制伤害：1.5</li>
+</ul>
+<blockquote>
+<p>原始伤害数据表</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>阶数&#x2F;层数（水木桩）</th>
+<th>一层</th>
+<th>二层</th>
+<th>三层</th>
+<th>四层</th>
+<th>五层</th>
+<th>六层</th>
+<th>七层</th>
+<th>八层</th>
+<th>九层</th>
+<th>圆满</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一阶</td>
+<td>821</td>
+<td>783</td>
+<td>756</td>
+<td>724</td>
+<td>700</td>
+<td>673</td>
+<td>653</td>
+<td>629</td>
+<td>611</td>
+<td>590</td>
+</tr>
+<tr>
+<td>二阶</td>
+<td>570</td>
+<td>552</td>
+<td>538</td>
+<td>522</td>
+<td>510</td>
+<td>495</td>
+<td>484</td>
+<td>471</td>
+<td>461</td>
+<td>449</td>
+</tr>
+<tr>
+<td>三阶</td>
+<td>437</td>
+<td>426</td>
+<td>418</td>
+<td>408</td>
+<td>400</td>
+<td>391</td>
+<td>384</td>
+<td>376</td>
+<td>370</td>
+<td>362</td>
+</tr>
+<tr>
+<td>四阶</td>
+<td>297</td>
+<td>291</td>
+<td>285</td>
+<td>279</td>
+<td>274</td>
+<td>269</td>
+<td>264</td>
+<td>259</td>
+<td>255</td>
+<td>250</td>
+</tr>
+<tr>
+<td>五阶</td>
+<td>245</td>
+<td>241</td>
+<td>237</td>
+<td>233</td>
+<td>229</td>
+<td>226</td>
+<td>222</td>
+<td>219</td>
+<td>216</td>
+<td>212</td>
+</tr>
+<tr>
+<td>六阶</td>
+<td>186</td>
+<td>183</td>
+<td>180</td>
+<td>178</td>
+<td>175</td>
+<td>173</td>
+<td>170</td>
+<td>168</td>
+<td>166</td>
+<td>163</td>
+</tr>
+<tr>
+<td>七阶</td>
+<td>161</td>
+<td>159</td>
+<td>157</td>
+<td>155</td>
+<td>153</td>
+<td>151</td>
+<td>149</td>
+<td>147</td>
+<td>146</td>
+<td>144</td>
+</tr>
+<tr>
+<td>八阶</td>
+<td>142</td>
+<td>140</td>
+<td>139</td>
+<td>137</td>
+<td>136</td>
+<td>134</td>
+<td>133</td>
+<td>131</td>
+<td>130</td>
+<td>129</td>
+</tr>
+<tr>
+<td>九阶</td>
+<td>127</td>
+<td>126</td>
+<td>124</td>
+<td>123</td>
+<td>122</td>
+<td>121</td>
+<td>120</td>
+<td>118</td>
+<td>117</td>
+<td>116</td>
+</tr>
+<tr>
+<td>十阶</td>
+<td>115</td>
+<td>114</td>
+<td>113</td>
+<td>112</td>
+<td>111</td>
+<td>110</td>
+<td>109</td>
+<td>108</td>
+<td>107</td>
+<td>106</td>
+</tr>
+</tbody></table>
+<br />
+
+<blockquote>
+<p>减伤率分析表</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>阶数&#x2F;层数（水木桩）</th>
+<th>一层</th>
+<th>二层</th>
+<th>三层</th>
+<th>四层</th>
+<th>五层</th>
+<th>六层</th>
+<th>七层</th>
+<th>八层</th>
+<th>九层</th>
+<th>圆满</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一阶</td>
+<td>14.75%</td>
+<td>18.69%</td>
+<td>21.50%</td>
+<td>24.82%</td>
+<td>27.31%</td>
+<td>30.11%</td>
+<td>32.19%</td>
+<td>34.68%</td>
+<td>36.55%</td>
+<td>38.73%</td>
+</tr>
+<tr>
+<td>二阶</td>
+<td>40.81%</td>
+<td>42.68%</td>
+<td>44.13%</td>
+<td>45.79%</td>
+<td>47.04%</td>
+<td>48.60%</td>
+<td>49.74%</td>
+<td>51.09%</td>
+<td>52.13%</td>
+<td>53.37%</td>
+</tr>
+<tr>
+<td>三阶</td>
+<td>54.62%</td>
+<td>55.76%</td>
+<td>56.59%</td>
+<td>57.63%</td>
+<td>58.46%</td>
+<td>59.40%</td>
+<td>60.12%</td>
+<td>60.96%</td>
+<td>61.58%</td>
+<td>62.41%</td>
+</tr>
+<tr>
+<td>四阶</td>
+<td>69.16%</td>
+<td>69.78%</td>
+<td>70.41%</td>
+<td>71.03%</td>
+<td>71.55%</td>
+<td>72.07%</td>
+<td>72.59%</td>
+<td>73.10%</td>
+<td>73.52%</td>
+<td>74.04%</td>
+</tr>
+<tr>
+<td>五阶</td>
+<td>74.56%</td>
+<td>74.97%</td>
+<td>75.39%</td>
+<td>75.80%</td>
+<td>76.22%</td>
+<td>76.53%</td>
+<td>76.95%</td>
+<td>77.26%</td>
+<td>77.57%</td>
+<td>77.99%</td>
+</tr>
+<tr>
+<td>六阶</td>
+<td>80.69%</td>
+<td>81.00%</td>
+<td>81.31%</td>
+<td>81.52%</td>
+<td>81.83%</td>
+<td>82.04%</td>
+<td>82.35%</td>
+<td>82.55%</td>
+<td>82.76%</td>
+<td>83.07%</td>
+</tr>
+<tr>
+<td>七阶</td>
+<td>83.28%</td>
+<td>83.49%</td>
+<td>83.70%</td>
+<td>83.90%</td>
+<td>84.11%</td>
+<td>84.32%</td>
+<td>84.53%</td>
+<td>84.74%</td>
+<td>84.84%</td>
+<td>85.05%</td>
+</tr>
+<tr>
+<td>八阶</td>
+<td>85.25%</td>
+<td>85.46%</td>
+<td>85.57%</td>
+<td>85.77%</td>
+<td>85.88%</td>
+<td>86.08%</td>
+<td>86.19%</td>
+<td>86.40%</td>
+<td>86.50%</td>
+<td>86.60%</td>
+</tr>
+<tr>
+<td>九阶</td>
+<td>86.81%</td>
+<td>86.92%</td>
+<td>87.12%</td>
+<td>87.23%</td>
+<td>87.33%</td>
+<td>87.44%</td>
+<td>87.54%</td>
+<td>87.75%</td>
+<td>87.85%</td>
+<td>87.95%</td>
+</tr>
+<tr>
+<td>十阶</td>
+<td>88.06%</td>
+<td>88.16%</td>
+<td>88.27%</td>
+<td>88.37%</td>
+<td>88.47%</td>
+<td>88.58%</td>
+<td>88.68%</td>
+<td>88.78%</td>
+<td>88.89%</td>
+<td>88.99%</td>
+</tr>
+</tbody></table>
+<p><em>计算公式：减伤率 &#x3D; (963 - 实际伤害) &#x2F; 963 × 100%</em></p>
+<hr>
+<h3 id="数据来源：楚芸"><a href="#数据来源：楚芸" class="headerlink" title="数据来源：楚芸"></a>数据来源：楚芸</h3><ul>
+<li>修为：筑基一层</li>
+<li>水威：650</li>
+<li>气威：120</li>
+<li>武技主修发挥：85% (120 * 0.85 &#x3D; 102)</li>
+<li>武技水威发挥：25% (650 * 0.25 &#x3D; 162)</li>
+<li>武技灵力灌溉：0% (0%：表示释放武技不消耗灵力，即不会获得灵力增伤)</li>
+<li>精纯：0</li>
+<li>首领：0</li>
+<li>会心：无</li>
+<li>水系伤害提高：0.3（水系神宝：30%） + 1 &#x3D; 1.3</li>
+<li>主修伤害提高：0.2（气系神宝：20%） + 1 &#x3D; 1.2</li>
+<li>克制生效率：1.5 * 0.2（金阳旗：20%） + 1 &#x3D; 1.3</li>
+<li>克制伤害：1.5</li>
+</ul>
+<blockquote>
+<p>原始伤害数据表</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>阶数&#x2F;层数（水木桩）</th>
+<th>一层</th>
+<th>二层</th>
+<th>三层</th>
+<th>四层</th>
+<th>五层</th>
+<th>六层</th>
+<th>七层</th>
+<th>八层</th>
+<th>九层</th>
+<th>圆满</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一阶</td>
+<td>479</td>
+<td>457</td>
+<td>441</td>
+<td>422</td>
+<td>409</td>
+<td>393</td>
+<td>381</td>
+<td>367</td>
+<td>356</td>
+<td>344</td>
+</tr>
+<tr>
+<td>二阶</td>
+<td>333</td>
+<td>322</td>
+<td>314</td>
+<td>305</td>
+<td>297</td>
+<td>289</td>
+<td>282</td>
+<td>274</td>
+<td>269</td>
+<td>262</td>
+</tr>
+<tr>
+<td>三阶</td>
+<td>255</td>
+<td>249</td>
+<td>244</td>
+<td>238</td>
+<td>234</td>
+<td>228</td>
+<td>224</td>
+<td>219</td>
+<td>215</td>
+<td>211</td>
+</tr>
+<tr>
+<td>四阶</td>
+<td>173</td>
+<td>169</td>
+<td>166</td>
+<td>163</td>
+<td>160</td>
+<td>157</td>
+<td>154</td>
+<td>151</td>
+<td>148</td>
+<td>146</td>
+</tr>
+<tr>
+<td>五阶</td>
+<td>143</td>
+<td>140</td>
+<td>138</td>
+<td>136</td>
+<td>134</td>
+<td>132</td>
+<td>130</td>
+<td>128</td>
+<td>126</td>
+<td>124</td>
+</tr>
+<tr>
+<td>六阶</td>
+<td>108</td>
+<td>107</td>
+<td>105</td>
+<td>103</td>
+<td>102</td>
+<td>101</td>
+<td>99</td>
+<td>98</td>
+<td>96</td>
+<td>95</td>
+</tr>
+<tr>
+<td>七阶</td>
+<td>94</td>
+<td>92</td>
+<td>91</td>
+<td>90</td>
+<td>89</td>
+<td>88</td>
+<td>87</td>
+<td>86</td>
+<td>85</td>
+<td>84</td>
+</tr>
+<tr>
+<td>八阶</td>
+<td>83</td>
+<td>82</td>
+<td>81</td>
+<td>80</td>
+<td>79</td>
+<td>78</td>
+<td>77</td>
+<td>76</td>
+<td>76</td>
+<td>75</td>
+</tr>
+<tr>
+<td>九阶</td>
+<td>74</td>
+<td>73</td>
+<td>72</td>
+<td>72</td>
+<td>71</td>
+<td>70</td>
+<td>70</td>
+<td>69</td>
+<td>68</td>
+<td>68</td>
+</tr>
+<tr>
+<td>十阶</td>
+<td>67</td>
+<td>66</td>
+<td>66</td>
+<td>65</td>
+<td>65</td>
+<td>64</td>
+<td>63</td>
+<td>63</td>
+<td>62</td>
+<td>62</td>
+</tr>
+</tbody></table>
+<br />
+
+<blockquote>
+<p>减伤率分析表</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>阶数&#x2F;层数（水木桩）</th>
+<th>一层</th>
+<th>二层</th>
+<th>三层</th>
+<th>四层</th>
+<th>五层</th>
+<th>六层</th>
+<th>七层</th>
+<th>八层</th>
+<th>九层</th>
+<th>圆满</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一阶</td>
+<td>14.92%</td>
+<td>18.83%</td>
+<td>21.67%</td>
+<td>25.04%</td>
+<td>27.35%</td>
+<td>30.20%</td>
+<td>32.33%</td>
+<td>34.81%</td>
+<td>36.77%</td>
+<td>38.90%</td>
+</tr>
+<tr>
+<td>二阶</td>
+<td>40.85%</td>
+<td>42.81%</td>
+<td>44.23%</td>
+<td>45.83%</td>
+<td>47.25%</td>
+<td>48.67%</td>
+<td>49.91%</td>
+<td>51.33%</td>
+<td>52.22%</td>
+<td>53.46%</td>
+</tr>
+<tr>
+<td>三阶</td>
+<td>54.71%</td>
+<td>55.77%</td>
+<td>56.66%</td>
+<td>57.73%</td>
+<td>58.44%</td>
+<td>59.50%</td>
+<td>60.21%</td>
+<td>61.10%</td>
+<td>61.81%</td>
+<td>62.52%</td>
+</tr>
+<tr>
+<td>四阶</td>
+<td>69.27%</td>
+<td>69.98%</td>
+<td>70.52%</td>
+<td>71.05%</td>
+<td>71.58%</td>
+<td>72.11%</td>
+<td>72.65%</td>
+<td>73.18%</td>
+<td>73.71%</td>
+<td>74.07%</td>
+</tr>
+<tr>
+<td>五阶</td>
+<td>74.60%</td>
+<td>75.13%</td>
+<td>75.49%</td>
+<td>75.84%</td>
+<td>76.20%</td>
+<td>76.55%</td>
+<td>76.91%</td>
+<td>77.26%</td>
+<td>77.62%</td>
+<td>77.98%</td>
+</tr>
+<tr>
+<td>六阶</td>
+<td>80.82%</td>
+<td>81.00%</td>
+<td>81.35%</td>
+<td>81.70%</td>
+<td>81.88%</td>
+<td>82.06%</td>
+<td>82.42%</td>
+<td>82.59%</td>
+<td>82.95%</td>
+<td>83.13%</td>
+</tr>
+<tr>
+<td>七阶</td>
+<td>83.30%</td>
+<td>83.66%</td>
+<td>83.84%</td>
+<td>84.01%</td>
+<td>84.19%</td>
+<td>84.37%</td>
+<td>84.55%</td>
+<td>84.73%</td>
+<td>84.90%</td>
+<td>85.08%</td>
+</tr>
+<tr>
+<td>八阶</td>
+<td>85.26%</td>
+<td>85.43%</td>
+<td>85.61%</td>
+<td>85.79%</td>
+<td>85.97%</td>
+<td>86.15%</td>
+<td>86.32%</td>
+<td>86.50%</td>
+<td>86.50%</td>
+<td>86.68%</td>
+</tr>
+<tr>
+<td>九阶</td>
+<td>86.86%</td>
+<td>87.03%</td>
+<td>87.21%</td>
+<td>87.21%</td>
+<td>87.39%</td>
+<td>87.57%</td>
+<td>87.57%</td>
+<td>87.75%</td>
+<td>87.92%</td>
+<td>87.92%</td>
+</tr>
+<tr>
+<td>十阶</td>
+<td>88.10%</td>
+<td>88.28%</td>
+<td>88.28%</td>
+<td>88.45%</td>
+<td>88.45%</td>
+<td>88.63%</td>
+<td>88.81%</td>
+<td>88.81%</td>
+<td>88.99%</td>
+<td>88.99%</td>
+</tr>
+</tbody></table>
+<p><em>计算公式：减伤率 &#x3D; (563 - 实际伤害) &#x2F; 563 × 100%</em></p>
+<hr>
+<h3 id="数据来源：洛师姐"><a href="#数据来源：洛师姐" class="headerlink" title="数据来源：洛师姐"></a>数据来源：洛师姐</h3><ul>
+<li>修为：大乘五层</li>
+<li>水威：7071</li>
+<li>剑威：2363</li>
+<li>武技主修发挥：140% (2363 * 1.4 &#x3D; 3308)</li>
+<li>武技水威发挥：180% (7071 * 1.8 &#x3D; 12727)</li>
+<li>武技灵力灌溉：0% (0%：表示释放武技不消耗灵力，即不会获得灵力增伤)</li>
+<li>精纯：9</li>
+<li>首领：57</li>
+<li>会心：无</li>
+<li>水系伤害提高：0.3（水系神宝：30%） + 1 &#x3D; 1.3</li>
+<li>主修伤害提高：0.2（气系神宝：20%） + 1 &#x3D; 1.2</li>
+<li>克制生效率：3.8 * 0.2（金阳旗：20%） + 1 &#x3D; 1.3</li>
+<li>克制伤害：3.8</li>
+</ul>
+<blockquote>
+<p>原始伤害数据表</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>阶数&#x2F;层数（水木桩）</th>
+<th>一层</th>
+<th>二层</th>
+<th>三层</th>
+<th>四层</th>
+<th>五层</th>
+<th>六层</th>
+<th>七层</th>
+<th>八层</th>
+<th>九层</th>
+<th>圆满</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一阶</td>
+<td>80300</td>
+<td>76600</td>
+<td>73900</td>
+<td>70800</td>
+<td>68500</td>
+<td>65800</td>
+<td>63800</td>
+<td>61500</td>
+<td>59800</td>
+<td>57700</td>
+</tr>
+<tr>
+<td>二阶</td>
+<td>55800</td>
+<td>54000</td>
+<td>52700</td>
+<td>51100</td>
+<td>49800</td>
+<td>48400</td>
+<td>47300</td>
+<td>46000</td>
+<td>45000</td>
+<td>43900</td>
+</tr>
+<tr>
+<td>三阶</td>
+<td>42800</td>
+<td>41700</td>
+<td>40900</td>
+<td>39900</td>
+<td>39200</td>
+<td>38300</td>
+<td>37600</td>
+<td>36800</td>
+<td>36100</td>
+<td>35400</td>
+</tr>
+<tr>
+<td>四阶</td>
+<td>29000</td>
+<td>28400</td>
+<td>27900</td>
+<td>27300</td>
+<td>26800</td>
+<td>26300</td>
+<td>25800</td>
+<td>25400</td>
+<td>24900</td>
+<td>24500</td>
+</tr>
+<tr>
+<td>五阶</td>
+<td>24000</td>
+<td>23600</td>
+<td>23200</td>
+<td>22800</td>
+<td>22400</td>
+<td>22100</td>
+<td>21700</td>
+<td>21400</td>
+<td>21100</td>
+<td>20800</td>
+</tr>
+<tr>
+<td>六阶</td>
+<td>18200</td>
+<td>17900</td>
+<td>17600</td>
+<td>17400</td>
+<td>17100</td>
+<td>16900</td>
+<td>16600</td>
+<td>16400</td>
+<td>16200</td>
+<td>16000</td>
+</tr>
+<tr>
+<td>七阶</td>
+<td>15700</td>
+<td>15500</td>
+<td>15300</td>
+<td>15100</td>
+<td>15000</td>
+<td>14800</td>
+<td>14600</td>
+<td>14400</td>
+<td>14200</td>
+<td>14100</td>
+</tr>
+<tr>
+<td>八阶</td>
+<td>13900</td>
+<td>13700</td>
+<td>13600</td>
+<td>13400</td>
+<td>13300</td>
+<td>13100</td>
+<td>13000</td>
+<td>12800</td>
+<td>12700</td>
+<td>12600</td>
+</tr>
+<tr>
+<td>九阶</td>
+<td>12400</td>
+<td>12300</td>
+<td>12200</td>
+<td>12000</td>
+<td>11900</td>
+<td>11800</td>
+<td>11700</td>
+<td>11600</td>
+<td>11500</td>
+<td>11400</td>
+</tr>
+<tr>
+<td>十阶</td>
+<td>11300</td>
+<td>11100</td>
+<td>11000</td>
+<td>10900</td>
+<td>10800</td>
+<td>10700</td>
+<td>10700</td>
+<td>10600</td>
+<td>10500</td>
+<td>10400</td>
+</tr>
+</tbody></table>
+<br />
+
+<blockquote>
+<p>减伤率分析表</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>阶数&#x2F;层数（水木桩）</th>
+<th>一层</th>
+<th>二层</th>
+<th>三层</th>
+<th>四层</th>
+<th>五层</th>
+<th>六层</th>
+<th>七层</th>
+<th>八层</th>
+<th>九层</th>
+<th>圆满</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一阶</td>
+<td>13.25%</td>
+<td>17.25%</td>
+<td>20.17%</td>
+<td>23.51%</td>
+<td>26.00%</td>
+<td>28.92%</td>
+<td>31.08%</td>
+<td>33.56%</td>
+<td>35.39%</td>
+<td>37.67%</td>
+</tr>
+<tr>
+<td>二阶</td>
+<td>39.72%</td>
+<td>41.67%</td>
+<td>43.07%</td>
+<td>44.80%</td>
+<td>46.20%</td>
+<td>47.72%</td>
+<td>48.90%</td>
+<td>50.31%</td>
+<td>51.39%</td>
+<td>52.58%</td>
+</tr>
+<tr>
+<td>三阶</td>
+<td>53.77%</td>
+<td>54.95%</td>
+<td>55.82%</td>
+<td>56.89%</td>
+<td>57.66%</td>
+<td>58.63%</td>
+<td>59.38%</td>
+<td>60.25%</td>
+<td>61.00%</td>
+<td>61.76%</td>
+</tr>
+<tr>
+<td>四阶</td>
+<td>68.68%</td>
+<td>69.32%</td>
+<td>69.86%</td>
+<td>70.51%</td>
+<td>71.05%</td>
+<td>71.59%</td>
+<td>72.13%</td>
+<td>72.56%</td>
+<td>73.10%</td>
+<td>73.54%</td>
+</tr>
+<tr>
+<td>五阶</td>
+<td>74.08%</td>
+<td>74.51%</td>
+<td>74.94%</td>
+<td>75.37%</td>
+<td>75.80%</td>
+<td>76.12%</td>
+<td>76.56%</td>
+<td>76.88%</td>
+<td>77.20%</td>
+<td>77.53%</td>
+</tr>
+<tr>
+<td>六阶</td>
+<td>80.34%</td>
+<td>80.67%</td>
+<td>80.99%</td>
+<td>81.20%</td>
+<td>81.53%</td>
+<td>81.74%</td>
+<td>82.07%</td>
+<td>82.28%</td>
+<td>82.50%</td>
+<td>82.72%</td>
+</tr>
+<tr>
+<td>七阶</td>
+<td>83.04%</td>
+<td>83.25%</td>
+<td>83.47%</td>
+<td>83.69%</td>
+<td>83.80%</td>
+<td>84.01%</td>
+<td>84.23%</td>
+<td>84.44%</td>
+<td>84.66%</td>
+<td>84.77%</td>
+</tr>
+<tr>
+<td>八阶</td>
+<td>84.98%</td>
+<td>85.20%</td>
+<td>85.31%</td>
+<td>85.53%</td>
+<td>85.64%</td>
+<td>85.85%</td>
+<td>85.96%</td>
+<td>86.17%</td>
+<td>86.39%</td>
+<td>86.39%</td>
+</tr>
+<tr>
+<td>九阶</td>
+<td>86.61%</td>
+<td>86.72%</td>
+<td>86.83%</td>
+<td>87.05%</td>
+<td>87.16%</td>
+<td>87.27%</td>
+<td>87.38%</td>
+<td>87.49%</td>
+<td>87.60%</td>
+<td>87.82%</td>
+</tr>
+<tr>
+<td>十阶</td>
+<td>87.80%</td>
+<td>88.01%</td>
+<td>88.12%</td>
+<td>88.23%</td>
+<td>88.34%</td>
+<td>88.45%</td>
+<td>88.45%</td>
+<td>88.56%</td>
+<td>88.67%</td>
+<td>88.78%</td>
+</tr>
+</tbody></table>
+<p><em>计算公式：减伤率 &#x3D; (92564 - 实际伤害) &#x2F; 92564 × 100%</em></p>
+<br />
+
+<hr>
+<h2 id="其他木桩数据：夏青萝"><a href="#其他木桩数据：夏青萝" class="headerlink" title="其他木桩数据：夏青萝"></a>其他木桩数据：夏青萝</h2><ul>
+<li>功法属性对非同属性木桩伤害几乎保持一致，得出木桩抗性除了同属性抗性外均为一致的结论<ul>
+<li><blockquote>
+<p>Q：如何验证呢？</p>
+</blockquote>
+<ul>
+<li>用师弟把五行木桩都打一遍你就知道了</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>原始伤害数据表：其他木桩</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>阶数&#x2F;层数（木系木桩）</th>
+<th>一层</th>
+<th>二层</th>
+<th>三层</th>
+<th>四层</th>
+<th>五层</th>
+<th>六层</th>
+<th>七层</th>
+<th>八层</th>
+<th>九层</th>
+<th>圆满</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一阶</td>
+<td>837</td>
+<td>821</td>
+<td>805</td>
+<td>790</td>
+<td>776</td>
+<td>762</td>
+<td>749</td>
+<td>736</td>
+<td>724</td>
+<td>712</td>
+</tr>
+<tr>
+<td>二阶</td>
+<td>695</td>
+<td>684</td>
+<td>673</td>
+<td>663</td>
+<td>653</td>
+<td>643</td>
+<td>633</td>
+<td>624</td>
+<td>615</td>
+<td>607</td>
+</tr>
+<tr>
+<td>三阶</td>
+<td>594</td>
+<td>586</td>
+<td>578</td>
+<td>570</td>
+<td>563</td>
+<td>556</td>
+<td>549</td>
+<td>542</td>
+<td>535</td>
+<td>528</td>
+</tr>
+<tr>
+<td>四阶</td>
+<td>519</td>
+<td>513</td>
+<td>507</td>
+<td>501</td>
+<td>495</td>
+<td>489</td>
+<td>484</td>
+<td>478</td>
+<td>473</td>
+<td>468</td>
+</tr>
+<tr>
+<td>五阶</td>
+<td>461</td>
+<td>456</td>
+<td>451</td>
+<td>446</td>
+<td>442</td>
+<td>437</td>
+<td>433</td>
+<td>428</td>
+<td>424</td>
+<td>420</td>
+</tr>
+<tr>
+<td>六阶</td>
+<td>414</td>
+<td>410</td>
+<td>406</td>
+<td>402</td>
+<td>399</td>
+<td>395</td>
+<td>391</td>
+<td>388</td>
+<td>384</td>
+<td>381</td>
+</tr>
+<tr>
+<td>七阶</td>
+<td>376</td>
+<td>373</td>
+<td>370</td>
+<td>366</td>
+<td>363</td>
+<td>360</td>
+<td>357</td>
+<td>354</td>
+<td>351</td>
+<td>349</td>
+</tr>
+<tr>
+<td>八阶</td>
+<td>344</td>
+<td>342</td>
+<td>339</td>
+<td>336</td>
+<td>334</td>
+<td>331</td>
+<td>329</td>
+<td>326</td>
+<td>324</td>
+<td>321</td>
+</tr>
+<tr>
+<td>九阶</td>
+<td>318</td>
+<td>315</td>
+<td>313</td>
+<td>311</td>
+<td>309</td>
+<td>306</td>
+<td>304</td>
+<td>302</td>
+<td>300</td>
+<td>298</td>
+</tr>
+<tr>
+<td>十阶</td>
+<td>296</td>
+<td>294</td>
+<td>292</td>
+<td>290</td>
+<td>288</td>
+<td>286</td>
+<td>284</td>
+<td>282</td>
+<td>280</td>
+<td>279</td>
+</tr>
+</tbody></table>
+<br />
+
+<blockquote>
+<p>减伤率分析表：其他木桩</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>阶数&#x2F;层数（木系木桩）</th>
+<th>一层</th>
+<th>二层</th>
+<th>三层</th>
+<th>四层</th>
+<th>五层</th>
+<th>六层</th>
+<th>七层</th>
+<th>八层</th>
+<th>九层</th>
+<th>圆满</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一阶</td>
+<td>13.08%</td>
+<td>14.75%</td>
+<td>16.41%</td>
+<td>17.96%</td>
+<td>19.42%</td>
+<td>20.87%</td>
+<td>22.22%</td>
+<td>23.57%</td>
+<td>24.82%</td>
+<td>26.06%</td>
+</tr>
+<tr>
+<td>二阶</td>
+<td>27.83%</td>
+<td>28.97%</td>
+<td>30.11%</td>
+<td>31.15%</td>
+<td>32.19%</td>
+<td>33.23%</td>
+<td>34.27%</td>
+<td>35.20%</td>
+<td>36.14%</td>
+<td>36.97%</td>
+</tr>
+<tr>
+<td>三阶</td>
+<td>38.32%</td>
+<td>39.15%</td>
+<td>39.98%</td>
+<td>40.81%</td>
+<td>41.54%</td>
+<td>42.26%</td>
+<td>43.00%</td>
+<td>43.72%</td>
+<td>44.34%</td>
+<td>45.17%</td>
+</tr>
+<tr>
+<td>四阶</td>
+<td>46.11%</td>
+<td>46.73%</td>
+<td>47.35%</td>
+<td>47.98%</td>
+<td>48.60%</td>
+<td>49.22%</td>
+<td>49.74%</td>
+<td>50.36%</td>
+<td>50.88%</td>
+<td>51.40%</td>
+</tr>
+<tr>
+<td>五阶</td>
+<td>52.13%</td>
+<td>52.65%</td>
+<td>53.17%</td>
+<td>53.69%</td>
+<td>54.10%</td>
+<td>54.62%</td>
+<td>55.04%</td>
+<td>55.56%</td>
+<td>55.97%</td>
+<td>56.39%</td>
+</tr>
+<tr>
+<td>六阶</td>
+<td>57.01%</td>
+<td>57.42%</td>
+<td>57.84%</td>
+<td>58.26%</td>
+<td>58.57%</td>
+<td>58.98%</td>
+<td>59.40%</td>
+<td>59.71%</td>
+<td>60.12%</td>
+<td>60.44%</td>
+</tr>
+<tr>
+<td>七阶</td>
+<td>60.96%</td>
+<td>61.27%</td>
+<td>61.58%</td>
+<td>61.99%</td>
+<td>62.31%</td>
+<td>62.62%</td>
+<td>62.93%</td>
+<td>63.24%</td>
+<td>63.55%</td>
+<td>63.76%</td>
+</tr>
+<tr>
+<td>八阶</td>
+<td>64.28%</td>
+<td>64.49%</td>
+<td>64.80%</td>
+<td>65.11%</td>
+<td>65.32%</td>
+<td>65.63%</td>
+<td>65.84%</td>
+<td>66.15%</td>
+<td>66.36%</td>
+<td>66.56%</td>
+</tr>
+<tr>
+<td>九阶</td>
+<td>66.98%</td>
+<td>67.29%</td>
+<td>67.39%</td>
+<td>67.70%</td>
+<td>67.91%</td>
+<td>68.22%</td>
+<td>68.33%</td>
+<td>68.64%</td>
+<td>68.85%</td>
+<td>68.95%</td>
+</tr>
+<tr>
+<td>十阶</td>
+<td>69.26%</td>
+<td>69.47%</td>
+<td>69.68%</td>
+<td>69.89%</td>
+<td>70.09%</td>
+<td>70.30%</td>
+<td>70.51%</td>
+<td>70.72%</td>
+<td>70.92%</td>
+<td>71.03%</td>
+</tr>
+</tbody></table>
+<br />
+
+<hr>
+<h2 id="被克制时数据来源：夏青萝"><a href="#被克制时数据来源：夏青萝" class="headerlink" title="被克制时数据来源：夏青萝"></a>被克制时数据来源：夏青萝</h2><ul>
+<li>被土系木桩克制时，十阶圆满击中伤害为202，得出被克制减伤率为：27.5%，故推测被克制时的减伤率在30%左右。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>阶数&#x2F;层数（土系木桩）</th>
+<th>一层</th>
+<th>二层</th>
+<th>三层</th>
+<th>四层</th>
+<th>五层</th>
+<th>六层</th>
+<th>七层</th>
+<th>八层</th>
+<th>九层</th>
+<th>圆满</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一阶</td>
+<td>606</td>
+<td>594</td>
+<td>582</td>
+<td>571</td>
+<td>561</td>
+<td>551</td>
+<td>542</td>
+<td>532</td>
+<td>524</td>
+<td>515</td>
+</tr>
+<tr>
+<td>二阶</td>
+<td>503</td>
+<td>495</td>
+<td>487</td>
+<td>479</td>
+<td>472</td>
+<td>465</td>
+<td>458</td>
+<td>451</td>
+<td>445</td>
+<td>439</td>
+</tr>
+<tr>
+<td>三阶</td>
+<td>430</td>
+<td>424</td>
+<td>418</td>
+<td>412</td>
+<td>407</td>
+<td>402</td>
+<td>397</td>
+<td>392</td>
+<td>387</td>
+<td>382</td>
+</tr>
+<tr>
+<td>四阶</td>
+<td>375</td>
+<td>371</td>
+<td>367</td>
+<td>362</td>
+<td>358</td>
+<td>354</td>
+<td>350</td>
+<td>346</td>
+<td>342</td>
+<td>339</td>
+</tr>
+<tr>
+<td>五阶</td>
+<td>333</td>
+<td>330</td>
+<td>326</td>
+<td>323</td>
+<td>320</td>
+<td>316</td>
+<td>313</td>
+<td>310</td>
+<td>307</td>
+<td>304</td>
+</tr>
+<tr>
+<td>六阶</td>
+<td>300</td>
+<td>297</td>
+<td>294</td>
+<td>291</td>
+<td>289</td>
+<td>286</td>
+<td>283</td>
+<td>281</td>
+<td>278</td>
+<td>276</td>
+</tr>
+<tr>
+<td>七阶</td>
+<td>272</td>
+<td>270</td>
+<td>268</td>
+<td>265</td>
+<td>263</td>
+<td>260</td>
+<td>258</td>
+<td>256</td>
+<td>254</td>
+<td>253</td>
+</tr>
+<tr>
+<td>八阶</td>
+<td>249</td>
+<td>247</td>
+<td>245</td>
+<td>243</td>
+<td>242</td>
+<td>240</td>
+<td>238</td>
+<td>236</td>
+<td>234</td>
+<td>232</td>
+</tr>
+<tr>
+<td>九阶</td>
+<td>230</td>
+<td>228</td>
+<td>226</td>
+<td>225</td>
+<td>224</td>
+<td>222</td>
+<td>220</td>
+<td>218</td>
+<td>217</td>
+<td>216</td>
+</tr>
+<tr>
+<td>十阶</td>
+<td>214</td>
+<td>213</td>
+<td>211</td>
+<td>210</td>
+<td>208</td>
+<td>207</td>
+<td>206</td>
+<td>204</td>
+<td>203</td>
+<td>202</td>
+</tr>
+</tbody></table>
+<br />
+
+<p><strong>注意：</strong> 该数据为逆推所得，已经过验证，误差很小，可供参考</p>
+<table>
+<thead>
+<tr>
+<th>阶数&#x2F;层数（土系木桩）</th>
+<th>一层</th>
+<th>二层</th>
+<th>三层</th>
+<th>四层</th>
+<th>五层</th>
+<th>六层</th>
+<th>七层</th>
+<th>八层</th>
+<th>九层</th>
+<th>十层</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一阶</td>
+<td>37.07%</td>
+<td>38.32%</td>
+<td>39.56%</td>
+<td>40.71%</td>
+<td>41.75%</td>
+<td>42.78%</td>
+<td>43.72%</td>
+<td>44.76%</td>
+<td>45.59%</td>
+<td>46.52%</td>
+</tr>
+<tr>
+<td>二阶</td>
+<td>47.77%</td>
+<td>48.60%</td>
+<td>49.43%</td>
+<td>50.26%</td>
+<td>51.00%</td>
+<td>51.71%</td>
+<td>52.44%</td>
+<td>53.17%</td>
+<td>53.79%</td>
+<td>54.41%</td>
+</tr>
+<tr>
+<td>三阶</td>
+<td>55.35%</td>
+<td>55.97%</td>
+<td>56.59%</td>
+<td>57.22%</td>
+<td>57.74%</td>
+<td>58.26%</td>
+<td>58.78%</td>
+<td>59.30%</td>
+<td>59.81%</td>
+<td>60.33%</td>
+</tr>
+<tr>
+<td>四阶</td>
+<td>61.06%</td>
+<td>61.47%</td>
+<td>61.89%</td>
+<td>62.41%</td>
+<td>62.82%</td>
+<td>63.24%</td>
+<td>63.65%</td>
+<td>64.07%</td>
+<td>64.49%</td>
+<td>64.80%</td>
+</tr>
+<tr>
+<td>五阶</td>
+<td>65.42%</td>
+<td>65.73%</td>
+<td>66.15%</td>
+<td>66.46%</td>
+<td>66.77%</td>
+<td>67.19%</td>
+<td>67.50%</td>
+<td>67.81%</td>
+<td>68.12%</td>
+<td>68.43%</td>
+</tr>
+<tr>
+<td>六阶</td>
+<td>68.85%</td>
+<td>69.16%</td>
+<td>69.47%</td>
+<td>69.78%</td>
+<td>70.00%</td>
+<td>70.30%</td>
+<td>70.61%</td>
+<td>70.82%</td>
+<td>71.13%</td>
+<td>71.34%</td>
+</tr>
+<tr>
+<td>七阶</td>
+<td>71.76%</td>
+<td>71.96%</td>
+<td>72.17%</td>
+<td>72.48%</td>
+<td>72.69%</td>
+<td>72.99%</td>
+<td>73.21%</td>
+<td>73.42%</td>
+<td>73.62%</td>
+<td>73.73%</td>
+</tr>
+<tr>
+<td>八阶</td>
+<td>74.14%</td>
+<td>74.35%</td>
+<td>74.56%</td>
+<td>74.77%</td>
+<td>74.87%</td>
+<td>75.08%</td>
+<td>75.29%</td>
+<td>75.49%</td>
+<td>75.70%</td>
+<td>75.91%</td>
+</tr>
+<tr>
+<td>九阶</td>
+<td>76.12%</td>
+<td>76.32%</td>
+<td>76.53%</td>
+<td>76.64%</td>
+<td>76.74%</td>
+<td>76.95%</td>
+<td>77.16%</td>
+<td>77.36%</td>
+<td>77.47%</td>
+<td>77.57%</td>
+</tr>
+<tr>
+<td>圆满</td>
+<td>77.78%</td>
+<td>77.88%</td>
+<td>78.09%</td>
+<td>78.19%</td>
+<td>78.40%</td>
+<td>78.51%</td>
+<td>78.61%</td>
+<td>78.82%</td>
+<td>78.92%</td>
+<td>79.02%</td>
+</tr>
+</tbody></table>
+<h2 id="克制时数据来源：夏青萝"><a href="#克制时数据来源：夏青萝" class="headerlink" title="克制时数据来源：夏青萝"></a>克制时数据来源：夏青萝</h2><ul>
+<li>模拟计算所得 475 * 1.2 * 1.3 * 1.5&#x3D;1111.5</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>阶数&#x2F;层数（火系木桩）</th>
+<th>一层</th>
+<th>二层</th>
+<th>三层</th>
+<th>四层</th>
+<th>五层</th>
+<th>六层</th>
+<th>七层</th>
+<th>八层</th>
+<th>九层</th>
+<th>圆满</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一阶</td>
+<td>1141</td>
+<td>1119</td>
+<td>1098</td>
+<td>1078</td>
+<td>1059</td>
+<td>1040</td>
+<td>1022</td>
+<td>1004</td>
+<td>987</td>
+<td>971</td>
+</tr>
+<tr>
+<td>二阶</td>
+<td>948</td>
+<td>933</td>
+<td>918</td>
+<td>904</td>
+<td>890</td>
+<td>877</td>
+<td>864</td>
+<td>851</td>
+<td>839</td>
+<td>827</td>
+</tr>
+<tr>
+<td>三阶</td>
+<td>810</td>
+<td>799</td>
+<td>789</td>
+<td>778</td>
+<td>768</td>
+<td>758</td>
+<td>748</td>
+<td>739</td>
+<td>730</td>
+<td>721</td>
+</tr>
+<tr>
+<td>四阶</td>
+<td>708</td>
+<td>699</td>
+<td>691</td>
+<td>683</td>
+<td>675</td>
+<td>667</td>
+<td>660</td>
+<td>653</td>
+<td>645</td>
+<td>638</td>
+</tr>
+<tr>
+<td>五阶</td>
+<td>628</td>
+<td>622</td>
+<td>615</td>
+<td>609</td>
+<td>602</td>
+<td>596</td>
+<td>590</td>
+<td>584</td>
+<td>579</td>
+<td>573</td>
+</tr>
+<tr>
+<td>六阶</td>
+<td>565</td>
+<td>559</td>
+<td>554</td>
+<td>549</td>
+<td>544</td>
+<td>539</td>
+<td>534</td>
+<td>529</td>
+<td>524</td>
+<td>520</td>
+</tr>
+<tr>
+<td>七阶</td>
+<td>513</td>
+<td>508</td>
+<td>504</td>
+<td>500</td>
+<td>496</td>
+<td>491</td>
+<td>487</td>
+<td>483</td>
+<td>479</td>
+<td>475</td>
+</tr>
+<tr>
+<td>八阶</td>
+<td>470</td>
+<td>466</td>
+<td>462</td>
+<td>459</td>
+<td>455</td>
+<td>452</td>
+<td>448</td>
+<td>445</td>
+<td>441</td>
+<td>438</td>
+</tr>
+<tr>
+<td>九阶</td>
+<td>433</td>
+<td>430</td>
+<td>427</td>
+<td>424</td>
+<td>421</td>
+<td>418</td>
+<td>415</td>
+<td>412</td>
+<td>409</td>
+<td>406</td>
+</tr>
+<tr>
+<td>十阶</td>
+<td>403</td>
+<td>401</td>
+<td>398</td>
+<td>395</td>
+<td>393</td>
+<td>390</td>
+<td>387</td>
+<td>385</td>
+<td>382</td>
+<td>380</td>
+</tr>
+</tbody></table>
+<br />
+
+<blockquote>
+<p>减伤率分析表：火系木桩</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>阶数&#x2F;层数</th>
+<th>1层</th>
+<th>2层</th>
+<th>3层</th>
+<th>4层</th>
+<th>5层</th>
+<th>6层</th>
+<th>7层</th>
+<th>8层</th>
+<th>9层</th>
+<th>圆满</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>1阶</strong></td>
+<td>-2.65%</td>
+<td>-0.67%</td>
+<td>1.22%</td>
+<td>3.01%</td>
+<td>4.71%</td>
+<td>6.43%</td>
+<td>8.06%</td>
+<td>9.67%</td>
+<td>11.21%</td>
+<td>12.64%</td>
+</tr>
+<tr>
+<td><strong>2阶</strong></td>
+<td>14.71%</td>
+<td>16.04%</td>
+<td>17.41%</td>
+<td>18.67%</td>
+<td>19.93%</td>
+<td>21.10%</td>
+<td>22.27%</td>
+<td>23.43%</td>
+<td>24.53%</td>
+<td>25.59%</td>
+</tr>
+<tr>
+<td><strong>3阶</strong></td>
+<td>27.13%</td>
+<td>28.11%</td>
+<td>29.02%</td>
+<td>30.00%</td>
+<td>30.90%</td>
+<td>31.82%</td>
+<td>32.72%</td>
+<td>33.50%</td>
+<td>34.32%</td>
+<td>35.12%</td>
+</tr>
+<tr>
+<td><strong>4阶</strong></td>
+<td>36.30%</td>
+<td>37.10%</td>
+<td>37.83%</td>
+<td>38.56%</td>
+<td>39.28%</td>
+<td>39.99%</td>
+<td>40.60%</td>
+<td>41.25%</td>
+<td>41.94%</td>
+<td>42.60%</td>
+</tr>
+<tr>
+<td><strong>5阶</strong></td>
+<td>43.50%</td>
+<td>44.04%</td>
+<td>44.66%</td>
+<td>45.18%</td>
+<td>45.82%</td>
+<td>46.36%</td>
+<td>46.89%</td>
+<td>47.44%</td>
+<td>47.90%</td>
+<td>48.44%</td>
+</tr>
+<tr>
+<td><strong>6阶</strong></td>
+<td>49.17%</td>
+<td>49.69%</td>
+<td>50.13%</td>
+<td>50.59%</td>
+<td>50.99%</td>
+<td>51.50%</td>
+<td>51.94%</td>
+<td>52.39%</td>
+<td>52.84%</td>
+<td>53.21%</td>
+</tr>
+<tr>
+<td><strong>7阶</strong></td>
+<td>53.85%</td>
+<td>54.29%</td>
+<td>54.64%</td>
+<td>55.00%</td>
+<td>55.36%</td>
+<td>55.81%</td>
+<td>56.17%</td>
+<td>56.54%</td>
+<td>56.91%</td>
+<td>57.26%</td>
+</tr>
+<tr>
+<td><strong>8阶</strong></td>
+<td>57.71%</td>
+<td>58.06%</td>
+<td>58.41%</td>
+<td>58.70%</td>
+<td>59.05%</td>
+<td>59.32%</td>
+<td>59.68%</td>
+<td>59.96%</td>
+<td>60.34%</td>
+<td>60.59%</td>
+</tr>
+<tr>
+<td><strong>9阶</strong></td>
+<td>61.04%</td>
+<td>61.31%</td>
+<td>61.58%</td>
+<td>61.85%</td>
+<td>62.12%</td>
+<td>62.39%</td>
+<td>62.66%</td>
+<td>62.93%</td>
+<td>63.20%</td>
+<td>63.47%</td>
+</tr>
+<tr>
+<td><strong>10阶</strong></td>
+<td>63.74%</td>
+<td>63.92%</td>
+<td>64.19%</td>
+<td>64.46%</td>
+<td>64.64%</td>
+<td>64.91%</td>
+<td>65.18%</td>
+<td>65.36%</td>
+<td>65.63%</td>
+<td>65.80%</td>
+</tr>
+</tbody></table>
+<h2 id="五行抗性表"><a href="#五行抗性表" class="headerlink" title="五行抗性表"></a>五行抗性表</h2><ul>
+<li>误差同水系木桩差不多，最多 5%</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>阶数层数</th>
+<th>金系木桩</th>
+<th>木系木桩</th>
+<th>水系木桩</th>
+<th>火系木桩</th>
+<th>土系木桩</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>一阶一层</strong></td>
+<td>13.08%</td>
+<td>13.08%</td>
+<td>14.3±0.8%</td>
+<td>-2.65%</td>
+<td>37.07%</td>
+</tr>
+<tr>
+<td><strong>一阶二层</strong></td>
+<td>14.75%</td>
+<td>14.75%</td>
+<td>18.3±0.4%</td>
+<td>-0.67%</td>
+<td>38.32%</td>
+</tr>
+<tr>
+<td><strong>一阶三层</strong></td>
+<td>16.41%</td>
+<td>16.41%</td>
+<td>21.1±0.3%</td>
+<td>1.22%</td>
+<td>39.56%</td>
+</tr>
+<tr>
+<td><strong>一阶四层</strong></td>
+<td>17.96%</td>
+<td>17.96%</td>
+<td>24.5±0.4%</td>
+<td>3.01%</td>
+<td>40.71%</td>
+</tr>
+<tr>
+<td><strong>一阶五层</strong></td>
+<td>19.42%</td>
+<td>19.42%</td>
+<td>27.0±0.4%</td>
+<td>4.71%</td>
+<td>41.75%</td>
+</tr>
+<tr>
+<td><strong>一阶六层</strong></td>
+<td>20.87%</td>
+<td>20.87%</td>
+<td>29.8±0.4%</td>
+<td>6.43%</td>
+<td>42.78%</td>
+</tr>
+<tr>
+<td><strong>一阶七层</strong></td>
+<td>22.22%</td>
+<td>22.22%</td>
+<td>31.8±0.4%</td>
+<td>8.06%</td>
+<td>43.72%</td>
+</tr>
+<tr>
+<td><strong>一阶八层</strong></td>
+<td>23.57%</td>
+<td>23.57%</td>
+<td>34.2±0.3%</td>
+<td>9.67%</td>
+<td>44.76%</td>
+</tr>
+<tr>
+<td><strong>一阶九层</strong></td>
+<td>24.82%</td>
+<td>24.82%</td>
+<td>36.0±0.3%</td>
+<td>11.21%</td>
+<td>45.59%</td>
+</tr>
+<tr>
+<td><strong>一阶圆满</strong></td>
+<td>26.06%</td>
+<td>26.06%</td>
+<td>38.4±0.3%</td>
+<td>12.64%</td>
+<td>46.52%</td>
+</tr>
+<tr>
+<td><strong>二阶一层</strong></td>
+<td>27.83%</td>
+<td>27.83%</td>
+<td>40.5±0.5%</td>
+<td>14.71%</td>
+<td>47.77%</td>
+</tr>
+<tr>
+<td><strong>二阶二层</strong></td>
+<td>28.97%</td>
+<td>28.97%</td>
+<td>42.3±0.3%</td>
+<td>16.04%</td>
+<td>48.60%</td>
+</tr>
+<tr>
+<td><strong>二阶三层</strong></td>
+<td>30.11%</td>
+<td>30.11%</td>
+<td>43.9±0.3%</td>
+<td>17.41%</td>
+<td>49.43%</td>
+</tr>
+<tr>
+<td><strong>二阶四层</strong></td>
+<td>31.15%</td>
+<td>31.15%</td>
+<td>45.6±0.3%</td>
+<td>18.67%</td>
+<td>50.26%</td>
+</tr>
+<tr>
+<td><strong>二阶五层</strong></td>
+<td>32.19%</td>
+<td>32.19%</td>
+<td>47.0±0.2%</td>
+<td>19.93%</td>
+<td>51.00%</td>
+</tr>
+<tr>
+<td><strong>二阶六层</strong></td>
+<td>33.23%</td>
+<td>33.23%</td>
+<td>48.5±0.3%</td>
+<td>21.10%</td>
+<td>51.71%</td>
+</tr>
+<tr>
+<td><strong>二阶七层</strong></td>
+<td>34.27%</td>
+<td>34.27%</td>
+<td>49.7±0.3%</td>
+<td>22.27%</td>
+<td>52.44%</td>
+</tr>
+<tr>
+<td><strong>二阶八层</strong></td>
+<td>35.20%</td>
+<td>35.20%</td>
+<td>51.1±0.3%</td>
+<td>23.43%</td>
+<td>53.17%</td>
+</tr>
+<tr>
+<td><strong>二阶九层</strong></td>
+<td>36.14%</td>
+<td>36.14%</td>
+<td>52.2±0.3%</td>
+<td>24.53%</td>
+<td>53.79%</td>
+</tr>
+<tr>
+<td><strong>二阶圆满</strong></td>
+<td>36.97%</td>
+<td>36.97%</td>
+<td>53.6±0.3%</td>
+<td>25.59%</td>
+<td>54.41%</td>
+</tr>
+<tr>
+<td><strong>三阶一层</strong></td>
+<td>38.32%</td>
+<td>38.32%</td>
+<td>54.4±0.5%</td>
+<td>27.13%</td>
+<td>55.35%</td>
+</tr>
+<tr>
+<td><strong>三阶二层</strong></td>
+<td>39.15%</td>
+<td>39.15%</td>
+<td>55.6±0.3%</td>
+<td>28.11%</td>
+<td>55.97%</td>
+</tr>
+<tr>
+<td><strong>三阶三层</strong></td>
+<td>39.98%</td>
+<td>39.98%</td>
+<td>56.6±0.3%</td>
+<td>29.02%</td>
+<td>56.59%</td>
+</tr>
+<tr>
+<td><strong>三阶四层</strong></td>
+<td>40.81%</td>
+<td>40.81%</td>
+<td>57.8±0.3%</td>
+<td>30.00%</td>
+<td>57.22%</td>
+</tr>
+<tr>
+<td><strong>三阶五层</strong></td>
+<td>41.54%</td>
+<td>41.54%</td>
+<td>58.7±0.3%</td>
+<td>30.90%</td>
+<td>57.74%</td>
+</tr>
+<tr>
+<td><strong>三阶六层</strong></td>
+<td>42.26%</td>
+<td>42.26%</td>
+<td>59.8±0.3%</td>
+<td>31.82%</td>
+<td>58.26%</td>
+</tr>
+<tr>
+<td><strong>三阶七层</strong></td>
+<td>43.00%</td>
+<td>43.00%</td>
+<td>60.6±0.3%</td>
+<td>32.72%</td>
+<td>58.78%</td>
+</tr>
+<tr>
+<td><strong>三阶八层</strong></td>
+<td>43.72%</td>
+<td>43.72%</td>
+<td>61.6±0.3%</td>
+<td>33.50%</td>
+<td>59.30%</td>
+</tr>
+<tr>
+<td><strong>三阶九层</strong></td>
+<td>44.34%</td>
+<td>44.34%</td>
+<td>62.4±0.3%</td>
+<td>34.32%</td>
+<td>59.81%</td>
+</tr>
+<tr>
+<td><strong>三阶圆满</strong></td>
+<td>45.17%</td>
+<td>45.17%</td>
+<td>63.3±0.3%</td>
+<td>35.12%</td>
+<td>60.33%</td>
+</tr>
+<tr>
+<td><strong>四阶一层</strong></td>
+<td>46.11%</td>
+<td>46.11%</td>
+<td>69.1±0.5%</td>
+<td>36.30%</td>
+<td>61.06%</td>
+</tr>
+<tr>
+<td><strong>四阶二层</strong></td>
+<td>46.73%</td>
+<td>46.73%</td>
+<td>69.8±0.3%</td>
+<td>37.10%</td>
+<td>61.47%</td>
+</tr>
+<tr>
+<td><strong>四阶三层</strong></td>
+<td>47.35%</td>
+<td>47.35%</td>
+<td>70.4±0.3%</td>
+<td>37.83%</td>
+<td>61.89%</td>
+</tr>
+<tr>
+<td><strong>四阶四层</strong></td>
+<td>47.98%</td>
+<td>47.98%</td>
+<td>71.1±0.3%</td>
+<td>38.56%</td>
+<td>62.41%</td>
+</tr>
+<tr>
+<td><strong>四阶五层</strong></td>
+<td>48.60%</td>
+<td>48.60%</td>
+<td>71.7±0.3%</td>
+<td>39.28%</td>
+<td>62.82%</td>
+</tr>
+<tr>
+<td><strong>四阶六层</strong></td>
+<td>49.22%</td>
+<td>49.22%</td>
+<td>72.3±0.3%</td>
+<td>39.99%</td>
+<td>63.24%</td>
+</tr>
+<tr>
+<td><strong>四阶七层</strong></td>
+<td>49.74%</td>
+<td>49.74%</td>
+<td>72.9±0.3%</td>
+<td>40.60%</td>
+<td>63.65%</td>
+</tr>
+<tr>
+<td><strong>四阶八层</strong></td>
+<td>50.36%</td>
+<td>50.36%</td>
+<td>73.5±0.3%</td>
+<td>41.25%</td>
+<td>64.07%</td>
+</tr>
+<tr>
+<td><strong>四阶九层</strong></td>
+<td>50.88%</td>
+<td>50.88%</td>
+<td>74.1±0.3%</td>
+<td>41.94%</td>
+<td>64.49%</td>
+</tr>
+<tr>
+<td><strong>四阶圆满</strong></td>
+<td>51.40%</td>
+<td>51.40%</td>
+<td>74.8±0.3%</td>
+<td>42.60%</td>
+<td>64.80%</td>
+</tr>
+<tr>
+<td><strong>五阶一层</strong></td>
+<td>52.13%</td>
+<td>52.13%</td>
+<td>74.6±0.3%</td>
+<td>43.50%</td>
+<td>65.42%</td>
+</tr>
+<tr>
+<td><strong>五阶二层</strong></td>
+<td>52.65%</td>
+<td>52.65%</td>
+<td>75.1±0.3%</td>
+<td>44.04%</td>
+<td>65.73%</td>
+</tr>
+<tr>
+<td><strong>五阶三层</strong></td>
+<td>53.17%</td>
+<td>53.17%</td>
+<td>75.5±0.3%</td>
+<td>44.66%</td>
+<td>66.15%</td>
+</tr>
+<tr>
+<td><strong>五阶四层</strong></td>
+<td>53.69%</td>
+<td>53.69%</td>
+<td>76.0±0.3%</td>
+<td>45.18%</td>
+<td>66.46%</td>
+</tr>
+<tr>
+<td><strong>五阶五层</strong></td>
+<td>54.10%</td>
+<td>54.10%</td>
+<td>76.4±0.3%</td>
+<td>45.82%</td>
+<td>66.77%</td>
+</tr>
+<tr>
+<td><strong>五阶六层</strong></td>
+<td>54.62%</td>
+<td>54.62%</td>
+<td>76.9±0.3%</td>
+<td>46.36%</td>
+<td>67.19%</td>
+</tr>
+<tr>
+<td><strong>五阶七层</strong></td>
+<td>55.04%</td>
+<td>55.04%</td>
+<td>77.3±0.3%</td>
+<td>46.89%</td>
+<td>67.50%</td>
+</tr>
+<tr>
+<td><strong>五阶八层</strong></td>
+<td>55.56%</td>
+<td>55.56%</td>
+<td>77.7±0.3%</td>
+<td>47.44%</td>
+<td>67.81%</td>
+</tr>
+<tr>
+<td><strong>五阶九层</strong></td>
+<td>55.97%</td>
+<td>55.97%</td>
+<td>78.2±0.3%</td>
+<td>47.90%</td>
+<td>68.12%</td>
+</tr>
+<tr>
+<td><strong>五阶圆满</strong></td>
+<td>56.39%</td>
+<td>56.39%</td>
+<td>78.6±0.3%</td>
+<td>48.44%</td>
+<td>68.43%</td>
+</tr>
+<tr>
+<td><strong>六阶一层</strong></td>
+<td>57.01%</td>
+<td>57.01%</td>
+<td>80.6±0.3%</td>
+<td>49.17%</td>
+<td>68.85%</td>
+</tr>
+<tr>
+<td><strong>六阶二层</strong></td>
+<td>57.42%</td>
+<td>57.42%</td>
+<td>80.9±0.3%</td>
+<td>49.69%</td>
+<td>69.16%</td>
+</tr>
+<tr>
+<td><strong>六阶三层</strong></td>
+<td>57.84%</td>
+<td>57.84%</td>
+<td>81.3±0.3%</td>
+<td>50.13%</td>
+<td>69.47%</td>
+</tr>
+<tr>
+<td><strong>六阶四层</strong></td>
+<td>58.26%</td>
+<td>58.26%</td>
+<td>81.6±0.3%</td>
+<td>50.59%</td>
+<td>69.78%</td>
+</tr>
+<tr>
+<td><strong>六阶五层</strong></td>
+<td>58.57%</td>
+<td>58.57%</td>
+<td>81.9±0.3%</td>
+<td>50.99%</td>
+<td>70.00%</td>
+</tr>
+<tr>
+<td><strong>六阶六层</strong></td>
+<td>58.98%</td>
+<td>58.98%</td>
+<td>82.2±0.3%</td>
+<td>51.50%</td>
+<td>70.30%</td>
+</tr>
+<tr>
+<td><strong>六阶七层</strong></td>
+<td>59.40%</td>
+<td>59.40%</td>
+<td>82.6±0.3%</td>
+<td>51.94%</td>
+<td>70.61%</td>
+</tr>
+<tr>
+<td><strong>六阶八层</strong></td>
+<td>59.71%</td>
+<td>59.71%</td>
+<td>82.9±0.3%</td>
+<td>52.39%</td>
+<td>70.82%</td>
+</tr>
+<tr>
+<td><strong>六阶九层</strong></td>
+<td>60.12%</td>
+<td>60.12%</td>
+<td>83.2±0.3%</td>
+<td>52.84%</td>
+<td>71.13%</td>
+</tr>
+<tr>
+<td><strong>六阶圆满</strong></td>
+<td>60.44%</td>
+<td>60.44%</td>
+<td>83.6±0.3%</td>
+<td>53.21%</td>
+<td>71.34%</td>
+</tr>
+<tr>
+<td><strong>七阶一层</strong></td>
+<td>60.96%</td>
+<td>60.96%</td>
+<td>83.3±0.3%</td>
+<td>53.85%</td>
+<td>71.76%</td>
+</tr>
+<tr>
+<td><strong>七阶二层</strong></td>
+<td>61.27%</td>
+<td>61.27%</td>
+<td>83.6±0.3%</td>
+<td>54.29%</td>
+<td>71.96%</td>
+</tr>
+<tr>
+<td><strong>七阶三层</strong></td>
+<td>61.58%</td>
+<td>61.58%</td>
+<td>83.9±0.3%</td>
+<td>54.64%</td>
+<td>72.17%</td>
+</tr>
+<tr>
+<td><strong>七阶四层</strong></td>
+<td>61.99%</td>
+<td>61.99%</td>
+<td>84.2±0.3%</td>
+<td>55.00%</td>
+<td>72.48%</td>
+</tr>
+<tr>
+<td><strong>七阶五层</strong></td>
+<td>62.31%</td>
+<td>62.31%</td>
+<td>84.4±0.3%</td>
+<td>55.36%</td>
+<td>72.69%</td>
+</tr>
+<tr>
+<td><strong>七阶六层</strong></td>
+<td>62.62%</td>
+<td>62.62%</td>
+<td>84.7±0.3%</td>
+<td>55.81%</td>
+<td>72.99%</td>
+</tr>
+<tr>
+<td><strong>七阶七层</strong></td>
+<td>62.93%</td>
+<td>62.93%</td>
+<td>84.9±0.3%</td>
+<td>56.17%</td>
+<td>73.21%</td>
+</tr>
+<tr>
+<td><strong>七阶八层</strong></td>
+<td>63.24%</td>
+<td>63.24%</td>
+<td>85.2±0.3%</td>
+<td>56.54%</td>
+<td>73.42%</td>
+</tr>
+<tr>
+<td><strong>七阶九层</strong></td>
+<td>63.55%</td>
+<td>63.55%</td>
+<td>85.4±0.3%</td>
+<td>56.91%</td>
+<td>73.62%</td>
+</tr>
+<tr>
+<td><strong>七阶圆满</strong></td>
+<td>63.76%</td>
+<td>63.76%</td>
+<td>85.7±0.3%</td>
+<td>57.26%</td>
+<td>73.73%</td>
+</tr>
+<tr>
+<td><strong>八阶一层</strong></td>
+<td>64.28%</td>
+<td>64.28%</td>
+<td>85.3±0.3%</td>
+<td>57.71%</td>
+<td>74.14%</td>
+</tr>
+<tr>
+<td><strong>八阶二层</strong></td>
+<td>64.49%</td>
+<td>64.49%</td>
+<td>85.5±0.3%</td>
+<td>58.06%</td>
+<td>74.35%</td>
+</tr>
+<tr>
+<td><strong>八阶三层</strong></td>
+<td>64.80%</td>
+<td>64.80%</td>
+<td>85.7±0.3%</td>
+<td>58.41%</td>
+<td>74.56%</td>
+</tr>
+<tr>
+<td><strong>八阶四层</strong></td>
+<td>65.11%</td>
+<td>65.11%</td>
+<td>85.9±0.3%</td>
+<td>58.70%</td>
+<td>74.77%</td>
+</tr>
+<tr>
+<td><strong>八阶五层</strong></td>
+<td>65.32%</td>
+<td>65.32%</td>
+<td>86.1±0.3%</td>
+<td>59.05%</td>
+<td>74.87%</td>
+</tr>
+<tr>
+<td><strong>八阶六层</strong></td>
+<td>65.63%</td>
+<td>65.63%</td>
+<td>86.3±0.3%</td>
+<td>59.32%</td>
+<td>75.08%</td>
+</tr>
+<tr>
+<td><strong>八阶七层</strong></td>
+<td>65.84%</td>
+<td>65.84%</td>
+<td>86.5±0.3%</td>
+<td>59.68%</td>
+<td>75.29%</td>
+</tr>
+<tr>
+<td><strong>八阶八层</strong></td>
+<td>66.15%</td>
+<td>66.15%</td>
+<td>86.7±0.3%</td>
+<td>59.96%</td>
+<td>75.49%</td>
+</tr>
+<tr>
+<td><strong>八阶九层</strong></td>
+<td>66.36%</td>
+<td>66.36%</td>
+<td>86.9±0.3%</td>
+<td>60.34%</td>
+<td>75.70%</td>
+</tr>
+<tr>
+<td><strong>八阶圆满</strong></td>
+<td>66.56%</td>
+<td>66.56%</td>
+<td>87.1±0.3%</td>
+<td>60.59%</td>
+<td>75.91%</td>
+</tr>
+<tr>
+<td><strong>九阶一层</strong></td>
+<td>66.98%</td>
+<td>66.98%</td>
+<td>87.1±0.3%</td>
+<td>61.04%</td>
+<td>76.12%</td>
+</tr>
+<tr>
+<td><strong>九阶二层</strong></td>
+<td>67.29%</td>
+<td>67.29%</td>
+<td>87.3±0.3%</td>
+<td>61.31%</td>
+<td>76.32%</td>
+</tr>
+<tr>
+<td><strong>九阶三层</strong></td>
+<td>67.39%</td>
+<td>67.39%</td>
+<td>87.5±0.3%</td>
+<td>61.58%</td>
+<td>76.53%</td>
+</tr>
+<tr>
+<td><strong>九阶四层</strong></td>
+<td>67.70%</td>
+<td>67.70%</td>
+<td>87.7±0.3%</td>
+<td>61.85%</td>
+<td>76.64%</td>
+</tr>
+<tr>
+<td><strong>九阶五层</strong></td>
+<td>67.91%</td>
+<td>67.91%</td>
+<td>87.8±0.3%</td>
+<td>62.12%</td>
+<td>76.74%</td>
+</tr>
+<tr>
+<td><strong>九阶六层</strong></td>
+<td>68.22%</td>
+<td>68.22%</td>
+<td>88.0±0.3%</td>
+<td>62.39%</td>
+<td>76.95%</td>
+</tr>
+<tr>
+<td><strong>九阶七层</strong></td>
+<td>68.33%</td>
+<td>68.33%</td>
+<td>88.2±0.3%</td>
+<td>62.66%</td>
+<td>77.16%</td>
+</tr>
+<tr>
+<td><strong>九阶八层</strong></td>
+<td>68.64%</td>
+<td>68.64%</td>
+<td>87.4±0.5%</td>
+<td>62.93%</td>
+<td>77.36%</td>
+</tr>
+<tr>
+<td><strong>九阶九层</strong></td>
+<td>68.85%</td>
+<td>68.85%</td>
+<td>88.5±0.3%</td>
+<td>63.20%</td>
+<td>77.47%</td>
+</tr>
+<tr>
+<td><strong>九阶圆满</strong></td>
+<td>68.95%</td>
+<td>68.95%</td>
+<td>88.7±0.3%</td>
+<td>63.47%</td>
+<td>77.57%</td>
+</tr>
+<tr>
+<td><strong>十阶一层</strong></td>
+<td>69.26%</td>
+<td>69.26%</td>
+<td>88.0±0.3%</td>
+<td>63.74%</td>
+<td>77.78%</td>
+</tr>
+<tr>
+<td><strong>十阶二层</strong></td>
+<td>69.47%</td>
+<td>69.47%</td>
+<td>88.2±0.3%</td>
+<td>63.92%</td>
+<td>77.88%</td>
+</tr>
+<tr>
+<td><strong>十阶三层</strong></td>
+<td>69.68%</td>
+<td>69.68%</td>
+<td>88.4±0.3%</td>
+<td>64.19%</td>
+<td>78.09%</td>
+</tr>
+<tr>
+<td><strong>十阶四层</strong></td>
+<td>69.89%</td>
+<td>69.89%</td>
+<td>88.6±0.3%</td>
+<td>64.46%</td>
+<td>78.19%</td>
+</tr>
+<tr>
+<td><strong>十阶五层</strong></td>
+<td>70.09%</td>
+<td>70.09%</td>
+<td>88.8±0.3%</td>
+<td>64.64%</td>
+<td>78.40%</td>
+</tr>
+<tr>
+<td><strong>十阶六层</strong></td>
+<td>70.30%</td>
+<td>70.30%</td>
+<td>89.0±0.3%</td>
+<td>64.91%</td>
+<td>78.51%</td>
+</tr>
+<tr>
+<td><strong>十阶七层</strong></td>
+<td>70.51%</td>
+<td>70.51%</td>
+<td>89.0±0.3%</td>
+<td>65.18%</td>
+<td>78.61%</td>
+</tr>
+<tr>
+<td><strong>十阶八层</strong></td>
+<td>70.72%</td>
+<td>70.72%</td>
+<td>89.2±0.3%</td>
+<td>65.36%</td>
+<td>78.82%</td>
+</tr>
+<tr>
+<td><strong>十阶九层</strong></td>
+<td>70.92%</td>
+<td>70.92%</td>
+<td>89.4±0.3%</td>
+<td>65.63%</td>
+<td>78.92%</td>
+</tr>
+<tr>
+<td><strong>十阶圆满</strong></td>
+<td>71.03%</td>
+<td>71.03%</td>
+<td>89.6±0.3%</td>
+<td>65.80%</td>
+<td>79.02%</td>
+</tr>
+</tbody></table>
+
+    </div>
+    <!-- 文章：声明 -->
+    <!-- 文章的声明 -->
+<div id="copy-icon-碧海苍云录-木桩" style="display: grid; grid-template-rows: subgrid; grid-row: span 3; grid-gap: 12px">
+    <p><strong>作者</strong>：粥记捣蛋</p>
+
+    <div class="d-flex gap-3">
+        <p><strong>文章链接</strong>：<a href="https://zexuisme.github.io/2025/06/21/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95-%E6%9C%A8%E6%A1%A9/">https://ZeXuIsMe.github.io/2025/06/21/碧海苍云录/碧海苍云录-木桩/</a></p>
+
+        <div
+                class="d-flex align-center"
+                style="width: fit-content; cursor: pointer"
+                onclick="postEjs.onclickCopy(`#copy-icon-碧海苍云录-木桩 a`)"
+        >
+            
+    <div class="tooltip tooltip-top " data-tooltip="点击复制">
+        <!-- button is-dark 为 bulma 的样式 -->
+        
+            <i
+                    class="fas fa-copy"
+                    style="font-size: 21px"
+            ></i>
+        
+    </div>
+
+
+<!--{-->
+<!--    type: '', // 表示提示输出的类型，参数有 text, image-->
+<!--    direction: '', // 表示toolTip出现的方向-->
+<!--    text: '', // 如果 type === 'text'，用于显示提示文本-->
+<!--    icon: '',  // icon 图标-->
+<!--    icon_prefix: '',  // icon 图标前缀，默认为 fab-->
+<!--    size: '', // 控制图标的大小, 默认为 48-->
+<!--    url: '' // 如果 type === image，图片的链接-->
+<!--}-->
+
+        </div>
+    </div>
+    <p><strong>版权声明</strong>：本网站所有文章除特别声明外,均采用 CC BY-NC-ND 4.0 许可协议。转载请注明出处!</p>
+
+</div>
+    <!-- 文章：文章切换 -->
+    
+<!-- 文章阅读页的切换按钮 -->
+<div class="post-toggle d-flex justify-between flex-wrap gap-3">
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/2025/06/22/Ejs-%E6%A8%A1%E7%89%88%E6%B8%B2%E6%9F%93%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6/')"
+            
+    >上一篇: Ejs-模版渲染绑定事件</button>
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/2025/06/20/HEXO/Hexo-%E6%96%B0%E5%A2%9E%E9%A1%B5%E9%9D%A2/')"
+            
+    >下一篇: Hexo-新增页面</button>
+</div>
+
+<script>
+    class PostToggleEjs extends Blog {
+        constructor() {
+            super()
+        }
+
+        onclickLink (url) {
+            this.createALink(url, '_self')
+        }
+    }
+
+    const postToggleEjs = new PostToggleEjs()
+</script>
+</article>
+
+<div style="height: 80px"></div>
+
+<script>
+    class PostEjs extends Blog{
+        constructor() {
+            super();
+        }
+    }
+    const postEjs = new PostEjs();
+</script>
+    </div>
+
+    
+        <!-- 悬浮操作按钮 -->
+        <div
+        class="post-flex d-flex flex-wrap gap-4"
+        style="position: fixed; bottom: 10%; right: 10px; width: 48px; mix-blend-mode: difference;"
+>
+    <div
+            class="mbl d-flex justify-center align-center"
+            style="border-radius: 50%; width: 48px; height: 48px; border: none"
+            onclick="postFlexMenu.onclickFlexBtn(event)"
+    >
+        <a href="/">
+            <i class="fas fa-home" style="font-size: 24px"></i>
+        </a>
+    </div>
+
+    <div
+            class="mbl d-flex justify-center align-center"
+            style="border-radius: 50%; width: 48px; height: 48px; border: none"
+            onclick="postFlexMenu.onclickFlexBtn(event)"
+    >
+        <a href="#blog-body">
+            <i class="fas fa-angle-up" style="font-size: 24px"></i>
+        </a>
+    </div>
+
+    <div
+            id="flex-music-btn"
+            class="mbl d-flex justify-center align-center"
+            style="border-radius: 50%; width: 48px; height: 48px; border: none"
+            onclick="postFlexMenu.onclickMusicBtn()"
+    >
+        <i class="fas fa-music text-primary" style="font-size: 24px; cursor: pointer"></i>
+    </div>
+</div>
+
+<script>
+    class PostFlexMenu extends DeviceDetector{
+        constructor() {
+            super();
+            // ...
+        }
+
+        onclickFlexBtn (event) {
+            const aLink = event.target.querySelector('a')
+            if (!aLink) return;
+            aLink.click()
+        }
+
+        onclickMusicBtn () {
+            const musicPlay = document.getElementById('music-player')
+            if (musicPlay.style.left === '0px') musicPlay.style.left = -100 + '%'
+            else musicPlay.style.left = 0
+        }
+    }
+
+    const postFlexMenu = new PostFlexMenu();
+    if (postFlexMenu.isMobile()) {
+        document.getElementById('flex-music-btn').classList.remove('d-flex');
+        document.getElementById('flex-music-btn').style.display = 'none';
+    }
+</script>
+        <!-- 音乐播放器 -->
+        <div id="music-player" class="px-6 py-4">
+    <div class="d-flex v-full">
+        <div class="v-full d-flex align-center gap-4" style="max-width: 310px">
+            <div id="music-avatar" style="position: relative">
+                <figure>
+                    <img src="/img/bhcyl/bhcyl.jpg" alt="" style="height: 100%; object-fit: cover">
+                </figure>
+                <div class="v-absolute-center bg-white" style="height: 32px; border-radius: 50%; width: 32px"></div>
+                <div class="v-absolute-center border-grey-50" style="height: 40px; border-radius: 50%; width: 40px; border: 2px solid"></div>
+            </div>
+            <div style="width: 200px">
+                <div id="music-title" class="text-secondary">歌曲名</div>
+                <div id="music-author" class="text-secondary">作者</div>
+            </div>
+        </div>
+
+        <div id="music-state" class="v-full d-flex flex-column justify-center align-center gap-5">
+            <div class="d-flex gap-6">
+                <i id="prev-btn" class="fas fa-step-backward" onclick="musicPlayer.onclickPreMusic(event)"></i>
+                <i id="play-btn" class="fas fa-play-circle" onclick="musicPlayer.onclickTogglePlayerState()"></i>
+                <i id="next-btn" class="fas fa-step-forward" onclick="musicPlayer.onclickNextMusic(event)"></i>
+            </div>
+            <div id="music-progress" class="d-flex justify-center" >
+                <div onclick="musicPlayer.onclickPosition(event)">
+                    <div id="default-progress" class="bg-grey-300"></div>
+                    <div id="player-progress"></div>
+                    <div class="progress-text"></div>
+                    <audio
+                            style="display: none"
+                            controls
+                            src="/music/净坛遗恨.mp3"
+                            onloadedmetadata="musicPlayer.onloadedmetadata(event)"
+                            ontimeupdate="musicPlayer.ontimeupdate(event)"
+                            onended="musicPlayer.onended()"
+                    ></audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="v-full d-flex align-center justify-around" style="max-width: 310px">
+            <div class="d-flex gap-3 align-center">
+                <!-- 喇叭 -->
+                <i
+                        id="la-ba"
+                        class="fas fa-volume-down text-secondary"
+                        onclick="musicPlayer.onclickToggleLaBaIcon(event)"
+                        data-muted="false"
+                ></i>
+                <!-- 音量调节 -->
+                <div id="voice-progress" style="position: relative">
+                    <span id="voice-bg" class="bg-grey-300"></span>
+                    <span id="voice-modify"></span>
+                    <div id="voice-mask" class="v-absolute" onclick="musicPlayer.onclickControlVolume(event)"></div>
+                </div>
+            </div>
+            <!-- 歌曲列表-->
+            <div id="music-list">
+                <i class="fas fa-list" onclick="event.stopPropagation(); musicPlayer.showMusicListCard(event)"></i>
+                <div id="music-list-card" class="p-4" onclick="event.stopPropagation()" data-list="[{&#34;path&#34;:&#34;music/净坛遗恨.mp3&#34;,&#34;name&#34;:&#34;净坛遗恨&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/末日旅人的独白.mp3&#34;,&#34;name&#34;:&#34;末日旅人的独白&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/灯芯上的七彩霜A.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-A&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/灯芯上的七彩霜B.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-B&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/王权情劫.mp3&#34;,&#34;name&#34;:&#34;王权情劫&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/白骨谣.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 女声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/白骨谣_男声版.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 男声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/纯音乐001.mp3&#34;,&#34;name&#34;:&#34;Darkness Nocturne&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}]">
+                    
+                        <div
+                                id="music-list-0"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/净坛遗恨.mp3&#34;,&#34;name&#34;:&#34;净坛遗恨&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `0`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">净坛遗恨</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-1"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/末日旅人的独白.mp3&#34;,&#34;name&#34;:&#34;末日旅人的独白&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `1`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">末日旅人的独白</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-2"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/灯芯上的七彩霜A.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-A&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `2`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">灯芯上的七彩霜-A</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-3"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/灯芯上的七彩霜B.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-B&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `3`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">灯芯上的七彩霜-B</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-4"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/王权情劫.mp3&#34;,&#34;name&#34;:&#34;王权情劫&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `4`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">王权情劫</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-5"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/白骨谣.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 女声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `5`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">白骨哀歌 - 女声</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-6"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/白骨谣_男声版.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 男声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `6`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">白骨哀歌 - 男声</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-7"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/纯音乐001.mp3&#34;,&#34;name&#34;:&#34;Darkness Nocturne&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `7`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">Darkness Nocturne</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+class MusicPlayer extends DeviceDetector {
+    constructor() {
+        super();
+        this.musicInfo = { index: 0 }
+        this.musicList = []
+
+        this.totalTime = ''
+        this.currentTime = ''
+        this.progress = 0
+        this.defaultVolume = 0.2 // # 默认音量为 20%
+        this.cacheVolume = 0 // 暂存音量大小
+
+        const playBtnIcon = new Map()
+        playBtnIcon.set('play', 'fa-play-circle')
+        playBtnIcon.set('pause', 'fa-pause-circle')
+        this.playBtnIcon = playBtnIcon
+
+        const laBaIcon = new Map()
+        laBaIcon.set("小喇叭", 'fa-volume-down')
+        laBaIcon.set("大喇叭", 'fa-volume-up')
+        laBaIcon.set("静音", 'fa-volume-mute')
+        this.laBaIcon = laBaIcon
+    }
+
+    setMusicList () {
+        if (this.musicList.length > 0) return
+        const dom = this.getMusicListCard()
+        this.musicList = JSON.parse(dom.dataset.list)
+        dom.setAttribute('data-list', [])
+    }
+    getAvatarDOM () {
+        return document.getElementById('music-avatar')
+    }
+    getMusicListCard () {
+        return document.getElementById("music-list-card")
+    }
+    modifyMusicInfo () {
+        const { name, author } = this.musicInfo
+        // 修改歌曲头像
+        // 修改歌曲标题
+        const titleDOM = document.getElementById("music-title")
+        titleDOM.innerHTML = name
+        // 修改歌曲作者
+        const authorDOM = document.getElementById("music-author")
+        authorDOM.innerHTML = author
+    }
+    hideMusicListCard () {
+        const card = this.getMusicListCard();
+        card.style.opacity = 0;
+        card.style.visibility = 'hidden';
+    }
+    showMusicListCard () {
+        const card = this.getMusicListCard();
+        card.style.opacity = 1;
+        card.style.visibility = 'visible';
+    }
+    // 播放前一首
+    onclickPreMusic(event) {
+        this.setMusicList()
+        const { musicInfo, musicList } = this
+        // * 1 是为了把字符洗掉
+        let prevIndex = musicInfo.index * 1 - 1
+        if (prevIndex <= 0) prevIndex = musicList.length - 1
+        document.getElementById(`music-list-${prevIndex}`).click()
+    }
+    // 播放下一首
+    onclickNextMusic(event) {
+        this.setMusicList()
+        const { musicInfo, musicList } = this
+        // * 1 是为了把字符洗掉
+        let nextIndex = musicInfo.index * 1 + 1
+        if (nextIndex > musicList.length - 1) nextIndex = 0
+        document.getElementById(`music-list-${nextIndex}`).click()
+    }
+
+    // 获取 audio 图标
+    getVoiceDOM () {
+        return document.querySelector("#music-progress audio");
+    }
+    getPlayBtnDOM () {
+        return document.getElementById("play-btn");
+    }
+    getPreBtnDOM () {
+        return document.getElementById("play-btn");
+    }
+    getNextBtnDOM () {
+        return document.getElementById("next-btn");
+    }
+    setMuted (dom, val) {
+        dom.setAttribute('data-muted', val)
+    }
+    // 设置喇叭图标
+    setLaBaIcon (dom, { add, remove, muted }) {
+        dom.classList.remove(remove)
+        dom.classList.add(add)
+        this.setMuted(dom, muted)
+    }
+    // 设置播放键按钮图标
+    setPlayBtnIcon ({ add, remove }) {
+        const playBtnDOM = this.getPlayBtnDOM()
+        playBtnDOM.classList.remove(remove)
+        playBtnDOM.classList.add(add)
+    }
+    // 调整音量的位置
+    modifyVolume (volume) {
+        const targetDOM = document.getElementById('voice-modify')
+        targetDOM.style.left = -100 + volume * 100 + '%'
+    }
+    // 选择音乐
+    onclickMusic (val, index) {
+        const config = JSON.parse(val);
+        this.musicInfo = Object.assign(config, { index })
+        this.setMusicList()
+        this.modifyMusicInfo()
+
+        const voiceDOM = this.getVoiceDOM()
+        voiceDOM.src = `/${config.path}`
+
+        // 切换歌曲时暂停播放
+        this.getVoiceDOM().pause()
+        // 切换歌曲时把播放按钮的状态还原
+        const playBtnIcon = this.playBtnIcon
+        this.setPlayBtnIcon({ add: playBtnIcon.get('play'), remove: playBtnIcon.get('pause') })
+        this.onclickTogglePlayerState()
+    }
+    // 点击播放按钮时：切换音频状态
+    onclickTogglePlayerState () {
+        // 如果不存在歌曲信息说明是第一次播放，
+        if (!Object.keys(this.musicInfo).find(key => key === 'path')) {
+            document.getElementById(`music-list-0`).click()
+            return
+        }
+
+        const voiceDOM = this.getVoiceDOM()
+        const avatarImgDOM = this.getAvatarDOM().querySelector('img')
+        // 判断是否处于播放状态，如果处于播放状态，那么 paused 参数为 false
+        if (voiceDOM.paused) {
+            voiceDOM.play()
+            // 让音乐头像旋转起来
+            avatarImgDOM.classList.add('music-avatar-img')
+            this.setPlayBtnIcon({
+                add: this.playBtnIcon.get('pause'),
+                remove: this.playBtnIcon.get('play')
+            })
+        } else {
+            voiceDOM.pause()
+            avatarImgDOM.classList.remove('music-avatar-img')
+            this.setPlayBtnIcon({
+                add: this.playBtnIcon.get('play'),
+                remove: this.playBtnIcon.get('pause')
+            })
+        }
+    }
+    // 调整音量大小
+    onclickControlVolume (event) {
+        const voice = this.getVoiceDOM()
+        const { offsetX, target } = event
+
+        const volume = offsetX/target.clientWidth
+        this.modifyVolume(volume)
+
+        const laBa = document.querySelector(`#la-ba`)
+        if (laBa.dataset.muted === 'true') {
+            this.setLaBaIcon(laBa, {
+                muted: 'false',
+                add: this.laBaIcon.get('小喇叭'),
+                remove: this.laBaIcon.get('静音')
+            })
+        }
+
+        voice.volume = volume
+    }
+    // 播放完毕
+    onended () {
+        // 切下一首曲子
+        this.onclickNextMusic()
+    }
+
+    // 音频本身的操作
+    handleTimeFormat (second) {
+        // 秒数格式化
+        let mm = Math.floor(second / 60)
+        let ss = Math.floor(second % 60)
+        if (mm < 10) mm = '0' + mm
+        if (ss < 10) ss = '0' + ss
+        return `${mm}:${ss}`
+    }
+    // 获取音频的第一手信息
+    onloadedmetadata (event) {
+        console.log('歌曲已填充')
+        const voice = event.target
+        const { duration } = voice;
+        this.duration = duration;
+        this.totalTime = this.handleTimeFormat(duration)
+        // 设置默认音量
+        voice.volume = this.defaultVolume
+        // 修改音量状态
+        this.modifyVolume(this.defaultVolume)
+    }
+    ontimeupdate (event) {
+        // 当音频处于播放状态时触发
+        const { currentTime, duration } = event.target
+        this.currentTime = this.handleTimeFormat(currentTime)
+        document.querySelector('.progress-text').innerHTML = this.currentTime
+        // 操作进度条
+        // 把秒数切割为100份
+        const progress = currentTime / duration * 100
+        document.getElementById('player-progress').style.left = -100 + progress + '%'
+    }
+    onclickPosition (event) {
+        // TODO 定位有问题：设置currentTime会重新播放
+        // 有提过 seekable，说length = 1表示可以做定位的，该音频是有的，结果嘛就是依然不能做定位
+        const voiceDOM = this.getVoiceDOM()
+        const paused = voiceDOM.paused
+
+        voiceDOM.pause()
+        this.setPlayBtnIcon({
+            add: this.playBtnIcon.get('play'),
+            remove: this.playBtnIcon.get('pause')
+        })
+        const { offsetX, target } = event
+        voiceDOM.currentTime = Math.floor(offsetX/target.clientWidth * voiceDOM.duration)
+
+        if (paused === false) {
+            voiceDOM.play()
+            this.setPlayBtnIcon({
+                add: this.playBtnIcon.get('pause'),
+                remove: this.playBtnIcon.get('play')
+            })
+        }
+    }
+
+    // 按键操作：喇叭
+    onclickToggleLaBaIcon (event) {
+        // 点击切换喇叭状态
+        // 逻辑为：点击静音，如果是静音则回恢复状态
+        // ['fa-volume-down']
+        const laBaIconDOM = event.target
+        const { muted } = event.target.dataset
+        const laBaIcon = this.laBaIcon
+        if (muted === 'false') {
+            // 非静音状态，需要切换到静音
+            this.setLaBaIcon(laBaIconDOM, {
+                muted: 'true',
+                add: laBaIcon.get('静音'),
+                remove: laBaIcon.get('小喇叭')
+            })
+            // 把音量存起来
+            this.cacheVolume = this.getVoiceDOM().volume
+            // 修改音量
+            this.modifyVolume(0)
+            this.getVoiceDOM().volume = 0
+        } else {
+            // 静音状态，需要切换到正常状态
+            this.setLaBaIcon(laBaIconDOM, {
+                muted: 'false',
+                add: laBaIcon.get('小喇叭'),
+                remove: laBaIcon.get('静音')
+            })
+            // 修改音量
+            this.modifyVolume(this.cacheVolume)
+            this.getVoiceDOM().volume = this.cacheVolume
+        }
+    }
+}
+const musicPlayer = new MusicPlayer();
+if (musicPlayer.isMobile()) {
+    const dom = document.getElementById('music-player')
+    dom.style.display = 'none'
+}
+
+window.addEventListener('click', () => {
+    const target = musicPlayer.getMusicListCard()
+    if (target?.style.opacity) {
+        musicPlayer.hideMusicListCard()
+    }
+});
+</script>
+
+<style>
+    #music-player {
+        position: fixed;
+        width: 100%;
+        height: 128px;
+        bottom: 0;
+        left: -100%;
+        z-index: 9;
+        backdrop-filter: blur(10px);
+        background: transparent;
+        transition: left 0.5s ease;
+    }
+    #music-player i { font-size: 32px; }
+
+    #music-avatar {
+        width: 96px;
+        height: 100%;
+        border-radius:50%;
+        overflow: hidden;
+    }
+    @keyframes avatar-rotate {
+        0% { transform: rotate(0) }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* 按键区：上一首、播放、下一首 */
+    #music-state>div:first-child>i {
+        cursor: pointer;
+        color: var(--secondary);
+        transform: scale(1);
+        transition: color 0.3s ease;
+    }
+    #music-state>div:first-child>i:hover {
+        color: var(--primary);
+    }
+
+    /* 进度条 */
+    #music-progress {
+        width: 100%;
+    }
+    #music-progress>div {
+        width: 80%;
+        margin: auto;
+        max-width: 500px;
+        position: relative;
+        overflow: hidden;
+    }
+    #default-progress, #player-progress {
+        border: 6px;
+        width: 100%;
+        height: 5px;
+    }
+    #player-progress {
+        background: linear-gradient(to left, #c1d5d3, var(--primary), #c1d5d3);
+        position: absolute;
+        top: 0;
+        left: -100%;
+        background-size: 200%;
+        animation: musicPlayerProgress 3s linear infinite;
+    }
+    @keyframes musicPlayerProgress {
+        0% {
+            background-position: -100% 0;
+        }
+        100% {
+            background-position: 100% 0;
+        }
+    }
+
+    /* 音量 */
+    #voice-progress {
+        overflow: hidden;
+        padding: 12px 0;
+    }
+    #voice-progress::before {
+        content: "";
+        width: 100%;
+        height: 10px;
+        background-color: var(--primary);
+    }
+    #voice-bg, #voice-modify {
+        display: inline-block;
+        width: 100px;
+        height: 5px;
+        border-radius: 6px;
+    }
+    #voice-modify {
+        /*  音量的调节  */
+        position: absolute;
+        top: 50%;
+        left: -100%;
+        background-color: var(--primary);
+        transition: left 0.3s ease;
+        transform: translateY(-50%);
+    }
+    #voice-mask {
+        background-color: rgba(255,0,0,0);
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    /* 歌曲列表 */
+    #music-list {
+        position: relative;
+    }
+    #music-list-card {
+        cursor: pointer;
+        position: absolute;
+        width: 256px;
+        max-height: 512px;
+        overflow: auto;
+        bottom: calc(100% + .5rem);
+        right: -65px;
+        background-color: #00586d12;
+        opacity: 0;
+        visibility: hidden;
+        transition: visibility 0.3s ease, opacity 0.3s ease;
+    }
+    #music-list-card>div:nth-child(2n-1) {
+        background-color: var(--grey-100);
+    }
+    #music-list-card>div:nth-child(2n) {
+        background-color: var(--white);
+    }
+    #music-list-card>div:hover {
+        cursor: pointer;
+        background-color: var(--grey-300);
+    }
+</style>
+    
+</body>
+</html>

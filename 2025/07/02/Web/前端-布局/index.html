@@ -1,0 +1,1528 @@
+<html lang="">
+<!-- Head tag -->
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="">
+    <meta name="author" content="">
+     
+    <title>前端-Flex和Gird | 粥记捣蛋</title>
+
+    
+<script src="/js/index.js" type="module"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+    <!-- 这里的是全局通用的方法 -->
+
+<script type="text/javascript">
+    // // 使用示例
+    // const detector = new DeviceDetector();
+    // console.log('是否是移动设备:', detector.isMobile());
+    // console.log('是否是平板:', detector.isTablet());
+    // console.log('是否是触摸屏设备:', detector.isTouchDevice());
+    // console.log('浏览器:', detector.getBrowserInfo());
+    // console.log('设备信息:', detector.getDeviceInfo());
+    class DeviceDetector {
+        constructor() {
+            this.userAgent = navigator.userAgent.toLowerCase();
+            this.platform = navigator.platform.toLowerCase();
+            this.isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        }
+
+        // 判断是否为移动设备（包括平板）
+        isMobile() {
+            return /mobile|android|iphone|ipad|ipod|blackberry|windows phone/i.test(this.userAgent);
+        }
+
+        // 判断是否为桌面设备
+        isDesktop() {
+            return !this.isMobile();
+        }
+
+        // 判断是否为iOS设备
+        isIOS() {
+            return /iphone|ipad|ipod/i.test(this.userAgent);
+        }
+
+        // 判断是否为Android设备
+        isAndroid() {
+            return /android/i.test(this.userAgent);
+        }
+
+        // 判断是否为平板设备
+        isTablet() {
+            return /tablet|ipad|android(?!.*mobile)|kindle/i.test(this.userAgent);
+        }
+
+        // 判断是否为手机设备
+        isPhone() {
+            return this.isMobile() && !this.isTablet();
+        }
+
+        // 判断是否为触摸屏设备
+        isTouchDevice() {
+            return this.isTouchDevice;
+        }
+
+        // 判断是否为Chrome浏览器
+        isChrome() {
+            return /chrome/i.test(this.userAgent) && !this.isEdge();
+        }
+
+        // 判断是否为Firefox浏览器
+        isFirefox() {
+            return /firefox/i.test(this.userAgent);
+        }
+
+        // 判断是否为Safari浏览器
+        isSafari() {
+            return /safari/i.test(this.userAgent) && !/chrome|chromium/i.test(this.userAgent);
+        }
+
+        // 判断是否为Edge浏览器
+        isEdge() {
+            return /edge|edg/i.test(this.userAgent);
+        }
+
+        // 判断是否为IE浏览器
+        isIE() {
+            return /msie|trident/i.test(this.userAgent);
+        }
+
+        // 获取设备信息摘要
+        getDeviceInfo() {
+            return {
+                userAgent: this.userAgent,
+                isMobile: this.isMobile(),
+                isDesktop: this.isDesktop(),
+                isIOS: this.isIOS(),
+                isAndroid: this.isAndroid(),
+                isTablet: this.isTablet(),
+                isPhone: this.isPhone(),
+                isTouchDevice: this.isTouchDevice,
+                browser: this.getBrowserInfo()
+            };
+        }
+
+        // 获取浏览器信息
+        getBrowserInfo() {
+            if (this.isChrome()) return 'Chrome';
+            if (this.isFirefox()) return 'Firefox';
+            if (this.isSafari()) return 'Safari';
+            if (this.isEdge()) return 'Edge';
+            if (this.isIE()) return 'Internet Explorer';
+            return 'Unknown';
+        }
+    }
+
+    class Blog extends DeviceDetector {
+        constructor() {
+            super();
+            this.messageMap = new Map();
+            this.messageMap.set("info", "has-background-info-light");
+            this.messageMap.set("success", "has-background-success-light");
+            this.messageMap.set("warning", "has-background-warning-light");
+            this.messageMap.set("error", "has-background-danger-light");
+        }
+
+        createALink (url, target = '_self') {
+            if (!url) {
+                console.error('没有链接')
+                return
+            }
+            if (url.startsWith('http')) target = '_blank'
+            const aLink = document.createElement('a')
+            aLink.href = url
+            aLink.target = target;
+            aLink.click()
+        }
+
+        /**
+         *
+         * @param url 图片链接
+         * @param id 你给 loading.ejs 添加的 id
+         */
+        imagesHideLoading (url, id) {
+            const img = new Image()
+            img.src = url
+            document.getElementById(id).classList.add('c-show-loading')
+            img.onload = () => {
+                console.log('加载完毕')
+                setTimeout(() => {
+                    console.log('已执行')
+                    document.getElementById(id).classList.remove('c-show-loading')
+                    document.getElementById(id).classList.add('c-hide-loading')
+                }, 2000)
+            }
+        }
+
+        getMessageParent () {
+            let DOMParent = document.getElementById('blog-message')
+            if (!DOMParent) {
+                DOMParent = document.createElement('div')
+                DOMParent.id = 'blog-message'
+                DOMParent.classList.add('d-flex')
+                DOMParent.classList.add('align-center')
+                DOMParent.classList.add('flex-column')
+                Object.assign(DOMParent.style, {
+                    width: '100%',
+                    height: 'auto',
+                    position: 'fixed',
+                    top: '7.5rem',
+                    left: 0,
+                    zIndex: 999999999999999999,
+                    transition: 'height 0.3s ease'
+                })
+
+                document.body.appendChild(DOMParent)
+            }
+            return DOMParent
+        }
+
+        showMessage ({
+                         type = 'info', // info、success、warning、error
+                         message = '还没有投放文本呢~~',
+                     }) {
+            const parentDOM = this.getMessageParent()
+
+            const DOM = document.createElement('div')
+            DOM.classList.add('py-2')
+            DOM.classList.add('px-4')
+            DOM.classList.add('box')
+            DOM.classList.add(this.messageMap.get(type))
+            Object.assign(DOM.style, {
+                width: 'fit-content',
+                opacity: '0',
+                visibility: 'hidden',
+                transition: 'opacity 0.3s ease, transform 0.3s ease, visibility 0.3s'
+            })
+
+            DOM.innerHTML = message
+            DOM.style.opacity = '1'
+            DOM.style.visibility = 'visible'
+            parentDOM.appendChild(DOM)
+
+            setTimeout(() => {
+                DOM.style.opacity = '0'
+                DOM.style.visibility = 'hidden'
+                setTimeout(() => {
+                    parentDOM.removeChild(DOM)
+                }, 500)
+            }, 1500)
+        }
+
+        onclickCopy (targetName) {
+            const targetDOM = document.querySelector(targetName)
+            if (!targetDOM) {
+                throw new Error('复制的目标不存在！用的是 querySelector，可能是名字用错了呀~')
+            }
+            // 选中文本
+            const range = document.createRange();
+            range.selectNodeContents(targetDOM);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            // 执行复制命令
+            const successful = document.execCommand('copy');
+            // 清理
+            selection.removeAllRanges();
+
+            if (successful) {
+                this.showMessage({ type: 'success', message: '复制成功' });
+            } else {
+                throw new Error('复制失败')
+            }
+        }
+    }
+</script>
+    <![endif]-->
+
+    <!-- 浏览器图标 -->
+    <link rel="shortcut icon" href="/logo/%E9%AB%98%E6%B8%85Logo/%E9%80%8F%E6%98%8E%E5%BA%95logo.png">
+
+    <!-- framework CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">-->
+    <!-- Custom styles for this template -->
+    
+<link rel="stylesheet" href="/css/index.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- section 1：顶部菜单 -->
+    <div class="index-menu px-4">
+    <div id="no-mobile-menu" >
+        <div class="d-flex justify-center align-center gap-4 v-full">
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/"
+                    >首页</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/bhcyl"
+                    >碧海苍云录</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/life"
+                    >生活大爆炸</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/archives"
+                    >归档</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/about-me"
+                    >关于我</a>
+                </div>
+            
+        </div>
+    </div>
+    <div id="mobile-menu">
+        <div class="v-full d-flex justify-end align-center">
+            <div style="width: fit-content; position: relative">
+                <i
+                        class="fas fa-list"
+                        style="color: #00586d"
+                        onclick="event.stopPropagation(); menuEjs.onclickMobileMenu(event)"
+                ></i>
+                <div
+                        id="nav-mobile"
+                        class="py-4"
+                        style=" opacity: 0; visibility: hidden"
+                        onclick="event.stopPropagation();"
+                >
+                    <aside class="menu">
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/" style="color: #00586d ">首页</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/bhcyl" style="color: #00586d ">碧海苍云录</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/life" style="color: #00586d ">生活大爆炸</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/archives" style="color: #00586d ">归档</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/about-me" style="color: #00586d ">关于我</a>
+                            </div>
+                        
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .menu-label:hover {
+        background-color: #EEEEEE;
+        color: #00586d;
+    }
+</style>
+
+<script>
+    // 导航栏吸顶功能实现
+    document.addEventListener('DOMContentLoaded', function() {
+        const navbar = document.querySelector('.index-menu');
+        let lastScrollTop = 0;
+        const threshold = 50; // 滚动阈值，越小越敏感
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // 页面顶部始终显示
+            if (scrollTop <= threshold) {
+                navbar.classList.remove('fixed-header-hidden');
+            }
+            // 向下滚动且超过阈值
+            else if (scrollTop > lastScrollTop && scrollTop > threshold) {
+                navbar.classList.add('fixed-header-hidden');
+            }
+            // 向上滚动
+            else {
+                navbar.classList.remove('fixed-header-hidden');
+            }
+
+            lastScrollTop = scrollTop;
+
+            // 无论是向上还是向下滚动，如果音乐播放器处于展现状态，都要收起来
+            const musicPlayer = document.getElementById('music-player')
+            if(musicPlayer) musicPlayer.style.left = -100 + '%'
+        });
+    });
+
+    const menuEjs = {
+        onclickMobileMenu: event => {
+            console.log('onclickMobileMenu')
+            const targetDOM = document.getElementById('nav-mobile')
+            targetDOM.style.opacity = 1
+            targetDOM.style.visibility = 'visible'
+        }
+    }
+
+    window.addEventListener('click', function() {
+        const targetDOM = document.getElementById('nav-mobile')
+        if (!targetDOM || !targetDOM.style.opacity) return
+        if (targetDOM.style.opacity) {
+            targetDOM.style.opacity = 0
+            targetDOM.style.visibility = 'hidden'
+        }
+    })
+</script>
+
+<style>
+    .index-menu {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100px;
+        backdrop-filter: blur(10px);
+        background-color: transparent;
+        z-index: 99999;
+        transition: transform 0.3s linear, opacity 0.3s linear; /* 线性过渡 */
+    }
+    .index-menu > div {
+        cursor: pointer;
+    }
+
+    .fixed-header-hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    #no-mobile-menu {
+        display: none;
+        width: 100%;
+    }
+    #mobile-menu {
+        display: none;
+        height: 100%;
+    }
+    #nav-mobile {
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        position: absolute;
+        top: 100%;
+        background-color: white;
+        z-index: 2;
+        right: 0;
+    }
+
+    /* 屏幕宽度小于等于400px时 */
+    @media (max-width: 400px) {
+        #mobile-menu {
+            display: block;
+        }
+        #no-mobile-menu {
+            display: none;
+        }
+    }
+
+    /* 屏幕宽度大于400px时 */
+    @media (min-width: 401px) {
+        #mobile-menu {
+            display: none;
+        }
+        #no-mobile-menu {
+            display: block;
+        }
+    }
+</style>
+    <div id="blog-body">
+        <!-- 渲染：阅读整篇文章 -->
+
+
+<div style="height: 80px"></div>
+
+<article id="read-post" class="v-layout-75 p-4" style="display: grid; grid-template-rows: repeat(auto-fill, 1fr); grid-gap: 36px">
+    <!-- Title -->
+    <div class="level">
+        <div class="level-left">
+            <div class="media">
+                <div class="media-content">
+                    <h1 class="title is-4 modify-post-title">
+                        <span class="has-text-info">前端-Flex和Gird</span>
+                    </h1>
+                    <p class="subtitle is-6">
+                        <span class="icon is-small"><i class="fa fa-calendar"></i></span> 2025-07-02
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        <span class="icon is-small"><i class="fa fa-user"></i></span> 粥记捣蛋
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- 文章标签 -->
+        <div class="pt-4">
+            <span>
+    
+        <a class="tag is-info is-light" href="/tags/Flex/">Flex</a>
+    
+        <a class="tag is-info is-light" href="/tags/Grid/">Grid</a>
+    
+</span>
+            <span>
+    
+        <a class="tag is-warning is-light" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+        <a class="tag is-warning is-light" href="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/">康复训练计划表</a>
+    
+        <a class="tag is-warning is-light" href="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80/">页面布局</a>
+    
+</span>
+        </div>
+    </div>
+    <!-- 目录  -->
+    <div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Flex-%E5%B8%83%E5%B1%80"><span class="toc-number">1.</span> <span class="toc-text">Flex 布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Grid-%E5%B8%83%E5%B1%80"><span class="toc-number">2.</span> <span class="toc-text">Grid 布局</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Gird-%E5%AE%8C%E5%85%A8%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80"><span class="toc-number">2.1.</span> <span class="toc-text">Gird: 完全响应式布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Grid-%E5%90%88%E5%B9%B6%E5%8D%95%E5%85%83%E6%A0%BC"><span class="toc-number">2.2.</span> <span class="toc-text">Grid: 合并单元格</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Grid-subgird"><span class="toc-number">3.</span> <span class="toc-text">Grid: subgird</span></a></li></ol>
+    </div>
+    <!-- 文章：内容 -->
+    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
+        <hr />
+        <!-- Content -->
+        <blockquote>
+<p>Q：你了解Flex和Gird布局吗？</p>
+</blockquote>
+<p>A：了解一些，flex一般用于做单行或单列的布局处理，而Gird像是flex的进化型，它适合做网格型布局，比如B站就是用网格布局的做的。</p>
+<blockquote>
+<p>Q：为什么说flex是一维布局，Grid是二维布局？</p>
+</blockquote>
+<p>A：一维布局是做单行或单列布局处理；二维布局是行和列都做的布局</p>
+<blockquote>
+<p>Q：他们的区别在哪里？</p>
+</blockquote>
+<ul>
+<li>用过这两个后，你会发现他们的布局逻辑是反过来的，flex 布局经常是由元素内部的内容去决定场地，而gird是先决定场地安排，再决定内容</li>
+<li>flex 需要用到轴对齐的方式去调整内容，如比轴心的变化，行内容的对齐方式等等，Gird他一般情况是不做这了操作的，它是按人数完全公平的对分</li>
+<li>flex 会根据宽高自动调整占比，溢出会换行，Gird也能做到这一点，但是Grid可以通过 grid-auto-flow 指定自动填充方向，是行优先还是列优先</li>
+</ul>
+<blockquote>
+<p>Q：他们分别解决了什么问题？</p>
+</blockquote>
+<ul>
+<li>我常用 flex 布局去做对齐方式布局的处理，虽然绝对定位能做，但是 flex 去做对齐方式的布局处理很方便，不用担心定位到哪里的问题。很少用flex去做整体方向的页面布局</li>
+<li>Gird适合去做大方向的布局有一定复杂度的有布局规律的页面，比如B站首页、电商网站；</li>
+<li>所以他们两个的侧重点完全是不同的。</li>
+</ul>
+<blockquote>
+<p>Q：Flex布局的常用属性有哪些？他们的作用是什么？<br>Q：Gird的 <code>grid-template-rows</code>如何使用，<code>fr</code>单位的含义是什么？</p>
+</blockquote>
+<blockquote>
+<p>Q：flex: 1 是什么意思？由哪些属性组成？</p>
+</blockquote>
+<p>A：如果父级所有的子级都有 <code>flex: 1</code>,一般情况下，他会把所有自己挤在一行内且，按个数平均分配子级所拥有的空间，</p>
+<p>比如一个子级在设置<code>flex: 1</code>前内容+剩余空间有200px的宽度，当设置后，如果子级挤在一行且子级很多，那么他就只剩下内容的宽度了。</p>
+<p><code>flex: 1</code>由 flex-basics、grow、shrink 三个组成</p>
+<p>如果遇到 <code>flex: 1 1 200px</code>，你知道这是啥吗？，他们分别是 flex: grow shrink basic</p>
+<blockquote>
+<p>Q: Grid面对IE11浏览器的兼容问题怎么处理？</p>
+</blockquote>
+<p>A：这方面我有通过Caniuse查看过，在全球范围内使用率为0.4%，而我们自己情况可能会高一点，但也不会高太多，毕竟政府、银行、军工等需求他们也是在与时俱进的，故这类问题应该是具体情况具体分析，因为面对这类项目的时候就不大可能是Gird这一个兼容问题。一般情况也就是做一些简单预防措施，优雅降级或者渐进增强</p>
+<blockquote>
+<p>Q：在 Flex 中，align-items和align-content的区别是什么？分别在什么情况下生效？<br>A：<code>align-items</code>: 针对单行；<code>align-content</code>：针对多行元素；</p>
+</blockquote>
+<p>如果父级一行能处理完子级，就用 items, 如果不能且需要有间隔的垂直分布，那么用content,</p>
+<p>随意，一般情况下，items的参数为 center、start、end；content的参数一般为 space-between、space-around</p>
+<blockquote>
+<p>Q：Grid 中的grid-gap和gap属性有什么关系？如何设置行间距和列间距？<br>A：没有关系，都是同一人，grid-gap 原本是网格布局特有的属性，17年后变更为 gap，同时flex、multi-column也可以用了</p>
+</blockquote>
+<p>语法：<code>gap: 行间距 列间距</code>，可以单独使用<code>row-gap</code>控制行间距，同理<code>column-gap</code>控制列间距</p>
+<blockquote>
+<p>Q：Flex 、Grid 布局在渲染性能方面有什么差异？大规模布局中需要注意些什么？<br>A：Flex布局是专注于某行或某列的，所以在渲染时，只需要关注该行或该列的内容的对齐方式，是横轴对齐还是竖轴对齐，用什么对齐方式即可，关注的目标少了，自然开销小。</p>
+</blockquote>
+<p>而网格主句是专注于多行多列的，网格布局需要grid-template-rows&#x2F;columns: 1fr去计算轨道尺寸，同时计算每个网格行占多少，列占多少，如果遇到合并单元格gird-row&#x2F;column前面的工作又要重新来一遍，拖拽重绘布局等等操作，这些都是渲染上的开销。</p>
+<p>所以，在遇到大规模的布局时，遇到这种网格布局我会考虑两个方案，</p>
+<p>一是Intersection Observer做动态加载，当目标内容出现在视窗范围内或者即将出现在视窗范围内时去做内容的加载，内容再多一点的话，会考虑结合虚拟滚动通过占位符的减少渲染开销，</p>
+<p>二是考虑把布局缓存下来尽可能的减少重排次数，比如通过设置通用CSS变量 <code>--grid-col: 3; --grid-col: 4</code> 等方式提前准备好资源 。</p>
+<p>之后再根据情况结合弹性布局去做细致化的一个布局处理，而不是为了使用网格而使用网格为了弹性而使用弹性，导致层层嵌套的问题出现。</p>
+<blockquote>
+<p>Q：Grid 的grid-template-areas属性有什么优势？是否会影响性能？</p>
+</blockquote>
+<p>A: 它将 <code>gird-template-rows/columns</code> 以及 <code>grid-row/column</code> 合并到一起方便做布局管理的属性，对每一块区域进行命名，如通过字符串”header header header”表示一行3列，且三列是一个合并列，它增加了代码的可读性，</p>
+<p>配合对子级添加 <code>grid-area</code> 让 <code>grid-template-areas</code> 发挥其效用，也可与 <code>gird-template-rows/column</code>是 混合使用，增加布局能力，对常规布局来说这样布局会方便快捷许多，适合去静态布局。</p>
+<p>如果频繁修改<code>grid-template-areas</code>会导致重绘、重排的情况发生，和频繁修改 <code>gird-template-rows/column</code>带来的性能开销相差无几的。对于静态布局，使用该属性反而可能提高代码可维护性。就现在2025年的浏览器而言，这方面除非碰到高频修改的操作，不然几乎可以选择性的无视了。</p>
+<p>Q：CSS subgird你了解多少？</p>
+<p>A：subgird可以继承父级网格布局，让同一级的兄弟元素都保持在一个设计高度，他在一定程度解决了网格布局嵌套网格布局的问题，避免嵌套网格布局带来的渲染性能上的开销，虽然对于现在的浏览器而言，除非高频的修改或者渲染操作，否则基本上可以选择性的无视。</p>
+<p>比如说博客网站中文章卡片，一行显示3、5篇文章，但是文章标题，内容几乎是不可控的，就会导致卡片内容乘次不齐，</p>
+<p>以前可能会通过<code>marign:atuo</code>、<code>overflow</code>、<code>text-overflow:ellipsis</code>、flex弹性布局等等方法去操作，而现在通过 <code>subgird</code> 就可以在很大程度上解决这个问题，让卡片内容始终保持一致。</p>
+<p>它的语法：grid-template-rows&#x2F;columns: subgrid；表示继承父级的行或列的网格情况</p>
+<p>比如子级有标题，副标题和内容三个DIV，为了让卡片保持一致性，你需要做的事情就是为子级添加<code>display: grid; grid-template-rows: subgrid;</code> 做完这一步，你会发现内容重叠在一起了，根本原因是没有为子级元素分配网格导致的。</p>
+<p>所以可以通过<code>grid-row: span 3;</code> 去解决这个问题，我们的目标基本上是实现了。无论内容高度是100px还是200px，所有的都是相同的高度。</p>
+<h2 id="Flex-布局"><a href="#Flex-布局" class="headerlink" title="Flex 布局"></a>Flex 布局</h2><style>
+.post-flex-container {
+width: 100%;
+display: flex;
+flex-wrap: wrap;
+justify-content: between;
+gap: 30px;
+}
+
+.post-flex-item {
+  width: 30%;
+  height: 50px;
+  background-color: var(--info);
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 3rem;
+color: var(--white)
+}
+</style>
+<div class="post-flex-container">
+  <div class="post-flex-item">1</div>
+  <div class="post-flex-item">2</div>
+  <div class="post-flex-item">3</div>
+  <div class="post-flex-item">4</div>
+  <div class="post-flex-item">5</div>
+  <div class="post-flex-item">6</div>
+  <div class="post-flex-item">7</div>
+  <div class="post-flex-item">8</div>
+  <div class="post-flex-item">9</div>
+  <div class="post-flex-item">10</div>
+</div>
+
+<div class="p-4"></div>
+Flex可以根据情况自动调整显示的内容，当页面过窄，无需再原本CSS的基础上做改动就会自动换行。是好事也是坏事，
+
+<p>好事：自己无需操心自适应问题</p>
+<p>坏事：一旦没把控好，页面在小屏上的呈现力就会很差，而且也没有必要去为了故意造成的情况特地做布局，比如谁家好人会用200*300的宽高浏览网页，但是这确实是会带来很不好浏览体验。所以需要更多的额外属性来确保体验</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.post-flex-container</span> &#123;</span><br><span class="language-css"><span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span><br><span class="language-css"><span class="hljs-attribute">display</span>: flex;</span><br><span class="language-css"><span class="hljs-attribute">flex-wrap</span>: wrap;</span><br><span class="language-css"><span class="hljs-attribute">justify-content</span>: space-between;</span><br><span class="language-css"><span class="hljs-attribute">gap</span>: <span class="hljs-number">30px</span>;</span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.post-flex-item</span> &#123;</span><br><span class="language-css">  <span class="hljs-attribute">width</span>: <span class="hljs-number">30%</span>;</span><br><span class="language-css">  <span class="hljs-attribute">height</span>: <span class="hljs-number">50px</span>;</span><br><span class="language-css">  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--info);</span><br><span class="language-css">    <span class="hljs-attribute">display</span>: flex;</span><br><span class="language-css">    <span class="hljs-attribute">justify-content</span>: center;</span><br><span class="language-css">    <span class="hljs-attribute">align-items</span>: center;</span><br><span class="language-css">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">3rem</span>;</span><br><span class="language-css"><span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--white)</span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-flex-container&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-flex-item&quot;</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-flex-item&quot;</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-flex-item&quot;</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-flex-item&quot;</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-flex-item&quot;</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-flex-item&quot;</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-flex-item&quot;</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-flex-item&quot;</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-flex-item&quot;</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-flex-item&quot;</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="Grid-布局"><a href="#Grid-布局" class="headerlink" title="Grid 布局"></a>Grid 布局</h2><style>
+.post-container {
+  width: 100%;
+  height: 512px;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(4, minmax(200px, 1fr)) ;
+  gap: 1rem;
+  overflow: auto;
+}
+
+.post-item {
+  border-radius: 8px;
+  background-color: var(--info);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size:48px
+}
+</style>
+
+<div class="post-container">
+  <div class="post-item">1</div>
+  <div class="post-item">2</div>
+  <div class="post-item">3</div>
+  <div class="post-item">4</div>
+  <div class="post-item">5</div>
+  <div class="post-item">6</div>
+  <div class="post-item">7</div>
+  <div class="post-item">8</div>
+  <div class="post-item">9</div>
+  <div class="post-item">10</div>
+</div>
+
+<div class="p-4"></div>
+Grid能做到最大程度的按照要求做响应式布局，所示3行4列就是3行4列，不会变，
+
+<p>即便小屏，如果触及到最低布局限制，就不会在做退让</p>
+<p>比如：<code>minmax(200px, 1fr)：grid-template-columns: repeat(4, minmax(200px, 1fr))</code></p>
+<p>它就让列的宽度，最小为200px，能布局的完整度和体验做到最大提升；<mask>但需要留意的是遇到小屏容易溢出</mask>，那怎么办？看下面的完全响应式布局</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.post-container</span> &#123;</span><br><span class="language-css">  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span><br><span class="language-css">  <span class="hljs-attribute">height</span>: <span class="hljs-number">512px</span>;</span><br><span class="language-css">  <span class="hljs-attribute">display</span>: grid;</span><br><span class="language-css">  <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>fr);</span><br><span class="language-css">  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>fr);</span><br><span class="language-css">  <span class="hljs-attribute">gap</span>: <span class="hljs-number">1rem</span></span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.post-item</span> &#123;</span><br><span class="language-css">  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>;</span><br><span class="language-css">  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--info);</span><br><span class="language-css"></span><br><span class="language-css">  <span class="hljs-attribute">display</span>: flex;</span><br><span class="language-css">  <span class="hljs-attribute">justify-content</span>: center;</span><br><span class="language-css">  <span class="hljs-attribute">align-items</span>: center;</span><br><span class="language-css">  <span class="hljs-attribute">color</span>: white;</span><br><span class="language-css">  <span class="hljs-attribute">font-size</span>:<span class="hljs-number">48px</span></span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-container&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Gird-完全响应式布局"><a href="#Gird-完全响应式布局" class="headerlink" title="Gird: 完全响应式布局"></a>Gird: 完全响应式布局</h3><p>几列几行，最大做少，最小多少，均让gird自己控制</p>
+<style>
+.post-container-2 {
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(auto-fill, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) ;
+  gap: 1rem;
+}
+</style>
+<div class="post-container-2">
+  <div class="post-item">1</div>
+  <div class="post-item">2</div>
+  <div class="post-item">3</div>
+  <div class="post-item">4</div>
+  <div class="post-item">5</div>
+  <div class="post-item">6</div>
+  <div class="post-item">7</div>
+  <div class="post-item">8</div>
+  <div class="post-item">9</div>
+  <div class="post-item">10</div>
+</div>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.post-container-2</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">512px</span>;<br>  <span class="hljs-attribute">display</span>: grid;<br>  <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-built_in">repeat</span>(auto-fill, <span class="hljs-number">1</span>fr);<br>  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-built_in">repeat</span>(auto-fill, <span class="hljs-built_in">minmax</span>(<span class="hljs-number">200px</span>, <span class="hljs-number">1</span>fr)) ;<br>  <span class="hljs-attribute">gap</span>: <span class="hljs-number">1rem</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>核心出装：repeat(auto-fill, minmax(200px, 1fr))</strong><ul>
+<li>auto-fill：表示自动填充，怎么个自动填充法，按占比去自动填充，给 1fr,就占满；给1fr 1fr 就对半二分</li>
+<li>minmax(200px; 1fr)：用三元运算符表示就是 screenWidth &gt; 200px ? 1fr : 200px</li>
+</ul>
+</li>
+</ul>
+<p>有一个很有意思的地方，如果你把 two 替换为 one，你会发现 5号位置到第一列第一行了，这个操作就很有意思了</p>
+<h3 id="Grid-合并单元格"><a href="#Grid-合并单元格" class="headerlink" title="Grid: 合并单元格"></a>Grid: 合并单元格</h3><style>
+.post-container-3 {
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(auto-fill, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) ;
+  gap: 1rem;
+}
+.post-container-3 .one {
+    /*grid-column: 1/3;*/
+    /*grid-row: 1/3;*/
+    grid-area: 1/1/3/3
+}
+.post-container-3 .two {
+    grid-column: 3/5
+}
+</style>
+
+<div class="post-container-3">
+  <div class="post-item one">1</div>
+  <div class="post-item">2</div>
+  <div class="post-item">3</div>
+  <div class="post-item">4</div>
+  <div class="post-item two">5</div>
+  <div class="post-item">6</div>
+  <div class="post-item">7</div>
+  <div class="post-item">8</div>
+  <div class="post-item">9</div>
+  <div class="post-item">10</div>
+</div>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.post-container-3</span> <span class="hljs-selector-class">.one</span> &#123;</span><br><span class="language-css">    <span class="hljs-comment">/*grid-column: 1/3;*/</span></span><br><span class="language-css">    <span class="hljs-comment">/*grid-row: 1/3;*/</span></span><br><span class="language-css">    <span class="hljs-attribute">grid-area</span>: <span class="hljs-number">1</span>/<span class="hljs-number">1</span>/<span class="hljs-number">3</span>/<span class="hljs-number">3</span></span><br><span class="language-css">&#125;</span><br><span class="language-css"><span class="hljs-selector-class">.post-container-3</span> <span class="hljs-selector-class">.two</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">grid-column</span>: <span class="hljs-number">3</span>/<span class="hljs-number">5</span></span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-container-3&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item one&quot;</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item two&quot;</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-item&quot;</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<div class="p-4"></div>
+
+<p><strong>核心出装：grid-column&#x2F;row: 1&#x2F;3</strong></p>
+<blockquote>
+<p>Q：grid-column: 1&#x2F;3 ？</p>
+</blockquote>
+<p>  A：语法：<code> grid-column: &lt;column-start&gt; / &lt;column-end&gt;</code>；在这段代码中，1表示起始列，3表示结束列，表示从第一列的最左边开始，到第三列的最左边结束，把之间的空间合并到一起；</p>
+<blockquote>
+<p>Q：grid-area: 1&#x2F;1&#x2F;3&#x2F;3？</p>
+</blockquote>
+<p>  A：语法：<code> grid-area: &lt;row-start&gt; / &lt;column-start&gt; / &lt;row-end&gt; / &lt;column-end&gt;</code> </p>
+<h2 id="Grid-subgird"><a href="#Grid-subgird" class="headerlink" title="Grid: subgird"></a>Grid: subgird</h2><p>subgird 能让相同的元素布局保持一致性，比如例子中的【副标题】【内容】，他们内容即变多了，同为一行的元素始终保持一样的高度。</p>
+<style>
+.grid-subgrid {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-rows: repeat(auto-fill, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.gs-item {
+  background-color: var(--grey-100);
+  border-radius: 8px;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+}
+</style>
+
+<section class="grid-subgrid"></section>
+
+<script>
+const gsDOM = `
+  <div class="gs-item">
+    <div>标题</div>
+    <div>副标题</div>
+    <div>内容</div>
+  </div>
+`;
+const sectionDOM_GridSubgrid = document.querySelector('.grid-subgrid');
+for (let i = 0; i < new Array(17).length; i++) {
+
+  switch (i) {
+    case 1:
+      sectionDOM_GridSubgrid.innerHTML += `
+        <div class="gs-item">
+          <div>标题</div>
+          <div>副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题</div>
+          <div>内容</div>
+        </div>
+      `;
+      break;
+    case 2:
+      sectionDOM_GridSubgrid.innerHTML += `
+        <div class="gs-item">
+          <div>标题</div>
+          <div>副标题</div>
+          <div>内容内容内容内容内容内容内容内容内容内容内容内容内容</div>
+        </div>
+      `;
+      break;
+    default:
+      sectionDOM_GridSubgrid.innerHTML += gsDOM;
+  }
+}
+</script>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.grid-subgrid</span> &#123;<br>  <span class="hljs-attribute">display</span>: grid;<br>  <span class="hljs-attribute">grid-gap</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>fr);<br>  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-built_in">repeat</span>(auto-fill, <span class="hljs-built_in">minmax</span>(<span class="hljs-number">200px</span>, <span class="hljs-number">1</span>fr));<br>&#125;<br><br><span class="hljs-selector-class">.gs-item</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--grey-<span class="hljs-number">100</span>);<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>;<br>  <span class="hljs-attribute">display</span>: grid;<br>  <span class="hljs-attribute">grid-template-rows</span>: subgrid;<br>  <span class="hljs-attribute">grid-row</span>: span <span class="hljs-number">3</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-subgrid&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> gsDOM = <span class="hljs-string">`</span><br><span class="hljs-string">  &lt;div class=&quot;gs-item&quot;&gt;</span><br><span class="hljs-string">    &lt;div&gt;标题&lt;/div&gt;</span><br><span class="hljs-string">    &lt;div&gt;副标题&lt;/div&gt;</span><br><span class="hljs-string">    &lt;div&gt;内容&lt;/div&gt;</span><br><span class="hljs-string">  &lt;/div&gt;</span><br><span class="hljs-string">`</span>;<br><span class="hljs-keyword">const</span> sectionDOM_GridSubgrid = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.grid-subgrid&#x27;</span>);<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">17</span>).<span class="hljs-property">length</span>; i++) &#123;<br><br>  <span class="hljs-keyword">switch</span> (i) &#123;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>      sectionDOM_GridSubgrid.<span class="hljs-property">innerHTML</span> += <span class="hljs-string">`</span><br><span class="hljs-string">        &lt;div class=&quot;gs-item&quot;&gt;</span><br><span class="hljs-string">          &lt;div&gt;标题&lt;/div&gt;</span><br><span class="hljs-string">          &lt;div&gt;副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题&lt;/div&gt;</span><br><span class="hljs-string">          &lt;div&gt;内容&lt;/div&gt;</span><br><span class="hljs-string">        &lt;/div&gt;</span><br><span class="hljs-string">      `</span>;<br>      <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>      sectionDOM_GridSubgrid.<span class="hljs-property">innerHTML</span> += <span class="hljs-string">`</span><br><span class="hljs-string">        &lt;div class=&quot;gs-item&quot;&gt;</span><br><span class="hljs-string">          &lt;div&gt;标题&lt;/div&gt;</span><br><span class="hljs-string">          &lt;div&gt;副标题&lt;/div&gt;</span><br><span class="hljs-string">          &lt;div&gt;内容内容内容内容内容内容内容内容内容内容内容内容内容&lt;/div&gt;</span><br><span class="hljs-string">        &lt;/div&gt;</span><br><span class="hljs-string">      `</span>;<br>      <span class="hljs-keyword">break</span>;<br>    <span class="hljs-attr">default</span>:<br>      sectionDOM_GridSubgrid.<span class="hljs-property">innerHTML</span> += gsDOM;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+    </div>
+    <!-- 文章：声明 -->
+    <!-- 文章的声明 -->
+<div id="copy-icon-前端-Flex和Gird" style="display: grid; grid-template-rows: subgrid; grid-row: span 3; grid-gap: 12px">
+    <p><strong>作者</strong>：粥记捣蛋</p>
+
+    <div class="d-flex gap-3">
+        <p><strong>文章链接</strong>：<a href="https://zexuisme.github.io/2025/07/02/Web/%E5%89%8D%E7%AB%AF-%E5%B8%83%E5%B1%80/">https://ZeXuIsMe.github.io/2025/07/02/Web/前端-布局/</a></p>
+
+        <div
+                class="d-flex align-center"
+                style="width: fit-content; cursor: pointer"
+                onclick="postEjs.onclickCopy(`#copy-icon-前端-Flex和Gird a`)"
+        >
+            
+    <div class="tooltip tooltip-top " data-tooltip="点击复制">
+        <!-- button is-dark 为 bulma 的样式 -->
+        
+            <i
+                    class="fas fa-copy"
+                    style="font-size: 21px"
+            ></i>
+        
+    </div>
+
+
+<!--{-->
+<!--    type: '', // 表示提示输出的类型，参数有 text, image-->
+<!--    direction: '', // 表示toolTip出现的方向-->
+<!--    text: '', // 如果 type === 'text'，用于显示提示文本-->
+<!--    icon: '',  // icon 图标-->
+<!--    icon_prefix: '',  // icon 图标前缀，默认为 fab-->
+<!--    size: '', // 控制图标的大小, 默认为 48-->
+<!--    url: '' // 如果 type === image，图片的链接-->
+<!--}-->
+
+        </div>
+    </div>
+    <p><strong>版权声明</strong>：本网站所有文章除特别声明外,均采用 CC BY-NC-ND 4.0 许可协议。转载请注明出处!</p>
+
+</div>
+    <!-- 文章：文章切换 -->
+    
+<!-- 文章阅读页的切换按钮 -->
+<div class="post-toggle d-flex justify-between flex-wrap gap-3">
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/2025/07/03/Web/%E5%89%8D%E7%AB%AF-%E7%9B%92%E6%A8%A1%E5%9E%8B/')"
+            
+    >上一篇: 前端-盒模型</button>
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/2025/07/02/Web/%E5%89%8D%E7%AB%AF-HTML5%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE/')"
+            
+    >下一篇: 前端-HTML5语义化标签</button>
+</div>
+
+<script>
+    class PostToggleEjs extends Blog {
+        constructor() {
+            super()
+        }
+
+        onclickLink (url) {
+            this.createALink(url, '_self')
+        }
+    }
+
+    const postToggleEjs = new PostToggleEjs()
+</script>
+</article>
+
+<div style="height: 80px"></div>
+
+<script>
+    class PostEjs extends Blog{
+        constructor() {
+            super();
+        }
+    }
+    const postEjs = new PostEjs();
+</script>
+    </div>
+
+    
+        <!-- 悬浮操作按钮 -->
+        <div
+        class="post-flex d-flex flex-wrap gap-4"
+        style="position: fixed; bottom: 10%; right: 10px; width: 48px; mix-blend-mode: difference;"
+>
+    <div
+            class="mbl d-flex justify-center align-center"
+            style="border-radius: 50%; width: 48px; height: 48px; border: none"
+            onclick="postFlexMenu.onclickFlexBtn(event)"
+    >
+        <a href="/">
+            <i class="fas fa-home" style="font-size: 24px"></i>
+        </a>
+    </div>
+
+    <div
+            class="mbl d-flex justify-center align-center"
+            style="border-radius: 50%; width: 48px; height: 48px; border: none"
+            onclick="postFlexMenu.onclickFlexBtn(event)"
+    >
+        <a href="#blog-body">
+            <i class="fas fa-angle-up" style="font-size: 24px"></i>
+        </a>
+    </div>
+
+    <div
+            id="flex-music-btn"
+            class="mbl d-flex justify-center align-center"
+            style="border-radius: 50%; width: 48px; height: 48px; border: none"
+            onclick="postFlexMenu.onclickMusicBtn()"
+    >
+        <i class="fas fa-music text-primary" style="font-size: 24px; cursor: pointer"></i>
+    </div>
+</div>
+
+<script>
+    class PostFlexMenu extends DeviceDetector{
+        constructor() {
+            super();
+            // ...
+        }
+
+        onclickFlexBtn (event) {
+            const aLink = event.target.querySelector('a')
+            if (!aLink) return;
+            aLink.click()
+        }
+
+        onclickMusicBtn () {
+            const musicPlay = document.getElementById('music-player')
+            if (musicPlay.style.left === '0px') musicPlay.style.left = -100 + '%'
+            else musicPlay.style.left = 0
+        }
+    }
+
+    const postFlexMenu = new PostFlexMenu();
+    if (postFlexMenu.isMobile()) {
+        document.getElementById('flex-music-btn').classList.remove('d-flex');
+        document.getElementById('flex-music-btn').style.display = 'none';
+    }
+</script>
+        <!-- 音乐播放器 -->
+        <div id="music-player" class="px-6 py-4">
+    <div class="d-flex v-full">
+        <div class="v-full d-flex align-center gap-4" style="max-width: 310px">
+            <div id="music-avatar" style="position: relative">
+                <figure>
+                    <img src="/img/bhcyl/bhcyl.jpg" alt="" style="height: 100%; object-fit: cover">
+                </figure>
+                <div class="v-absolute-center bg-white" style="height: 32px; border-radius: 50%; width: 32px"></div>
+                <div class="v-absolute-center border-grey-50" style="height: 40px; border-radius: 50%; width: 40px; border: 2px solid"></div>
+            </div>
+            <div style="width: 200px">
+                <div id="music-title" class="text-secondary">歌曲名</div>
+                <div id="music-author" class="text-secondary">作者</div>
+            </div>
+        </div>
+
+        <div id="music-state" class="v-full d-flex flex-column justify-center align-center gap-5">
+            <div class="d-flex gap-6">
+                <i id="prev-btn" class="fas fa-step-backward" onclick="musicPlayer.onclickPreMusic(event)"></i>
+                <i id="play-btn" class="fas fa-play-circle" onclick="musicPlayer.onclickTogglePlayerState()"></i>
+                <i id="next-btn" class="fas fa-step-forward" onclick="musicPlayer.onclickNextMusic(event)"></i>
+            </div>
+            <div id="music-progress" class="d-flex justify-center" >
+                <div onclick="musicPlayer.onclickPosition(event)">
+                    <div id="default-progress" class="bg-grey-300"></div>
+                    <div id="player-progress"></div>
+                    <div class="progress-text"></div>
+                    <audio
+                            style="display: none"
+                            controls
+                            src="/music/净坛遗恨.mp3"
+                            onloadedmetadata="musicPlayer.onloadedmetadata(event)"
+                            ontimeupdate="musicPlayer.ontimeupdate(event)"
+                            onended="musicPlayer.onended()"
+                    ></audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="v-full d-flex align-center justify-around" style="max-width: 310px">
+            <div class="d-flex gap-3 align-center">
+                <!-- 喇叭 -->
+                <i
+                        id="la-ba"
+                        class="fas fa-volume-down text-secondary"
+                        onclick="musicPlayer.onclickToggleLaBaIcon(event)"
+                        data-muted="false"
+                ></i>
+                <!-- 音量调节 -->
+                <div id="voice-progress" style="position: relative">
+                    <span id="voice-bg" class="bg-grey-300"></span>
+                    <span id="voice-modify"></span>
+                    <div id="voice-mask" class="v-absolute" onclick="musicPlayer.onclickControlVolume(event)"></div>
+                </div>
+            </div>
+            <!-- 歌曲列表-->
+            <div id="music-list">
+                <i class="fas fa-list" onclick="event.stopPropagation(); musicPlayer.showMusicListCard(event)"></i>
+                <div id="music-list-card" class="p-4" onclick="event.stopPropagation()" data-list="[{&#34;path&#34;:&#34;music/净坛遗恨.mp3&#34;,&#34;name&#34;:&#34;净坛遗恨&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/末日旅人的独白.mp3&#34;,&#34;name&#34;:&#34;末日旅人的独白&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/灯芯上的七彩霜A.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-A&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/灯芯上的七彩霜B.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-B&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/王权情劫.mp3&#34;,&#34;name&#34;:&#34;王权情劫&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/白骨谣.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 女声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/白骨谣_男声版.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 男声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/纯音乐001.mp3&#34;,&#34;name&#34;:&#34;Darkness Nocturne&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}]">
+                    
+                        <div
+                                id="music-list-0"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/净坛遗恨.mp3&#34;,&#34;name&#34;:&#34;净坛遗恨&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `0`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">净坛遗恨</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-1"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/末日旅人的独白.mp3&#34;,&#34;name&#34;:&#34;末日旅人的独白&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `1`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">末日旅人的独白</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-2"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/灯芯上的七彩霜A.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-A&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `2`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">灯芯上的七彩霜-A</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-3"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/灯芯上的七彩霜B.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-B&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `3`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">灯芯上的七彩霜-B</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-4"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/王权情劫.mp3&#34;,&#34;name&#34;:&#34;王权情劫&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `4`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">王权情劫</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-5"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/白骨谣.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 女声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `5`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">白骨哀歌 - 女声</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-6"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/白骨谣_男声版.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 男声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `6`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">白骨哀歌 - 男声</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-7"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/纯音乐001.mp3&#34;,&#34;name&#34;:&#34;Darkness Nocturne&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `7`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">Darkness Nocturne</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+class MusicPlayer extends DeviceDetector {
+    constructor() {
+        super();
+        this.musicInfo = { index: 0 }
+        this.musicList = []
+
+        this.totalTime = ''
+        this.currentTime = ''
+        this.progress = 0
+        this.defaultVolume = 0.2 // # 默认音量为 20%
+        this.cacheVolume = 0 // 暂存音量大小
+
+        const playBtnIcon = new Map()
+        playBtnIcon.set('play', 'fa-play-circle')
+        playBtnIcon.set('pause', 'fa-pause-circle')
+        this.playBtnIcon = playBtnIcon
+
+        const laBaIcon = new Map()
+        laBaIcon.set("小喇叭", 'fa-volume-down')
+        laBaIcon.set("大喇叭", 'fa-volume-up')
+        laBaIcon.set("静音", 'fa-volume-mute')
+        this.laBaIcon = laBaIcon
+    }
+
+    setMusicList () {
+        if (this.musicList.length > 0) return
+        const dom = this.getMusicListCard()
+        this.musicList = JSON.parse(dom.dataset.list)
+        dom.setAttribute('data-list', [])
+    }
+    getAvatarDOM () {
+        return document.getElementById('music-avatar')
+    }
+    getMusicListCard () {
+        return document.getElementById("music-list-card")
+    }
+    modifyMusicInfo () {
+        const { name, author } = this.musicInfo
+        // 修改歌曲头像
+        // 修改歌曲标题
+        const titleDOM = document.getElementById("music-title")
+        titleDOM.innerHTML = name
+        // 修改歌曲作者
+        const authorDOM = document.getElementById("music-author")
+        authorDOM.innerHTML = author
+    }
+    hideMusicListCard () {
+        const card = this.getMusicListCard();
+        card.style.opacity = 0;
+        card.style.visibility = 'hidden';
+    }
+    showMusicListCard () {
+        const card = this.getMusicListCard();
+        card.style.opacity = 1;
+        card.style.visibility = 'visible';
+    }
+    // 播放前一首
+    onclickPreMusic(event) {
+        this.setMusicList()
+        const { musicInfo, musicList } = this
+        // * 1 是为了把字符洗掉
+        let prevIndex = musicInfo.index * 1 - 1
+        if (prevIndex <= 0) prevIndex = musicList.length - 1
+        document.getElementById(`music-list-${prevIndex}`).click()
+    }
+    // 播放下一首
+    onclickNextMusic(event) {
+        this.setMusicList()
+        const { musicInfo, musicList } = this
+        // * 1 是为了把字符洗掉
+        let nextIndex = musicInfo.index * 1 + 1
+        if (nextIndex > musicList.length - 1) nextIndex = 0
+        document.getElementById(`music-list-${nextIndex}`).click()
+    }
+
+    // 获取 audio 图标
+    getVoiceDOM () {
+        return document.querySelector("#music-progress audio");
+    }
+    getPlayBtnDOM () {
+        return document.getElementById("play-btn");
+    }
+    getPreBtnDOM () {
+        return document.getElementById("play-btn");
+    }
+    getNextBtnDOM () {
+        return document.getElementById("next-btn");
+    }
+    setMuted (dom, val) {
+        dom.setAttribute('data-muted', val)
+    }
+    // 设置喇叭图标
+    setLaBaIcon (dom, { add, remove, muted }) {
+        dom.classList.remove(remove)
+        dom.classList.add(add)
+        this.setMuted(dom, muted)
+    }
+    // 设置播放键按钮图标
+    setPlayBtnIcon ({ add, remove }) {
+        const playBtnDOM = this.getPlayBtnDOM()
+        playBtnDOM.classList.remove(remove)
+        playBtnDOM.classList.add(add)
+    }
+    // 调整音量的位置
+    modifyVolume (volume) {
+        const targetDOM = document.getElementById('voice-modify')
+        targetDOM.style.left = -100 + volume * 100 + '%'
+    }
+    // 选择音乐
+    onclickMusic (val, index) {
+        const config = JSON.parse(val);
+        this.musicInfo = Object.assign(config, { index })
+        this.setMusicList()
+        this.modifyMusicInfo()
+
+        const voiceDOM = this.getVoiceDOM()
+        voiceDOM.src = `/${config.path}`
+
+        // 切换歌曲时暂停播放
+        this.getVoiceDOM().pause()
+        // 切换歌曲时把播放按钮的状态还原
+        const playBtnIcon = this.playBtnIcon
+        this.setPlayBtnIcon({ add: playBtnIcon.get('play'), remove: playBtnIcon.get('pause') })
+        this.onclickTogglePlayerState()
+    }
+    // 点击播放按钮时：切换音频状态
+    onclickTogglePlayerState () {
+        // 如果不存在歌曲信息说明是第一次播放，
+        if (!Object.keys(this.musicInfo).find(key => key === 'path')) {
+            document.getElementById(`music-list-0`).click()
+            return
+        }
+
+        const voiceDOM = this.getVoiceDOM()
+        const avatarImgDOM = this.getAvatarDOM().querySelector('img')
+        // 判断是否处于播放状态，如果处于播放状态，那么 paused 参数为 false
+        if (voiceDOM.paused) {
+            voiceDOM.play()
+            // 让音乐头像旋转起来
+            avatarImgDOM.classList.add('music-avatar-img')
+            this.setPlayBtnIcon({
+                add: this.playBtnIcon.get('pause'),
+                remove: this.playBtnIcon.get('play')
+            })
+        } else {
+            voiceDOM.pause()
+            avatarImgDOM.classList.remove('music-avatar-img')
+            this.setPlayBtnIcon({
+                add: this.playBtnIcon.get('play'),
+                remove: this.playBtnIcon.get('pause')
+            })
+        }
+    }
+    // 调整音量大小
+    onclickControlVolume (event) {
+        const voice = this.getVoiceDOM()
+        const { offsetX, target } = event
+
+        const volume = offsetX/target.clientWidth
+        this.modifyVolume(volume)
+
+        const laBa = document.querySelector(`#la-ba`)
+        if (laBa.dataset.muted === 'true') {
+            this.setLaBaIcon(laBa, {
+                muted: 'false',
+                add: this.laBaIcon.get('小喇叭'),
+                remove: this.laBaIcon.get('静音')
+            })
+        }
+
+        voice.volume = volume
+    }
+    // 播放完毕
+    onended () {
+        // 切下一首曲子
+        this.onclickNextMusic()
+    }
+
+    // 音频本身的操作
+    handleTimeFormat (second) {
+        // 秒数格式化
+        let mm = Math.floor(second / 60)
+        let ss = Math.floor(second % 60)
+        if (mm < 10) mm = '0' + mm
+        if (ss < 10) ss = '0' + ss
+        return `${mm}:${ss}`
+    }
+    // 获取音频的第一手信息
+    onloadedmetadata (event) {
+        console.log('歌曲已填充')
+        const voice = event.target
+        const { duration } = voice;
+        this.duration = duration;
+        this.totalTime = this.handleTimeFormat(duration)
+        // 设置默认音量
+        voice.volume = this.defaultVolume
+        // 修改音量状态
+        this.modifyVolume(this.defaultVolume)
+    }
+    ontimeupdate (event) {
+        // 当音频处于播放状态时触发
+        const { currentTime, duration } = event.target
+        this.currentTime = this.handleTimeFormat(currentTime)
+        document.querySelector('.progress-text').innerHTML = this.currentTime
+        // 操作进度条
+        // 把秒数切割为100份
+        const progress = currentTime / duration * 100
+        document.getElementById('player-progress').style.left = -100 + progress + '%'
+    }
+    onclickPosition (event) {
+        // TODO 定位有问题：设置currentTime会重新播放
+        // 有提过 seekable，说length = 1表示可以做定位的，该音频是有的，结果嘛就是依然不能做定位
+        const voiceDOM = this.getVoiceDOM()
+        const paused = voiceDOM.paused
+
+        voiceDOM.pause()
+        this.setPlayBtnIcon({
+            add: this.playBtnIcon.get('play'),
+            remove: this.playBtnIcon.get('pause')
+        })
+        const { offsetX, target } = event
+        voiceDOM.currentTime = Math.floor(offsetX/target.clientWidth * voiceDOM.duration)
+
+        if (paused === false) {
+            voiceDOM.play()
+            this.setPlayBtnIcon({
+                add: this.playBtnIcon.get('pause'),
+                remove: this.playBtnIcon.get('play')
+            })
+        }
+    }
+
+    // 按键操作：喇叭
+    onclickToggleLaBaIcon (event) {
+        // 点击切换喇叭状态
+        // 逻辑为：点击静音，如果是静音则回恢复状态
+        // ['fa-volume-down']
+        const laBaIconDOM = event.target
+        const { muted } = event.target.dataset
+        const laBaIcon = this.laBaIcon
+        if (muted === 'false') {
+            // 非静音状态，需要切换到静音
+            this.setLaBaIcon(laBaIconDOM, {
+                muted: 'true',
+                add: laBaIcon.get('静音'),
+                remove: laBaIcon.get('小喇叭')
+            })
+            // 把音量存起来
+            this.cacheVolume = this.getVoiceDOM().volume
+            // 修改音量
+            this.modifyVolume(0)
+            this.getVoiceDOM().volume = 0
+        } else {
+            // 静音状态，需要切换到正常状态
+            this.setLaBaIcon(laBaIconDOM, {
+                muted: 'false',
+                add: laBaIcon.get('小喇叭'),
+                remove: laBaIcon.get('静音')
+            })
+            // 修改音量
+            this.modifyVolume(this.cacheVolume)
+            this.getVoiceDOM().volume = this.cacheVolume
+        }
+    }
+}
+const musicPlayer = new MusicPlayer();
+if (musicPlayer.isMobile()) {
+    const dom = document.getElementById('music-player')
+    dom.style.display = 'none'
+}
+
+window.addEventListener('click', () => {
+    const target = musicPlayer.getMusicListCard()
+    if (target?.style.opacity) {
+        musicPlayer.hideMusicListCard()
+    }
+});
+</script>
+
+<style>
+    #music-player {
+        position: fixed;
+        width: 100%;
+        height: 128px;
+        bottom: 0;
+        left: -100%;
+        z-index: 9;
+        backdrop-filter: blur(10px);
+        background: transparent;
+        transition: left 0.5s ease;
+    }
+    #music-player i { font-size: 32px; }
+
+    #music-avatar {
+        width: 96px;
+        height: 100%;
+        border-radius:50%;
+        overflow: hidden;
+    }
+    @keyframes avatar-rotate {
+        0% { transform: rotate(0) }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* 按键区：上一首、播放、下一首 */
+    #music-state>div:first-child>i {
+        cursor: pointer;
+        color: var(--secondary);
+        transform: scale(1);
+        transition: color 0.3s ease;
+    }
+    #music-state>div:first-child>i:hover {
+        color: var(--primary);
+    }
+
+    /* 进度条 */
+    #music-progress {
+        width: 100%;
+    }
+    #music-progress>div {
+        width: 80%;
+        margin: auto;
+        max-width: 500px;
+        position: relative;
+        overflow: hidden;
+    }
+    #default-progress, #player-progress {
+        border: 6px;
+        width: 100%;
+        height: 5px;
+    }
+    #player-progress {
+        background: linear-gradient(to left, #c1d5d3, var(--primary), #c1d5d3);
+        position: absolute;
+        top: 0;
+        left: -100%;
+        background-size: 200%;
+        animation: musicPlayerProgress 3s linear infinite;
+    }
+    @keyframes musicPlayerProgress {
+        0% {
+            background-position: -100% 0;
+        }
+        100% {
+            background-position: 100% 0;
+        }
+    }
+
+    /* 音量 */
+    #voice-progress {
+        overflow: hidden;
+        padding: 12px 0;
+    }
+    #voice-progress::before {
+        content: "";
+        width: 100%;
+        height: 10px;
+        background-color: var(--primary);
+    }
+    #voice-bg, #voice-modify {
+        display: inline-block;
+        width: 100px;
+        height: 5px;
+        border-radius: 6px;
+    }
+    #voice-modify {
+        /*  音量的调节  */
+        position: absolute;
+        top: 50%;
+        left: -100%;
+        background-color: var(--primary);
+        transition: left 0.3s ease;
+        transform: translateY(-50%);
+    }
+    #voice-mask {
+        background-color: rgba(255,0,0,0);
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    /* 歌曲列表 */
+    #music-list {
+        position: relative;
+    }
+    #music-list-card {
+        cursor: pointer;
+        position: absolute;
+        width: 256px;
+        max-height: 512px;
+        overflow: auto;
+        bottom: calc(100% + .5rem);
+        right: -65px;
+        background-color: #00586d12;
+        opacity: 0;
+        visibility: hidden;
+        transition: visibility 0.3s ease, opacity 0.3s ease;
+    }
+    #music-list-card>div:nth-child(2n-1) {
+        background-color: var(--grey-100);
+    }
+    #music-list-card>div:nth-child(2n) {
+        background-color: var(--white);
+    }
+    #music-list-card>div:hover {
+        cursor: pointer;
+        background-color: var(--grey-300);
+    }
+</style>
+    
+</body>
+</html>

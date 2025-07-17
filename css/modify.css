@@ -1,0 +1,84 @@
+/* ---------------------------------- */
+
+/* ---------------------------------- */
+
+.modify-header {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: transform 0.3s linear, opacity 0.3s linear; /* 线性过渡 */
+}
+.modify-nav-hidden {
+     transform: translateY(-100%);
+     opacity: 0;
+ }
+
+.modify-home-post-column {
+    max-width: 100%;
+    /*min-width: 30%;*/
+}
+
+.modify-post-title {
+    padding-bottom: 0.872rem;
+}
+
+.modify-post-tag-padding {
+    padding-left: 0.5rem;
+}
+
+.modify-card-overflow {
+    overflow: hidden;
+    max-height: 300px;
+}
+
+.modify-post-list {
+    align-items: center
+}
+
+/* ---- 音乐播放器 ----- */
+#custom-music-player {
+    position: fixed;
+    z-index: -1;
+    top: 48px;
+    left: 48px;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+/* https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.3/sass/components/card.sass */
+.card {
+    border-radius: 0.25rem;
+    position: relative;
+}
+
+.card-header {
+    padding: 4px 8px;
+}
+
+.card-subtitle {
+    text-align: end;
+    color: #9b9b9b;
+    font-weight: lighter;
+    font-size: 12px;
+    padding: 0.875rem
+}
+
+.card-absolute, .card-absolute-bottom {
+    position: absolute;
+    width: 100%;
+}
+.card-absolute-bottom {
+    bottom: 0;
+}
+
+/* 文章目录 */
+.toc li {
+    list-style: none;
+    line-height: 2rem;
+}
+.toc .toc-number {
+    visibility: hidden;
+}
