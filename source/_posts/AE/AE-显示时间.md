@@ -9,7 +9,7 @@ timeFormat = "mm:ss:fff"; // 格式化为 分:秒:毫秒
 timeToCurrentFormat(time)
 ```
 
-![添加时间](AE-显示时间/添加时间.png)
+![添加时间](../../images/AE-显示时间/添加时间.png)
 
 <!--more-->
 
