@@ -11,6 +11,9 @@ code {
 .content pre {
     max-height: 512px;
 }
+.content blockquote {
+    padding: 0.25rem 1rem;
+}
 
 /* --------------------------------------------------------------- */
 
