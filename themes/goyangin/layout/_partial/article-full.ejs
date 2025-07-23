@@ -3,7 +3,7 @@
 
 <div style="height: 80px"></div>
 
-<article id="<%= postDOMId %>" class="v-layout-75 p-4" style="display: grid; grid-gap: 28px">
+<article id="<%= postDOMId %>" class="v-layout-75 p-4" style="min-height: calc(100% - 210px)">
     <!-- Title -->
     <div class="level">
         <div class="level-left">
@@ -26,10 +26,9 @@
             <span><%- partial('post/post-categories', {item: item}) %></span>
         </div>
     </div>
+
     <!-- 目录  -->
-    <div>
-        <%- toc(item.content) %>
-    </div>
+    <div><%- toc(item.content) %></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
@@ -39,7 +38,8 @@
     <!-- 文章：声明 -->
     <%- partial('post/statement.ejs') %>
     <!-- 文章：文章切换 -->
-    <%- partial('post/toggle.ejs') %>
+    <div style="margin-top: 48px"><%- partial('post/toggle.ejs') %></div>
+
 </article>
 
 <div style="height: 80px"></div>
