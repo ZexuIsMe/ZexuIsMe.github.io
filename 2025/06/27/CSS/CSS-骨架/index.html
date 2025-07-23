@@ -487,7 +487,7 @@
 
 <div style="height: 80px"></div>
 
-<article id="read-post" class="v-layout-75 p-4" style="display: grid; grid-gap: 28px">
+<article id="read-post" class="v-layout-75 p-4" style="min-height: calc(100% - 210px)">
     <!-- Title -->
     <div class="level">
         <div class="level-left">
@@ -524,10 +524,9 @@
 </span>
         </div>
     </div>
+
     <!-- 目录  -->
-    <div>
-        
-    </div>
+    <div></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
@@ -658,7 +657,7 @@
 
 </div>
     <!-- 文章：文章切换 -->
-    
+    <div style="margin-top: 48px">
 <!-- 文章阅读页的切换按钮 -->
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
@@ -685,7 +684,8 @@
     }
 
     const postToggleEjs = new PostToggleEjs()
-</script>
+</script></div>
+
 </article>
 
 <div style="height: 80px"></div>

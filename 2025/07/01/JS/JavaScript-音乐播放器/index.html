@@ -487,7 +487,7 @@
 
 <div style="height: 80px"></div>
 
-<article id="read-post" class="v-layout-75 p-4" style="display: grid; grid-gap: 28px">
+<article id="read-post" class="v-layout-75 p-4" style="min-height: calc(100% - 210px)">
     <!-- Title -->
     <div class="level">
         <div class="level-left">
@@ -526,10 +526,9 @@
 </span>
         </div>
     </div>
+
     <!-- 目录  -->
-    <div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%EF%BC%9Aduration"><span class="toc-number">1.</span> <span class="toc-text">参数：duration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%EF%BC%9AcurrentTime"><span class="toc-number">2.</span> <span class="toc-text">参数：currentTime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%EF%BC%9Avolume"><span class="toc-number">3.</span> <span class="toc-text">参数：volume</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%9B%E5%BA%A6%E6%9D%A1"><span class="toc-number">4.</span> <span class="toc-text">自定义进度条</span></a></li></ol>
-    </div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%EF%BC%9Aduration"><span class="toc-number">1.</span> <span class="toc-text">参数：duration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%EF%BC%9AcurrentTime"><span class="toc-number">2.</span> <span class="toc-text">参数：currentTime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%EF%BC%9Avolume"><span class="toc-number">3.</span> <span class="toc-text">参数：volume</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%9B%E5%BA%A6%E6%9D%A1"><span class="toc-number">4.</span> <span class="toc-text">自定义进度条</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
@@ -693,7 +692,7 @@ const musicPlayerPost = new MusicPlayerPost()
 
 </div>
     <!-- 文章：文章切换 -->
-    
+    <div style="margin-top: 48px">
 <!-- 文章阅读页的切换按钮 -->
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
@@ -720,7 +719,8 @@ const musicPlayerPost = new MusicPlayerPost()
     }
 
     const postToggleEjs = new PostToggleEjs()
-</script>
+</script></div>
+
 </article>
 
 <div style="height: 80px"></div>
