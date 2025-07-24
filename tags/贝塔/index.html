@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>测试概论 | 粥记捣蛋</title>
+    <title>粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -345,10 +345,10 @@
                             
                             <div
                                     class="px-8 menu-label d-flex align-center
-                                    "
+                                    v-bg-primary"
                                     style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
                             >
-                                <a href="/archives" style="color: #00586d ">归档</a>
+                                <a href="/archives" style="color: #EEE ">归档</a>
                             </div>
                         
                             
@@ -482,375 +482,496 @@
     }
 </style>
     <div id="blog-body">
-        <!-- 渲染：阅读整篇文章 -->
+        <!-- Archive: 归档页 -->
+<div class="container " style="padding: 0 24px">
+    <!-- 一般用于 section 标题 -->
+<h1 class="title is-4 d-flex align-center" style="padding: 120px 0 60px 0">
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+    <span style="white-space: nowrap; color: black" class="mx-4">
+                <i class="fas fa-boxes"></i>
+                <span class="ml-4">归档 - 贝塔</span>
+            </span>
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+</h1>
 
+<!--<script>-->
+<!--    console.log({-->
+<!--        icon: '', // 这里的图标需要是完整的-->
+<!--        name: '', // 标题的名字-->
+<!--        color: '', // 字体颜色-->
+<!--    })-->
+<!--</script>-->
 
-<div style="height: 80px"></div>
+    <div id="article-table" class="table-wrapper">
+        <table class="table is-striped is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th style="text-align: center">
+                        标签（Tags）
+                        <label for="archivesTags">
+    <select
+            id="archivesTags"
+            style="width: 21px"
+            onchange="archiveEjs.handleChoose(event)"
+    >
+        <option value="">--标签（Tags）--</option>
+        <option value="/archives/">--ALL--</option>
+        
+            <option value="/tags/AE/">AE</option>
+        
+            <option value="/tags/AI/">AI</option>
+        
+            <option value="/tags/A%E6%A0%87%E7%AD%BE%E5%AE%9A%E4%BD%8D/">A标签定位</option>
+        
+            <option value="/tags/CSS/">CSS</option>
+        
+            <option value="/tags/DOM/">DOM</option>
+        
+            <option value="/tags/DOM%EF%BC%8C%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%EF%BC%8C%E5%9B%BE%E7%89%87%E9%99%8D%E4%BD%8E%E8%B4%A8%E9%87%8F/">DOM，图片处理，图片降低质量</option>
+        
+            <option value="/tags/Day2/">Day2</option>
+        
+            <option value="/tags/Day3/">Day3</option>
+        
+            <option value="/tags/EJS/">EJS</option>
+        
+            <option value="/tags/Flex/">Flex</option>
+        
+            <option value="/tags/Git/">Git</option>
+        
+            <option value="/tags/Github-Clone-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/">Github Clone 准备工作</option>
+        
+            <option value="/tags/Grid/">Grid</option>
+        
+            <option value="/tags/HTML5%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE/">HTML5语义化标签</option>
+        
+            <option value="/tags/HTTP-Range/">HTTP Range</option>
+        
+            <option value="/tags/Hexo/">Hexo</option>
+        
+            <option value="/tags/JS%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">JS回收机制</option>
+        
+            <option value="/tags/JavaScript/">JavaScript</option>
+        
+            <option value="/tags/Javascript/">Javascript</option>
+        
+            <option value="/tags/Markdown/">Markdown</option>
+        
+            <option value="/tags/SQL/">SQL</option>
+        
+            <option value="/tags/SVN/">SVN</option>
+        
+            <option value="/tags/SVN-%E5%85%8B%E9%9A%86/">SVN 克隆</option>
+        
+            <option value="/tags/audio/">audio</option>
+        
+            <option value="/tags/class/">class</option>
+        
+            <option value="/tags/%E4%B9%A0%E9%A2%98/">习题</option>
+        
+            <option value="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/">作用域</option>
+        
+            <option value="/tags/%E5%85%83%E7%B4%A0%E6%9F%A5%E6%89%BE%EF%BC%88querySelector%EF%BC%89/">元素查找（querySelector）</option>
+        
+            <option value="/tags/%E5%85%83%E7%B4%A0%E8%BF%BD%E5%8A%A0%EF%BC%88appendChild%EF%BC%89/">元素追加（appendChild）</option>
+        
+            <option value="/tags/%E5%85%A8%E5%B1%80%E6%A0%B7%E5%BC%8F/">全局样式</option>
+        
+            <option value="/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/">内存泄漏</option>
+        
+            <option value="/tags/%E5%86%B2%E7%AA%81/">冲突</option>
+        
+            <option value="/tags/%E5%87%BD%E6%95%B0%E4%BC%A0%E5%8F%82/">函数传参</option>
+        
+            <option value="/tags/%E5%8A%A0%E8%BD%BD%E6%95%88%E6%9E%9C%EF%BC%88loading%EF%BC%89/">加载效果（loading）</option>
+        
+            <option value="/tags/%E5%8A%A8%E7%94%BB%EF%BC%88animation%EF%BC%89/">动画（animation）</option>
+        
+            <option value="/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">单元测试</option>
+        
+            <option value="/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/">原型链</option>
+        
+            <option value="/tags/%E5%90%B8%E9%A1%B6/">吸顶</option>
+        
+            <option value="/tags/%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95/">回归测试</option>
+        
+            <option value="/tags/%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BC%82%E5%B8%B8/">图片加载异常</option>
+        
+            <option value="/tags/%E5%A4%8D%E5%88%B6%EF%BC%88Copy%EF%BC%89/">复制（Copy）</option>
+        
+            <option value="/tags/%E5%AE%9A%E4%BD%8D/">定位</option>
+        
+            <option value="/tags/%E5%B0%81%E8%A3%85/">封装</option>
+        
+            <option value="/tags/%E5%B1%85%E4%B8%AD/">居中</option>
+        
+            <option value="/tags/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/">帮助手册</option>
+        
+            <option value="/tags/%E5%B8%B8%E7%94%A8/">常用</option>
+        
+            <option value="/tags/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83/">康复训练</option>
+        
+            <option value="/tags/%E5%BC%82%E6%88%96/">异或</option>
+        
+            <option value="/tags/%E5%BE%AE%E4%BF%A1%E5%8F%8C%E5%BC%80/">微信双开</option>
+        
+            <option value="/tags/%E6%89%93%E5%AD%97%E6%9C%BA%E6%95%88%E6%9E%9C/">打字机效果</option>
+        
+            <option value="/tags/%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%8C%96/">数字格式化</option>
+        
+            <option value="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/">数据库操作</option>
+        
+            <option value="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">数据类型</option>
+        
+            <option value="/tags/%E6%96%87%E7%AB%A0%E6%91%98%E8%A6%81/">文章摘要</option>
+        
+            <option value="/tags/%E6%96%B0%E5%A2%9E%E9%A1%B5%E9%9D%A2/">新增页面</option>
+        
+            <option value="/tags/%E6%97%A0%E6%95%88%E7%AD%89%E4%BB%B7%E7%B1%BB%E5%88%92%E5%88%86/">无效等价类划分</option>
+        
+            <option value="/tags/%E6%9C%A8%E6%A1%A9/">木桩</option>
+        
+            <option value="/tags/%E6%A0%B7%E5%BC%8F%E5%88%86%E5%B1%82/">样式分层</option>
+        
+            <option value="/tags/%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9C/">毛玻璃效果</option>
+        
+            <option value="/tags/%E6%B0%94%E6%B3%A1%EF%BC%88Tooltip%EF%BC%89/">气泡（Tooltip）</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E5%88%86%E6%9E%90/">测试分析</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/">测试方法</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">测试概论</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E6%A8%A1%E5%9E%8B/">测试模型</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E6%B4%BB%E5%8A%A8/">测试活动</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/">测试用例</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E5%86%99%E4%BD%9C/">测试用例写作</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">测试用例设计方法</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%B1%BB%E5%9E%8B/">测试类型</option>
+        
+            <option value="/tags/%E6%B6%88%E6%81%AF%EF%BC%88Message%EF%BC%89/">消息（Message）</option>
+        
+            <option value="/tags/%E6%B8%B2%E6%9F%93%E8%A7%A3%E6%9E%90/">渲染解析</option>
+        
+            <option value="/tags/%E6%BB%9A%E5%8A%A8%EF%BC%88Scroll%EF%BC%89/">滚动（Scroll）</option>
+        
+            <option value="/tags/%E7%89%88%E6%9C%AC%E5%8F%B7/">版本号</option>
+        
+            <option value="/tags/%E7%8B%AC%E7%AB%8B%E9%A1%B5%E9%9D%A2/">独立页面</option>
+        
+            <option value="/tags/%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">用例设计方法</option>
+        
+            <option value="/tags/%E7%9B%92%E6%A8%A1%E5%9E%8B/">盒模型</option>
+        
+            <option value="/tags/%E7%9B%BE%E5%BC%BA/">盾强</option>
+        
+            <option value="/tags/%E7%A0%94%E5%8F%91%E6%A8%A1%E5%BC%8F/">研发模式</option>
+        
+            <option value="/tags/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/">碧海苍云录</option>
+        
+            <option value="/tags/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95%EF%BC%8C%E6%8A%97%E6%80%A7/">碧海苍云录，抗性</option>
+        
+            <option value="/tags/%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/">系统测试</option>
+        
+            <option value="/tags/%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6/">绑定事件</option>
+        
+            <option value="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%9B%E5%BA%A6%E6%9D%A1/">自定义进度条</option>
+        
+            <option value="/tags/%E8%A5%BF%E9%97%A8%E5%AD%90/">西门子</option>
+        
+            <option value="/tags/%E8%AF%AD%E6%B3%95/">语法</option>
+        
+            <option value="/tags/%E8%AF%BE%E6%9C%AC%EF%BC%9A%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/">课本：软件测试流程设计</option>
+        
+            <option value="/tags/%E8%B4%9D%E5%A1%94/">贝塔</option>
+        
+            <option value="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</option>
+        
+            <option value="/tags/%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">软件的生命周期</option>
+        
+            <option value="/tags/%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F/">软件质量</option>
+        
+            <option value="/tags/%E8%BD%AF%E6%B5%8B%E6%A6%82%E8%AE%BA/">软测概论</option>
+        
+            <option value="/tags/%E8%BF%87%E5%BA%A6%E8%AE%BE%E8%AE%A1/">过度设计</option>
+        
+            <option value="/tags/%E8%BF%87%E6%B8%A1%EF%BC%88transition%EF%BC%89/">过渡（transition）</option>
+        
+            <option value="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/">选择器</option>
+        
+            <option value="/tags/%E9%81%AE%E7%BD%A9%EF%BC%88Mask%EF%BC%89/">遮罩（Mask）</option>
+        
+            <option value="/tags/%E9%85%8D%E7%94%B5%E6%9F%9C/">配电柜</option>
+        
+            <option value="/tags/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/">配置管理</option>
+        
+            <option value="/tags/%E9%97%AD%E5%8C%85/">闭包</option>
+        
+            <option value="/tags/%E9%98%BF%E5%B0%94%E6%B3%95/">阿尔法</option>
+        
+            <option value="/tags/%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95/">集成测试</option>
+        
+            <option value="/tags/%E9%9C%80%E6%B1%82%E8%BF%87%E7%A8%8B/">需求过程</option>
+        
+            <option value="/tags/%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%EF%BC%88Music-Player%EF%BC%89/">音乐播放器（Music Player）</option>
+        
+            <option value="/tags/%E9%A2%9C%E8%89%B2%E6%B8%90%E5%8F%98/">颜色渐变</option>
+        
+            <option value="/tags/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/">额外补充</option>
+        
+            <option value="/tags/%E9%AA%A8%E6%9E%B6%EF%BC%88skeleton%EF%BC%89/">骨架（skeleton）</option>
+        
+    </select>
+</label>
+<!-- archiveEjs.handleChoose(event)：位于 layout > archive.ejs -->
+                    </th>
+                    <th style="text-align: center" class="d-flex align-center">
+                        分类（Categories）
+                        <label for="archivesCategories">
+    <select
+            id="archivesCategories"
+            style="width: 21px"
+            onchange="archiveEjs.handleChoose(event)"
+    >
+        <option value="">--分类（Categories）--</option>
+        <option value="/archives/">--ALL--</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/CSS/">CSS</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/DOM/">DOM</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/Ejs/">Ejs</option>
+        
+            <option value="/categories/Github-Clone-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/">Github Clone 准备工作</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/HTML5%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE/">HTML5语义化标签</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/Hexo/">Hexo</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/Markdown/">Markdown</option>
+        
+            <option value="/categories/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/SQL/">SQL</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E4%B9%A0%E9%A2%98/">习题</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/">前端</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/%E5%A4%8D%E5%88%B6%EF%BC%88Copy%EF%BC%89/">复制（Copy）</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/DOM/%E5%AE%9A%E4%BD%8D/">定位</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/%E5%B0%81%E8%A3%85/">封装</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/CSS/%E5%B1%85%E4%B8%AD/">居中</option>
+        
+            <option value="/categories/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/">帮助手册</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/">康复训练计划表</option>
+        
+            <option value="/categories/%E5%BE%AE%E4%BF%A1%E5%8F%8C%E5%BC%80/">微信双开</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/%E6%89%93%E5%AD%97%E6%9C%BA/">打字机</option>
+        
+            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E6%8A%97%E6%80%A7/">抗性</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/%E6%92%AD%E6%94%BE%E5%99%A8/">播放器</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%8C%96/">数字格式化</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F/">数据类型、原型链、作用域</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/Hexo/%E6%96%87%E7%AB%A0%E6%91%98%E8%A6%81/">文章摘要</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/Hexo/%E6%96%B0%E5%A2%9E%E9%A1%B5%E9%9D%A2/">新增页面</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1/%E6%97%A0%E6%95%88%E7%AD%89%E4%BB%B7%E7%B1%BB%E5%88%92%E5%88%86/">无效等价类划分</option>
+        
+            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E6%9C%A8%E6%A1%A9/">木桩</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E5%88%86%E6%9E%90/">测试分析</option>
+        
+            <option value="/categories/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">测试概论</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">测试概论</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/">测试用例</option>
+        
+            <option value="/categories/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E5%86%99%E4%BD%9C/">测试用例写作</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1/">测试用例设计</option>
+        
+            <option value="/categories/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/%E6%B5%8B%E8%AF%95%E7%B1%BB%E5%9E%8B/">测试类型</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/Markdown/%E6%B8%B2%E6%9F%93%E8%A7%A3%E6%9E%90/">渲染解析</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/Hexo/%E7%8B%AC%E7%AB%8B%E9%A1%B5%E9%9D%A2/">独立页面</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">用例设计方法</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/%E7%9B%92%E6%A8%A1%E5%9E%8B/">盒模型</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/%E7%9B%AE%E6%A0%87%E7%BB%86%E5%8C%96%E8%AE%A1%E5%88%92%E8%A1%A8/">目标细化计划表</option>
+        
+            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E7%9B%BE%E5%BC%BA/">盾强</option>
+        
+            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/">碧海苍云录</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/Markdown/%E8%AF%AD%E6%B3%95/">语法</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F/">软件质量</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E8%BD%AF%E6%B5%8B%E6%A6%82%E8%AE%BA/">软测概论</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/%E8%BF%87%E5%BA%A6%E8%AE%BE%E8%AE%A1/">过度设计</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/%E8%BF%87%E6%B8%A1%E6%95%88%E6%9E%9C%E5%92%8C%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C/">过渡效果和动画效果</option>
+        
+            <option value="/categories/%E9%85%8D%E7%BA%BF%E6%A0%87%E5%87%86/">配线标准</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/">配置管理</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E9%9C%80%E6%B1%82%E8%BF%87%E7%A8%8B/">需求过程</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80/">页面布局</option>
+        
+    </select>
+</label>
+<!-- archiveEjs.handleChoose(event)：位于 layout > archive.ejs -->
+                    </th>
+                    <th style="text-align: center">创作时间</th>
+                    <th style="text-align: center">更新时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
 
-<article id="read-post" class="v-layout-75 p-4" style="min-height: calc(100% - 210px)">
-    <!-- Title -->
-    <div class="level">
-        <div class="level-left">
-            <div class="media">
-                <div class="media-content">
-                    <h1 class="title is-4 modify-post-title">
-                        <span class="has-text-info">测试概论</span>
-                    </h1>
-                    <p class="subtitle is-6">
-                        <span class="icon is-small"><i class="fa fa-calendar"></i></span> 2025-07-16
-                        &nbsp; &nbsp; &nbsp; &nbsp;
-                        <span class="icon is-small"><i class="fa fa-user"></i></span> 粥记捣蛋
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- 文章标签 -->
-        <div class="pt-4">
-            <span>
+            <tbody style="font-size: 12px">
+                
+                    <tr>
+                        <td>
+                            <a href="/2025/07/16/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">
+                                测试概论
+                            </a>
+                        </td>
+
+                        <td style="width: 150px; ">
+                            <div class="d-flex flex-wrap gap-2">
+                                
     
         <a class="tag is-info is-light" href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
     
         <a class="tag is-info is-light" href="/tags/%E8%BD%AF%E6%B5%8B%E6%A6%82%E8%AE%BA/">软测概论</a>
     
-</span>
-            <span>
+        <a class="tag is-info is-light" href="/tags/%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">软件的生命周期</a>
     
-        <a class="tag is-warning is-light" href="/categories/%E8%BD%AF%E6%B5%8B%E6%A6%82%E8%AE%BA/">软测概论</a>
+        <a class="tag is-info is-light" href="/tags/%E7%A0%94%E5%8F%91%E6%A8%A1%E5%BC%8F/">研发模式</a>
     
-</span>
-        </div>
+        <a class="tag is-info is-light" href="/tags/%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/">测试方法</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">单元测试</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95/">集成测试</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/">系统测试</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E9%98%BF%E5%B0%94%E6%B3%95/">阿尔法</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E8%B4%9D%E5%A1%94/">贝塔</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95/">回归测试</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E6%B5%8B%E8%AF%95%E6%A8%A1%E5%9E%8B/">测试模型</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E6%B5%8B%E8%AF%95%E6%B4%BB%E5%8A%A8/">测试活动</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="width: 150px;">
+                            <div class="d-flex flex-wrap gap-2">
+                                
+    
+        <a class="tag is-warning is-light" href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
+    
+        <a class="tag is-warning is-light" href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E8%BD%AF%E6%B5%8B%E6%A6%82%E8%AE%BA/">软测概论</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-07-16 09:53
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-07-24 20:41
+                        </td>
+
+                        <td style="vertical-align: middle">
+                            <a href="/2025/07/16/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">
+                                <i class="far fa-hand-point-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                
+            </tbody>
+        </table>
     </div>
 
-    <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E6%B5%8B%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">软测定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E6%B5%8B%E7%9B%AE%E7%9A%84"><span class="toc-number">2.</span> <span class="toc-text">软测目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">3.</span> <span class="toc-text">软件的生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E6%A0%B9%E6%9C%AC%E7%9B%AE%E7%9A%84%EF%BC%9F"><span class="toc-number">3.1.</span> <span class="toc-text">分析软件生命周期的根本目的？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A0%94%E5%8F%91%E6%A8%A1%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">研发模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">测试方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95"><span class="toc-number">5.1.</span> <span class="toc-text">黑盒测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%BB%91%E7%9B%92%EF%BC%9A%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90%E8%BF%9B%E4%B8%80%E6%AD%A5%E4%BA%86%E8%A7%A3%E9%BB%91%E7%9B%92%EF%BC%9F"><span class="toc-number">5.1.1.</span> <span class="toc-text">黑盒：举个例子进一步了解黑盒？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95-Openbox-Testing"><span class="toc-number">5.2.</span> <span class="toc-text">白盒测试 Openbox Testing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%99%BD%E7%9B%92%EF%BC%9A%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90%E8%BF%9B%E4%B8%80%E6%AD%A5%E4%BA%86%E8%A7%A3%E7%99%BD%E7%9B%92%EF%BC%9F"><span class="toc-number">5.2.1.</span> <span class="toc-text">白盒：举个例子进一步了解白盒？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%81%B0%E7%9B%92%E6%B5%8B%E8%AF%95"><span class="toc-number">5.3.</span> <span class="toc-text">灰盒测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E6%B5%8B%E8%AF%95"><span class="toc-number">5.4.</span> <span class="toc-text">动态测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%B5%8B%E8%AF%95"><span class="toc-number">5.5.</span> <span class="toc-text">静态测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E3%80%81%E6%89%8B%E5%8A%A8%E6%B5%8B%E8%AF%95"><span class="toc-number">5.6.</span> <span class="toc-text">自动化测试、手动测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="toc-number">6.</span> <span class="toc-text">单元测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95%EF%BC%88%E7%BB%84%E8%A3%85%E6%B5%8B%E8%AF%95%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">集成测试（组装测试）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95"><span class="toc-number">8.</span> <span class="toc-text">系统测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Q%EF%BC%9A%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E3%80%81%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95%E3%80%81%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9FP202"><span class="toc-number">9.</span> <span class="toc-text">Q：单元测试、集成测试、系统测试之间的区别？P202</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%BF%E5%B0%94%E6%B3%95%E5%92%8C%E8%B4%9D%E5%A1%94%E6%B5%8B%E8%AF%95"><span class="toc-number">10.</span> <span class="toc-text">阿尔法和贝塔测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#alpha-%E4%B8%8E-beta-%E5%8C%BA%E5%88%AB"><span class="toc-number">10.1.</span> <span class="toc-text">alpha 与 beta 区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95%EF%BC%88%E5%9B%9E%E6%B5%8B%EF%BC%89"><span class="toc-number">11.</span> <span class="toc-text">回归测试（回测）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95%E7%9A%84%E7%9B%AE%E7%9A%84"><span class="toc-number">11.1.</span> <span class="toc-text">回归测试的目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95%E7%9A%84%E7%AD%96%E7%95%A5"><span class="toc-number">11.2.</span> <span class="toc-text">回归测试的策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%A8%A1%E5%9E%8B"><span class="toc-number">12.</span> <span class="toc-text">测试模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%80%91%E5%B8%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">12.1.</span> <span class="toc-text">瀑布模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8CV%E6%A8%A1%E5%9E%8B%EF%BC%88W%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="toc-number">12.2.</span> <span class="toc-text">双V模型（W模型）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E7%9A%844%E4%B8%AA%E6%B4%BB%E5%8A%A8"><span class="toc-number">13.</span> <span class="toc-text">测试的4个活动</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E8%AE%A1%E5%88%92%E6%B4%BB%E5%8A%A8"><span class="toc-number">13.1.</span> <span class="toc-text">测试计划活动</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%88%86%E8%A7%A3"><span class="toc-number">13.1.1.</span> <span class="toc-text">任务分解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E8%AE%BE%E8%AE%A1%E6%B4%BB%E5%8A%A8"><span class="toc-number">13.2.</span> <span class="toc-text">测试设计活动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E5%AE%9E%E7%8E%B0%E6%B4%BB%E5%8A%A8"><span class="toc-number">13.3.</span> <span class="toc-text">测试实现活动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B4%BB%E5%8A%A8%EF%BC%9A"><span class="toc-number">13.4.</span> <span class="toc-text">测试的执行活动：</span></a></li></ol></li></ol></div>
-    <!-- 文章：内容 -->
-    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
-        <hr />
-        <!-- Content -->
-        <h2 id="软测定义"><a href="#软测定义" class="headerlink" title="软测定义"></a>软测定义</h2><p>IEEE对软件工程标准术语中提出如软件测试的定义:采用人工或自动化的手段，运行软件或直接观察软件的过程，其目的是检验软件是否满足用户的需求，或弄清软件和需求之间的差别。</p>
-<p><strong>软件测试的方法分为</strong>:人和自动化测试两种软测过程:</p>
-<ol>
-<li>观察软件运行的过程，如用户登录这一操作，输入账号，输入密码</li>
-<li>不运行软件，直接观察软件运行的过程，如查看各类文档，推测可能预见的问题</li>
-</ol>
-<p><strong>软测的根本目的</strong>:</p>
-<ol>
-<li>检验软件是否<strong>满足用户需求</strong>，以目标对象需求为核心前提，性能以及优化的优先级次之。</li>
-<li>检测软件与实际需求之间的差距</li>
-</ol>
-<h2 id="软测目的"><a href="#软测目的" class="headerlink" title="软测目的"></a>软测目的</h2><p>除了检验是否满足用户需求这个根本目的之外，还可以通过软测达到其他目的。</p>
-<ul>
-<li><strong>为了证明</strong>：保证软件的正常运行<br>  Q：为什么说是保证软件的运行？而不是保证软件的无错误性？<br>  A：这个世界上不存在绝对的正确，只要事物存在就一定存在缺陷，无论多么精妙的事物。如严丝合缝的衔接位置，如榫卯，只是说从人类的角度来说，眼睛看到的是严丝合缝的，但其实仍然是否缝隙存在的。<br>  所以，软测的目的是为了保证软件的正常运行，确认软件存在错误，不能保存软件没有错误。</li>
-<li><strong>为了检测</strong>：检测产品的缺陷，缺陷不代表错误，还应包括可优化的缺陷</li>
-<li><strong>为了预防</strong>：测试需求的合理性，通过各类文档判断需求的合理性，<ul>
-<li>尽早测试尽早修复，避免问题延后带来的不可预见的损失</li>
-<li>根据以往相关测试经验，总结原因，如何解决，以达到避免同类问题的再次发生为目的的预防</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>对源码进行测试，称为白盒测试</p>
-</blockquote>
-<h2 id="软件的生命周期"><a href="#软件的生命周期" class="headerlink" title="软件的生命周期"></a>软件的生命周期</h2><p>一般情况分为6个阶段，分别是：</p>
-<ol>
-<li><p><strong>计划阶段</strong><br> 提出总体目标，总体规划；<br> 进行可行性论证；<br> 制定计划；</p>
-</li>
-<li><p><strong>需求分析阶段</strong><br> 市场型产品：根据市场，目标用户群体做泛用型的需求分析<br> 项目型产品：根据甲方需求做针对型的需求分析<br> <strong>编写软件需求说明书</strong><sup class="text-error">★</sup>：当各类调研完成后，总结需求形成一份最初版的需求文档。该文档的评审通过签字发布，是该项目实施过程汇总的第一个重要里程碑。</p>
-</li>
-<li><p><strong>设计阶段</strong><br> 概要设计：将软件产品从结构上逐层分解（分解到最小部件），描述分解后的组成部分的规格要求，以及大概的一个实现方向。敲定后,编写和评审概要设计说明书（HLD：High Level Design）<br> 详细设计：总的来说，就是托人买东西，具体参数信息尽可能的考虑周全，才不会购买错东西。编写详细设计说明文档（）</p>
-</li>
-<li><p><strong>编码阶段</strong></p>
-</li>
-<li><p><strong>测试阶段</strong><br> 单元测试：对每个单元的内部运行逻辑进行的测试，<strong>是否满足详细设计阶段提供的详细设计说明文档。</strong><br> 集成测试：逐层组装，一边组装一边测试。针对单元之间、模块之间、子系统之间的接口进行的测试，<strong>是否满足概要设计说明文档</strong>。<br> 系统测试：针对产品整体检验是否满足用户需求的测试，不再以内部的单元作为测试目标，<strong>是否满足需求设计说明文档</strong>。<br> 验收测试：用户的使用环境千奇百怪，会遇到各类不可遇见的错误。</p>
-<ul>
-<li>项目型</li>
-<li>市场型<br>  内测（阿尔法测试）：真正意义上的内测是不会外公开的<br>  公测（贝塔测试）：对外公开测试</li>
-</ul>
-</li>
-<li><p><strong>运行维护阶段</strong><br> 在使用中提出改进意见，根据实际情况实施改进，周期结束。</p>
-</li>
-</ol>
-<h3 id="分析软件生命周期的根本目的？"><a href="#分析软件生命周期的根本目的？" class="headerlink" title="分析软件生命周期的根本目的？"></a>分析软件生命周期的根本目的？</h3><h2 id="研发模式"><a href="#研发模式" class="headerlink" title="研发模式"></a>研发模式</h2><p>瀑布式<br>迭代式</p>
-<h2 id="测试方法"><a href="#测试方法" class="headerlink" title="测试方法"></a>测试方法</h2><ul>
-<li>黑盒与白盒测试定义和优缺点</li>
-<li>了解其他的测试方法</li>
-</ul>
-<p>针对测试依据以及测试关注点的不同，分为黑白灰三种测试方法；<br>针对软件是否运行软件的过程的不同，分为静态和动态测试两种方法；<br>针对是都使用计算机辅助达到快速批量执行测试的过程的不同，分为手动测试和自动化测试；</p>
-<h3 id="黑盒测试"><a href="#黑盒测试" class="headerlink" title="黑盒测试"></a>黑盒测试</h3><p>将被测试对象堪称一个黑盒子，只知道规格要求，而不知道内部实现逻辑，根据规格要求进行相应的输入，检验是否产生期望输出的测试方法。</p>
-<p>其测试对象，可以是一个系统，或者是系统中的一个部分，或者是一个单元。</p>
-<p>总结：所谓黑盒测试即为宏观层面上的笼统测试，<strong>所见即所得</strong>。</p>
-<p><strong>优点</strong>：</p>
-<ul>
-<li>操作简单</li>
-<li>这是一个符合用户使用视角的测试方法，只要会使用，就能执行测试</li>
-<li>对测试人员技能要求不高</li>
-<li>测试工作量不大，能在较短的时间内完成产品的测试</li>
-</ul>
-<p><strong>缺点</strong>：</p>
-<ul>
-<li>容易有遗漏</li>
-<li>某些测试的场景过于特殊，容易导致遗漏</li>
-<li>某些业务很复杂，存在很多关联业务，容易忽略关联业务的测试</li>
-</ul>
-<h4 id="黑盒：举个例子进一步了解黑盒？"><a href="#黑盒：举个例子进一步了解黑盒？" class="headerlink" title="黑盒：举个例子进一步了解黑盒？"></a>黑盒：举个例子进一步了解黑盒？</h4><h3 id="白盒测试-Openbox-Testing"><a href="#白盒测试-Openbox-Testing" class="headerlink" title="白盒测试 Openbox Testing"></a>白盒测试 Openbox Testing</h3><p>不再将产品是为一个黑盒子，而是将盒子打开，能看得见产品内部运行的机制，针对产品设计的内部逻辑进行测试的测试方法</p>
-<p>是一种<strong>逻辑驱动</strong>的测试</p>
-<p>总结：所谓白盒测试，即根据功能需求，是否输出期望结果的一种测试，即为白盒测试</p>
-<p><strong>优点</strong>：</p>
-<ul>
-<li>覆盖完整</li>
-<li>由于能观察到产品内部方方面面的运行逻辑，可以针对每个逻辑及进行检查，所以可以发现到产品中深层次的问题，可以覆盖到产品尽可能多的需要检查的内容。</li>
-<li>可以保证产品更高的质量</li>
-<li>发现到问题后修复的成本低</li>
-</ul>
-<p><strong>缺点</strong>：</p>
-<ul>
-<li>对测试人员的技术能力要求相对高很多，不会设计和开发，就做不好白盒测试</li>
-<li>测试工作量巨大</li>
-</ul>
-<h4 id="白盒：举个例子进一步了解白盒？"><a href="#白盒：举个例子进一步了解白盒？" class="headerlink" title="白盒：举个例子进一步了解白盒？"></a>白盒：举个例子进一步了解白盒？</h4><h3 id="灰盒测试"><a href="#灰盒测试" class="headerlink" title="灰盒测试"></a>灰盒测试</h3><ul>
-<li>白 + 黑</li>
-<li>即关注被测对象的整体规格要求，有关注被测对象的内部运行逻辑，所以采用的测试方法，就是灰盒测试</li>
-<li>针对真题规格和内部运行逻辑的比例</li>
-</ul>
-<h3 id="动态测试"><a href="#动态测试" class="headerlink" title="动态测试"></a>动态测试</h3><p>动态测试：</p>
-<ul>
-<li>不直接等于黑盒测试</li>
-<li>测试对象：可执行程序</li>
-</ul>
-<h3 id="静态测试"><a href="#静态测试" class="headerlink" title="静态测试"></a>静态测试</h3><p><strong>静态测试</strong>：不运行软件，直接观察软件的测试方法？？？绝大部分的静态都是白盒测试</p>
-<p>观察对象：需求文档，各设计文档、代码</p>
-<p>人工的静态的分析技术，叫评审，也叫同行评审</p>
-<p>自动化进行的静态测试，叫扫描，主要针对代码格式进行扫描</p>
-<h3 id="自动化测试、手动测试"><a href="#自动化测试、手动测试" class="headerlink" title="自动化测试、手动测试"></a>自动化测试、手动测试</h3><ul>
-<li>自动化测试：使用计算机辅助快速批量执行测试的方法</li>
-<li>手工测试：需要人工手动且需要发散的测试为手工测试</li>
-</ul>
-<p>Q：什么时候采用自动化测试？<br>A：<strong>重复度高</strong>，<strong>批量操作</strong>的<strong>机械性操作</strong></p>
-<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>针对单元内部逻辑进行的测试</p>
-<p>Q：单元？<br>A：软件中最细小的不可再分解的，即为单元。通常是设计和代码中的一个个函数或方法</p>
-<p>特点：</p>
-<ul>
-<li>明确的名称</li>
-<li>独立的功能</li>
-<li>输入输出参数：即便返回空，也算是</li>
-<li>可以被调用</li>
-</ul>
-<h2 id="集成测试（组装测试）"><a href="#集成测试（组装测试）" class="headerlink" title="集成测试（组装测试）"></a>集成测试（组装测试）</h2><p>针对小整体的外部规格，和内部单元之间的接口进行的测试</p>
-<h2 id="系统测试"><a href="#系统测试" class="headerlink" title="系统测试"></a>系统测试</h2><p>将产品作为一个整体，在真实的运行环境中，针对用户需求进行的测试</p>
-<h2 id="Q：单元测试、集成测试、系统测试之间的区别？P202"><a href="#Q：单元测试、集成测试、系统测试之间的区别？P202" class="headerlink" title="Q：单元测试、集成测试、系统测试之间的区别？P202"></a>Q：单元测试、集成测试、系统测试之间的区别？P202</h2><p>区别：</p>
-<ul>
-<li><p><span style="color: var(--primary)">测试依据的不同</span></p>
-<ul>
-<li>单元测试的测试依据为该单元是否满足详细设计文档的要求；</li>
-<li>集成测试的测试依据为模块与接口之间是否满足概要设计文档的要求；</li>
-<li>系统测试的测试依据为整体是否满足需求文档的设计要求；</li>
-</ul>
-</li>
-<li><p><span style="color: var(--primary)">测试关注点的不同</span></p>
-<ul>
-<li>单元测试的关注点由详细设计文档提供，关注单元内部的数据结构、逻辑控制、异常处理等等。</li>
-<li>集成测试的关注点由概要设计文档提供，关注测试模块之间的接口和接口数据的传递关系，以及模块组合后的整体功能<blockquote>
-<p>Q：这里提到的接口是API接口的意思吗？</p>
-</blockquote>
-</li>
-<li>系统测试的关注点由需求文档提供，关注整个系统相对于需求的符合度。</li>
-</ul>
-</li>
-<li><p><span style="color: var(--primary)">测试方法的不同</span><br>测试方法有黑盒测试、白盒测试和灰盒测试</p>
-<ul>
-<li>单元测试为白盒测试</li>
-<li>集成测试为灰盒测试</li>
-<li>系统测试为黑色测试</li>
-</ul>
-</li>
-<li><p>测试设计方法的不同</p>
-</li>
-<li><p><span style="color: var(--primary)">测试覆盖完整性的评估标准的不同</span></p>
-<ul>
-<li>单元测试覆盖率完整性：采用<strong>逻辑</strong>覆盖率的评估标准</li>
-<li>集成测试覆盖率完整性：采用<strong>接口</strong>覆盖率的评估标准</li>
-<li>系统测试覆盖率完整性：采用<strong>需求</strong>覆盖率的评估标准<blockquote>
-<p>Q：逻辑、接口、需求覆盖率分别是什么意思？P184<br>A：逻辑，假设用户名的注册是长度为6~11的长度，若满足则成功注册，否则视为错误输入。此为一条逻辑，若存在500个，但是只测试了50个，表示逻辑覆盖率只有10%；</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>测试策略的不同<br>先测什么，后测什么，怎么测<br>单元测试的策略（P207）：孤立的、自顶向下的、自低向上的<br>集成测试的策略（P224）：大爆炸的、自顶向下的、自低向上的<br>系统测试的策略：根据不同质量特性分别进行测试的策略</p>
-<blockquote>
-<p>Q：质量特性又是啥？</p>
-</blockquote>
-</li>
-<li><p>测试环境的不同<br>单元、集成：采用开发环境<br>系统：是运行环境，用户用什么环境，测试就用什么环境；运行时还分仿真环境和真实环境</p>
-</li>
-<li><p>测试执行顺序的不同<br>  先单元后集成最后系统</p>
-</li>
-</ul>
-<h2 id="阿尔法和贝塔测试"><a href="#阿尔法和贝塔测试" class="headerlink" title="阿尔法和贝塔测试"></a>阿尔法和贝塔测试</h2><p>阿尔法（alpha）：极少量的用户邀请到测试环境中，在项目成员的指导和控制下进行的验收测试<br>贝塔（beta）：将产品开放给少量用户，由用户在真实环境中，自由进行的验收测试</p>
-<p>用游戏举例，阿尔法为真正意思上的内测，贝塔为公测</p>
-<h3 id="alpha-与-beta-区别"><a href="#alpha-与-beta-区别" class="headerlink" title="alpha 与 beta 区别"></a>alpha 与 beta 区别</h3><ul>
-<li>人数不同</li>
-<li>环境不同</li>
-<li>过程不同</li>
-<li>影响不同</li>
-</ul>
-<h2 id="回归测试（回测）"><a href="#回归测试（回测）" class="headerlink" title="回归测试（回测）"></a>回归测试（回测）</h2><p><strong>因为产品的修改</strong>，而重新执行测试的测试，叫回归测试（Regression Testing）；</p>
-<p>回归测试可以发生在任何一个测试阶段，可以采用任何测试方法；</p>
-<h3 id="回归测试的目的"><a href="#回归测试的目的" class="headerlink" title="回归测试的目的"></a>回归测试的目的</h3><ol>
-<li>检验修改是否正确</li>
-<li>检验没有修改的内容是否受到了影响</li>
-</ol>
-<h3 id="回归测试的策略"><a href="#回归测试的策略" class="headerlink" title="回归测试的策略"></a>回归测试的策略</h3><ol>
-<li>完全重复的回测策略：也就是常说的全量测试，无论修改了哪些内容，全部重新测试</li>
-<li>选择性的回测策略：只挑选一部分进行回测，其他不做回测<ul>
-<li>覆盖修改法：只对修改的内容做测试，没有修改的内容不错。前提：简单的修改，比如修改一个字儿的情况下</li>
-<li>周边影响法：所谓周边是指是否会有关联性的存在，简单的来说即为牵一发动全身的，不仅仅修改的目标需要做回测，关联部分也需要做回测</li>
-<li>指标达成法：自行定义回归测试要达到的指标，按指标挑选内容进行测试</li>
-</ul>
-</li>
-</ol>
-<blockquote>
-<p>Q：是否与测试阶段、测试方法存在联系？<br>A：回测与谁都不存在直接联系</p>
-</blockquote>
-<h2 id="测试模型"><a href="#测试模型" class="headerlink" title="测试模型"></a>测试模型</h2><p>根本目的是为了解释测试</p>
-<p>瀑布模型、V模型、H模型（X模型）、双V模型（W模型）</p>
-<h3 id="瀑布模型"><a href="#瀑布模型" class="headerlink" title="瀑布模型"></a>瀑布模型</h3><p>类似于软件生命周期的瀑布模型，将测试阶段拆分为：单元测试、集成测试、系统测试、验收测试4个阶段；</p>
-<p><img src="/../../images/51testing/pubu.png" alt="瀑布模型"></p>
-<p>前面提到的软件生命周期中的测试阶段描述的内容就是瀑布模型</p>
-<blockquote>
-<p>Q：瀑布模型的作用？或者说为什么用瀑布模型？<br>A: 揭示了软测分阶段、按顺序执行的特性，按照先单元，接着集成，在系统，最后验收的过程</p>
-</blockquote>
-<h3 id="双V模型（W模型）"><a href="#双V模型（W模型）" class="headerlink" title="双V模型（W模型）"></a>双V模型（W模型）</h3><ul>
-<li>具有 V 和 H 模型的特性</li>
-<li>具有单元、集成、系统的分阶段测试的特性</li>
-<li>又区分单元测试准备和执行、集成测试准备和执行、系统测试准备和执行</li>
-<li>还表示了单元测试和详细测试的关系、集成测试和概要设计的关系、系统测试和需求分析的关系；</li>
-<li>揭示了软件测试的前期准备和后期执行相分离的特性，越早准备、就越晚执行</li>
-</ul>
-<p><img src="/../../images/51testing/doubleV.png" alt="双V模型"></p>
-<h2 id="测试的4个活动"><a href="#测试的4个活动" class="headerlink" title="测试的4个活动"></a>测试的4个活动</h2><p>测试时需要经历的4个活动（过程）：<strong>计划活动、设计活动、实现活动、执行活动</strong></p>
-<p>计划、设计、实现统称为测试准备，和测试准备对应的是测试执行</p>
-<h3 id="测试计划活动"><a href="#测试计划活动" class="headerlink" title="测试计划活动"></a>测试计划活动</h3><p>制定测试计划：4W</p>
-<ul>
-<li>who: 规划测试团队、明确人员职责</li>
-<li>where</li>
-<li>when</li>
-<li>what：测试范围、任务分解、排列计划</li>
-</ul>
-<p>测试计划活动要编写一份文档，是什么文档？<br>测试计划文档的编写</p>
-<h4 id="任务分解"><a href="#任务分解" class="headerlink" title="任务分解"></a>任务分解</h4><ul>
-<li>明确每个任务的目标、标准、交付物</li>
-<li>预估所需资源、人员</li>
-</ul>
-<h3 id="测试设计活动"><a href="#测试设计活动" class="headerlink" title="测试设计活动"></a>测试设计活动</h3><p>制定测试方案的，怎么操作？</p>
-<ul>
-<li>针对计划中的每个任务设计如何实施</li>
-<li>如何搭建测试环境</li>
-<li>如何分析业务、设计测试用例</li>
-<li>如何准备测试数据</li>
-<li>如何执行测试、记录测试结果</li>
-</ul>
-<h3 id="测试实现活动"><a href="#测试实现活动" class="headerlink" title="测试实现活动"></a>测试实现活动</h3><p>主要任务：编写和评审测试用例</p>
-<p><mark>测试实现活动，此为重中之重</mark></p>
-<p>Q：为什么要编写测试用例？<br>A：确保测试时是充分的，如果不写，今天指导，明天知道，一个月之后呢，还能记得99%运行逻辑吗？如果不写用例，做回测时，还记得什么地方修改了吗？<br>其二，通过评审用例，一定程度上保证大家对软件的掌握程度在一个水平线上</p>
-<p>流程：<br>由开发对测试人员进行业务培训，进行测试需求的评审；<br>采用思维导图分析业务，进行测试项的设计；<br>平身思维导图中的测试项，是否完整，是否正确；<br>针对每个测试项，采用七档的测试用例设计方法来设计用例；<br>评审用例；<br>如果有自动化测试的需要，还要选择自动化测试工具，编写自动化测试脚本，最后评审脚本；</p>
-<h3 id="测试的执行活动："><a href="#测试的执行活动：" class="headerlink" title="测试的执行活动："></a>测试的执行活动：</h3><blockquote>
-<p>Q：测试执行活动需要做哪些事情？</p>
-</blockquote>
-<ul>
-<li>搭建测试环境</li>
-<li>准备测试数据</li>
-<li>执行预测试<br>  冒烟测试（smoking testing）:不追求测试覆盖的完整性，而只运行软件主流程、初步检验软件能否使用的测试方法。总的来说，只做主线的测试方法，不追求完整度的</li>
-<li>评审预测试报告，通过则转测试</li>
-<li>全面执行测试，记录测试结果</li>
-<li>如果发现缺陷，则填写缺陷报告</li>
-<li>定位分析缺陷，并修复缺陷（由开发完成）</li>
-<li>回归测试，若发现新的问题或者问题未解决，回到缺陷报告</li>
-<li>当达到测试通过标准后，结束测试，总结测试，编写测试报告</li>
-</ul>
+    
 
-    </div>
-    <!-- 文章：声明 -->
-    <!-- 文章的声明 -->
-<div id="copy-icon-测试概论" style="display: grid; grid-template-rows: subgrid; grid-row: span 3; grid-gap: 12px">
-    <p><strong>作者</strong>：粥记捣蛋</p>
-
-    <div class="d-flex gap-3">
-        <p><strong>文章链接</strong>：<a href="https://zexuisme.github.io/2025/07/16/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E8%BD%AF%E6%B5%8B-%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA01/">https://ZeXuIsMe.github.io/2025/07/16/软件测试/软测-测试概论01/</a></p>
-
-        <div
-                class="d-flex align-center"
-                style="width: fit-content; cursor: pointer"
-                onclick="postEjs.onclickCopy(`#copy-icon-测试概论 a`)"
-        >
-            
-    <div class="tooltip tooltip-top " data-tooltip="点击复制">
-        <!-- button is-dark 为 bulma 的样式 -->
-        
-            <i
-                    class="fas fa-copy"
-                    style="font-size: 21px"
-            ></i>
-        
-    </div>
-
-
-<!--{-->
-<!--    type: '', // 表示提示输出的类型，参数有 text, image-->
-<!--    direction: '', // 表示toolTip出现的方向-->
-<!--    text: '', // 如果 type === 'text'，用于显示提示文本-->
-<!--    icon: '',  // icon 图标-->
-<!--    icon_prefix: '',  // icon 图标前缀，默认为 fab-->
-<!--    size: '', // 控制图标的大小, 默认为 48-->
-<!--    url: '' // 如果 type === image，图片的链接-->
-<!--}-->
-
-        </div>
-    </div>
-    <p><strong>版权声明</strong>：本网站所有文章除特别声明外,均采用 CC BY-NC-ND 4.0 许可协议。转载请注明出处!</p>
-
-</div>
-    <!-- 文章：文章切换 -->
-    <div style="margin-top: 48px">
-<!-- 文章阅读页的切换按钮 -->
-<div class="post-toggle d-flex justify-between flex-wrap gap-3">
-    <button
-            class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/07/17/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F/')"
-            
-    >上一篇: 软件质量</button>
-    <button
-            class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/07/15/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/')"
-            
-    >下一篇: 数据库操作</button>
-</div>
 
 <script>
-    class PostToggleEjs extends Blog {
-        constructor() {
-            super()
-        }
-
-        onclickLink (url) {
-            this.createALink(url, '_self')
-        }
-    }
-
-    const postToggleEjs = new PostToggleEjs()
-</script></div>
-
-</article>
-
-<div style="height: 80px"></div>
-
-<script>
-    class PostEjs extends Blog{
+    class Pagination extends Blog{
         constructor() {
             super();
+            // ...
+        }
+
+        onclickPage (url) {
+            this.createALink(url + '#home-post-list', '_self')
         }
     }
-    const postEjs = new PostEjs();
+
+    const pagination = new Pagination();
 </script>
+</div>
+
+<script>
+    const archiveEjs = {
+        handleChoose (event) {
+            console.log(event.target.value)
+            const value = event.target.value
+
+            if (!value) {
+                console.error('分类参数异常！')
+                return
+            }
+
+            const blog = new Blog()
+
+            blog.createALink(value, '_self')
+        }
+    }
+</script>
+
+<style>
+    #article-table tbody td {
+        padding: 12px;
+    }
+</style>
+
     </div>
 
     

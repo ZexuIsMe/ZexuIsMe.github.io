@@ -514,6 +514,8 @@
     
         <a class="tag is-info is-light" href="/tags/%E8%AF%BE%E6%9C%AC%EF%BC%9A%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/">课本：软件测试流程设计</a>
     
+        <a class="tag is-info is-light" href="/tags/Day3/">Day3</a>
+    
 </span>
             <span>
     
@@ -531,10 +533,7 @@
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
-        <p><strong>用例设计的终极目标：提高拦截率</strong></p>
-<p>何为拦截率？指所负责模块被反馈问题的情况</p>
-<span id="more"></span>
-
+        <p><strong>用例设计的终极目标：提高拦截率</strong>：何为拦截率？指所负责模块被反馈问题的情况</p>
 <h2 id="从分析到设计：用例设计"><a href="#从分析到设计：用例设计" class="headerlink" title="从分析到设计：用例设计"></a>从分析到设计：用例设计</h2><p>从需求中，找到<strong>测试点</strong>以及<strong>约束规则</strong>，形成大体方向的测试用例</p>
 <p>对于各类方法的个人理解：所有的，所谓的如什么流程分析法，状态迁移图法等等的目标都是为了增加用例的覆盖范围，尽可能的减少遗漏。</p>
 <h2 id="流程分析法（P53）"><a href="#流程分析法（P53）" class="headerlink" title="流程分析法（P53）"></a>流程分析法（P53）</h2><p>用路径分析的方式来设计测试用例（翻译：根据流程的操作步骤，从而发现测试点与约束规则，进而设计测试用例）</p>
@@ -588,44 +587,47 @@
 </tr>
 <tr>
 <td>无效</td>
-<td>昵称：不包含数字，只有大写+小写</td>
+<td>昵称：只有大写+小写</td>
 <td>F3</td>
 </tr>
 <tr>
 <td>无效</td>
-<td>昵称：不包含大写字母，只有数字+小写</td>
+<td>昵称：只有数字+小写</td>
 <td>F4</td>
 </tr>
 <tr>
 <td>无效</td>
-<td>昵称：不包含小写字母，只有数字+大写</td>
+<td>昵称：只有数字+大写</td>
 <td>F5</td>
 </tr>
 <tr>
 <td>无效</td>
-<td>昵称：包含特殊字符</td>
+<td>昵称：包含特殊字符、全角</td>
 <td>F6</td>
 </tr>
 <tr>
 <td>无效</td>
-<td>昵称：不包含大小写字母，只有数字</td>
+<td>昵称：只有数字或者小写字母或者大写字母</td>
 <td>F7</td>
 </tr>
 <tr>
 <td>无效</td>
-<td>昵称：不含数字和大写字母，只有小写字母</td>
+<td>昵称：只有</td>
 <td>F8</td>
 </tr>
 <tr>
 <td>无效</td>
-<td>昵称：不含数字和小写字母，只有大写字母</td>
+<td>昵称：只有大写字母</td>
 <td>F9</td>
 </tr>
 </tbody></table>
+<p>所以根据上面的划分，在设计无效用例，如F3，昵称的测试数据，就应该为：Abcdefg，即满足字符长度，满足大小写组合，唯独不满足数字。</p>
 <blockquote>
 <p>等价类划分的核心原则为<strong>单一缺陷假设</strong>，目的是确保测试结果的“唯一性”，即数据被判定为无效，<strong>仅仅是因为违反了目标无效条件，而非其他因素</strong></p>
 </blockquote>
-<p>所以根据上面的划分，在设计无效用例，如F3，昵称的测试数据，就应该为：Abcdefg，即满足字符长度，满足大小写组合，唯独不满足数字。</p>
+<p>另外 F7 ~ F9，可以更改为：<code>| 无效   | 昵称：只有数字或者小写字母或者大写字母                       | F7 |</code></p>
+<p>为什么？</p>
+<p>因为他们属于同一类：缺少两种及以上必需元素，也就是合并了</p>
 <h2 id="边界值分析法"><a href="#边界值分析法" class="headerlink" title="边界值分析法"></a>边界值分析法</h2><p>上点、离点、内点</p>
 <p>上点与离点是互补的，若上点为有效值，那么离点即为无效值，反之亦然。</p>
 <p><strong>边界值的运用</strong><br>规定了值的范围：</p>
@@ -689,9 +691,9 @@
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/')"
-            disabled
-    >上一篇: 无</button>
+            onclick="postToggleEjs.onclickLink('/2025/07/24/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85_%E6%97%A0%E6%95%88%E7%AD%89%E4%BB%B7/')"
+            
+    >上一篇: 额外补充_无效等价</button>
     <button
             class="button is-info is-light"
             onclick="postToggleEjs.onclickLink('/2025/07/22/%E5%BE%AE%E4%BF%A1%E5%8F%8C%E5%BC%80/')"
