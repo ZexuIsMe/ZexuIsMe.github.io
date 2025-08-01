@@ -1,7 +1,7 @@
 <!-- 文章的声明 -->
 <div id="copy-icon-<%= item.title %>" style="display: grid; grid-template-rows: subgrid; grid-row: span 3; grid-gap: 12px">
     <%- markdown('**作者**：粥记捣蛋') %>
-    <div class="d-flex gap-3">
+    <div class="d-flex">
         <%- markdown(`**文章链接**：https://ZeXuIsMe.github.io/${item.path}`) %>
         <div
                 class="d-flex align-center"
@@ -12,7 +12,7 @@
                     type: 'text',
                     icon: 'fa-copy',
                     icon_prefix: 'fas',
-                    icon_size: 21,
+                    icon_size: 18,
                     tooltip_text: '点击复制',
                     direction: 'top'
                 } }) %>

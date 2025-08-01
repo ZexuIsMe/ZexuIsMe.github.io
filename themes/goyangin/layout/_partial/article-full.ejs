@@ -1,9 +1,23 @@
 <!-- 渲染：阅读整篇文章 -->
+<style>
+    #read-post {
+        min-height: calc(100% - 210px);
+        max-width: 75rem;
+        margin: auto;
+    }
+
+    @media (max-width: 768px) {
+        #read-post {
+            max-width: 85%;
+        }
+    }
+</style>
+
 <% const postDOMId = 'read-post' %>
 
 <div style="height: 80px"></div>
 
-<article id="<%= postDOMId %>" class="v-layout-75 p-4" style="min-height: calc(100% - 210px)">
+<article id="<%= postDOMId %>">
     <!-- Title -->
     <div class="level">
         <div class="level-left">
@@ -13,9 +27,8 @@
                         <span class="has-text-info"><%- item.title || '标题缺失，务必添加 Title' %></span>
                     </h1>
                     <p class="subtitle is-6">
-                        <span class="icon is-small"><i class="fa fa-calendar"></i></span> <%= item.date.format(config.date_format) %>
-                        &nbsp; &nbsp; &nbsp; &nbsp;
-                        <span class="icon is-small"><i class="fa fa-user"></i></span> <%- item.author ? item.author : config.author  %>
+                        <span class="icon is-small"><i class="far fa-user"></i></span> <%- item.author ? item.author : config.author  %>
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> <%= item.updated.format('YYYY-MM-DD HH:mm') %>
                     </p>
                 </div>
             </div>
