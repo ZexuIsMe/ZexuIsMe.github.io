@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>数据库操作 | 粥记捣蛋</title>
+    <title>粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -345,10 +345,10 @@
                             
                             <div
                                     class="px-8 menu-label d-flex align-center
-                                    "
+                                    v-bg-primary"
                                     style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
                             >
-                                <a href="/archives" style="color: #00586d ">归档</a>
+                                <a href="/archives" style="color: #EEE ">归档</a>
                             </div>
                         
                             
@@ -430,7 +430,7 @@
         position: fixed;
         top: 0;
         left: 0;
-        height: 100px;
+        height: 80px;
         backdrop-filter: blur(10px);
         background-color: transparent;
         z-index: 99999;
@@ -482,321 +482,490 @@
     }
 </style>
     <div id="blog-body">
-        <!-- 渲染：阅读整篇文章 -->
+        <!-- Archive: 归档页 -->
+<div class="container " style="padding: 0 24px">
+    <!-- 一般用于 section 标题 -->
+<h1 class="title is-4 d-flex align-center" style="padding: 120px 0 60px 0">
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+    <span style="white-space: nowrap; color: black" class="mx-4">
+                <i class="fas fa-boxes"></i>
+                <span class="ml-4">归档 - Day5</span>
+            </span>
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+</h1>
 
+<!--<script>-->
+<!--    console.log({-->
+<!--        icon: '', // 这里的图标需要是完整的-->
+<!--        name: '', // 标题的名字-->
+<!--        color: '', // 字体颜色-->
+<!--    })-->
+<!--</script>-->
 
-<div style="height: 80px"></div>
+    <div id="article-table" class="table-wrapper">
+        <table class="table is-striped is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th style="text-align: center">
+                        标签（Tags）
+                        <label for="archivesTags">
+    <select
+            id="archivesTags"
+            style="width: 21px"
+            onchange="archiveEjs.handleChoose(event)"
+    >
+        <option value="">--标签（Tags）--</option>
+        <option value="/archives/">--ALL--</option>
+        
+            <option value="/tags/AE/">AE</option>
+        
+            <option value="/tags/AI/">AI</option>
+        
+            <option value="/tags/A%E6%A0%87%E7%AD%BE%E5%AE%9A%E4%BD%8D/">A标签定位</option>
+        
+            <option value="/tags/CSS/">CSS</option>
+        
+            <option value="/tags/DOM/">DOM</option>
+        
+            <option value="/tags/DOM%EF%BC%8C%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%EF%BC%8C%E5%9B%BE%E7%89%87%E9%99%8D%E4%BD%8E%E8%B4%A8%E9%87%8F/">DOM，图片处理，图片降低质量</option>
+        
+            <option value="/tags/Day2/">Day2</option>
+        
+            <option value="/tags/Day3/">Day3</option>
+        
+            <option value="/tags/Day5/">Day5</option>
+        
+            <option value="/tags/EJS/">EJS</option>
+        
+            <option value="/tags/Flex/">Flex</option>
+        
+            <option value="/tags/Git/">Git</option>
+        
+            <option value="/tags/Github-Clone-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/">Github Clone 准备工作</option>
+        
+            <option value="/tags/Grid/">Grid</option>
+        
+            <option value="/tags/HTML5%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE/">HTML5语义化标签</option>
+        
+            <option value="/tags/HTTP-Range/">HTTP Range</option>
+        
+            <option value="/tags/Hexo/">Hexo</option>
+        
+            <option value="/tags/JS%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">JS回收机制</option>
+        
+            <option value="/tags/JavaScript/">JavaScript</option>
+        
+            <option value="/tags/Javascript/">Javascript</option>
+        
+            <option value="/tags/Markdown/">Markdown</option>
+        
+            <option value="/tags/SQL/">SQL</option>
+        
+            <option value="/tags/SVN/">SVN</option>
+        
+            <option value="/tags/SVN-%E5%85%8B%E9%9A%86/">SVN 克隆</option>
+        
+            <option value="/tags/audio/">audio</option>
+        
+            <option value="/tags/class/">class</option>
+        
+            <option value="/tags/%E4%B9%A0%E9%A2%98/">习题</option>
+        
+            <option value="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/">作用域</option>
+        
+            <option value="/tags/%E5%85%83%E7%B4%A0%E6%9F%A5%E6%89%BE%EF%BC%88querySelector%EF%BC%89/">元素查找（querySelector）</option>
+        
+            <option value="/tags/%E5%85%83%E7%B4%A0%E8%BF%BD%E5%8A%A0%EF%BC%88appendChild%EF%BC%89/">元素追加（appendChild）</option>
+        
+            <option value="/tags/%E5%85%A8%E5%B1%80%E6%A0%B7%E5%BC%8F/">全局样式</option>
+        
+            <option value="/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/">内存泄漏</option>
+        
+            <option value="/tags/%E5%86%B2%E7%AA%81/">冲突</option>
+        
+            <option value="/tags/%E5%87%BD%E6%95%B0%E4%BC%A0%E5%8F%82/">函数传参</option>
+        
+            <option value="/tags/%E5%8A%A0%E8%BD%BD%E6%95%88%E6%9E%9C%EF%BC%88loading%EF%BC%89/">加载效果（loading）</option>
+        
+            <option value="/tags/%E5%8A%A8%E7%94%BB%EF%BC%88animation%EF%BC%89/">动画（animation）</option>
+        
+            <option value="/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">单元测试</option>
+        
+            <option value="/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/">原型链</option>
+        
+            <option value="/tags/%E5%90%88%E5%B9%B6/">合并</option>
+        
+            <option value="/tags/%E5%90%B8%E9%A1%B6/">吸顶</option>
+        
+            <option value="/tags/%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95/">回归测试</option>
+        
+            <option value="/tags/%E5%9B%A0%E6%9E%9C%E5%9B%BE/">因果图</option>
+        
+            <option value="/tags/%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BC%82%E5%B8%B8/">图片加载异常</option>
+        
+            <option value="/tags/%E5%A4%8D%E5%88%B6%EF%BC%88Copy%EF%BC%89/">复制（Copy）</option>
+        
+            <option value="/tags/%E5%AE%9A%E4%BD%8D/">定位</option>
+        
+            <option value="/tags/%E5%B0%81%E8%A3%85/">封装</option>
+        
+            <option value="/tags/%E5%B1%85%E4%B8%AD/">居中</option>
+        
+            <option value="/tags/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/">帮助手册</option>
+        
+            <option value="/tags/%E5%B8%B8%E7%94%A8/">常用</option>
+        
+            <option value="/tags/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83/">康复训练</option>
+        
+            <option value="/tags/%E5%BC%82%E6%88%96/">异或</option>
+        
+            <option value="/tags/%E5%BE%AE%E4%BF%A1%E5%8F%8C%E5%BC%80/">微信双开</option>
+        
+            <option value="/tags/%E6%89%93%E5%AD%97%E6%9C%BA%E6%95%88%E6%9E%9C/">打字机效果</option>
+        
+            <option value="/tags/%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%8C%96/">数字格式化</option>
+        
+            <option value="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">数据类型</option>
+        
+            <option value="/tags/%E6%96%87%E7%AB%A0%E6%91%98%E8%A6%81/">文章摘要</option>
+        
+            <option value="/tags/%E6%96%B0%E5%A2%9E%E9%A1%B5%E9%9D%A2/">新增页面</option>
+        
+            <option value="/tags/%E6%97%A0%E6%95%88%E7%AD%89%E4%BB%B7%E7%B1%BB%E5%88%92%E5%88%86/">无效等价类划分</option>
+        
+            <option value="/tags/%E6%9C%A8%E6%A1%A9/">木桩</option>
+        
+            <option value="/tags/%E6%A0%B7%E5%BC%8F%E5%88%86%E5%B1%82/">样式分层</option>
+        
+            <option value="/tags/%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9C/">毛玻璃效果</option>
+        
+            <option value="/tags/%E6%B0%94%E6%B3%A1%EF%BC%88Tooltip%EF%BC%89/">气泡（Tooltip）</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E5%88%86%E6%9E%90/">测试分析</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/">测试方法</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">测试概论</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E6%A8%A1%E5%9E%8B/">测试模型</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E6%B4%BB%E5%8A%A8/">测试活动</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/">测试用例</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E5%86%99%E4%BD%9C/">测试用例写作</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E6%96%B9%E6%B3%95/">测试用例方法</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">测试用例设计方法</option>
+        
+            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%B1%BB%E5%9E%8B/">测试类型</option>
+        
+            <option value="/tags/%E6%B6%88%E6%81%AF%EF%BC%88Message%EF%BC%89/">消息（Message）</option>
+        
+            <option value="/tags/%E6%B8%B2%E6%9F%93%E8%A7%A3%E6%9E%90/">渲染解析</option>
+        
+            <option value="/tags/%E6%BB%9A%E5%8A%A8%EF%BC%88Scroll%EF%BC%89/">滚动（Scroll）</option>
+        
+            <option value="/tags/%E7%89%88%E6%9C%AC%E5%8F%B7/">版本号</option>
+        
+            <option value="/tags/%E7%8B%AC%E7%AB%8B%E9%A1%B5%E9%9D%A2/">独立页面</option>
+        
+            <option value="/tags/%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">用例设计方法</option>
+        
+            <option value="/tags/%E7%9B%92%E6%A8%A1%E5%9E%8B/">盒模型</option>
+        
+            <option value="/tags/%E7%9B%BE%E5%BC%BA/">盾强</option>
+        
+            <option value="/tags/%E7%A0%94%E5%8F%91%E6%A8%A1%E5%BC%8F/">研发模式</option>
+        
+            <option value="/tags/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/">碧海苍云录</option>
+        
+            <option value="/tags/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95%EF%BC%8C%E6%8A%97%E6%80%A7/">碧海苍云录，抗性</option>
+        
+            <option value="/tags/%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/">系统测试</option>
+        
+            <option value="/tags/%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6/">绑定事件</option>
+        
+            <option value="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%9B%E5%BA%A6%E6%9D%A1/">自定义进度条</option>
+        
+            <option value="/tags/%E8%A5%BF%E9%97%A8%E5%AD%90/">西门子</option>
+        
+            <option value="/tags/%E8%AF%AD%E6%B3%95/">语法</option>
+        
+            <option value="/tags/%E8%AF%BE%E6%9C%AC%EF%BC%9A%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/">课本：软件测试流程设计</option>
+        
+            <option value="/tags/%E8%B4%9D%E5%A1%94/">贝塔</option>
+        
+            <option value="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</option>
+        
+            <option value="/tags/%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">软件的生命周期</option>
+        
+            <option value="/tags/%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F/">软件质量</option>
+        
+            <option value="/tags/%E8%BD%AF%E6%B5%8B%E6%A6%82%E8%AE%BA/">软测概论</option>
+        
+            <option value="/tags/%E8%BF%87%E5%BA%A6%E8%AE%BE%E8%AE%A1/">过度设计</option>
+        
+            <option value="/tags/%E8%BF%87%E6%B8%A1%EF%BC%88transition%EF%BC%89/">过渡（transition）</option>
+        
+            <option value="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/">选择器</option>
+        
+            <option value="/tags/%E9%81%AE%E7%BD%A9%EF%BC%88Mask%EF%BC%89/">遮罩（Mask）</option>
+        
+            <option value="/tags/%E9%85%8D%E7%94%B5%E6%9F%9C/">配电柜</option>
+        
+            <option value="/tags/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/">配置管理</option>
+        
+            <option value="/tags/%E9%97%AD%E5%8C%85/">闭包</option>
+        
+            <option value="/tags/%E9%98%BF%E5%B0%94%E6%B3%95/">阿尔法</option>
+        
+            <option value="/tags/%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95/">集成测试</option>
+        
+            <option value="/tags/%E9%9C%80%E6%B1%82%E8%BF%87%E7%A8%8B/">需求过程</option>
+        
+            <option value="/tags/%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%EF%BC%88Music-Player%EF%BC%89/">音乐播放器（Music Player）</option>
+        
+            <option value="/tags/%E9%A2%9C%E8%89%B2%E6%B8%90%E5%8F%98/">颜色渐变</option>
+        
+            <option value="/tags/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/">额外补充</option>
+        
+            <option value="/tags/%E9%AA%A8%E6%9E%B6%EF%BC%88skeleton%EF%BC%89/">骨架（skeleton）</option>
+        
+    </select>
+</label>
+<!-- archiveEjs.handleChoose(event)：位于 layout > archive.ejs -->
+                    </th>
+                    <th style="text-align: center" class="d-flex align-center">
+                        分类（Categories）
+                        <label for="archivesCategories">
+    <select
+            id="archivesCategories"
+            style="width: 21px"
+            onchange="archiveEjs.handleChoose(event)"
+    >
+        <option value="">--分类（Categories）--</option>
+        <option value="/archives/">--ALL--</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/CSS/">CSS</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/DOM/">DOM</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/Ejs/">Ejs</option>
+        
+            <option value="/categories/Github-Clone-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/">Github Clone 准备工作</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/HTML5%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE/">HTML5语义化标签</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/Hexo/">Hexo</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/Markdown/">Markdown</option>
+        
+            <option value="/categories/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/SQL/">SQL</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E4%B9%A0%E9%A2%98/">习题</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/">前端</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/%E5%A4%8D%E5%88%B6%EF%BC%88Copy%EF%BC%89/">复制（Copy）</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/DOM/%E5%AE%9A%E4%BD%8D/">定位</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/%E5%B0%81%E8%A3%85/">封装</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/CSS/%E5%B1%85%E4%B8%AD/">居中</option>
+        
+            <option value="/categories/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/">帮助手册</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/">康复训练计划表</option>
+        
+            <option value="/categories/%E5%BE%AE%E4%BF%A1%E5%8F%8C%E5%BC%80/">微信双开</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/%E6%89%93%E5%AD%97%E6%9C%BA/">打字机</option>
+        
+            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E6%8A%97%E6%80%A7/">抗性</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/%E6%92%AD%E6%94%BE%E5%99%A8/">播放器</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%8C%96/">数字格式化</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F/">数据类型、原型链、作用域</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/Hexo/%E6%96%87%E7%AB%A0%E6%91%98%E8%A6%81/">文章摘要</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/Hexo/%E6%96%B0%E5%A2%9E%E9%A1%B5%E9%9D%A2/">新增页面</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1/%E6%97%A0%E6%95%88%E7%AD%89%E4%BB%B7%E7%B1%BB%E5%88%92%E5%88%86/">无效等价类划分</option>
+        
+            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E6%9C%A8%E6%A1%A9/">木桩</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E5%88%86%E6%9E%90/">测试分析</option>
+        
+            <option value="/categories/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">测试概论</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">测试概论</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/">测试用例</option>
+        
+            <option value="/categories/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E5%86%99%E4%BD%9C/">测试用例写作</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E6%96%B9%E6%B3%95/">测试用例方法</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1/">测试用例设计</option>
+        
+            <option value="/categories/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/%E6%B5%8B%E8%AF%95%E7%B1%BB%E5%9E%8B/">测试类型</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/Markdown/%E6%B8%B2%E6%9F%93%E8%A7%A3%E6%9E%90/">渲染解析</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/Hexo/%E7%8B%AC%E7%AB%8B%E9%A1%B5%E9%9D%A2/">独立页面</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">用例设计方法</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/%E7%9B%92%E6%A8%A1%E5%9E%8B/">盒模型</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/%E7%9B%AE%E6%A0%87%E7%BB%86%E5%8C%96%E8%AE%A1%E5%88%92%E8%A1%A8/">目标细化计划表</option>
+        
+            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E7%9B%BE%E5%BC%BA/">盾强</option>
+        
+            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/">碧海苍云录</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/Markdown/%E8%AF%AD%E6%B3%95/">语法</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F/">软件质量</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E8%BD%AF%E6%B5%8B%E6%A6%82%E8%AE%BA/">软测概论</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/%E8%BF%87%E5%BA%A6%E8%AE%BE%E8%AE%A1/">过度设计</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/%E8%BF%87%E6%B8%A1%E6%95%88%E6%9E%9C%E5%92%8C%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C/">过渡效果和动画效果</option>
+        
+            <option value="/categories/%E9%85%8D%E7%BA%BF%E6%A0%87%E5%87%86/">配线标准</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/">配置管理</option>
+        
+            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E9%9C%80%E6%B1%82%E8%BF%87%E7%A8%8B/">需求过程</option>
+        
+            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80/">页面布局</option>
+        
+    </select>
+</label>
+<!-- archiveEjs.handleChoose(event)：位于 layout > archive.ejs -->
+                    </th>
+                    <th style="text-align: center">创作时间</th>
+                    <th style="text-align: center">更新时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
 
-<article id="read-post" class="v-layout-75 p-4" style="min-height: calc(100% - 210px)">
-    <!-- Title -->
-    <div class="level">
-        <div class="level-left">
-            <div class="media">
-                <div class="media-content">
-                    <h1 class="title is-4 modify-post-title">
-                        <span class="has-text-info">数据库操作</span>
-                    </h1>
-                    <p class="subtitle is-6">
-                        <span class="icon is-small"><i class="fa fa-calendar"></i></span> 2025-07-15
-                        &nbsp; &nbsp; &nbsp; &nbsp;
-                        <span class="icon is-small"><i class="fa fa-user"></i></span> 粥记捣蛋
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- 文章标签 -->
-        <div class="pt-4">
-            <span>
-    
-        <a class="tag is-info is-light" href="/tags/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">测试概论</a>
+            <tbody style="font-size: 12px">
+                
+                    <tr>
+                        <td>
+                            <a href="/2025/07/23/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">
+                                用例设计方法
+                            </a>
+                        </td>
+
+                        <td style="width: 150px; ">
+                            <div class="d-flex flex-wrap gap-2">
+                                
     
         <a class="tag is-info is-light" href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
     
-        <a class="tag is-info is-light" href="/tags/SQL/">SQL</a>
+        <a class="tag is-info is-light" href="/tags/%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">用例设计方法</a>
     
-        <a class="tag is-info is-light" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/">数据库操作</a>
+        <a class="tag is-info is-light" href="/tags/%E8%AF%BE%E6%9C%AC%EF%BC%9A%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/">课本：软件测试流程设计</a>
     
-</span>
-            <span>
+        <a class="tag is-info is-light" href="/tags/Day3/">Day3</a>
     
-        <a class="tag is-warning is-light" href="/categories/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">测试概论</a>
+        <a class="tag is-info is-light" href="/tags/Day5/">Day5</a>
     
-        <a class="tag is-warning is-light" href="/categories/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/SQL/">SQL</a>
+        <a class="tag is-info is-light" href="/tags/%E5%90%88%E5%B9%B6/">合并</a>
     
-</span>
-        </div>
+
+                            </div>
+                        </td>
+
+                        <td style="width: 150px;">
+                            <div class="d-flex flex-wrap gap-2">
+                                
+    
+        <a class="tag is-warning is-light" href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
+    
+        <a class="tag is-warning is-light" href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">用例设计方法</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-07-23 09:27
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-08-01 20:25
+                        </td>
+
+                        <td style="vertical-align: middle">
+                            <a href="/2025/07/23/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">
+                                <i class="far fa-hand-point-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                
+            </tbody>
+        </table>
     </div>
 
-    <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP-Study"><span class="toc-number">1.</span> <span class="toc-text">PHP Study</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9A%E6%95%B0%E5%AD%97"><span class="toc-number">2.</span> <span class="toc-text">数据类型：数字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9A%E5%AD%97%E7%AC%A6"><span class="toc-number">3.</span> <span class="toc-text">数据类型：字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9A%E6%97%A5%E6%9C%9F"><span class="toc-number">4.</span> <span class="toc-text">数据类型：日期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">5.</span> <span class="toc-text">操作：数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-number">6.</span> <span class="toc-text">操作：数据表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%EF%BC%9A%E6%95%B0%E6%8D%AE"><span class="toc-number">7.</span> <span class="toc-text">操作：数据</span></a></li></ol></div>
-    <!-- 文章：内容 -->
-    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
-        <hr />
-        <!-- Content -->
-        <h2 id="PHP-Study"><a href="#PHP-Study" class="headerlink" title="PHP Study"></a>PHP Study</h2><p>集成MYSQL、Apache</p>
-<h2 id="数据类型：数字"><a href="#数据类型：数字" class="headerlink" title="数据类型：数字"></a>数据类型：数字</h2><ul>
-<li><p>int：<code>int(11)</code></p>
-<ul>
-<li>type: 整型</li>
-<li>11：表示 int 类型最大值，其取值区间为 [1, 11]</li>
-</ul>
-</li>
-<li><p>float：<code>float(m, d)</code></p>
-<ul>
-<li>type: 单精度浮点型</li>
-<li>m：表示长度或者位数</li>
-<li>d：表示小数位数（小数位数是算在长度内的）</li>
-<li>Eg: <code>float(6, 2)</code>：表示该浮点数最大长度位6，且有两位小数，整数长度为 m-d, 即 4 位</li>
-<li>若长度超出6，如 12345，则不会被允许添加</li>
-</ul>
-</li>
-<li><p>double：<code>double(m, d)</code></p>
-<ul>
-<li><p>type: 双精度浮点型</p>
-</li>
-<li><p>m、d 同 float 一样</p>
-</li>
-<li><p>Q：单精度与双精度有什么区别？</p>
-<p>能定义的长度不同，单精度为4个字节（7位有效数），双精度为8个字节（16位有效数）</p>
-</li>
-</ul>
-</li>
-<li><p>decimal: <code>decimal(m, d)</code></p>
-<ul>
-<li><p>type: 定点型</p>
-</li>
-<li><p>m、d 同 float 一样</p>
-</li>
-<li><p>Q：浮点型与定点型的区别？</p>
-<p>浮点型是<mark>近似值</mark>数据类型，存在误差，如 10&#x2F;3 ≈ 3.33333 在数据库中可能是 3.33335。</p>
-<p>定点型以字符串的形式存储数据，解决了浮点型带来的误差问题。</p>
-<p>故，如果对数据的完整度十分敏感，那么采用定点型数据类型是合适的。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="数据类型：字符"><a href="#数据类型：字符" class="headerlink" title="数据类型：字符"></a>数据类型：字符</h2><ul>
-<li><p>char: <code>char(m)</code></p>
-<ul>
-<li>type: 字符串</li>
-<li>m：表示字符串的长度</li>
-<li>一种固定了长度的，如果字符不够，则会用空格替代的字符串数据类型</li>
-<li>如一个长度为5的 char 字段，要写入 ‘汉字’ &gt; ‘汉字xxx’（x 在这里表示空格占位）</li>
-<li>同 int 一样，若超出长度，则无法写入</li>
-</ul>
-</li>
-<li><p>varchar: <code>varchar(m)</code></p>
-<ul>
-<li><p>type: 字符串</p>
-</li>
-<li><p>m：表示字符串的长度</p>
-</li>
-<li><p>不固定长度的字符串数据类型</p>
-</li>
-<li><p>如一个长度为5的 varchar 字段，要写入 ‘汉字’ &gt; ‘汉字2’；其中2表示该字符的长度</p>
-</li>
-<li><p>同 int 一样，若超出长度，则无法写入</p>
-</li>
-<li><p>Q：char 与 varchar 的区别？</p>
-<p>char是固定长度的，可以有更快的读取速度，如固定长度的身份证之类的<br>varchar 是不固定长度的，相对于 char 而言，节约开销，比如名字，就适合用 varchar</p>
-</li>
-</ul>
-</li>
-<li><p>enmu: <code>enmu(&#39;1&#39;, &#39;2&#39;, ...)</code></p>
-<ul>
-<li>type: 枚举型</li>
-<li>设置字段的取值范围</li>
-</ul>
-</li>
-</ul>
-<h2 id="数据类型：日期"><a href="#数据类型：日期" class="headerlink" title="数据类型：日期"></a>数据类型：日期</h2><ul>
-<li>date: 日期型，结构为 YYYY-MM-DD</li>
-<li>time: 时间型，结构为 HH-mm-ss</li>
-<li>datetime: 日期时间型，结构为 YYY-MM-DD HH-mm-ss</li>
-<li>timestamp: 时间戳，结构为YYYYMMDDHHmmss</li>
-<li>year: 年</li>
-<li>…月，日，</li>
-</ul>
-<h2 id="操作：数据库"><a href="#操作：数据库" class="headerlink" title="操作：数据库"></a>操作：数据库</h2><dl>
-    <dt>添加数据库</dt>
-    <dd>语法：<code>create database 数据库库名;</code></dd>
-</dl>
+    
 
-<hr>
-<dl>
-    <dt>删除数据库</dt>
-    <dd>语法：<code>drop database 数据库库名;</code></dd>
-</dl>
-
-<hr>
-<dl>
-    <dt>查看数据库</dt>
-    <dd>语法：<code>show databases;</code></dd>
-</dl>
-
-<hr>
-<dl>
-    <dt>使用数据库</dt>
-    <dd>语法：<code>use 数据库库名;</code></dd>
-</dl>
-
-<h2 id="操作：数据表"><a href="#操作：数据表" class="headerlink" title="操作：数据表"></a>操作：数据表</h2><dl>
-    <dt>添加一个表</dt>
-    <dd>语法：<code>create table 表名(字段1 数据类型, 字段2 数据类型);</code></dd>
-    <dd>Eg: <code>create table student(id int, sname varchar(20));</code></dd>
-</dl>
-
-<hr>
-<dl>
-    <dt>删除数据表</dt>
-    <dd>语法：<code>drop table 表名;</code></dd>
-</dl>
-
-<hr>
-<dl>
-    <dt>查看数据表</dt>
-    <dd>语法：<code>show tables;</code></dd>
-    <dd> 查看当前数据库下的所有数据表 </dd>
-</dl>
-
-<hr>
-<dl>
-    <dt>查看数据表结构</dt>
-    <dd>语法：<code>desc table 表名;</code></dd>
-</dl>
-
-<hr>
-<dl>
-    <dt>修改数据表</dt>
-    <dd>语法：<code>alter table 表名 关键字 修改的内容</code></dd>
-</dl>
-
-<ul>
-<li><p>add: 添加字段 <code>alter table 表名 add 字段1 数据类型;</code></p>
-</li>
-<li><p>rename: 修改数据表名字 <code>alter table 表名 rename 新表名; </code></p>
-</li>
-<li><p>change: 改变数据表字段信息 <code>alter table 表名 change 旧字段 新字段 数据类型;</code></p>
-<ul>
-<li>Eg: 将 name 更改为 rename:  <code>alter table 表名 change name rename varChar(20);</code></li>
-<li>即没有做修改的部分也要完整的输出</li>
-</ul>
-</li>
-<li><p>drop: 删除字段 <code>alter table 表名 drop 字段;</code></p>
-</li>
-</ul>
-<h2 id="操作：数据"><a href="#操作：数据" class="headerlink" title="操作：数据"></a>操作：数据</h2><dl>
-    <dt>增加数据</dt>
-    <dd>语法：<code>insert into 表名(字段1,字段2,...) values(val1, val2, ...);</code></dd>
-    <dd>Eg: <code>insert into shangPing(gid, gname, price) value(1, 香皂, 10), (2, 充电器, 20)</code></dd>
-</dl>
-
-<hr>
-<dl>
-    <dt>删除数据信息</dt>
-    <dd>语法：<code>delete from 表名 [where 条件]</code>;</dd>
-    <dd>Eg: 删除goods表中gid为1的记录 <code>delete from goods where gid=1;</code></dd>
-    <dd>如果没有条件，则表示清空所有数据</dd>
-</dl>
-
-<hr>
-<dl>
-    <dt>修改数据信息</dt>
-    <dd>语法：<code>update 表名 set 修改的内容1, 修改的内容2 [where 条件];</code></dd>
-    <dd>将成绩表里001学员的成绩加2分，注意学号是字符型的。 <code>update xsb set cj=cj+2 where xh='001';</code> </dd>
-</dl>
-
-<hr>
-<dl>
-    <dt>查询数据信息</dt>
-    <dd>语法：<code>select *|字段1, 字段2, ... from 表 [where 条件]</code></dd>
-    <dd>查询学生表中所有信息 <code>select * from xsb;</code> </dd>
-    <dd>查询学生表中所有学号和姓名 <code>select xh, xm from xsb;</code> </dd>
-    <dd>查询学生表中所有女生的学号和姓名 <code>select xm, xh from xsb where xb='女';</code> </dd>
-</dl>
-    </div>
-    <!-- 文章：声明 -->
-    <!-- 文章的声明 -->
-<div id="copy-icon-数据库操作" style="display: grid; grid-template-rows: subgrid; grid-row: span 3; grid-gap: 12px">
-    <p><strong>作者</strong>：粥记捣蛋</p>
-
-    <div class="d-flex gap-3">
-        <p><strong>文章链接</strong>：<a href="https://zexuisme.github.io/2025/07/15/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/">https://ZeXuIsMe.github.io/2025/07/15/软件测试/数据库操作/</a></p>
-
-        <div
-                class="d-flex align-center"
-                style="width: fit-content; cursor: pointer"
-                onclick="postEjs.onclickCopy(`#copy-icon-数据库操作 a`)"
-        >
-            
-    <div class="tooltip tooltip-top " data-tooltip="点击复制">
-        <!-- button is-dark 为 bulma 的样式 -->
-        
-            <i
-                    class="fas fa-copy"
-                    style="font-size: 21px"
-            ></i>
-        
-    </div>
-
-
-<!--{-->
-<!--    type: '', // 表示提示输出的类型，参数有 text, image-->
-<!--    direction: '', // 表示toolTip出现的方向-->
-<!--    text: '', // 如果 type === 'text'，用于显示提示文本-->
-<!--    icon: '',  // icon 图标-->
-<!--    icon_prefix: '',  // icon 图标前缀，默认为 fab-->
-<!--    size: '', // 控制图标的大小, 默认为 48-->
-<!--    url: '' // 如果 type === image，图片的链接-->
-<!--}-->
-
-        </div>
-    </div>
-    <p><strong>版权声明</strong>：本网站所有文章除特别声明外,均采用 CC BY-NC-ND 4.0 许可协议。转载请注明出处!</p>
-
-</div>
-    <!-- 文章：文章切换 -->
-    <div style="margin-top: 48px">
-<!-- 文章阅读页的切换按钮 -->
-<div class="post-toggle d-flex justify-between flex-wrap gap-3">
-    <button
-            class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/07/16/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/')"
-            
-    >上一篇: 测试概论</button>
-    <button
-            class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/07/09/JS/JavaScript-%E6%92%AD%E6%94%BE%E5%99%A8%E5%AE%9A%E4%BD%8D%E9%97%AE%E9%A2%98/')"
-            
-    >下一篇: JavaScript-播放器定位问题</button>
-</div>
 
 <script>
-    class PostToggleEjs extends Blog {
-        constructor() {
-            super()
-        }
-
-        onclickLink (url) {
-            this.createALink(url, '_self')
-        }
-    }
-
-    const postToggleEjs = new PostToggleEjs()
-</script></div>
-
-</article>
-
-<div style="height: 80px"></div>
-
-<script>
-    class PostEjs extends Blog{
+    class Pagination extends Blog{
         constructor() {
             super();
+            // ...
+        }
+
+        onclickPage (url) {
+            this.createALink(url + '#home-post-list', '_self')
         }
     }
-    const postEjs = new PostEjs();
+
+    const pagination = new Pagination();
 </script>
+</div>
+
+<script>
+    const archiveEjs = {
+        handleChoose (event) {
+            console.log(event.target.value)
+            const value = event.target.value
+
+            if (!value) {
+                console.error('分类参数异常！')
+                return
+            }
+
+            const blog = new Blog()
+
+            blog.createALink(value, '_self')
+        }
+    }
+</script>
+
+<style>
+    #article-table tbody td {
+        padding: 12px;
+    }
+</style>
+
     </div>
 
     

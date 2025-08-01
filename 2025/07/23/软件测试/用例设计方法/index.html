@@ -430,7 +430,7 @@
         position: fixed;
         top: 0;
         left: 0;
-        height: 100px;
+        height: 80px;
         backdrop-filter: blur(10px);
         background-color: transparent;
         z-index: 99999;
@@ -483,11 +483,25 @@
 </style>
     <div id="blog-body">
         <!-- 渲染：阅读整篇文章 -->
+<style>
+    #read-post {
+        min-height: calc(100% - 210px);
+        max-width: 75rem;
+        margin: auto;
+    }
+
+    @media (max-width: 768px) {
+        #read-post {
+            max-width: 85%;
+        }
+    }
+</style>
+
 
 
 <div style="height: 80px"></div>
 
-<article id="read-post" class="v-layout-75 p-4" style="min-height: calc(100% - 210px)">
+<article id="read-post">
     <!-- Title -->
     <div class="level">
         <div class="level-left">
@@ -497,9 +511,8 @@
                         <span class="has-text-info">用例设计方法</span>
                     </h1>
                     <p class="subtitle is-6">
-                        <span class="icon is-small"><i class="fa fa-calendar"></i></span> 2025-07-23
-                        &nbsp; &nbsp; &nbsp; &nbsp;
-                        <span class="icon is-small"><i class="fa fa-user"></i></span> 粥记捣蛋
+                        <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-08-01 20:25
                     </p>
                 </div>
             </div>
@@ -516,6 +529,10 @@
     
         <a class="tag is-info is-light" href="/tags/Day3/">Day3</a>
     
+        <a class="tag is-info is-light" href="/tags/Day5/">Day5</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E5%90%88%E5%B9%B6/">合并</a>
+    
 </span>
             <span>
     
@@ -528,12 +545,15 @@
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%88%86%E6%9E%90%E5%88%B0%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">从分析到设计：用例设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90%E6%B3%95%EF%BC%88P53%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">流程分析法（P53）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">2.1.</span> <span class="toc-text">流程图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E8%BF%81%E7%A7%BB%E5%9B%BE%EF%BC%88P44%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">状态迁移图（P44）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%89%E4%BB%B7%E7%B1%BB%E5%88%92%E5%88%86%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">等价类划分法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9%E7%95%8C%E5%80%BC%E5%88%86%E6%9E%90%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">边界值分析法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%9F%9F%E6%B5%8B%E8%AF%95"><span class="toc-number">5.1.</span> <span class="toc-text">输入域测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E5%9F%9F%E6%B5%8B%E8%AF%95"><span class="toc-number">5.2.</span> <span class="toc-text">输出域测试</span></a></li></ol></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%88%86%E6%9E%90%E5%88%B0%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">从分析到设计：用例设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90%E6%B3%95%EF%BC%88P53%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">流程分析法（P53）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">2.1.</span> <span class="toc-text">流程图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E8%BF%81%E7%A7%BB%E5%9B%BE%EF%BC%88P44%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">状态迁移图（P44）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%89%E4%BB%B7%E7%B1%BB%E5%88%92%E5%88%86%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">等价类划分法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9%E7%95%8C%E5%80%BC%E5%88%86%E6%9E%90%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">边界值分析法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%9F%9F%E6%B5%8B%E8%AF%95"><span class="toc-number">5.1.</span> <span class="toc-text">输入域测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E5%9F%9F%E6%B5%8B%E8%AF%95"><span class="toc-number">5.2.</span> <span class="toc-text">输出域测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E5%AE%9A%E8%A1%A8%E6%B3%95P16"><span class="toc-number">6.</span> <span class="toc-text">判定表法P16</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E5%AE%9A%E8%A1%A8%EF%BC%9A%E4%BE%8B%E5%AD%90"><span class="toc-number">6.1.</span> <span class="toc-text">判定表：例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E5%AE%9A%E8%A1%A8%EF%BC%9A%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%90%88%E5%B9%B6"><span class="toc-number">6.2.</span> <span class="toc-text">判定表：用例设计的合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E5%AE%9A%E8%A1%A8%EF%BC%9A%E7%89%B9%E7%82%B9%E3%80%81%E9%80%82%E7%94%A8%E8%8C%83%E5%9B%B4"><span class="toc-number">6.3.</span> <span class="toc-text">判定表：特点、适用范围</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E4%BA%A4%E8%AF%95%E9%AA%8C%E6%B3%95"><span class="toc-number">7.</span> <span class="toc-text">正交试验法</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
-        <p><strong>用例设计的终极目标：提高拦截率</strong>：何为拦截率？指所负责模块被反馈问题的情况</p>
+        <p>在使用用例设计方法时，需要弄清楚一个问题：该方法的适用范围</p>
+<span id="more"></span>
+
+<p><strong>用例设计的终极目标：提高拦截率</strong>：何为拦截率？指所负责模块被反馈问题的情况</p>
 <h2 id="从分析到设计：用例设计"><a href="#从分析到设计：用例设计" class="headerlink" title="从分析到设计：用例设计"></a>从分析到设计：用例设计</h2><p>从需求中，找到<strong>测试点</strong>以及<strong>约束规则</strong>，形成大体方向的测试用例</p>
 <p>对于各类方法的个人理解：所有的，所谓的如什么流程分析法，状态迁移图法等等的目标都是为了增加用例的覆盖范围，尽可能的减少遗漏。</p>
 <h2 id="流程分析法（P53）"><a href="#流程分析法（P53）" class="headerlink" title="流程分析法（P53）"></a>流程分析法（P53）</h2><p>用路径分析的方式来设计测试用例（翻译：根据流程的操作步骤，从而发现测试点与约束规则，进而设计测试用例）</p>
@@ -626,7 +646,7 @@
 <p>等价类划分的核心原则为<strong>单一缺陷假设</strong>，目的是确保测试结果的“唯一性”，即数据被判定为无效，<strong>仅仅是因为违反了目标无效条件，而非其他因素</strong></p>
 </blockquote>
 <p>另外 F7 ~ F9，可以更改为：<code>| 无效   | 昵称：只有数字或者小写字母或者大写字母                       | F7 |</code></p>
-<p>为什么？</p>
+<p>为什么？ </p>
 <p>因为他们属于同一类：缺少两种及以上必需元素，也就是合并了</p>
 <h2 id="边界值分析法"><a href="#边界值分析法" class="headerlink" title="边界值分析法"></a>边界值分析法</h2><p>上点、离点、内点</p>
 <p>上点与离点是互补的，若上点为有效值，那么离点即为无效值，反之亦然。</p>
@@ -643,6 +663,23 @@
 </ul>
 <h3 id="输入域测试"><a href="#输入域测试" class="headerlink" title="输入域测试"></a>输入域测试</h3><p>极端测试：比如超长、超大、极小，小数的精确位数等等…;<br>特殊值测试：比如常见的电话号（11位，7、8位的座机号码，外卖的虚拟号码，客服号码）<br>场景：由业务规则的文本输入框，如电话、现金等输入</p>
 <h3 id="输出域测试"><a href="#输出域测试" class="headerlink" title="输出域测试"></a>输出域测试</h3><p>从输入结果的取值范围，倒推出测试用例</p>
+<h2 id="判定表法P16"><a href="#判定表法P16" class="headerlink" title="判定表法P16"></a>判定表法<sup>P16</sup></h2><ul>
+<li>将每个输入列，进行层层均分，每一列输入，均基于前一列输入的第一候选分类，按该输入的首选只数，进行均分<br>每条规则都是独立的，相互之间没有影响</li>
+</ul>
+<h3 id="判定表：例子"><a href="#判定表：例子" class="headerlink" title="判定表：例子"></a>判定表：例子</h3><p><img src="/../../images/51testing/%E5%88%A4%E5%AE%9A%E8%A1%A8%E6%B3%95%E4%BE%8B%E5%AD%90.png" alt="判定表法例子.png"></p>
+<p>在复杂的多输入情况下，简洁明了的不遗漏做全覆盖</p>
+<p>Eg: 计算器A+B&#x3D;?，系统做了输入限制，只能输入整数<br><img src="/../../images/51testing/%E8%AE%A1%E7%AE%97%E5%99%A8A.png" alt="计算器A.png"><br>进一步，做整数范围的判定</p>
+<h3 id="判定表：用例设计的合并"><a href="#判定表：用例设计的合并" class="headerlink" title="判定表：用例设计的合并"></a>判定表：用例设计的合并</h3><p><img src="/../../images/51testing/%E5%88%A4%E5%AE%9A%E8%A1%A8%E5%90%88%E5%B9%B6.png" alt="判定表合并.png"></p>
+<h3 id="判定表：特点、适用范围"><a href="#判定表：特点、适用范围" class="headerlink" title="判定表：特点、适用范围"></a>判定表：特点、适用范围</h3><p>特点：</p>
+<ul>
+<li>多个输入条件组合的情况，考虑全组合，测试的很全面，效果也好，但是测试效率低，因为过于全面，组合太多了，加大了测试工作量，提升了测试成本</li>
+<li>发现需求中不符合逻辑的缺陷</li>
+<li>化简合并可以一定程度上减少测试规则中存在的风险；</li>
+<li>十分复杂的逻辑关系需求无法胜任</li>
+</ul>
+<p>适用范围-功能测试：<br>  如游戏升级规则；保险费用计算规则；银行理财规则；电商的优惠规则；酒店订房规则…</p>
+<h2 id="正交试验法"><a href="#正交试验法" class="headerlink" title="正交试验法"></a>正交试验法</h2><p>定义：输入条件之间相互独立，没有相干性</p>
+<p>优点：极大的减少组合数量，且均匀分散<br>缺点：与判定表相比，由遗漏的风险</p>
 
     </div>
     <!-- 文章：声明 -->
@@ -650,7 +687,7 @@
 <div id="copy-icon-用例设计方法" style="display: grid; grid-template-rows: subgrid; grid-row: span 3; grid-gap: 12px">
     <p><strong>作者</strong>：粥记捣蛋</p>
 
-    <div class="d-flex gap-3">
+    <div class="d-flex">
         <p><strong>文章链接</strong>：<a href="https://zexuisme.github.io/2025/07/23/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">https://ZeXuIsMe.github.io/2025/07/23/软件测试/用例设计方法/</a></p>
 
         <div
@@ -664,7 +701,7 @@
         
             <i
                     class="fas fa-copy"
-                    style="font-size: 21px"
+                    style="font-size: 18px"
             ></i>
         
     </div>

@@ -430,7 +430,7 @@
         position: fixed;
         top: 0;
         left: 0;
-        height: 100px;
+        height: 80px;
         backdrop-filter: blur(10px);
         background-color: transparent;
         z-index: 99999;
@@ -483,11 +483,25 @@
 </style>
     <div id="blog-body">
         <!-- 渲染：阅读整篇文章 -->
+<style>
+    #read-post {
+        min-height: calc(100% - 210px);
+        max-width: 75rem;
+        margin: auto;
+    }
+
+    @media (max-width: 768px) {
+        #read-post {
+            max-width: 85%;
+        }
+    }
+</style>
+
 
 
 <div style="height: 80px"></div>
 
-<article id="read-post" class="v-layout-75 p-4" style="min-height: calc(100% - 210px)">
+<article id="read-post">
     <!-- Title -->
     <div class="level">
         <div class="level-left">
@@ -497,9 +511,8 @@
                         <span class="has-text-info">额外补充_过度设计</span>
                     </h1>
                     <p class="subtitle is-6">
-                        <span class="icon is-small"><i class="fa fa-calendar"></i></span> 2025-07-24
-                        &nbsp; &nbsp; &nbsp; &nbsp;
-                        <span class="icon is-small"><i class="fa fa-user"></i></span> 粥记捣蛋
+                        <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-08-01 19:30
                     </p>
                 </div>
             </div>
@@ -537,10 +550,12 @@
         <!-- Content -->
         <blockquote>
 <p><strong>摘要</strong>：不同数据敏感度的测试用例示例</p>
+<p><strong>防过度设计核心秘籍</strong>：<mark>先确保核心需求功能的完整性和正确性，再追求异常场景</mark>，即先让功能在‘该做的事’上不出错，再确保在‘不该做的事’上不添乱</p>
 </blockquote>
 <span id="more"></span>
 
-<p>Q：为什么会有这篇文章呢？<br>A：<mark>测试用例的编写不能过分依赖前端</mark>，该考虑到的情况还是得考虑进去，但需要根据功能所处场景以及该功能的对用户和对数据的影响程度而定，避免过分设计。<strong>最终以业务需求和用户实际使用场景为根本依据</strong></p>
+<p>Q：为什么会有这篇文章呢？</p>
+<p>A：<mark>测试用例的编写不能过分依赖前端</mark>，该考虑到的情况还是得考虑进去，但需要根据功能所处场景以及该功能的对用户和对数据的影响程度而定，避免过分设计。<strong>最终以业务需求和用户实际使用场景为根本依据</strong></p>
 <h2 id="场景一：数据敏感度高（银行转账金额输入框）"><a href="#场景一：数据敏感度高（银行转账金额输入框）" class="headerlink" title="场景一：数据敏感度高（银行转账金额输入框）"></a>场景一：数据敏感度高（银行转账金额输入框）</h2><h3 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h3><p>用户输入转账金额，需支持正数，精确到分（最多2位小数），单日限额50万元。</p>
 <h3 id="核心影响"><a href="#核心影响" class="headerlink" title="核心影响"></a>核心影响</h3><p>金额错误可能导致资金损失，<mark>数据敏感度极高</mark>。</p>
 <h3 id="测试用例设计"><a href="#测试用例设计" class="headerlink" title="测试用例设计"></a>测试用例设计</h3><h4 id="1-合法输入"><a href="#1-合法输入" class="headerlink" title="1. 合法输入"></a>1. 合法输入</h4><ul>
@@ -610,7 +625,7 @@
 <div id="copy-icon-额外补充_过度设计" style="display: grid; grid-template-rows: subgrid; grid-row: span 3; grid-gap: 12px">
     <p><strong>作者</strong>：粥记捣蛋</p>
 
-    <div class="d-flex gap-3">
+    <div class="d-flex">
         <p><strong>文章链接</strong>：<a href="https://zexuisme.github.io/2025/07/24/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85_%E8%BF%87%E5%BA%A6%E8%AE%BE%E8%AE%A1/">https://ZeXuIsMe.github.io/2025/07/24/软件测试/额外补充_过度设计/</a></p>
 
         <div
@@ -624,7 +639,7 @@
         
             <i
                     class="fas fa-copy"
-                    style="font-size: 21px"
+                    style="font-size: 18px"
             ></i>
         
     </div>

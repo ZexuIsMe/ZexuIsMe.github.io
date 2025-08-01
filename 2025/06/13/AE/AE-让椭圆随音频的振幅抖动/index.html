@@ -430,7 +430,7 @@
         position: fixed;
         top: 0;
         left: 0;
-        height: 100px;
+        height: 80px;
         backdrop-filter: blur(10px);
         background-color: transparent;
         z-index: 99999;
@@ -483,11 +483,25 @@
 </style>
     <div id="blog-body">
         <!-- 渲染：阅读整篇文章 -->
+<style>
+    #read-post {
+        min-height: calc(100% - 210px);
+        max-width: 75rem;
+        margin: auto;
+    }
+
+    @media (max-width: 768px) {
+        #read-post {
+            max-width: 85%;
+        }
+    }
+</style>
+
 
 
 <div style="height: 80px"></div>
 
-<article id="read-post" class="v-layout-75 p-4" style="min-height: calc(100% - 210px)">
+<article id="read-post">
     <!-- Title -->
     <div class="level">
         <div class="level-left">
@@ -497,9 +511,8 @@
                         <span class="has-text-info">AE-让椭圆随音频的振幅抖动</span>
                     </h1>
                     <p class="subtitle is-6">
-                        <span class="icon is-small"><i class="fa fa-calendar"></i></span> 2025-06-13
-                        &nbsp; &nbsp; &nbsp; &nbsp;
-                        <span class="icon is-small"><i class="fa fa-user"></i></span> 粥记捣蛋
+                        <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-07-17 20:30
                     </p>
                 </div>
             </div>
@@ -568,7 +581,7 @@
 <div id="copy-icon-AE-让椭圆随音频的振幅抖动" style="display: grid; grid-template-rows: subgrid; grid-row: span 3; grid-gap: 12px">
     <p><strong>作者</strong>：粥记捣蛋</p>
 
-    <div class="d-flex gap-3">
+    <div class="d-flex">
         <p><strong>文章链接</strong>：<a href="https://zexuisme.github.io/2025/06/13/AE/AE-%E8%AE%A9%E6%A4%AD%E5%9C%86%E9%9A%8F%E9%9F%B3%E9%A2%91%E7%9A%84%E6%8C%AF%E5%B9%85%E6%8A%96%E5%8A%A8/">https://ZeXuIsMe.github.io/2025/06/13/AE/AE-让椭圆随音频的振幅抖动/</a></p>
 
         <div
@@ -582,7 +595,7 @@
         
             <i
                     class="fas fa-copy"
-                    style="font-size: 21px"
+                    style="font-size: 18px"
             ></i>
         
     </div>
