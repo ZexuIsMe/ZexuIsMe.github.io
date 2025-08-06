@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>西门子-构筑类API | 粥记捣蛋</title>
+    <title>SQL-组合查询 | 粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -486,7 +486,7 @@
 <style>
     #read-post {
         min-height: calc(100% - 210px);
-        max-width: 75rem;
+        max-width: 85%;
         margin: auto;
     }
 
@@ -508,11 +508,11 @@
             <div class="media">
                 <div class="media-content">
                     <h1 class="title is-4 modify-post-title">
-                        <span class="has-text-info">西门子-构筑类API</span>
+                        <span class="has-text-info">SQL-组合查询</span>
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-07-21 23:28
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-08-06 23:58
                     </p>
                 </div>
             </div>
@@ -521,105 +521,175 @@
         <div class="pt-4">
             <span>
     
-        <a class="tag is-info is-light" href="/tags/%E8%A5%BF%E9%97%A8%E5%AD%90/">西门子</a>
+        <a class="tag is-info is-light" href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E5%90%88%E5%B9%B6/">合并</a>
+    
+        <a class="tag is-info is-light" href="/tags/SQL/">SQL</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E7%BB%84%E5%90%88%E6%9F%A5%E8%AF%A2/">组合查询</a>
+    
+        <a class="tag is-info is-light" href="/tags/JOIN/">JOIN</a>
+    
+        <a class="tag is-info is-light" href="/tags/UNION/">UNION</a>
     
 </span>
             <span>
-    <span>--尚未分类--</span>
+    
+        <a class="tag is-warning is-light" href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
+    
+        <a class="tag is-warning is-light" href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/SQL/">SQL</a>
+    
+        <a class="tag is-warning is-light" href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/SQL/%E7%BB%84%E5%90%88%E6%9F%A5%E8%AF%A2/">组合查询</a>
+    
 </span>
         </div>
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E5%BA%94API%E6%96%87%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">创建对应API文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDT"><span class="toc-number">2.</span> <span class="toc-text">UDT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API"><span class="toc-number">3.</span> <span class="toc-text">API?</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E5%90%88%E5%B9%B6%EF%BC%9AUnion"><span class="toc-number">1.</span> <span class="toc-text">表合并：Union</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JOIN"><span class="toc-number">2.</span> <span class="toc-text">JOIN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JOIN%EF%BC%9AUSING"><span class="toc-number">2.1.</span> <span class="toc-text">JOIN：USING</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JOIN-%E9%9A%90%E6%80%A7%E8%81%94%E6%9F%A5"><span class="toc-number">2.2.</span> <span class="toc-text">JOIN: 隐性联查</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WITH"><span class="toc-number">3.</span> <span class="toc-text">WITH</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
-        <p>每次都向FB块中传入全局DB或者全局PLC编号变量，随着嵌入深度的增加，想要向外传递更改变量参数，会变得十分困难</p>
-<p>因此，构筑一个模块专门用来完成参数的修改，于是我想到了前后端接口的调用，所以尝试弄了一个简易版的传参，类似于前端的inject</p>
-<h2 id="创建对应API文件"><a href="#创建对应API文件" class="headerlink" title="创建对应API文件"></a>创建对应API文件</h2><ol>
-<li><p><strong>程序块 &gt; 右击程序块 &gt; “新增块”</strong><br>会创建一个文件夹，将其命名为API，之后这个文件夹只负责创建用于修改全局变量的FB块或者FC块</p>
-</li>
-<li><p><strong>PLC 数据类型 &gt; 右击PLC 数据类型 &gt; “新增块”</strong>：会创建一个文件夹，将其命名为 API，之后这个文件夹只负责创建用于修改全局变量的UDT</p>
-</li>
-</ol>
-<span id="more"></span> 
-
-<h2 id="UDT"><a href="#UDT" class="headerlink" title="UDT"></a>UDT</h2><p>使用UDT构筑自定义数据类型</p>
+        <h2 id="表合并：Union"><a href="#表合并：Union" class="headerlink" title="表合并：Union"></a>表合并：Union</h2><p>合并表的操作，又叫<strong>垂直拼接</strong>。</p>
+<p>使用场景：数据很多，将表进行切分，比如1月的订单数据，2月的订单数据…，类似于分页操作</p>
+<ul>
+<li><strong>会自动做去重操作</strong></li>
+<li><strong>UNION等价于<code>OR</code>，<code>OR</code>也会自动去重</strong></li>
+<li>输出字段按UNION左侧的字段输出</li>
+<li>组合查询时，前后两表用于显示的字段数据类型必须一致</li>
+<li>只看数据类型不看长度，比如varchar(10)和varchar(20);</li>
+</ul>
+<p>Q：那你知道去重的是什么样的数据吗？和distinct有区别吗？</p>
+<p>A：UNION是针对<strong>行</strong>的去重，去掉的是一模一样的行数据，distinct是针对<strong>字段</strong>的去重</p>
 <table>
 <thead>
 <tr>
-<th>API_Result 参数</th>
-<th>数据类型</th>
-<th>默认值</th>
+<th>aid</th>
+<th>aName</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Alice</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Simon</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>bid</th>
+<th>bName</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Alice</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Bob</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> aid, aName <span class="hljs-keyword">FROM</span> aaa<br><span class="hljs-keyword">UNION</span><br><span class="hljs-keyword">SELECT</span> bid, bName <span class="hljs-keyword">FROM</span> bbb;<br></code></pre></td></tr></table></figure>
+<p>因为 a、b 两表的 Alice 数据一模一样，会被去重；<br>若 A 表 Alice 的 aid 参数为 3，那么当执行 UNION 组合查询的时候，就不会被去重。</p>
+<p>如果不希望主动去掉相同数据行，可使用 <code>UNION ALL</code></p>
+<blockquote>
+<p>Q：INNER JOIN 和 JOIN 区别？</p>
+</blockquote>
+<p>A：没有区别。他们是一样的，常见的数据库中他们的含义是一致的。</p>
+<p>Q：组合查询中的ON和WHERE的区别？<br>A：ON子句用于定义连接条件；WHERE是用于过滤连接后的结果集</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"># 输出两行记录<br><span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span> <span class="hljs-keyword">UNION</span> <span class="hljs-keyword">SELECT</span> <span class="hljs-number">2</span>;<br><br># <span class="hljs-keyword">AS</span>只认第一个，后续无效<br><span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span> <span class="hljs-keyword">AS</span> abc <span class="hljs-keyword">UNION</span> <span class="hljs-keyword">SELECT</span> <span class="hljs-number">2</span> <span class="hljs-keyword">AS</span> efg<br></code></pre></td></tr></table></figure>
+
+<h2 id="JOIN"><a href="#JOIN" class="headerlink" title="JOIN"></a>JOIN</h2><p><img src="https://www.runoob.com/wp-content/uploads/2019/01/sql-join.png" alt="JOIN"></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
 <th>描述</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>ID</td>
-<td>String[48]</td>
-<td>‘’</td>
-<td>调用标识，除了用于辨别，无他用</td>
+<td>inner join</td>
+<td>返回两个表中满足连接条件的记录（交集）</td>
 </tr>
 <tr>
-<td>code</td>
-<td>Int</td>
-<td>0</td>
-<td>状态码</td>
+<td>left join</td>
+<td>返回左表中的所有记录，即使右表中没有匹配的记录（保留左表）</td>
 </tr>
 <tr>
-<td>codeIndex</td>
-<td>Int</td>
-<td>0</td>
-<td>codeList 的下标</td>
+<td>right join</td>
+<td>返回右表中的所有记录，即使左表中没有匹配的记录（保留右表）</td>
 </tr>
 <tr>
-<td>codeList</td>
-<td>Array[0…?] of Int</td>
-<td>–</td>
-<td>状态码列表，安全信息，警告信息，错误信息都放在里面</td>
+<td>full outer join</td>
+<td>返回两个表的并集，包含匹配和不匹配的记录</td>
 </tr>
 <tr>
-<td>data</td>
-<td>自定义类型</td>
-<td>–</td>
-<td>用于返回API执行后的结果，自己想放什么放什么，没规定</td>
+<td>cross join</td>
+<td>返回两个表的<strong>笛卡尔积</strong>，每条左表记录与每条右表记录进行组合</td>
+</tr>
+<tr>
+<td>self join</td>
+<td>将一个表与自身连接</td>
+</tr>
+<tr>
+<td>natural join</td>
+<td>基于同名字段自动匹配连接的表</td>
 </tr>
 </tbody></table>
-<p><img src="/../../images/%E8%A5%BF%E9%97%A8%E5%AD%90-%E6%9E%84%E7%AD%91%E7%B1%BBAPI/image.png" alt="image.png"></p>
-<p>Q：这个有什么用？<br>偷懒和方便维护，因为结构固定，且一般情况下若是要用到这个，表明你可能受到嵌套传参困难的问题</p>
-<h2 id="API"><a href="#API" class="headerlink" title="API?"></a>API?</h2><ul>
-<li><p>程序块 &gt; API &gt; setHLD：修改红绿灯参数</p>
-<p>根据上面UDT复制一份，路径：PLC 数据类型 &gt; API &gt; API_Result_1，改名为 ResultHLD，更具情况再调整</p>
+<p>如图所示，红色区域即为组合查询返回的结果</p>
 <ul>
-<li>Input<ul>
-<li>Run: Bool API 开关</li>
-<li>ID：String[48] 标识</li>
-<li>params 自定义的UDT，这个是关键点，Output.result用不用自定义都可以，但是这个一定要用</li>
+<li>联表后是一张全新的大表，所以在查询时需要考虑是否去重等等问题。</li>
+<li>只做联表查询是否，用于显示的字段别忘了写上出处</li>
+<li>JOIN系列是笛卡尔积绘制临时表</li>
 </ul>
-</li>
-<li>Output<ul>
-<li>result: ResultHLD(自定义的)</li>
+<p>请看下面这段问题SQL语句，<strong>你知道问题出在哪里吗？</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br>    device_id,  question_id,	<span class="hljs-keyword">result</span><br><span class="hljs-keyword">FROM</span> question_practice_detail <span class="hljs-keyword">AS</span> qpd<br><span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> user_profile <span class="hljs-keyword">AS</span> up<br>    <span class="hljs-keyword">ON</span> qpd.device_id <span class="hljs-operator">=</span> up.device_id<br><span class="hljs-keyword">WHERE</span> up.university <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;浙江大学&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>用于显示的字段<code>device_id, question_id, result</code> 不知道出自<code>qpd</code>表还是<code>up</code>表，需要表示出处<code>qpd.device_id, qpd.question_id, qpd.result</code></strong></p>
+<h3 id="JOIN：USING"><a href="#JOIN：USING" class="headerlink" title="JOIN：USING"></a>JOIN：USING</h3><p>若连接条件的字段都一样，那么可以使用<code>USING</code>简化语句：</p>
+<p><code>ON qpd.device_id = up.device_id</code> 》 <code>USING(device_id)</code></p>
+<p>如果联表过程中发现是多个：<code>INNER JOIN user_profile AS up USING(device_id, column_name)</code></p>
+<h3 id="JOIN-隐性联查"><a href="#JOIN-隐性联查" class="headerlink" title="JOIN: 隐性联查"></a>JOIN: 隐性联查</h3><p>这是第一段三表联查的SQL语句：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br>    up.university<br>,   qe.difficult_level<br>,   ROUND(<br>       <span class="hljs-built_in">COUNT</span>(qe.difficult_level) <span class="hljs-operator">/</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-keyword">DISTINCT</span> up.device_id)<br>    , <span class="hljs-number">4</span>) <span class="hljs-keyword">AS</span> avg_answer_cnt<br><span class="hljs-keyword">FROM</span> user_profile <span class="hljs-keyword">AS</span> up<br><span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> question_practice_detail <span class="hljs-keyword">AS</span> qpd<br>    <span class="hljs-keyword">ON</span> up.device_id <span class="hljs-operator">=</span> qpd.device_id<br><span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> question_detail <span class="hljs-keyword">AS</span> qe<br>    <span class="hljs-keyword">ON</span> qpd.question_id <span class="hljs-operator">=</span> qe.question_id<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span><br>    up.university<br>,   qe.difficult_level<br>;<br></code></pre></td></tr></table></figure>
+
+<p>通过将联表关键作用于WHERE子句上，实现隐性联查</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br>    up.university<br>,   qe.difficult_level<br>,   ROUND(<br>       <span class="hljs-built_in">COUNT</span>(qe.difficult_level) <span class="hljs-operator">/</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-keyword">DISTINCT</span> up.device_id)<br>    , <span class="hljs-number">4</span>) <span class="hljs-keyword">AS</span> avg_answer_cnt<br><span class="hljs-keyword">FROM</span><br>    user_profile <span class="hljs-keyword">AS</span> up<br>,   question_practice_detail <span class="hljs-keyword">AS</span> qpd<br>,   question_detail <span class="hljs-keyword">AS</span> qe<br><span class="hljs-keyword">WHERE</span><br>     up.device_id <span class="hljs-operator">=</span> qpd.device_id<br> <span class="hljs-keyword">AND</span> qpd.question_id <span class="hljs-operator">=</span> qe.question_id<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span><br>    up.university<br>,   qe.difficult_level<br>;<br></code></pre></td></tr></table></figure>
+
+<p>这样写可以在一定程度上让语句更加可读，唯一的理解成本就是需要先了解<strong>隐性连接</strong>相关操作</p>
+<h2 id="WITH"><a href="#WITH" class="headerlink" title="WITH"></a>WITH</h2><p>语法：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">WITH</span> cte_name <span class="hljs-keyword">AS</span> (<br>  <span class="hljs-keyword">SELECT</span> ...  <span class="hljs-comment">-- 子查询逻辑</span><br>)<br><span class="hljs-keyword">SELECT</span> ... <span class="hljs-keyword">FROM</span> cte_name;  <span class="hljs-comment">-- 仅在当前语句中使用cte_name</span><br></code></pre></td></tr></table></figure>
+
+<p>简化复杂逻辑，比如多表联查的联结过程用WITH代替，具体的操作则用常规的SQL查询即可</p>
+<ul>
+<li><strong>在完成操作前，没有With以及 WITH AS() 括号内的SELECT语句没有都不加<code>;</code></strong></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs Javascript"><span class="hljs-variable constant_">IF</span> <span class="hljs-variable constant_">NOT</span> #<span class="hljs-title class_">Run</span> <span class="hljs-variable constant_">THEN</span><br>    <span class="hljs-variable constant_">RETURN</span>;<br><span class="hljs-variable constant_">END_IF</span>;<br><br>#result.<span class="hljs-property">code</span> := #result.<span class="hljs-property">codeList</span>[#result.<span class="hljs-property">codeIndex</span>];<br><br><span class="hljs-variable constant_">IF</span> #<span class="hljs-variable constant_">ID</span> = <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-variable constant_">THEN</span><br>    #result.<span class="hljs-property">codeIndex</span> := <span class="hljs-number">1</span>;<br>    <span class="hljs-variable constant_">RETURN</span>;<br><span class="hljs-variable constant_">END_IF</span>;<br><br><span class="hljs-comment">// 接收参数，然后去修改全局参数</span><br><span class="hljs-string">&quot;HLD&quot;</span> := #<span class="hljs-variable constant_">HLD</span>;<br><br>#result.<span class="hljs-property">code</span> := <span class="hljs-number">200</span>;<br>#result.<span class="hljs-property">data</span> := <span class="hljs-string">&quot;HLD&quot;</span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 2.1 查询101期吴丹同学修的QTP, Linux两门课程的成绩</span><br><span class="hljs-keyword">WITH</span> With_2 <span class="hljs-keyword">AS</span>(<br>    <span class="hljs-keyword">SELECT</span><br>        学生表.班级编号, 学生表.学号, 学生表.姓名<br>    ,   课程表.课程编号, 课程表.课程名<br>    ,   成绩表.成绩<br>    <span class="hljs-keyword">FROM</span> 学生表, 成绩表, 课程表<br>    <span class="hljs-keyword">WHERE</span><br>        学生表.班级编号 <span class="hljs-operator">=</span> 成绩表.班级编号<br>    <span class="hljs-keyword">AND</span> 成绩表.课程编号 <span class="hljs-operator">=</span> 课程表.课程编号<br>)<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> With_2 <span class="hljs-keyword">WHERE</span> 课程名 <span class="hljs-keyword">IN</span>(<span class="hljs-string">&#x27;QTP&#x27;</span>, <span class="hljs-string">&#x27;Linux&#x27;</span>) <span class="hljs-keyword">AND</span> 姓名<span class="hljs-operator">=</span><span class="hljs-string">&#x27;吴丹&#x27;</span> <span class="hljs-keyword">AND</span> 课程编号 <span class="hljs-operator">=</span> <span class="hljs-number">101</span>;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Q：和SQL视图的区别？</p>
+</blockquote>
+<p>共同点：都有封装效果，拆分复杂逻辑</p>
+<p>不同点：with只在当前查询有效，SQL视图一般情况下如果不删除则是永久的有效</p>
+
     </div>
     <!-- 文章：声明 -->
     <!-- 文章的声明 -->
-<div id="copy-icon-西门子-构筑类API" style="display: grid; grid-template-rows: subgrid; grid-row: span 3; grid-gap: 12px">
+<div id="copy-icon-SQL-组合查询" style="display: grid; grid-template-rows: subgrid; grid-row: span 3; grid-gap: 12px">
     <p><strong>作者</strong>：粥记捣蛋</p>
 
     <div class="d-flex">
-        <p><strong>文章链接</strong>：<a href="https://zexuisme.github.io/2025/06/05/%E8%A5%BF%E9%97%A8%E5%AD%90/%E8%A5%BF%E9%97%A8%E5%AD%90-%E6%9E%84%E7%AD%91%E7%B1%BBAPI/">https://ZeXuIsMe.github.io/2025/06/05/西门子/西门子-构筑类API/</a></p>
+        <p><strong>文章链接</strong>：<a href="https://zexuisme.github.io/2025/08/03/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL-JOIN/">https://ZeXuIsMe.github.io/2025/08/03/软件测试/数据库/SQL-JOIN/</a></p>
 
         <div
                 class="d-flex align-center"
                 style="width: fit-content; cursor: pointer"
-                onclick="postEjs.onclickCopy(`#copy-icon-西门子-构筑类API a`)"
+                onclick="postEjs.onclickCopy(`#copy-icon-SQL-组合查询 a`)"
         >
             
     <div class="tooltip tooltip-top " data-tooltip="点击复制">
@@ -654,14 +724,14 @@
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/06/05/Theme/')"
+            onclick="postToggleEjs.onclickLink('/2025/08/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/')"
             
-    >上一篇: Theme</button>
+    >上一篇: 正则表达式</button>
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/06/05/Markdown/Markdown%E8%AF%AD%E6%B3%95/')"
+            onclick="postToggleEjs.onclickLink('/2025/08/01/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E6%96%B9%E6%B3%95/%E5%9B%A0%E6%9E%9C%E5%9B%BE%E6%B3%95/')"
             
-    >下一篇: Markdown语法</button>
+    >下一篇: 因果图法</button>
 </div>
 
 <script>

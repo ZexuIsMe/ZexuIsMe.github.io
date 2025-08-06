@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>西门子_名词 | 粥记捣蛋</title>
+    <title>视图 | 粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -486,7 +486,7 @@
 <style>
     #read-post {
         min-height: calc(100% - 210px);
-        max-width: 75rem;
+        max-width: 85%;
         margin: auto;
     }
 
@@ -508,11 +508,11 @@
             <div class="media">
                 <div class="media-content">
                     <h1 class="title is-4 modify-post-title">
-                        <span class="has-text-info">西门子_名词</span>
+                        <span class="has-text-info">视图</span>
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-07-21 23:28
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-08-05 21:58
                     </p>
                 </div>
             </div>
@@ -521,82 +521,59 @@
         <div class="pt-4">
             <span>
     
-        <a class="tag is-info is-light" href="/tags/%E8%A5%BF%E9%97%A8%E5%AD%90/">西门子</a>
+        <a class="tag is-info is-light" href="/tags/SQL/">SQL</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E8%A7%86%E5%9B%BE/">视图</a>
     
 </span>
             <span>
-    <span>--尚未分类--</span>
+    
+        <a class="tag is-warning is-light" href="/categories/SQL/">SQL</a>
+    
+        <a class="tag is-warning is-light" href="/categories/SQL/%E8%A7%86%E5%9B%BE/">视图</a>
+    
 </span>
         </div>
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E4%BD%8D%E6%9C%BA"><span class="toc-number">1.</span> <span class="toc-text">上位机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E4%BD%8D%E6%9C%BA"><span class="toc-number">2.</span> <span class="toc-text">下位机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%B2%E5%8F%A3"><span class="toc-number">3.</span> <span class="toc-text">串口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E6%A0%87%E8%AE%BE%E5%A4%87"><span class="toc-number">4.</span> <span class="toc-text">非标设备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E6%A0%87%E5%87%86%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="toc-number">5.</span> <span class="toc-text">非标准自动化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HMI"><span class="toc-number">6.</span> <span class="toc-text">HMI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%82%B9%E4%BD%8D%E8%A1%A8"><span class="toc-number">7.</span> <span class="toc-text">点位表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDT%EF%BC%9A%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">8.</span> <span class="toc-text">UDT：自定义数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PTO"><span class="toc-number">9.</span> <span class="toc-text">PTO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E6%B5%81"><span class="toc-number">10.</span> <span class="toc-text">电流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E5%8E%8B"><span class="toc-number">11.</span> <span class="toc-text">电压</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A7%86%E5%9B%BE"><span class="toc-number">1.</span> <span class="toc-text">创建视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%A7%86%E5%9B%BE"><span class="toc-number">2.</span> <span class="toc-text">删除视图</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
-        <h2 id="上位机"><a href="#上位机" class="headerlink" title="上位机"></a>上位机</h2><p>上位机是指用于监控和控制下位设备的具有强大计算能力和数据处理能力的计算机系统。<br>上位机在多个领域有广泛应用：</p>
-<ol>
-<li>工业控制：监控生产过程。</li>
-<li>自动化系统：协调各设备的运行。</li>
-<li>实验室设备：控制实验仪器。</li>
-<li>智能家居：实现家居设备的集中管理。</li>
-</ol>
-<p>上位机作为控制和管理下位设备的核心部分，提高了系统的智能化和自动化水平。</p>
-<p>其主要特点和功能包括：</p>
-<ol>
-<li>数据采集与监测：实时获取下位设备的数据信息。</li>
-<li>控制与操作：发送指令来控制下位设备的运行。</li>
-<li>数据处理与分析：对采集的数据进行处理和分析。</li>
-<li>人机交互：提供友好的用户界面，方便操作和监控。</li>
-<li>通信功能：与下位设备进行数据通信。</li>
-<li>系统管理：包括用户管理、权限设置等。</li>
-<li>数据存储：存储相关数据，便于查询和追溯。</li>
-</ol>
-<blockquote>
-<p>上位机所做的事情同前端工作及其相似，通过可视化界面去控制和监控程序的运行，负责数据的增删改查和人机交互工作</p>
-<p>假设现在的我写的没有让现在的你理解到</p>
-<p>比如触摸屏就算作是上位机中一种，且是最常见的上位机，<br>日常生活中时常容易听到的或看到的：智能家居系统、自动化停车场系统<br>典型设备类型：电脑，手机，平板，面板，触摸屏</p>
-</blockquote>
-<span id="more"></span> 
-
-<h2 id="下位机"><a href="#下位机" class="headerlink" title="下位机"></a>下位机</h2><p>下位机指直接与机器相连接的计算机或单片机，一般用于接收和反馈上位机的指令，并且根据指令控制机器执行动作以及从机器传感器读取数据。<br>典型设备类型：PLC，STM32，51，FPGA，ARM等各类可编程芯片</p>
-<p>上位机软件：<br>用于完成上位机操作交互的软件被定义为“上位机软件”；比如TIA（博途）</p>
-<h2 id="串口"><a href="#串口" class="headerlink" title="串口"></a>串口</h2><h2 id="非标设备"><a href="#非标设备" class="headerlink" title="非标设备"></a>非标设备</h2><h2 id="非标准自动化"><a href="#非标准自动化" class="headerlink" title="非标准自动化"></a>非标准自动化</h2><h2 id="HMI"><a href="#HMI" class="headerlink" title="HMI"></a>HMI</h2><p>HMI 指触摸屏</p>
-<h2 id="点位表"><a href="#点位表" class="headerlink" title="点位表"></a>点位表</h2><p>点位表指现场需要采集的点数，分开关量输入、输出，模拟量输入、输出。以此来配置PLC需要多少I&#x2F;O模块</p>
-<p>点位表是记录PLC（可编程逻辑控制器）所使用的输入输出点位以及对应的地址、类型、命名等信息的重要文档。</p>
-<p>通过查看点位表，相关工作人员可以清楚地了解PLC与外部设备之间的连接关系，并在程序编写过程中准确地引用这些点位。</p>
-<p><img src="/../../images/%E8%A5%BF%E9%97%A8%E5%AD%90-%E5%90%8D%E8%AF%8D/%E7%82%B9%E4%BD%8D%E8%A1%A8.png" alt="点位表"></p>
-<h2 id="UDT：自定义数据结构"><a href="#UDT：自定义数据结构" class="headerlink" title="UDT：自定义数据结构"></a>UDT：自定义数据结构</h2><p>用前端的方式理解的话，它和Object及其相识，或者可以将其理解为小号的DB块</p>
-<p>一般而言，DB块中只能创建固定类型的变量或者数组变量，数据类型都是固定的，不是很灵活</p>
-<h2 id="PTO"><a href="#PTO" class="headerlink" title="PTO"></a>PTO</h2><p>PTO 是 Pulse Train Output 的缩写，意为脉冲串输出。</p>
-<p>在西门子PLC S7-200系列中，PTO指令用于S7-200 CPU集成点Q0.0和Q0.1的脉冲输出，其CPU需要使用晶体管输出类型。PTO可以产生单段脉冲或通过使用脉冲包络产生多段脉冲，具有手动运行和包络运动等功能。</p>
-<h2 id="电流"><a href="#电流" class="headerlink" title="电流"></a>电流</h2><blockquote>
-<p><strong>电流通常是指沿导体传输的电荷流动</strong>。<br>它可以是恒定的直流电流（电荷持续流动），也可以是交流电流（电荷周期性地来回流动）。<br>而脉冲通常指的是突然而短暂的电流或电压变化，它们可能是由于开关操作、传感器触发或其他瞬时事件引起的。<br>因此，虽然<strong>电流可以在脉冲中存在，但电流并不专指脉冲，而是指电荷的流动</strong>。</p>
-</blockquote>
-<p>可以简单的理解为：电流是脉冲，但脉冲不一定是电流</p>
-<h2 id="电压"><a href="#电压" class="headerlink" title="电压"></a>电压</h2><p>电流好比水管中的水流流速，当打开阀门时，水会顺着管道流出，流速越快电流越大</p>
-<p>比如水库倾斜而下的水流，看做是电流的话，此时的电流是极大的</p>
-<p>电压好比水锤，当水流的流速过大关闭阀门时产生的阻力就越大，水流流速和关门时对对流造成的阻力即是水锤效应，</p>
-<p>所以，电流流速越大，根据阻力的大小，决定电压的大小，</p>
-<pre><code>公式：电压（V） = 电流（I） * 电阻（R）
-</code></pre>
-<p>若电阻不变，那么电流和电压是成正比的，比例系数就是电阻</p>
+        <p>所谓的SQL视图，用于简化编写提高编写速度的，如果使用频率很高，那么可以考虑使用视图</p>
+<p>类似于CLASS类封装或者变量的声明，在需要用到的地方进行使用，或者理解为一种API接口</p>
+<ul>
+<li>视图占虚拟内存，不占物理内存</li>
+<li><strong>SQL视图的数据是事实的</strong>，表更新，视图也更新，但一般不操作视图进行更新。</li>
+<li>视图可以嵌套</li>
+<li>提高编写速度</li>
+<li>单表、多表、聚合都可用</li>
+</ul>
+<h2 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h2><p>语法：<code>CREATE VIEW view_students SELECT * FROM students;</code></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> view_students <span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> students <span class="hljs-keyword">WHERE</span> 班级<span class="hljs-operator">=</span><span class="hljs-number">1</span>;<br><br># EG：查询学生表<span class="hljs-number">1</span>班学生分数高于<span class="hljs-number">400</span>的学生信息<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> view_students <span class="hljs-keyword">WHERE</span> 分数<span class="hljs-operator">&gt;</span><span class="hljs-number">400</span>;<br><br># EG：查询学生表<span class="hljs-number">1</span>班学生数学小于<span class="hljs-number">90</span>的学生信息<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> view_students <span class="hljs-keyword">WHERE</span> 数学<span class="hljs-operator">&lt;</span><span class="hljs-number">90</span>;<br></code></pre></td></tr></table></figure>
+<p>两个SELECT语句等同于</p>
+<ul>
+<li><code>SELECT * FROM students WHERE 班级=1 AND 分数&gt;400;</code></li>
+<li><code>SELECT * FROM students WHERE 班级=1 AND 数学&lt;90;</code></li>
+</ul>
+<p>这样语句明了，可读性增加，提高了编写速度。</p>
+<h2 id="删除视图"><a href="#删除视图" class="headerlink" title="删除视图"></a>删除视图</h2><p>语法：<code>DROP VIEW [IF EXISTS] view_name;</code></p>
 
     </div>
     <!-- 文章：声明 -->
     <!-- 文章的声明 -->
-<div id="copy-icon-西门子_名词" style="display: grid; grid-template-rows: subgrid; grid-row: span 3; grid-gap: 12px">
+<div id="copy-icon-视图" style="display: grid; grid-template-rows: subgrid; grid-row: span 3; grid-gap: 12px">
     <p><strong>作者</strong>：粥记捣蛋</p>
 
     <div class="d-flex">
-        <p><strong>文章链接</strong>：<a href="https://zexuisme.github.io/2025/06/05/%E8%A5%BF%E9%97%A8%E5%AD%90/%E8%A5%BF%E9%97%A8%E5%AD%90-%E5%90%8D%E8%AF%8D/">https://ZeXuIsMe.github.io/2025/06/05/西门子/西门子-名词/</a></p>
+        <p><strong>文章链接</strong>：<a href="https://zexuisme.github.io/2025/08/05/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL-%E8%A7%86%E5%9B%BE/">https://ZeXuIsMe.github.io/2025/08/05/软件测试/数据库/SQL-视图/</a></p>
 
         <div
                 class="d-flex align-center"
                 style="width: fit-content; cursor: pointer"
-                onclick="postEjs.onclickCopy(`#copy-icon-西门子_名词 a`)"
+                onclick="postEjs.onclickCopy(`#copy-icon-视图 a`)"
         >
             
     <div class="tooltip tooltip-top " data-tooltip="点击复制">
@@ -631,14 +608,14 @@
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/06/05/%E8%A5%BF%E9%97%A8%E5%AD%90/%E8%A5%BF%E9%97%A8%E5%AD%90-%E7%BA%AC%E6%8E%A7%E4%B9%A0%E9%A2%98/')"
+            onclick="postToggleEjs.onclickLink('/2025/08/05/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL-%E5%87%BD%E6%95%B0/')"
             
-    >上一篇: 西门子-纬控习题（测试：图片渲染）</button>
+    >上一篇: SQL-函数</button>
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/06/05/%E8%A5%BF%E9%97%A8%E5%AD%90/%E8%A5%BF%E9%97%A8%E5%AD%90-Question-01/')"
+            onclick="postToggleEjs.onclickLink('/2025/08/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/')"
             
-    >下一篇: 西门子-Question-01（测试：布局调试）</button>
+    >下一篇: 正则表达式</button>
 </div>
 
 <script>
