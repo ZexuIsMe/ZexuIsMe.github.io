@@ -7,6 +7,10 @@ categories:
   - 函数
 ---
 
+- 向上取整：`CEIL(column_name)`
+- 向下取整：`FLOOR(column_name)`
+- 绝对值：`ABS(column_name)`
+
 ## LEN 长度
 
 语法：`LEN()` 返回文本字段中参数的长度
@@ -63,7 +67,10 @@ SQL Server：`LOWER(column_name)`
 - max(): 找出最大值
 - avg(): 平均值
 
-在没有分组情况下，查询的返回，始终只有一行数据。
+----
+
+- 在没有分组情况下，查询的返回，始终只有一行数据。
+- 聚合函数不会出现在WHERE子句中
 
 ### 聚合函数：COUNT
 
