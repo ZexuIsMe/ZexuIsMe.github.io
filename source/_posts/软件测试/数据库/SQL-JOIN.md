@@ -59,7 +59,7 @@ SELECT 1 UNION SELECT 2;
 SELECT 1 AS abc UNION SELECT 2 AS efg
 ```
 
-## JOIN
+## 关联查询：JOIN（内连接）
 
 ![JOIN](https://www.runoob.com/wp-content/uploads/2019/01/sql-join.png)
 
@@ -142,6 +142,14 @@ GROUP BY
 ```
 
 这样写可以在一定程度上让语句更加可读，唯一的理解成本就是需要先了解**隐性连接**相关操作
+
+### JOIN：全外连接
+
+```
+... left ...
+UNION
+... right ...
+```
 
 ## WITH
 
