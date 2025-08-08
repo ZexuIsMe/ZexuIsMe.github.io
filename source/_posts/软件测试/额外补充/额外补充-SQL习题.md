@@ -7,7 +7,7 @@ categories:
   - SQL习题
 ---
 
-> **现在运营想要了解2021年8月份所有练习过题目的总用户数和练习过题目的总次数，请取出相应结果**
+## **1. 现在运营想要了解2021年8月份所有练习过题目的总用户数和练习过题目的总次数，请取出相应结果**
 
 | id | device_id | question_id | result | date       |
 |----|-----------|-------------|--------|------------|
@@ -39,7 +39,7 @@ WHERE qpd.date BETWEEN '2021-08-01' AND '2021-08-30';
 
 ----
 
-> **在一张contacts表中，存储了用户的联系信息。请查询出所有符合以下条件的电话号码，并按id升序输出所有字段**
+## **2. 在一张contacts表中，存储了用户的联系信息。请查询出所有符合以下条件的电话号码，并按id升序输出所有字段**
 
 电话号码必须是 10 位数字。
 电话号码的第一位不能以 0 开头。
@@ -93,7 +93,7 @@ ORDER BY id ASC;
 
 -----------
 
-> 运营想要计算一些参加了答题的不同学校、不同难度的用户平均答题量，请你写SQL取出相应数据
+## **3. 运营想要计算一些参加了答题的不同学校、不同难度的用户平均答题量，请你写SQL取出相应数据**
 
 三表语句，直接复制创建相关数据表和数据；
 ```
@@ -188,7 +188,7 @@ GROUP BY
 ;
 ```
 
-- **使用隐性联结**
+### **3.1 使用隐性联结**
 ```sql
 SELECT
     up.university
@@ -209,7 +209,7 @@ GROUP BY
 ;
 ```
 
-- **USING**
+### **3.2 USING**
 ```sql
 SELECT
     up.university
@@ -227,7 +227,7 @@ GROUP BY
 ,   qe.difficult_level
 ;
 ```
-- **WITH**
+### **3.3 WITH**
 ```sql
 WITH with_table AS(
     SELECT t1.university, t3.difficult_level, t1.device_id
@@ -266,13 +266,13 @@ WITH With_2 AS(
 )
 SELECT * FROM With_2 WHERE 课程名 IN('QTP', 'Linux') AND 姓名='吴丹' AND 班级编号 = 101;
 ```
-![img_1.png](../../images/51testing/join_on_02.png)
+![img_1.png](../../../images/51testing/join_on_02.png)
 
 比如该查询，如果没有`学生表.学号 = 成绩表.学号`就会出现，如下图所示内容，一个学生一门课会有N次成绩，这显然是错误的
-![img.png](../../images/51testing/join_on_01.png)
+![img.png](../../../images/51testing/join_on_01.png)
 因此，在联表查询的时候，桥梁越详细，查询出来的信息才会越准确，能够避免联表产生的无效数据行。
 
-> **现在运营想要分别查看学校为山东大学或者性别为男性的用户的device_id、gender、age和gpa数据，请取出相应结果，结果不去重。**
+## **4. 现在运营想要分别查看学校为山东大学或者性别为男性的用户的device_id、gender、age和gpa数据，请取出相应结果，结果不去重。**
 
 考察点：UNION、OR关于去重的知识点
 
@@ -299,7 +299,7 @@ SELECT device_id,	gender,	age,	gpa FROM user_profile WHERE gender = 'male'
 ;
 ```
 
-> **现在运营想要将用户划分为25岁以下和25岁及以上两个年龄段，分别查看这两个年龄段用户数量**
+## **5. 现在运营想要将用户划分为25岁以下和25岁及以上两个年龄段，分别查看这两个年龄段用户数量**
 
 考察点：IF条件语句、CASE语句、UNION、COUNT
 
@@ -324,7 +324,7 @@ SELECT device_id,	gender,	age,	gpa FROM user_profile WHERE gender = 'male'
 | 25岁以下   | 4      |
 | 25岁及以上  | 3      |
 
-**方案一: CASE**
+### **5.1 方案一: CASE**
 ```sql
 SELECT
     CASE 
@@ -336,7 +336,7 @@ FROM user_profile
 GROUP BY age_cut;
 ```
 
-**方案二: IF**
+### **5.2 方案二: IF**
 ```sql
 SELECT
     IF(age>=25, '25岁及以上', '25岁以下') AS age_cut,
@@ -345,7 +345,7 @@ FROM user_profile
 GROUP BY age_cut;
 ```
 
-**方案三：UNION**
+### **5.3 方案三：UNION**
 ```sql
 SELECT
     '25岁以下' AS age_cut,
@@ -365,6 +365,63 @@ WHERE
 ;
 ```
 
+## 6. 现在运营想要查看用户在某天刷题后第二天还会再来刷题的留存率。请你取出相应数据。
 
+**考察点**：`JOIN`、`WITH`、`COUNT`、`日期函数`
 
+[点击前往牛客网：SQL 入门篇.29](https://www.nowcoder.com/practice/126083961ae0415fbde061d7ebbde453?tpId=199&tqId=1975681&sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page)
 
+> 数据
+
+| id  | device_id | question_id | result | date       |
+|-----|-----------|-------------|--------|------------|
+| 1   | 2138      | 111         | wrong  | 2021-05-03 |
+| 2   | 3214      | 112         | wrong  | 2021-05-09 |
+| 3   | 3214      | 113         | wrong  | 2021-06-15 |
+| 4   | 6543      | 111         | right  | 2021-08-13 |
+| 5   | 2315      | 115         | right  | 2021-08-13 |
+| 6   | 2315      | 116         | right  | 2021-08-14 |
+| 7   | 2315      | 117         | wrong  | 2021-08-15 |
+| 8   | 3214      | 112         | wrong  | 2021-05-09 |
+| 9   | 3214      | 113         | wrong  | 2021-08-15 |
+| 10  | 6543      | 111         | right  | 2021-08-13 |
+| 11  | 2315      | 115         | right  | 2021-08-13 |
+| 12  | 2315      | 116         | right  | 2021-08-14 |
+| 13  | 2315      | 117         | wrong  | 2021-08-15 |
+| 14  | 3214      | 112         | wrong  | 2021-08-16 |
+| 15  | 3214      | 113         | wrong  | 2021-08-18 |
+| 16  | 6543      | 111         | right  | 2021-08-13 |
+
+> 根据示例，你的查询应返回以下结果：
+
+| avg_ret |
+|---------|
+| 0.3000  |
+
+整体上是求平均值，那么只需找到第一天刷题了且第二天来刷题的数据行就成
+
+```sql
+# 方案一：
+WITH w_01 AS (
+    SELECT COUNT(DISTINCT t2.device_id, t2.`date`) cn1
+    FROM question_practice_detail AS t1
+    LEFT JOIN question_practice_detail AS t2 USING(device_id)
+    WHERE t1.device_id=t2.device_id AND DATEDIFF(t2.`date`, t1.`date`)=1
+), w_o2 AS (
+    SELECT COUNT(DISTINCT device_id, `date`) cn2
+    FROM question_practice_detail AS t3
+)
+SELECT cn1/cn2 FROM w_01 JOIN w_o2
+
+# 方案二：
+SELECT COUNT(q2.device_id) / COUNT(q1.device_id) AS avg_ret
+FROM (SELECT DISTINCT device_id,date FROM question_practice_detail) AS q1
+LEFT JOIN (SELECT DISTINCT device_id,date FROM question_practice_detail) AS q2
+   ON q1.device_id = q2.device_id AND q2.date=date_add(q1.date, INTERVAL 1 DAY)
+;
+```
+
+- INTERVAL 1 DAY：间隔1天
+- DATEDIFF(t2.`date`, t1.`date`)：日期差值，返回指为数字，也可用`TIMESTAMPDIFF()`
+
+> Q：什么时候用JOIN、LEFT、RIGHT 和 FULL OUTER JOIN？
