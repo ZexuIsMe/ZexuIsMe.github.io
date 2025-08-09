@@ -11,6 +11,10 @@ categories:
 - 向下取整：`FLOOR(column_name)`
 - 绝对值：`ABS(column_name)`
 
+1. 日期：2021-01-01 ≠ 2021-01-01这一天中的任何一个时间段
+
+<!--more-->
+
 ## INSTR：字符串是否存在
 
 - 检查字符串中是否包含某个子串（如 WHERE INSTR(name, '张') > 0 表示名字中含 “张”）。
@@ -132,6 +136,7 @@ SQL Server：`LOWER(column_name)`
 1. COUNT函数会过滤NULL或者0，不纳入统计范围
 2. COUNT函数不接受逻辑运算，因为逻辑运算中否会被认定为0，而0会被过滤，如果一定要做那么可以考虑`IF`或者`CASE`
   `SUM(IF(column='', 1, 0))`，`CASE`语句同理  
+3. **若目标字段为NULL，会将其认为参数为零**这很重要，要记牢
 
 ### 聚合函数：MAX
 
