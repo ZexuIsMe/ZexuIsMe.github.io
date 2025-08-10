@@ -512,7 +512,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-08-06 23:58
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-08-10 11:48
                     </p>
                 </div>
             </div>
@@ -539,7 +539,7 @@
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#LEN-%E9%95%BF%E5%BA%A6"><span class="toc-number">1.</span> <span class="toc-text">LEN 长度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%AA%E5%8F%96%E5%AD%97%E7%AC%A6%EF%BC%9AMID"><span class="toc-number">2.</span> <span class="toc-text">截取字符：MID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%EF%BC%9AUCASE%E3%80%81LCASE"><span class="toc-number">3.</span> <span class="toc-text">大小写：UCASE、LCASE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E7%AC%AC%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9AFist"><span class="toc-number">4.</span> <span class="toc-text">返回第一条记录：Fist()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E6%9C%80%E5%90%8E%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9ALast"><span class="toc-number">5.</span> <span class="toc-text">返回最后一条记录：Last()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text">聚合函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0%EF%BC%9ACOUNT"><span class="toc-number">6.1.</span> <span class="toc-text">聚合函数：COUNT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0%EF%BC%9AMAX"><span class="toc-number">6.2.</span> <span class="toc-text">聚合函数：MAX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0%EF%BC%9AAVG"><span class="toc-number">6.3.</span> <span class="toc-text">聚合函数：AVG</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%BB%84%EF%BC%9AGROUP-BY"><span class="toc-number">7.</span> <span class="toc-text">分组：GROUP BY</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Having-%E5%AD%90%E5%8F%A5"><span class="toc-number">7.1.</span> <span class="toc-text">Having 子句</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EXISTS"><span class="toc-number">8.</span> <span class="toc-text">EXISTS()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E6%A0%BC%E5%BC%8F%E5%8C%96%EF%BC%9AFORMAT"><span class="toc-number">9.</span> <span class="toc-text">显示格式化：FORMAT()</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#INSTR%EF%BC%9A%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8"><span class="toc-number">1.</span> <span class="toc-text">INSTR：字符串是否存在</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LEN-%E9%95%BF%E5%BA%A6"><span class="toc-number">2.</span> <span class="toc-text">LEN 长度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%AA%E5%8F%96%E5%AD%97%E7%AC%A6%EF%BC%9AMID"><span class="toc-number">3.</span> <span class="toc-text">截取字符：MID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%EF%BC%9AUCASE%E3%80%81LCASE"><span class="toc-number">4.</span> <span class="toc-text">大小写：UCASE、LCASE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E7%AC%AC%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9AFist"><span class="toc-number">5.</span> <span class="toc-text">返回第一条记录：Fist()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E6%9C%80%E5%90%8E%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9ALast"><span class="toc-number">6.</span> <span class="toc-text">返回最后一条记录：Last()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="toc-number">7.</span> <span class="toc-text">聚合函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0%EF%BC%9ACOUNT"><span class="toc-number">7.1.</span> <span class="toc-text">聚合函数：COUNT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0%EF%BC%9AMAX"><span class="toc-number">7.2.</span> <span class="toc-text">聚合函数：MAX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0%EF%BC%9AAVG"><span class="toc-number">7.3.</span> <span class="toc-text">聚合函数：AVG</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%BB%84%EF%BC%9AGROUP-BY"><span class="toc-number">8.</span> <span class="toc-text">分组：GROUP BY</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Having-%E5%AD%90%E5%8F%A5"><span class="toc-number">8.1.</span> <span class="toc-text">Having 子句</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EXISTS"><span class="toc-number">9.</span> <span class="toc-text">EXISTS()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E6%A0%BC%E5%BC%8F%E5%8C%96%EF%BC%9AFORMAT"><span class="toc-number">10.</span> <span class="toc-text">显示格式化：FORMAT()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Date"><span class="toc-number">11.</span> <span class="toc-text">Date</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Date%EF%BC%9ATIMESTAMPDIFF"><span class="toc-number">12.</span> <span class="toc-text">Date：TIMESTAMPDIFF</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
@@ -549,6 +549,26 @@
 <li>向下取整：<code>FLOOR(column_name)</code></li>
 <li>绝对值：<code>ABS(column_name)</code></li>
 </ul>
+<ol>
+<li>日期：2021-01-01 ≠ 2021-01-01这一天中的任何一个时间段</li>
+</ol>
+<span id="more"></span>
+
+<h2 id="INSTR：字符串是否存在"><a href="#INSTR：字符串是否存在" class="headerlink" title="INSTR：字符串是否存在"></a>INSTR：字符串是否存在</h2><ul>
+<li>检查字符串中是否包含某个子串（如 WHERE INSTR(name, ‘张’) &gt; 0 表示名字中含 “张”）。</li>
+<li>提取字符串的部分内容（结合 SUBSTR() 使用）。</li>
+<li>数据清洗（如过滤包含特定字符的记录）。</li>
+</ul>
+<ol>
+<li>MySQL 中的 INSTR()<br>语法：<br>INSTR(目标字符串, 子字符串)<br>说明：<br>从目标字符串中查找子字符串，返回第一次出现的位置（位置从 1 开始计数）。<br>若子字符串不存在，返回 0。</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">##### MYSQL<br><span class="hljs-keyword">SELECT</span> INSTR(<span class="hljs-string">&#x27;Hello World&#x27;</span>, <span class="hljs-string">&#x27;World&#x27;</span>);  <span class="hljs-comment">-- 返回 7（&#x27;World&#x27; 从第7个字符开始）</span><br><span class="hljs-keyword">SELECT</span> INSTR(<span class="hljs-string">&#x27;Hello World&#x27;</span>, <span class="hljs-string">&#x27;x&#x27;</span>);      <span class="hljs-comment">-- 返回 0（未找到）</span><br><span class="hljs-keyword">SELECT</span> INSTR(<span class="hljs-string">&#x27;abcabc&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>);           <span class="hljs-comment">-- 返回 1（第一个 &#x27;a&#x27; 的位置）</span><br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Oracle 中的 INSTR()<br>语法：<br>INSTR(目标字符串, 子字符串, [起始位置], [出现次数])<br>说明：<br>比 MySQL 多两个可选参数：<br>起始位置：从第几个字符开始查找（默认 1，正数表示从左到右，负数表示从右到左）。<br>出现次数：查找第几次出现的位置（默认 1）。</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">### ORACLE<br><span class="hljs-comment">-- 从第1位开始，找第1次出现的 &#x27;o&#x27;</span><br><span class="hljs-keyword">SELECT</span> INSTR(<span class="hljs-string">&#x27;Hello World&#x27;</span>, <span class="hljs-string">&#x27;o&#x27;</span>) <span class="hljs-keyword">FROM</span> DUAL;  <span class="hljs-comment">-- 返回 5</span><br><br><span class="hljs-comment">-- 从第6位开始，找第1次出现的 &#x27;o&#x27;</span><br><span class="hljs-keyword">SELECT</span> INSTR(<span class="hljs-string">&#x27;Hello World&#x27;</span>, <span class="hljs-string">&#x27;o&#x27;</span>, <span class="hljs-number">6</span>) <span class="hljs-keyword">FROM</span> DUAL;  <span class="hljs-comment">-- 返回 8</span><br><br><span class="hljs-comment">-- 从右向左找第1次出现的 &#x27;o&#x27;（等价于从左数第8位）</span><br><span class="hljs-keyword">SELECT</span> INSTR(<span class="hljs-string">&#x27;Hello World&#x27;</span>, <span class="hljs-string">&#x27;o&#x27;</span>, <span class="hljs-number">-1</span>) <span class="hljs-keyword">FROM</span> DUAL;  <span class="hljs-comment">-- 返回 8</span><br></code></pre></td></tr></table></figure>
+
 <h2 id="LEN-长度"><a href="#LEN-长度" class="headerlink" title="LEN 长度"></a>LEN 长度</h2><p>语法：<code>LEN()</code> 返回文本字段中参数的长度</p>
 <p>MySQL：<code>LENGTH()</code></p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> LENGTH(column_name) <span class="hljs-keyword">FROM</span> table_name;<br></code></pre></td></tr></table></figure>
@@ -561,6 +581,82 @@
 <li>length: 截取的长度</li>
 </ul>
 <p>从文本字段中提取字符</p>
+<table>
+<thead>
+<tr>
+<th>函数语法（原描述）</th>
+<th>功能说明</th>
+<th>MySQL 支持情况</th>
+<th>Oracle 支持情况</th>
+<th>SQL Server 支持情况</th>
+<th>PostgreSQL 支持情况</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>locate(substr, str)</td>
+<td>返回子串在字符串中首次出现的位置（无则0）</td>
+<td>√</td>
+<td>×，需用 <code>INSTR(str, substr)</code></td>
+<td>×，需用 <code>CHARINDEX(substr, str)</code>（参数顺序相同）</td>
+<td>√</td>
+</tr>
+<tr>
+<td>position(substr IN str)</td>
+<td>同LOCATE功能</td>
+<td>√</td>
+<td>×，需用 <code>INSTR(str, substr)</code></td>
+<td>×，需用 <code>CHARINDEX(substr, str)</code></td>
+<td>√</td>
+</tr>
+<tr>
+<td>left(str, length)</td>
+<td>从左侧截取指定长度字符串</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>right(str, length)</td>
+<td>从右侧截取指定长度字符串</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>substring_index(str, substr, n)</td>
+<td>返回子串第n次出现前的字符串</td>
+<td>√</td>
+<td>×，需用 <code>INSTR+SUBSTR</code> 组合实现</td>
+<td>×，需用 <code>CHARINDEX+SUBSTRING</code> 组合实现</td>
+<td>×，需用 <code>STRPOS+SUBSTRING</code> 组合实现</td>
+</tr>
+<tr>
+<td>substring(str, n, m)</td>
+<td>从第n位截取m长度字符串（n为起始位置）</td>
+<td>支持，n可等于0（视为1）</td>
+<td>支持 <code>SUBSTR(str, n, m)</code>（语法相同，n不能为0）</td>
+<td>√（n不能为0）</td>
+<td>支持 <code>SUBSTRING(str FROM n FOR m)</code>（语法不同，参数含义相同）</td>
+</tr>
+<tr>
+<td>replace(str, old, new)</td>
+<td>将字符串中的n替换为m（原描述参数名有误，应为old、new）</td>
+<td>支持 <code>REPLACE(str, old, new)</code>（语法一致）</td>
+<td>支持 <code>REPLACE(str, old, new)</code>（语法一致）</td>
+<td>支持 <code>REPLACE(str, old, new)</code>（语法一致）</td>
+<td>支持 <code>REPLACE(str, old, new)</code>（语法一致）</td>
+</tr>
+<tr>
+<td>length(str)</td>
+<td>计算字符串长度</td>
+<td>返回<strong>字节数</strong>（受编码影响）</td>
+<td>返回<strong>字符数</strong></td>
+<td>×，需用 <code>LEN(str)</code>（返回字符数）</td>
+<td>支持，返回字符数（可用 <code>OCTET_LENGTH</code> 返字节数）</td>
+</tr>
+</tbody></table>
 <h2 id="大小写：UCASE、LCASE"><a href="#大小写：UCASE、LCASE" class="headerlink" title="大小写：UCASE、LCASE"></a>大小写：UCASE、LCASE</h2><p>语法：<code>UCASE(column_name)</code> 字母转大写</p>
 <p>SQL Server：<code>UPPER(column_name)</code></p>
 <p>语法：<code>LCASE(column_name)</code> 字母转小写</p>
@@ -627,7 +723,14 @@
 <li><code>COUNT(*)</code>：统计行数；</li>
 <li><code>COUNT(字段)</code>：只统计非空的；</li>
 <li><code>COUNT(DISTINCT 字段)</code>：字段去重后再统计，还是会排空，空不算在统计范围内</li>
+<li><code>COUNT(DISTINCT device_id, date)</code>：多列数据的统计，约等于<code>GROUP BY device_id, date</code>查出数据，前端获取数据，然后data.length获取长度的操作</li>
 </ul>
+<p>注意：</p>
+<ol>
+<li>COUNT函数会过滤NULL或者0，不纳入统计范围</li>
+<li>COUNT函数不接受逻辑运算，因为逻辑运算中否会被认定为0，而0会被过滤，如果一定要做那么可以考虑<code>IF</code>或者<code>CASE</code><br>  <code>SUM(IF(column=&#39;&#39;, 1, 0))</code>，<code>CASE</code>语句同理  </li>
+<li><strong>若目标字段为NULL，会将其认为参数为零</strong>这很重要，要记牢</li>
+</ol>
 <h3 id="聚合函数：MAX"><a href="#聚合函数：MAX" class="headerlink" title="聚合函数：MAX"></a>聚合函数：MAX</h3><p>Eg: 运营想要知道复旦大学学生gpa最高值是多少，请你取出相应数据</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MAX</span>(gpa) <span class="hljs-keyword">FROM</span> user_profile <span class="hljs-keyword">WHERE</span> university<span class="hljs-operator">=</span><span class="hljs-string">&#x27;复旦大学&#x27;</span>;<br><br># 输出字段：<span class="hljs-built_in">MAX</span>(gpa)<br>## 配合<span class="hljs-keyword">AS</span>输出预期字段<br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MAX</span>(gpa) <span class="hljs-keyword">AS</span> gap <span class="hljs-keyword">FROM</span> user_profile <span class="hljs-keyword">WHERE</span> university<span class="hljs-operator">=</span><span class="hljs-string">&#x27;复旦大学&#x27;</span>;<br></code></pre></td></tr></table></figure>
 
@@ -672,7 +775,11 @@
 <figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> name, url, DATE_FORMAT(Now(),<span class="hljs-string">&#x27;%Y-%m-%d&#x27;</span>) <span class="hljs-keyword">AS</span> <span class="hljs-type">date</span><br><span class="hljs-keyword">FROM</span> Websites;<br></code></pre></td></tr></table></figure>
 
 <p><img src="https://www.runoob.com/wp-content/uploads/2013/09/formate1.jpg" alt="菜鸟教程 FORMAT"><br>链接：<a target="_blank" rel="noopener" href="https://www.runoob.com/wp-content/uploads/2013/09/formate1.jpg">https://www.runoob.com/wp-content/uploads/2013/09/formate1.jpg</a></p>
-
+<h2 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h2><ul>
+<li>特殊值：9999-01-01，一般会用到如合同到期，遇到这样的，会判断</li>
+</ul>
+<h2 id="Date：TIMESTAMPDIFF"><a href="#Date：TIMESTAMPDIFF" class="headerlink" title="Date：TIMESTAMPDIFF"></a>Date：TIMESTAMPDIFF</h2><p>时间差值：<code>TIMESTAMPDIFF(时间单位, 开始时间, 结束时间)</code></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><br><span class="hljs-comment">-- 相差多少天</span><br><span class="hljs-keyword">SELECT</span> TIMESTAMPDIFF(<span class="hljs-keyword">DAY</span>, <span class="hljs-string">&#x27;2023-10-01 08:00:00&#x27;</span>, <span class="hljs-string">&#x27;2023-10-03 10:30:00&#x27;</span>); <span class="hljs-comment">-- 结果：2（天）</span><br><br><span class="hljs-comment">-- 相差多少小时</span><br><span class="hljs-keyword">SELECT</span> TIMESTAMPDIFF(<span class="hljs-keyword">HOUR</span>, <span class="hljs-string">&#x27;2023-10-01 08:00:00&#x27;</span>, <span class="hljs-string">&#x27;2023-10-03 10:30:00&#x27;</span>); <span class="hljs-comment">-- 结果：50（小时）</span><br><br><span class="hljs-comment">-- 相差多少分钟</span><br><span class="hljs-keyword">SELECT</span> TIMESTAMPDIFF(<span class="hljs-keyword">MINUTE</span>, <span class="hljs-string">&#x27;2023-10-01 08:00:00&#x27;</span>, <span class="hljs-string">&#x27;2023-10-03 10:30:00&#x27;</span>); <span class="hljs-comment">-- 结果：3030（分钟）</span><br></code></pre></td></tr></table></figure>
     </div>
     <!-- 文章：声明 -->
     <!-- 文章的声明 -->
@@ -720,7 +827,7 @@
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/08/06/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85-SQL%E4%B9%A0%E9%A2%98/')"
+            onclick="postToggleEjs.onclickLink('/2025/08/06/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85-SQL%E4%B9%A0%E9%A2%98/')"
             
     >上一篇: 额外补充-SQL习题</button>
     <button
