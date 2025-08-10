@@ -222,6 +222,10 @@ FROM Websites;
 ![菜鸟教程 FORMAT](https://www.runoob.com/wp-content/uploads/2013/09/formate1.jpg)
 链接：https://www.runoob.com/wp-content/uploads/2013/09/formate1.jpg
 
+## Date
+
+- 特殊值：9999-01-01，一般会用到如合同到期，遇到这样的，会判断
+
 ## Date：TIMESTAMPDIFF
 
 时间差值：`TIMESTAMPDIFF(时间单位, 开始时间, 结束时间)`

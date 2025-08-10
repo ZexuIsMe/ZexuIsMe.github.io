@@ -432,3 +432,72 @@ LEFT JOIN (SELECT DISTINCT device_id,date FROM question_practice_detail) AS q2
 - DATEDIFF(t2.`date`, t1.`date`)：日期差值，返回指为数字，也可用`TIMESTAMPDIFF()`
 
 > Q：什么时候用JOIN、LEFT、RIGHT 和 FULL OUTER JOIN？
+
+## 7. USING 的使用
+
+> EG: 请你查找各个部门当前领导的薪水详情以及其对应部门编号dept_no，输出结果以salaries.emp_no升序排序，并且请注意输出结果里面dept_no列是最后一列
+
+表名：薪水表salaries
+| emp_no | salary | from_date  | to_date    |
+|--------|--------|------------|------------|
+| 10001  | 88958  | 2002-06-22 | 9999-01-01 |
+| 10002  | 72527  | 2001-08-02 | 9999-01-01 |
+| 10003  | 43311  | 2001-12-01 | 9999-01-01 |
+
+表名：各个部门的领导表dept_manager
+| dept_no | emp_no | to_date    |
+|---------|--------|------------|
+| d001    | 10001  | 9999-01-01 |
+| d002    | 10003  | 9999-01-01 |
+
+查询结果如下，请用SQL还原
+| emp_no | salary | from_date  | to_date    | dept_no |
+|--------|--------|------------|------------|---------|
+| 10001  | 88958  | 2002-06-22 | 9999-01-01 | d001    |
+| 10003  | 43311  | 2001-12-01 | 9999-01-01 | d002    |
+
+```sql
+SELECT *
+FROM salaries
+INNER JOIN dept_manager USING(emp_no, to_date)
+ORDER BY emp_no ASC
+;
+```
+主要考察USING构建桥梁后，字段去哪里了的一个问题。如上：`USING(emp_no, to_date)`，
+
+> Q：那么现在，请问emp_no, to_todate 在合并后的表中，处于第一，第二字段还是字段位置不变？
+
+A：你可能会认为连接后字段了自然而然就会是`emp_no | salary | from_date  | to_date | dept_no`，那么你就打错特错的了，
+因为`USING`会将字段提前，按照`USING`中的书写顺序排序：emp_no | to_date | salary | from_date | dept_no
+
+## 8. 多层嵌套子查询
+
+![嵌套子查询][嵌套子查询]
+
+**题目明确要求不使用`ORDER BY`**
+
+```sql
+SELECT emp_no, salary, last_name, first_name
+FROM employees
+INNER JOIN salaries USING(emp_no)
+WHERE salary=(
+    SELECT MAX(salary) FROM salaries
+    WHERE salary<(SELECT MAX(salary) FROM salaries)
+)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[嵌套子查询]: https://fdc-four.oss-cn-beijing.aliyuncs.com/images/SQL/SQL-%E5%B5%8C%E5%A5%97%E5%AD%90%E6%9F%A5%E8%AF%A2-%E4%B9%A0%E9%A2%9801-%E5%A4%9A%E5%B1%82%E5%B5%8C%E5%A5%97.jpg?Expires=1754838362&OSSAccessKeyId=TMP.3Ksgkf6kGuT2T6TbNB1FnE38j6hUscNg1omqkjZYj9Nj4UKxqAeTNNqcmSLYaMqisNhAJzHvekfCHVWVaY8N8anmqk4YHc&Signature=FdXUfjvvVU4KSoal5Lz2VEtkvpg%3D

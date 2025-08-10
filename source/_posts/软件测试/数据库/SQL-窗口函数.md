@@ -94,7 +94,43 @@ categories:
 
 ## 六、实战示例
 
-【待补充】
+![窗口函数-习题01](
+https://fdc-four.oss-cn-beijing.aliyuncs.com/images/SQL/SQL-%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0-%E4%B9%A0%E9%A2%98-01.png?Expires=1754838335&OSSAccessKeyId=TMP.3Ksgkf6kGuT2T6TbNB1FnE38j6hUscNg1omqkjZYj9Nj4UKxqAeTNNqcmSLYaMqisNhAJzHvekfCHVWVaY8N8anmqk4YHc&Signature=V3HOLwFdK%2FHMkk58g1n3Zq%2BLgsk%3D)
+
+```sql
+WITH w01 AS (
+    SELECT emp_no, DENSE_RANK() OVER(ORDER BY salary DESC) AS ranking FROM salaries
+)
+SELECT emp_no, salary
+FROM salaries
+INNER JOIN w01 USING(emp_no)
+WHERE ranking=2
+;
+
+# 窗口函数的第二种用法
+SELECT emp_no, salary
+FROM (SELECT emp_no, salary, DENSE_RANK() OVER(ORDER BY salary DESC) AS ranking FROM salaries) AS s1
+WHERE ranking=2
+;
+## FROM 的嵌套子查询需要用AS添加别名
+```
+另外一种解法，使用LIMIT取出第二名
+```sql
+select emp_no, salary
+from salaries
+where salary = (
+    select salary from salaries
+    group by salary
+    order by salary desc limit 1,1
+    )
+```
+> Q: 窗口函数和LIMIT孰优孰劣，在这个情景中？
+
+A：先说结论，若数据量很大，推荐使用`LIMIT`，因为窗口函数需要扫描全表，间接增加了查询时间，且窗口函数需要 MySQL 8.0+、PostgreSQL、Oracle、SQL Server 2012+ 这些版本的支持，
+反观 LIMIT 则没有这方的烦恼，主流数据库都支持，所以若数据量大，推荐LIMIT。
+
+- 窗口函数更具可读性，能否直观的覆盖排名第二多的情况；
+- LIMIT兼容性好，但不能很好的表达排名情况，需要配合 DISTINCT 或者 GROUP BY 完成去重操作，保证排名的无并列情况
 
 ## 七、优势
 

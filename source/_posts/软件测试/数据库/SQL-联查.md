@@ -96,7 +96,11 @@ WHERE up.university = '浙江大学';
 
 `ON qpd.device_id = up.device_id` 》 `USING(device_id)`
 
-如果联表过程中发现是多个：`INNER JOIN user_profile AS up USING(device_id, column_name)`
+- 如果联表过程中发现是多个：`INNER JOIN user_profile AS up USING(device_id, column_name)`
+- 另外使用USING构建的表连接，无需对表进行别名设置，除非该字段不在USING内且是连接后产生的重复字段列，这样的才会使用表的别名进行标识
+- `USING(device_id, column_name)`会将字段device_id和column_name提到前两列
+   假设原本列的顺序是：device_id, aaa, bbb, column_name, ccc，
+   `USING(device_id, column_name)`过后，查询出来的字段列顺序就会是device_id, column_name, aaa, bbb, ccc，
 
 ### JOIN: 隐性联查
 
