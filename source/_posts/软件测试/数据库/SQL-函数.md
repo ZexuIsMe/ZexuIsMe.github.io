@@ -160,6 +160,23 @@ SELECT MAX(gpa) AS gap FROM user_profile WHERE university='复旦大学';
     - m: 浮点数
     - n: 小数位数
 
+## 聚合函数：CROUP_CONCAT(字符串聚合)
+
+```sql
+SELECT
+    category,
+    GROUP_CONCAT(product_name SEPARATOR ', ') AS products
+FROM products
+GROUP BY category;
+```
+
+- SEPARATOR: 指定分割符，默认为逗号
+- 可配合 DISTINCT 去重：`GROUP_CONCAT(DISTINCT product_name)`
+
+不同数据库的字符串聚合函数也是不同的
+
+例子：[点击前往](https://www.nowcoder.com/share/jump/1571640021754926849096)
+
 ## 分组：GROUP BY
 GROUP BY 语句用于结合聚合函数，根据一个或多个列对结果集进行分组。
 
