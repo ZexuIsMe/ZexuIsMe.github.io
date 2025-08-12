@@ -433,6 +433,27 @@ LEFT JOIN (SELECT DISTINCT device_id,date FROM question_practice_detail) AS q2
 
 > Q：什么时候用JOIN、LEFT、RIGHT 和 FULL OUTER JOIN？
 
+## 7. 查找字符串中逗号出现的次数
+
+![正则习题](https://fdc-four.oss-cn-beijing.aliyuncs.com/images/SQL/SQL-%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0-%E4%B9%A0%E9%A2%98-01.png?Expires=1754911207&OSSAccessKeyId=TMP.3KqoMCw1FHEjEsgGJCZct9NXAmvWZfn8audrLdfyZEUKiiTX4NNHCfDN4LYanxRtreX21VSXRPLCaVNf3eQCfaFi2oZoWJ&Signature=o5tkhHp8UTm0pkrEkFblgdsjue8%3D)
+
+    SELECT id, LENGTH(REGEXP_REPLACE(string, '[0-9a-zA-Z]', '')) AS cnt FROM strings;
+    SELECT id, LENGTH(REGEXP_REPLACE(string, '[0-9a-zA-Z]+', '')) AS cnt FROM strings;
+    # 这里是等价的，replace 会逐个匹配并替换
+
+题目来源：[点击前往](https://www.nowcoder.com/share/jump/1571640021754911340014)
+
+
+
+
+
+
+
+
+
+
+
+
 ## 7. USING 的使用
 
 > EG: 请你查找各个部门当前领导的薪水详情以及其对应部门编号dept_no，输出结果以salaries.emp_no升序排序，并且请注意输出结果里面dept_no列是最后一列

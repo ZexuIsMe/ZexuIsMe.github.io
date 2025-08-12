@@ -19,10 +19,10 @@ categories:
 
 ## 创建视图
 
-语法：`CREATE VIEW view_students SELECT * FROM students;`
+语法：`CREATE VIEW view_students AS SELECT * FROM students;`
 
 ```sql
-CREATE VIEW view_students SELECT * FROM students WHERE 班级=1;
+CREATE VIEW view_students AS SELECT * FROM students WHERE 班级=1;
 
 # EG：查询学生表1班学生分数高于400的学生信息
 SELECT * FROM view_students WHERE 分数>400;
