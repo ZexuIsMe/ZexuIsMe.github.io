@@ -1,0 +1,1429 @@
+<html lang="">
+<!-- Head tag -->
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="">
+    <meta name="author" content="">
+     
+    <title>Web-协议 | 粥记捣蛋</title>
+
+    
+<script src="/js/index.js" type="module"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+    <!-- 这里的是全局通用的方法 -->
+
+<script type="text/javascript">
+    // // 使用示例
+    // const detector = new DeviceDetector();
+    // console.log('是否是移动设备:', detector.isMobile());
+    // console.log('是否是平板:', detector.isTablet());
+    // console.log('是否是触摸屏设备:', detector.isTouchDevice());
+    // console.log('浏览器:', detector.getBrowserInfo());
+    // console.log('设备信息:', detector.getDeviceInfo());
+    class DeviceDetector {
+        constructor() {
+            this.userAgent = navigator.userAgent.toLowerCase();
+            this.platform = navigator.platform.toLowerCase();
+            this.isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        }
+
+        // 判断是否为移动设备（包括平板）
+        isMobile() {
+            return /mobile|android|iphone|ipad|ipod|blackberry|windows phone/i.test(this.userAgent);
+        }
+
+        // 判断是否为桌面设备
+        isDesktop() {
+            return !this.isMobile();
+        }
+
+        // 判断是否为iOS设备
+        isIOS() {
+            return /iphone|ipad|ipod/i.test(this.userAgent);
+        }
+
+        // 判断是否为Android设备
+        isAndroid() {
+            return /android/i.test(this.userAgent);
+        }
+
+        // 判断是否为平板设备
+        isTablet() {
+            return /tablet|ipad|android(?!.*mobile)|kindle/i.test(this.userAgent);
+        }
+
+        // 判断是否为手机设备
+        isPhone() {
+            return this.isMobile() && !this.isTablet();
+        }
+
+        // 判断是否为触摸屏设备
+        isTouchDevice() {
+            return this.isTouchDevice;
+        }
+
+        // 判断是否为Chrome浏览器
+        isChrome() {
+            return /chrome/i.test(this.userAgent) && !this.isEdge();
+        }
+
+        // 判断是否为Firefox浏览器
+        isFirefox() {
+            return /firefox/i.test(this.userAgent);
+        }
+
+        // 判断是否为Safari浏览器
+        isSafari() {
+            return /safari/i.test(this.userAgent) && !/chrome|chromium/i.test(this.userAgent);
+        }
+
+        // 判断是否为Edge浏览器
+        isEdge() {
+            return /edge|edg/i.test(this.userAgent);
+        }
+
+        // 判断是否为IE浏览器
+        isIE() {
+            return /msie|trident/i.test(this.userAgent);
+        }
+
+        // 获取设备信息摘要
+        getDeviceInfo() {
+            return {
+                userAgent: this.userAgent,
+                isMobile: this.isMobile(),
+                isDesktop: this.isDesktop(),
+                isIOS: this.isIOS(),
+                isAndroid: this.isAndroid(),
+                isTablet: this.isTablet(),
+                isPhone: this.isPhone(),
+                isTouchDevice: this.isTouchDevice,
+                browser: this.getBrowserInfo()
+            };
+        }
+
+        // 获取浏览器信息
+        getBrowserInfo() {
+            if (this.isChrome()) return 'Chrome';
+            if (this.isFirefox()) return 'Firefox';
+            if (this.isSafari()) return 'Safari';
+            if (this.isEdge()) return 'Edge';
+            if (this.isIE()) return 'Internet Explorer';
+            return 'Unknown';
+        }
+    }
+
+    class Blog extends DeviceDetector {
+        constructor() {
+            super();
+            this.messageMap = new Map();
+            this.messageMap.set("info", "has-background-info-light");
+            this.messageMap.set("success", "has-background-success-light");
+            this.messageMap.set("warning", "has-background-warning-light");
+            this.messageMap.set("error", "has-background-danger-light");
+        }
+
+        createALink (url, target = '_self') {
+            if (!url) {
+                console.error('没有链接')
+                return
+            }
+            if (url.startsWith('http')) target = '_blank'
+            const aLink = document.createElement('a')
+            aLink.href = url
+            aLink.target = target;
+            aLink.click()
+        }
+
+        /**
+         *
+         * @param url 图片链接
+         * @param id 你给 loading.ejs 添加的 id
+         */
+        imagesHideLoading (url, id) {
+            const img = new Image()
+            img.src = url
+            document.getElementById(id).classList.add('c-show-loading')
+            img.onload = () => {
+                console.log('加载完毕')
+                setTimeout(() => {
+                    console.log('已执行')
+                    document.getElementById(id).classList.remove('c-show-loading')
+                    document.getElementById(id).classList.add('c-hide-loading')
+                }, 2000)
+            }
+        }
+
+        getMessageParent () {
+            let DOMParent = document.getElementById('blog-message')
+            if (!DOMParent) {
+                DOMParent = document.createElement('div')
+                DOMParent.id = 'blog-message'
+                DOMParent.classList.add('d-flex')
+                DOMParent.classList.add('align-center')
+                DOMParent.classList.add('flex-column')
+                Object.assign(DOMParent.style, {
+                    width: '100%',
+                    height: 'auto',
+                    position: 'fixed',
+                    top: '7.5rem',
+                    left: 0,
+                    zIndex: 999999999999999999,
+                    transition: 'height 0.3s ease'
+                })
+
+                document.body.appendChild(DOMParent)
+            }
+            return DOMParent
+        }
+
+        showMessage ({
+                         type = 'info', // info、success、warning、error
+                         message = '还没有投放文本呢~~',
+                     }) {
+            const parentDOM = this.getMessageParent()
+
+            const DOM = document.createElement('div')
+            DOM.classList.add('py-2')
+            DOM.classList.add('px-4')
+            DOM.classList.add('box')
+            DOM.classList.add(this.messageMap.get(type))
+            Object.assign(DOM.style, {
+                width: 'fit-content',
+                opacity: '0',
+                visibility: 'hidden',
+                transition: 'opacity 0.3s ease, transform 0.3s ease, visibility 0.3s'
+            })
+
+            DOM.innerHTML = message
+            DOM.style.opacity = '1'
+            DOM.style.visibility = 'visible'
+            parentDOM.appendChild(DOM)
+
+            setTimeout(() => {
+                DOM.style.opacity = '0'
+                DOM.style.visibility = 'hidden'
+                setTimeout(() => {
+                    parentDOM.removeChild(DOM)
+                }, 500)
+            }, 1500)
+        }
+
+        onclickCopy (targetName) {
+            const targetDOM = document.querySelector(targetName)
+            if (!targetDOM) {
+                throw new Error('复制的目标不存在！用的是 querySelector，可能是名字用错了呀~')
+            }
+            // 选中文本
+            const range = document.createRange();
+            range.selectNodeContents(targetDOM);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            // 执行复制命令
+            const successful = document.execCommand('copy');
+            // 清理
+            selection.removeAllRanges();
+
+            if (successful) {
+                this.showMessage({ type: 'success', message: '复制成功' });
+            } else {
+                throw new Error('复制失败')
+            }
+        }
+    }
+</script>
+    <![endif]-->
+
+    <!-- 浏览器图标 -->
+    <link rel="shortcut icon" href="/logo/%E9%AB%98%E6%B8%85Logo/%E9%80%8F%E6%98%8E%E5%BA%95logo.png">
+
+    <!-- framework CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">-->
+    <!-- Custom styles for this template -->
+    
+<link rel="stylesheet" href="/css/index.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- section 1：顶部菜单 -->
+    <div class="index-menu px-4">
+    <div id="no-mobile-menu" >
+        <div class="d-flex justify-center align-center gap-4 v-full">
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/"
+                    >首页</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/bhcyl"
+                    >碧海苍云录</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/life"
+                    >生活大爆炸</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/archives"
+                    >归档</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/about-me"
+                    >关于我</a>
+                </div>
+            
+        </div>
+    </div>
+    <div id="mobile-menu">
+        <div class="v-full d-flex justify-end align-center">
+            <div style="width: fit-content; position: relative">
+                <i
+                        class="fas fa-list"
+                        style="color: #00586d"
+                        onclick="event.stopPropagation(); menuEjs.onclickMobileMenu(event)"
+                ></i>
+                <div
+                        id="nav-mobile"
+                        class="py-4"
+                        style=" opacity: 0; visibility: hidden"
+                        onclick="event.stopPropagation();"
+                >
+                    <aside class="menu">
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/" style="color: #00586d ">首页</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/bhcyl" style="color: #00586d ">碧海苍云录</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/life" style="color: #00586d ">生活大爆炸</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/archives" style="color: #00586d ">归档</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/about-me" style="color: #00586d ">关于我</a>
+                            </div>
+                        
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .menu-label:hover {
+        background-color: #EEEEEE;
+        color: #00586d;
+    }
+</style>
+
+<script>
+    // 导航栏吸顶功能实现
+    document.addEventListener('DOMContentLoaded', function() {
+        const navbar = document.querySelector('.index-menu');
+        let lastScrollTop = 0;
+        const threshold = 50; // 滚动阈值，越小越敏感
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // 页面顶部始终显示
+            if (scrollTop <= threshold) {
+                navbar.classList.remove('fixed-header-hidden');
+            }
+            // 向下滚动且超过阈值
+            else if (scrollTop > lastScrollTop && scrollTop > threshold) {
+                navbar.classList.add('fixed-header-hidden');
+            }
+            // 向上滚动
+            else {
+                navbar.classList.remove('fixed-header-hidden');
+            }
+
+            lastScrollTop = scrollTop;
+
+            // 无论是向上还是向下滚动，如果音乐播放器处于展现状态，都要收起来
+            const musicPlayer = document.getElementById('music-player')
+            if(musicPlayer) musicPlayer.style.left = -100 + '%'
+        });
+    });
+
+    const menuEjs = {
+        onclickMobileMenu: event => {
+            console.log('onclickMobileMenu')
+            const targetDOM = document.getElementById('nav-mobile')
+            targetDOM.style.opacity = 1
+            targetDOM.style.visibility = 'visible'
+        }
+    }
+
+    window.addEventListener('click', function() {
+        const targetDOM = document.getElementById('nav-mobile')
+        if (!targetDOM || !targetDOM.style.opacity) return
+        if (targetDOM.style.opacity) {
+            targetDOM.style.opacity = 0
+            targetDOM.style.visibility = 'hidden'
+        }
+    })
+</script>
+
+<style>
+    .index-menu {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 80px;
+        backdrop-filter: blur(10px);
+        background-color: transparent;
+        z-index: 99999;
+        transition: transform 0.3s linear, opacity 0.3s linear; /* 线性过渡 */
+    }
+    .index-menu > div {
+        cursor: pointer;
+    }
+
+    .fixed-header-hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    #no-mobile-menu {
+        display: none;
+        width: 100%;
+    }
+    #mobile-menu {
+        display: none;
+        height: 100%;
+    }
+    #nav-mobile {
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        position: absolute;
+        top: 100%;
+        background-color: white;
+        z-index: 2;
+        right: 0;
+    }
+
+    /* 屏幕宽度小于等于400px时 */
+    @media (max-width: 400px) {
+        #mobile-menu {
+            display: block;
+        }
+        #no-mobile-menu {
+            display: none;
+        }
+    }
+
+    /* 屏幕宽度大于400px时 */
+    @media (min-width: 401px) {
+        #mobile-menu {
+            display: none;
+        }
+        #no-mobile-menu {
+            display: block;
+        }
+    }
+</style>
+    <div id="blog-body">
+        <!-- 渲染：阅读整篇文章 -->
+<style>
+    #read-post {
+        min-height: calc(100% - 210px);
+        max-width: 85%;
+        margin: auto;
+    }
+
+    @media (max-width: 768px) {
+        #read-post {
+            max-width: 85%;
+        }
+    }
+</style>
+
+
+
+<div style="height: 80px"></div>
+
+<article id="read-post">
+    <!-- Title -->
+    <div class="level">
+        <div class="level-left">
+            <div class="media">
+                <div class="media-content">
+                    <h1 class="title is-4 modify-post-title">
+                        <span class="has-text-info">Web-协议</span>
+                    </h1>
+                    <p class="subtitle is-6">
+                        <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-08-13 23:10
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- 文章标签 -->
+        <div class="pt-4">
+            <span>
+    
+        <a class="tag is-info is-light" href="/tags/web/">web</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
+    
+</span>
+            <span>
+    
+        <a class="tag is-warning is-light" href="/categories/web/">web</a>
+    
+        <a class="tag is-warning is-light" href="/categories/web/%E5%8D%8F%E8%AE%AE/">协议</a>
+    
+</span>
+        </div>
+    </div>
+
+    <!-- 目录  -->
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="toc-number">1.</span> <span class="toc-text">局域网</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">网络的结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WEB%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">WEB的工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL%E5%9C%B0%E5%9D%80"><span class="toc-number">4.</span> <span class="toc-text">URL地址</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-number">4.1.</span> <span class="toc-text">协议类型：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="toc-number">4.2.</span> <span class="toc-text">端口号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GET%E3%80%81POST"><span class="toc-number">4.3.</span> <span class="toc-text">GET、POST</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%EF%BC%9AOSI%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B%E7%9A%84-7%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-number">5.</span> <span class="toc-text">网络模型：OSI参考模型的 7层模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%EF%BC%9ATCP-IP"><span class="toc-number">6.</span> <span class="toc-text">网络模型：TCP&#x2F;IP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IP%E5%8D%8F%E8%AE%AE"><span class="toc-number">6.1.</span> <span class="toc-text">IP协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wireshark-%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7"><span class="toc-number">6.2.</span> <span class="toc-text">Wireshark 抓包工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q%EF%BC%9ATCP%E4%B8%8EUPD%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">6.3.</span> <span class="toc-text">Q：TCP与UPD区别？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E7%9F%AD%E8%81%94%E6%8E%A5%EF%BC%9A%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E3%80%81%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-number">7.</span> <span class="toc-text">有短联接：三次握手、四次挥手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="toc-number">8.</span> <span class="toc-text">应用层</span></a></li></ol></div>
+    <!-- 文章：内容 -->
+    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
+        <hr />
+        <!-- Content -->
+        <h2 id="局域网"><a href="#局域网" class="headerlink" title="局域网"></a>局域网</h2><ul>
+<li>是企业、组织内部网</li>
+<li>相对封闭的网络环境。</li>
+<li>防火墙保护，由权限控制</li>
+</ul>
+<blockquote>
+<p>目的：使企业或组织内部的秘密或敏感信息受到保护</p>
+</blockquote>
+<h2 id="网络的结构"><a href="#网络的结构" class="headerlink" title="网络的结构"></a>网络的结构</h2><p>CS: 客户端到服务器<br>BS：浏览器到服务器，浏览器本身不是，网页是<br>P2P：点对点</p>
+<blockquote>
+<p><strong>Q：C&#x2F;S与B&#x2F;S区别？</strong></p>
+</blockquote>
+<ol>
+<li>CS需要下载安装，BS不需要，打开即可用</li>
+<li>CS升级维护很高，BS维护成本不高</li>
+<li>CS对客户端的性能要求高，BS对服务器的性能要求高</li>
+<li>CS操作业务流程复杂，BS操作简单，以鼠标为主</li>
+<li>CS是非标准的，是可定制化的，BS是标准化，个性化程度低</li>
+<li>CS保密安全度高，BS的保密安全程度低</li>
+<li>CS响应快，BS的响应速度受网速，浏览器性能影响</li>
+<li>CS兼容性差，BS兼容性高</li>
+</ol>
+<h2 id="WEB的工作原理"><a href="#WEB的工作原理" class="headerlink" title="WEB的工作原理"></a>WEB的工作原理</h2><p><strong>一次请求响应的过程</strong>：</p>
+<ul>
+<li>客户端向服务器发送请求，（请求数据）</li>
+<li>服务器接收请求数据，并处理，得到结果</li>
+<li>服务器将结果返回给客户端（响应数据）</li>
+<li>客户端接收响应的数据，将数据解释到浏览器中</li>
+</ul>
+<h2 id="URL地址"><a href="#URL地址" class="headerlink" title="URL地址"></a>URL地址</h2><p>URL是统一资源定位符</p>
+<pre><code>协议名称://主机名:端口号/路径/文件名.扩展名?参数名=参数值
+</code></pre>
+<p>域名： IP的别名</p>
+<h3 id="协议类型："><a href="#协议类型：" class="headerlink" title="协议类型："></a>协议类型：</h3><p><strong>HTTP</strong></p>
+<ul>
+<li>抓包：默认，抓到包是明文</li>
+<li>端口号默认80，可省略</li>
+</ul>
+<p><strong>HTTPS</strong></p>
+<ul>
+<li>抓包需要CA验证，即便抓到大概率是乱码，需要解码工具</li>
+<li>端口号默认443，可省略</li>
+</ul>
+<h3 id="端口号"><a href="#端口号" class="headerlink" title="端口号"></a>端口号</h3><p>长度：0-65535</p>
+<pre><code># 查看端口号
+netstat -an
+</code></pre>
+<h3 id="GET、POST"><a href="#GET、POST" class="headerlink" title="GET、POST"></a>GET、POST</h3><p>区别？</p>
+<p>GET参数在ULR当中，POST参数在被封装在请求体中，不在URL<br>GET安全性低，POST相对安全<br>GET有大小限制（1-2kb）,POST无大小限制</p>
+<h2 id="网络模型：OSI参考模型的-7层模型"><a href="#网络模型：OSI参考模型的-7层模型" class="headerlink" title="网络模型：OSI参考模型的 7层模型"></a>网络模型：OSI参考模型的 7层模型</h2><ol start="7">
+<li><strong>应用层</strong>：提供应用程序间通信<br> 通过取件码取得包裹</li>
+<li><strong>表示层</strong>：处理数据格式、数据加密<br> 向客户发送取件码</li>
+<li><strong>会话层</strong>：建立、维护、管理会话<br> 菜鸟驿站接收包裹</li>
+<li><strong>传输层</strong>：建立端到端的连接<br> 分拣完毕后，向目标地址派送包裹</li>
+<li><strong>网络层</strong>：负责寻址和路由选择<br> 分拣中心根据目标分拣数据地址</li>
+<li><strong>数据链路层</strong>：提供介质访问、链路管理<br> 快递点打包数据，发往分拣中心</li>
+<li><strong>物理层</strong>：位流传输<br> 准备好数据，前往快递点寄送</li>
+</ol>
+<h2 id="网络模型：TCP-IP"><a href="#网络模型：TCP-IP" class="headerlink" title="网络模型：TCP&#x2F;IP"></a>网络模型：TCP&#x2F;IP</h2><p><strong>应用层</strong>：5,6,7<br>    Fiddler或者开发者工具（F12）<br>    Fiddler只能抓应用层的包，无法抓取应用层以下的包<br><strong>传出层</strong>：4<br><strong>网络层</strong>：3<br>    wireshark 抓包：<br>    （这句不用看）可以抓取应用层的包，但是分析工具不如Fiddler方便，所以一般不抓；<br>    可以配合winpcap可以抓取物理层~传出层的包<br><strong>网络访问&#x2F;接口层</strong>：1,2<br>（数字表示上一段OSI 7层模型的编号）</p>
+<blockquote>
+<p>Q：应用层用什么抓包工具？网络层用什么抓包工具？</p>
+</blockquote>
+<h3 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h3><p>获取IP地址的方式：<br>自动获取：DHCP服务器自动分配地址，每次开机重新分配<br>手动：手动设置</p>
+<h3 id="Wireshark-抓包工具"><a href="#Wireshark-抓包工具" class="headerlink" title="Wireshark 抓包工具"></a>Wireshark 抓包工具</h3><blockquote>
+<p>Q：界面中五颜六色的背景块分别是什么意思？<br>A：每个颜色块都有属于自己的含义，一般情况下，黑底的属于情况比较糟糕的，比如请求资源失败这样的，剩下的基本是安全可用的；即背景色越深越糟糕。</p>
+</blockquote>
+<p><img src="https://fdc-four.oss-cn-beijing.aliyuncs.com/images/web-%E5%8D%8F%E8%AE%AE/Wireshark-options.png?Expires=1755097728&OSSAccessKeyId=TMP.3KqwvcTz8MPXiyFFTtd6BCKqQV1Tpe79R3YydXTURyzD7CLrbqYBYi4h5T5qx28RmKfVrXdQ8CMZU2dEg7TP3Qzcfgps5V&Signature=JtFhAUx7Jwo9ULaPx30R66jNwJA=" alt="Wireshark 抓包信息"></p>
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Frame</td>
+<td>物理层，为什么说是物理层？因为他的单位是 bits,</td>
+</tr>
+<tr>
+<td>Ethernet II</td>
+<td>数据链路层，以太网层</td>
+</tr>
+<tr>
+<td>Internet Protocol Version4（IPV4）</td>
+<td>IP层</td>
+</tr>
+<tr>
+<td>Transmission Control Protocol（TCP）</td>
+<td>TCP层</td>
+</tr>
+<tr>
+<td>IPV4.Src&#x2F;Source Address</td>
+<td>发送方</td>
+</tr>
+<tr>
+<td>IPV4.Dst&#x2F;Destination Address</td>
+<td>接收方</td>
+</tr>
+<tr>
+<td>TCP.Flags.Acknowledgment: Set</td>
+<td>ACK标志位</td>
+</tr>
+<tr>
+<td>TCP.Flags.Syn: Set</td>
+<td>SYN标志位</td>
+</tr>
+</tbody></table>
+<p><strong>TCP抓包时，是按先来后到的顺序记录，因为是全双工的</strong></p>
+<blockquote>
+<p><strong>Q：那么，请问什么事全双工？单双工又是啥？</strong><br>单双工：单项通道，单程火车票，比如广播<br>全双工：双向通道，可往返的火车票，可分为半双工和全双工。</p>
+<ul>
+<li>其中半双工，比如对讲机，可以接收，也能通话，但是当你通话的时候，无法接收。</li>
+<li>全双工：如电话，既能接收信息，也能发送信息</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Q：抓包的时机？</strong><br><mark>一旦测试中发现BUG，需要定位BUG的时候，才需要抓包，将抓包的结果发送给开发处理</mark></p>
+</blockquote>
+<h3 id="Q：TCP与UPD区别？"><a href="#Q：TCP与UPD区别？" class="headerlink" title="Q：TCP与UPD区别？"></a>Q：TCP与UPD区别？</h3><p>TCP协议：可靠的传输控制协议<br>UDP：用户数据包协议&#x2F;数据报传输控制协议</p>
+<p>TCP：有短联接、可靠的、有序的、端到端的、安全的、全双工的<br>UPD：无联接、不可靠的、无需的、不安全的、传输速度快</p>
+<p><strong>本质区别在于有无三次握手和挥手</strong>，握手和挥手的目的就是为了建立安全数据传输。握手和挥手的过程需要消耗资源，导致传输速度在一定程度下降变慢。</p>
+<h2 id="有短联接：三次握手、四次挥手"><a href="#有短联接：三次握手、四次挥手" class="headerlink" title="有短联接：三次握手、四次挥手"></a>有短联接：三次握手、四次挥手</h2><p><strong>三次握手</strong><br>客户端向服务器发送SYN，请求建立连接,等待服务器响应<br>》服务器接收到SYN后，为了表示自己收到了SYN，返回ACK确认信息，表示已做好联接准备<br>》客户端收到服务器发回来的SYN、ACK确认信息。客户端因此确认服务器已准备好联接<br>》客户端向服务器发送客户端已准备好的ACK信息，<br>》至此三次握手完成。</p>
+<ul>
+<li>三次握手的核心是 <strong>“双方互相确认对方的收发能力”</strong>，是 TCP 协议实现可靠传输的基础</li>
+<li>三次握手仅在建立新连接时执行一次，而非每次请求都重复</li>
+</ul>
+<blockquote>
+<p>Q：为什么要三次握手？</p>
+</blockquote>
+<p>第一次握手：客户端确认 “服务器能收到我的消息”。<br>第二次握手：服务器确认 “客户端能收到我的消息，且客户端能发消息给我”。<br>第三次握手：客户端确认 “服务器能收到我的消息，且服务器能发消息给我”。<br>三次握手后，双方才能确保双向通信通道的可靠性，避免因网络延迟导致的 “失效连接请求” 被误处理（例如客户端早先发的 SYN 因延迟到达服务器，此时客户端已放弃连接，但服务器仍误以为是新请求）</p>
+<p><strong>四次挥手</strong><br>客户端打算断开连接，向服务器挥手（FIN），说自己要离开了（ACK）<br>》服务器看到挥手信息（FIN）后，点头示意并返回ACK确认信息<br>》同时，服务器向客户端也表示自己要断开连接，向客户端挥手（FIN），说下次再见（ACK）<br>》客户端看到挥手信息（FIN）后，点头示意并返回ACK确认信息。<br>》至此四次挥手完成。</p>
+<ul>
+<li>TCP 四次挥手是断开连接时双方确认资源释放的过程，确保数据传输完整</li>
+</ul>
+<blockquote>
+<p>Q：为什么要四次挥手？</p>
+</blockquote>
+<ul>
+<li>前两次挥手：客户端通知服务器 “我要断了”，服务器确认 “收到，我知道了”（但服务器可能还有数据要发，不能立即关闭）。</li>
+<li>后两次挥手：服务器处理完数据后，通知客户端 “我也断了”，客户端确认 “收到，结束”。</li>
+<li>四次挥手的核心是允许双方分别独立关闭连接（半关闭状态），确保任何一方未发送完的数据能继续传输，避免数据丢失。</li>
+</ul>
+<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><p>状态码</p>
+<table>
+<thead>
+<tr>
+<th>系列</th>
+<th>状态码</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>100</td>
+<td></td>
+<td>服务器收到请求，需要请求者继续执行操作</td>
+</tr>
+<tr>
+<td>200</td>
+<td>200</td>
+<td>请求成功</td>
+</tr>
+<tr>
+<td>300</td>
+<td></td>
+<td>重定向</td>
+</tr>
+<tr>
+<td>400</td>
+<td>404</td>
+<td>NotFound，客户端找不到对应的资源</td>
+</tr>
+<tr>
+<td>500</td>
+<td></td>
+<td>服务器端响应有问题</td>
+</tr>
+</tbody></table>
+
+    </div>
+    <!-- 文章：声明 -->
+    <!-- 文章的声明 -->
+<div id="copy-icon-Web-协议" style="display: grid; grid-template-rows: subgrid; grid-row: span 3; grid-gap: 12px">
+    <p><strong>作者</strong>：粥记捣蛋</p>
+
+    <div class="d-flex">
+        <p><strong>文章链接</strong>：<a href="https://zexuisme.github.io/2025/08/12/Web/Web-%E5%8D%8F%E8%AE%AE/">https://ZeXuIsMe.github.io/2025/08/12/Web/Web-协议/</a></p>
+
+        <div
+                class="d-flex align-center"
+                style="width: fit-content; cursor: pointer"
+                onclick="postEjs.onclickCopy(`#copy-icon-Web-协议 a`)"
+        >
+            
+    <div class="tooltip tooltip-top " data-tooltip="点击复制">
+        <!-- button is-dark 为 bulma 的样式 -->
+        
+            <i
+                    class="fas fa-copy"
+                    style="font-size: 18px"
+            ></i>
+        
+    </div>
+
+
+<!--{-->
+<!--    type: '', // 表示提示输出的类型，参数有 text, image-->
+<!--    direction: '', // 表示toolTip出现的方向-->
+<!--    text: '', // 如果 type === 'text'，用于显示提示文本-->
+<!--    icon: '',  // icon 图标-->
+<!--    icon_prefix: '',  // icon 图标前缀，默认为 fab-->
+<!--    size: '', // 控制图标的大小, 默认为 48-->
+<!--    url: '' // 如果 type === image，图片的链接-->
+<!--}-->
+
+        </div>
+    </div>
+    <p><strong>版权声明</strong>：本网站所有文章除特别声明外,均采用 CC BY-NC-ND 4.0 许可协议。转载请注明出处!</p>
+
+</div>
+    <!-- 文章：文章切换 -->
+    <div style="margin-top: 48px">
+<!-- 文章阅读页的切换按钮 -->
+<div class="post-toggle d-flex justify-between flex-wrap gap-3">
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/')"
+            disabled
+    >上一篇: 无</button>
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/2025/08/11/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL-%E6%B7%BB%E5%8A%A0%E6%88%96%E5%88%A0%E9%99%A4%E7%BA%A6%E6%9D%9F/')"
+            
+    >下一篇: SQL-添加或删除约束</button>
+</div>
+
+<script>
+    class PostToggleEjs extends Blog {
+        constructor() {
+            super()
+        }
+
+        onclickLink (url) {
+            this.createALink(url, '_self')
+        }
+    }
+
+    const postToggleEjs = new PostToggleEjs()
+</script></div>
+
+</article>
+
+<div style="height: 80px"></div>
+
+<script>
+    class PostEjs extends Blog{
+        constructor() {
+            super();
+        }
+    }
+    const postEjs = new PostEjs();
+</script>
+    </div>
+
+    
+        <!-- 悬浮操作按钮 -->
+        <div
+        class="post-flex d-flex flex-wrap gap-4"
+        style="position: fixed; bottom: 10%; right: 10px; width: 48px; mix-blend-mode: difference;"
+>
+    <div
+            class="mbl d-flex justify-center align-center"
+            style="border-radius: 50%; width: 48px; height: 48px; border: none"
+            onclick="postFlexMenu.onclickFlexBtn(event)"
+    >
+        <a href="/">
+            <i class="fas fa-home" style="font-size: 24px"></i>
+        </a>
+    </div>
+
+    <div
+            class="mbl d-flex justify-center align-center"
+            style="border-radius: 50%; width: 48px; height: 48px; border: none"
+            onclick="postFlexMenu.onclickFlexBtn(event)"
+    >
+        <a href="#blog-body">
+            <i class="fas fa-angle-up" style="font-size: 24px"></i>
+        </a>
+    </div>
+
+    <div
+            id="flex-music-btn"
+            class="mbl d-flex justify-center align-center"
+            style="border-radius: 50%; width: 48px; height: 48px; border: none"
+            onclick="postFlexMenu.onclickMusicBtn()"
+    >
+        <i class="fas fa-music text-primary" style="font-size: 24px; cursor: pointer"></i>
+    </div>
+</div>
+
+<script>
+    class PostFlexMenu extends DeviceDetector{
+        constructor() {
+            super();
+            // ...
+        }
+
+        onclickFlexBtn (event) {
+            const aLink = event.target.querySelector('a')
+            if (!aLink) return;
+            aLink.click()
+        }
+
+        onclickMusicBtn () {
+            const musicPlay = document.getElementById('music-player')
+            if (musicPlay.style.left === '0px') musicPlay.style.left = -100 + '%'
+            else musicPlay.style.left = 0
+        }
+    }
+
+    const postFlexMenu = new PostFlexMenu();
+    if (postFlexMenu.isMobile()) {
+        document.getElementById('flex-music-btn').classList.remove('d-flex');
+        document.getElementById('flex-music-btn').style.display = 'none';
+    }
+</script>
+        <!-- 音乐播放器 -->
+        <div id="music-player" class="px-6 py-4">
+    <div class="d-flex v-full">
+        <div class="v-full d-flex align-center gap-4" style="max-width: 310px">
+            <div id="music-avatar" style="position: relative">
+                <figure>
+                    <img src="/img/bhcyl/bhcyl.jpg" alt="" style="height: 100%; object-fit: cover">
+                </figure>
+                <div class="v-absolute-center bg-white" style="height: 32px; border-radius: 50%; width: 32px"></div>
+                <div class="v-absolute-center border-grey-50" style="height: 40px; border-radius: 50%; width: 40px; border: 2px solid"></div>
+            </div>
+            <div style="width: 200px">
+                <div id="music-title" class="text-secondary">歌曲名</div>
+                <div id="music-author" class="text-secondary">作者</div>
+            </div>
+        </div>
+
+        <div id="music-state" class="v-full d-flex flex-column justify-center align-center gap-5">
+            <div class="d-flex gap-6">
+                <i id="prev-btn" class="fas fa-step-backward" onclick="musicPlayer.onclickPreMusic(event)"></i>
+                <i id="play-btn" class="fas fa-play-circle" onclick="musicPlayer.onclickTogglePlayerState()"></i>
+                <i id="next-btn" class="fas fa-step-forward" onclick="musicPlayer.onclickNextMusic(event)"></i>
+            </div>
+            <div id="music-progress" class="d-flex justify-center" >
+                <div onclick="musicPlayer.onclickPosition(event)">
+                    <div id="default-progress" class="bg-grey-300"></div>
+                    <div id="player-progress"></div>
+                    <div class="progress-text"></div>
+                    <audio
+                            style="display: none"
+                            controls
+                            src="/music/净坛遗恨.mp3"
+                            onloadedmetadata="musicPlayer.onloadedmetadata(event)"
+                            ontimeupdate="musicPlayer.ontimeupdate(event)"
+                            onended="musicPlayer.onended()"
+                    ></audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="v-full d-flex align-center justify-around" style="max-width: 310px">
+            <div class="d-flex gap-3 align-center">
+                <!-- 喇叭 -->
+                <i
+                        id="la-ba"
+                        class="fas fa-volume-down text-secondary"
+                        onclick="musicPlayer.onclickToggleLaBaIcon(event)"
+                        data-muted="false"
+                ></i>
+                <!-- 音量调节 -->
+                <div id="voice-progress" style="position: relative">
+                    <span id="voice-bg" class="bg-grey-300"></span>
+                    <span id="voice-modify"></span>
+                    <div id="voice-mask" class="v-absolute" onclick="musicPlayer.onclickControlVolume(event)"></div>
+                </div>
+            </div>
+            <!-- 歌曲列表-->
+            <div id="music-list">
+                <i class="fas fa-list" onclick="event.stopPropagation(); musicPlayer.showMusicListCard(event)"></i>
+                <div id="music-list-card" class="p-4" onclick="event.stopPropagation()" data-list="[{&#34;path&#34;:&#34;music/净坛遗恨.mp3&#34;,&#34;name&#34;:&#34;净坛遗恨&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/末日旅人的独白.mp3&#34;,&#34;name&#34;:&#34;末日旅人的独白&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/灯芯上的七彩霜A.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-A&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/灯芯上的七彩霜B.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-B&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/王权情劫.mp3&#34;,&#34;name&#34;:&#34;王权情劫&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/白骨谣.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 女声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/白骨谣_男声版.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 男声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/纯音乐001.mp3&#34;,&#34;name&#34;:&#34;Darkness Nocturne&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}]">
+                    
+                        <div
+                                id="music-list-0"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/净坛遗恨.mp3&#34;,&#34;name&#34;:&#34;净坛遗恨&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `0`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">净坛遗恨</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-1"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/末日旅人的独白.mp3&#34;,&#34;name&#34;:&#34;末日旅人的独白&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `1`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">末日旅人的独白</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-2"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/灯芯上的七彩霜A.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-A&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `2`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">灯芯上的七彩霜-A</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-3"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/灯芯上的七彩霜B.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-B&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `3`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">灯芯上的七彩霜-B</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-4"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/王权情劫.mp3&#34;,&#34;name&#34;:&#34;王权情劫&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `4`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">王权情劫</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-5"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/白骨谣.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 女声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `5`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">白骨哀歌 - 女声</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-6"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/白骨谣_男声版.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 男声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `6`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">白骨哀歌 - 男声</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-7"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/纯音乐001.mp3&#34;,&#34;name&#34;:&#34;Darkness Nocturne&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `7`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">Darkness Nocturne</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+class MusicPlayer extends DeviceDetector {
+    constructor() {
+        super();
+        this.musicInfo = { index: 0 }
+        this.musicList = []
+
+        this.totalTime = ''
+        this.currentTime = ''
+        this.progress = 0
+        this.defaultVolume = 0.2 // # 默认音量为 20%
+        this.cacheVolume = 0 // 暂存音量大小
+
+        const playBtnIcon = new Map()
+        playBtnIcon.set('play', 'fa-play-circle')
+        playBtnIcon.set('pause', 'fa-pause-circle')
+        this.playBtnIcon = playBtnIcon
+
+        const laBaIcon = new Map()
+        laBaIcon.set("小喇叭", 'fa-volume-down')
+        laBaIcon.set("大喇叭", 'fa-volume-up')
+        laBaIcon.set("静音", 'fa-volume-mute')
+        this.laBaIcon = laBaIcon
+    }
+
+    setMusicList () {
+        if (this.musicList.length > 0) return
+        const dom = this.getMusicListCard()
+        this.musicList = JSON.parse(dom.dataset.list)
+        dom.setAttribute('data-list', [])
+    }
+    getAvatarDOM () {
+        return document.getElementById('music-avatar')
+    }
+    getMusicListCard () {
+        return document.getElementById("music-list-card")
+    }
+    modifyMusicInfo () {
+        const { name, author } = this.musicInfo
+        // 修改歌曲头像
+        // 修改歌曲标题
+        const titleDOM = document.getElementById("music-title")
+        titleDOM.innerHTML = name
+        // 修改歌曲作者
+        const authorDOM = document.getElementById("music-author")
+        authorDOM.innerHTML = author
+    }
+    hideMusicListCard () {
+        const card = this.getMusicListCard();
+        card.style.opacity = 0;
+        card.style.visibility = 'hidden';
+    }
+    showMusicListCard () {
+        const card = this.getMusicListCard();
+        card.style.opacity = 1;
+        card.style.visibility = 'visible';
+    }
+    // 播放前一首
+    onclickPreMusic(event) {
+        this.setMusicList()
+        const { musicInfo, musicList } = this
+        // * 1 是为了把字符洗掉
+        let prevIndex = musicInfo.index * 1 - 1
+        if (prevIndex <= 0) prevIndex = musicList.length - 1
+        document.getElementById(`music-list-${prevIndex}`).click()
+    }
+    // 播放下一首
+    onclickNextMusic(event) {
+        this.setMusicList()
+        const { musicInfo, musicList } = this
+        // * 1 是为了把字符洗掉
+        let nextIndex = musicInfo.index * 1 + 1
+        if (nextIndex > musicList.length - 1) nextIndex = 0
+        document.getElementById(`music-list-${nextIndex}`).click()
+    }
+
+    // 获取 audio 图标
+    getVoiceDOM () {
+        return document.querySelector("#music-progress audio");
+    }
+    getPlayBtnDOM () {
+        return document.getElementById("play-btn");
+    }
+    getPreBtnDOM () {
+        return document.getElementById("play-btn");
+    }
+    getNextBtnDOM () {
+        return document.getElementById("next-btn");
+    }
+    setMuted (dom, val) {
+        dom.setAttribute('data-muted', val)
+    }
+    // 设置喇叭图标
+    setLaBaIcon (dom, { add, remove, muted }) {
+        dom.classList.remove(remove)
+        dom.classList.add(add)
+        this.setMuted(dom, muted)
+    }
+    // 设置播放键按钮图标
+    setPlayBtnIcon ({ add, remove }) {
+        const playBtnDOM = this.getPlayBtnDOM()
+        playBtnDOM.classList.remove(remove)
+        playBtnDOM.classList.add(add)
+    }
+    // 调整音量的位置
+    modifyVolume (volume) {
+        const targetDOM = document.getElementById('voice-modify')
+        targetDOM.style.left = -100 + volume * 100 + '%'
+    }
+    // 选择音乐
+    onclickMusic (val, index) {
+        const config = JSON.parse(val);
+        this.musicInfo = Object.assign(config, { index })
+        this.setMusicList()
+        this.modifyMusicInfo()
+
+        const voiceDOM = this.getVoiceDOM()
+        voiceDOM.src = `/${config.path}`
+
+        // 切换歌曲时暂停播放
+        this.getVoiceDOM().pause()
+        // 切换歌曲时把播放按钮的状态还原
+        const playBtnIcon = this.playBtnIcon
+        this.setPlayBtnIcon({ add: playBtnIcon.get('play'), remove: playBtnIcon.get('pause') })
+        this.onclickTogglePlayerState()
+    }
+    // 点击播放按钮时：切换音频状态
+    onclickTogglePlayerState () {
+        // 如果不存在歌曲信息说明是第一次播放，
+        if (!Object.keys(this.musicInfo).find(key => key === 'path')) {
+            document.getElementById(`music-list-0`).click()
+            return
+        }
+
+        const voiceDOM = this.getVoiceDOM()
+        const avatarImgDOM = this.getAvatarDOM().querySelector('img')
+        // 判断是否处于播放状态，如果处于播放状态，那么 paused 参数为 false
+        if (voiceDOM.paused) {
+            voiceDOM.play()
+            // 让音乐头像旋转起来
+            avatarImgDOM.classList.add('music-avatar-img')
+            this.setPlayBtnIcon({
+                add: this.playBtnIcon.get('pause'),
+                remove: this.playBtnIcon.get('play')
+            })
+        } else {
+            voiceDOM.pause()
+            avatarImgDOM.classList.remove('music-avatar-img')
+            this.setPlayBtnIcon({
+                add: this.playBtnIcon.get('play'),
+                remove: this.playBtnIcon.get('pause')
+            })
+        }
+    }
+    // 调整音量大小
+    onclickControlVolume (event) {
+        const voice = this.getVoiceDOM()
+        const { offsetX, target } = event
+
+        const volume = offsetX/target.clientWidth
+        this.modifyVolume(volume)
+
+        const laBa = document.querySelector(`#la-ba`)
+        if (laBa.dataset.muted === 'true') {
+            this.setLaBaIcon(laBa, {
+                muted: 'false',
+                add: this.laBaIcon.get('小喇叭'),
+                remove: this.laBaIcon.get('静音')
+            })
+        }
+
+        voice.volume = volume
+    }
+    // 播放完毕
+    onended () {
+        // 切下一首曲子
+        this.onclickNextMusic()
+    }
+
+    // 音频本身的操作
+    handleTimeFormat (second) {
+        // 秒数格式化
+        let mm = Math.floor(second / 60)
+        let ss = Math.floor(second % 60)
+        if (mm < 10) mm = '0' + mm
+        if (ss < 10) ss = '0' + ss
+        return `${mm}:${ss}`
+    }
+    // 获取音频的第一手信息
+    onloadedmetadata (event) {
+        console.log('歌曲已填充')
+        const voice = event.target
+        const { duration } = voice;
+        this.duration = duration;
+        this.totalTime = this.handleTimeFormat(duration)
+        // 设置默认音量
+        voice.volume = this.defaultVolume
+        // 修改音量状态
+        this.modifyVolume(this.defaultVolume)
+    }
+    ontimeupdate (event) {
+        // 当音频处于播放状态时触发
+        const { currentTime, duration } = event.target
+        this.currentTime = this.handleTimeFormat(currentTime)
+        document.querySelector('.progress-text').innerHTML = this.currentTime
+        // 操作进度条
+        // 把秒数切割为100份
+        const progress = currentTime / duration * 100
+        document.getElementById('player-progress').style.left = -100 + progress + '%'
+    }
+    onclickPosition (event) {
+        // TODO 定位有问题：设置currentTime会重新播放
+        // 有提过 seekable，说length = 1表示可以做定位的，该音频是有的，结果嘛就是依然不能做定位
+        const voiceDOM = this.getVoiceDOM()
+        const paused = voiceDOM.paused
+
+        voiceDOM.pause()
+        this.setPlayBtnIcon({
+            add: this.playBtnIcon.get('play'),
+            remove: this.playBtnIcon.get('pause')
+        })
+        const { offsetX, target } = event
+        voiceDOM.currentTime = Math.floor(offsetX/target.clientWidth * voiceDOM.duration)
+
+        if (paused === false) {
+            voiceDOM.play()
+            this.setPlayBtnIcon({
+                add: this.playBtnIcon.get('pause'),
+                remove: this.playBtnIcon.get('play')
+            })
+        }
+    }
+
+    // 按键操作：喇叭
+    onclickToggleLaBaIcon (event) {
+        // 点击切换喇叭状态
+        // 逻辑为：点击静音，如果是静音则回恢复状态
+        // ['fa-volume-down']
+        const laBaIconDOM = event.target
+        const { muted } = event.target.dataset
+        const laBaIcon = this.laBaIcon
+        if (muted === 'false') {
+            // 非静音状态，需要切换到静音
+            this.setLaBaIcon(laBaIconDOM, {
+                muted: 'true',
+                add: laBaIcon.get('静音'),
+                remove: laBaIcon.get('小喇叭')
+            })
+            // 把音量存起来
+            this.cacheVolume = this.getVoiceDOM().volume
+            // 修改音量
+            this.modifyVolume(0)
+            this.getVoiceDOM().volume = 0
+        } else {
+            // 静音状态，需要切换到正常状态
+            this.setLaBaIcon(laBaIconDOM, {
+                muted: 'false',
+                add: laBaIcon.get('小喇叭'),
+                remove: laBaIcon.get('静音')
+            })
+            // 修改音量
+            this.modifyVolume(this.cacheVolume)
+            this.getVoiceDOM().volume = this.cacheVolume
+        }
+    }
+}
+const musicPlayer = new MusicPlayer();
+if (musicPlayer.isMobile()) {
+    const dom = document.getElementById('music-player')
+    dom.style.display = 'none'
+}
+
+window.addEventListener('click', () => {
+    const target = musicPlayer.getMusicListCard()
+    if (target?.style.opacity) {
+        musicPlayer.hideMusicListCard()
+    }
+});
+</script>
+
+<style>
+    #music-player {
+        position: fixed;
+        width: 100%;
+        height: 128px;
+        bottom: 0;
+        left: -100%;
+        z-index: 9;
+        backdrop-filter: blur(10px);
+        background: transparent;
+        transition: left 0.5s ease;
+    }
+    #music-player i { font-size: 32px; }
+
+    #music-avatar {
+        width: 96px;
+        height: 100%;
+        border-radius:50%;
+        overflow: hidden;
+    }
+    @keyframes avatar-rotate {
+        0% { transform: rotate(0) }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* 按键区：上一首、播放、下一首 */
+    #music-state>div:first-child>i {
+        cursor: pointer;
+        color: var(--secondary);
+        transform: scale(1);
+        transition: color 0.3s ease;
+    }
+    #music-state>div:first-child>i:hover {
+        color: var(--primary);
+    }
+
+    /* 进度条 */
+    #music-progress {
+        width: 100%;
+    }
+    #music-progress>div {
+        width: 80%;
+        margin: auto;
+        max-width: 500px;
+        position: relative;
+        overflow: hidden;
+    }
+    #default-progress, #player-progress {
+        border: 6px;
+        width: 100%;
+        height: 5px;
+    }
+    #player-progress {
+        background: linear-gradient(to left, #c1d5d3, var(--primary), #c1d5d3);
+        position: absolute;
+        top: 0;
+        left: -100%;
+        background-size: 200%;
+        animation: musicPlayerProgress 3s linear infinite;
+    }
+    @keyframes musicPlayerProgress {
+        0% {
+            background-position: -100% 0;
+        }
+        100% {
+            background-position: 100% 0;
+        }
+    }
+
+    /* 音量 */
+    #voice-progress {
+        overflow: hidden;
+        padding: 12px 0;
+    }
+    #voice-progress::before {
+        content: "";
+        width: 100%;
+        height: 10px;
+        background-color: var(--primary);
+    }
+    #voice-bg, #voice-modify {
+        display: inline-block;
+        width: 100px;
+        height: 5px;
+        border-radius: 6px;
+    }
+    #voice-modify {
+        /*  音量的调节  */
+        position: absolute;
+        top: 50%;
+        left: -100%;
+        background-color: var(--primary);
+        transition: left 0.3s ease;
+        transform: translateY(-50%);
+    }
+    #voice-mask {
+        background-color: rgba(255,0,0,0);
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    /* 歌曲列表 */
+    #music-list {
+        position: relative;
+    }
+    #music-list-card {
+        cursor: pointer;
+        position: absolute;
+        width: 256px;
+        max-height: 512px;
+        overflow: auto;
+        bottom: calc(100% + .5rem);
+        right: -65px;
+        background-color: #00586d12;
+        opacity: 0;
+        visibility: hidden;
+        transition: visibility 0.3s ease, opacity 0.3s ease;
+    }
+    #music-list-card>div:nth-child(2n-1) {
+        background-color: var(--grey-100);
+    }
+    #music-list-card>div:nth-child(2n) {
+        background-color: var(--white);
+    }
+    #music-list-card>div:hover {
+        cursor: pointer;
+        background-color: var(--grey-300);
+    }
+</style>
+    
+</body>
+</html>

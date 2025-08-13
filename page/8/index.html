@@ -604,6 +604,51 @@
                     <!-- 文章预览时用 -->
 <section class="post-card box mbl py-6">
     <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Sun Jun 08 2025 12:03:37 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        Hexo-文章摘要
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        <p>Hexo 会自动提取文章的前一部分内容作为 excerpt，并保留 HTML 格式</p>
+<ul>
+<li>操作</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs ejs">&lt;!-- 直接使用内置的 excerpt 属性 --&gt;<br>&lt;%- item.excerpt %&gt;<br><br>&lt;!-- 如果 excerpt 为空，使用 content （但可能会显示全文） --&gt;<br>&lt;%- item.excerpt || item.content %&gt;<br></code></pre></td></tr></table></figure>
+<p><strong>注意</strong></p>
+<ul>
+<li>Hexo 默认会提取文章的前 140 个字符作为 excerpt，不会截断 HTML 标签，因此格式会保留。</li>
+<li>如果文章中包含
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/08/HEXO/Hexo-%E6%96%87%E7%AB%A0%E6%91%98%E8%A6%81/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
         <span style="color: #adadad; font-size: 0.875rem">Thu Jun 05 2025 16:01:11 GMT+0800</span>
     </div>
     <div class="title is-5">
@@ -975,43 +1020,6 @@
     }
 </style>
                 
-                    <!-- 文章预览时用 -->
-<section class="post-card box mbl py-6">
-    <div class="subtitle">
-        <span style="color: #adadad; font-size: 0.875rem">Tue Jun 03 2025 13:48:43 GMT+0800</span>
-    </div>
-    <div class="title is-5">
-        Hello World
-    </div>
-
-    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
-        没有摘要，点进来看看吧
-    </div>
-
-    <div class="post-card-mask d-flex justify-center align-end">
-        <a class="py-4 " href="/2025/06/03/hello-world/">
-            <span style="color: #00586d">加载更多</span>
-        </a>
-    </div>
-</section>
-
-<style>
-    .post-card {
-        width: 100%;
-        min-width: 300px;
-        border-radius: 36px;
-        overflow: hidden
-    }
-    .post-card-mask {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: transparent;
-    }
-</style>
-                
             </div>
         </section>
         <!-- section：分页信息 -->
@@ -1036,7 +1044,7 @@
             <div class="mx-1 d-flex ">
                 <span>8</span>
                 <span class="mx-1">/</span>
-                <span>8</span>
+                <span>9</span>
             </div>
             <div style="width: 100%; height: 1px"></div>
         </div>
@@ -1044,8 +1052,8 @@
         <button
                 class="button"
                 style="border-radius: 24px"
-                onclick="pagination.onclickPage(`/`)"
-                disabled
+                onclick="pagination.onclickPage(`/page/9/`)"
+                
         >
             <span>
                 下一页
