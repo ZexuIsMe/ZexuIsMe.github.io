@@ -273,10 +273,10 @@ WITH With_2 AS(
 )
 SELECT * FROM With_2 WHERE 课程名 IN('QTP', 'Linux') AND 姓名='吴丹' AND 班级编号 = 101;
 ```
-![img_1.png](../../../images/51testing/join_on_02.png)
+![img_1.png](../../images/51testing/join_on_02.png)
 
 比如该查询，如果没有`学生表.学号 = 成绩表.学号`就会出现，如下图所示内容，一个学生一门课会有N次成绩，这显然是错误的
-![img.png](../../../images/51testing/join_on_01.png)
+![img.png](../../images/51testing/join_on_01.png)
 因此，在联表查询的时候，桥梁越详细，查询出来的信息才会越准确，能够避免联表产生的无效数据行。
 
 ## **4. 现在运营想要分别查看学校为山东大学或者性别为男性的用户的device_id、gender、age和gpa数据，请取出相应结果，结果不去重。**
