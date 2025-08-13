@@ -46,6 +46,8 @@ categories:
 
 *   窗口范围：定义当前行前后需要包含的行数（如`ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING`）。
 
+*   窗口范围：累计`ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`
+
 ## 四、常用窗口函数分类
 
 1.  **排序函数**：
@@ -157,3 +159,7 @@ A：先说结论，若数据量很大，推荐使用`LIMIT`，因为窗口函数
 4.  逐行应用上述规则，得到最终结果。
 
 > （注：文档由 AI 总结生成）
+
+## 九、注意事项
+
+- 窗口函数会影响当前查询，比如排名

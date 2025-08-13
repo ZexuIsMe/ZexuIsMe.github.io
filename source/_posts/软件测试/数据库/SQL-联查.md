@@ -92,9 +92,12 @@ WHERE up.university = '浙江大学';
 **用于显示的字段`device_id, question_id, result` 不知道出自`qpd`表还是`up`表，需要表示出处`qpd.device_id, qpd.question_id, qpd.result`**
 
 ### JOIN：USING
+
 若连接条件的字段都一样，那么可以使用`USING`简化语句：
 
 `ON qpd.device_id = up.device_id` 》 `USING(device_id)`
+
+前提：字段是一致的
 
 - 如果联表过程中发现是多个：`INNER JOIN user_profile AS up USING(device_id, column_name)`
 - 另外使用USING构建的表连接，无需对表进行别名设置，除非该字段不在USING内且是连接后产生的重复字段列，这样的才会使用表的别名进行标识

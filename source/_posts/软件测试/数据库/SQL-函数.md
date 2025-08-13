@@ -124,6 +124,7 @@ SQL Server：`LOWER(column_name)`
 
 - 在没有分组情况下，查询的返回，始终只有一行数据。
 - 聚合函数不会出现在WHERE子句中
+- HAVING子句只接受聚合函数
 
 ### 聚合函数：COUNT
 
@@ -208,7 +209,8 @@ Having 子句是针对**分组后**的数据进行筛选过滤的
 
 ## EXISTS()
 
-EXISTS 运算符用于判断查询子句是否有记录，如果有一条或多条记录存在，则返回TRUE，否则返回FALSE。
+- EXISTS 运算符用于判断查询子句是否有记录，如果有一条或多条记录存在，则返回TRUE，否则返回FALSE。
+- EXISTS 只接受子查询
 
 ```SQL
 SELECT Websites.name, Websites.url 
@@ -223,6 +225,19 @@ WHERE EXISTS (SELECT count FROM access_log WHERE Websites.id = access_log.site_i
 **因为SQL语句执行时是逐行比对（扫描全表）的一个过程**，凡是满足条件的，都会被纳入返回列表的数据中，
 
 所以当EXISTS为真时，则表示该记录是符合条件的。
+
+Eg: 查找未分配具体部门的员工的所有信息
+```sql
+SELECT * FROM employees
+LEFT JOIN dept_emp USING(emp_no)
+WHERE NOT EXISTS(
+    SELECT 1 
+    FROM dept_emp 
+    WHERE dept_emp.emp_no = employees.emp_no
+)
+;
+```
+题目来源：[点击前往：牛客](https://www.nowcoder.com/share/jump/1571640021754969995339)
 
 ## 显示格式化：FORMAT()
 
