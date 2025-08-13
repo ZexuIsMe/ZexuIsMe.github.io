@@ -1,5 +1,5 @@
 ---
-title: 视图
+title: SQL-视图
 date: 2025-08-05 17:07:21
 tags: [SQL, 视图]
 categories:
