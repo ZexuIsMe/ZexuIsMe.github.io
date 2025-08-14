@@ -1,7 +1,7 @@
 ---
 title: Web-协议
 date: 2025-08-12 09:41:19
-tags: [web, 协议]
+tags: [web, TCP/IP, 三次握手, 四次挥手, Get, Post, UDP]
 categories:
   - web
   - 协议
@@ -154,6 +154,7 @@ UPD：无联接、不可靠的、无需的、不安全的、传输速度快
 
 ## 有短联接：三次握手、四次挥手
 
+![三次握手][三次握手]
 **三次握手**
 客户端向服务器发送SYN，请求建立连接,等待服务器响应
 》服务器接收到SYN后，为了表示自己收到了SYN，返回ACK确认信息，表示已做好联接准备
@@ -171,6 +172,8 @@ UPD：无联接、不可靠的、无需的、不安全的、传输速度快
 第三次握手：客户端确认 “服务器能收到我的消息，且服务器能发消息给我”。
 三次握手后，双方才能确保双向通信通道的可靠性，避免因网络延迟导致的 “失效连接请求” 被误处理（例如客户端早先发的 SYN 因延迟到达服务器，此时客户端已放弃连接，但服务器仍误以为是新请求）
 
+
+![四次挥手][四次挥手]
 **四次挥手**
 客户端打算断开连接，向服务器挥手（FIN），说自己要离开了（ACK）
 》服务器看到挥手信息（FIN）后，点头示意并返回ACK确认信息
@@ -184,8 +187,6 @@ UPD：无联接、不可靠的、无需的、不安全的、传输速度快
 - 前两次挥手：客户端通知服务器 “我要断了”，服务器确认 “收到，我知道了”（但服务器可能还有数据要发，不能立即关闭）。
 - 后两次挥手：服务器处理完数据后，通知客户端 “我也断了”，客户端确认 “收到，结束”。
 - 四次挥手的核心是允许双方分别独立关闭连接（半关闭状态），确保任何一方未发送完的数据能继续传输，避免数据丢失。
-
-
 
 
 
@@ -217,4 +218,6 @@ UPD：无联接、不可靠的、无需的、不安全的、传输速度快
 
 
 
-[wireshark界面_抓包详情]: https://fdc-four.oss-cn-beijing.aliyuncs.com/images/web-%E5%8D%8F%E8%AE%AE/Wireshark-options.png?Expires=1755097728&OSSAccessKeyId=TMP.3KqwvcTz8MPXiyFFTtd6BCKqQV1Tpe79R3YydXTURyzD7CLrbqYBYi4h5T5qx28RmKfVrXdQ8CMZU2dEg7TP3Qzcfgps5V&Signature=JtFhAUx7Jwo9ULaPx30R66jNwJA%3D
+[wireshark界面_抓包详情]: https://origin.picgo.net/2025/08/14/wireshark4f3da1c842181aa5.png
+[三次握手]: https://origin.picgo.net/2025/08/14/acb4619d6e4a1439165d90f0a2cd153588c963fdcd76bdc4.png
+[四次挥手]: https://origin.picgo.net/2025/08/14/_2025-08-13_101015_8297bc17fad6af881a7.png
