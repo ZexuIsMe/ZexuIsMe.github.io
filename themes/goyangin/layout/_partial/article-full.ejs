@@ -41,7 +41,10 @@
     </div>
 
     <!-- 目录  -->
-    <div><%- toc(item.content) %></div>
+    <div><%- toc(item.content, {
+            list_number: true,
+            max_depth: 3
+        }) %></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />

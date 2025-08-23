@@ -1,5 +1,15 @@
+<%
+    const categoriesList = list_categories({
+        depth: 1,
+        class: "",
+        show_count: true,
+        order: -1,
+        orderby: 'length'
+    })
+    // console.log(site.categories)
+%>
 <div id="home-post-list">
-    <div class="container p-4" >
+    <div class="container p-4" style="display: none">
         <section>
             <!-- title -->
             <%- partial('_partial/section-title', { item: { name: 'Markdown', icon: 'fab fa-markdown' } }) %>
@@ -12,5 +22,13 @@
         </section>
         <!-- section：分页信息 -->
         <%- partial('_partial/pagination') %>
+    </div>
+
+    <div class="container p-4">
+        <!-- title -->
+        <%- partial('_partial/section-title', { item: { name: 'Markdown Card', icon: 'fab fa-markdown' } }) %>
+        <div class="list-categories">
+            <%- categoriesList %>
+        </div>
     </div>
 </div>
