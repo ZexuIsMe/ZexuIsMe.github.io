@@ -181,6 +181,9 @@ SQL语句注入
 》安全测试：是否屏蔽了可执行文件，如.exe，.sh，.php之类的
 》异常测试：断点续传
 
+## Cookie、Session
+
+### Cookie
 
 ## Session
 
