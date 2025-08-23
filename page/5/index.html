@@ -14,12 +14,6 @@
     
 <script src="/js/index.js" type="module"></script>
 
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
     <!-- 这里的是全局通用的方法 -->
 
 <script type="text/javascript">
@@ -243,15 +237,20 @@
         }
     }
 </script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
     <!-- 浏览器图标 -->
     <link rel="shortcut icon" href="/logo/%E9%AB%98%E6%B8%85Logo/%E9%80%8F%E6%98%8E%E5%BA%95logo.png">
 
     <!-- framework CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">-->
-    <!-- Custom styles for this template -->
+    
+<link rel="stylesheet" href="/css/bulma/index.css">
+
     
 <link rel="stylesheet" href="/css/index.css">
 
@@ -577,12 +576,13 @@
     }
 </style>
 <!-- section 2：首页显示的主体内容 -->
+
 <div id="home-post-list">
-    <div class="container p-4" >
+    <div class="container p-4" style="display: none">
         <section>
             <!-- title -->
             <!-- 一般用于 section 标题 -->
-<h1 class="title is-4 d-flex align-center" style="padding: 120px 0 60px 0">
+<h1 class="title is-4 d-flex align-center" style="padding: 120px 0 60px 0; font-family: 'ZiHunLongTengKaiShu', serif">
     <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
     <span style="white-space: nowrap; color: black" class="mx-4">
                 <i class="fab fa-markdown"></i>
@@ -600,6 +600,157 @@
 <!--</script>-->
             <!-- content -->
             <div class="d-flex flex-wrap" style="row-gap: 1rem">
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Tue Jul 01 2025 11:28:04 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        配电柜配线标准
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        没有摘要，点进来看看吧
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/07/01/%E9%85%8D%E7%94%B5%E6%9F%9C%E9%85%8D%E7%BA%BF%E6%A0%87%E5%87%86/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Tue Jul 01 2025 09:47:25 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        复制操作
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        <p>复制操作一般分两种，一种是带格式复制，一种是不带格式的复制，先看第一种，不带格式的复制;</p>
+<blockquote>
+<p><strong>但是我体验下来好像没区别！！！</strong></p>
+</blockquote>
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/07/01/DOM/DOM-%E5%A4%8D%E5%88%B6%E6%93%8D%E4%BD%9C/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Tue Jul 01 2025 08:20:57 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        JavaScript-音乐播放器
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        <p>通过该标签去实现音乐播放器的操作，目前的难度在于没有解决选择定位的问题(2025-07-09 23:19分，已解决该问题)，其他的基本没啥问题了，网页已实装音乐播放器，诸君可自行体验~</p>
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/07/01/JS/JavaScript-%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Mon Jun 30 2025 11:04:14 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        常用软件或工具
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        没有摘要，点进来看看吧
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/30/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E6%88%96%E5%B7%A5%E5%85%B7/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
                 
                     <!-- 文章预览时用 -->
 <section class="post-card box mbl py-6">
@@ -917,162 +1068,6 @@ const cssMask2 = new CSSMask2('css-fixed-mask')
     }
 </style>
                 
-                    <!-- 文章预览时用 -->
-<section class="post-card box mbl py-6">
-    <div class="subtitle">
-        <span style="color: #adadad; font-size: 0.875rem">Sat Jun 28 2025 08:25:06 GMT+0800</span>
-    </div>
-    <div class="title is-5">
-        CSS-样式分层
-    </div>
-
-    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
-        没有摘要，点进来看看吧
-    </div>
-
-    <div class="post-card-mask d-flex justify-center align-end">
-        <a class="py-4 " href="/2025/06/28/CSS/CSS-%E6%A0%B7%E5%BC%8F%E5%88%86%E5%B1%82/">
-            <span style="color: #00586d">加载更多</span>
-        </a>
-    </div>
-</section>
-
-<style>
-    .post-card {
-        width: 100%;
-        min-width: 300px;
-        border-radius: 36px;
-        overflow: hidden
-    }
-    .post-card-mask {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: transparent;
-    }
-</style>
-                
-                    <!-- 文章预览时用 -->
-<section class="post-card box mbl py-6">
-    <div class="subtitle">
-        <span style="color: #adadad; font-size: 0.875rem">Sat Jun 28 2025 07:11:21 GMT+0800</span>
-    </div>
-    <div class="title is-5">
-        CSS-悬浮气泡
-    </div>
-
-    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
-        没有摘要，点进来看看吧
-    </div>
-
-    <div class="post-card-mask d-flex justify-center align-end">
-        <a class="py-4 " href="/2025/06/28/CSS/CSS-%E6%82%AC%E6%B5%AE%E6%B0%94%E6%B3%A1/">
-            <span style="color: #00586d">加载更多</span>
-        </a>
-    </div>
-</section>
-
-<style>
-    .post-card {
-        width: 100%;
-        min-width: 300px;
-        border-radius: 36px;
-        overflow: hidden
-    }
-    .post-card-mask {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: transparent;
-    }
-</style>
-                
-                    <!-- 文章预览时用 -->
-<section class="post-card box mbl py-6">
-    <div class="subtitle">
-        <span style="color: #adadad; font-size: 0.875rem">Fri Jun 27 2025 23:24:23 GMT+0800</span>
-    </div>
-    <div class="title is-5">
-        Hexo-手册
-    </div>
-
-    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
-        <blockquote>
-<p>EJS 不是那么容易去做动态渲染的，因为它本来就是为静态服务的。</p>
-</blockquote>
-<ul>
-<li><code>page.posts</code>：获取当前页的文章信息</li>
-<li><code>site.posts</code>：获取所有文章信息</li>
-<li><code>site.tags</code>：获取所有标签信息</li>
-<li><code>site.tags.sort(&#39;name&#39;)</code>：将标签按名字排序，升序</li>
-</ul>
-    </div>
-
-    <div class="post-card-mask d-flex justify-center align-end">
-        <a class="py-4 " href="/2025/06/27/HEXO/Hexo-%E6%89%8B%E5%86%8C/">
-            <span style="color: #00586d">加载更多</span>
-        </a>
-    </div>
-</section>
-
-<style>
-    .post-card {
-        width: 100%;
-        min-width: 300px;
-        border-radius: 36px;
-        overflow: hidden
-    }
-    .post-card-mask {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: transparent;
-    }
-</style>
-                
-                    <!-- 文章预览时用 -->
-<section class="post-card box mbl py-6">
-    <div class="subtitle">
-        <span style="color: #adadad; font-size: 0.875rem">Fri Jun 27 2025 16:54:45 GMT+0800</span>
-    </div>
-    <div class="title is-5">
-        DOM-打字机效果
-    </div>
-
-    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
-        没有摘要，点进来看看吧
-    </div>
-
-    <div class="post-card-mask d-flex justify-center align-end">
-        <a class="py-4 " href="/2025/06/27/DOM/DOM-%E6%89%93%E5%AD%97%E6%9C%BA%E6%95%88%E6%9E%9C/">
-            <span style="color: #00586d">加载更多</span>
-        </a>
-    </div>
-</section>
-
-<style>
-    .post-card {
-        width: 100%;
-        min-width: 300px;
-        border-radius: 36px;
-        overflow: hidden
-    }
-    .post-card-mask {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: transparent;
-    }
-</style>
-                
             </div>
         </section>
         <!-- section：分页信息 -->
@@ -1131,6 +1126,30 @@ const cssMask2 = new CSSMask2('css-fixed-mask')
 
     const pagination = new Pagination();
 </script>
+    </div>
+
+    <div class="container p-4">
+        <!-- title -->
+        <!-- 一般用于 section 标题 -->
+<h1 class="title is-4 d-flex align-center" style="padding: 120px 0 60px 0; font-family: 'ZiHunLongTengKaiShu', serif">
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+    <span style="white-space: nowrap; color: black" class="mx-4">
+                <i class="fab fa-markdown"></i>
+                <span class="ml-4">Markdown Card</span>
+            </span>
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+</h1>
+
+<!--<script>-->
+<!--    console.log({-->
+<!--        icon: '', // 这里的图标需要是完整的-->
+<!--        name: '', // 标题的名字-->
+<!--        color: '', // 字体颜色-->
+<!--    })-->
+<!--</script>-->
+        <div class="list-categories">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/">碧海苍云录</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/">帮助手册</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">测试概论</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github-Clone-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/">Github Clone 准备工作</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BE%AE%E4%BF%A1%E5%8F%8C%E5%BC%80/">微信双开</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%8D%E7%BA%BF%E6%A0%87%E5%87%86/">配线标准</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/">额外补充</a><span class="category-list-count">1</span></li></ul>
+        </div>
     </div>
 </div>
     </div>

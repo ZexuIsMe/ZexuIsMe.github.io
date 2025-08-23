@@ -14,12 +14,6 @@
     
 <script src="/js/index.js" type="module"></script>
 
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
     <!-- 这里的是全局通用的方法 -->
 
 <script type="text/javascript">
@@ -243,15 +237,20 @@
         }
     }
 </script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
     <!-- 浏览器图标 -->
     <link rel="shortcut icon" href="/logo/%E9%AB%98%E6%B8%85Logo/%E9%80%8F%E6%98%8E%E5%BA%95logo.png">
 
     <!-- framework CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">-->
-    <!-- Custom styles for this template -->
+    
+<link rel="stylesheet" href="/css/bulma/index.css">
+
     
 <link rel="stylesheet" href="/css/index.css">
 
@@ -512,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-08-14 22:37
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-08-23 19:51
                     </p>
                 </div>
             </div>
@@ -537,75 +536,90 @@
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E6%B5%8B%E8%AF%95"><span class="toc-number">1.</span> <span class="toc-text">链接测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95"><span class="toc-number">2.</span> <span class="toc-text">表单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E6%8B%89%E6%A1%86"><span class="toc-number">2.1.</span> <span class="toc-text">下拉框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E9%80%89%E6%8C%89%E9%92%AE"><span class="toc-number">2.2.</span> <span class="toc-text">单选按钮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E9%80%89%E6%A1%86"><span class="toc-number">2.3.</span> <span class="toc-text">复选框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%8C%89%E9%92%AE"><span class="toc-number">2.4.</span> <span class="toc-text">提交按钮</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E8%BE%93%E5%85%A5%E6%A1%86"><span class="toc-number">3.</span> <span class="toc-text">查询输入框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">4.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5"><span class="toc-number">5.</span> <span class="toc-text">文件导入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie%E3%80%81Session"><span class="toc-number">6.</span> <span class="toc-text">Cookie、Session</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie"><span class="toc-number">6.1.</span> <span class="toc-text">Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Session"><span class="toc-number">6.2.</span> <span class="toc-text">Session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Token"><span class="toc-number">6.3.</span> <span class="toc-text">Token</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">7.</span> <span class="toc-text">数据库</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">1.</span> <span class="toc-text">功能测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E6%B5%8B%E8%AF%95"><span class="toc-number">1.1.</span> <span class="toc-text">链接测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95"><span class="toc-number">1.2.</span> <span class="toc-text">表单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie"><span class="toc-number">1.3.</span> <span class="toc-text">Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.4.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%8C%89%E9%92%AE"><span class="toc-number">1.5.</span> <span class="toc-text">提交按钮</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%93%E7%94%A8%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">易用性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-number">3.</span> <span class="toc-text">兼容性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95"><span class="toc-number">4.</span> <span class="toc-text">安全测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%80%A7%E6%B5%8B%E8%AF%95%EF%BC%9A%E8%BE%93%E5%85%A5%E6%A1%86"><span class="toc-number">4.1.</span> <span class="toc-text">安全性测试：输入框</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E8%BE%93%E5%85%A5%E6%A1%86"><span class="toc-number">5.</span> <span class="toc-text">查询输入框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E8%BE%93%E5%85%A5%E6%A1%86"><span class="toc-number">6.</span> <span class="toc-text">时间输入框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5"><span class="toc-number">7.</span> <span class="toc-text">文件导入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie%E3%80%81Session"><span class="toc-number">8.</span> <span class="toc-text">Cookie、Session</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie-1"><span class="toc-number">8.1.</span> <span class="toc-text">Cookie</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session"><span class="toc-number">9.</span> <span class="toc-text">Session</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Token"><span class="toc-number">10.</span> <span class="toc-text">Token</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
-        <h2 id="链接测试"><a href="#链接测试" class="headerlink" title="链接测试"></a>链接测试</h2><ol>
+        <p><strong>测试内容</strong>：功能、易用性、兼容性、安全性、性能<br><strong>测试方法</strong>：等价、边界、正交、判定、因果、流程等等<br><strong>测试手段</strong>：人工、自动》做完测试都要评审</p>
+<span id="more"></span>
+
+<h2 id="功能测试"><a href="#功能测试" class="headerlink" title="功能测试"></a>功能测试</h2><p>通用的测试点：链接测试、表单测试、cookie测试、文件上传测试、数据库测试</p>
+<h3 id="链接测试"><a href="#链接测试" class="headerlink" title="链接测试"></a>链接测试</h3><ol>
 <li>文本、图片是否正确，是否正常加载</li>
 <li>链接是否能点击</li>
-<li>能否正确跳转到正确的页面</li>
+<li>能否正确跳转到正确的页面，即点击后所见即所得</li>
 </ol>
+<p>有的链接长得像链接，但不是 a 标签的就算在链接测试内</p>
 <blockquote>
 <p><strong>Q：用例写几个？</strong><br>A：测试点是这第三个，用例的多少取决于公司决定</p>
 </blockquote>
 <blockquote>
 <p>Q：一个页面有很多链接，比如新闻页，此时该怎么展开测试工作？<br>A：一般情况下，<strong>样本抽查</strong>的方式测试，除非特别说明</p>
 </blockquote>
-<p>空连接检查工具：</p>
-<ul>
-<li>没有页面返回</li>
-<li>服务器没有响应的</li>
-<li>检查软件：Xenu：会将页面中的连接全部点一遍，大网站不建议使用，可能会被认为被攻击了。</li>
-</ul>
-<p>保证WEB应用系统上没有孤立的页面，所谓孤立页面是指没有链接指向该页面。指通过地址栏中输入地址直接进入，而非页面链接进入的，即为孤立页面，比如后台管理页面之类的</p>
+<h4 id="空连接或死链接"><a href="#空连接或死链接" class="headerlink" title="空连接或死链接"></a>空连接或死链接</h4><p>空连接：点击没有反应<br>死链接：链接相应状态为4XX或5XX<br>检查工具：Xenu：会将页面中的连接全部点一遍，大网站不建议使用，可能会被认为被攻击了。</p>
+<h4 id="孤立页面"><a href="#孤立页面" class="headerlink" title="孤立页面"></a>孤立页面</h4><blockquote>
+<p>Q：为什么要做孤立页面的测试<br>A：保证WEB应用系统上没有孤立的页面</p>
+</blockquote>
+<p>孤立页面是指页面内没有链接指向某页面，但可通过地址栏中输入地址直接进入的，</p>
+<p>举一个不是很恰当的例子，XX软件的后台管理页面，常规来说不会出现在正常页面中，只能通过在地址栏中输入地址进入。</p>
 <blockquote>
 <p><strong>Q：为什么要做这个测试呢？</strong><br>A：防止别有用心。</p>
 </blockquote>
-<h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><p>输入框：</p>
-<ul>
-<li>类型：是数字、字母还是特殊字符</li>
-<li>长度：有效输入、无效输入</li>
+<h3 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h3><h4 id="输入框（表单功能测试点）："><a href="#输入框（表单功能测试点）：" class="headerlink" title="输入框（表单功能测试点）："></a>输入框（表单功能测试点）：</h4><ul>
 <li>是否必填</li>
 <li><strong>读写状态</strong>：如登录界面，用户名需要以明文的方式显示，密码应该是遮住的</li>
-<li>默认值</li>
-<li><strong>规则</strong><ul>
-<li>重复：注册编号，不能和已有的重复</li>
-<li>空格：前后空格的情况</li>
-<li>空格：中间空格</li>
-<li>空格：单独一个空格</li>
+<li><strong>业务约束</strong>：不符合约束的值是否能填需要看需求</li>
+<li>类型：是数字、字母、汉字还是混合输入还是</li>
+<li>有效输入：符合类型的输入</li>
+<li>无效输入：<ul>
+<li>不符合类型的输入</li>
+<li>特殊字符：<code>&#39; &lt; &gt; -</code></li>
+<li>空</li>
 </ul>
 </li>
-<li><strong>业务约束</strong><ul>
-<li>不符合约束的值是否能填需要看需求</li>
+<li>长度：是否有限制</li>
+<li>是否有默认值</li>
+<li>空格<ul>
+<li>前后空格的情况</li>
+<li>中间空格</li>
+<li>单独一个空格</li>
 </ul>
 </li>
 </ul>
-<h3 id="下拉框"><a href="#下拉框" class="headerlink" title="下拉框"></a>下拉框</h3><p><strong>数据完整性，正确性</strong><br>    通过SQL语句查找响应的信息，再与页面信息进行比对，查看是否一致，进而验证数据的完整性<br><strong>第一条、中间一条、最后一条</strong><br>    选取某一个值和SQL语句结果进行比对，是否一致<br><strong>默认值</strong>：是否有默认值，默认值是否正确<br><strong>是否能手动输入，如果能</strong><br>    是否实现模糊匹配<br>    是否实现输入补充功能，情况较小<br><strong>页面下拉框的是否有联动查询</strong><br>    - 是联动表示联合，请注意<br>    - 省市非联动联动的正常操作联动是否正常<br><strong>按键</strong><br>    是否支持Tab键选择；<br>    是否支持回车键打开下拉框；<br>    是否支持方向键上下选取参数代替鼠标选取；<br>    是否支持回车键选中代替鼠标选中；</p>
-<h3 id="单选按钮"><a href="#单选按钮" class="headerlink" title="单选按钮"></a>单选按钮</h3><p><strong>数据完整性，正确性</strong>：同下拉框<br>有且只有一个选中<br>是否有默认值</p>
-<h3 id="复选框"><a href="#复选框" class="headerlink" title="复选框"></a>复选框</h3><p><strong>数据完整性，正确性</strong>：同下拉框<br>全部都选中<br>不分选中<br>全部不选</p>
-<h3 id="提交按钮"><a href="#提交按钮" class="headerlink" title="提交按钮"></a>提交按钮</h3><h2 id="查询输入框"><a href="#查询输入框" class="headerlink" title="查询输入框"></a>查询输入框</h2><p>模糊：非敏感色数据<br>精确：敏感数据需要精确查询，如订单号<br>数据为空时：<br>数据不存在时：</p>
-<p>时间：<br>    跨天、跨越、跨年<br>    手动输入不同时间格式<br><strong>按键</strong><br>是否支持Tab键选择；<br>是否支持回车键选中代替鼠标选中；</p>
-<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p><strong>兼容性</strong><br><strong>文件类型</strong>、<br><strong>文件大小</strong>、<br><strong>上传个数</strong>：上传是否是可多选的<br><strong>上传过程的显示</strong>、<br><strong>上传成功的显示</strong>：<br>    能否上传同名文件？分两种情况，同一目录下，不同目录下；<br>    若在同一目录下上传同名文件，是前端进行提示“已有同名文件，是否覆盖或怎么怎么样”还是后端统一处理，直接添加格外内容，如：文件（1）.txt<br><strong>文件上传成功后</strong>、<br><strong>删除文件</strong>：数据库对应的数据，是直接删除还是标记删除<br><strong>安全测试</strong>：<br><strong>异常测试</strong>：比如断点续传</p>
-<h2 id="文件导入"><a href="#文件导入" class="headerlink" title="文件导入"></a>文件导入</h2><p>导入文件的类型：除了目标类型外，是否可传其他类型，若添加了前端是如何处理的，若上传成功了，后端是如何处理的<br>》兼容性<br>》导入文件的大小：文件大小是否有限制，限制时最大文件大小是多少，若超出是如何处理的？<br>》是否能够批量导入，如果能，至多导入多少还是不做限制；其次是一次性添加还是逐个添加的批量导入<br>》导入过程的显示<br>》导入成功的显示<br>》文件导入成功后：<br>    数据库是否能查到响应的数据；<br>    服务器是否有保存到文件<br>    若是是同名文件，是如何处理的，是覆盖还是重命名或是跳过？<br>    如果是压缩包，是否解压释放，解压释放时遇到同名文件时是覆盖还是重命名或是跳过？<br>》删除导入的文件，是数据库软删除，还是硬删除，数据做处理的同时文件是否还做了删除操作<br>》安全测试：是否屏蔽了可执行文件，如.exe，.sh，.php之类的<br>》异常测试：断点续传</p>
-<h2 id="Cookie、Session"><a href="#Cookie、Session" class="headerlink" title="Cookie、Session"></a>Cookie、Session</h2><h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><p>保存在客户端的浏览器中<br>有大小限制，最多40条<br>不怎么安全<br><strong>测试点</strong>：</p>
+<h4 id="下拉框"><a href="#下拉框" class="headerlink" title="下拉框"></a>下拉框</h4><p><strong>数据完整性，正确性</strong><br>    通过SQL语句查找响应的信息，再与页面信息进行比对，查看是否一致，进而验证数据的完整性<br><strong>第一条、中间一条、最后一条</strong><br>    选取某一个值和SQL语句结果进行比对，是否一致<br><strong>默认值</strong>：是否有默认值，默认值是否正确<br><strong>是否能手动输入，如果能</strong><br>    是否实现模糊匹配<br>    是否实现输入补充功能，情况较小<br><strong>页面下拉框的是否有联动查询</strong><br>    - 是联动表示联合，请注意<br>    - 省市非联动联动的正常操作联动是否正常<br><strong>按键</strong><br>    是否支持Tab键选择；<br>    是否支持回车键打开下拉框；<br>    是否支持方向键上下选取参数代替鼠标选取；<br>    是否支持回车键选中代替鼠标选中；</p>
+<h4 id="单选按钮"><a href="#单选按钮" class="headerlink" title="单选按钮"></a>单选按钮</h4><p><strong>数据完整性，正确性</strong>：同下拉框<br>有且只有一个选中<br>是否有默认值</p>
+<h4 id="复选框"><a href="#复选框" class="headerlink" title="复选框"></a>复选框</h4><p><strong>数据完整性，正确性</strong>：同下拉框<br>全部都选中<br>不分选中<br>全部不选</p>
+<h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><p>保存在客户端的浏览器中；<br>有大小限制，最多40条；<br>不怎么安全；<br><strong>测试点</strong>：</p>
 <ul>
-<li>cookie的产生：</li>
-<li>是否是加密的</li>
-<li>时效的处理</li>
+<li>cookie的产生：cookie是否正确的出现在浏览器中（F12》应用（Application））</li>
+<li>cookie参数是否是加密的</li>
+<li>cookie的时效性</li>
 <li>修改cookie</li>
 <li>删除cookie</li>
 </ul>
-<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><p>服务器保存客户端的信息<br>无大小限制<br>相对安全<br>session的文件名<br>服务器<br><strong>测试</strong>：</p>
+<h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3><p><strong>兼容性</strong><br><strong>文件类型</strong>、<br><strong>文件大小</strong>、<br><strong>上传个数</strong>：上传是否是可多选的<br><strong>上传过程的显示</strong>、<br><strong>上传成功的显示</strong>：<br>能否上传同名文件？分两种情况，同一目录下，不同目录下；<br>若在同一目录下上传同名文件，是前端进行提示“已有同名文件，是否覆盖或怎么怎么样”还是后端统一处理，直接添加格外内容，如：文件（1）.txt<br><strong>文件上传成功后</strong>、<br><strong>删除文件</strong>：数据库对应的数据，是直接删除还是标记删除<br><strong>安全测试</strong>：<br><strong>异常测试</strong>：比如断点续传</p>
+<h3 id="提交按钮"><a href="#提交按钮" class="headerlink" title="提交按钮"></a>提交按钮</h3><h2 id="易用性"><a href="#易用性" class="headerlink" title="易用性"></a>易用性</h2><h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h2><h2 id="安全测试"><a href="#安全测试" class="headerlink" title="安全测试"></a>安全测试</h2><p><strong>留意文件上传的可执行文件上传</strong></p>
+<p><strong>留意输入框的SQL语句注入</strong></p>
+<h3 id="安全性测试：输入框"><a href="#安全性测试：输入框" class="headerlink" title="安全性测试：输入框"></a>安全性测试：输入框</h3><p>检查系统是否拦截并给出明确提示（如 “请勿输入非法字符”）</p>
+<p>SQL语句注入</p>
+<ul>
+<li>单引号<code>&#39;</code>: 会让后续语句失去效果</li>
+<li><code>&#39; or 1=1 --</code>：会注释掉后续语句<br>脚本攻击</li>
+<li>如 <code>&lt;script&gt; alert(&#39;alert&#39;) &lt;/script&gt;</code></li>
+</ul>
+<hr>
+<h2 id="查询输入框"><a href="#查询输入框" class="headerlink" title="查询输入框"></a>查询输入框</h2><p>模糊：非敏感色数据<br>精确：敏感数据需要精确查询，如订单号<br>数据为空时的查询：<br>数据不存在时的查询：<br><strong>按键</strong><br>是否支持Tab键选择；<br>是否支持回车键选中代替鼠标选中；</p>
+<h2 id="时间输入框"><a href="#时间输入框" class="headerlink" title="时间输入框"></a>时间输入框</h2><p>跨天、跨月、跨年<br>手动输入不同时间格式</p>
+<h2 id="文件导入"><a href="#文件导入" class="headerlink" title="文件导入"></a>文件导入</h2><p>导入文件的类型：除了目标类型外，是否可传其他类型，若添加了前端是如何处理的，若上传成功了，后端是如何处理的<br>》兼容性<br>》导入文件的大小：文件大小是否有限制，限制时最大文件大小是多少，若超出是如何处理的？<br>》是否能够批量导入，如果能，至多导入多少还是不做限制；其次是一次性添加还是逐个添加的批量导入<br>》导入过程的显示<br>》导入成功的显示<br>》文件导入成功后：<br>    数据库是否能查到响应的数据；<br>    服务器是否有保存到文件<br>    若是是同名文件，是如何处理的，是覆盖还是重命名或是跳过？<br>    如果是压缩包，是否解压释放，解压释放时遇到同名文件时是覆盖还是重命名或是跳过？<br>》删除导入的文件，是数据库软删除，还是硬删除，数据做处理的同时文件是否还做了删除操作<br>》安全测试：是否屏蔽了可执行文件，如.exe，.sh，.php之类的<br>》异常测试：断点续传</p>
+<h2 id="Cookie、Session"><a href="#Cookie、Session" class="headerlink" title="Cookie、Session"></a>Cookie、Session</h2><h3 id="Cookie-1"><a href="#Cookie-1" class="headerlink" title="Cookie"></a>Cookie</h3><h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><p>服务器保存客户端的信息<br>无大小限制<br>相对安全<br>session的文件名<br>服务器<br><strong>测试</strong>：</p>
 <ul>
 <li>sessionID的产生：正确生成并是加密的；</li>
 <li>有效期到了是如何操作的；</li>
 <li>删除后页面是如何操作的。</li>
 </ul>
-<h3 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h3><p>口令：成功登陆后获取，短时间有效，可缓解session的压力</p>
+<h2 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h2><p>口令：成功登陆后获取，短时间有效，可缓解session的压力</p>
 <p>cookie类似房卡<br>session类似前台<br>token类似口令</p>
-<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>安全性：留意SQL语句注入</p>
 
     </div>
     <!-- 文章：声明 -->
