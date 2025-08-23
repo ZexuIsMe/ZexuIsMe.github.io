@@ -13,4 +13,4 @@ tags: []
 | Success | #4CAF50 | 76, 175, 80 | 122, 57%, 49% | <span style="display: inline-block; background-color: #4CAF50; border-radius: 3px; padding: 4px 8px;font-size: 0.825rem; width: 25px; height: 16px"></span> |
 
 
-![流程元件.jpg](Theme/流程元件.jpg)
+![流程元件.jpg](../Theme/流程元件.jpg)

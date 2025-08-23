@@ -1,21 +1,4 @@
-<% let banner = [
-    {
-        sequence: 2,
-        tag: '官方',
-        url: 'https://www.taptap.cn/moment/703935861460306020',
-        img: url_for('img/bhcyl/狐狸v0.19.jpg'),
-        title: '【全新契灵系统】《碧海苍云录》0.20版本即将到来！',
-        createTime: '2025-08-23'
-    },
-    {
-        sequence: 1,
-        tag: '官方',
-        url: 'https://www.taptap.cn/moment/683612950686075704',
-        img: url_for('img/bhcyl/狐狸v0.19.jpg'),
-        title: '渡劫、幻化、还有帅气皮肤！《碧海苍云录》v0.19版本来了！',
-        createTime: '06-23'
-    }
-] %>
+<% let banner = page.banner %>
 <% const bhcylList = site.tags.data.find(item => item.name === '碧海苍云录').posts.sort('date', -1) %>
 <% banner.push({
     tag: '粥记捣蛋',

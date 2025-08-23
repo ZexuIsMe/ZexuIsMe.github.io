@@ -2,7 +2,6 @@
 title: '碧海苍云录'
 date: '2025-06-20 12:29:56'
 layout: 'bhcyl'
-
 footer:
   version:
     - name: '当前版本'
@@ -23,7 +22,6 @@ footer:
     - name: '论坛'
       url: 'https://www.taptap.cn/app/324395/topic?os=android'
       icon: 'fa-fingerprint'
-
 skill: [
     --,
     金系威力发挥,
@@ -76,6 +74,28 @@ ps:
     desc: 默认主修、各五行威力相关的灵台、神宝为满级，他们和面板上的属于加算，比如面板剑伤提高20，剑修灵台有20%，那么剑修伤害提高就是40%
   - name: 误差率
     desc: (模拟值 - 实际伤害) / 实际伤害 * 100%；一般情况在 5% 左右
+videos:
+  - url: 'https://origin.picgo.net/2025/08/23/v2.0_db037efd24d2dbae.mp4'
+    name: 'v2.0 契灵版本震撼来袭！！！'
+    image: 'https://origin.picgo.net/2025/08/23/v2.0__ca8afb4c055f6105.md.webp'
+    create_time: '2025-08-18'
+  - url: 'https://origin.picgo.net/2025/08/24/v0.19___video833787972bd047e4.mp4'
+    name: 'v0.19 渡劫期境界开放！！！'
+    image: 'https://origin.picgo.net/2025/08/23/v2.0__ca8afb4c055f6105.md.webp'
+    create_time: '2025-06-23'
+banner:
+  - sequence: 2
+    tag: '官方'
+    url: 'https://www.taptap.cn/moment/703935861460306020'
+    img: 'https://origin.picgo.net/2025/08/23/v2.0__ca8afb4c055f6105.md.webp'
+    title: '【全新契灵系统】《碧海苍云录》0.20版本即将到来！'
+    createTime: '2025-08-18'
+  - sequence: 1
+    tag: '官方'
+    url: 'https://www.taptap.cn/moment/683612950686075704'
+    img: 'https://origin.picgo.net/2025/08/24/v0.19___video833787972bd047e4.md.jpeg'
+    title: '渡劫、幻化、还有帅气皮肤！《碧海苍云录》v0.19版本来了！'
+    createTime: '2025-06-23'
 ---
 
 - fep: Five Element Power  五行威力发挥

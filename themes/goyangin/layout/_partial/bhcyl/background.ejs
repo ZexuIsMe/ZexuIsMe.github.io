@@ -1,10 +1,6 @@
 <div id="bhcyl-bg">
     <video id="loopVideo" autoplay loop muted>
-<!--        <source src="<%- url_for('img/bhcyl/v0.19.mp4') %>" type="video/mp4">-->
-        <source
-                src="https://origin.picgo.net/2025/08/23/v2.0_db037efd24d2dbae.mp4"
-                type="video/mp4"
-        >
+        <source src="<%= page.videos[0].url %>>" type="video/mp4" >
     </video>
     <div id="bhcyl-bg-gradient"></div>
 </div>
@@ -17,8 +13,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        /*background-image: url(' url_for('img/bhcyl/狐狸v0.19.jpg') ');*/
-        background-image: url('https://origin.picgo.net/2025/08/23/v2.0__ca8afb4c055f6105.md.webp');
+        background-image: url(<%= page.videos[0].image %>);
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
