@@ -1,5 +1,14 @@
 <% let banner = [
     {
+        sequence: 2,
+        tag: '官方',
+        url: 'https://www.taptap.cn/moment/703935861460306020',
+        img: url_for('img/bhcyl/狐狸v0.19.jpg'),
+        title: '【全新契灵系统】《碧海苍云录》0.20版本即将到来！',
+        createTime: '2025-08-23'
+    },
+    {
+        sequence: 1,
         tag: '官方',
         url: 'https://www.taptap.cn/moment/683612950686075704',
         img: url_for('img/bhcyl/狐狸v0.19.jpg'),
@@ -7,7 +16,7 @@
         createTime: '06-23'
     }
 ] %>
-<% const bhcylList = site.tags.data.find(item => item.name === '碧海苍云录').posts %>
+<% const bhcylList = site.tags.data.find(item => item.name === '碧海苍云录').posts.sort('date', -1) %>
 <% banner.push({
     tag: '粥记捣蛋',
     title: bhcylList.data[0].title,
@@ -52,11 +61,7 @@
                 <div style="">
                     <div class="text-white subtitle is-6" style="color: #dedede"><%= item.date %></div>
                     <div class="text-white title is-5" style="width: fit-content" onclick>
-                        <% if(item.title.startsWith('碧海苍云录-')) { %>
-                            <%= item.title.slice(6) %>
-                        <% } else { %>
-                            <%= item.title %>
-                        <% } %>
+                        <%= item.title %>
                     </div>
                     <div class="box content">
                         <%- item.excerpt || '没有摘要，点进来看看吧' %>
