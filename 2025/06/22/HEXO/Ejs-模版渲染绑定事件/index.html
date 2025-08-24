@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>Theme | 粥记捣蛋</title>
+    <title>Ejs-模版渲染绑定事件 | 粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -507,11 +507,11 @@
             <div class="media">
                 <div class="media-content">
                     <h1 class="title is-4 modify-post-title">
-                        <span class="has-text-info">Theme</span>
+                        <span class="has-text-info">Ejs-模版渲染绑定事件</span>
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-07-01 17:48
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-07-01 17:39
                     </p>
                 </div>
             </div>
@@ -519,10 +519,20 @@
         <!-- 文章标签 -->
         <div class="pt-4">
             <span>
-    <span>--尚未指定标签--</span>
+    
+        <a class="tag is-info is-light" href="/tags/EJS/">EJS</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6/">绑定事件</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E5%87%BD%E6%95%B0%E4%BC%A0%E5%8F%82/">函数传参</a>
+    
 </span>
             <span>
-    <span>--尚未分类--</span>
+    
+        <a class="tag is-warning is-light" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+        <a class="tag is-warning is-light" href="/categories/%E5%89%8D%E7%AB%AF/Ejs/">Ejs</a>
+    
 </span>
         </div>
     </div>
@@ -533,67 +543,31 @@
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
-        <table>
-<thead>
-<tr>
-<th>Col1</th>
-<th>16</th>
-<th>RGB</th>
-<th>HSL</th>
-<th>颜色</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>主题色</td>
-<td>#295B9B</td>
-<td>41, 91, 155</td>
-<td>214, 74%, 38%</td>
-<td><span style="display: inline-block; background-color: #295B9b; border-radius: 3px; padding: 4px 8px;font-size: 0.825rem; width: 25px; height: 16px"></span></td>
-</tr>
-<tr>
-<td>INFO</td>
-<td>#039BE5</td>
-<td>3, 155, 229</td>
-<td>200, 99%, 45%</td>
-<td><span style="display: inline-block; background-color: #039BE5; border-radius: 3px; padding: 4px 8px;font-size: 0.825rem; width: 25px; height: 16px"></span></td>
-</tr>
-<tr>
-<td>Warning</td>
-<td>#FFB300</td>
-<td>255, 179, 0</td>
-<td>42, 100%, 50%</td>
-<td><span style="display: inline-block; background-color: #FFB300; border-radius: 3px; padding: 4px 8px;font-size: 0.825rem; width: 25px; height: 16px"></span></td>
-</tr>
-<tr>
-<td>Error</td>
-<td>#CC0033</td>
-<td>204, 0, 51</td>
-<td>345, 100%, 40%</td>
-<td><span style="display: inline-block; background-color: #CC0033; border-radius: 3px; padding: 4px 8px;font-size: 0.825rem; width: 25px; height: 16px"></span></td>
-</tr>
-<tr>
-<td>Success</td>
-<td>#4CAF50</td>
-<td>76, 175, 80</td>
-<td>122, 57%, 49%</td>
-<td><span style="display: inline-block; background-color: #4CAF50; border-radius: 3px; padding: 4px 8px;font-size: 0.825rem; width: 25px; height: 16px"></span></td>
-</tr>
-</tbody></table>
-<p><img src="/%E6%B5%81%E7%A8%8B%E5%85%83%E4%BB%B6.jpg" alt="流程元件.jpg"></p>
+        <figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs ejs">&lt;% page.form.forEach(item =&gt; &#123; %&gt;<br>    &lt;!-- 不推荐 --&gt;<br>    &lt;div id=&quot;ccc&quot;&gt;&lt;%= item.title %&gt;&lt;/div&gt;<br>    &lt;!-- 推荐 --&gt;<br>    &lt;div onclick=&quot;onclickTest()&quot;&gt;&lt;%= item.title %&gt;&lt;/div&gt;<br>&lt;% &#125;) %&gt;<br><br>&lt;script&gt;<br>    // 不推荐<br>    document.getElementById(&#x27;ccc&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; &#123;<br>        console.log(123)<br>    &#125;)<br>    // 推荐<br>    const onclickTest = () =&gt; &#123;<br>        console.log(123)<br>    &#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>如果你想把EJS模版中的参数传递到函数中去，那么你需要添加反引号<code>``</code>把他们包裹起来<ul>
+<li>xxxFunc(<code>$&#123; tags[0].path &#125;</code>)</li>
+<li>xxxFunc(<code>&lt;%= url_for(tags[0].path)  %&gt;</code>)</li>
+</ul>
+</li>
+<li>如果你要传递的参数是对象，那么需要将参数取出来重新组合为一个新的参数，或者 <code>JSON.stringify()</code> 转换</li>
+</ul>
+<p>如论是哪一种，都是把参数暴露在外的，所以纯静态页面可以用用，</p>
 
     </div>
     <!-- 文章：声明 -->
     <!-- 文章的声明 -->
-<div id="copy-icon-Theme" style="display: grid; grid-template-rows: subgrid; grid-row: span 3; grid-gap: 12px">
+<div id="copy-icon-Ejs-模版渲染绑定事件" style="display: grid; grid-template-rows: subgrid; grid-row: span 3; grid-gap: 12px">
     <p><strong>作者</strong>：粥记捣蛋</p>
 
     <div class="d-flex">
-        <p><strong>文章链接</strong>：<a href="https://zexuisme.github.io/2025/06/05/Theme/">https://ZeXuIsMe.github.io/2025/06/05/Theme/</a></p>
+        <p><strong>文章链接</strong>：<a href="https://zexuisme.github.io/2025/06/22/HEXO/Ejs-%E6%A8%A1%E7%89%88%E6%B8%B2%E6%9F%93%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6/">https://ZeXuIsMe.github.io/2025/06/22/HEXO/Ejs-模版渲染绑定事件/</a></p>
 
         <div
                 class="d-flex align-center"
                 style="width: fit-content; cursor: pointer"
-                onclick="postEjs.onclickCopy(`#copy-icon-Theme a`)"
+                onclick="postEjs.onclickCopy(`#copy-icon-Ejs-模版渲染绑定事件 a`)"
         >
             
     <div class="tooltip tooltip-top " data-tooltip="点击复制">
@@ -628,14 +602,14 @@
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/06/05/Siemens/%E8%A5%BF%E9%97%A8%E5%AD%90-Question-01/')"
+            onclick="postToggleEjs.onclickLink('/2025/06/25/CSS/CSS-%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/')"
             
-    >上一篇: 西门子-Question-01（测试：布局调试）</button>
+    >上一篇: CSS-图片处理</button>
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/06/05/Siemens/%E8%A5%BF%E9%97%A8%E5%AD%90-%E6%9E%84%E7%AD%91%E7%B1%BBAPI/')"
+            onclick="postToggleEjs.onclickLink('/2025/06/21/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95-%E6%9C%A8%E6%A1%A9/')"
             
-    >下一篇: 西门子-构筑类API</button>
+    >下一篇: 碧海苍云录-木桩</button>
 </div>
 
 <script>
