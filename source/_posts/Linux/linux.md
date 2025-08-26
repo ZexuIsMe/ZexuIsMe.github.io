@@ -28,20 +28,53 @@ sl
 
 ##  ls：获取当前目录信息
 
+- `-h`: 没有隐藏文件的`-a`
+- `-R`: 显示目录路径且显示目录下的内容，约等于显示路径且在该路径下执行了`-h`
+
+![linux ls R](https://origin.picgo.net/2025/08/26/linux_ls_R3e866d153dcb07dc.png)
+
+> drwxr-xr-x. 2 root root   18 Aug 26 11:04 20250806
+
+d: 表示当前对象是一个目录
+后续9位，三三一组：
+`rwx`：表示**所有者**拥有读（r）写（w）和执行（x）的权限
+`r-x`：表示**所属组**拥有读（r）和执行（x）的权限
+`r-x`：表示**其他用户**拥有读（r）和执行（x）的权限
+
+| 首字符 | 描述                |
+|-----|-------------------|
+| -   | 表示当前对象是**文件**     |
+| d   | 表示当前对象是**目录**     |
+| l   | 表示当前对象是**符号链接**   |
+| b   | **块设备**文件：硬盘      |
+| c   | **字符设备**文件：键盘、鼠标等 |
+| s   | 套接子文件（socket）     |
+
 > `ls -all` 和 `ls --all` **不是**⼀个意思。
 
 `-all`：等同于 `-a -l -l`，结尾处的`-l`是错误的，但在系统的允许范围内;
 `--all`：等同于 `-a`
+
+- ls file.txt 表示：查找目录是否存在该文件
+- `ls file.txt -l`: 查看该文件的的详细信息
+- `ls *.txt`：列出该目录中的txt文件
+- `ls /root/aistudy/*.txt`：列出该目录中的txt文件，显示的时候会将路径信息带上
+  - 比如：`/root/aistudy/file1.txt`; 
+  - 比如：`/root/aistudy/file2.txt`; 
+  - 比如：`/root/aistudy/file3.txt`; 
+
+> **Q：如何在不前往目标目录就通过`ls`查看到该目录的内容呢？**
+> `ls /root/aistudy -lS`：以长文本格式显示，且降序排序
 
 ## cd：前往
 
 通过输入指令`cd dev` 前往 dev 文件夹，可通过 `Tab` 键补全后续文本
 若同目录下存在多个类似文件，如`dev1 dev2 dev3`，多按几次`Tab`键会将这些 dev 开头的文件夹都列出来
 
-
 ## mkdir：创建文件夹
 
 - `mkdir /root/learn`: 若文件夹存在，怎会提示文件夹已存在
+  **若是两级以上的层级创建，需保证中间目录是存在的**，否则会无法顺序执行
 - `mkdir -p 文件路径`：创建文件夹，若文件夹存在则不做处理
 
 ## rmdir: 删除文件夹
@@ -73,9 +106,13 @@ sl
 
 **编辑模式下：**
 `i`：按下字母`i`进入插入模式，`ESC`退出编辑模式；
+`s`：按下字母`s`进入插入模式，`ESC`退出编辑模式；
 `R`：按下字母`R`进入替换模式，`ESC`退出编辑模式
 `:wq`：保存并退出编辑；
+`ZZ`：保存并退出编辑；
 `:q!`：不保存且退出编辑；
+`dd`：删除当前行
+`u`: 撤销
 
 ### vm: 显示行号
 `:set nu`：显示行号
@@ -103,6 +140,15 @@ sl
 进入编辑模式即可操作，
 
 按两下 `yy` 进入复制模式，以当前光标所在位置为准，复制该行内容，按键`p`执行粘贴操作
+
+## vim：替换文本
+
+|               |                          |
+|---------------|--------------------------|
+| :s/old/new    | 替换**当前行第一个**“old”为“new”  |
+| :s/old/new/g  | 替换**当前行所有**“old”为“new”   |
+| :%s/old/new/g | 替换**整个文件所有的**“old”为“new” |
+
 
 ## cat：显示文件内容
 
@@ -175,7 +221,9 @@ cat abc.txt
 再⻓的路，⼀步步也能⾛完；再短的路，不迈开双脚也⽆法到达。
 ```
 
-## `|`：组合
+## `|`：管道符
+
+**将前一个的输出作为后一个的输入**
 
 前面 head 部分有说到 head 指定若不指定参数默认过滤出前10条记录，那么
 
@@ -198,11 +246,113 @@ cat abc.txt
 ```
 
 注意：
-- 组合的使用，需要留意只有一个目标，切勿多个目标
+- 管道的使用，需要留意只有一个目标，切勿多个目标
     如：`head abc.txt | cat abc.txt -n`，执行时不会出问题，但也不会有预期结果
-- 组合的**目标文件需在最前面**使用
+- **目标文件需在最前面**使用，因为管道是将前一个的输出作为后一个的输入
     `head | cat abc.txt -n`：<span style="color: var(--error); font-size: 1rem; font-weight: bold">×</span>
     `head abc.txt | cat abc.txt -n`：<span style="color: var(--success); font-size: 1rem; font-weight: bold">√</span> 
 
+## find
+
+语法：`find 路径 参数 文件名`
+
+在当前目录下寻找 file 开头的文件：`find ./ -name 'file*'`
+
+## 符号链接
+
+## chmod：权限操作
+
+1. 只有文件所有者或root用户可以修改文件权限
+2. 修改目标权限是要特别小心，错误的权限可能导致系统安全问题
+3. 执行权限（x）对目录尤为重要，没有它无法进入该目录
+
+语法：`chmod [选项] 权限 文件/目录`
+
+`R`：递归修改目录及其字内容的权限
+`chmod -R 755 /path/to/directory`
+
+### chmod：数字表示法
+```
+# 所有者: rwx(7), 所属组: r-x(5), 其他: r-x(5)
+chmod 755 file.txt  
+
+# 所有者: rw-(6), 所属组: r--(4), 其他: r--(4)
+chmod 644 document.pdf  
+```
+常见组合：
+777：读写+执行（rwx、rwx、rwx）
+755：常用于可执行文件或目录（rwx、r-x、r-x）
+644：常用于普通文件（rw-、r--、r--）
+
+### chmod：符号表示法
+通过符号精确指定权限的变更
+```bash
+# 给所有者添加执行权限
+chmod u+x script.sh  
+
+# 移除组的写权限和其他人的读权限
+chmod g-w,o-r file.txt  
+
+# 给所有用户设置读写执行权限
+chmod a=rwx document  
+```
+用户符号：u（所有者）、g（所属组）、o（其他）、a（所有）
+操作符号：+（添加）、-（移除）、=（设置）
+
+### 修改所有者、分组
+
+> 修改所有者：chown
+
+`chown user2 file.txt`: 更改 file.txt 的所有者为 user2
+
+> 修改所属组：chgrp
+
+`chgrp abc file.txt`：更改 file.txt 的组为 abc
+
+> 特别的 chown user2:abc file.txt
+
+`user2:abc` 同时修改 file.txt 的所有者与组，所有者更改为user2，组更改abc
+`user:` 或者`:abc`，两者都是正确的
+
+注意：
+1. 只有 root 用户或文件的当前所有者可以使用 chown 或 chgrp
+2. 修改所有者时，普通用户只能将文件转让给 root，不能转让给其他用户，而 root 可以转让给任何用户
+3. 若要同时修改所有者和所属组：`chown user2:abc file.txt`是更简洁的方式，无需单独使用 chgrp
+
+## cp：复制操作
+
+- `cp file.text file2.txt`：在当前目录中复制一份`file.txt`并重命名为`file2.txt`
+- `cp aistudy/* ./abc`
+    将`aistudy`的所有内容复制一份至当前文件的`abc`目录中
+    若`abc`不存在，则会主动创建
+- 参数：`-r`，目录复制 》 `cp aistudy efg -r`
+    `cp aistudy abc`：<span style="color: var(--error); font-size: 1rem; font-weight: bold">×</span>
+- 参数：`-i`：覆盖：若目标文件已存在则提示是否覆盖
+  `cp -i file.txt backup/ # 若backup/file.txt存在，会询问是否覆盖`
+- 参数：`-v`：显示复制过程，详细输出
+- 参数：`-a`：归档模式，常用用于份（保留文件权限、时间戳等所有属性且递归复制目录）
+  `cp -a data/ data_backup`
+- 参数：`-u`：仅复制源文件比目标文件新或目标文件不存在的情况，更新复制
+  `cp -u *.doc docs/`
+
+## wc：统计
+
+`ls *.txt | wc -l`：统计当前目录中text文件有多少个
+
+## 额外补充
+
+> 主动创建
+
+**`echo "content" > file.txt`**：
+将内容输入到 file.txt，若目标文件不存在，则主动创建；
+是覆盖性的写入，不是追加写入
+
+> 重命名
+
+**mv file.txt file2.txt**
+**cp file.txt file2.txt**，然后删除 file.txt
+**rename file.txt file2.txt \*.txt**：批量修改，详细请百度
+
+> 执行可执行文件：`./可执行文件`
 
 

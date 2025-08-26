@@ -1,16 +1,20 @@
-
-
-
-
 @font-face {
     font-family: 'ZiHunLongTengKaiShu';
     src: url('../webfonts/ZiHunLongTengKaiShu(ShangYongXuShouQuan)-2.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'EnglishFonts';
+    src: url('../enfonts/HFSnakylines-2.ttf') format('truetype');
+    /*src: url('../enfonts/Pencil-2.ttf') format('truetype');*/
+    /*src: url('../enfonts/Firaco-2.ttf') format('truetype');*/
+    font-weight: normal;
+    font-style: normal;
+}
 
-body {
-    font-family: 楷体, serif
+body, code {
+    font-family: EnglishFonts, 楷体, serif
 }
 
 /* 隐藏滚动条但保留滚动功能 */
