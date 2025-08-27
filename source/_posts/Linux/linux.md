@@ -149,7 +149,6 @@ d: 表示当前对象是一个目录
 | :s/old/new/g  | 替换**当前行所有**“old”为“new”   |
 | :%s/old/new/g | 替换**整个文件所有的**“old”为“new” |
 
-
 ## cat：显示文件内容
 
 语法：`cat file.txt`
@@ -158,6 +157,7 @@ d: 表示当前对象是一个目录
 2. 若目标文件不存在则会主动帮忙创建文件
 3. EOF为写入标记，可自定义内容
 4. **对该文件做二次写入会覆盖原内容，且和标记没有关系**（务必记住）
+    若你希望是追加写入，那么`cat >> file.txt << EOF ... EOF`
 
 > 参数
 
@@ -190,7 +190,16 @@ cat abc.txt
 快捷键的方式适用于少量的文本录入，但在脚本中几乎不用，因为在脚本中无法手动执行快捷键
 标记的方式适用于大量的文本录入
 
-## 管道：grep
+## grep：查找文件内容
+
+参数：
+- `-i`：无视大小写，`grep -i "ERROR" file.txt`
+- `-n`：分配行号，`grep -n "ERROR" file.txt`
+- `-v`：排除掉关键字所在行，`grep -v "ERROR" file.txt`
+- `-C num`：检索目标行且根据数字显示指定行数的上下行，`grep -C 1 "ERROR" file.txt`
+- `-A num`：检索目标行且根据数字显示指定行数的下行，`grep -A 1 "ERROR" file.txt`
+- `-B num`：检索目标行且根据数字显示指定行数的上行，`grep -B 1 "ERROR" file.txt`
+- `-r`：检索目录及其子目录，`grep -r "INFO" dir`
 
 `cat > abc.txt | grep "梦想"`： 查询“梦想”，并返回查询结果
 `cat > abc.txt | head -20`： 显示前20行内容
@@ -258,6 +267,15 @@ cat abc.txt
 
 在当前目录下寻找 file 开头的文件：`find ./ -name 'file*'`
 
+都是可选参数
+`-iname`: 忽略文件大小写字母
+`-name`: 
+`-size`: 按大小进行检索，单位：b、k、M、G
+- `type f`：（type file）文件类型，`find /home/media_project/ -type f \( -name "*.jpg" -o -name "*.png" \)`
+- `type d`：（type dir）目录类型
+- `-mtime -7`：（modify time）7天内修改
+- `-mtime -+`：（modify time）7天前修改
+
 ## 符号链接
 
 ## chmod：权限操作
@@ -294,7 +312,10 @@ chmod u+x script.sh
 chmod g-w,o-r file.txt  
 
 # 给所有用户设置读写执行权限
-chmod a=rwx document  
+chmod a=rwx file.txt  
+
+# 为当前文件的所有权限组添加执行权限
+chmod +x file.txt
 ```
 用户符号：u（所有者）、g（所属组）、o（其他）、a（所有）
 操作符号：+（添加）、-（移除）、=（设置）
@@ -318,13 +339,12 @@ chmod a=rwx document
 1. 只有 root 用户或文件的当前所有者可以使用 chown 或 chgrp
 2. 修改所有者时，普通用户只能将文件转让给 root，不能转让给其他用户，而 root 可以转让给任何用户
 3. 若要同时修改所有者和所属组：`chown user2:abc file.txt`是更简洁的方式，无需单独使用 chgrp
+4. useradd user1 添加用户 user1
+5. groupadd g1 添加组 g1
 
 ## cp：复制操作
 
-- `cp file.text file2.txt`：在当前目录中复制一份`file.txt`并重命名为`file2.txt`
-- `cp aistudy/* ./abc`
-    将`aistudy`的所有内容复制一份至当前文件的`abc`目录中
-    若`abc`不存在，则会主动创建
+
 - 参数：`-r`，目录复制 》 `cp aistudy efg -r`
     `cp aistudy abc`：<span style="color: var(--error); font-size: 1rem; font-weight: bold">×</span>
 - 参数：`-i`：覆盖：若目标文件已存在则提示是否覆盖
@@ -335,9 +355,57 @@ chmod a=rwx document
 - 参数：`-u`：仅复制源文件比目标文件新或目标文件不存在的情况，更新复制
   `cp -u *.doc docs/`
 
+>`cp file.text file2.txt`：在当前目录中复制一份`file.txt`并重命名为`file2.txt`
+
+>`cp aistudy/* ./abc`
+  将`aistudy`的所有内容复制一份至当前文件的`abc`目录中
+  若`abc`不存在，则会主动创建
+
+> `cp file1.txt /home/user/dir123456789`：dir123456789目录是不存在的，若运行，则会将dir123456789当做是文件，而非目录
+
 ## wc：统计
 
 `ls *.txt | wc -l`：统计当前目录中text文件有多少个
+
+## tail：查看文件尾部内容
+
+`-n/num 数字`：查看指定行数
+`-f`：动态查看内容
+`-F`：循环读取，ctrl + z/c 退出循环读取状态，常用于监控系统的运行日志，会实时更新显示
+
+`tail -n 5/-5 file.log` 显示文件倒数5行的内容
+`tail -n +5 file.log` 显示文件第五行以后的内容
+
+## tar: 压缩
+
+压缩命令：`tar -czvf ./test.tar.gz ./tar_practice/*`
+压缩文件名：`./test.tar.gz`
+被压缩的目标：`tar_practice` 目录下的所有内容
+
+解压命令：`tar -xzvf test.tar.gz -C test_tar/`
+`-C 路径`：成对出现，表示指定解压后文件所在目录，若没有则在当前目录
+
+## zip：压缩
+
+压缩：`zip file.zip file.txt file2.txt`
+解压：`unzip file.zip -d test_dir`
+
+压缩目录：`zip -r file.zip ./dir`
+
+## date：日期
+
+```bash
+# 返回当前日期
+date
+# Wed Aug 27 17:46:41 CST 2025
+# 依次表⽰星期⼏、⽉份、⽇期、时间、时区和年份。
+
+```
+
+## 重启
+
+- `shutdown -r now`：立即重启计算机，命令需要管理员权限才能执行
+- `reboot`：重启计算机
 
 ## 额外补充
 
@@ -346,13 +414,18 @@ chmod a=rwx document
 **`echo "content" > file.txt`**：
 将内容输入到 file.txt，若目标文件不存在，则主动创建；
 是覆盖性的写入，不是追加写入
+如果希望追加写入，则是`>>`
+
+**dd if=/dev/zero of=/var/test/abc.img bs=1M count=150**
 
 > 重命名
 
 **mv file.txt file2.txt**
 **cp file.txt file2.txt**，然后删除 file.txt
 **rename file.txt file2.txt \*.txt**：批量修改，详细请百度
+**:w 文件名**：在编辑模式下
 
-> 执行可执行文件：`./可执行文件`
+> 执行可执行文件怎么执行：`./可执行文件`
+> python 文件： python abc.py，如果 python 不存在，则 yum install python
 
 
