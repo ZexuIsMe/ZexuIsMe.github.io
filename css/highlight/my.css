@@ -2,10 +2,6 @@ figure td {
     padding: 0 !important;
 }
 
-code {
-    font-family: 'Font Awesome 5 Free', serif
-}
-
 /* ---------------------  复写 bulma    -------------------------------- */
 
 .content pre {
