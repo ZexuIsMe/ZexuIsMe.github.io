@@ -414,12 +414,14 @@ date
 ## 额外补充
 
 - `uname -r`：查看系统内核版本
+- `uname -a`：查看系统信息，包括内核版本、发行版信息等等信息
 - `mount`: 挂载，将存储设备，如硬盘分区、u盘或远程共享资源挂在到系统指定目录
 - `umount`: 用于卸载已挂在的文件系统
 - `export`：用于设置或导出系统环境变量
 - `env`：查看当前系统已有的环境变量
-- `lscpu`：CPU信息
-- `cat /proc/cpuinfo`：CPU信息
+- `lscpu`、`cat /proc/cpuinfo`：CPU信息
+- `free -h`：内存使用情况
+- `ifconfig`、`ip addr`：网络接口信息
 
 ### 创建文件
 
