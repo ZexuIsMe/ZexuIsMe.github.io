@@ -3,7 +3,6 @@ title: JavaScript-播放器定位问题
 date: 2025-07-09 23:42:10
 tags: [audio, 定位, HTTP Range]
 categories:
-  - 前端
   - JavaScript
   - 播放器
 ---

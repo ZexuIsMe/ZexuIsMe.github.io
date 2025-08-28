@@ -3,7 +3,6 @@ title: JavaScript-吸顶
 date: 2025-06-19 17:26:46
 tags: [JavaScript, 吸顶, 滚动（Scroll）]
 categories:
-  - 前端
   - JavaScript
 ---
 

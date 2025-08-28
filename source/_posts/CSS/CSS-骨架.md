@@ -3,7 +3,6 @@ title: CSS-骨架
 date: 2025-06-27 09:35:21
 tags: [CSS, 骨架（skeleton）, 加载效果（loading）]
 categories:
-  - 前端
   - CSS
 ---
 

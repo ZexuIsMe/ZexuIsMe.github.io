@@ -3,7 +3,6 @@ title: JavaScript-元素查找（querySelector）
 date: 2025-06-29 16:03:09
 tags: [JavaScript, 元素查找（querySelector）]
 categories:
-  - 前端
   - JavaScript
 ---
 

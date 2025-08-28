@@ -2,6 +2,8 @@
 title: CSS-悬浮气泡
 date: 2025-06-28 07:11:21
 tags: [CSS, 气泡（Tooltip）]
+categories:
+  - CSS 
 ---
 
 > tooltip 气泡的核心是对 hover 的操作

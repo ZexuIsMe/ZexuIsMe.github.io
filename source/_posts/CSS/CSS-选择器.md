@@ -3,7 +3,6 @@ title: CSS-选择器
 date: 2025-06-28 13:08:38
 tags: [CSS, 选择器]
 categories:
-  - 前端
   - CSS
 ---
 

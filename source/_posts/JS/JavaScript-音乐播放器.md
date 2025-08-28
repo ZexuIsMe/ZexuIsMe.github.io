@@ -3,7 +3,6 @@ title: JavaScript-音乐播放器
 date: 2025-07-01 08:20:57
 tags: [DOM, 音乐播放器（Music Player）, 自定义进度条]
 categories:
-  - 前端
   - JavaScript
   - 播放器
 ---

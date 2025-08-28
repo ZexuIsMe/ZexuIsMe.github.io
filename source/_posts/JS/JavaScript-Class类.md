@@ -3,7 +3,6 @@ title: JavaScript-Class类封装
 date: 2025-06-27 13:07:01
 tags: [JavaScript, 封装, class]
 categories:
-  - 前端
   - JavaScript
   - 封装
 ---

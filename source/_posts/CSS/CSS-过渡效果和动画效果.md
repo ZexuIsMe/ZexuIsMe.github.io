@@ -3,9 +3,7 @@ title: CSS-过渡效果和动画效果
 date: 2025-07-05 15:31:36
 tags: [过渡（transition）, 动画（animation）]
 categories:
-  - 前端
-  - 康复训练计划表
-  - 过渡效果和动画效果
+  - CSS
 ---
 
 > Q：如何解决CSS兼容方面的问题
