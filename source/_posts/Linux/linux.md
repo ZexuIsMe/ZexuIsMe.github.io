@@ -206,8 +206,9 @@ cat abc.txt
 
 若要显示行号：`cat > abc.txt -b/-n | grep "梦想"`，
 注意`|`分隔，你可以尝试一下`cat > abc.txt | grep "梦想" -b`
+`|`：是管道的意思，查看 abc.txt 的内容且过滤出含“梦想”的词
 
-> `|`：是组合的意思，查看 abc.txt 的内容且过滤出含“梦想”的词
+**`ls -l | grep "^-.* 0 "`**：检索文件且文件大小为0的文件
 
 ## head：查看文件头部的内容
 
@@ -270,11 +271,13 @@ cat abc.txt
 都是可选参数
 `-iname`: 忽略文件大小写字母
 `-name`: 
-`-size`: 按大小进行检索，单位：b、k、M、G
+- `-size`: 按大小进行检索，单位：b、k、M、G
+    `find ./ -size 0`：查找当前目录大小为0的文件
 - `type f`：（type file）文件类型，`find /home/media_project/ -type f \( -name "*.jpg" -o -name "*.png" \)`
 - `type d`：（type dir）目录类型
 - `-mtime -7`：（modify time）7天内修改
 - `-mtime -+`：（modify time）7天前修改
+- `-empty`：查空，空内容的文件，没有文件的目录，`find ./ -empty`
 
 ## 符号链接
 
@@ -315,7 +318,7 @@ chmod g-w,o-r file.txt
 chmod a=rwx file.txt  
 
 # 为当前文件的所有权限组添加执行权限
-chmod +x file.txt
+#chmod +x file.txt(该写作有问题)
 ```
 用户符号：u（所有者）、g（所属组）、o（其他）、a（所有）
 操作符号：+（添加）、-（移除）、=（设置）
@@ -351,9 +354,10 @@ chmod +x file.txt
   `cp -i file.txt backup/ # 若backup/file.txt存在，会询问是否覆盖`
 - 参数：`-v`：显示复制过程，详细输出
 - 参数：`-a`：归档模式，常用用于份（保留文件权限、时间戳等所有属性且递归复制目录）
-  `cp -a data/ data_backup`
+  `cp -a data/ data_backup`：将data备份一份到 `data_backup` 中，若 `data/*`，则表示将 `data` 目录下的所有文件备份一份到 `data_backup` 中
 - 参数：`-u`：仅复制源文件比目标文件新或目标文件不存在的情况，更新复制
-  `cp -u *.doc docs/`
+  1. `cp -u *.doc docs/`
+  2. `cp -ur ./dir ./tem_dir`: 将目录备份一份到tem_dir目录中
 
 >`cp file.text file2.txt`：在当前目录中复制一份`file.txt`并重命名为`file2.txt`
 
@@ -409,7 +413,21 @@ date
 
 ## 额外补充
 
-> 主动创建
+- `uname -r`：查看系统内核版本
+- `mount`: 挂载，将存储设备，如硬盘分区、u盘或远程共享资源挂在到系统指定目录
+- `umount`: 用于卸载已挂在的文件系统
+- `export`：用于设置或导出系统环境变量
+- `env`：查看当前系统已有的环境变量
+- `lscpu`：CPU信息
+- `cat /proc/cpuinfo`：CPU信息
+
+### 创建文件
+
+1. touch
+2. vim
+3. echo
+4. dd
+5. cat
 
 **`echo "content" > file.txt`**：
 将内容输入到 file.txt，若目标文件不存在，则主动创建；
@@ -418,7 +436,7 @@ date
 
 **dd if=/dev/zero of=/var/test/abc.img bs=1M count=150**
 
-> 重命名
+### 重命名
 
 **mv file.txt file2.txt**
 **cp file.txt file2.txt**，然后删除 file.txt
@@ -427,5 +445,84 @@ date
 
 > 执行可执行文件怎么执行：`./可执行文件`
 > python 文件： python abc.py，如果 python 不存在，则 yum install python
+
+### 查看系统中运行的进程可以使用的命令是
+- `ps aux`
+- `top`
+- `htop`
+
+### 可以显示命令的帮助信息
+- `<command> --help`：比如：ls --help
+- `man <command>`：比如：man ls
+- `help <command>`：针对的是 shell 内置，比如 help cd
+
+### 操作：符合条件的批量操作
+
+> 输出内容：> 重定向
+
+`find / -type f -name "host" > ./temp_host`
+翻译：寻找系统目录下所有名字是 host 的文件，并将找到的路径信息到当前目录下的 temp_host 文件中
+
+> 批量复制：xargs -I {}
+
+`find ./ -type f -size +500k | xargs -I {} cp {} ./target_dir`
+翻译：在当前目录下寻找500KB以上的文件并复制到`target_dir`目录中
+
+如果文件名本身含空格或换行符，后续命令，如`xargs`会错误的将其解析为多个文件，`-print0`让find用空字符分割文件名，而空字符在unix文件名中是不允许出现的，因此能准确区分不同文件。
+此外，xargs -0 与 -print0 是配套使用的：`find / -type f -name "*.log" -print0 | xargs -0 du -ch`
+
+> 批量复制：`find ./ -type f -size +500k -exec cp {} ./target_dir \`;
+
+`（空格）\;`是必须的
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### whoami、who、users
+
+> whoami：直接输出当前登录的用户名，他获取的是当前Shell环境中有效的用户身份
+
+> who：输出当前登录到系统的所有用户的详细信息，
+
+会列出
+- 用户名
+- 终端设备：用户通过哪个终端或远程连接登录
+- 登录时间
+- 从何处登录：如果是远程登录，会显示远程主机地址
+- who命令读取的是`var/run/utmp`文件，该文件记录了当前登录用户的详细信息
+
+```bash
+user1  pts/0        2025-08-28 15:10 (192.168.1.100)
+user2  pts/1        2025-08-28 15:15 (192.168.1.101)
+```
+user1 通过 pts/0 终端在 2025 年 8 月 28 日 15:10 从 192.168.1.100 远程登录，
+user2 通过 pts/1 终端在 2025 年 8 月 28 日 15:15 从 192.168.1.101 远程登录
+
+> users：直接输出单签登录到系统的所有用户的用户名列表，没有其他的额外输出
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -1,10 +1,9 @@
 ---
 title: Github：快搭博客
 date: 2025-06-04 13:48:43
-tags: [Github Clone 准备工作]
+tags: [Github, Github Clone 准备工作]
 categories:
-   - Github Clone 准备工作
-   
+   - Github
 ---
 
 1. 想要一个属于自己的个人网站
