@@ -3,7 +3,7 @@ title: linux-设置系统环境变量
 date: 2025-08-28 16:10:01
 tags: [linux, env, export]
 categories:
-  - linux 
+  - Linux
 ---
 
 ```bash

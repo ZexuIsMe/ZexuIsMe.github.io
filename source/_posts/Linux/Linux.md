@@ -167,7 +167,7 @@ d: 表示当前对象是一个目录
 > 为文件写入内容
 
 ```linux
-cat Documents/file.txt << EOF
+cat > Documents/file.txt << EOF
 1. 123
 2. 456
 3. 789
@@ -180,7 +180,7 @@ EOF
 > Q：同为录入：`cat > abc.txt` 通过 `ctrl+d` 保存与前面用标记录入方式什么不同吗？
 
 ```
-cat abc.txt
+cat > abc.txt
 123
 456
 
@@ -190,22 +190,34 @@ cat abc.txt
 快捷键的方式适用于少量的文本录入，但在脚本中几乎不用，因为在脚本中无法手动执行快捷键
 标记的方式适用于大量的文本录入
 
+> cat -n ./file.txt | head 正确输出前10行内容
+>
+> cat -n ./file.txt | head 10，错误写法，head异常
+>
+> cat -n ./file.txt | head +10, 错误写法，head异常
+>
+> cat -n ./file.txt | head -10, 可以，正确输出前10行
+>
+> cat -n ./file.txt | head -n -10, 输出倒数10行开始往上的所有行
+>
+> cat -n ./file.txt | head -n +10, 正确输出前10行
+
 ## grep：查找文件内容
 
 参数：
 - `-i`：无视大小写，`grep -i "ERROR" file.txt`
 - `-n`：分配行号，`grep -n "ERROR" file.txt`
-- `-v`：排除掉关键字所在行，`grep -v "ERROR" file.txt`
+- `-v`：排除掉关键字所在行的其他行，`grep -v "ERROR" file.txt`
 - `-C num`：检索目标行且根据数字显示指定行数的上下行，`grep -C 1 "ERROR" file.txt`
 - `-A num`：检索目标行且根据数字显示指定行数的下行，`grep -A 1 "ERROR" file.txt`
 - `-B num`：检索目标行且根据数字显示指定行数的上行，`grep -B 1 "ERROR" file.txt`
 - `-r`：检索目录及其子目录，`grep -r "INFO" dir`
 
-`cat > abc.txt | grep "梦想"`： 查询“梦想”，并返回查询结果
-`cat > abc.txt | head -20`： 显示前20行内容
+`cat abc.txt | grep "梦想"`： 查询“梦想”，并返回查询结果
+`cat abc.txt | head -20`： 显示前20行内容
 
-若要显示行号：`cat > abc.txt -b/-n | grep "梦想"`，
-注意`|`分隔，你可以尝试一下`cat > abc.txt | grep "梦想" -b`
+若要显示行号：`cat abc.txt -b/-n | grep "梦想"`，
+注意`|`分隔，你可以尝试一下`cat abc.txt | grep "梦想" -b`
 `|`：是管道的意思，查看 abc.txt 的内容且过滤出含“梦想”的词
 
 **`ls -l | grep "^-.* 0 "`**：检索文件且文件大小为0的文件
@@ -260,7 +272,7 @@ cat abc.txt
     如：`head abc.txt | cat abc.txt -n`，执行时不会出问题，但也不会有预期结果
 - **目标文件需在最前面**使用，因为管道是将前一个的输出作为后一个的输入
     `head | cat abc.txt -n`：<span style="color: var(--error); font-size: 1rem; font-weight: bold">×</span>
-    `head abc.txt | cat abc.txt -n`：<span style="color: var(--success); font-size: 1rem; font-weight: bold">√</span> 
+    `head abc.txt | cat -n`：<span style="color: var(--success); font-size: 1rem; font-weight: bold">√</span> 
 
 ## find
 
@@ -273,11 +285,11 @@ cat abc.txt
 `-name`: 
 - `-size`: 按大小进行检索，单位：b、k、M、G
     `find ./ -size 0`：查找当前目录大小为0的文件
-- `type f`：（type file）文件类型，`find /home/media_project/ -type f \( -name "*.jpg" -o -name "*.png" \)`
-- `type d`：（type dir）目录类型
+- `-type f`：（type file）文件类型，`find /home/media_project/ -type f \( -name "*.jpg" -o -name "*.png" \)`
+- `-type d`：（type dir）目录类型
 - `-mtime -7`：（modify time）7天内修改
-- `-mtime -+`：（modify time）7天前修改
-- `-empty`：查空，空内容的文件，没有文件的目录，`find ./ -empty`
+- `-mtime +7`：（modify time）7天前修改
+- `-empty`：查空，空内容的文件，没有内容的目录，`find ./ -empty`
 
 ## 符号链接
 
@@ -355,17 +367,19 @@ chmod a=rwx file.txt
 - 参数：`-v`：显示复制过程，详细输出
 - 参数：`-a`：归档模式，常用用于份（保留文件权限、时间戳等所有属性且递归复制目录）
   `cp -a data/ data_backup`：将data备份一份到 `data_backup` 中，若 `data/*`，则表示将 `data` 目录下的所有文件备份一份到 `data_backup` 中
+    若重复执行，会提醒是否覆盖
 - 参数：`-u`：仅复制源文件比目标文件新或目标文件不存在的情况，更新复制
   1. `cp -u *.doc docs/`
   2. `cp -ur ./dir ./tem_dir`: 将目录备份一份到tem_dir目录中
+- `cp file.text file2.txt`：在当前目录中复制一份`file.txt`并重命名为`file2.txt`
 
->`cp file.text file2.txt`：在当前目录中复制一份`file.txt`并重命名为`file2.txt`
-
->`cp aistudy/* ./abc`
+- `cp aistudy/* ./abc`
   将`aistudy`的所有内容复制一份至当前文件的`abc`目录中
   若`abc`不存在，则会主动创建
 
-> `cp file1.txt /home/user/dir123456789`：dir123456789目录是不存在的，若运行，则会将dir123456789当做是文件，而非目录
+-  `cp file1.txt /home/user/dir123456789`：dir123456789目录是不存在的，若运行，则会将dir123456789当做是文件，而非目录
+
+- 复制文件又复制目录：`cp -r file.txt ./dir ./temp_dir` 
 
 ## wc：统计
 
@@ -411,6 +425,14 @@ date
 - `shutdown -r now`：立即重启计算机，命令需要管理员权限才能执行
 - `reboot`：重启计算机
 
+## alias 别名
+
+## more：查看大型文件时的分页
+
+## less：分页
+
+more、less 区别？
+
 ## 额外补充
 
 - `uname -r`：查看系统内核版本
@@ -419,9 +441,9 @@ date
 - `umount`: 用于卸载已挂在的文件系统
 - `export`：用于设置或导出系统环境变量
 - `env`：查看当前系统已有的环境变量
-- `lscpu`、`cat /proc/cpuinfo`：CPU信息
-- `free -h`：内存使用情况
 - `ifconfig`、`ip addr`：网络接口信息
+- `lscpu`、`cat /proc/cpuinfo`：CPU信息
+- `free -h`：显示内存使用情况
 
 ### 创建文件
 
@@ -477,20 +499,6 @@ date
 
 `（空格）\;`是必须的
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### whoami、who、users
 
 > whoami：直接输出当前登录的用户名，他获取的是当前Shell环境中有效的用户身份
@@ -528,3 +536,16 @@ user2 通过 pts/1 终端在 2025 年 8 月 28 日 15:15 从 192.168.1.101 远�
 
 
 
+
+
+### 修改文件时间
+
+### su、sudo区别？
+
+### 关机
+
+### 重启
+
+### 替换文本
+
+`sed 's/old/newg' file`：替换文本，输出被替换后的样子且不影响原文本
