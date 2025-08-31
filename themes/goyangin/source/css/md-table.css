@@ -5,7 +5,7 @@
 }
 
 .table-wrapper tr {
-    min-height: 3rem;
+    /*min-height: 3rem;*/
 }
 .table-wrapper th,
 .table-wrapper td {
@@ -13,5 +13,5 @@
 }
 
 .table-wrapper th {
-    min-width: 8.4375rem;
+    /*min-width: 8.4375rem;*/
 }
