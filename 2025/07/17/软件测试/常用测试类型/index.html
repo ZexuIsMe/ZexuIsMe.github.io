@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-07-17 20:30
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-08-30 20:19
                     </p>
                 </div>
             </div>
@@ -538,67 +538,119 @@
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">1.</span> <span class="toc-text">功能测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">2.</span> <span class="toc-text">性能测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E6%80%A7%E6%B5%8B%E8%AF%95"><span class="toc-number">3.</span> <span class="toc-text">可靠性测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%BC%E5%AE%B9%E6%80%A7%E6%B5%8B%E8%AF%95"><span class="toc-number">4.</span> <span class="toc-text">兼容性测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%92%E6%93%8D%E4%BD%9C%E6%80%A7%E6%B5%8B%E8%AF%95"><span class="toc-number">5.</span> <span class="toc-text">互操作性测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UI%E6%B5%8B%E8%AF%95-%EF%BC%88User-Interface%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">UI测试 （User Interface）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%80%A7%E6%B5%8B%E8%AF%95"><span class="toc-number">7.</span> <span class="toc-text">安全性测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%A5%E5%A3%AE%E6%80%A7%E6%B5%8B%E8%AF%95"><span class="toc-number">8.</span> <span class="toc-text">健壮性测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%93%E7%94%A8%E6%80%A7%E6%B5%8B%E8%AF%95"><span class="toc-number">9.</span> <span class="toc-text">易用性测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E7%81%BE%E6%B5%8B%E8%AF%95"><span class="toc-number">10.</span> <span class="toc-text">容灾测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%B5%8B%E8%AF%95"><span class="toc-number">11.</span> <span class="toc-text">安装测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AC%E8%BF%81%E6%B5%8B%E8%AF%95"><span class="toc-number">12.</span> <span class="toc-text">搬迁测试</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">1.</span> <span class="toc-text">功能测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">2.</span> <span class="toc-text">性能测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UI%E6%B5%8B%E8%AF%95-%EF%BC%88User-Interface%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">UI测试 （User Interface）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95"><span class="toc-number">4.</span> <span class="toc-text">压力测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">5.</span> <span class="toc-text">负载测试</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
         <p>测试类型是不固定的，根据需要的不同，就会有不同的测试类型</p>
+<table>
+<thead>
+<tr>
+<th>测试</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>健壮性测试</td>
+<td>模拟用户的各种异常使用，检验产品的防错性、容错性；<br/> 也叫鲁棒测试，robust</td>
+</tr>
+<tr>
+<td>易用性测试</td>
+<td>针对产品易用性的测试，主要由美工、用户进行测试</td>
+</tr>
+<tr>
+<td>强度测试</td>
+<td>测试系统在正常负载条件下长期运行的可靠性</td>
+</tr>
+<tr>
+<td></td>
+<td>在一定的负荷条件下，在较长时间跨度内的系统连续运行给系统性能所造成的影响</td>
+</tr>
+<tr>
+<td>容量测试</td>
+<td>关注系统能够处理的最大数据量或并发用户数</td>
+</tr>
+<tr>
+<td></td>
+<td>容量测试目的是通过测试预先分析出反映软件系统应用特征的某项指标的极限值（如最大并发用户数、数据库记录数等），系统在其极限值状态下没有出现任何软件故障或还能保持主要功能正常运行。</td>
+</tr>
+<tr>
+<td></td>
+<td>容量测试是面向数据的，并且它的目的是显示系统可以处理目标内确定的数据容量。</td>
+</tr>
+<tr>
+<td>性能测试</td>
+<td>测试系统在正常工作负载下的响应时间、吞吐量、资源消耗情况等指标</td>
+</tr>
+<tr>
+<td>安全性测试</td>
+<td>SAL注入：通过在搜索框中输入sql语句的部分内容来改变原来的查询功能，比如从商品搜索变陈管理员用户名密码的搜索跨站脚本攻击</td>
+</tr>
+<tr>
+<td>安装测试</td>
+<td>对产品的安装、升级和卸载进行的测试；<br/> 属于可移植性的易安装性特性</td>
+</tr>
+<tr>
+<td>搬迁测试</td>
+<td>检验产品替换老产品时是否能完整正确的移植老产品的功能和数据的测试</td>
+</tr>
+<tr>
+<td>容灾测试</td>
+<td>检验产品出现灾难时的承受能力，以及修复产品的能力的测试</td>
+</tr>
+<tr>
+<td>互操作性测试</td>
+<td>检验软件和其他软件、硬件之间的调用，数据传递等情况的测试</td>
+</tr>
+<tr>
+<td>兼容性测试</td>
+<td>检验产品在要求的各种运行环境中能否和其他要素共同运行的测试</td>
+</tr>
+<tr>
+<td>可靠性测试</td>
+<td>主要针对产品的可靠性中的成熟性进行的测试，叫做可靠性测试</td>
+</tr>
+<tr>
+<td>负载测试</td>
+<td>验证要检验的系统的能力最高能达到什么程度</td>
+</tr>
+<tr>
+<td></td>
+<td>在一定的工作负荷下，系统的负荷及响应时间</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>分割线</p>
+</blockquote>
 <h2 id="功能测试"><a href="#功能测试" class="headerlink" title="功能测试"></a>功能测试</h2><h2 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h2><p>负载测试：<br>压力测试：是破坏性测试，但是现在一般情况下会认为是性能测试<br>稳定性测试：<br>配置测试：<br>容量测试：</p>
-<h2 id="可靠性测试"><a href="#可靠性测试" class="headerlink" title="可靠性测试"></a>可靠性测试</h2><p>主要针对产品的可靠性中的成熟性进行的测试，叫做可靠性测试</p>
-<h2 id="兼容性测试"><a href="#兼容性测试" class="headerlink" title="兼容性测试"></a>兼容性测试</h2><p>检验产品在要求的各种运行环境中能否和其他要素共同运行的测试</p>
-<h2 id="互操作性测试"><a href="#互操作性测试" class="headerlink" title="互操作性测试"></a>互操作性测试</h2><p>检验软件和其他软件、硬件之间的调用，数据传递等情况的测试</p>
 <h2 id="UI测试-（User-Interface）"><a href="#UI测试-（User-Interface）" class="headerlink" title="UI测试 （User Interface）"></a>UI测试 （User Interface）</h2><p>检验软件和使用者之间交互操作、传递信息的测试</p>
 <p>也会检测产品的美观性、易于学习、易于使用的也行</p>
 <p>UI分类：CLI（命令行接口）、GUI（图形化用户接口）</p>
-<h2 id="安全性测试"><a href="#安全性测试" class="headerlink" title="安全性测试"></a>安全性测试</h2><p>SAL注入：通过在搜索框中输入sql语句的部分内容来改变原来的查询功能，比如从商品搜索变陈管理员用户名密码的搜索<br>跨站脚本攻击</p>
-<h2 id="健壮性测试"><a href="#健壮性测试" class="headerlink" title="健壮性测试"></a>健壮性测试</h2><p>模拟用户的各种异常使用，检验产品的防错性、容错性<br>也叫鲁棒测试，robust</p>
-<h2 id="易用性测试"><a href="#易用性测试" class="headerlink" title="易用性测试"></a>易用性测试</h2><p>针对产品易用性的测试，主要由美工、用户进行测试</p>
-<h2 id="容灾测试"><a href="#容灾测试" class="headerlink" title="容灾测试"></a>容灾测试</h2><p>检验产品出现灾难时的承受能力，以及修复产品的能力的测试</p>
-<h2 id="安装测试"><a href="#安装测试" class="headerlink" title="安装测试"></a>安装测试</h2><p>对产品的安装、升级和卸载进行的测试</p>
-<p>属于可移植性的易安装性特性</p>
-<h2 id="搬迁测试"><a href="#搬迁测试" class="headerlink" title="搬迁测试"></a>搬迁测试</h2><p>检验产品替换老产品时是否能完整正确的移植老产品的功能和数据的测试</p>
+<h2 id="压力测试"><a href="#压力测试" class="headerlink" title="压力测试"></a>压力测试</h2><ul>
+<li>超出预期负载</li>
+</ul>
+<h2 id="负载测试"><a href="#负载测试" class="headerlink" title="负载测试"></a>负载测试</h2><ul>
+<li>预期负载</li>
+<li>峰值负载</li>
+</ul>
 
     </div>
     <!-- 文章：声明 -->
     <!-- 文章的声明 -->
-<div id="copy-icon-常用测试类型" style="display: grid; grid-template-rows: subgrid; grid-row: span 3; grid-gap: 12px">
-    <p><strong>作者</strong>：粥记捣蛋</p>
-
-    <div class="d-flex">
-        <p><strong>文章链接</strong>：<a href="https://zexuisme.github.io/2025/07/17/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E5%B8%B8%E7%94%A8%E6%B5%8B%E8%AF%95%E7%B1%BB%E5%9E%8B/">https://ZeXuIsMe.github.io/2025/07/17/软件测试/常用测试类型/</a></p>
-
-        <div
-                class="d-flex align-center"
-                style="width: fit-content; cursor: pointer"
-                onclick="postEjs.onclickCopy(`#copy-icon-常用测试类型 a`)"
-        >
-            
-    <div class="tooltip tooltip-top " data-tooltip="点击复制">
-        <!-- button is-dark 为 bulma 的样式 -->
-        
-            <i
-                    class="fas fa-copy"
-                    style="font-size: 18px"
-            ></i>
-        
-    </div>
-
-
-<!--{-->
-<!--    type: '', // 表示提示输出的类型，参数有 text, image-->
-<!--    direction: '', // 表示toolTip出现的方向-->
-<!--    text: '', // 如果 type === 'text'，用于显示提示文本-->
-<!--    icon: '',  // icon 图标-->
-<!--    icon_prefix: '',  // icon 图标前缀，默认为 fab-->
-<!--    size: '', // 控制图标的大小, 默认为 48-->
-<!--    url: '' // 如果 type === image，图片的链接-->
-<!--}-->
-
-        </div>
-    </div>
-    <p><strong>版权声明</strong>：本网站所有文章除特别声明外,均采用 CC BY-NC-ND 4.0 许可协议。转载请注明出处!</p>
-
+<div id="copy-icon-常用测试类型" style="word-wrap: break-word">
+    <p>
+        <strong>作者</strong>：
+        <span>粥记捣蛋</span>
+    </p>
+    <p>
+        <strong>文章链接</strong>：
+        <span>ZeXuIsMe.github.io/2025/07/17/软件测试/常用测试类型/</span>
+    </p>
+    <p>
+        <strong>版权声明</strong>：
+        <span>本网站所有文章除特别声明外,均采用 CC BY-NC-ND 4.0 许可协议。转载请注明出处!</span>
+    </p>
 </div>
     <!-- 文章：文章切换 -->
     <div style="margin-top: 48px">

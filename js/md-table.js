@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // table.className = 'table is-striped'
         table.classList.add('table');
         table.classList.add('is-striped');
+        table.classList.add('is-bordered');
 
         MoveTableHtml(table)
     });
@@ -29,7 +30,7 @@ function MoveTableHtml (table, style = {}) {
         })
     }
     // 1. 为div添加类名以便样式设置
-    wrapperDiv.className = 'table-wrapper';
+    wrapperDiv.className = 'table-wrapper table-container';
     // 2. 将div添加到 table 标签的前面
     table.parentNode.insertBefore(wrapperDiv, table);
     // 3. 将table插入到div中，appendChild 将 table 挪窝到 div 中
