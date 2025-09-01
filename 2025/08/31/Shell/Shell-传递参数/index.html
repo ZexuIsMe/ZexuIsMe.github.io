@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-08-31 20:16
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-01 23:24
                     </p>
                 </div>
             </div>
@@ -523,6 +523,8 @@
         <a class="tag is-info is-light" href="/tags/Shell/">Shell</a>
     
         <a class="tag is-info is-light" href="/tags/%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0/">传递参数</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E5%87%BD%E6%95%B0/">函数</a>
     
 </span>
             <span>
@@ -536,12 +538,76 @@
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">传递参数</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">传递参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B%EF%BC%9A1"><span class="toc-number">2.</span> <span class="toc-text">举例：1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B%EF%BC%9A2"><span class="toc-number">3.</span> <span class="toc-text">举例：2</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
-        <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash </span><br><span class="hljs-comment"># test.sh</span><br><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;---------------with double quote ---------------&quot;</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$2</span>&quot;</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$3</span>&quot;</span><br><span class="hljs-function"><span class="hljs-title">my_procedure</span></span>() &#123;<br>   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span><br>   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$2</span>&quot;</span><br>   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$3</span>&quot;</span><br>&#125;<br>my_procedure <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span><br><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;---------------withtout double quote ---------------&quot;</span><br><span class="hljs-built_in">echo</span> <span class="hljs-variable">$1</span><br><span class="hljs-built_in">echo</span> <span class="hljs-variable">$2</span><br><span class="hljs-built_in">echo</span> <span class="hljs-variable">$3</span><br><span class="hljs-function"><span class="hljs-title">my_procedure</span></span>() &#123;<br>   <span class="hljs-built_in">echo</span> <span class="hljs-variable">$1</span><br>   <span class="hljs-built_in">echo</span> <span class="hljs-variable">$2</span><br>   <span class="hljs-built_in">echo</span> <span class="hljs-variable">$3</span><br>&#125;<br>my_procedure <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;---------------withtout double quote by passing arguments---------------&quot;</span><br>my_procedure <span class="hljs-variable">$@</span><br></code></pre></td></tr></table></figure>
+        <h2 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h2><table>
+<thead>
+<tr>
+<th>–</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>$#</strong></td>
+<td>获取参数个数</td>
+</tr>
+<tr>
+<td><strong>$n</strong></td>
+<td>参数下标<br/>其中 <code>$0</code> 是 <code>./tesh.sh</code></td>
+</tr>
+<tr>
+<td>$*</td>
+<td>以一个单字符串显示所有向脚本传递的参数。<br/> 如”$*”用「”」括起来的情况、以”$1 $2 … $n”的形式输出所有参数。</td>
+</tr>
+<tr>
+<td>$@</td>
+<td>与$*相同，但是使用时加引号，并在引号中返回每个参数。<br/> 如”$@”用「”」括起来的情况、以”$1” “$2” … “$n” 的形式输出所有参数。</td>
+</tr>
+<tr>
+<td>$$</td>
+<td>脚本运行的当前进程ID号</td>
+</tr>
+<tr>
+<td>$!</td>
+<td>后台运行的最后一个进程的ID号</td>
+</tr>
+<tr>
+<td>$-</td>
+<td>显示Shell使用的当前选项，与set命令功能相同。</td>
+</tr>
+<tr>
+<td>$?</td>
+<td>显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误。<br/> 仅对该符号前的一个函数有效，若需要二次调用函数内容，需用变量收集</td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><span class="hljs-comment"># author:菜鸟教程</span><br><span class="hljs-comment"># url:www.runoob.com</span><br><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;-- \$* 演示 ---&quot;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;$*&quot;</span>; <span class="hljs-keyword">do</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span><br><span class="hljs-keyword">done</span><br><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;-- \$@ 演示 ---&quot;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>; <span class="hljs-keyword">do</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span><br><span class="hljs-keyword">done</span><br></code></pre></td></tr></table></figure>
+
+<pre><code>$ chmod +x test.sh
+$ ./test.sh 1 2 3
+-- $* 演示 ---
+1 2 3
+-- $@ 演示 ---
+1
+2
+3
+</code></pre>
+<blockquote>
+<p>$* 与 $@ 区别：</p>
+</blockquote>
+<ul>
+<li>相同点：都是引用所有参数。</li>
+<li>不同点：只有在双引号中体现出来。假设在脚本运行时写了三个参数 1、2、3，则 “ * “ 等价于 “1 2 3”（传递了一个参数），而 “@” 等价于 “1” “2” “3”（传递了三个参数）。</li>
+</ul>
+<blockquote>
+<p><strong>$n 需特别留意参数个数</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><span class="hljs-comment"># author:菜鸟教程</span><br><span class="hljs-comment"># url:www.runoob.com</span><br><br><span class="hljs-function"><span class="hljs-title">funWithParam</span></span>()&#123;<br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;第一个参数为\$1： <span class="hljs-variable">$1</span> !&quot;</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;第二个参数为\$2：  <span class="hljs-variable">$2</span> !&quot;</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;第十个参数为\$10：  <span class="hljs-variable">$10</span> !&quot;</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;第十个参数为\$&#123;10&#125;：  <span class="hljs-variable">$&#123;10&#125;</span> !&quot;</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;第十一个参数为 <span class="hljs-variable">$&#123;11&#125;</span> !&quot;</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;参数总数有 <span class="hljs-variable">$#</span> 个!&quot;</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;作为一个字符串输出所有参数 $* !&quot;</span><br>&#125;<br>funWithParam 1 2 3 4 5 6 7 8 9 34 73<br></code></pre></td></tr></table></figure>
+
+<p>第 10 个及以后的参数必须用 ${10}, ${11} 这种形式，<br>否则 Shell 会解析为 $1 后面跟一个 0<br>（就像示例中的 $10 被解析为 $1 的值 “1” 加 “0”，变成了 “10”）</p>
+<h2 id="举例：1"><a href="#举例：1" class="headerlink" title="举例：1"></a>举例：1</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash </span><br><span class="hljs-comment"># test.sh</span><br><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;---------------with double quote ---------------&quot;</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$2</span>&quot;</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$3</span>&quot;</span><br><span class="hljs-function"><span class="hljs-title">my_procedure</span></span>() &#123;<br>   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span><br>   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$2</span>&quot;</span><br>   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$3</span>&quot;</span><br>&#125;<br>my_procedure <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span><br><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;---------------withtout double quote ---------------&quot;</span><br><span class="hljs-built_in">echo</span> <span class="hljs-variable">$1</span><br><span class="hljs-built_in">echo</span> <span class="hljs-variable">$2</span><br><span class="hljs-built_in">echo</span> <span class="hljs-variable">$3</span><br><span class="hljs-function"><span class="hljs-title">my_procedure</span></span>() &#123;<br>   <span class="hljs-built_in">echo</span> <span class="hljs-variable">$1</span><br>   <span class="hljs-built_in">echo</span> <span class="hljs-variable">$2</span><br>   <span class="hljs-built_in">echo</span> <span class="hljs-variable">$3</span><br>&#125;<br>my_procedure <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;---------------withtout double quote by passing arguments---------------&quot;</span><br>my_procedure <span class="hljs-variable">$@</span><br></code></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">./test.sh <span class="hljs-string">&quot;a b&quot;</span> <span class="hljs-string">&quot;c d&quot;</span> <span class="hljs-string">&quot;e f&quot;</span><br><br>---------------with double quote ---------------<br>a b<br>c d<br>e f<br>a b<br>c d<br>e f<br>---------------without double quote ---------------<br>a<br>b<br>c<br>a<br>b<br>c<br>---------------without double quote by passing arguments---------------<br>a<br>b<br>c<br></code></pre></td></tr></table></figure>
 
 <p>with double quote：<br>函数调用 my_procedure “$@” ， 正确传递了所有参数，保持了原始的三个参数结构</p>
@@ -590,67 +656,12 @@
 <td align="center">g</td>
 </tr>
 </tbody></table>
-<h2 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h2><table>
-<thead>
-<tr>
-<th>–</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>$#</strong></td>
-<td>获取参数个数</td>
-</tr>
-<tr>
-<td><strong>$n</strong></td>
-<td>参数下标<br/>其中 <code>$0</code> 是 <code>./tesh.sh</code></td>
-</tr>
-<tr>
-<td>$*</td>
-<td>以一个单字符串显示所有向脚本传递的参数。<br/> 如”$*”用「”」括起来的情况、以”$1 $2 … $n”的形式输出所有参数。</td>
-</tr>
-<tr>
-<td>$@</td>
-<td>与$*相同，但是使用时加引号，并在引号中返回每个参数。<br/> 如”$@”用「”」括起来的情况、以”$1” “$2” … “$n” 的形式输出所有参数。</td>
-</tr>
-<tr>
-<td>$$</td>
-<td>脚本运行的当前进程ID号</td>
-</tr>
-<tr>
-<td>$!</td>
-<td>后台运行的最后一个进程的ID号</td>
-</tr>
-<tr>
-<td>$-</td>
-<td>显示Shell使用的当前选项，与set命令功能相同。</td>
-</tr>
-<tr>
-<td>$?</td>
-<td>显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误。</td>
-</tr>
-</tbody></table>
-<p>$* 与 $@ 区别：</p>
-<ul>
-<li>相同点：都是引用所有参数。</li>
-<li>不同点：只有在双引号中体现出来。假设在脚本运行时写了三个参数 1、2、3，则 “ * “ 等价于 “1 2 3”（传递了一个参数），而 “@” 等价于 “1” “2” “3”（传递了三个参数）。</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><span class="hljs-comment"># author:菜鸟教程</span><br><span class="hljs-comment"># url:www.runoob.com</span><br><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;-- \$* 演示 ---&quot;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;$*&quot;</span>; <span class="hljs-keyword">do</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span><br><span class="hljs-keyword">done</span><br><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;-- \$@ 演示 ---&quot;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>; <span class="hljs-keyword">do</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span><br><span class="hljs-keyword">done</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ <span class="hljs-built_in">chmod</span> +x test.sh <br>$ ./test.sh 1 2 3<br>-- $* 演示 ---<br>1 2 3<br>-- <span class="hljs-variable">$@</span> 演示 ---<br>1<br>2<br>3<br><br></code></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h2 id="举例：2"><a href="#举例：2" class="headerlink" title="举例：2"></a>举例：2</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Hello World !&quot;</span> | grep -e Hello<br><span class="hljs-built_in">echo</span> $?<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Hello World !&quot;</span> | grep -e Bye<br><span class="hljs-built_in">echo</span> $?<br></code></pre></td></tr></table></figure>
+<pre><code>Hello World !
+0
+1
+</code></pre>
+<p>很奇怪 <code>echo &quot;Hello World !&quot; | grep -e Bye</code> 的输出去哪里了？<br>因为没有匹配上，没有输出，接着 <code>echo $?</code> 输出1，表示命令执行失败，未找到匹配项</p>
 
     </div>
     <!-- 文章：声明 -->
