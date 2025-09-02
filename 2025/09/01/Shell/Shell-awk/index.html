@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-01 23:24
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-02 22:26
                     </p>
                 </div>
             </div>
@@ -585,19 +585,17 @@ This&#39;s 1 This&#39;ss
 <td>字段引用</td>
 </tr>
 </tbody></table>
+<blockquote>
 <p>过滤第一列大于2的行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ awk <span class="hljs-string">&#x27;$1&gt;2&#x27;</span> log.txt    <span class="hljs-comment">#命令</span><br><span class="hljs-comment">#输出</span><br>3 Do you like awk<br>This<span class="hljs-string">&#x27;s a test</span><br><span class="hljs-string">10 There are orange,apple,mongo</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#命令</span><br>$ awk <span class="hljs-string">&#x27;$1&gt;2&#x27;</span> log.txt<br><span class="hljs-comment">## `$1&gt;2`：会过滤掉小于数字2的行，非数字的默认满足条件</span><br><br><span class="hljs-comment">#输出</span><br>3 Do you like awk<br>This<span class="hljs-string">&#x27;s a test</span><br><span class="hljs-string">10 There are orange,apple,mongo</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
 <p>过滤第一列等于2的行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ awk <span class="hljs-string">&#x27;$1==2 &#123;print $1,$3&#125;&#x27;</span> log.txt    <span class="hljs-comment">#命令</span><br><span class="hljs-comment">#输出</span><br>2 is<br></code></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ awk <span class="hljs-string">&#x27;$1==2 &#123;print $1,$3&#125;&#x27;</span> log.txt    <span class="hljs-comment">#命令</span><br><span class="hljs-comment"># 输出：2 is</span><br><br><span class="hljs-comment"># 插播一条额外笔记</span><br>$ awk <span class="hljs-string">&#x27;$1=2 &#123; print $1, $3 &#125;&#x27;</span> log.txt<br><span class="hljs-comment"># 输出：2 is</span><br><span class="hljs-comment"># 输出：2 you</span><br><span class="hljs-comment"># 输出：2 test</span><br><span class="hljs-comment"># 输出：2 test</span><br><span class="hljs-comment"># 输出：2 test</span><br><span class="hljs-comment"># 输出：2 are</span><br></code></pre></td></tr></table></figure>
 
-
-
-
-
-
-
-
-
+<p>Q：Why？为什么一个等号和两个等号输出结果完全不一样？</p>
 
     </div>
     <!-- 文章：声明 -->
@@ -609,7 +607,7 @@ This&#39;s 1 This&#39;ss
     </p>
     <p>
         <strong>文章链接</strong>：
-        <span>ZeXuIsMe.github.io/2025/09/01/Shell/Shell-awk/</span>
+        <span>https://zexuisme.github.io/2025/09/01/Shell/Shell-awk/</span>
     </p>
     <p>
         <strong>版权声明</strong>：
@@ -622,9 +620,9 @@ This&#39;s 1 This&#39;ss
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/')"
-            disabled
-    >上一篇: 无</button>
+            onclick="postToggleEjs.onclickLink('/2025/09/02/App/App-%E5%B8%B8%E8%A7%81%E6%B5%8B%E8%AF%95%E7%B1%BB%E5%9E%8B/')"
+            
+    >上一篇: App-常见测试类型</button>
     <button
             class="button is-info is-light"
             onclick="postToggleEjs.onclickLink('/2025/09/01/Shell/Shell-%E9%87%8D%E5%AE%9A%E5%90%91/')"
