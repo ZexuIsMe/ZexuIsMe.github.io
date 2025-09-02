@@ -1,7 +1,7 @@
 <div class="index-menu px-4">
     <div id="no-mobile-menu" >
         <div class="d-flex justify-center align-center gap-4 v-full">
-            <% Object.keys(theme.menu).forEach(key => { %>
+            <% Object.keys(theme.menu).filter(menuKey => menuKey !== '分享').forEach(key => { %>
                 <div>
                     <a
                             style="color: <%= page.title === '碧海苍云录' ? '#fff' : '#00586d' %>"
