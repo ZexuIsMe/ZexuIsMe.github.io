@@ -1,9 +1,9 @@
 ---
 title: App-环境搭建和adb命令
 date: 2025-08-30 09:34:19
-tags: [app, 测试, 环境搭建, abd]
+tags: [App, 测试, 环境搭建, abd]
 categories:
-  - app
+  - App
   - 测试
 ---
 
@@ -29,22 +29,20 @@ categories:
 
 ## 命令
 
-| --                    | 描述                                    |
-|-----------------------|---------------------------------------|
-| adb devices           | 查看设备列表                                |
-| adb connect ip:port   | Eg: adb connect 127.0.0.1:62001       |
-| abd shell             | 从 windows 远程进入安卓系统                    |
-|                       | 设备列表只有一个时可用                           |
-|                       | 进入后，敲两下回车进入安卓系统                       |
-| add -s ip:port shell  | 设备列表存在多个时可用                           |
-|                       | 进入后，敲两下回车进入安卓系统                       |
-| exit                  | 退出安卓系统                                |
-| adb install 地址.apk    | 安装                                    |
-| adb uninstall apk包名   | 卸载                                    |
-|                       | apk 包名是安卓程序中的名字，位于：/data/data/ 目录下    |
-
-`adb pull download_target download_saved`：下载文件，从app内部导出文件 
-`adb push upload_target upload_saved`：上传文件，往app内部传输文件 
+| --                   | 描述                                 |
+|----------------------|------------------------------------|
+| adb devices          | 查看设备列表                             |
+| adb devices -l       | 查看设备列表详细信息                         |
+| adb connect ip:port  | Eg: adb connect 127.0.0.1:62001    |
+| abd shell            | 从 windows 远程进入安卓系统                 |
+|                      | 设备列表只有一个时可用                        |
+|                      | 进入后，敲两下回车进入安卓系统                    |
+| add -s ip:port shell | 设备列表存在多个时可用                        |
+|                      | 进入后，敲两下回车进入安卓系统                    |
+| exit                 | 退出安卓系统                             |
+| adb install 地址.apk   | 安装                                 |
+| adb uninstall apk包名  | 卸载                                 |
+|                      | apk 包名是安卓程序中的名字，位于：/data/data/ 目录下 |
 
 ## 安卓的四大组件
 
@@ -82,6 +80,11 @@ content provider：内容提供者
 
 ## 安装 apk
 
+> 格式：
+> adb -s ip:port install 文件路径
+> adb install 文件路径
+> 都可
+
 win+R打开CMD
 ```bash
 # abd install apk包路径
@@ -115,7 +118,6 @@ cache  code_cache  lib
 》将原本 -2 目录中的文件转移到 -1 中
 》再将 -2 删除
 
-
 ## 卸载 apk
 
 ```bash
@@ -134,7 +136,11 @@ com.tal.kaoyan-1
 
 ## 升级安装
 
-adb install -r 更高版本.apk
+> 格式：
+> adb -s ip:port install -r 更高版本.apk
+> adb install -r 更高版本.apk
+> 都可
+
 ```bash
 C:\Users\admin>adb install -r D:\apk\ECMobile_10.apk
 Success
@@ -142,14 +148,18 @@ Success
 C:\Users\admin>
 ```
 
-## 上传、下载
+## 上传、下载（导入、导出）
 
-adb pull 下载目标 下载保存点
+> 格式：
+> adb pull 下载目标 windows目录中的下载保存点
+
 `adb pull /data/data/com.insthub.ecmobile/shared_prefs/DB.xml ./`
 - /data.../DB.xml，是下载目标
 - ./是当前目录，是下载保存点，是windows所在的当前目录
 
-adb push 上传目标 上传保存点
+> 格式：
+> adb push windows目录中的上传目标 上传保存点
+
 `adb push .\DB.xml /data/data/com.insthub.ecmobile/shared prefs/DB.xml`
 - .\DB.xml，上传目标
 - /data.../DB.xml，上传保存点
@@ -157,18 +167,20 @@ adb push 上传目标 上传保存点
 
 ## logcat：查看日志
 
+看的是整个系统的日志
+
 | --                    | 描述                                    |
 |-----------------------|---------------------------------------|
 | **adb logcat** \[选项\] | 不加选项，实时查看日志，ctrl+c 退出                 |
 | 参数：-d                 | 查看并退出日志                               |
 | 参数：-c                 | 清空日志                                  |
 | 参数：-v time            | 带时间显示日志                               |
-| 优先级：V（最高）             | 冗长的（）                                 |
+| 优先级：V（最低）             | 冗长的（）                                 |
 | 优先级：D                 | 调试（）                                  |
 | 优先级：I                 | 信息（Info）                              |
 | 优先级：W                 | 警告（Warn）                              |
 | 优先级：E                 | 错误（Error）                             |
-| 优先级：F（最低）             | 致命（Fata）                              |
+| 优先级：F（最高）             | 致命（Fata）                              |
 | 参数：-s 标签名：优先级         | -s *:W W级别以上的日志，即只输出 W,E,F            |
 | （Shell）logcat \[选项\]  | 同 adb logcat，是Shell环境下使用的，也就是在安卓系统环境下 |
 
@@ -177,19 +189,28 @@ adb push 上传目标 上传保存点
 - `grep`是不支持的
 - 若从windows远程进入安卓系统，执行 logcat，可使用`grep`，但不可用`find`
 
-## 稳定性测试
+## 稳定性测试：monkey
 
-add shell monkey [选项] 次数
+    # 格式：
+    adb shell monkey [选项] 次数
+
+次数，模拟事件操作的执行次数，间接决定操作手机的时间
 
 -p：指定打开的包，若没有 -p 会随机打开包
 --throttle 毫秒数：表示2个操作之间的间隔时间，若不设置，间隔为0
 -v -v -v：日志详细程度，3个V最详细
-**--ignore-xxx**：各种忽略异常，如果不忽略异常，容易在出现异常后就不在继续或其他特别的情况
-- --ignore-crashes：出现崩溃性错误忽略继续测试
-- --ignore-timeouts：出现超时性错误忽略
-**--pct-xxx**：各种屏幕操作分布百分比
-- --pct-touch
-- --pct-motion
+> **--ignore-xxx**
+> 各种忽略异常，如果不忽略异常，容易在出现异常后就不在继续或其他特别的情况
+
+`--ignore-crashes`：出现崩溃性错误忽略继续测试
+`--ignore-timeouts`：出现超时性错误忽略
+
+> **--pct-xxx**
+> 各种屏幕操作分布百分比
+> 总值：100，表示100%
+
+`--pct-touch`：触摸操作
+`--pct-motion`：滚动操作
 
 `adb shell monkey -v -v -v --throttle 1000 --pct-touch 50 --pct-motion 50 100`
 `adb shell monkey -v -v -v --throttle 1000 --ignore-crashes 100`

@@ -66,22 +66,36 @@ awk -va= 1 -vb=s '{ print $1, $1+a, $1b }' log.txt
 | in    | 数组成员 |
 | $     | 字段引用 |
 
-过滤第一列大于2的行
+> 过滤第一列大于2的行
+
 ```bash
-$ awk '$1>2' log.txt    #命令
+#命令
+$ awk '$1>2' log.txt
+## `$1>2`：会过滤掉小于数字2的行，非数字的默认满足条件
+
 #输出
 3 Do you like awk
 This's a test
 10 There are orange,apple,mongo
 ```
-过滤第一列等于2的行
+
+> 过滤第一列等于2的行
+
 ```bash
 $ awk '$1==2 {print $1,$3}' log.txt    #命令
-#输出
-2 is
+# 输出：2 is
+
+# 插播一条额外笔记
+$ awk '$1=2 { print $1, $3 }' log.txt
+# 输出：2 is
+# 输出：2 you
+# 输出：2 test
+# 输出：2 test
+# 输出：2 test
+# 输出：2 are
 ```
 
-
+Q：Why？为什么一个等号和两个等号输出结果完全不一样？
 
 
 

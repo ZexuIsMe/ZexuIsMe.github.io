@@ -1,9 +1,9 @@
 ---
 title: Linux-统计行
 date: 2025-08-31 19:12:50
-tags: [linux, 统计, 行]
+tags: [Linux, 统计, 行]
 categories:
-  - linux
+  - Linux
   - 统计
   - 行
 ---
