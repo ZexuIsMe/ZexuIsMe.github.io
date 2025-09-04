@@ -89,3 +89,56 @@ print(a.symmetric_difference(b))  # 输出：{1, 2, 5, 6}
 
 
 
+
+
+## 方法
+
+> 添加
+
+添加元素到集合，如果元素已存在，则不进行任何操作
+
+    set.add(x)
+    # 是随机插入元素，可能在最后一个，也有可能在第一个
+
+另一种添加方式：update，效果同 add 一样，随机插入，若存在同元素则跳过
+
+    set.update(x)
+
+不同的是，update 可以是列表、元组、字典、字符；
+
+如果是字典
+
+    thisset = set(("Google", "Runoob", "Taobao"))
+    thisset.update({"name": "123"})
+    print(thisset, type(thisset))
+    ## 输出结果：{'Taobao', 'Runoob', 'Google', 'name'}
+
+只会取 key 写入
+
+如果是字符，那么也是一样的，只不过会将字符进行拆分，拆分成元组、列表、集合，再塞进去
+
+    thisset = set(("Google", "Runoob", "Taobao"))
+    thisset.update("string")
+    print(thisset, type(thisset))
+    ## 输出结果：
+    ## {'t', 'i', 'r', 'Runoob', 'Google', 'n', 's', 'Taobao', 'g'}
+
+> 删除
+
+    set.remove(x)
+
+将元素 x 从集合中移除，如果元素不存在，则会发生错误；
+
+如果元素不存在时，不希望出现错误：discard
+
+    set.discard(x)
+
+随机删除
+    
+    set.pop()
+
+> 获取长度：len()
+> 清空集合：set.clear()
+
+
+
