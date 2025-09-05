@@ -6,7 +6,20 @@ categories:
   - Python 
 ---
 
-> match ... case
+Python **只有 if 语句，也就是双分支**，如Switch语句，case语句这样的多分支语句是不支持的。
+
+> if 语句
+
+    if 条件判断:
+        # command
+    esif 条件判断:
+        # command
+    else
+        # command
+
+
+
+> match ... case（Python 3.10 增加的）
 
 python 没有 switch case，随着版本的升级，追加了新的if语句：
 

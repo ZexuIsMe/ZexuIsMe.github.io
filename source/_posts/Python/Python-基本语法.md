@@ -29,10 +29,12 @@ print(0.25 ** 0.5) # 0.5
 
 > 数值的除法包含两个运算符
 
-`/`: 除法
+`/`: 除法，结果是浮点数，比如`2.0`而不是`2`
 `//` ：整除，取值向下取整
 
 ```python
+print("0:", 10/5) # 0: 2.0 （需留意）
+
 print("1:", 10/3) # 1: 3.3333333333333335
 
 print("2:", 10//3) # 2: 3
@@ -92,7 +94,7 @@ type(hex(z)) # <class 'str'>
 ## Float
 
 用很少的存储空间可以保存很长的位数
-但精度不准，位长到16位开始精度开始不准
+但精度不准，整体位长到16位开始精度开始不准
 
 > 支持科学计数法
 
@@ -184,7 +186,7 @@ for temp_str in tem_str:
 
 **Q：为什么 `\n` 这里是两行？**
 
-因为 print 默认以 \n  结尾
+因为 print 默认以 \n  结尾，涉及到 print 语法知识。
 
 ```python
 tem_str = "张三\n李四\t\t王五"
@@ -218,7 +220,9 @@ for temp_str in tem_str:
     print(t_str * 2) # （翻倍输出） RunoobRunoob
 ```
 
-必须是 `>= 1` 的**正整数**
+翻倍输出的前提，必须是 `>= 1` 的**正整数**
+
+若是负数或零，则输出空
 
 > 字符加法：
 
@@ -285,6 +289,12 @@ print("bc" in "aBcd") # False
 # 对大小写敏感
 ```
 
+`in` 是逐个匹配，但是完全匹配的；
+比如：`"bc" in "abcd"`
+》 先判断"abcd"是否存在 b
+》 若不存在，则输出 False
+》 若存在，则继续判断 字母 c 是否在 “abcd” 中
+
 > a is b：对象判断，判断两侧对象是否为同一个对象
 
 ```python
@@ -329,18 +339,18 @@ print(False and True) # False
 **或运算口诀**：<mark>前真则前，否则为后</mark>
 
 ```python
-print(1 and 2) # 1
-print(0 and 1) # 1
-print(0 and []) # []
-print(None and 'abc') # abc 
-print('abc' and '123') # abc
+print(1 or 2) # 1
+print(0 or 1) # 1
+print(0 or []) # []
+print(None or 'abc') # abc 
+print('abc' or '123') # abc
 ```
 
 若用于判断，就是熟悉的一真全真
 
 ```python
-print(True and True) # True
-print(False and True) # True
+print(True or True) # True
+print(False or True) # True
 ```
 
 > 执行顺序：非 > 与 > 或
@@ -441,6 +451,8 @@ insert(索引, 值)，表示向列表的索引位置插入一个元素
 
 反转列表，无返回值
 
+-------------
+
     list.sort()
 
 升序排序，无返回值
@@ -487,7 +499,7 @@ print(tuple + tinytuple) # 连接
 **只读数据类型**
 
 方法：
-count: 同 list.index
+count: 同 list.count
 index: 同 list.index
 
 > 元组是特别的引用数据类型
@@ -505,6 +517,20 @@ index: 同 list.index
     y = (1, [2, 3])
     print(id(x), id(y))
     # 2510646136448 2510646136384
+
+这里的代码涉及到<mark>深拷贝</mark>与<mark>浅拷贝</mark>相关知识
+
+> 元组遇到乘法：翻倍输出
+
+    x = (1, 2, 3)
+    print(x * 2) # (1, 2, 3, 1, 2, 3)
+    print(2 * x) # (1, 2, 3, 1, 2, 3)
+    print(*x) # 1 2 3
+    print(x*) # 非法输出
+    print(**x) # 非法输出
+    print(2**x) # 非法输出
+
+注意：`print(*x)` 仅用于输出，不能用于变量赋值，用于变量赋值属于非法
 
 ## 额外补充
 
@@ -546,3 +572,12 @@ index: 同 list.index
 
     y = "".join(a)
     print(y)
+
+### 补充列表追加列表：list.append(\[1, 2, 3, 4])
+
+    x = [10, 20, 30]
+    x.append([1, 2, 3, 4])
+    print([10, 20, 30, [1, 2, 3, 4]])
+
+
+

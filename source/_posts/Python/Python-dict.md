@@ -1,7 +1,7 @@
 ---
 title: Python-dict
 date: 2025-09-04 10:42:12
-tags: [Python, dict, 基本数据类型]
+tags: [Python, dict, 基本数据类型, 字典]
 categories:
   - Python
   - 基本数据类型
@@ -14,7 +14,7 @@ categories:
     { "name": "张三", "age": 20 }
 
 `"name": "张三"` 就是键值对，`name` 叫 `key`，`张三` 叫 `value`
-其中，`key`，必须用引号包裹，单双引号都可，键值对之间用逗号`,`隔开
+其中，**`key`，必须用引号包裹**，单双引号都可，键值对之间用逗号`,`隔开
 
 --------------------
 
@@ -139,4 +139,22 @@ x，通过列表元组的方式存放key, value，字典构造函数会对其进
 ```
 
 python 推导(https://www.runoob.com/python3/python-comprehensions.html)
+
+
+
+## 添加、修改
+
+    dict\[index] = value
+
+既是添加也是修改
+
+    dict.setdefault(key, value)
+
+`setdefault`，若 key 不存在，则以键值对的形式添加进入字典，若存在则返回该 key 的 value
+
+## 删除
+
+`dict.pop(key)`：指定删除
+`dict.popitem()`：随机删除
+
 
