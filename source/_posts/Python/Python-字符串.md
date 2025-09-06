@@ -67,7 +67,9 @@ isdigint(): 是否是整数
 
     "123.0".isdigit() "0100".isdigit()
 
-isdecimal()
+isdecimal()：判断字符串是否只包含十进制数字字符，返回的是布尔
+
+    "ab123".isdecimal() # False
 
 strip、lstrip、rstrip: 去空格
 

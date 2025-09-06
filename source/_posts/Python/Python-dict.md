@@ -140,8 +140,6 @@ x，通过列表元组的方式存放key, value，字典构造函数会对其进
 
 python 推导(https://www.runoob.com/python3/python-comprehensions.html)
 
-
-
 ## 添加、修改
 
     dict\[index] = value
