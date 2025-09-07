@@ -1,7 +1,7 @@
 ---
 title: Python-set集合
 date: 2025-09-04 10:00:08
-tags: [Python, set]
+tags: [Python, set, 基本数据类型]
 categories:
   - Python
   - 基本数据类型

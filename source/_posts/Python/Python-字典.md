@@ -4,7 +4,7 @@ date: 2025-09-04 10:42:12
 tags: [Python, dict, 基本数据类型, 字典]
 categories:
   - Python
-  - 基本数据类型
+  - 数据类型
 ---
 
 > Q：字典长什么样
