@@ -1,7 +1,7 @@
 ---
 title: 51Testing：开班典礼
 date: 2025-07-21 23:32:00
-layout: life
+layout: abc
 videos: #视频组，参数为链接
   - path: ''
     subtitle: ''
