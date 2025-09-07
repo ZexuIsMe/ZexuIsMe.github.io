@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-04 22:03
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-07 19:49
                     </p>
                 </div>
             </div>
@@ -540,7 +540,7 @@
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#while"><span class="toc-number">1.</span> <span class="toc-text">while</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for-%E5%BE%AA%E7%8E%AF"><span class="toc-number">2.</span> <span class="toc-text">for 循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8C%83%E5%9B%B4%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-range"><span class="toc-number">3.</span> <span class="toc-text">范围数据类型 range</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#break%E3%80%81continue"><span class="toc-number">4.</span> <span class="toc-text">break、continue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pass%EF%BC%88%E7%A9%BA%E8%AF%AD%E5%8F%A5%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">pass（空语句）</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#while"><span class="toc-number">1.</span> <span class="toc-text">while</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for-%E5%BE%AA%E7%8E%AF"><span class="toc-number">2.</span> <span class="toc-text">for 循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8C%83%E5%9B%B4%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-range"><span class="toc-number">3.</span> <span class="toc-text">范围数据类型 range</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%B3%E8%BD%AC%E7%BB%93%E6%9E%84%EF%BC%9Abreak%E3%80%81continue"><span class="toc-number">4.</span> <span class="toc-text">跳转结构：break、continue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pass%EF%BC%88%E7%A9%BA%E8%AF%AD%E5%8F%A5%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">pass（空语句）</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
@@ -563,10 +563,27 @@ else:
 else:
     &lt;statements&gt;
 </code></pre>
+<p>一般情况下，支持切片的都能用 for 循环</p>
 <h2 id="范围数据类型-range"><a href="#范围数据类型-range" class="headerlink" title="范围数据类型 range"></a>范围数据类型 range</h2><p><strong>没有直接的书写方式，只能用 range 类创建 range 对象</strong><br>且创建的对象输出时也看不到对象的元素<br>只能通过索引的方式查看，也就是循环<br><strong>支持切片</strong><br><strong>只读类型</strong></p>
 <p>range 创建对象有 3 种方式<br><code>range(n)</code> 表示：[0, n)<br><code>range(m, n)</code> 表示：[m, n)<br><code>range(m, n, e)</code> 表示：[m, n)，间隔为 e </p>
-<h2 id="break、continue"><a href="#break、continue" class="headerlink" title="break、continue"></a>break、continue</h2><p><img src="https://www.runoob.com/wp-content/uploads/2014/05/break-continue-536.png" alt="for语句代码执行过程"></p>
-<p>break: 跳出循环，终止当前循环<br>continue：跳出当前循环，进入下一次循环</p>
+<h2 id="跳转结构：break、continue"><a href="#跳转结构：break、continue" class="headerlink" title="跳转结构：break、continue"></a>跳转结构：break、continue</h2><p><img src="https://www.runoob.com/wp-content/uploads/2014/05/break-continue-536.png" alt="for语句代码执行过程"></p>
+<p>break: 跳出循环，终止当前循环</p>
+<p>break 会跳过循环的 else，跳过的是和循环同层级的else。<br>（翻译：循环都终止了，还执行什么 else）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># for</span><br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>):<br>    <span class="hljs-keyword">if</span> i == <span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">break</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;111&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(i)<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;循环正常结束&quot;</span>)  <span class="hljs-comment"># 不会执行</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;1111111&quot;</span>)  <span class="hljs-comment"># 不会执行</span><br><br><span class="hljs-comment"># whiile</span><br><br>i = <span class="hljs-number">1</span><br><span class="hljs-keyword">while</span> i &lt;= <span class="hljs-number">5</span>:<br>    <span class="hljs-keyword">if</span> i == <span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">break</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;111&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(i)<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;循环正常结束&quot;</span>)  <span class="hljs-comment"># 不会执行</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;1111111&quot;</span>)  <span class="hljs-comment"># 不会执行</span><br></code></pre></td></tr></table></figure>
+
+
+<p>continue：跳出当前循环，进入下一次循环</p>
+<blockquote>
+<p>continue：while 死循环</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">i = <span class="hljs-number">1</span><br><span class="hljs-keyword">while</span> i &lt;= <span class="hljs-number">10</span>:<br>    <span class="hljs-built_in">print</span>(i)<br>    <span class="hljs-keyword">if</span> i == <span class="hljs-number">6</span>:<br>        <span class="hljs-keyword">continue</span><br>    i += <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p>当 i &#x3D; 6 时，会一直触发 i&#x3D;&#x3D;6 的判断，不停的循环执行该步骤，无法结束循环</p>
+<blockquote>
+<p>Q：当一个恒为真的 while 循环，如何跳出循环</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">i = <span class="hljs-number">0</span><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    i++<br>    <span class="hljs-keyword">if</span> i == <span class="hljs-number">10</span>:<br>        <span class="hljs-keyword">break</span> <br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;循环结束了&quot;</span>)<br></code></pre></td></tr></table></figure>
+
 <h2 id="pass（空语句）"><a href="#pass（空语句）" class="headerlink" title="pass（空语句）"></a>pass（空语句）</h2><p>空语句，不做任何事情，保证代码的正常运行</p>
 
     </div>

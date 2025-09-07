@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-04 22:03
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-07 19:49
                     </p>
                 </div>
             </div>
@@ -526,6 +526,8 @@
     
         <a class="tag is-info is-light" href="/tags/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">基本数据类型</a>
     
+        <a class="tag is-info is-light" href="/tags/%E5%AD%97%E5%85%B8/">字典</a>
+    
 </span>
             <span>
     
@@ -538,7 +540,7 @@
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%94%AE%EF%BC%88key%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">获取键（key）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%80%BC%EF%BC%88value%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">获取值（value）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%97%B6%E8%8E%B7%E5%8F%96-key-value"><span class="toc-number">3.</span> <span class="toc-text">同时获取 key, value</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-dict"><span class="toc-number">4.</span> <span class="toc-text">构造函数 dict()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC%E6%9E%84%E9%80%A0%E5%AD%97%E5%85%B8"><span class="toc-number">5.</span> <span class="toc-text">推导构造字典</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%94%AE%EF%BC%88key%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">获取键（key）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%80%BC%EF%BC%88value%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">获取值（value）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%97%B6%E8%8E%B7%E5%8F%96-key-value"><span class="toc-number">3.</span> <span class="toc-text">同时获取 key, value</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-dict"><span class="toc-number">4.</span> <span class="toc-text">构造函数 dict()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC%E6%9E%84%E9%80%A0%E5%AD%97%E5%85%B8"><span class="toc-number">5.</span> <span class="toc-text">推导构造字典</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E3%80%81%E4%BF%AE%E6%94%B9"><span class="toc-number">6.</span> <span class="toc-text">添加、修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-number">7.</span> <span class="toc-text">删除</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
@@ -549,7 +551,7 @@
 <p>字典，被花括号包裹的且是以键值对形式出现的就是字典</p>
 <pre><code>&#123; &quot;name&quot;: &quot;张三&quot;, &quot;age&quot;: 20 &#125;
 </code></pre>
-<p><code>&quot;name&quot;: &quot;张三&quot;</code> 就是键值对，<code>name</code> 叫 <code>key</code>，<code>张三</code> 叫 <code>value</code><br>其中，<code>key</code>，必须用引号包裹，单双引号都可，键值对之间用逗号<code>,</code>隔开</p>
+<p><code>&quot;name&quot;: &quot;张三&quot;</code> 就是键值对，<code>name</code> 叫 <code>key</code>，<code>张三</code> 叫 <code>value</code><br>其中，<strong><code>key</code>，必须用引号包裹</strong>，单双引号都可，键值对之间用逗号<code>,</code>隔开</p>
 <hr>
 <p>字典无法同字符、列表、元组一样做到翻倍输出，即：str * 2 这样的操作；<br>字符、列表、元组不能对空目标通过下标添加元素的操作，字典可以；<br>输出时，会自动去重；</p>
 <hr>
@@ -621,6 +623,13 @@ dict_values([&#39;张三&#39;, 20]) &lt;class &#39;dict_values&#39;&gt;
 <h2 id="推导构造字典"><a href="#推导构造字典" class="headerlink" title="推导构造字典"></a>推导构造字典</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">&#123; x: x**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> (<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>) &#125;<br><br><span class="hljs-comment"># &#123; 2: 4, 4: 16, 6: 36 &#125;</span><br></code></pre></td></tr></table></figure>
 
 <p>python 推导(<a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python-comprehensions.html">https://www.runoob.com/python3/python-comprehensions.html</a>)</p>
+<h2 id="添加、修改"><a href="#添加、修改" class="headerlink" title="添加、修改"></a>添加、修改</h2><pre><code>dict\[index] = value
+</code></pre>
+<p>既是添加也是修改</p>
+<pre><code>dict.setdefault(key, value)
+</code></pre>
+<p><code>setdefault</code>，若 key 不存在，则以键值对的形式添加进入字典，若存在则返回该 key 的 value</p>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p><code>dict.pop(key)</code>：指定删除<br><code>dict.popitem()</code>：随机删除</p>
 
     </div>
     <!-- 文章：声明 -->

@@ -481,337 +481,118 @@
     }
 </style>
     <div id="blog-body">
-        <div class="p-8"></div>
-<!-- 生活大爆炸 -->
+        <!-- 渲染：阅读整篇文章 -->
+<style>
+    #read-post {
+        min-height: calc(100% - 210px);
+        max-width: 85%;
+        margin: auto;
+    }
+
+    @media (max-width: 768px) {
+        #read-post {
+            max-width: 85%;
+        }
+    }
+</style>
 
 
-<div id="my-life">
-    <div class="ml-bg d-flex">
-        <img src="/img/svg/hello.svg" style="opacity: 0.2;" alt="svg">
-    </div>
-    <div class="container p-6">
-        <div class="columns">
-            <!-- 新闻显示区域 -->
-            <article class="column">
-                <!-- 新闻标题 -->
-                <div class="text-center" style="padding-top: 100px">
-                    <h1 class="title text-grey-600 pb-6 ">51Testing：开班典礼</h1>
-                    <div class="subtitle is-6 text-grey-400 d-flex justify-center gap-4">
-                        <div class="d-flex justify-center gap-2 align-center">
-    <i class="fas fa-user"></i><span>粥记捣蛋</span>
-</div>
-                        <div class="d-flex justify-center gap-2 align-center">
-    <i class="fas fa-clock"></i><span>2025-07-21 23:32</span>
-</div>
-                    </div>
+
+<div style="height: 80px"></div>
+
+<article id="read-post">
+    <!-- Title -->
+    <div class="level">
+        <div class="level-left">
+            <div class="media">
+                <div class="media-content">
+                    <h1 class="title is-4 modify-post-title">
+                        <span class="has-text-info">51Testing：开班典礼</span>
+                    </h1>
+                    <p class="subtitle is-6">
+                        <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-07 20:11
+                    </p>
                 </div>
-                <!-- 内容加载区域 -->
-                <section id="life-content" style="padding: 100px 12px">
-                    
-                        
-                        <!-- 如果该行存在文本 -->
-                        
-                        <!-- 如果该行存在图片信息 -->
-                        
-                            
-                            <figure
-                                    style="width: 100%; backdrop-filter: blur(10px); background-color: transparent"
-                                    class="d-flex align-center flex-column p-4"
-                            >
-                                <img
-                                        src="/img/news/%E5%BC%80%E7%8F%AD%E5%85%B8%E7%A4%BC.png"
-                                        style="border-radius: 10px; width: auto;"
-                                        alt="图片一张；图片可能加载失败了，网速不佳可能~~~"
-                                        class="skeleton"
-                                />
-                                <p class="subtitle is-6 text-grey-500 my-6" style=""></p>
-                            </figure>
-                        
-                        <!-- 如果该行存在视频信息的话 -->
-                        
-                    
-                        
-                        <!-- 如果该行存在文本 -->
-                        
-                            <p>今天，是正式开始做测试学习第一天。</p>
-
-                        
-                        <!-- 如果该行存在图片信息 -->
-                        
-                        <!-- 如果该行存在视频信息的话 -->
-                        
-                    
-                        
-                            <h1 class="title is-4 p-4 text-primary" style="border-left: 5px solid var(--primary); margin: 1.5rem 0 1.2rem 0; background-color: #00586d12">师兄、师姐</h1>
-                        
-                        <!-- 如果该行存在文本 -->
-                        
-                            <p>今天，没别的任务，所在校区校长用了一个上午的时间，介绍了博为峰师兄师姐的一个就业情况，在博为峰期间的以及毕业后的一些趣事以及自己从毕业到博为峰工作期间的心路历程分享。</p>
-
-                        
-                        <!-- 如果该行存在图片信息 -->
-                        
-                        <!-- 如果该行存在视频信息的话 -->
-                        
-                    
-                        
-                        <!-- 如果该行存在文本 -->
-                        
-                            <p>旨在告诉我们，好好学，向师兄师姐们看齐，当你们到师兄师姐的程度时，所看到的世界是完全不一样的。</p>
-
-                        
-                        <!-- 如果该行存在图片信息 -->
-                        
-                        <!-- 如果该行存在视频信息的话 -->
-                        
-                    
-                        
-                        <!-- 如果该行存在文本 -->
-                        
-                            <p>我想，大概率是因为我是井底之蛙的缘故，所谓的大厂对我有一种天然的威压，看到在这里往期的师兄师姐，每个班都会有那么好些个进了大厂，心里是越听越是兴奋的。</p>
-
-                        
-                        <!-- 如果该行存在图片信息 -->
-                        
-                        <!-- 如果该行存在视频信息的话 -->
-                        
-                    
-                        
-                        <!-- 如果该行存在文本 -->
-                        
-                            <p>当然我晓得自己有几斤几两</p>
-
-                        
-                        <!-- 如果该行存在图片信息 -->
-                        
-                        <!-- 如果该行存在视频信息的话 -->
-                        
-                    
-                        
-                            <h1 class="title is-4 p-4 text-primary" style="border-left: 5px solid var(--primary); margin: 1.5rem 0 1.2rem 0; background-color: #00586d12">自我介绍</h1>
-                        
-                        <!-- 如果该行存在文本 -->
-                        
-                            <p>现在想想下午的自我介绍环节，真的是有点偏题了，说了一推没有用的废话，只晓得讲诉自己以前的工作经验，以前受的委屈，当我意识到时，已经浪费了好长时间了。看到所在班级班主任频繁的看手机，心里就暗道不妙，老师在提醒我注意时长了。</p>
-
-                        
-                        <!-- 如果该行存在图片信息 -->
-                        
-                        <!-- 如果该行存在视频信息的话 -->
-                        
-                    
-                        
-                        <!-- 如果该行存在文本 -->
-                        
-                            <p>不过我也有点不太想说了，说到后面声音都有点颤抖了，为什么颤抖，因为我的嘴巴说的不是自我介绍，当时真相把嘴巴缝起来，从开始的稳定发言到后面声音开始有些颤抖</p>
-
-                        
-                        <!-- 如果该行存在图片信息 -->
-                        
-                        <!-- 如果该行存在视频信息的话 -->
-                        
-                    
-                        
-                        <!-- 如果该行存在文本 -->
-                        
-                            <p>倒是接这个机会提前跟大家打了招呼，说自己有自言自语的习惯，如果叨扰到大家，还请勿怪。如果你学的很好，而你的身上又有我需要的东西，我可能会出现在你身边问你问题，会有点冒昧，还请见谅</p>
-
-                        
-                        <!-- 如果该行存在图片信息 -->
-                        
-                        <!-- 如果该行存在视频信息的话 -->
-                        
-                    
-                        
-                        <!-- 如果该行存在文本 -->
-                        
-                            <p>话毕，微微的欠了欠身子，表示我结束了……，慌慌张张的结束了自我介绍</p>
-
-                        
-                        <!-- 如果该行存在图片信息 -->
-                        
-                        <!-- 如果该行存在视频信息的话 -->
-                        
-                    
-                        
-                            <h1 class="title is-4 p-4 text-primary" style="border-left: 5px solid var(--primary); margin: 1.5rem 0 1.2rem 0; background-color: #00586d12">同桌同学</h1>
-                        
-                        <!-- 如果该行存在文本 -->
-                        
-                            <p>同桌同学，问我名字，回到以后都是要一起做项目，慢慢的就熟悉起来了，不必在意。</p>
-
-                        
-                        <!-- 如果该行存在图片信息 -->
-                        
-                        <!-- 如果该行存在视频信息的话 -->
-                        
-                    
-                        
-                        <!-- 如果该行存在文本 -->
-                        
-                            <p>另外一个同学一听我做过开发，以为我是一个肚子里有墨水的人，哈哈哈。可能我要让他失望了，我的开发能力弱的很。</p>
-
-                        
-                        <!-- 如果该行存在图片信息 -->
-                        
-                        <!-- 如果该行存在视频信息的话 -->
-                        
-                    
-                        
-                        <!-- 如果该行存在文本 -->
-                        
-                            <p>但愿知道我的真实水准后不要太失望了…..我也不想让你失望的，只是我确实能力不够</p>
-
-                        
-                        <!-- 如果该行存在图片信息 -->
-                        
-                        <!-- 如果该行存在视频信息的话 -->
-                        
-                    
-                        
-                            <h1 class="title is-4 p-4 text-primary" style="border-left: 5px solid var(--primary); margin: 1.5rem 0 1.2rem 0; background-color: #00586d12">时间管理课</h1>
-                        
-                        <!-- 如果该行存在文本 -->
-                        
-                            <p>一位从我的角度来看，很特别的一位老师，姓陈，名如梦。做学生就业工作的岗位，做了很多位已进大厂师兄师姐的就业指导。</p>
-
-                        
-                        <!-- 如果该行存在图片信息 -->
-                        
-                        <!-- 如果该行存在视频信息的话 -->
-                        
-                    
-                        
-                        <!-- 如果该行存在文本 -->
-                        
-                            <p>单就时间管理课而言，最精髓的是陈老师的时间管理象限图，很有收获，但，于现在的我而言，也只是有收获，因为我很难做到如象限图那般能够仔细分辨哪些是重要程度高的，哪些是紧急程度高的，哪些是重不重要的…算了，或许如promise一样，几年后我会明白的。</p>
-
-                        
-                        <!-- 如果该行存在图片信息 -->
-                        
-                        <!-- 如果该行存在视频信息的话 -->
-                        
-                    
-                </section>
-            </article>
-            <!-- 新闻列表 -->
-            <aside class="column is-2" style="min-height: calc(100vh - 196px); ">
-                <div class="columns is-multiline">
-                    <!-- pages 中的参数默认按 layout 进行分类，想同的layout 会在相互挨着 -->
-                    <!-- 可以夸文件存放同一个配置信息的markdown，比如我可以把文件放在 bhcyl中，只要它的内容符合life布局就成 -->
-                    
-                        <div
-                                class="column is-12 mbl"
-                                style="border-radius: 6px"
-                        >
-                            <div style="border-radius: 6px" onclick="lifeEjs.onclickNews(`/life/51Testing%E5%BC%80%E7%8F%AD%E5%85%B8%E7%A4%BC.html`)">
-                                <div>
-                                    
-                                        
-                                        <figure>
-                                            <img src="/img/news/%E5%BC%80%E7%8F%AD%E5%85%B8%E7%A4%BC.png" alt="" style="border-radius: 6px">
-                                        </figure>
-                                    
-                                </div>
-                                <div class="text-center pt-1">
-                                    <div class="title is-6" onclick="">51Testing：开班典礼</div>
-                                    <div class="subTitle is-6">2025-07-21 23:32</div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div
-                                class="column is-12 qqq"
-                                style="border-radius: 6px"
-                        >
-                            <div style="border-radius: 6px" onclick="lifeEjs.onclickNews(`/life/%E5%8E%BB%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%A1%8C%E4%B8%9A%E8%AF%95%E8%AF%95%E4%B8%80%E8%AF%95.html`)">
-                                <div>
-                                    
-                                        
-                                        <figure>
-                                            <img src="http://www.51testing.cn/img/banner0.jpg" alt="" style="border-radius: 6px">
-                                        </figure>
-                                    
-                                </div>
-                                <div class="text-center pt-1">
-                                    <div class="title is-6" onclick="">去软件测行业试一试</div>
-                                    <div class="subTitle is-6">2025-07-09 19:38</div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div
-                                class="column is-12 qqq"
-                                style="border-radius: 6px"
-                        >
-                            <div style="border-radius: 6px" onclick="lifeEjs.onclickNews(`/life/%E7%81%AB%E7%82%AC%E4%B9%8B%E5%85%89%E7%BA%BF%E4%B8%8B%E9%82%80%E8%AF%B7%E5%87%BD.html`)">
-                                <div>
-                                    
-                                        
-                                        <figure>
-                                            <img src="/img/news/%E7%81%AB%E7%82%AC%E9%82%80%E8%AF%B7.jpg" alt="" style="border-radius: 6px">
-                                        </figure>
-                                    
-                                </div>
-                                <div class="text-center pt-1">
-                                    <div class="title is-6" onclick="">火炬之光无限线下邀请函 Get.md</div>
-                                    <div class="subTitle is-6">2025-06-29 11:18</div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div
-                                class="column is-12 qqq"
-                                style="border-radius: 6px"
-                        >
-                            <div style="border-radius: 6px" onclick="lifeEjs.onclickNews(`/life/index.html`)">
-                                <div>
-                                    
-                                        
-                                        <figure>
-                                            <img src="/img/news/DSC_0259.JPG" alt="" style="border-radius: 6px">
-                                        </figure>
-                                    
-                                </div>
-                                <div class="text-center pt-1">
-                                    <div class="title is-6" onclick="">生活大爆炸</div>
-                                    <div class="subTitle is-6">2025-06-29 11:13</div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                </div>
-            </aside>
+            </div>
+        </div>
+        <!-- 文章标签 -->
+        <div class="pt-4">
+            <span>
+    <span>--尚未指定标签--</span>
+</span>
+            <span>
+    <span>--尚未分类--</span>
+</span>
         </div>
     </div>
+
+    <!-- 目录  -->
+    <div></div>
+    <!-- 文章：内容 -->
+    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
+        <hr />
+        <!-- Content -->
+        
+    </div>
+    <!-- 文章：声明 -->
+    <!-- 文章的声明 -->
+<div id="copy-icon-51Testing：开班典礼" style="word-wrap: break-word">
+    <p>
+        <strong>作者</strong>：
+        <span>粥记捣蛋</span>
+    </p>
+    <p>
+        <strong>文章链接</strong>：
+        <span>https://zexuisme.github.io/life/51Testing%E5%BC%80%E7%8F%AD%E5%85%B8%E7%A4%BC.html</span>
+    </p>
+    <p>
+        <strong>版权声明</strong>：
+        <span>本网站所有文章除特别声明外,均采用 CC BY-NC-ND 4.0 许可协议。转载请注明出处!</span>
+    </p>
+</div>
+    <!-- 文章：文章切换 -->
+    <div style="margin-top: 48px">
+<!-- 文章阅读页的切换按钮 -->
+<div class="post-toggle d-flex justify-between flex-wrap gap-3">
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/')"
+            disabled
+    >上一篇: 无</button>
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/')"
+            disabled
+    >下一篇: 无</button>
 </div>
 
 <script>
-    const lifeEjs = {
-        onclickNews: url => {
-            const blog = new Blog()
-            blog.createALink(url, '_self')
+    class PostToggleEjs extends Blog {
+        constructor() {
+            super()
+        }
+
+        onclickLink (url) {
+            this.createALink(url, '_self')
         }
     }
+
+    const postToggleEjs = new PostToggleEjs()
+</script></div>
+
+</article>
+
+<div style="height: 80px"></div>
+
+<script>
+    class PostEjs extends Blog{
+        constructor() {
+            super();
+        }
+    }
+    const postEjs = new PostEjs();
 </script>
-
-<style>
-    .ml-bg {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        max-width: 50%;
-        max-height: 50%;
-        z-index: -1;
-        transform: translate(-50%, -50%);
-    }
-
-    #life-content p {
-        font-size: 1.25rem;
-        text-indent: 2rem;
-        line-height: 3rem;
-    }
-</style>
     </div>
 
     

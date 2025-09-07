@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-04 22:03
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-07 20:00
                     </p>
                 </div>
             </div>
@@ -543,7 +543,7 @@
         <!-- Content -->
         <pre><code>sites = &#123;&#39;Google&#39;, &#39;Taobao&#39;, &#39;Runoob&#39;, &#39;Facebook&#39;, &#39;Zhihu&#39;, &#39;Baidu&#39;&#125;
 </code></pre>
-<p>集合使用大括号 <code>&#123;&#125;</code> 表示，元素之间用逗号隔开。<br>或使用 <code>set()</code> 函数创建集合</p>
+<p>集合使用大括号 <code>&#123;&#125;</code> 表示，元素之间用逗号隔开，或使用 <code>set()</code> 函数创建集合；<br><strong>自动去重</strong></p>
 <blockquote>
 <p>空集合</p>
 </blockquote>
@@ -620,12 +620,17 @@ print(thisset, type(thisset))
 <p>如果元素不存在时，不希望出现错误：discard</p>
 <pre><code>set.discard(x)
 </code></pre>
-<p>随机删除</p>
+<p>随机删除，有返回值，返回的是被删除的元素</p>
 <pre><code>set.pop()
 </code></pre>
+<hr>
 <blockquote>
 <p>获取长度：len()<br>清空集合：set.clear()</p>
 </blockquote>
+<blockquote>
+<p>复制：set.copy()</p>
+</blockquote>
+<p>同其他拷贝一样，复制后与原件的存储地址是不一样的，复制体是一个新的存储地址</p>
 
     </div>
     <!-- 文章：声明 -->

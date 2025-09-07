@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-04 22:03
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-07 19:49
                     </p>
                 </div>
             </div>
@@ -536,7 +536,7 @@
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5"><span class="toc-number">1.</span> <span class="toc-text">字符串拼接</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5"><span class="toc-number">1.</span> <span class="toc-text">字符串拼接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">方法</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
@@ -558,13 +558,28 @@ x[-2:2:-1]
 </blockquote>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">x = [<span class="hljs-string">&#x27;I&#x27;</span>, <span class="hljs-string">&#x27;have&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;pen&#x27;</span>]<br><span class="hljs-string">&quot;&quot;</span>.join(x)<br><span class="hljs-comment">## 按空格对元素进行拼接</span><br></code></pre></td></tr></table></figure>
 
-
-
-
-
-
-
-
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p><strong>字符串的所有方法都是不影响源内容的，基本都是返回一个新的字符串</strong></p>
+<p>lower(): 全部小写<br>upper(): 全部大写<br>capitalize()：首字母大写，后续字母小写，若首位不是字母，则不管，接着小写后续全部字母<br>title(): 每个单词首字母大写<br>isalnum(): 是否字母（包括中文）或数字<br>isnumeric()：是否数字、不包括小数点<br>isalpha()：是否字母（包括中文）<br>isdigint(): 是否是整数</p>
+<pre><code>&quot;123.0&quot;.isdigit() &quot;0100&quot;.isdigit()
+</code></pre>
+<p>isdecimal()：判断字符串是否只包含十进制数字字符，返回的是布尔</p>
+<pre><code>&quot;ab123&quot;.isdecimal() # False
+</code></pre>
+<p>strip、lstrip、rstrip: 去空格</p>
+<pre><code>x = &quot;\t\na b\t&quot;
+print(x.strip()) # 去掉两端空格
+print(x.lstrip()) # 去掉左侧空格
+print(x.rstrip()) # 去掉右侧空格
+</code></pre>
+<p>replace: 替换</p>
+<pre><code>x = &quot;2025-09-05&quot;
+x.replace(&#39;-&#39;, &#39;/&#39;)
+print(x)
+</code></pre>
+<p>startswith(value)：是否以指定内容开始，返回 bool</p>
+<pre><code>&quot;abc&quot;.startswidth(&quot;a&quot;) # true
+</code></pre>
+<p>endsWidth(value)：是否以指定内容结尾，返回 bool</p>
 
     </div>
     <!-- 文章：声明 -->
