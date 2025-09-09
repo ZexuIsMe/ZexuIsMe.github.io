@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-07 19:49
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-09 22:13
                     </p>
                 </div>
             </div>
@@ -531,21 +531,21 @@
     
         <a class="tag is-warning is-light" href="/categories/Python/">Python</a>
     
+        <a class="tag is-warning is-light" href="/categories/Python/%E5%87%BD%E6%95%B0/">函数</a>
+    
 </span>
         </div>
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0%EF%BC%9Alambda"><span class="toc-number">1.</span> <span class="toc-text">匿名函数：lambda</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">关于函数的参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0%EF%BC%8C%E4%B8%8D%E5%9B%BA%E5%AE%9A%E6%95%B0%E9%87%8F%E7%9A%84%E4%BC%A0%E5%8F%82"><span class="toc-number">2.</span> <span class="toc-text">可变参数，不固定数量的传参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0%EF%BC%8C%E5%BF%85%E9%A1%BB%E6%94%BE%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">3.</span> <span class="toc-text">默认参数，必须放在最后</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text">指定数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">递归函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">6.</span> <span class="toc-text">变量作用域</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
         <p><img src="https://www.runoob.com/wp-content/uploads/2014/05/py-tup-10-26-1.png" alt="函数介绍"></p>
-<blockquote>
-<p>关于函数的参数</p>
-</blockquote>
-<p>变量本身不具备任何类型，只是说通过赋值，赋值的值是有数据类型的，让变量拥有了数据类型</p>
+<p>def 》 define 定义</p>
+<h2 id="关于函数的参数"><a href="#关于函数的参数" class="headerlink" title="关于函数的参数"></a>关于函数的参数</h2><p>变量本身不具备任何类型，只是说通过赋值，赋值的值是有数据类型的，让变量拥有了数据类型</p>
 <pre><code>x # 定义了一个变量x
 x = &quot;123&quot; 
 # 字符串 123，通过赋值的方式，让 x 成为了一个字符类型
@@ -558,64 +558,61 @@ x = 123
 <pre><code>函数内取值: [10, 20, 30, [1,2,3,4]]
 函数外取值: [10, 20, 30, [1,2,3,4]]
 </code></pre>
-<blockquote>
-<p>函数参数，不固定数量的传参</p>
-</blockquote>
-<p><strong>星号 * 的参数会以元组(tuple)的形式导入，存放所有未命名的变量参数</strong></p>
+<h2 id="可变参数，不固定数量的传参"><a href="#可变参数，不固定数量的传参" class="headerlink" title="可变参数，不固定数量的传参"></a><strong>可变参数</strong>，不固定数量的传参</h2><ol>
+<li>可变参数与默认参数之间没有位置顺序，随便入座</li>
+<li>可变参数后常规传参必须是关键字</li>
+<li>可变参数不能使用关键字调用，只能标准调用</li>
+</ol>
+<p><strong>单个星号的参数会以元组(tuple)的形式导入，存放所有未命名的变量参数</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 可写函数说明</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">printinfo</span>(<span class="hljs-params">arg1, *vartuple</span>):<br>    <span class="hljs-string">&quot;打印任何传入的参数&quot;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;输出: &quot;</span>)<br>    <span class="hljs-built_in">print</span>(arg1) <span class="hljs-comment"># 70</span><br>    <span class="hljs-built_in">print</span>(vartuple) <span class="hljs-comment"># (60, 50)</span><br><br><br><span class="hljs-comment"># 调用printinfo 函数</span><br>printinfo(<span class="hljs-number">70</span>, <span class="hljs-number">60</span>, <span class="hljs-number">50</span>)<br></code></pre></td></tr></table></figure>
 
-<p><strong>星号 ** 的参数会以字典(dict)的形式导入</strong></p>
+<p><strong>两个星号</strong>的参数会以字典(dict)的形式导入**</p>
+<p><mark>这样形式的书写，至多一个，且必须在最后</mark></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python3</span><br>  <br><span class="hljs-comment"># 可写函数说明</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">printinfo</span>(<span class="hljs-params"> arg1, **vardict </span>):<br>   <span class="hljs-string">&quot;打印任何传入的参数&quot;</span><br>   <span class="hljs-built_in">print</span> (<span class="hljs-string">&quot;输出: &quot;</span>)<br>   <span class="hljs-built_in">print</span> (arg1) <span class="hljs-comment"># 1</span><br>   <span class="hljs-built_in">print</span> (vardict) <span class="hljs-comment"># &#123;&quot;a&quot;: 2, &quot;b&quot;: 3&#125;</span><br> <br><span class="hljs-comment"># 调用printinfo 函数</span><br>printinfo(<span class="hljs-number">1</span>, a=<span class="hljs-number">2</span>,b=<span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
 
-<blockquote>
-<p>默认参数，必须放在最后</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 可写函数说明</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">printinfo</span>(<span class="hljs-params"> age=<span class="hljs-number">35</span>,name </span>):   <span class="hljs-comment"># 默认参数不在最后，会报错</span><br>    <span class="hljs-string">&quot;打印任何传入的字符串&quot;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;名字: &quot;</span>, name)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;年龄: &quot;</span>, age)<br>    <span class="hljs-keyword">return</span><br></code></pre></td></tr></table></figure>
+<h2 id="默认参数，必须放在最后"><a href="#默认参数，必须放在最后" class="headerlink" title="默认参数，必须放在最后"></a>默认参数，必须放在最后</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 可写函数说明</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">printinfo</span>(<span class="hljs-params"> age=<span class="hljs-number">35</span>,name </span>):   <span class="hljs-comment"># 默认参数不在最后，会报错</span><br>    <span class="hljs-string">&quot;打印任何传入的字符串&quot;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;名字: &quot;</span>, name)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;年龄: &quot;</span>, age)<br>    <span class="hljs-keyword">return</span><br></code></pre></td></tr></table></figure>
 
-<p>需要更改为：printinfo( name, age&#x3D;35 )</p>
-<h2 id="匿名函数：lambda"><a href="#匿名函数：lambda" class="headerlink" title="匿名函数：lambda"></a>匿名函数：lambda</h2><pre><code>x = lambda a : a + 10
-print(x(5)) # 15
-扩展开来
-def 匿名(a):
-    return a + 10
-x = 匿名(5)
+<p>需要更改为：<code>printinfo( name, age=35 )</code></p>
+<h2 id="指定数据类型"><a href="#指定数据类型" class="headerlink" title="指定数据类型"></a>指定数据类型</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">abc</span>(<span class="hljs-params">a:<span class="hljs-built_in">str</span>=<span class="hljs-string">&quot;123&quot;</span></span>)-&gt;<span class="hljs-built_in">str</span>:<br>    <span class="hljs-built_in">print</span>(a)<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;333&quot;</span><br><br>abc()<br>abc(<span class="hljs-string">&quot;456&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><code>a:str=&quot;123&quot;</code> 规定参数a是一个字符串类型，且有默认值，默认值为 123<br><code>-&gt;str</code> 规定该函数的返回类型是字符串类型</p>
+<p>规定参数数据类型，非强制数据类型，只是告诉你我设定的这个函数所需要的参数需要的数据类型，即便数据类型不一样，或许也能运行，但结果和预期不一样就不要怪函数有问题</p>
+<h2 id="递归函数"><a href="#递归函数" class="headerlink" title="递归函数"></a>递归函数</h2><p>函数自己调用自己，Python 对函数的自调用有层级限制（&lt;1000）</p>
+<h2 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h2><p>定义一个全局变量</p>
+<pre><code>x = 123
 </code></pre>
-<p>lambda 只是一个表达式，<br>lambda 主体是一个表达式，不是代码块<br>lambda 函数表达式中冒号左侧的是函数参数</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 可写函数说明</span><br><span class="hljs-built_in">sum</span> = <span class="hljs-keyword">lambda</span> arg1, arg2: arg1 + arg2<br><br><span class="hljs-comment"># 调用sum函数</span><br><span class="hljs-built_in">print</span> (<span class="hljs-string">&quot;相加后的值为 : &quot;</span>, <span class="hljs-built_in">sum</span>( <span class="hljs-number">10</span>, <span class="hljs-number">20</span> ))<br><span class="hljs-built_in">print</span> (<span class="hljs-string">&quot;相加后的值为 : &quot;</span>, <span class="hljs-built_in">sum</span>( <span class="hljs-number">20</span>, <span class="hljs-number">20</span> ))<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>lambda 函数参数与局部变量与全局变量</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">outer</span>():<br>    a = <span class="hljs-number">10</span>  <span class="hljs-comment"># 外层函数的局部变量</span><br>    func = <span class="hljs-keyword">lambda</span> x: x + a  <span class="hljs-comment"># lambda 定义时捕获了 a 的值</span><br><br>    <span class="hljs-built_in">print</span>(<span class="hljs-number">1111</span>)<br><br>    a = <span class="hljs-number">20</span>  <span class="hljs-comment"># 尝试在 lambda 定义后修改 a</span><br>    <span class="hljs-keyword">return</span> func <span class="hljs-comment"># 约等于 lambda x: x + a，因此 a 的参数被刷新了</span><br><br>result = outer()<br><span class="hljs-built_in">print</span>(result(<span class="hljs-number">5</span>))  <span class="hljs-comment"># 输出 25（非15）</span><br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>封装调用</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">myfunc</span>(<span class="hljs-params">n</span>):<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">lambda</span> a: a * n<br><br>mydoubler = myfunc(<span class="hljs-number">2</span>)<br><br><span class="hljs-built_in">print</span>(mydoubler(<span class="hljs-number">11</span>))<br></code></pre></td></tr></table></figure>
-
-<p><code>mydoubler</code> 调用函数 <code>myfunc</code>，并传参 4，根据返回值被赋值成为<code>lambda</code>表达式： <code>lambda a: a * 2</code></p>
-<blockquote>
-<p>Python 3.8：强制位置参数</p>
-</blockquote>
-<p>形参语法 <code>/</code> 用来指明函数形参必须使用指定位置参数，不能使用关键字参数的形式。<br>翻译：斜杠（&#x2F;）左侧的必须是位置参数，斜杠（&#x2F;）右侧的可以是位置也可以是关键字参数</p>
-<p><code>*, c</code>：星号（*）后面的参数必须是关键字参数</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func1</span>(<span class="hljs-params">a, /, b, *, c</span>):<br>   <span class="hljs-built_in">print</span>(a, b, c)<br>   <br><span class="hljs-comment"># 正确用法：a 必须作为位置参数传递，c 必须作为关键字参数传递</span><br>func1(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, c=<span class="hljs-number">3</span>) <span class="hljs-comment"># 输出：1 2 3</span><br><br><span class="hljs-comment"># 错误用法：a 不能作为关键字参数传递</span><br>func1(a=<span class="hljs-number">1</span>, b=<span class="hljs-number">2</span>, c=<span class="hljs-number">3</span>)<br><br><span class="hljs-comment"># 错误用法：c 必须作为关键字参数传递</span><br>func1(<span class="hljs-number">1</span>, b=<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>lambda 函数使用关键字传参</p>
-</blockquote>
-<pre><code>g= lambda x,y : x**2+y**2
-g(2,3) # 13
-g(y=3,x=2) #13
+<p>定义一个方法：</p>
+<pre><code>def aaa():
+    print(x)
+aaa()
 </code></pre>
+<p>打印：123</p>
 <blockquote>
-<p>lambda 函数使用默认值</p>
+<p>Q：为什么？</p>
 </blockquote>
-<pre><code>g= lambda x=0,y=0 : x**2+y**2
-g(2,3) # 13
-g(2) # 4
-g(y=3) # 9
+<p>因为 <code>x = 123</code> 是一个全局变量，<br>调用函数时，函数内部需要用到变量 x，但是函数内部没有定义变量x，<br>此时，函数会在全局变量字典中寻找是否存在变量 x，若存在则打印，否则返回 None</p>
+<p>这说明什么，说明了<mark>全局变量可以在任何地方调用</mark></p>
+<p>若函数内部定义的有变量 x, 则会优先调用函数内部</p>
+<pre><code>def aaa():
+    x = 555
+    print(x)
+aaa()
 </code></pre>
+<p>打印：555</p>
+<blockquote>
+<p>函数内部和全局变量同名了，该局部变量会影响全局变量吗？</p>
+</blockquote>
+<p><strong>不会</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">x = <span class="hljs-number">123</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;1&quot;</span>, x) <span class="hljs-comment"># 123</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">aaa</span>():<br>    x = <span class="hljs-number">555</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;2&quot;</span>, x) <span class="hljs-comment"># 555</span><br>aaa()<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;3&quot;</span>, x) <span class="hljs-comment"># 123</span><br></code></pre></td></tr></table></figure>
+
+<p>除非函数内部使用<code>global</code>关键字</p>
+<pre><code>def aaa():
+    global x
+    x = 555
+    print(&quot;2&quot;, x) # 555
+aaa()
+</code></pre>
+<p>该关键字表示在函数内部表示声明或引用全局变量</p>
 
     </div>
     <!-- 文章：声明 -->
@@ -640,9 +637,9 @@ g(y=3) # 9
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/')"
-            disabled
-    >上一篇: 无</button>
+            onclick="postToggleEjs.onclickLink('/2025/09/07/Python/Python-%E5%85%83%E7%A5%96/')"
+            
+    >上一篇: Python-元祖（tuple）</button>
     <button
             class="button is-info is-light"
             onclick="postToggleEjs.onclickLink('/2025/09/04/Python/Python-%E6%8E%A8%E5%AF%BC/')"
