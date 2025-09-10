@@ -1,7 +1,7 @@
 ---
 title: Python-类
 date: 2025-09-08 14:56:51
-tags: [Python, 类, class]
+tags: [Python, 类, class, 类方法]
 categories:
   - Python
   - 面向对象
@@ -24,25 +24,74 @@ categories:
 
 其次，self 不是固定的关键字，可以是"abc"，也可以是"efg"，但不建议写 self 以外的
 
-## 基本属性、私有属性
+## 装饰器：类方法(@classmethod)
+
+**类方法**，必须使用 `@classmethod`
+
+```python
+class Abc:
+    @classmethod
+    def func_1(cls, parameter):
+        # command
+        return "结果"
+```
+类方法的第一个参数名必须是`cls`
+类方法中，如何调用其他类方法呢？》 `cls.类方法`
+类方法中，如何调用或修改类属性呢？》 `cls.类属性`
+
+```python
+class Human:
+    @classmethod
+    def develop(cls):
+        print('从猿类发展智人类、再发展到现代人类')
+    def shopping(self):
+        print('do shopping')
+
+Human.develop() # 从猿类发展智人类、再发展到现代人类
+# Human.shopping()  # 类无法运行实例方法
+zs = Human()
+zs.develop() # 从猿类发展智人类、再发展到现代人类
+zs.shopping() # do shopping
+```
+
+类本身只能调用类方法，类属性，如下两段代码很好的证明了这一点
+
+    Human.develop() # 从猿类发展智人类、再发展到现代人类
+    # Human.shopping()  # 类无法运行实例方法
+
+## 装饰器：静态方法（@staticmethod）
 
 ```python
 class People:
-    ## 定义基本属性
-    name = ""
-    age = 0
-    
+    @staticmethod
+    def version(参数名, 参数名):
+        print("地球人")
+        return "123"
+```
+
+该方法可以由类调用，也可由对象调用；
+没有强制的第一参数，比如 `cls`, `self` 这种；
+**不能直接调用实例属性，实例方法，也不能调用类属性和类方法**（除非显示指定类名）；
+
+因为静态方法本质上是一个独立函数，不属于实例也不属于类本身，不依赖类的状态，因此没有强制书写的第一参数`cls`, `self` 这种
+
+## 私有属性
+
+属性分：公开、受控、私有
+
+因为受控和公开几乎一样，没有感觉到哪里被控制了，所以，很多时候都算作是公开的
+
+```python
+class People:
     ## 定义一个私有属性
     __weight = 0
-    
+
     ## 初始化实例方法
     def __init__(self, n, a, w):
         self.name = n
         self.age = a
         self.__weight = w
 ```
-
-> 私有属性：
 
 该属性在类的外部无法直接进行访问
 
@@ -156,7 +205,7 @@ class Student(People):
     self.name = "李四"
 
 调用 speak 函数时则会打印：“李四”
-        
+
 ### 如果是多类继承呢？（继承多个类）
 
 ```python
@@ -236,6 +285,48 @@ s.speak()
 <span style="font-size=36px; color: var(--error)">×</span>：`People().__init__()`
 <span style="font-size=24px; color: var(--success)">√</span>：`People.__init__()`
 
+### 多态
+
+对象的多种形态，对象属于不同的类，但是运行同名方法，执行结果不同，这就是多态
+
+文字描述可能有点抽象，可以结合下面的代码进行理解
+```python
+class Aaa:
+    def func(self):
+        print(111)
+class Bbb:
+    def func(self):
+        print(222) 
+        
+x=Aaa().func()
+y=Bbb().func()
+```
+举例：
+```python
+# 定义Human类，类中定义move方法，内容是输出"xxx两脚站立直立行走"
+# 定义Animal类，类中定义move方法，内容是输出"xxx四脚着地爬着行走"
+# 2个类都有构造方法，带有name参数，用于给同名属性赋值
+# 提示用户张三是否喝酒，输入y或Y表示喝酒了，否则就是没喝酒，
+# 实现如果喝酒了，就运行动物类的move方法，如果没喝酒就运行人类的move方法
+
+class Human:
+    def __init__(self, name):
+        self.name = name
+    def move(self):
+        print(f'{self.name}两脚站立直立行走')
+class Animal:
+    def __init__(self, name):
+        self.name = name
+    def move(self):
+        print(f'{self.name}四脚着地爬着行走')
+
+drinked = input("张三是否喝酒，y或Y表示喝酒了：").lower()
+if drinked == 'y':
+    zs = Animal('张三')
+else:
+    zs = Human('张三')
+zs.move()
+```
 
 ## 如何查看类中定义了的变量？
 
@@ -368,6 +459,8 @@ def __init__(self, n, a, w):
         ....
         ('name', '张三')
     ]
+
+
 
 
 
