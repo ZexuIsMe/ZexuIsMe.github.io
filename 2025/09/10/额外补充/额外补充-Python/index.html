@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>粥记捣蛋</title>
+    <title>额外补充-Python | 粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -344,10 +344,10 @@
                             
                             <div
                                     class="px-8 menu-label d-flex align-center
-                                    v-bg-primary"
+                                    "
                                     style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
                             >
-                                <a href="/archives" style="color: #EEE ">归档</a>
+                                <a href="/archives" style="color: #00586d ">归档</a>
                             </div>
                         
                             
@@ -481,754 +481,253 @@
     }
 </style>
     <div id="blog-body">
-        <!-- Archive: 归档页 -->
-<div class="container " style="padding: 0 24px">
-    <!-- 一般用于 section 标题 -->
-<h1 class="title is-4 d-flex align-center" style="padding: 120px 0 60px 0; font-family: 'ZiHunLongTengKaiShu', serif">
-    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
-    <span style="white-space: nowrap; color: black" class="mx-4">
-                <i class="fas fa-boxes"></i>
-                <span class="ml-4">归档 - 习题</span>
-            </span>
-    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
-</h1>
-
-<!--<script>-->
-<!--    console.log({-->
-<!--        icon: '', // 这里的图标需要是完整的-->
-<!--        name: '', // 标题的名字-->
-<!--        color: '', // 字体颜色-->
-<!--    })-->
-<!--</script>-->
-
-    <div id="article-table" class="table-wrapper">
-        <table class="table is-striped is-hoverable is-fullwidth">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th style="text-align: center">
-                        标签（Tags）
-                        <label for="archivesTags">
-    <select
-            id="archivesTags"
-            style="width: 21px"
-            onchange="archiveEjs.handleChoose(event)"
-    >
-        <option value="">--标签（Tags）--</option>
-        <option value="/archives/">--ALL--</option>
-        
-            <option value="/tags/AE/">AE</option>
-        
-            <option value="/tags/App/">App</option>
-        
-            <option value="/tags/A%E6%A0%87%E7%AD%BE%E5%AE%9A%E4%BD%8D/">A标签定位</option>
-        
-            <option value="/tags/CSS/">CSS</option>
-        
-            <option value="/tags/DOM/">DOM</option>
-        
-            <option value="/tags/DOM%EF%BC%8C%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%EF%BC%8C%E5%9B%BE%E7%89%87%E9%99%8D%E4%BD%8E%E8%B4%A8%E9%87%8F/">DOM，图片处理，图片降低质量</option>
-        
-            <option value="/tags/Day2/">Day2</option>
-        
-            <option value="/tags/Day3/">Day3</option>
-        
-            <option value="/tags/Day5/">Day5</option>
-        
-            <option value="/tags/EJS/">EJS</option>
-        
-            <option value="/tags/Fiddler/">Fiddler</option>
-        
-            <option value="/tags/Flex/">Flex</option>
-        
-            <option value="/tags/Get/">Get</option>
-        
-            <option value="/tags/Git/">Git</option>
-        
-            <option value="/tags/Github/">Github</option>
-        
-            <option value="/tags/Github-Clone-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/">Github Clone 准备工作</option>
-        
-            <option value="/tags/Grid/">Grid</option>
-        
-            <option value="/tags/HTML5%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE/">HTML5语义化标签</option>
-        
-            <option value="/tags/HTTP-Range/">HTTP Range</option>
-        
-            <option value="/tags/Hexo/">Hexo</option>
-        
-            <option value="/tags/JOIN/">JOIN</option>
-        
-            <option value="/tags/JS%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">JS回收机制</option>
-        
-            <option value="/tags/JavaScript/">JavaScript</option>
-        
-            <option value="/tags/Javascript/">Javascript</option>
-        
-            <option value="/tags/Len/">Len</option>
-        
-            <option value="/tags/Linux/">Linux</option>
-        
-            <option value="/tags/Markdown/">Markdown</option>
-        
-            <option value="/tags/Post/">Post</option>
-        
-            <option value="/tags/Python/">Python</option>
-        
-            <option value="/tags/SQL/">SQL</option>
-        
-            <option value="/tags/SQL%E4%B9%A0%E9%A2%98/">SQL习题</option>
-        
-            <option value="/tags/SVN/">SVN</option>
-        
-            <option value="/tags/SVN-%E5%85%8B%E9%9A%86/">SVN 克隆</option>
-        
-            <option value="/tags/Shell/">Shell</option>
-        
-            <option value="/tags/TCP-IP/">TCP/IP</option>
-        
-            <option value="/tags/UDP/">UDP</option>
-        
-            <option value="/tags/UNION/">UNION</option>
-        
-            <option value="/tags/abd/">abd</option>
-        
-            <option value="/tags/audio/">audio</option>
-        
-            <option value="/tags/awk/">awk</option>
-        
-            <option value="/tags/case%E8%AF%AD%E5%8F%A5/">case语句</option>
-        
-            <option value="/tags/class/">class</option>
-        
-            <option value="/tags/def/">def</option>
-        
-            <option value="/tags/dict/">dict</option>
-        
-            <option value="/tags/env/">env</option>
-        
-            <option value="/tags/export/">export</option>
-        
-            <option value="/tags/for/">for</option>
-        
-            <option value="/tags/for%E5%BE%AA%E7%8E%AF/">for循环</option>
-        
-            <option value="/tags/if/">if</option>
-        
-            <option value="/tags/if%E8%AF%AD%E5%8F%A5/">if语句</option>
-        
-            <option value="/tags/lambda/">lambda</option>
-        
-            <option value="/tags/linux/">linux</option>
-        
-            <option value="/tags/list/">list</option>
-        
-            <option value="/tags/match-case/">match...case</option>
-        
-            <option value="/tags/port22/">port22</option>
-        
-            <option value="/tags/ps/">ps</option>
-        
-            <option value="/tags/set/">set</option>
-        
-            <option value="/tags/timeout/">timeout</option>
-        
-            <option value="/tags/tuple/">tuple</option>
-        
-            <option value="/tags/web/">web</option>
-        
-            <option value="/tags/web%E6%B5%8B%E8%AF%95/">web测试</option>
-        
-            <option value="/tags/while/">while</option>
-        
-            <option value="/tags/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B/">三次握手</option>
-        
-            <option value="/tags/%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97/">三目运算</option>
-        
-            <option value="/tags/%E4%B8%AD%E6%AF%92/">中毒</option>
-        
-            <option value="/tags/%E4%B9%A0%E9%A2%98/">习题</option>
-        
-            <option value="/tags/%E4%BB%A3%E7%90%86/">代理</option>
-        
-            <option value="/tags/%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0/">传递参数</option>
-        
-            <option value="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/">作用域</option>
-        
-            <option value="/tags/%E5%85%83%E7%A5%96/">元祖</option>
-        
-            <option value="/tags/%E5%85%83%E7%B4%A0%E6%9F%A5%E6%89%BE%EF%BC%88querySelector%EF%BC%89/">元素查找（querySelector）</option>
-        
-            <option value="/tags/%E5%85%83%E7%B4%A0%E8%BF%BD%E5%8A%A0%EF%BC%88appendChild%EF%BC%89/">元素追加（appendChild）</option>
-        
-            <option value="/tags/%E5%85%A8%E5%B1%80%E6%A0%B7%E5%BC%8F/">全局样式</option>
-        
-            <option value="/tags/%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6/">关系运算符</option>
-        
-            <option value="/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/">内存泄漏</option>
-        
-            <option value="/tags/%E5%86%92%E6%B3%A1/">冒泡</option>
-        
-            <option value="/tags/%E5%86%B2%E7%AA%81/">冲突</option>
-        
-            <option value="/tags/%E5%87%BD%E6%95%B0/">函数</option>
-        
-            <option value="/tags/%E5%87%BD%E6%95%B0%E4%BC%A0%E5%8F%82/">函数传参</option>
-        
-            <option value="/tags/%E5%88%87%E7%89%87/">切片</option>
-        
-            <option value="/tags/%E5%88%97%E8%A1%A8/">列表</option>
-        
-            <option value="/tags/%E5%88%A0%E9%99%A4/">删除</option>
-        
-            <option value="/tags/%E5%89%8D%E7%AB%AF/">前端</option>
-        
-            <option value="/tags/%E5%8A%A0%E8%BD%BD%E6%95%88%E6%9E%9C%EF%BC%88loading%EF%BC%89/">加载效果（loading）</option>
-        
-            <option value="/tags/%E5%8A%A8%E7%94%BB%EF%BC%88animation%EF%BC%89/">动画（animation）</option>
-        
-            <option value="/tags/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0/">匿名函数</option>
-        
-            <option value="/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">单元测试</option>
-        
-            <option value="/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/">原型链</option>
-        
-            <option value="/tags/%E5%90%88%E5%B9%B6/">合并</option>
-        
-            <option value="/tags/%E5%90%B8%E9%A1%B6/">吸顶</option>
-        
-            <option value="/tags/%E5%91%BD%E4%BB%A4/">命令</option>
-        
-            <option value="/tags/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">四次挥手</option>
-        
-            <option value="/tags/%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95/">回归测试</option>
-        
-            <option value="/tags/%E5%9B%A0%E6%9E%9C%E5%9B%BE/">因果图</option>
-        
-            <option value="/tags/%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BC%82%E5%B8%B8/">图片加载异常</option>
-        
-            <option value="/tags/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">基本数据类型</option>
-        
-            <option value="/tags/%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E7%AC%A6/">基本运算符</option>
-        
-            <option value="/tags/%E5%A4%8D%E5%88%B6%EF%BC%88Copy%EF%BC%89/">复制（Copy）</option>
-        
-            <option value="/tags/%E5%A5%91%E7%81%B5%E7%89%88%E6%9C%AC/">契灵版本</option>
-        
-            <option value="/tags/%E5%AD%97%E5%85%B8/">字典</option>
-        
-            <option value="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</option>
-        
-            <option value="/tags/%E5%AE%9A%E4%BD%8D/">定位</option>
-        
-            <option value="/tags/%E5%B0%81%E8%A3%85/">封装</option>
-        
-            <option value="/tags/%E5%B1%85%E4%B8%AD/">居中</option>
-        
-            <option value="/tags/%E5%B8%83%E5%B0%94%E8%BF%90%E7%AE%97%E7%AC%A6%EF%BC%8C-test%E5%91%BD%E4%BB%A4/">布尔运算符， test命令</option>
-        
-            <option value="/tags/%E5%B8%88%E5%82%85/">师傅</option>
-        
-            <option value="/tags/%E5%B8%88%E5%BC%9F/">师弟</option>
-        
-            <option value="/tags/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/">帮助手册</option>
-        
-            <option value="/tags/%E5%B8%B8%E7%94%A8/">常用</option>
-        
-            <option value="/tags/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83/">康复训练</option>
-        
-            <option value="/tags/%E5%BC%82%E5%B8%B8%E7%8A%B6%E6%80%81/">异常状态</option>
-        
-            <option value="/tags/%E5%BC%82%E6%88%96/">异或</option>
-        
-            <option value="/tags/%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/">循环语句</option>
-        
-            <option value="/tags/%E5%BE%AE%E4%BF%A1%E5%8F%8C%E5%BC%80/">微信双开</option>
-        
-            <option value="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/">微信小程序测试</option>
-        
-            <option value="/tags/%E6%89%93%E5%AD%97%E6%9C%BA%E6%95%88%E6%9E%9C/">打字机效果</option>
-        
-            <option value="/tags/%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/">执行顺序</option>
-        
-            <option value="/tags/%E6%8A%93%E5%8C%85/">抓包</option>
-        
-            <option value="/tags/%E6%8E%92%E5%BA%8F/">排序</option>
-        
-            <option value="/tags/%E6%8E%A8%E5%AF%BC/">推导</option>
-        
-            <option value="/tags/%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%8C%96/">数字格式化</option>
-        
-            <option value="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/">数据库操作</option>
-        
-            <option value="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">数据类型</option>
-        
-            <option value="/tags/%E6%95%B0%E7%BB%84/">数组</option>
-        
-            <option value="/tags/%E6%96%87%E7%AB%A0%E6%91%98%E8%A6%81/">文章摘要</option>
-        
-            <option value="/tags/%E6%96%B0%E5%A2%9E%E9%A1%B5%E9%9D%A2/">新增页面</option>
-        
-            <option value="/tags/%E6%97%A0%E6%95%88%E7%AD%89%E4%BB%B7%E7%B1%BB%E5%88%92%E5%88%86/">无效等价类划分</option>
-        
-            <option value="/tags/%E6%9C%A8%E6%A1%A9/">木桩</option>
-        
-            <option value="/tags/%E6%9D%A1%E4%BB%B6%E6%8E%A7%E5%88%B6/">条件控制</option>
-        
-            <option value="/tags/%E6%A0%B7%E5%BC%8F%E5%88%86%E5%B1%82/">样式分层</option>
-        
-            <option value="/tags/%E6%A6%82%E5%BF%B5%E8%A7%A3%E8%AF%BB/">概念解读</option>
-        
-            <option value="/tags/%E6%A8%A1%E6%8B%9F%E5%99%A8/">模拟器</option>
-        
-            <option value="/tags/%E6%A8%A1%E6%8B%9F%E5%BC%B1%E7%BD%91/">模拟弱网</option>
-        
-            <option value="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</option>
-        
-            <option value="/tags/%E6%AF%8F%E6%97%A5%E9%97%AE%E7%AD%94/">每日问答</option>
-        
-            <option value="/tags/%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9C/">毛玻璃效果</option>
-        
-            <option value="/tags/%E6%B0%94%E6%B3%A1%EF%BC%88Tooltip%EF%BC%89/">气泡（Tooltip）</option>
-        
-            <option value="/tags/%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90%E6%B3%95/">流程分析法</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95/">测试</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E5%88%86%E6%9E%90/">测试分析</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/">测试方法</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">测试概论</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E6%A8%A1%E5%9E%8B/">测试模型</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E6%B4%BB%E5%8A%A8/">测试活动</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/">测试用例</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E5%86%99%E4%BD%9C/">测试用例写作</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E6%96%B9%E6%B3%95/">测试用例方法</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">测试用例设计方法</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%B1%BB%E5%9E%8B/">测试类型</option>
-        
-            <option value="/tags/%E6%B6%88%E6%81%AF%EF%BC%88Message%EF%BC%89/">消息（Message）</option>
-        
-            <option value="/tags/%E6%B7%BB%E5%8A%A0/">添加</option>
-        
-            <option value="/tags/%E6%B8%B2%E6%9F%93%E8%A7%A3%E6%9E%90/">渲染解析</option>
-        
-            <option value="/tags/%E6%BB%9A%E5%8A%A8%EF%BC%88Scroll%EF%BC%89/">滚动（Scroll）</option>
-        
-            <option value="/tags/%E7%81%B5%E5%8A%9B%E6%B5%81/">灵力流</option>
-        
-            <option value="/tags/%E7%89%88%E6%9C%AC%E5%8F%B7/">版本号</option>
-        
-            <option value="/tags/%E7%8B%AC%E7%AB%8B%E9%A1%B5%E9%9D%A2/">独立页面</option>
-        
-            <option value="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</option>
-        
-            <option value="/tags/%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">用例设计方法</option>
-        
-            <option value="/tags/%E7%9B%92%E6%A8%A1%E5%9E%8B/">盒模型</option>
-        
-            <option value="/tags/%E7%9B%B8%E5%AF%B9%E9%87%8D%E8%A6%81/">相对重要</option>
-        
-            <option value="/tags/%E7%9B%BE%E5%BC%BA/">盾强</option>
-        
-            <option value="/tags/%E7%9F%A5%E8%AF%86%E7%A7%91%E6%99%AE/">知识科普</option>
-        
-            <option value="/tags/%E7%A0%94%E5%8F%91%E6%A8%A1%E5%BC%8F/">研发模式</option>
-        
-            <option value="/tags/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/">碧海苍云录</option>
-        
-            <option value="/tags/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95%EF%BC%8C%E6%8A%97%E6%80%A7/">碧海苍云录，抗性</option>
-        
-            <option value="/tags/%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/">窗口函数</option>
-        
-            <option value="/tags/%E7%B1%BB/">类</option>
-        
-            <option value="/tags/%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/">系统测试</option>
-        
-            <option value="/tags/%E7%BA%A6%E6%9D%9F/">约束</option>
-        
-            <option value="/tags/%E7%BB%84%E5%90%88%E6%9F%A5%E8%AF%A2/">组合查询</option>
-        
-            <option value="/tags/%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6/">绑定事件</option>
-        
-            <option value="/tags/%E7%BB%9F%E8%AE%A1/">统计</option>
-        
-            <option value="/tags/%E7%BC%BA%E9%99%B7%E6%8A%A5%E5%91%8A/">缺陷报告</option>
-        
-            <option value="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%9B%E5%BA%A6%E6%9D%A1/">自定义进度条</option>
-        
-            <option value="/tags/%E8%A1%8C/">行</option>
-        
-            <option value="/tags/%E8%A5%BF%E9%97%A8%E5%AD%90/">西门子</option>
-        
-            <option value="/tags/%E8%A7%86%E5%9B%BE/">视图</option>
-        
-            <option value="/tags/%E8%A7%A6%E5%8F%91%E5%99%A8/">触发器</option>
-        
-            <option value="/tags/%E8%AF%AD%E6%B3%95/">语法</option>
-        
-            <option value="/tags/%E8%AF%BE%E6%9C%AC%EF%BC%9A%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/">课本：软件测试流程设计</option>
-        
-            <option value="/tags/%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/">调试技巧</option>
-        
-            <option value="/tags/%E8%B4%9D%E5%A1%94/">贝塔</option>
-        
-            <option value="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</option>
-        
-            <option value="/tags/%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">软件的生命周期</option>
-        
-            <option value="/tags/%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F/">软件质量</option>
-        
-            <option value="/tags/%E8%BD%AF%E6%B5%8B/">软测</option>
-        
-            <option value="/tags/%E8%BD%AF%E6%B5%8B%E6%A6%82%E8%AE%BA/">软测概论</option>
-        
-            <option value="/tags/%E8%BE%93%E5%85%A5%E6%A1%86/">输入框</option>
-        
-            <option value="/tags/%E8%BF%87%E5%BA%A6%E8%AE%BE%E8%AE%A1/">过度设计</option>
-        
-            <option value="/tags/%E8%BF%87%E6%B8%A1%EF%BC%88transition%EF%BC%89/">过渡（transition）</option>
-        
-            <option value="/tags/%E8%BF%9B%E7%A8%8B/">进程</option>
-        
-            <option value="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/">选择器</option>
-        
-            <option value="/tags/%E9%81%AE%E7%BD%A9%EF%BC%88Mask%EF%BC%89/">遮罩（Mask）</option>
-        
-            <option value="/tags/%E9%85%8D%E7%94%B5%E6%9F%9C/">配电柜</option>
-        
-            <option value="/tags/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/">配置管理</option>
-        
-            <option value="/tags/%E9%87%8D%E5%AE%9A%E5%90%91/">重定向</option>
-        
-            <option value="/tags/%E9%97%AD%E5%8C%85/">闭包</option>
-        
-            <option value="/tags/%E9%98%BF%E5%B0%94%E6%B3%95/">阿尔法</option>
-        
-            <option value="/tags/%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95/">集成测试</option>
-        
-            <option value="/tags/%E9%9C%80%E6%B1%82%E8%BF%87%E7%A8%8B/">需求过程</option>
-        
-            <option value="/tags/%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%EF%BC%88Music-Player%EF%BC%89/">音乐播放器（Music Player）</option>
-        
-            <option value="/tags/%E9%A2%9C%E8%89%B2%E6%B8%90%E5%8F%98/">颜色渐变</option>
-        
-            <option value="/tags/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/">额外补充</option>
-        
-            <option value="/tags/%E9%AA%A8%E6%9E%B6%EF%BC%88skeleton%EF%BC%89/">骨架（skeleton）</option>
-        
-            <option value="/tags/%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95%E6%B3%95/">黑盒测试法</option>
-        
-    </select>
-</label>
-<!-- archiveEjs.handleChoose(event)：位于 layout > archive.ejs -->
-                    </th>
-                    <th style="text-align: center" class="d-flex align-center">
-                        分类（Categories）
-                        <label for="archivesCategories">
-    <select
-            id="archivesCategories"
-            style="width: 21px"
-            onchange="archiveEjs.handleChoose(event)"
-    >
-        <option value="">--分类（Categories）--</option>
-        <option value="/archives/">--ALL--</option>
-        
-            <option value="/categories/App/">App</option>
-        
-            <option value="/categories/CSS/">CSS</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/CSS/">CSS</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/DOM/">DOM</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/Ejs/">Ejs</option>
-        
-            <option value="/categories/Fiddler/">Fiddler</option>
-        
-            <option value="/categories/Github/">Github</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/HTML5%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE/">HTML5语义化标签</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/Hexo/">Hexo</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</option>
-        
-            <option value="/categories/JavaScript/">JavaScript</option>
-        
-            <option value="/categories/Linux/">Linux</option>
-        
-            <option value="/categories/Markdown/">Markdown</option>
-        
-            <option value="/categories/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/Markdown/">Markdown</option>
-        
-            <option value="/categories/Python/">Python</option>
-        
-            <option value="/categories/SQL/">SQL</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/SQL/">SQL</option>
-        
-            <option value="/categories/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/SQL%E4%B9%A0%E9%A2%98/">SQL习题</option>
-        
-            <option value="/categories/Shell/">Shell</option>
-        
-            <option value="/categories/web/">web</option>
-        
-            <option value="/categories/web/web%E6%B5%8B%E8%AF%95/">web测试</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E4%B9%A0%E9%A2%98/">习题</option>
-        
-            <option value="/categories/Shell/%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0/">传递参数</option>
-        
-            <option value="/categories/Python/%E5%87%BD%E6%95%B0/">函数</option>
-        
-            <option value="/categories/SQL/%E5%87%BD%E6%95%B0/">函数</option>
-        
-            <option value="/categories/Shell/%E5%87%BD%E6%95%B0/">函数</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/">前端</option>
-        
-            <option value="/categories/web/%E5%8D%8F%E8%AE%AE/">协议</option>
-        
-            <option value="/categories/Python/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">基本数据类型</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/%E5%A4%8D%E5%88%B6%EF%BC%88Copy%EF%BC%89/">复制（Copy）</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/DOM/%E5%AE%9A%E4%BD%8D/">定位</option>
-        
-            <option value="/categories/JavaScript/%E5%B0%81%E8%A3%85/">封装</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/CSS/%E5%B1%85%E4%B8%AD/">居中</option>
-        
-            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E5%B8%88%E5%82%85/">师傅</option>
-        
-            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E5%B8%88%E5%BC%9F/">师弟</option>
-        
-            <option value="/categories/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/">帮助手册</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/">康复训练计划表</option>
-        
-            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E5%BC%82%E5%B8%B8%E7%8A%B6%E6%80%81/">异常状态</option>
-        
-            <option value="/categories/Python/%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/">循环语句</option>
-        
-            <option value="/categories/%E5%BE%AE%E4%BF%A1%E5%8F%8C%E5%BC%80/">微信双开</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/">微信小程序测试</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/%E6%89%93%E5%AD%97%E6%9C%BA/">打字机</option>
-        
-            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E6%8A%97%E6%80%A7/">抗性</option>
-        
-            <option value="/categories/JavaScript/%E6%92%AD%E6%94%BE%E5%99%A8/">播放器</option>
-        
-            <option value="/categories/JavaScript/%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%8C%96/">数字格式化</option>
-        
-            <option value="/categories/Python/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">数据类型</option>
-        
-            <option value="/categories/Shell/%E6%95%B0%E7%BB%84/">数组</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/Hexo/%E6%96%87%E7%AB%A0%E6%91%98%E8%A6%81/">文章摘要</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/Hexo/%E6%96%B0%E5%A2%9E%E9%A1%B5%E9%9D%A2/">新增页面</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1/%E6%97%A0%E6%95%88%E7%AD%89%E4%BB%B7%E7%B1%BB%E5%88%92%E5%88%86/">无效等价类划分</option>
-        
-            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E6%9C%A8%E6%A1%A9/">木桩</option>
-        
-            <option value="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</option>
-        
-            <option value="/categories/Shell/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/">流程控制</option>
-        
-            <option value="/categories/App/%E6%B5%8B%E8%AF%95/">测试</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E5%88%86%E6%9E%90/">测试分析</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">测试概论</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/">测试用例</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E5%86%99%E4%BD%9C/">测试用例写作</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E6%96%B9%E6%B3%95/">测试用例方法</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1/">测试用例设计</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%B1%BB%E5%9E%8B/">测试类型</option>
-        
-            <option value="/categories/Markdown/%E6%B8%B2%E6%9F%93%E8%A7%A3%E6%9E%90/">渲染解析</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/Hexo/%E7%8B%AC%E7%AB%8B%E9%A1%B5%E9%9D%A2/">独立页面</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">用例设计方法</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/%E7%9B%92%E6%A8%A1%E5%9E%8B/">盒模型</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/%E7%9B%AE%E6%A0%87%E7%BB%86%E5%8C%96%E8%AE%A1%E5%88%92%E8%A1%A8/">目标细化计划表</option>
-        
-            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E7%9B%BE%E5%BC%BA/">盾强</option>
-        
-            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/">碧海苍云录</option>
-        
-            <option value="/categories/SQL/%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/">窗口函数</option>
-        
-            <option value="/categories/SQL/%E7%BA%A6%E6%9D%9F/">约束</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/SQL/%E7%BB%84%E5%90%88%E6%9F%A5%E8%AF%A2/">组合查询</option>
-        
-            <option value="/categories/Linux/%E7%BB%9F%E8%AE%A1/">统计</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E7%BC%BA%E9%99%B7%E6%8A%A5%E5%91%8A/">缺陷报告</option>
-        
-            <option value="/categories/Linux/%E7%BB%9F%E8%AE%A1/%E8%A1%8C/">行</option>
-        
-            <option value="/categories/SQL/%E8%A7%86%E5%9B%BE/">视图</option>
-        
-            <option value="/categories/SQL/%E8%A7%A6%E5%8F%91%E5%99%A8/">触发器</option>
-        
-            <option value="/categories/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/Markdown/%E8%AF%AD%E6%B3%95/">语法</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F/">软件质量</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E8%BD%AF%E6%B5%8B%E6%A6%82%E8%AE%BA/">软测概论</option>
-        
-            <option value="/categories/web/web%E6%B5%8B%E8%AF%95/%E8%BE%93%E5%85%A5%E6%A1%86/">输入框</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/%E8%BF%87%E5%BA%A6%E8%AE%BE%E8%AE%A1/">过度设计</option>
-        
-            <option value="/categories/Shell/%E8%BF%90%E7%AE%97%E7%AC%A6/">运算符</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/">配置管理</option>
-        
-            <option value="/categories/Shell/%E9%87%8D%E5%AE%9A%E5%90%91/">重定向</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E9%9C%80%E6%B1%82%E8%BF%87%E7%A8%8B/">需求过程</option>
-        
-            <option value="/categories/Python/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80/">页面布局</option>
-        
-            <option value="/categories/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/">额外补充</option>
-        
-    </select>
-</label>
-<!-- archiveEjs.handleChoose(event)：位于 layout > archive.ejs -->
-                    </th>
-                    <th style="text-align: center">创作时间</th>
-                    <th style="text-align: center">更新时间</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-
-            <tbody style="font-size: 12px">
-                
-                    <tr>
-                        <td>
-                            <a href="/2025/07/24/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85_%E4%B9%A0%E9%A2%98/">
-                                额外补充_习题
-                            </a>
-                        </td>
-
-                        <td style="width: 150px; ">
-                            <div class="d-flex flex-wrap gap-2">
-                                
-    
-        <a class="tag is-info is-light" href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-        <a class="tag is-info is-light" href="/tags/%E4%B9%A0%E9%A2%98/">习题</a>
-    
-        <a class="tag is-info is-light" href="/tags/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/">额外补充</a>
-    
-        <a class="tag is-info is-light" href="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/">测试用例</a>
-    
-
-                            </div>
-                        </td>
-
-                        <td style="width: 150px;">
-                            <div class="d-flex flex-wrap gap-2">
-                                
-    
-        <a class="tag is-warning is-light" href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-        <a class="tag is-warning is-light" href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E4%B9%A0%E9%A2%98/">习题</a>
-    
-
-                            </div>
-                        </td>
-
-                        <td style="text-align: center">
-                            2025-07-24 22:30
-                        </td>
-
-                        <td style="text-align: center">
-                            2025-08-13 21:31
-                        </td>
-
-                        <td style="vertical-align: middle">
-                            <a href="/2025/07/24/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85_%E4%B9%A0%E9%A2%98/">
-                                <i class="far fa-hand-point-right"></i>
-                            </a>
-                        </td>
-                    </tr>
-                
-            </tbody>
-        </table>
-    </div>
-
-    
-
-
-<script>
-    class Pagination extends Blog{
-        constructor() {
-            super();
-            // ...
-        }
-
-        onclickPage (url) {
-            this.createALink(url + '#home-post-list', '_self')
-        }
-    }
-
-    const pagination = new Pagination();
-</script>
-</div>
-
-<script>
-    const archiveEjs = {
-        handleChoose (event) {
-            const value = event.target.value
-
-            if (!value) {
-                console.error('分类参数异常！')
-                return
-            }
-
-            const blog = new Blog()
-
-            blog.createALink(value, '_self')
-        }
-    }
-</script>
-
+        <!-- 渲染：阅读整篇文章 -->
 <style>
-    #article-table tbody td {
-        padding: 12px;
-        font-size: 1rem;
+    #read-post {
+        min-height: calc(100% - 210px);
+        max-width: 85%;
+        margin: auto;
+    }
+
+    @media (max-width: 768px) {
+        #read-post {
+            max-width: 85%;
+        }
     }
 </style>
 
+
+
+<div style="height: 80px"></div>
+
+<article id="read-post">
+    <!-- Title -->
+    <div class="level">
+        <div class="level-left">
+            <div class="media">
+                <div class="media-content">
+                    <h1 class="title is-4 modify-post-title">
+                        <span class="has-text-info">额外补充-Python</span>
+                    </h1>
+                    <p class="subtitle is-6">
+                        <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-11 21:03
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- 文章标签 -->
+        <div class="pt-4">
+            <span>
+    
+        <a class="tag is-info is-light" href="/tags/Python/">Python</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/">额外补充</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5/">四舍五入</a>
+    
+</span>
+            <span>
+    
+        <a class="tag is-warning is-light" href="/categories/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/">额外补充</a>
+    
+        <a class="tag is-warning is-light" href="/categories/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/Python/">Python</a>
+    
+</span>
+        </div>
+    </div>
+
+    <!-- 目录  -->
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%9D%E7%95%99%E5%B0%8F%E6%95%B0%E4%BD%8D"><span class="toc-number">1.</span> <span class="toc-text">保留小数位</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#round"><span class="toc-number">1.1.</span> <span class="toc-text">round()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ASCII-%E7%BC%96%E8%A7%A3%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">ASCII 编解码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%9A%E5%88%87%E5%89%B2%E8%B5%8B%E5%80%BC"><span class="toc-number">3.</span> <span class="toc-text">字符串：切割赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%9Ajoin-%E6%8B%BC%E6%8E%A5"><span class="toc-number">4.</span> <span class="toc-text">字符串：join 拼接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#f-string%EF%BC%9A%E5%9F%9F%E5%AE%BD"><span class="toc-number">5.</span> <span class="toc-text">f-string：域宽</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#f-string%EF%BC%9A%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="toc-number">6.</span> <span class="toc-text">f-string：进制转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#f-string%EF%BC%9A%E5%8D%83%E4%BD%8D%E5%88%86%E9%9A%94%E7%AC%A6"><span class="toc-number">7.</span> <span class="toc-text">f-string：千位分隔符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#f-string%EF%BC%9A%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%99%BE%E5%88%86%E6%AF%94"><span class="toc-number">8.</span> <span class="toc-text">f-string：格式化百分比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8"><span class="toc-number">9.</span> <span class="toc-text">生成器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97%EF%BC%9A%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="toc-number">10.</span> <span class="toc-text">位运算：移位运算</span></a></li></ol></div>
+    <!-- 文章：内容 -->
+    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
+        <hr />
+        <!-- Content -->
+        <h2 id="保留小数位"><a href="#保留小数位" class="headerlink" title="保留小数位"></a>保留小数位</h2><pre><code>x = 3.14159
+</code></pre>
+<p><code>print(round(x, 2))</code>：返回一个小数位数为 2 的浮点类型</p>
+<p><code>print(f&quot;&#123;x:.2f&#125;&quot;)</code>：返回一个小数位数为 2 的字符串类型</p>
+<p><code>print(&quot;&#123;0:.2f&#125;&quot;.format(x))</code>：返回一个小数位数为 2 的字符串类型</p>
+<p>运用这些方法，都有一个大前提，<strong>必须是数字类型</strong></p>
+<h3 id="round"><a href="#round" class="headerlink" title="round()"></a>round()</h3><pre><code>round(x) # 四舍五入的取整
+round(x, 0) # 四舍五入的取整，但有一位小数
+round(x, 1) # 四舍五入，并保留一位小数
+</code></pre>
+<h2 id="ASCII-编解码"><a href="#ASCII-编解码" class="headerlink" title="ASCII 编解码"></a>ASCII 编解码</h2><blockquote>
+<p>编码：ord</p>
+</blockquote>
+<pre><code>print(ord(&#39;A&#39;)) # 65
+print(ord(&#39;a&#39;)) # 97
+</code></pre>
+<blockquote>
+<p>解码：chr</p>
+</blockquote>
+<pre><code>print(chr(65)) # A
+print(chr(97)) # a
+</code></pre>
+<blockquote>
+<p>字符串 encode、decode</p>
+</blockquote>
+<pre><code>print(&quot;Hello&quot;.encode(&quot;ascii&quot;))
+# b&#39;Hello&#39;
+print(&quot;Hello&quot;.encode(&quot;ascii&quot;).decode(&quot;ascii&quot;))
+# Hello
+</code></pre>
+<h2 id="字符串：切割赋值"><a href="#字符串：切割赋值" class="headerlink" title="字符串：切割赋值"></a>字符串：<mark>切割赋值</mark></h2><pre><code>a, b, c = &quot;1 3 4&quot;.split(&quot; &quot;)
+print(a, b, c) # 1, 3, 4
+</code></pre>
+<p>分析：<br><code>&quot;1 3 4&quot;.split(&quot; &quot;)</code><br>》 通过空格切割后，返回一个列表 <code>[1, 3, 4]</code><br>》 通过赋值<code>a, b, c = [1, 3, 4]</code>对列表进行<strong>序列解包</strong>，或叫<strong>多重赋值</strong></p>
+<h2 id="字符串：join-拼接"><a href="#字符串：join-拼接" class="headerlink" title="字符串：join 拼接"></a>字符串：join 拼接</h2><p>join 拼接的目标必须是字符串</p>
+<pre><code>x = [1, 2, 3]
+&quot;,&quot;.join(x) # 报错
+y = [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]
+&quot;,&quot;.join(y) # 1,2,3
+</code></pre>
+<h2 id="f-string：域宽"><a href="#f-string：域宽" class="headerlink" title="f-string：域宽"></a>f-string：域宽</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 为整数分配10个字符的域宽</span><br>num = <span class="hljs-number">123</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;数值: <span class="hljs-subst">&#123;num:<span class="hljs-number">10</span>&#125;</span>&quot;</span>) <span class="hljs-comment"># 输出：数值:        123（123前面补7个空格，共10位）</span><br><br><span class="hljs-comment"># 为字符串分配15个字符的域宽</span><br>text = <span class="hljs-string">&quot;Hello&quot;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;文本: <span class="hljs-subst">&#123;text:<span class="hljs-number">15</span>&#125;</span>&quot;</span>) <span class="hljs-comment">## 输出：文本: Hello          （Hello后面补10个空格，共15位）</span><br></code></pre></td></tr></table></figure>
+
+<p>一般情况下：<br>填充物为空格；<br>数值类型，域宽默认是左填充；（如上代码所示）<br>字符串类型，域宽默认是右填充；（如上代码所示）</p>
+<blockquote>
+<p>手动控制填充方向</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">name = <span class="hljs-string">&quot;Alice&quot;</span><br>age = <span class="hljs-number">25</span><br><br><span class="hljs-comment"># 左对齐（域宽10）</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;左对齐: <span class="hljs-subst">&#123;name:&lt;<span class="hljs-number">10</span>&#125;</span>&quot;</span>) <span class="hljs-comment"># 输出：左对齐: Alice     </span><br><span class="hljs-comment"># 右对齐（域宽10）</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;右对齐: <span class="hljs-subst">&#123;age:&gt;<span class="hljs-number">10</span>&#125;</span>&quot;</span>)  <span class="hljs-comment"># 输出：右对齐:         25</span><br><span class="hljs-comment"># 居中对齐（域宽10）</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;居中: <span class="hljs-subst">&#123;name:^<span class="hljs-number">10</span>&#125;</span>&quot;</span>)   <span class="hljs-comment"># 输出：居中:   Alice    </span><br></code></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>描述</th>
+<th>Eg</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>左对齐</td>
+<td>内容左对齐，填充右侧</td>
+<td>f”{name: <mark>&lt;</mark>10}”<br/>内容左对齐，右侧填充10个空格</td>
+</tr>
+<tr>
+<td>右对齐</td>
+<td>内容右对齐，填充左侧</td>
+<td>f”{name: <mark>&gt;</mark>10}”<br/>内容右对齐，左侧填充10个空格</td>
+</tr>
+<tr>
+<td>居中对齐</td>
+<td>内容居中对齐，填充两侧</td>
+<td>f”{name: <mark>^</mark>10}”<br/>内容居中对齐，填充物平分填充两侧</td>
+</tr>
+</tbody></table>
+<p>手动控制的填充方向不受默认情况影响，比如字符串默认是填充右侧，通过手动控制后</p>
+<pre><code>print(f&quot;左对齐: &#123;name:&lt;10&#125;&quot;)
+print(f&quot;左对齐: &#123;name:&gt;10&#125;&quot;)
+# 输出：左对齐: Alice    
+# 输出：左对齐:         Alice（这是手动控制）
+</code></pre>
+<blockquote>
+<p>更改填充物</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">num = <span class="hljs-number">456</span><br><br><span class="hljs-comment"># 用0填充，右对齐，域宽8</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;0填充: <span class="hljs-subst">&#123;num:<span class="hljs-number">0</span>&gt;<span class="hljs-number">8</span>&#125;</span>&quot;</span>)  <span class="hljs-comment"># 输出：0填充: 00000456</span><br><br><span class="hljs-comment"># 用*填充，居中对齐，域宽10</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;*填充: <span class="hljs-subst">&#123;num:*^<span class="hljs-number">10</span>&#125;</span>&quot;</span>) <span class="hljs-comment"># 输出：*填充: ***456****</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>混合运用</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">text = <span class="hljs-string">&quot;hello&quot;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;左对齐：<span class="hljs-subst">&#123;text:&lt;<span class="hljs-number">10</span>&#125;</span>end&quot;</span>)  <span class="hljs-comment"># 域宽10，左对齐：左对齐：hello     end</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;右对齐：<span class="hljs-subst">&#123;text:&gt;<span class="hljs-number">10</span>&#125;</span>end&quot;</span>)  <span class="hljs-comment"># 域宽10，右对齐：右对齐：     helloend</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;居中对齐：<span class="hljs-subst">&#123;text:^<span class="hljs-number">10</span>&#125;</span>&quot;</span>)   <span class="hljs-comment"># 域宽10，居中对齐：居中对齐：  hello   </span><br></code></pre></td></tr></table></figure>
+
+<h2 id="f-string：进制转换"><a href="#f-string：进制转换" class="headerlink" title="f-string：进制转换"></a>f-string：进制转换</h2><p>二进制、八进制、十六进制转十进制，使用<code>int(进制, 进制类型)</code></p>
+<p>进制类型参数为：2, 8, 16（分别表示二进制、八进制、十六进制）</p>
+<p>Eg: 16进制转10进制</p>
+<pre><code>x = &quot;ABCDEF&quot;
+print(int(x, 16))
+</code></pre>
+<blockquote>
+<p>方案二：字符串形式的进制转换</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">n = <span class="hljs-number">255</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;十进制：<span class="hljs-subst">&#123;n:d&#125;</span>&quot;</span>)    <span class="hljs-comment"># 十进制：255</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;二进制：<span class="hljs-subst">&#123;n:b&#125;</span>&quot;</span>)    <span class="hljs-comment"># 二进制：11111111</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;八进制：<span class="hljs-subst">&#123;n:o&#125;</span>&quot;</span>)    <span class="hljs-comment"># 八进制：377</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;十六进制小写：<span class="hljs-subst">&#123;n:x&#125;</span>&quot;</span>)  <span class="hljs-comment"># 十六进制小写：ff</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;十六进制大写：<span class="hljs-subst">&#123;n:X&#125;</span>&quot;</span>)  <span class="hljs-comment"># 十六进制大写：FF</span><br></code></pre></td></tr></table></figure>
+
+<pre><code>print(f&quot;八进制：&#123;n:o&#125;&quot;)    # 八进制：377
+</code></pre>
+<p>是小写字母<code>o</code></p>
+<h2 id="f-string：千位分隔符"><a href="#f-string：千位分隔符" class="headerlink" title="f-string：千位分隔符"></a>f-string：千位分隔符</h2><p>操作目标<strong>必须是数值型</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">large_num = <span class="hljs-number">123456789</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;带千位分隔符：<span class="hljs-subst">&#123;large_num:,&#125;</span>&quot;</span>)  <span class="hljs-comment"># 带千位分隔符：123,456,789</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;结合小数：<span class="hljs-subst">&#123;<span class="hljs-number">12345.6789</span>:,<span class="hljs-number">.2</span>f&#125;</span>&quot;</span>)  <span class="hljs-comment"># 结合小数：12,345.68</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="f-string：格式化百分比"><a href="#f-string：格式化百分比" class="headerlink" title="f-string：格式化百分比"></a>f-string：格式化百分比</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">rate = <span class="hljs-number">0.7532</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;百分比：<span class="hljs-subst">&#123;rate:<span class="hljs-number">.1</span>%&#125;</span>&quot;</span>)  <span class="hljs-comment"># 百分比：75.3%（保留1位小数）</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">x = <span class="hljs-string">&quot;2 7 5&quot;</span><br><span class="hljs-built_in">print</span>([<span class="hljs-keyword">lambda</span> x: x <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> x.split()])<br></code></pre></td></tr></table></figure>
+<p>这样写，只是创建了一个含有3个lambda函数的列表，并没有执行它，如果你要运行，可以这样</p>
+<pre><code>print([(lambda x: x)(i) for i in x.split()])
+# 或者
+print(list(map(lambda x: x, x.split())))
+</code></pre>
+<h2 id="位运算：移位运算"><a href="#位运算：移位运算" class="headerlink" title="位运算：移位运算"></a>位运算：移位运算</h2><p>移位运算（Bit Shift Operators）是对整数的二进制位进行向左或向右移动的操作，包括左移（&lt;&lt;） 和右移（&gt;&gt;） 两种，直接作用于二进制层面，运算效率极高。</p>
+<blockquote>
+<p>左移运算（&lt;&lt;）</p>
+</blockquote>
+<pre><code>print(5 &lt;&lt; 3)
+</code></pre>
+<p>该代码表示 5×2<sup>3</sup></p>
+<blockquote>
+<p>右移运算（&gt;&gt;）</p>
+</blockquote>
+<pre><code>print(20 &gt;&gt; 3)
+</code></pre>
+<p>等价于数学运算：20 &#x2F;&#x2F; 2<sup>3</sup>（20 除以 2 的 n 次方，<strong>向下取整</strong>）</p>
+
+    </div>
+    <!-- 文章：声明 -->
+    <!-- 文章的声明 -->
+<div id="copy-icon-额外补充-Python" style="word-wrap: break-word">
+    <p>
+        <strong>作者</strong>：
+        <span>粥记捣蛋</span>
+    </p>
+    <p>
+        <strong>文章链接</strong>：
+        <span>https://zexuisme.github.io/2025/09/10/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85-Python/</span>
+    </p>
+    <p>
+        <strong>版权声明</strong>：
+        <span>本网站所有文章除特别声明外,均采用 CC BY-NC-ND 4.0 许可协议。转载请注明出处!</span>
+    </p>
+</div>
+    <!-- 文章：文章切换 -->
+    <div style="margin-top: 48px">
+<!-- 文章阅读页的切换按钮 -->
+<div class="post-toggle d-flex justify-between flex-wrap gap-3">
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/2025/09/10/Python/Python-%E8%A3%85%E9%A5%B0%E5%99%A8/')"
+            
+    >上一篇: Python-装饰器</button>
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/2025/09/09/Python/Python-%E6%8E%92%E5%BA%8F/')"
+            
+    >下一篇: Python-排序</button>
+</div>
+
+<script>
+    class PostToggleEjs extends Blog {
+        constructor() {
+            super()
+        }
+
+        onclickLink (url) {
+            this.createALink(url, '_self')
+        }
+    }
+
+    const postToggleEjs = new PostToggleEjs()
+</script></div>
+
+</article>
+
+<div style="height: 80px"></div>
+
+<script>
+    class PostEjs extends Blog{
+        constructor() {
+            super();
+        }
+    }
+    const postEjs = new PostEjs();
+</script>
     </div>
 
     

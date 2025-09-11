@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-07 21:53
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-11 21:03
                     </p>
                 </div>
             </div>
@@ -582,6 +582,11 @@ z = x + b&quot;world&quot;  # 拼接操作，得到 b&quot;helloworld&quot;
 <p>整数值转进制</p>
 </blockquote>
 <p><strong>bin(整数值)</strong>：显示2进制<br><strong>oct(整数值)</strong>：显示8进制<br><strong>hex(整数值)</strong>：显示16进制</p>
+<p>反转，2、8、16转10进制，不管有没有对应进制前缀，都可用</p>
+<pre><code>int(2进制, 2)
+int(8进制, 8)
+int(16进制, 16)
+</code></pre>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 数据类型：</span><br><span class="hljs-built_in">type</span>(<span class="hljs-built_in">bin</span>(x)) <span class="hljs-comment"># &lt;class &#x27;str&#x27;&gt;</span><br><span class="hljs-built_in">type</span>(<span class="hljs-built_in">oct</span>(y)) <span class="hljs-comment"># &lt;class &#x27;str&#x27;&gt;</span><br><span class="hljs-built_in">type</span>(<span class="hljs-built_in">hex</span>(z)) <span class="hljs-comment"># &lt;class &#x27;str&#x27;&gt;</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="Float"><a href="#Float" class="headerlink" title="Float"></a>Float</h2><p>用很少的存储空间可以保存很长的位数<br>但精度不准，整体位长到16位开始精度开始不准</p>
