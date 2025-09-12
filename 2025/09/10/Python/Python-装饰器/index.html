@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-11 21:03
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-12 23:08
                     </p>
                 </div>
             </div>
@@ -534,12 +534,23 @@
     </div>
 
     <!-- 目录  -->
-    <div></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%85%E9%A5%B0%E5%99%A8%E5%B8%A6%E5%8F%82%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">装饰器带参数</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
-        
+        <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func_1</span>(<span class="hljs-params">f</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-number">111</span>)<br>    <span class="hljs-keyword">return</span> f<br><br><span class="hljs-meta">@func_1</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">func_2</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-number">222</span>)<br>    <br>func_2()<br><span class="hljs-comment">## 111</span><br><span class="hljs-comment">## 222</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="装饰器带参数"><a href="#装饰器带参数" class="headerlink" title="装饰器带参数"></a>装饰器带参数</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func_1</span>(<span class="hljs-params">name</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">aaa</span> (func):<br>        <span class="hljs-keyword">def</span> <span class="hljs-title function_">bbb</span>(<span class="hljs-params">*args, **keargs</span>):<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;name&quot;</span>)<br>            x=func(*args, **keargs)<br>        <span class="hljs-keyword">return</span> x<br>    <span class="hljs-keyword">return</span> bbb<br><span class="hljs-keyword">return</span> aaa<br><br><span class="hljs-meta">@func_1(<span class="hljs-params">name=<span class="hljs-string">&quot;ccc&quot;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">ccc</span>(<span class="hljs-params">x, y</span>):<br>    <span class="hljs-keyword">return</span> x+y<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
     </div>
     <!-- 文章：声明 -->
     <!-- 文章的声明 -->

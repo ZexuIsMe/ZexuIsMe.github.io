@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>微信双开 | 粥记捣蛋</title>
+    <title>Python-global | 粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -507,11 +507,11 @@
             <div class="media">
                 <div class="media-content">
                     <h1 class="title is-4 modify-post-title">
-                        <span class="has-text-info">微信双开</span>
+                        <span class="has-text-info">Python-global</span>
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-07-22 23:07
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-12 23:08
                     </p>
                 </div>
             </div>
@@ -520,45 +520,121 @@
         <div class="pt-4">
             <span>
     
-        <a class="tag is-info is-light" href="/tags/%E5%BE%AE%E4%BF%A1%E5%8F%8C%E5%BC%80/">微信双开</a>
+        <a class="tag is-info is-light" href="/tags/Python/">Python</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/">全局变量</a>
+    
+        <a class="tag is-info is-light" href="/tags/global/">global</a>
     
 </span>
             <span>
     
-        <a class="tag is-warning is-light" href="/categories/%E5%BE%AE%E4%BF%A1%E5%8F%8C%E5%BC%80/">微信双开</a>
+        <a class="tag is-warning is-light" href="/categories/Python/">Python</a>
     
 </span>
         </div>
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E8%BA%AB%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">分身软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">模拟器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bat%E6%96%87%E4%BB%B6%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">.bat文件（推荐）</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B9%E5%9F%BA%E7%B1%BB%EF%BC%88object%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">根基类（object）</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
-        <p>方案有三：模拟器、bat文件、分身软件</p>
-<span id="more"></span>
+        <table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name</td>
+<td>main</td>
+</tr>
+<tr>
+<td>doc</td>
+<td>None</td>
+</tr>
+<tr>
+<td>package</td>
+<td>None<br/>表示本模块的包，只能在 python -m 包,本模块 这样的运行放下才能有值</td>
+</tr>
+<tr>
+<td>loader</td>
+<td>表示本模块如何被 Python 加载。<br/>&lt;_frozen_importlib_external.SourceFileLoader object at 0x000002090589A190&gt;</td>
+</tr>
+<tr>
+<td>spec</td>
+<td>None</td>
+</tr>
+<tr>
+<td>annotations</td>
+<td>{}</td>
+</tr>
+<tr>
+<td>builtins</td>
+<td>&lt;module ‘builtins’ (built-in)&gt;<br/></td>
+</tr>
+<tr>
+<td>file</td>
+<td>D:\py_work\pythonProject\pythonProject1\Day5\kuozhan.py</td>
+</tr>
+<tr>
+<td>cached</td>
+<td>None</td>
+</tr>
+<tr>
+<td>del</td>
+<td>删除变量或方法</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><code>__name__</code></p>
+</blockquote>
+<p>该条件判断表示，只有本模块自行运行时才执行以下语句</p>
+<pre><code>if __name__ == &quot;__main__&quot;:
+    print(&quot;模块运行了&quot;)
+</code></pre>
+<p>何为自行运行？非调用导入等操作，是直接运行文件本身的时候</p>
+<pre><code>print(__name__)
+</code></pre>
+<p>如果是直接运行，其打印结果为：<code>__main__</code>；<br>通过导入的方式引入，其打印结果为文件的名字</p>
+<blockquote>
+<p><code>__file__</code>：当前文件的绝对路径</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><br>p = os.path.dirname(__file__)<br><span class="hljs-comment"># os 包中的path模块中的dirname函数，作用是返回 File 文件所在的目录</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="分身软件"><a href="#分身软件" class="headerlink" title="分身软件"></a>分身软件</h2><p>信息不保险且概率存在功能限制要开VIP啥的</p>
-<h2 id="模拟器"><a href="#模拟器" class="headerlink" title="模拟器"></a>模拟器</h2><ul>
-<li>模拟器在一个相对独立的运行环境中，且不必太过于担心信息安全问题</li>
-<li>但需要注意的是模拟器本身的体积问题，比如雷电或者MUMU模拟器就是不错的</li>
-<li>可以算作是换手机登录了</li>
-</ul>
-<h2 id="bat文件（推荐）"><a href="#bat文件（推荐）" class="headerlink" title=".bat文件（推荐）"></a>.bat文件（推荐）</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">@echo off<br>start &quot;&quot; &quot;微信所处的路径信息\Weixin.exe&quot;<br>start &quot;&quot; &quot;微信所处的路径信息\Weixin.exe&quot;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><code>__doc__</code></p>
+</blockquote>
+<p>在当前py文件顶部用注释书写，它的值就是这些注释内容</p>
+<pre><code>1 &quot;&quot;&quot;作者：xxx&quot;&quot;&quot;
+2 
+3 print(globals().get(&quot;__doc__&quot;))
+4 # 打印结果：作者：xxx
+</code></pre>
+<blockquote>
+<p><code>__builtins__</code></p>
+</blockquote>
+<p>表示本模块内置加载的其他模块，默认固定 builtins ，表示自动加载的模块名为 builtins；<br>各种常用的数据类型、异常类型、各种函数都定义在这个模块中；<br>除了<code>builtins</code>模块外，其他的模块要使用，都必须手动通过 <code>import</code> 或 <code>from import</code> 导入；</p>
+<h2 id="根基类（object）"><a href="#根基类（object）" class="headerlink" title="根基类（object）"></a>根基类（object）</h2><p>特点：<br>名字以双下划线开头，以双下划线结尾，如：<code>__name__</code></p>
 
     </div>
     <!-- 文章：声明 -->
     <!-- 文章的声明 -->
-<div id="copy-icon-微信双开" style="word-wrap: break-word">
+<div id="copy-icon-Python-global" style="word-wrap: break-word">
     <p>
         <strong>作者</strong>：
         <span>粥记捣蛋</span>
     </p>
     <p>
         <strong>文章链接</strong>：
-        <span>https://zexuisme.github.io/2025/07/22/%E5%BE%AE%E4%BF%A1%E5%8F%8C%E5%BC%80/</span>
+        <span>https://zexuisme.github.io/2025/09/12/Python/Python-global/</span>
     </p>
     <p>
         <strong>版权声明</strong>：
@@ -571,14 +647,14 @@
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/07/23/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/')"
+            onclick="postToggleEjs.onclickLink('/2025/09/12/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/%E9%95%9C%E5%83%8F%E6%BA%90/')"
             
-    >上一篇: 用例设计方法</button>
+    >上一篇: 镜像源</button>
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/07/22/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/')"
+            onclick="postToggleEjs.onclickLink('/2025/09/12/Python/Python-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/')"
             
-    >下一篇: 配置管理</button>
+    >下一篇: Python-文件读取</button>
 </div>
 
 <script>

@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-11 21:03
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-12 23:08
                     </p>
                 </div>
             </div>
@@ -560,16 +560,17 @@ print(self.__class__)
 <p>类方法的第一个参数名必须是<code>cls</code><br>类方法中，如何调用其他类方法呢？》 <code>cls.类方法</code><br>类方法中，如何调用或修改类属性呢？》 <code>cls.类属性</code></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Human</span>:<br><span class="hljs-meta">    @classmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">develop</span>(<span class="hljs-params">cls</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;从猿类发展智人类、再发展到现代人类&#x27;</span>)<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">shopping</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;do shopping&#x27;</span>)<br><br>Human.develop() <span class="hljs-comment"># 从猿类发展智人类、再发展到现代人类</span><br><span class="hljs-comment"># Human.shopping()  # 类无法运行实例方法</span><br>zs = Human()<br>zs.develop() <span class="hljs-comment"># 从猿类发展智人类、再发展到现代人类</span><br>zs.shopping() <span class="hljs-comment"># do shopping</span><br></code></pre></td></tr></table></figure>
 
-<p>类本身只能调用类方法，类属性，如下两段代码很好的证明了这一点</p>
+<p><mark>类本身只能调用类方法，类属性，如下两段代码很好的证明了这一点</mark></p>
 <pre><code>Human.develop() # 从猿类发展智人类、再发展到现代人类
 # Human.shopping()  # 类无法运行实例方法
 </code></pre>
+<p><mark>普通方法可以调用实例方法，实例属性，也可以调用类方法、类属性</mark></p>
 <h2 id="装饰器：静态方法（-staticmethod）"><a href="#装饰器：静态方法（-staticmethod）" class="headerlink" title="装饰器：静态方法（@staticmethod）"></a>装饰器：静态方法（@staticmethod）</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">People</span>:<br><span class="hljs-meta">    @staticmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">version</span>(<span class="hljs-params">参数名, 参数名</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;地球人&quot;</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;123&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>该方法可以由类调用，也可由对象调用；<br>没有强制的第一参数，比如 <code>cls</code>, <code>self</code> 这种；<br><strong>不能直接调用实例属性，实例方法，也不能调用类属性和类方法</strong>（除非显示指定类名）；</p>
 <p>因为静态方法本质上是一个独立函数，不属于实例也不属于类本身，不依赖类的状态，因此没有强制书写的第一参数<code>cls</code>, <code>self</code> 这种</p>
 <h2 id="私有属性"><a href="#私有属性" class="headerlink" title="私有属性"></a>私有属性</h2><p>属性分：公开、受控、私有</p>
-<p>因为受控和公开几乎一样，没有感觉到哪里被控制了，所以，很多时候都算作是公开的</p>
+<p>受控的属性或方法，以单下划线开头；<br>因为受控和公开几乎一样，没有感觉到哪里被控制了，所以，很多时候都算作是公开的</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">People</span>:<br>    <span class="hljs-comment">## 定义一个私有属性</span><br>    __weight = <span class="hljs-number">0</span><br><br>    <span class="hljs-comment">## 初始化实例方法</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, n, a, w</span>):<br>        <span class="hljs-variable language_">self</span>.name = n<br>        <span class="hljs-variable language_">self</span>.age = a<br>        <span class="hljs-variable language_">self</span>.__weight = w<br></code></pre></td></tr></table></figure>
 
 <p>该属性在类的外部无法直接进行访问</p>
@@ -585,27 +586,14 @@ print(p.__weight)
 <li>注意：<code>__weight__</code> 不是私有属性，是常规变量</li>
 <li>一般情况下，<strong>私有属性外部无法访问</strong></li>
 </ul>
-<h2 id="类属性，实例属性"><a href="#类属性，实例属性" class="headerlink" title="类属性，实例属性"></a>类属性，实例属性</h2><pre><code>class People:
-## 定义基本属性
-name = &quot;123&quot;
-age = 50
-## 定义一个私有属性
-__weight = 10
+<h2 id="类属性，实例属性"><a href="#类属性，实例属性" class="headerlink" title="类属性，实例属性"></a>类属性，实例属性</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">People</span>:<br><span class="hljs-comment">## 定义基本属性</span><br>name = <span class="hljs-string">&quot;123&quot;</span><br>age = <span class="hljs-number">50</span><br><span class="hljs-comment">## 定义一个私有属性</span><br>__weight = <span class="hljs-number">10</span><br><br><span class="hljs-comment">## 初始化实例方法</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, **param</span>):<br>    <span class="hljs-variable language_">self</span>.__weight = <span class="hljs-number">600</span><br>    <span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">in</span> param.items():<br>        <span class="hljs-variable language_">self</span>.__setattr__(key, value)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-variable language_">self</span>.__dict__)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;内部访问&quot;</span>,  <span class="hljs-variable language_">self</span>.__weight) <span class="hljs-comment">## 600</span><br><br><span class="hljs-comment"># 实例化类</span><br>p = People(name=<span class="hljs-string">&#x27;runoob&#x27;</span>, age=<span class="hljs-number">10</span>, __weight=<span class="hljs-number">100</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;外部访问&quot;</span>, p.__weight) <span class="hljs-comment">## 100</span><br></code></pre></td></tr></table></figure>
 
-## 初始化实例方法
-def __init__(self, **param):
-    self.__weight = 600
-    for key, value in param.items():
-        self.__setattr__(key, value)
-    print(&quot;1&quot;, self.__dict__)
-    print(&quot;内部访问&quot;,  self.__weight) ## 600
-
-# 实例化类
-p = People(name=&#39;runoob&#39;, age=10, __weight=100)
-print(&quot;外部访问&quot;, p.__weight) ## 100
-</code></pre>
 <p><code>name=&quot;123&quot;</code>和<code>age=50</code>是类属性，<code>__weight=10</code>是私有类属性<br><code>__init__()</code>初始化函数中定义的属于<code>实例属性</code></p>
-<p>类属性和实例属性可以同名，所以当同名时，<br>外部访问时，调用的是实例属性<code>__weight</code>100；<br>内部访问时，调用的是类属性<code>__weight</code>600</p>
+<p>类属性和实例属性可以同名，所以当同名时，<br>外部访问时，调用的是实例私有属性<code>__weight</code>100；<br>内部访问时，调用的是类私有属性<code>__weight</code>600</p>
+<blockquote>
+<p><strong>Q：为什么会这样？</strong></p>
+</blockquote>
+<p>因为私有属性已经被修改为<code>_类名__属性名</code>了，当然访问不到，它把传过去的形参<code>__weight=100</code>当做了常规，没有算做属性</p>
 <p><strong>注意</strong>：这样的行为不是可取的</p>
 <h2 id="动态赋值"><a href="#动态赋值" class="headerlink" title="动态赋值"></a>动态赋值</h2><pre><code>def __init__(self, **param):
     for key, value in param.items():

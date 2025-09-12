@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-11 21:03
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-12 23:08
                     </p>
                 </div>
             </div>
@@ -534,15 +534,25 @@
     </div>
 
     <!-- 目录  -->
-    <div></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#next"><span class="toc-number">1.</span> <span class="toc-text">next()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">生成器表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">生成器函数</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
-        <blockquote>
+        <h2 id="next"><a href="#next" class="headerlink" title="next()"></a>next()</h2><p>生成器对象可以被 next() 函数返回下一个值 或 for 循环</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">x = (<span class="hljs-built_in">int</span>(num) <span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;1 2 3&quot;</span>.split(<span class="hljs-string">&quot; &quot;</span>))<br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">next</span>(x)) <span class="hljs-comment"># 1</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">next</span>(x)) <span class="hljs-comment"># 2</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">next</span>(x)) <span class="hljs-comment"># 4</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">tuple</span>(x)) <span class="hljs-comment"># ()</span><br></code></pre></td></tr></table></figure>
+
+<p>必须是被括号包裹的才能被 <code>next(x)</code> 函数执行；<br>生成器对象被 <code>next(x)</code> 函数执行时，会影响源对象，<br>如上代码，每次执行后x都会抽走一个元素，如果元素被抽空,</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">Traceback (most recent call last):<br>  File <span class="hljs-string">&quot;D:\py_work\PythonProject\pythonProject1\Day5\test001.py&quot;</span>, line 6, <span class="hljs-keyword">in</span> &lt;module&gt;<br>    <span class="hljs-built_in">print</span>(next(x)) <span class="hljs-comment"># 4</span><br>          ~~~~^^^<br>StopIteration<br></code></pre></td></tr></table></figure>
+
+<h2 id="生成器表达式"><a href="#生成器表达式" class="headerlink" title="生成器表达式"></a>生成器表达式</h2><blockquote>
 <p>[int(num) for num in “1 2 3”.split(“ “)]</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">x_list = [<span class="hljs-built_in">int</span>(num) <span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;1 2 3&quot;</span>.split(<span class="hljs-string">&quot; &quot;</span>)]<br><span class="hljs-built_in">print</span>(x_list) <span class="hljs-comment"># [1, 2, 3]</span><br><br><span class="hljs-comment">## 等价于</span><br><br>j = []<br><span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;1 2 3&quot;</span>.split(<span class="hljs-string">&quot; &quot;</span>):<br>    j.append(<span class="hljs-built_in">int</span>(num))<br><span class="hljs-built_in">print</span>(j)<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="生成器函数"><a href="#生成器函数" class="headerlink" title="生成器函数"></a>生成器函数</h2><p>yield 表示函数到此暂停，返回，后续还会回来继续</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><br></code></pre></td></tr></table></figure>
     </div>
     <!-- 文章：声明 -->
     <!-- 文章的声明 -->
