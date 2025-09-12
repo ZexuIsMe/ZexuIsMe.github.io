@@ -54,10 +54,12 @@ zs.develop() # 从猿类发展智人类、再发展到现代人类
 zs.shopping() # do shopping
 ```
 
-类本身只能调用类方法，类属性，如下两段代码很好的证明了这一点
+<mark>类本身只能调用类方法，类属性，如下两段代码很好的证明了这一点</mark>
 
     Human.develop() # 从猿类发展智人类、再发展到现代人类
     # Human.shopping()  # 类无法运行实例方法
+
+<mark>普通方法可以调用实例方法，实例属性，也可以调用类方法、类属性</mark>
 
 ## 装饰器：静态方法（@staticmethod）
 
@@ -79,6 +81,7 @@ class People:
 
 属性分：公开、受控、私有
 
+受控的属性或方法，以单下划线开头；
 因为受控和公开几乎一样，没有感觉到哪里被控制了，所以，很多时候都算作是公开的
 
 ```python
@@ -109,31 +112,37 @@ class People:
 
 ## 类属性，实例属性
 
-    class People:
-    ## 定义基本属性
-    name = "123"
-    age = 50
-    ## 定义一个私有属性
-    __weight = 10
+```python 
+class People:
+## 定义基本属性
+name = "123"
+age = 50
+## 定义一个私有属性
+__weight = 10
 
-    ## 初始化实例方法
-    def __init__(self, **param):
-        self.__weight = 600
-        for key, value in param.items():
-            self.__setattr__(key, value)
-        print("1", self.__dict__)
-        print("内部访问",  self.__weight) ## 600
+## 初始化实例方法
+def __init__(self, **param):
+    self.__weight = 600
+    for key, value in param.items():
+        self.__setattr__(key, value)
+    print("1", self.__dict__)
+    print("内部访问",  self.__weight) ## 600
 
-    # 实例化类
-    p = People(name='runoob', age=10, __weight=100)
-    print("外部访问", p.__weight) ## 100
+# 实例化类
+p = People(name='runoob', age=10, __weight=100)
+print("外部访问", p.__weight) ## 100
+```
 
 `name="123"`和`age=50`是类属性，`__weight=10`是私有类属性
 `__init__()`初始化函数中定义的属于`实例属性`
 
 类属性和实例属性可以同名，所以当同名时，
-外部访问时，调用的是实例属性`__weight`100；
-内部访问时，调用的是类属性`__weight`600
+外部访问时，调用的是实例私有属性`__weight`100；
+内部访问时，调用的是类私有属性`__weight`600
+
+> **Q：为什么会这样？**
+
+因为私有属性已经被修改为`_类名__属性名`了，当然访问不到，它把传过去的形参`__weight=100`当做了常规，没有算做属性
 
 **注意**：这样的行为不是可取的
 
