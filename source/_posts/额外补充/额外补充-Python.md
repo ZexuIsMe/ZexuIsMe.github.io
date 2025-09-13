@@ -172,6 +172,16 @@ rate = 0.7532
 print(f"百分比：{rate:.1%}")  # 百分比：75.3%（保留1位小数）
 ```
 
+## f-string: 快速格式化
+
+    "{}年{}月{}日 {}时{}分{}秒".format(year, month, day, hour, min, sec)
+
+还可以混用
+
+    x_str = "{}年{:0>2}月{:0>2}日 {:0>2}时{:0>2}分{:0>2}秒"
+    y = x_str.format(year, month, day, hour, min, sec)
+    print(y)
+
 ## 生成器
 
 ```python
@@ -199,3 +209,7 @@ print([lambda x: x for i in x.split()])
     print(20 >> 3)
 
 等价于数学运算：20 // 2<sup>3</sup>（20 除以 2 的 n 次方，**向下取整**）
+
+
+
+

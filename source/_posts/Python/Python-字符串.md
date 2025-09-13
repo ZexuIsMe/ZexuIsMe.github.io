@@ -111,3 +111,14 @@ x = ['I', 'have', 'a', 'pen']
 "".join(x)
 ## 按空格对元素进行拼接
 ```
+
+## 自定义验证：仅包含字母（大小写都允许）
+
+```python
+valid_alpha = lambda x_str : all(map(lambda i: "a" <= i <= "z" or "A" <= i <= "Z", x_str))
+```
+【知识点】
+1. 匿名函数
+2. 字母比较：是ASCII码值的比较
+3. map函数
+4. all函数：同JS的 every() 函数，如果元素都为真，则为真，否则为假
