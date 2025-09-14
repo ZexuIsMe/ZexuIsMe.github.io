@@ -6,30 +6,19 @@ categories:
   - Python
 ---
 
-## next()
+1. 生成器对象是一个可迭代对象
+2. <mark>直接获取生成器对象中的元素，每获取一次，长度 -1</mark>
 
-生成器对象可以被 next() 函数返回下一个值 或 for 循环
 
-```python
-x = (int(num) for num in "1 2 3".split(" "))
+    score = map(float, "85 90 100 60".split())
+    print("1", tuple(score))  # (85, 90, 100, 60)
+    print("2", tuple(score))  # 它已经是一个空对象了
 
-print(next(x)) # 1
-print(next(x)) # 2
-print(next(x)) # 4
-print(tuple(x)) # ()
-```
+score 已经被 操作 1 消耗掉了元素，导致 score 成了一个空对象，所以操作2打印出来是一个空对象
 
-必须是被括号包裹的才能被 `next(x)` 函数执行；
-生成器对象被 `next(x)` 函数执行时，会影响源对象，
-如上代码，每次执行后x都会抽走一个元素，如果元素被抽空,
+> **Q: 如何解决直接获取长度就少一的问题呢？**
 
-```bash
-Traceback (most recent call last):
-  File "D:\py_work\PythonProject\pythonProject1\Day5\test001.py", line 6, in <module>
-    print(next(x)) # 4
-          ~~~~^^^
-StopIteration
-```
+可通过如`list()`、`tuple()`转换即可解决该问题
 
 ## 生成器表达式
 
@@ -54,4 +43,29 @@ yield 表示函数到此暂停，返回，后续还会回来继续
 
 ```python
 
+```
+
+## next()
+
+生成器对象可以被 next() 函数返回下一个值 或 for 循环
+
+```python
+x = (int(num) for num in "1 2 3".split(" "))
+
+print(next(x)) # 1
+print(next(x)) # 2
+print(next(x)) # 4
+print(tuple(x)) # ()
+```
+
+必须是被括号包裹的才能被 `next(x)` 函数执行；
+生成器对象被 `next(x)` 函数执行时，会影响源对象，
+如上代码，每次执行后x都会抽走一个元素，如果元素被抽空,
+
+```bash
+Traceback (most recent call last):
+  File "D:\py_work\PythonProject\pythonProject1\Day5\test001.py", line 6, in <module>
+    print(next(x)) # 4
+          ~~~~^^^
+StopIteration
 ```
