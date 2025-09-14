@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>Python-匿名函数 | 粥记捣蛋</title>
+    <title>粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -344,10 +344,10 @@
                             
                             <div
                                     class="px-8 menu-label d-flex align-center
-                                    "
+                                    v-bg-primary"
                                     style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
                             >
-                                <a href="/archives" style="color: #00586d ">归档</a>
+                                <a href="/archives" style="color: #EEE ">归档</a>
                             </div>
                         
                             
@@ -481,182 +481,254 @@
     }
 </style>
     <div id="blog-body">
-        <!-- 渲染：阅读整篇文章 -->
+        <!-- Archive: 归档页 -->
 <style>
-    #read-post {
-        min-height: calc(100% - 210px);
-        max-width: 85%;
-        margin: auto;
-    }
-
-    @media (max-width: 768px) {
-        #read-post {
-            max-width: 85%;
-        }
+    #article-table tbody td {
+        padding: 12px;
     }
 </style>
 
 
+<div class="container " style="padding: 0 24px">
+    <!-- 一般用于 section 标题 -->
+<h1 class="title is-4 d-flex align-center" style="padding: 120px 0 60px 0; font-family: 'ZiHunLongTengKaiShu', serif">
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+    <span style="white-space: nowrap; color: black" class="mx-4">
+                <i class="fas fa-boxes"></i>
+                <span class="ml-4">归档 - All</span>
+            </span>
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+</h1>
 
-<div style="height: 80px"></div>
+<!--<script>-->
+<!--    console.log({-->
+<!--        icon: '', // 这里的图标需要是完整的-->
+<!--        name: '', // 标题的名字-->
+<!--        color: '', // 字体颜色-->
+<!--    })-->
+<!--</script>-->
 
-<article id="read-post">
-    <!-- Title -->
-    <div class="level">
-        <div class="level-left">
-            <div class="media">
-                <div class="media-content">
-                    <h1 class="title is-4 modify-post-title">
-                        <span class="has-text-info">Python-匿名函数</span>
-                    </h1>
-                    <p class="subtitle is-6">
-                        <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-09 22:13
-                    </p>
-                </div>
+    <div id="article-table" class="table-wrapper">
+        <table class="table is-striped is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th style=""></th>
+                    <th style="">标签</th>
+                    <th style="" class="d-flex align-center">分类 </th>
+                    <th style="text-align: center">创作时间</th>
+                    <th style="text-align: center">更新时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+
+            <tbody style="font-size: 1rem">
+                
+                    <tr>
+                        <td style="max-width: 180px">
+                            <a href="/2025/06/04/HEXO/Hexo-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BC%82%E5%B8%B8/">
+                                Hexo-图片加载异常
+                            </a>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
+    
+        <a class="tag is-info is-light" href="/tags/Hexo/" style="font-size: 0.875rem">Hexo</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BC%82%E5%B8%B8/" style="font-size: 0.875rem">图片加载异常</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
+    
+        <a class="tag is-warning is-light" href="/categories/%E5%89%8D%E7%AB%AF/" style="font-size: 0.875rem">前端</a>
+    
+        <a class="tag is-warning is-light" href="/categories/%E5%89%8D%E7%AB%AF/Hexo/" style="font-size: 0.875rem">Hexo</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-06-04 17:27
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-07-17 20:30
+                        </td>
+
+                        <td style="vertical-align: middle">
+                            <a href="/2025/06/04/HEXO/Hexo-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BC%82%E5%B8%B8/">
+                                <i class="far fa-hand-point-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td style="max-width: 180px">
+                            <a href="/2025/06/04/Github/Github%E6%89%98%E7%AE%A1/">
+                                Github：快搭博客
+                            </a>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
+    
+        <a class="tag is-info is-light" href="/tags/Github/" style="font-size: 0.875rem">Github</a>
+    
+        <a class="tag is-info is-light" href="/tags/Github-Clone-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/" style="font-size: 0.875rem">Github Clone 准备工作</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
+    
+        <a class="tag is-warning is-light" href="/categories/Github/" style="font-size: 0.875rem">Github</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-06-04 13:48
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-08-28 22:37
+                        </td>
+
+                        <td style="vertical-align: middle">
+                            <a href="/2025/06/04/Github/Github%E6%89%98%E7%AE%A1/">
+                                <i class="far fa-hand-point-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td style="max-width: 180px">
+                            <a href="/2025/06/03/HEXO/hello-world/">
+                                Hello World
+                            </a>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
+    
+        <a class="tag is-info is-light" href="/tags/Hexo/" style="font-size: 0.875rem">Hexo</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
+    <span>--尚未分类--</span>
+
+                            </div>
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-06-03 13:48
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-06-29 09:37
+                        </td>
+
+                        <td style="vertical-align: middle">
+                            <a href="/2025/06/03/HEXO/hello-world/">
+                                <i class="far fa-hand-point-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                
+            </tbody>
+        </table>
+    </div>
+
+    
+
+    <section class="d-flex justify-between my-8" >
+        <button
+                class="button"
+                style="border-radius: 24px"
+                onclick="pagination.onclickPage(`/archives/2025/page/13/`)"
+                
+        >
+            <span>
+                <i class="fas fa-angle-left"></i>
+                <span class="mr-2"></span>
+                上一页
+            </span>
+        </button>
+
+        <div class="d-flex" style="width: 100%">
+            <div style="width: 100%; height: 1px"></div>
+            <div class="mx-1 d-flex ">
+                <span>14</span>
+                <span class="mx-1">/</span>
+                <span>14</span>
             </div>
+            <div style="width: 100%; height: 1px"></div>
         </div>
-        <!-- 文章标签 -->
-        <div class="pt-4">
+
+        <button
+                class="button"
+                style="border-radius: 24px"
+                onclick="pagination.onclickPage(`/`)"
+                disabled
+        >
             <span>
-    
-        <a class="tag is-info is-light" href="/tags/Python/">Python</a>
-    
-        <a class="tag is-info is-light" href="/tags/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0/">匿名函数</a>
-    
-        <a class="tag is-info is-light" href="/tags/lambda/">lambda</a>
-    
-        <a class="tag is-info is-light" href="/tags/%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97/">三目运算</a>
-    
-</span>
-            <span>
-    
-        <a class="tag is-warning is-light" href="/categories/Python/">Python</a>
-    
-        <a class="tag is-warning is-light" href="/categories/Python/%E5%87%BD%E6%95%B0/">函数</a>
-    
-</span>
-        </div>
-    </div>
+                下一页
+                <span class="mr-2"></span>
+                <i class="fas fa-angle-right"></i>
+            </span>
+        </button>
+    </section>
 
-    <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97"><span class="toc-number">1.</span> <span class="toc-text">三目运算</span></a></li></ol></div>
-    <!-- 文章：内容 -->
-    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
-        <hr />
-        <!-- Content -->
-        <p>匿名函数，没有名称的函数，导致匿名函数无法定义后，再调用，只能将匿名函数定义在一个变量的赋值当中。</p>
-<pre><code>x = lambda a : a + 10
-print(x(5)) ## 15
-# 扩展开来
-def 匿名(a):
-    return a + 10
-x = 匿名(5)
-</code></pre>
-<p>lambda 只是一个表达式，<br>lambda 主体<strong>是表达式，不是代码块</strong><br>lambda 函数表达式中冒号<strong>左侧的是函数参数</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 可写函数说明</span><br><span class="hljs-built_in">sum</span> = <span class="hljs-keyword">lambda</span> arg1, arg2: arg1 + arg2<br><br><span class="hljs-comment"># 调用sum函数</span><br><span class="hljs-built_in">print</span> (<span class="hljs-string">&quot;相加后的值为 : &quot;</span>, <span class="hljs-built_in">sum</span>( <span class="hljs-number">10</span>, <span class="hljs-number">20</span> ))<br><span class="hljs-built_in">print</span> (<span class="hljs-string">&quot;相加后的值为 : &quot;</span>, <span class="hljs-built_in">sum</span>( <span class="hljs-number">20</span>, <span class="hljs-number">20</span> ))<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>lambda 函数参数与局部变量与全局变量</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">outer</span>():<br>    a = <span class="hljs-number">10</span>  <span class="hljs-comment"># outer 局部变量</span><br>    func = <span class="hljs-keyword">lambda</span> x: x + a  <span class="hljs-comment"># lambda 定义时捕获了 a 的值</span><br><br>    <span class="hljs-built_in">print</span>(<span class="hljs-number">1111</span>)<br><br>    a = <span class="hljs-number">20</span>  <span class="hljs-comment"># 尝试在 lambda 定义后修改 a</span><br>    <span class="hljs-keyword">return</span> func <span class="hljs-comment"># 约等于 lambda x: x + a，因此 a 的参数被刷新了</span><br><br>result = outer()<br><span class="hljs-built_in">print</span>(result(<span class="hljs-number">5</span>))  <span class="hljs-comment"># 输出 25（非15）</span><br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>封装调用</p>
-</blockquote>
-<pre><code>def myfunc(n):
-    return lambda a: a * n
-mydoubler = myfunc(2) # 2 是 myfunc 的形参 n
-print(mydoubler(11)) # 11 是 lambda 需要的形参 a
-</code></pre>
-<blockquote>
-<p>Python 3.8：强制位置参数</p>
-</blockquote>
-<p>形参语法 <code>/</code> 用来指明函数形参必须使用指定位置参数，不能使用关键字参数的形式。<br>翻译：斜杠（&#x2F;）左侧的必须是位置参数，斜杠（&#x2F;）右侧的可以是位置也可以是关键字参数</p>
-<p><code>*, c</code>：星号（*）后面的参数必须是关键字参数</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func1</span>(<span class="hljs-params">a, /, b, *, c</span>):<br>   <span class="hljs-built_in">print</span>(a, b, c)<br>   <br><span class="hljs-comment"># 正确用法：a 必须作为位置参数传递，c 必须作为关键字参数传递</span><br>func1(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, c=<span class="hljs-number">3</span>) <span class="hljs-comment"># 输出：1 2 3</span><br><br><span class="hljs-comment"># 错误用法：a 不能作为关键字参数传递</span><br>func1(a=<span class="hljs-number">1</span>, b=<span class="hljs-number">2</span>, c=<span class="hljs-number">3</span>)<br><br><span class="hljs-comment"># 错误用法：c 必须作为关键字参数传递</span><br>func1(<span class="hljs-number">1</span>, b=<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>lambda 函数使用关键字传参</p>
-</blockquote>
-<pre><code>g= lambda x,y : x**2+y**2
-g(2,3) # 13
-g(y=3,x=2) #13
-</code></pre>
-<blockquote>
-<p>lambda 函数使用默认值</p>
-</blockquote>
-<pre><code>g= lambda x=0,y=0 : x**2+y**2
-g(2,3) # 13
-g(2) # 4
-g(y=3) # 9
-</code></pre>
-<h2 id="三目运算"><a href="#三目运算" class="headerlink" title="三目运算"></a>三目运算</h2><pre><code>x = 0
-y = 0 if x &gt; 0 else 1
-</code></pre>
-<p>当 x &gt; 0 为真时，输出 0，反之输出 1 </p>
-<pre><code>y = (0 if x &gt; 0 else 1)
-</code></pre>
-<p>是 lambda 函数中为数不多的判断</p>
-
-    </div>
-    <!-- 文章：声明 -->
-    <!-- 文章的声明 -->
-<div id="copy-icon-Python-匿名函数" style="word-wrap: break-word">
-    <p>
-        <strong>作者</strong>：
-        <span>粥记捣蛋</span>
-    </p>
-    <p>
-        <strong>文章链接</strong>：
-        <span>https://zexuisme.github.io/2025/09/09/Python/Python-%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0/</span>
-    </p>
-    <p>
-        <strong>版权声明</strong>：
-        <span>本网站所有文章除特别声明外,均采用 CC BY-NC-ND 4.0 许可协议。转载请注明出处!</span>
-    </p>
-</div>
-    <!-- 文章：文章切换 -->
-    <div style="margin-top: 48px">
-<!-- 文章阅读页的切换按钮 -->
-<div class="post-toggle d-flex justify-between flex-wrap gap-3">
-    <button
-            class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/09/09/Python/Python-%E6%8E%92%E5%BA%8F/')"
-            
-    >上一篇: Python-排序</button>
-    <button
-            class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/09/09/Python/Python-%E7%B1%BB%E7%9A%84%E4%B8%93%E6%9C%89%E6%96%B9%E6%B3%95/')"
-            
-    >下一篇: Python-类的专有方法</button>
-</div>
 
 <script>
-    class PostToggleEjs extends Blog {
-        constructor() {
-            super()
-        }
-
-        onclickLink (url) {
-            this.createALink(url, '_self')
-        }
-    }
-
-    const postToggleEjs = new PostToggleEjs()
-</script></div>
-
-</article>
-
-<div style="height: 80px"></div>
-
-<script>
-    class PostEjs extends Blog{
+    class Pagination extends Blog{
         constructor() {
             super();
+            // ...
+        }
+
+        onclickPage (url) {
+            this.createALink(url + '#home-post-list', '_self')
         }
     }
-    const postEjs = new PostEjs();
+
+    const pagination = new Pagination();
+</script>
+</div>
+
+<script>
+    const archiveEjs = {
+        handleChoose (event) {
+            const value = event.target.value
+
+            if (!value) {
+                console.error('分类参数异常！')
+                return
+            }
+
+            const blog = new Blog()
+
+            blog.createALink(value, '_self')
+        }
+    }
 </script>
     </div>
 
@@ -1279,6 +1351,44 @@ window.addEventListener('click', () => {
         background-color: var(--grey-300);
     }
 </style>
+
+        <!-- 页脚：一些说明 -->
+        <div style="height: 10rem"></div>
+<section style="width: 100%; height: 20rem; background-color: var(--grey-100)">
+    <div class="container d-flex align-center px-4" style="height: 100%; color: var(--grey-500)">
+        <div style="line-height: 2">
+            <!-- config.yml footer -->
+            
+                <div>
+                    <span>【技术支持】Hexo</span>
+                    
+                        <sup>
+                            <a target="_blank" rel="noopener" href="https://hexo.io/">[1]</a>
+                        </sup>
+                    
+                </div>
+            
+                <div>
+                    <span>【主题支持】Goyangin</span>
+                    
+                        <sup>
+                            <a target="_blank" rel="noopener" href="http://g3xdev.com">[2]</a>
+                        </sup>
+                    
+                </div>
+            
+                <div>
+                    <span>【源码授权】麻省理工学院</span>
+                    
+                        <sup>
+                            <a target="_blank" rel="noopener" href="http://opensource.org/licenses/mit-license.php">[3]</a>
+                        </sup>
+                    
+                </div>
+            
+        </div>
+    </div>
+</section>
     
 </body>
 </html>

@@ -482,6 +482,13 @@
 </style>
     <div id="blog-body">
         <!-- Archive: 归档页 -->
+<style>
+    #article-table tbody td {
+        padding: 12px;
+    }
+</style>
+
+
 <div class="container " style="padding: 0 24px">
     <!-- 一般用于 section 标题 -->
 <h1 class="title is-4 d-flex align-center" style="padding: 120px 0 60px 0; font-family: 'ZiHunLongTengKaiShu', serif">
@@ -505,679 +512,43 @@
         <table class="table is-striped is-hoverable is-fullwidth">
             <thead>
                 <tr>
-                    <th></th>
-                    <th style="text-align: center">
-                        标签（Tags）
-                        <label for="archivesTags">
-    <select
-            id="archivesTags"
-            style="width: 21px"
-            onchange="archiveEjs.handleChoose(event)"
-    >
-        <option value="">--标签（Tags）--</option>
-        <option value="/archives/">--ALL--</option>
-        
-            <option value="/tags/AE/">AE</option>
-        
-            <option value="/tags/App/">App</option>
-        
-            <option value="/tags/A%E6%A0%87%E7%AD%BE%E5%AE%9A%E4%BD%8D/">A标签定位</option>
-        
-            <option value="/tags/CSS/">CSS</option>
-        
-            <option value="/tags/DOM/">DOM</option>
-        
-            <option value="/tags/DOM%EF%BC%8C%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%EF%BC%8C%E5%9B%BE%E7%89%87%E9%99%8D%E4%BD%8E%E8%B4%A8%E9%87%8F/">DOM，图片处理，图片降低质量</option>
-        
-            <option value="/tags/Day2/">Day2</option>
-        
-            <option value="/tags/Day3/">Day3</option>
-        
-            <option value="/tags/Day5/">Day5</option>
-        
-            <option value="/tags/EJS/">EJS</option>
-        
-            <option value="/tags/Fiddler/">Fiddler</option>
-        
-            <option value="/tags/Flex/">Flex</option>
-        
-            <option value="/tags/Get/">Get</option>
-        
-            <option value="/tags/Git/">Git</option>
-        
-            <option value="/tags/Github/">Github</option>
-        
-            <option value="/tags/Github-Clone-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/">Github Clone 准备工作</option>
-        
-            <option value="/tags/Grid/">Grid</option>
-        
-            <option value="/tags/HTML5%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE/">HTML5语义化标签</option>
-        
-            <option value="/tags/HTTP-Range/">HTTP Range</option>
-        
-            <option value="/tags/Hexo/">Hexo</option>
-        
-            <option value="/tags/JOIN/">JOIN</option>
-        
-            <option value="/tags/JS%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">JS回收机制</option>
-        
-            <option value="/tags/JavaScript/">JavaScript</option>
-        
-            <option value="/tags/Javascript/">Javascript</option>
-        
-            <option value="/tags/Len/">Len</option>
-        
-            <option value="/tags/Linux/">Linux</option>
-        
-            <option value="/tags/Markdown/">Markdown</option>
-        
-            <option value="/tags/Post/">Post</option>
-        
-            <option value="/tags/Python/">Python</option>
-        
-            <option value="/tags/SQL/">SQL</option>
-        
-            <option value="/tags/SQL%E4%B9%A0%E9%A2%98/">SQL习题</option>
-        
-            <option value="/tags/SVN/">SVN</option>
-        
-            <option value="/tags/SVN-%E5%85%8B%E9%9A%86/">SVN 克隆</option>
-        
-            <option value="/tags/Shell/">Shell</option>
-        
-            <option value="/tags/TCP-IP/">TCP/IP</option>
-        
-            <option value="/tags/UDP/">UDP</option>
-        
-            <option value="/tags/UNION/">UNION</option>
-        
-            <option value="/tags/abd/">abd</option>
-        
-            <option value="/tags/audio/">audio</option>
-        
-            <option value="/tags/awk/">awk</option>
-        
-            <option value="/tags/case%E8%AF%AD%E5%8F%A5/">case语句</option>
-        
-            <option value="/tags/class/">class</option>
-        
-            <option value="/tags/def/">def</option>
-        
-            <option value="/tags/dict/">dict</option>
-        
-            <option value="/tags/env/">env</option>
-        
-            <option value="/tags/export/">export</option>
-        
-            <option value="/tags/for/">for</option>
-        
-            <option value="/tags/for%E5%BE%AA%E7%8E%AF/">for循环</option>
-        
-            <option value="/tags/from/">from</option>
-        
-            <option value="/tags/global/">global</option>
-        
-            <option value="/tags/if/">if</option>
-        
-            <option value="/tags/if%E8%AF%AD%E5%8F%A5/">if语句</option>
-        
-            <option value="/tags/import/">import</option>
-        
-            <option value="/tags/lambda/">lambda</option>
-        
-            <option value="/tags/linux/">linux</option>
-        
-            <option value="/tags/list/">list</option>
-        
-            <option value="/tags/match-case/">match...case</option>
-        
-            <option value="/tags/open/">open</option>
-        
-            <option value="/tags/port22/">port22</option>
-        
-            <option value="/tags/ps/">ps</option>
-        
-            <option value="/tags/python/">python</option>
-        
-            <option value="/tags/set/">set</option>
-        
-            <option value="/tags/timeout/">timeout</option>
-        
-            <option value="/tags/try/">try</option>
-        
-            <option value="/tags/tuple/">tuple</option>
-        
-            <option value="/tags/web/">web</option>
-        
-            <option value="/tags/web%E6%B5%8B%E8%AF%95/">web测试</option>
-        
-            <option value="/tags/while/">while</option>
-        
-            <option value="/tags/with/">with</option>
-        
-            <option value="/tags/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B/">三次握手</option>
-        
-            <option value="/tags/%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97/">三目运算</option>
-        
-            <option value="/tags/%E4%B8%AD%E6%AF%92/">中毒</option>
-        
-            <option value="/tags/%E4%B9%A0%E9%A2%98/">习题</option>
-        
-            <option value="/tags/%E4%BB%A3%E7%90%86/">代理</option>
-        
-            <option value="/tags/%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0/">传递参数</option>
-        
-            <option value="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/">作用域</option>
-        
-            <option value="/tags/%E5%85%83%E7%A5%96/">元祖</option>
-        
-            <option value="/tags/%E5%85%83%E7%B4%A0%E6%9F%A5%E6%89%BE%EF%BC%88querySelector%EF%BC%89/">元素查找（querySelector）</option>
-        
-            <option value="/tags/%E5%85%83%E7%B4%A0%E8%BF%BD%E5%8A%A0%EF%BC%88appendChild%EF%BC%89/">元素追加（appendChild）</option>
-        
-            <option value="/tags/%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/">全局变量</option>
-        
-            <option value="/tags/%E5%85%A8%E5%B1%80%E6%A0%B7%E5%BC%8F/">全局样式</option>
-        
-            <option value="/tags/%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6/">关系运算符</option>
-        
-            <option value="/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/">内存泄漏</option>
-        
-            <option value="/tags/%E5%86%92%E6%B3%A1/">冒泡</option>
-        
-            <option value="/tags/%E5%86%B2%E7%AA%81/">冲突</option>
-        
-            <option value="/tags/%E5%87%BD%E6%95%B0/">函数</option>
-        
-            <option value="/tags/%E5%87%BD%E6%95%B0%E4%BC%A0%E5%8F%82/">函数传参</option>
-        
-            <option value="/tags/%E5%88%87%E7%89%87/">切片</option>
-        
-            <option value="/tags/%E5%88%97%E8%A1%A8/">列表</option>
-        
-            <option value="/tags/%E5%88%A0%E9%99%A4/">删除</option>
-        
-            <option value="/tags/%E5%89%8D%E7%AB%AF/">前端</option>
-        
-            <option value="/tags/%E5%8A%A0%E8%BD%BD%E6%95%88%E6%9E%9C%EF%BC%88loading%EF%BC%89/">加载效果（loading）</option>
-        
-            <option value="/tags/%E5%8A%A8%E7%94%BB%EF%BC%88animation%EF%BC%89/">动画（animation）</option>
-        
-            <option value="/tags/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0/">匿名函数</option>
-        
-            <option value="/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">单元测试</option>
-        
-            <option value="/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/">原型链</option>
-        
-            <option value="/tags/%E5%90%88%E5%B9%B6/">合并</option>
-        
-            <option value="/tags/%E5%90%B8%E9%A1%B6/">吸顶</option>
-        
-            <option value="/tags/%E5%91%BD%E4%BB%A4/">命令</option>
-        
-            <option value="/tags/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">四次挥手</option>
-        
-            <option value="/tags/%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5/">四舍五入</option>
-        
-            <option value="/tags/%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95/">回归测试</option>
-        
-            <option value="/tags/%E5%9B%A0%E6%9E%9C%E5%9B%BE/">因果图</option>
-        
-            <option value="/tags/%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BC%82%E5%B8%B8/">图片加载异常</option>
-        
-            <option value="/tags/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">基本数据类型</option>
-        
-            <option value="/tags/%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E7%AC%A6/">基本运算符</option>
-        
-            <option value="/tags/%E5%A4%8D%E5%88%B6%EF%BC%88Copy%EF%BC%89/">复制（Copy）</option>
-        
-            <option value="/tags/%E5%A5%91%E7%81%B5%E7%89%88%E6%9C%AC/">契灵版本</option>
-        
-            <option value="/tags/%E5%AD%97%E5%85%B8/">字典</option>
-        
-            <option value="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</option>
-        
-            <option value="/tags/%E5%AE%9A%E4%BD%8D/">定位</option>
-        
-            <option value="/tags/%E5%B0%81%E8%A3%85/">封装</option>
-        
-            <option value="/tags/%E5%B1%85%E4%B8%AD/">居中</option>
-        
-            <option value="/tags/%E5%B8%83%E5%B0%94%E8%BF%90%E7%AE%97%E7%AC%A6%EF%BC%8C-test%E5%91%BD%E4%BB%A4/">布尔运算符， test命令</option>
-        
-            <option value="/tags/%E5%B8%88%E5%82%85/">师傅</option>
-        
-            <option value="/tags/%E5%B8%88%E5%BC%9F/">师弟</option>
-        
-            <option value="/tags/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/">帮助手册</option>
-        
-            <option value="/tags/%E5%B8%B8%E7%94%A8/">常用</option>
-        
-            <option value="/tags/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83/">康复训练</option>
-        
-            <option value="/tags/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">异常处理</option>
-        
-            <option value="/tags/%E5%BC%82%E5%B8%B8%E7%8A%B6%E6%80%81/">异常状态</option>
-        
-            <option value="/tags/%E5%BC%82%E6%88%96/">异或</option>
-        
-            <option value="/tags/%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/">循环语句</option>
-        
-            <option value="/tags/%E5%BE%AE%E4%BF%A1%E5%8F%8C%E5%BC%80/">微信双开</option>
-        
-            <option value="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/">微信小程序测试</option>
-        
-            <option value="/tags/%E6%89%93%E5%AD%97%E6%9C%BA%E6%95%88%E6%9E%9C/">打字机效果</option>
-        
-            <option value="/tags/%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/">执行顺序</option>
-        
-            <option value="/tags/%E6%8A%93%E5%8C%85/">抓包</option>
-        
-            <option value="/tags/%E6%8E%92%E5%BA%8F/">排序</option>
-        
-            <option value="/tags/%E6%8E%A8%E5%AF%BC/">推导</option>
-        
-            <option value="/tags/%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%8C%96/">数字格式化</option>
-        
-            <option value="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/">数据库操作</option>
-        
-            <option value="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">数据类型</option>
-        
-            <option value="/tags/%E6%95%B0%E7%BB%84/">数组</option>
-        
-            <option value="/tags/%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/">文件读取</option>
-        
-            <option value="/tags/%E6%96%87%E7%AB%A0%E6%91%98%E8%A6%81/">文章摘要</option>
-        
-            <option value="/tags/%E6%96%B0%E5%A2%9E%E9%A1%B5%E9%9D%A2/">新增页面</option>
-        
-            <option value="/tags/%E6%97%A0%E6%95%88%E7%AD%89%E4%BB%B7%E7%B1%BB%E5%88%92%E5%88%86/">无效等价类划分</option>
-        
-            <option value="/tags/%E6%9C%A8%E6%A1%A9/">木桩</option>
-        
-            <option value="/tags/%E6%9D%A1%E4%BB%B6%E6%8E%A7%E5%88%B6/">条件控制</option>
-        
-            <option value="/tags/%E6%A0%B7%E5%BC%8F%E5%88%86%E5%B1%82/">样式分层</option>
-        
-            <option value="/tags/%E6%A6%82%E5%BF%B5%E8%A7%A3%E8%AF%BB/">概念解读</option>
-        
-            <option value="/tags/%E6%A8%A1%E6%8B%9F%E5%99%A8/">模拟器</option>
-        
-            <option value="/tags/%E6%A8%A1%E6%8B%9F%E5%BC%B1%E7%BD%91/">模拟弱网</option>
-        
-            <option value="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</option>
-        
-            <option value="/tags/%E6%AF%8F%E6%97%A5%E9%97%AE%E7%AD%94/">每日问答</option>
-        
-            <option value="/tags/%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9C/">毛玻璃效果</option>
-        
-            <option value="/tags/%E6%B0%94%E6%B3%A1%EF%BC%88Tooltip%EF%BC%89/">气泡（Tooltip）</option>
-        
-            <option value="/tags/%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90%E6%B3%95/">流程分析法</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95/">测试</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E5%88%86%E6%9E%90/">测试分析</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/">测试方法</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">测试概论</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E6%A8%A1%E5%9E%8B/">测试模型</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E6%B4%BB%E5%8A%A8/">测试活动</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/">测试用例</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E5%86%99%E4%BD%9C/">测试用例写作</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E6%96%B9%E6%B3%95/">测试用例方法</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">测试用例设计方法</option>
-        
-            <option value="/tags/%E6%B5%8B%E8%AF%95%E7%B1%BB%E5%9E%8B/">测试类型</option>
-        
-            <option value="/tags/%E6%B6%88%E6%81%AF%EF%BC%88Message%EF%BC%89/">消息（Message）</option>
-        
-            <option value="/tags/%E6%B7%BB%E5%8A%A0/">添加</option>
-        
-            <option value="/tags/%E6%B8%B2%E6%9F%93%E8%A7%A3%E6%9E%90/">渲染解析</option>
-        
-            <option value="/tags/%E6%BB%9A%E5%8A%A8%EF%BC%88Scroll%EF%BC%89/">滚动（Scroll）</option>
-        
-            <option value="/tags/%E7%81%B5%E5%8A%9B%E6%B5%81/">灵力流</option>
-        
-            <option value="/tags/%E7%89%88%E6%9C%AC%E5%8F%B7/">版本号</option>
-        
-            <option value="/tags/%E7%8B%AC%E7%AB%8B%E9%A1%B5%E9%9D%A2/">独立页面</option>
-        
-            <option value="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</option>
-        
-            <option value="/tags/%E7%94%9F%E6%88%90%E5%99%A8/">生成器</option>
-        
-            <option value="/tags/%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">用例设计方法</option>
-        
-            <option value="/tags/%E7%9B%92%E6%A8%A1%E5%9E%8B/">盒模型</option>
-        
-            <option value="/tags/%E7%9B%B8%E5%AF%B9%E9%87%8D%E8%A6%81/">相对重要</option>
-        
-            <option value="/tags/%E7%9B%BE%E5%BC%BA/">盾强</option>
-        
-            <option value="/tags/%E7%9F%A5%E8%AF%86%E7%A7%91%E6%99%AE/">知识科普</option>
-        
-            <option value="/tags/%E7%A0%94%E5%8F%91%E6%A8%A1%E5%BC%8F/">研发模式</option>
-        
-            <option value="/tags/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/">碧海苍云录</option>
-        
-            <option value="/tags/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95%EF%BC%8C%E6%8A%97%E6%80%A7/">碧海苍云录，抗性</option>
-        
-            <option value="/tags/%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/">窗口函数</option>
-        
-            <option value="/tags/%E7%B1%BB/">类</option>
-        
-            <option value="/tags/%E7%B1%BB%E6%96%B9%E6%B3%95/">类方法</option>
-        
-            <option value="/tags/%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/">系统测试</option>
-        
-            <option value="/tags/%E7%BA%A6%E6%9D%9F/">约束</option>
-        
-            <option value="/tags/%E7%BB%84%E5%90%88%E6%9F%A5%E8%AF%A2/">组合查询</option>
-        
-            <option value="/tags/%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6/">绑定事件</option>
-        
-            <option value="/tags/%E7%BB%9F%E8%AE%A1/">统计</option>
-        
-            <option value="/tags/%E7%BC%BA%E9%99%B7%E6%8A%A5%E5%91%8A/">缺陷报告</option>
-        
-            <option value="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%9B%E5%BA%A6%E6%9D%A1/">自定义进度条</option>
-        
-            <option value="/tags/%E8%A1%8C/">行</option>
-        
-            <option value="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/">装饰器</option>
-        
-            <option value="/tags/%E8%A5%BF%E9%97%A8%E5%AD%90/">西门子</option>
-        
-            <option value="/tags/%E8%A7%86%E5%9B%BE/">视图</option>
-        
-            <option value="/tags/%E8%A7%A6%E5%8F%91%E5%99%A8/">触发器</option>
-        
-            <option value="/tags/%E8%AF%AD%E6%B3%95/">语法</option>
-        
-            <option value="/tags/%E8%AF%BE%E6%9C%AC%EF%BC%9A%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1/">课本：软件测试流程设计</option>
-        
-            <option value="/tags/%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/">调试技巧</option>
-        
-            <option value="/tags/%E8%B4%9D%E5%A1%94/">贝塔</option>
-        
-            <option value="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</option>
-        
-            <option value="/tags/%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">软件的生命周期</option>
-        
-            <option value="/tags/%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F/">软件质量</option>
-        
-            <option value="/tags/%E8%BD%AF%E6%B5%8B/">软测</option>
-        
-            <option value="/tags/%E8%BD%AF%E6%B5%8B%E6%A6%82%E8%AE%BA/">软测概论</option>
-        
-            <option value="/tags/%E8%BE%93%E5%85%A5%E6%A1%86/">输入框</option>
-        
-            <option value="/tags/%E8%BF%87%E5%BA%A6%E8%AE%BE%E8%AE%A1/">过度设计</option>
-        
-            <option value="/tags/%E8%BF%87%E6%B8%A1%EF%BC%88transition%EF%BC%89/">过渡（transition）</option>
-        
-            <option value="/tags/%E8%BF%9B%E7%A8%8B/">进程</option>
-        
-            <option value="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/">选择器</option>
-        
-            <option value="/tags/%E9%81%AE%E7%BD%A9%EF%BC%88Mask%EF%BC%89/">遮罩（Mask）</option>
-        
-            <option value="/tags/%E9%85%8D%E7%94%B5%E6%9F%9C/">配电柜</option>
-        
-            <option value="/tags/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/">配置管理</option>
-        
-            <option value="/tags/%E9%87%8D%E5%AE%9A%E5%90%91/">重定向</option>
-        
-            <option value="/tags/%E9%95%9C%E5%83%8F%E6%BA%90/">镜像源</option>
-        
-            <option value="/tags/%E9%97%AD%E5%8C%85/">闭包</option>
-        
-            <option value="/tags/%E9%98%BF%E5%B0%94%E6%B3%95/">阿尔法</option>
-        
-            <option value="/tags/%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95/">集成测试</option>
-        
-            <option value="/tags/%E9%9C%80%E6%B1%82%E8%BF%87%E7%A8%8B/">需求过程</option>
-        
-            <option value="/tags/%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%EF%BC%88Music-Player%EF%BC%89/">音乐播放器（Music Player）</option>
-        
-            <option value="/tags/%E9%A2%9C%E8%89%B2%E6%B8%90%E5%8F%98/">颜色渐变</option>
-        
-            <option value="/tags/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/">额外补充</option>
-        
-            <option value="/tags/%E9%AA%A8%E6%9E%B6%EF%BC%88skeleton%EF%BC%89/">骨架（skeleton）</option>
-        
-            <option value="/tags/%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95%E6%B3%95/">黑盒测试法</option>
-        
-    </select>
-</label>
-<!-- archiveEjs.handleChoose(event)：位于 layout > archive.ejs -->
-                    </th>
-                    <th style="text-align: center" class="d-flex align-center">
-                        分类（Categories）
-                        <label for="archivesCategories">
-    <select
-            id="archivesCategories"
-            style="width: 21px"
-            onchange="archiveEjs.handleChoose(event)"
-    >
-        <option value="">--分类（Categories）--</option>
-        <option value="/archives/">--ALL--</option>
-        
-            <option value="/categories/App/">App</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/CSS/">CSS</option>
-        
-            <option value="/categories/CSS/">CSS</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/DOM/">DOM</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/Ejs/">Ejs</option>
-        
-            <option value="/categories/Fiddler/">Fiddler</option>
-        
-            <option value="/categories/Github/">Github</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/HTML5%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE/">HTML5语义化标签</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/Hexo/">Hexo</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</option>
-        
-            <option value="/categories/JavaScript/">JavaScript</option>
-        
-            <option value="/categories/Linux/">Linux</option>
-        
-            <option value="/categories/Markdown/">Markdown</option>
-        
-            <option value="/categories/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/Markdown/">Markdown</option>
-        
-            <option value="/categories/Python/">Python</option>
-        
-            <option value="/categories/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/Python/">Python</option>
-        
-            <option value="/categories/SQL/">SQL</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/SQL/">SQL</option>
-        
-            <option value="/categories/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/SQL%E4%B9%A0%E9%A2%98/">SQL习题</option>
-        
-            <option value="/categories/Shell/">Shell</option>
-        
-            <option value="/categories/web/">web</option>
-        
-            <option value="/categories/web/web%E6%B5%8B%E8%AF%95/">web测试</option>
-        
-            <option value="/categories/Shell/%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0/">传递参数</option>
-        
-            <option value="/categories/Python/%E5%87%BD%E6%95%B0/">函数</option>
-        
-            <option value="/categories/Shell/%E5%87%BD%E6%95%B0/">函数</option>
-        
-            <option value="/categories/SQL/%E5%87%BD%E6%95%B0/">函数</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/">前端</option>
-        
-            <option value="/categories/web/%E5%8D%8F%E8%AE%AE/">协议</option>
-        
-            <option value="/categories/Python/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">基本数据类型</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/%E5%A4%8D%E5%88%B6%EF%BC%88Copy%EF%BC%89/">复制（Copy）</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/DOM/%E5%AE%9A%E4%BD%8D/">定位</option>
-        
-            <option value="/categories/JavaScript/%E5%B0%81%E8%A3%85/">封装</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/CSS/%E5%B1%85%E4%B8%AD/">居中</option>
-        
-            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E5%B8%88%E5%82%85/">师傅</option>
-        
-            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E5%B8%88%E5%BC%9F/">师弟</option>
-        
-            <option value="/categories/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/">帮助手册</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/">康复训练计划表</option>
-        
-            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E5%BC%82%E5%B8%B8%E7%8A%B6%E6%80%81/">异常状态</option>
-        
-            <option value="/categories/Python/%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/">循环语句</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/">微信小程序测试</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/JavaScript/%E6%89%93%E5%AD%97%E6%9C%BA/">打字机</option>
-        
-            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E6%8A%97%E6%80%A7/">抗性</option>
-        
-            <option value="/categories/JavaScript/%E6%92%AD%E6%94%BE%E5%99%A8/">播放器</option>
-        
-            <option value="/categories/JavaScript/%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%8C%96/">数字格式化</option>
-        
-            <option value="/categories/Python/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">数据类型</option>
-        
-            <option value="/categories/Shell/%E6%95%B0%E7%BB%84/">数组</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/Hexo/%E6%96%87%E7%AB%A0%E6%91%98%E8%A6%81/">文章摘要</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/Hexo/%E6%96%B0%E5%A2%9E%E9%A1%B5%E9%9D%A2/">新增页面</option>
-        
-            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E6%9C%A8%E6%A1%A9/">木桩</option>
-        
-            <option value="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</option>
-        
-            <option value="/categories/Shell/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/">流程控制</option>
-        
-            <option value="/categories/App/%E6%B5%8B%E8%AF%95/">测试</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E5%88%86%E6%9E%90/">测试分析</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">测试概论</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E5%86%99%E4%BD%9C/">测试用例写作</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E6%96%B9%E6%B3%95/">测试用例方法</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%B1%BB%E5%9E%8B/">测试类型</option>
-        
-            <option value="/categories/Markdown/%E6%B8%B2%E6%9F%93%E8%A7%A3%E6%9E%90/">渲染解析</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/Hexo/%E7%8B%AC%E7%AB%8B%E9%A1%B5%E9%9D%A2/">独立页面</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">用例设计方法</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/%E7%9B%92%E6%A8%A1%E5%9E%8B/">盒模型</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/%E7%9B%AE%E6%A0%87%E7%BB%86%E5%8C%96%E8%AE%A1%E5%88%92%E8%A1%A8/">目标细化计划表</option>
-        
-            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E7%9B%BE%E5%BC%BA/">盾强</option>
-        
-            <option value="/categories/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/">碧海苍云录</option>
-        
-            <option value="/categories/SQL/%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/">窗口函数</option>
-        
-            <option value="/categories/SQL/%E7%BA%A6%E6%9D%9F/">约束</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/SQL/%E7%BB%84%E5%90%88%E6%9F%A5%E8%AF%A2/">组合查询</option>
-        
-            <option value="/categories/Linux/%E7%BB%9F%E8%AE%A1/">统计</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E7%BC%BA%E9%99%B7%E6%8A%A5%E5%91%8A/">缺陷报告</option>
-        
-            <option value="/categories/Linux/%E7%BB%9F%E8%AE%A1/%E8%A1%8C/">行</option>
-        
-            <option value="/categories/SQL/%E8%A7%86%E5%9B%BE/">视图</option>
-        
-            <option value="/categories/SQL/%E8%A7%A6%E5%8F%91%E5%99%A8/">触发器</option>
-        
-            <option value="/categories/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/Markdown/%E8%AF%AD%E6%B3%95/">语法</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F/">软件质量</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E8%BD%AF%E6%B5%8B%E6%A6%82%E8%AE%BA/">软测概论</option>
-        
-            <option value="/categories/web/web%E6%B5%8B%E8%AF%95/%E8%BE%93%E5%85%A5%E6%A1%86/">输入框</option>
-        
-            <option value="/categories/Shell/%E8%BF%90%E7%AE%97%E7%AC%A6/">运算符</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/">配置管理</option>
-        
-            <option value="/categories/Shell/%E9%87%8D%E5%AE%9A%E5%90%91/">重定向</option>
-        
-            <option value="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E9%9C%80%E6%B1%82%E8%BF%87%E7%A8%8B/">需求过程</option>
-        
-            <option value="/categories/Python/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</option>
-        
-            <option value="/categories/%E5%89%8D%E7%AB%AF/%E5%BA%B7%E5%A4%8D%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E8%A1%A8/%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80/">页面布局</option>
-        
-            <option value="/categories/%E9%A2%9D%E5%A4%96%E8%A1%A5%E5%85%85/">额外补充</option>
-        
-    </select>
-</label>
-<!-- archiveEjs.handleChoose(event)：位于 layout > archive.ejs -->
-                    </th>
+                    <th style=""></th>
+                    <th style="">标签</th>
+                    <th style="" class="d-flex align-center">分类 </th>
                     <th style="text-align: center">创作时间</th>
                     <th style="text-align: center">更新时间</th>
                     <th>操作</th>
                 </tr>
             </thead>
 
-            <tbody style="font-size: 12px">
+            <tbody style="font-size: 1rem">
                 
                     <tr>
-                        <td>
+                        <td style="max-width: 180px">
                             <a href="/2025/09/10/Python/Python-%E5%AF%BC%E5%85%A5/">
                                 Python-导入
                             </a>
                         </td>
 
-                        <td style="width: 150px; ">
+                        <td style="max-width: 260px">
                             <div class="d-flex flex-wrap gap-2">
                                 
     
-        <a class="tag is-info is-light" href="/tags/Python/">Python</a>
+        <a class="tag is-info is-light" href="/tags/Python/" style="font-size: 0.875rem">Python</a>
     
-        <a class="tag is-info is-light" href="/tags/import/">import</a>
+        <a class="tag is-info is-light" href="/tags/import/" style="font-size: 0.875rem">import</a>
     
-        <a class="tag is-info is-light" href="/tags/from/">from</a>
+        <a class="tag is-info is-light" href="/tags/from/" style="font-size: 0.875rem">from</a>
     
 
                             </div>
                         </td>
 
-                        <td style="width: 150px;">
+                        <td style="max-width: 260px">
                             <div class="d-flex flex-wrap gap-2">
                                 
     
-        <a class="tag is-warning is-light" href="/categories/Python/">Python</a>
+        <a class="tag is-warning is-light" href="/categories/Python/" style="font-size: 0.875rem">Python</a>
     
 
                             </div>
@@ -1237,14 +608,6 @@
         }
     }
 </script>
-
-<style>
-    #article-table tbody td {
-        padding: 12px;
-        font-size: 1rem;
-    }
-</style>
-
     </div>
 
     
@@ -1866,6 +1229,44 @@ window.addEventListener('click', () => {
         background-color: var(--grey-300);
     }
 </style>
+
+        <!-- 页脚：一些说明 -->
+        <div style="height: 10rem"></div>
+<section style="width: 100%; height: 20rem; background-color: var(--grey-100)">
+    <div class="container d-flex align-center px-4" style="height: 100%; color: var(--grey-500)">
+        <div style="line-height: 2">
+            <!-- config.yml footer -->
+            
+                <div>
+                    <span>【技术支持】Hexo</span>
+                    
+                        <sup>
+                            <a target="_blank" rel="noopener" href="https://hexo.io/">[1]</a>
+                        </sup>
+                    
+                </div>
+            
+                <div>
+                    <span>【主题支持】Goyangin</span>
+                    
+                        <sup>
+                            <a target="_blank" rel="noopener" href="http://g3xdev.com">[2]</a>
+                        </sup>
+                    
+                </div>
+            
+                <div>
+                    <span>【源码授权】麻省理工学院</span>
+                    
+                        <sup>
+                            <a target="_blank" rel="noopener" href="http://opensource.org/licenses/mit-license.php">[3]</a>
+                        </sup>
+                    
+                </div>
+            
+        </div>
+    </div>
+</section>
     
 </body>
 </html>

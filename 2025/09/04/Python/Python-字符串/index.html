@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-07 22:11
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-14 23:51
                     </p>
                 </div>
             </div>
@@ -520,28 +520,29 @@
         <div class="pt-4">
             <span>
     
-        <a class="tag is-info is-light" href="/tags/Python/">Python</a>
+        <a class="tag is-info is-light" href="/tags/Python/" style="font-size: 0.875rem">Python</a>
     
-        <a class="tag is-info is-light" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
+        <a class="tag is-info is-light" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 0.875rem">字符串</a>
     
 </span>
             <span>
     
-        <a class="tag is-warning is-light" href="/categories/Python/">Python</a>
+        <a class="tag is-warning is-light" href="/categories/Python/" style="font-size: 0.875rem">Python</a>
     
-        <a class="tag is-warning is-light" href="/categories/Python/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">数据类型</a>
+        <a class="tag is-warning is-light" href="/categories/Python/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 0.875rem">数据类型</a>
     
 </span>
         </div>
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E7%89%87%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">切片操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text">字符串拼接</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E7%89%87%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">切片操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text">字符串拼接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E5%9E%8B%E7%9A%84%E6%97%A5%E6%9C%9F%E5%8F%AF%E4%BB%A5%E5%81%9A%E6%AF%94%E8%BE%83"><span class="toc-number">4.</span> <span class="toc-text">字符型的日期可以做比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%AA%8C%E8%AF%81%EF%BC%9A%E4%BB%85%E5%8C%85%E5%90%AB%E5%AD%97%E6%AF%8D%EF%BC%88%E5%A4%A7%E5%B0%8F%E5%86%99%E9%83%BD%E5%85%81%E8%AE%B8%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">自定义验证：仅包含字母（大小写都允许）</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
         <p>基础信息翻阅：Python-基本语法</p>
+<p>字符串无法通过索引访问进行赋值，因为字符串是不可变类型；</p>
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><blockquote>
 <p><strong>字符串的所有方法都是不影响源内容的，基本都是返回一个新的字符串</strong></p>
 </blockquote>
@@ -598,6 +599,20 @@ x[-2:2:-1]
 <p>list 拼接：<code>&quot;&quot;.join(str)</code></p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">x = [<span class="hljs-string">&#x27;I&#x27;</span>, <span class="hljs-string">&#x27;have&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;pen&#x27;</span>]<br><span class="hljs-string">&quot;&quot;</span>.join(x)<br><span class="hljs-comment">## 按空格对元素进行拼接</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="字符型的日期可以做比较"><a href="#字符型的日期可以做比较" class="headerlink" title="字符型的日期可以做比较"></a>字符型的日期可以做比较</h2><p>比较的前提，必需符合格式：<code>YYYYMMDD</code></p>
+<p>【不正确的】<code>2025-09-14</code>, <code>2025年9月14日</code><br>【正确的】<code>20250914</code><br>【如何做比较呢？】</p>
+<pre><code>print(&#39;20250914&#39; &gt; &#39;20250913&#39;) # True
+</code></pre>
+<h2 id="自定义验证：仅包含字母（大小写都允许）"><a href="#自定义验证：仅包含字母（大小写都允许）" class="headerlink" title="自定义验证：仅包含字母（大小写都允许）"></a>自定义验证：仅包含字母（大小写都允许）</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">valid_alpha = <span class="hljs-keyword">lambda</span> x_str : <span class="hljs-built_in">all</span>(<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> i: <span class="hljs-string">&quot;a&quot;</span> &lt;= i &lt;= <span class="hljs-string">&quot;z&quot;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&quot;A&quot;</span> &lt;= i &lt;= <span class="hljs-string">&quot;Z&quot;</span>, x_str))<br></code></pre></td></tr></table></figure>
+<p>【知识点】</p>
+<ol>
+<li>匿名函数</li>
+<li>字母比较：是ASCII码值的比较</li>
+<li>map函数</li>
+<li>all函数：同JS的 every() 函数，如果元素都为真，则为真，否则为假</li>
+</ol>
+
     </div>
     <!-- 文章：声明 -->
     <!-- 文章的声明 -->
@@ -612,7 +627,7 @@ x[-2:2:-1]
     </p>
     <p>
         <strong>版权声明</strong>：
-        <span>本网站所有文章除特别声明外,均采用 CC BY-NC-ND 4.0 许可协议。转载请注明出处!</span>
+        <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
     </p>
 </div>
     <!-- 文章：文章切换 -->
@@ -1278,6 +1293,44 @@ window.addEventListener('click', () => {
         background-color: var(--grey-300);
     }
 </style>
+
+        <!-- 页脚：一些说明 -->
+        <div style="height: 10rem"></div>
+<section style="width: 100%; height: 20rem; background-color: var(--grey-100)">
+    <div class="container d-flex align-center px-4" style="height: 100%; color: var(--grey-500)">
+        <div style="line-height: 2">
+            <!-- config.yml footer -->
+            
+                <div>
+                    <span>【技术支持】Hexo</span>
+                    
+                        <sup>
+                            <a target="_blank" rel="noopener" href="https://hexo.io/">[1]</a>
+                        </sup>
+                    
+                </div>
+            
+                <div>
+                    <span>【主题支持】Goyangin</span>
+                    
+                        <sup>
+                            <a target="_blank" rel="noopener" href="http://g3xdev.com">[2]</a>
+                        </sup>
+                    
+                </div>
+            
+                <div>
+                    <span>【源码授权】麻省理工学院</span>
+                    
+                        <sup>
+                            <a target="_blank" rel="noopener" href="http://opensource.org/licenses/mit-license.php">[3]</a>
+                        </sup>
+                    
+                </div>
+            
+        </div>
+    </div>
+</section>
     
 </body>
 </html>

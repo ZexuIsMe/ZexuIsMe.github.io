@@ -1,14 +1,12 @@
 @font-face {
     font-family: 'ZiHunLongTengKaiShu';
-    src: url('../webfonts/ZiHunLongTengKaiShu(ShangYongXuShouQuan)-2.ttf') format('truetype');
+    src: url('../font_cn/ZiHunLongTengKaiShu(ShangYongXuShouQuan)-2.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'EnglishFonts';
-    src: url('../enfonts/HFSnakylines-2.ttf') format('truetype');
-    /*src: url('../enfonts/Pencil-2.ttf') format('truetype');*/
-    /*src: url('../enfonts/Firaco-2.ttf') format('truetype');*/
+    src: url('../font_en/HFSandBeach-2.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
