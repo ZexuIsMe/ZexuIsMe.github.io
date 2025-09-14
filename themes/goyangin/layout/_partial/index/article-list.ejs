@@ -20,7 +20,7 @@
 
 <div class="index-article-list">
     <% site.categories.filter(item => !item.parent).sort('name').forEach(item => { %>
-        <% console.log(item.name, item.parent) %>
+        <!--\% console.log(item.name, item.parent) %\-->
         <div class="py-4 px-5" onclick="listArticleEjs.createALink('<%= item.path %>', '_self')"><%= item.name %></div>
     <% }) %>
 </div>
