@@ -1,0 +1,30 @@
+<style>
+    .index-article-list {
+        display: grid;
+        grid-template-rows: repeat(auto-fill, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-gap: 1rem;
+    }
+
+    .index-article-list > div {
+        cursor: pointer;
+        border-radius: 0.5rem;
+    }
+
+    .index-article-list > div:hover {
+        background-color: var(--primary);
+        color: whitesmoke;
+        transition: background-color 0.3s linear;
+    }
+</style>
+
+<div class="index-article-list">
+    <% site.categories.filter(item => !item.parent).sort('name').forEach(item => { %>
+        <% console.log(item.name, item.parent) %>
+        <div class="py-4 px-5" onclick="listArticleEjs.createALink('<%= item.path %>', '_self')"><%= item.name %></div>
+    <% }) %>
+</div>
+
+<script>
+const listArticleEjs = new Blog()
+</script>

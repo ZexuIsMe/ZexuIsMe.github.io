@@ -1,4 +1,11 @@
 <!-- Archive: 归档页 -->
+<style>
+    #article-table tbody td {
+        padding: 12px;
+    }
+</style>
+
+
 <div class="container " style="padding: 0 24px">
     <%- partial('_partial/section-title', { item: { name: `归档 - ${page.tag || page.category || 'All'}`, icon: 'fas fa-boxes' } }) %>
 
@@ -6,49 +13,31 @@
         <table class="table is-striped is-hoverable is-fullwidth">
             <thead>
                 <tr>
-                    <th></th>
-                    <th style="text-align: center">
-                        标签（Tags）
-                        <%- partial('_partial/archives/select', {
-                            item: {
-                                data: site.tags.sort('name'),
-                                selectId: 'archivesTags',
-                                options1: '标签（Tags）'
-                            }
-                        }) %>
-                    </th>
-                    <th style="text-align: center" class="d-flex align-center">
-                        分类（Categories）
-                        <%- partial('_partial/archives/select', {
-                            item: {
-                                data: site.categories.sort('name'),
-                                selectId: 'archivesCategories',
-                                options1: '分类（Categories）'
-                            }
-                        }) %>
-                    </th>
+                    <th style=""></th>
+                    <th style="">标签</th>
+                    <th style="" class="d-flex align-center">分类 </th>
                     <th style="text-align: center">创作时间</th>
                     <th style="text-align: center">更新时间</th>
                     <th>操作</th>
                 </tr>
             </thead>
 
-            <tbody style="font-size: 12px">
+            <tbody style="font-size: 1rem">
                 <% page.posts.sort('-date').forEach(postItem =>{ %>
                     <tr>
-                        <td>
+                        <td style="max-width: 180px">
                             <a href="<%= url_for(postItem.path) %>">
                                 <%= postItem.title %>
                             </a>
                         </td>
 
-                        <td style="width: 150px; ">
+                        <td style="max-width: 260px">
                             <div class="d-flex flex-wrap gap-2">
                                 <%- partial('_partial/post/article-tags', { item: postItem }) %>
                             </div>
                         </td>
 
-                        <td style="width: 150px;">
+                        <td style="max-width: 260px">
                             <div class="d-flex flex-wrap gap-2">
                                 <%- partial('_partial/post/post-categories', { item: postItem }) %>
                             </div>
@@ -92,10 +81,3 @@
         }
     }
 </script>
-
-<style>
-    #article-table tbody td {
-        padding: 12px;
-        font-size: 1rem;
-    }
-</style>

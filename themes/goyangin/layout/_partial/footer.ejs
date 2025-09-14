@@ -1,15 +1,18 @@
-<div class="" style="height: 100%; width: 100%;">
-    <div style="height: 100%; width: 100%;" class="d-flex justify-center align-center">
-        <div class="text-center" style="line-height: 2">
-            <div>
-                由<a href="https://hexo.io/"><strong><span class="has-text-info">Hexo</span></strong></a>提供技术支持
-            </div>
-            <div>
-                主题<strong>Goyangin</strong>由<a href="http://g3xdev.com"><span class="has-text-info"><b>g3xx</b></span></a>提供
-            </div>
-            <div>
-                源代码由<a href="http://opensource.org/licenses/mit-license.php"><span class="has-text-info">麻省理工学院</span></a>授权
-            </div>
+<div style="height: 10rem"></div>
+<section style="width: 100%; height: 20rem; background-color: var(--grey-100)">
+    <div class="container d-flex align-center px-4" style="height: 100%; color: var(--grey-500)">
+        <div style="line-height: 2">
+            <!-- config.yml footer -->
+            <% theme.footer.forEach((item, index) => { %>
+                <div>
+                    <span>【<%= item.title %>】<%= item.content %></span>
+                    <% if (!!item.url) { %>
+                        <sup>
+                            <a href="<%= item.url %>">[<%= index+1 %>]</a>
+                        </sup>
+                    <% } %>
+                </div>
+            <% }) %>
         </div>
     </div>
-</div>
+</section>

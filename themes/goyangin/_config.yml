@@ -64,3 +64,13 @@ music_data:
     author: 粥记捣蛋
 my_post:
   pagination: ['上一篇', '下一篇', '无']
+footer:
+  - title: '技术支持'
+    content: 'Hexo'
+    url: 'https://hexo.io/'
+  - title: '主题支持'
+    content: 'Goyangin'
+    url: 'http://g3xdev.com'
+  - title: '源码授权'
+    content: '麻省理工学院'
+    url: 'http://opensource.org/licenses/mit-license.php'

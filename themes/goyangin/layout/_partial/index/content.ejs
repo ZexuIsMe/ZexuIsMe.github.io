@@ -26,9 +26,16 @@
 
     <div class="container p-4">
         <!-- title -->
+        <% if (1 === 0) {%>
+            <%- partial('_partial/section-title', { item: { name: 'Markdown Card', icon: 'fab fa-markdown' } }) %>
+            <div class="list-categories">
+                <%- categoriesList %>
+            </div>
+        <% } %>
+
         <%- partial('_partial/section-title', { item: { name: 'Markdown Card', icon: 'fab fa-markdown' } }) %>
-        <div class="list-categories">
-            <%- categoriesList %>
-        </div>
+
+        <!-- 服务端 -->
+        <%- partial('article-list') %>
     </div>
 </div>
