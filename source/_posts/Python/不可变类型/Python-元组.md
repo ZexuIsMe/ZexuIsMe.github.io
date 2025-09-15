@@ -1,7 +1,7 @@
 ---
-title: Python-元祖（tuple）
+title: Python-元组（tuple）
 date: 2025-09-07 21:04:31
-tags: [Python, 元祖, tuple, 基本数据类型]
+tags: [Python, 元组, tuple, 基本数据类型]
 categories:
   - Python
   - 数据类型 
