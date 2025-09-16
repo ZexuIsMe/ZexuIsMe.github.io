@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>Python-字符串 | 粥记捣蛋</title>
+    <title>粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -344,10 +344,10 @@
                             
                             <div
                                     class="px-8 menu-label d-flex align-center
-                                    "
+                                    v-bg-primary"
                                     style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
                             >
-                                <a href="/archives" style="color: #00586d ">归档</a>
+                                <a href="/archives" style="color: #EEE ">归档</a>
                             </div>
                         
                             
@@ -481,196 +481,134 @@
     }
 </style>
     <div id="blog-body">
-        <!-- 渲染：阅读整篇文章 -->
+        <!-- Archive: 归档页 -->
 <style>
-    #read-post {
-        min-height: calc(100% - 210px);
-        max-width: 85%;
-        margin: auto;
-    }
-
-    @media (max-width: 768px) {
-        #read-post {
-            max-width: 85%;
-        }
+    #article-table tbody td {
+        padding: 12px;
     }
 </style>
 
 
+<div class="container " style="padding: 0 24px">
+    <!-- 一般用于 section 标题 -->
+<h1 class="title is-4 d-flex align-center" style="padding: 120px 0 60px 0; font-family: 'ZiHunLongTengKaiShu', serif">
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+    <span style="white-space: nowrap; color: black" class="mx-4">
+                <i class="fas fa-boxes"></i>
+                <span class="ml-4">归档 - 断言</span>
+            </span>
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+</h1>
 
-<div style="height: 80px"></div>
+<!--<script>-->
+<!--    console.log({-->
+<!--        icon: '', // 这里的图标需要是完整的-->
+<!--        name: '', // 标题的名字-->
+<!--        color: '', // 字体颜色-->
+<!--    })-->
+<!--</script>-->
 
-<article id="read-post">
-    <!-- Title -->
-    <div class="level">
-        <div class="level-left">
-            <div class="media">
-                <div class="media-content">
-                    <h1 class="title is-4 modify-post-title">
-                        <span class="has-text-info">Python-字符串</span>
-                    </h1>
-                    <p class="subtitle is-6">
-                        <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-14 23:51
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- 文章标签 -->
-        <div class="pt-4">
-            <span>
+    <div id="article-table" class="table-wrapper">
+        <table class="table is-striped is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th style=""></th>
+                    <th style="">标签</th>
+                    <th style="" class="d-flex align-center">分类 </th>
+                    <th style="text-align: center">创作时间</th>
+                    <th style="text-align: center">更新时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+
+            <tbody style="font-size: 1rem">
+                
+                    <tr>
+                        <td style="max-width: 180px">
+                            <a href="/2025/09/16/AutoTest/AutoTest-%E6%96%AD%E8%A8%80/">
+                                AutoTest-断言
+                            </a>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
     
-        <a class="tag is-info is-light" href="/tags/Python/" style="font-size: 0.875rem">Python</a>
+        <a class="tag is-info is-light" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" style="font-size: 0.875rem">自动化测试</a>
     
-        <a class="tag is-info is-light" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 0.875rem">字符串</a>
+        <a class="tag is-info is-light" href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 0.875rem">软件测试</a>
     
-</span>
-            <span>
+        <a class="tag is-info is-light" href="/tags/%E6%96%AD%E8%A8%80/" style="font-size: 0.875rem">断言</a>
     
-        <a class="tag is-warning is-light" href="/categories/Python/" style="font-size: 0.875rem">Python</a>
+
+                            </div>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
     
-        <a class="tag is-warning is-light" href="/categories/Python/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 0.875rem">数据类型</a>
+        <a class="tag is-warning is-light" href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" style="font-size: 0.875rem">自动化测试</a>
     
-</span>
-        </div>
+        <a class="tag is-warning is-light" href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/%E6%96%AD%E8%A8%80/" style="font-size: 0.875rem">断言</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-09-16 18:16
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-09-16 23:18
+                        </td>
+
+                        <td style="vertical-align: middle">
+                            <a href="/2025/09/16/AutoTest/AutoTest-%E6%96%AD%E8%A8%80/">
+                                <i class="far fa-hand-point-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                
+            </tbody>
+        </table>
     </div>
 
-    <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E7%89%87%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">切片操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text">字符串拼接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E5%9E%8B%E7%9A%84%E6%97%A5%E6%9C%9F%E5%8F%AF%E4%BB%A5%E5%81%9A%E6%AF%94%E8%BE%83"><span class="toc-number">4.</span> <span class="toc-text">字符型的日期可以做比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%AA%8C%E8%AF%81%EF%BC%9A%E4%BB%85%E5%8C%85%E5%90%AB%E5%AD%97%E6%AF%8D%EF%BC%88%E5%A4%A7%E5%B0%8F%E5%86%99%E9%83%BD%E5%85%81%E8%AE%B8%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">自定义验证：仅包含字母（大小写都允许）</span></a></li></ol></div>
-    <!-- 文章：内容 -->
-    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
-        <hr />
-        <!-- Content -->
-        <p>基础信息翻阅：Python-基本语法</p>
-<p>字符串无法通过索引访问进行赋值，因为字符串是不可变类型；</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><blockquote>
-<p><strong>字符串的所有方法都是不影响源内容的，基本都是返回一个新的字符串</strong></p>
-</blockquote>
-<p><code>str.lower()</code> 字母全部小写</p>
-<p><code>str.upper()</code> 字母全部大写</p>
-<p><code>str.capitalize()</code> 首字母大写，后续字母小写，若首位不是字母，则不管，接着小写后续全部字母</p>
-<p><code>str.title()</code> 每个单词首字母大写</p>
-<p><code>str.strip/lstrip/rstrip()</code>  去空格</p>
-<pre><code>x = &quot;\t\na b\t&quot;
-print(x.strip()) # 去掉两端空格
-print(x.lstrip()) # 去掉左侧空格
-print(x.rstrip()) # 去掉右侧空格
-</code></pre>
-<p><code>str.replace()</code> 替换</p>
-<pre><code>x = &quot;2025-09-05&quot;
-x.replace(&#39;-&#39;, &#39;/&#39;)
-print(x)
-</code></pre>
-<blockquote>
-<p>字符串内容的判断</p>
-</blockquote>
-<p><code>str.isalnum()</code>  是否包含字母、数字、中文（符号除外，比如<code>.</code>）</p>
-<p><code>str.isalpha()</code> 字符串是否<strong>只</strong>包含字母、中文</p>
-<p><code>str.isnumeric()</code> 字符串是否是数字组成</p>
-<p><code>str.isdigint()</code> 字符串是否全部由<code>&gt;=0</code>的整数组成</p>
-<pre><code>&quot;123.0&quot;.isdigit() # False
-&quot;0100&quot;.isdigit() # True
-</code></pre>
-<blockquote>
-<p><strong>Q：isnumeric、isdigint 两个都是判断是否只含数字，那么它们的区别是？</strong></p>
-</blockquote>
-<p><code>isdigint</code>：除了阿拉伯数字外，还有 Unicode 中的某些特殊数字，如上标数字 ‘⁰¹²³’<br><code>isnumeric</code>：判断范围更广，除了阿拉伯数字，还包括 其他语言的数字、分数、罗马数字 等有 “数值意义” 的字符<br>除了阿拉伯数字外，还可是以汉字数字<code>&quot;一二三&quot;</code>，罗马数字<code>&quot;ⅣⅤ&quot;</code>，分数<code>&quot;½</code>、<code>⅓&quot;</code>等等；</p>
-<p>两者虽然都支持阿拉伯数字，但不支持带有小数点的数，因为含有非数字字符<code>.</code></p>
-<hr>
-<p><code>str.isdecimal()</code> 判断字符串是否<strong>只包含十进制数字字符</strong>，返回的是布尔</p>
-<pre><code>&quot;ab123&quot;.isdecimal() # False
-</code></pre>
-<p><code>str.startswith(value)</code> 是否以指定内容开始，返回 bool</p>
-<pre><code>&quot;abc&quot;.startswidth(&quot;a&quot;) # true
-</code></pre>
-<p><code>str.endsWidth(value)</code> 是否以指定内容结尾，返回 bool</p>
-<h2 id="切片操作"><a href="#切片操作" class="headerlink" title="切片操作"></a>切片操作</h2><blockquote>
-<p>将字符串从第2个字符开始到倒数第2个字符顺序翻转</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">x = <span class="hljs-string">&quot;string&quot;</span><br>x_start = x[<span class="hljs-number">0</span>:<span class="hljs-number">2</span>]<br>x_end = x[-<span class="hljs-number">2</span>:]<br>x_middle = x[<span class="hljs-number">2</span>:-<span class="hljs-number">2</span>][::-<span class="hljs-number">1</span>]<br><br><span class="hljs-built_in">print</span>(x_start + x_middle + x_start)<br></code></pre></td></tr></table></figure>
+    
 
-<pre><code>x[2:-2][::-1]
-或
-x[-2:2:-1]
-</code></pre>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">x = <span class="hljs-string">&quot;string&quot;</span><br>x_list=[]<br><br><span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> x:<br>    <span class="hljs-built_in">print</span>(item)<br>    x_list.append(item)<br><br>x_middle=x_list.copy()[<span class="hljs-number">2</span>:-<span class="hljs-number">1</span>]<br>x_middle.reverse()<br><br>y=<span class="hljs-string">&quot;&quot;</span><br><span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> x_list[<span class="hljs-number">0</span>:<span class="hljs-number">2</span>]+x_middle+x_list[-<span class="hljs-number">2</span>:]:<br>    y+=item<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;y&#x27;</span>, y)<br></code></pre></td></tr></table></figure>
-
-<h2 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h2><blockquote>
-<p>list 拼接：<code>&quot;&quot;.join(str)</code></p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">x = [<span class="hljs-string">&#x27;I&#x27;</span>, <span class="hljs-string">&#x27;have&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;pen&#x27;</span>]<br><span class="hljs-string">&quot;&quot;</span>.join(x)<br><span class="hljs-comment">## 按空格对元素进行拼接</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="字符型的日期可以做比较"><a href="#字符型的日期可以做比较" class="headerlink" title="字符型的日期可以做比较"></a>字符型的日期可以做比较</h2><p>比较的前提，必需符合格式：<code>YYYYMMDD</code></p>
-<p>【不正确的】<code>2025-09-14</code>, <code>2025年9月14日</code><br>【正确的】<code>20250914</code><br>【如何做比较呢？】</p>
-<pre><code>print(&#39;20250914&#39; &gt; &#39;20250913&#39;) # True
-</code></pre>
-<h2 id="自定义验证：仅包含字母（大小写都允许）"><a href="#自定义验证：仅包含字母（大小写都允许）" class="headerlink" title="自定义验证：仅包含字母（大小写都允许）"></a>自定义验证：仅包含字母（大小写都允许）</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">valid_alpha = <span class="hljs-keyword">lambda</span> x_str : <span class="hljs-built_in">all</span>(<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> i: <span class="hljs-string">&quot;a&quot;</span> &lt;= i &lt;= <span class="hljs-string">&quot;z&quot;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&quot;A&quot;</span> &lt;= i &lt;= <span class="hljs-string">&quot;Z&quot;</span>, x_str))<br></code></pre></td></tr></table></figure>
-<p>【知识点】</p>
-<ol>
-<li>匿名函数</li>
-<li>字母比较：是ASCII码值的比较</li>
-<li>map函数</li>
-<li>all函数：同JS的 every() 函数，如果元素都为真，则为真，否则为假</li>
-</ol>
-
-    </div>
-    <!-- 文章：声明 -->
-    <!-- 文章的声明 -->
-<div id="copy-icon-Python-字符串" style="word-wrap: break-word">
-    <p>
-        <strong>作者</strong>：
-        <span>粥记捣蛋</span>
-    </p>
-    <p>
-        <strong>文章链接</strong>：
-        <span>https://zexuisme.github.io/2025/09/04/Python/Python-%E5%AD%97%E7%AC%A6%E4%B8%B2/</span>
-    </p>
-    <p>
-        <strong>版权声明</strong>：
-        <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
-    </p>
-</div>
-    <!-- 文章：文章切换 -->
-    <div style="margin-top: 48px">
-<!-- 文章阅读页的切换按钮 -->
-<div class="post-toggle d-flex justify-between flex-wrap gap-3">
-    <button
-            class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/09/04/Python/Python-%E9%9B%86%E5%90%88/')"
-            
-    >上一篇: Python-set集合</button>
-    <button
-            class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/09/03/Python/Python-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/')"
-            
-    >下一篇: Python-基本语法</button>
-</div>
 
 <script>
-    class PostToggleEjs extends Blog {
-        constructor() {
-            super()
-        }
-
-        onclickLink (url) {
-            this.createALink(url, '_self')
-        }
-    }
-
-    const postToggleEjs = new PostToggleEjs()
-</script></div>
-
-</article>
-
-<div style="height: 80px"></div>
-
-<script>
-    class PostEjs extends Blog{
+    class Pagination extends Blog{
         constructor() {
             super();
+            // ...
+        }
+
+        onclickPage (url) {
+            this.createALink(url + '#home-post-list', '_self')
         }
     }
-    const postEjs = new PostEjs();
+
+    const pagination = new Pagination();
+</script>
+</div>
+
+<script>
+    const archiveEjs = {
+        handleChoose (event) {
+            const value = event.target.value
+
+            if (!value) {
+                console.error('分类参数异常！')
+                return
+            }
+
+            const blog = new Blog()
+
+            blog.createALink(value, '_self')
+        }
+    }
 </script>
     </div>
 

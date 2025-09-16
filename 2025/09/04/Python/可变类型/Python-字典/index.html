@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>Python-列表 | 粥记捣蛋</title>
+    <title>Python-dict | 粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -507,11 +507,11 @@
             <div class="media">
                 <div class="media-content">
                     <h1 class="title is-4 modify-post-title">
-                        <span class="has-text-info">Python-列表</span>
+                        <span class="has-text-info">Python-dict</span>
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-09 22:13
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-15 22:21
                     </p>
                 </div>
             </div>
@@ -524,9 +524,9 @@
     
         <a class="tag is-info is-light" href="/tags/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 0.875rem">基本数据类型</a>
     
-        <a class="tag is-info is-light" href="/tags/list/" style="font-size: 0.875rem">list</a>
+        <a class="tag is-info is-light" href="/tags/dict/" style="font-size: 0.875rem">dict</a>
     
-        <a class="tag is-info is-light" href="/tags/%E5%88%97%E8%A1%A8/" style="font-size: 0.875rem">列表</a>
+        <a class="tag is-info is-light" href="/tags/%E5%AD%97%E5%85%B8/" style="font-size: 0.875rem">字典</a>
     
 </span>
             <span>
@@ -540,101 +540,140 @@
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%85%83%E7%B4%A0"><span class="toc-number">1.</span> <span class="toc-text">修改元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0"><span class="toc-number">2.</span> <span class="toc-text">添加元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-number">3.</span> <span class="toc-text">删除元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">4.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">其他方法</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%94%AE%EF%BC%88key%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">获取键（key）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%80%BC%EF%BC%88value%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">获取值（value）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%97%B6%E8%8E%B7%E5%8F%96-key-value"><span class="toc-number">3.</span> <span class="toc-text">同时获取 key, value</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-dict"><span class="toc-number">4.</span> <span class="toc-text">构造函数 dict()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC%E6%9E%84%E9%80%A0%E5%AD%97%E5%85%B8"><span class="toc-number">5.</span> <span class="toc-text">推导构造字典</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E3%80%81%E4%BF%AE%E6%94%B9"><span class="toc-number">6.</span> <span class="toc-text">添加、修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-number">7.</span> <span class="toc-text">删除</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
-        <ul>
-<li>可变数据类型，属于<strong>引用数据类型</strong>，<ul>
-<li>引用数据类型的特点就是，一般情况下，即便元素相同，存储地址也是不同的</li>
-<li>链式赋值型的列表除外</li>
-</ul>
-</li>
-<li>修改、追加、删除都是针对列表内部，不会影响到存储地址，存储地址不会变</li>
-<li>支持切片，若切片超出索引范围，返回空列表（[]）</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">list</span> = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]<br><br><span class="hljs-built_in">list</span>[<span class="hljs-number">2</span>:<span class="hljs-number">5</span>] = [<span class="hljs-number">13</span>, <span class="hljs-number">14</span>, <span class="hljs-number">15</span>]<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>) <span class="hljs-comment"># [1, 2, 13, 14, 15, 6]</span><br><br><span class="hljs-built_in">list</span>[<span class="hljs-number">2</span>:<span class="hljs-number">5</span>] = []<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>) <span class="hljs-comment"># [1, 2, 6]</span><br></code></pre></td></tr></table></figure>
-
-<p><mark><code>list[2:5]</code>：可看做 [2, 5)，也就是下标 2,3,4</mark></p>
-<h2 id="修改元素"><a href="#修改元素" class="headerlink" title="修改元素"></a>修改元素</h2><pre><code>list = [1, 2, 3, 4, 5, 6]
-list[0] = 9
-print(list) # [9, 2, 3, 4, 5, 6]
-</code></pre>
-<p>若列表是空列表，空列表没有填充物，也就是没有下标<br>或者目标下标根本不存在，这样的无法通过下标进行赋值或修改</p>
-<h2 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h2><blockquote>
-<p>插入元素</p>
+        <blockquote>
+<p>Q：字典长什么样</p>
 </blockquote>
-<p><code>list.insert(1, &#39;abc&#39;)</code> 向列表的索引位置的<mark>右侧</mark>插入一个元素</p>
-<p><code>list.insert(-2, &#39;abc&#39;)</code> 向列表的索引位置的<mark>左侧</mark>插入一个元素</p>
+<p>字典，被花括号包裹的且是以键值对形式出现的就是字典</p>
+<pre><code>&#123; &quot;name&quot;: &quot;张三&quot;, &quot;age&quot;: 20 &#125;
+</code></pre>
+<p><code>&quot;name&quot;: &quot;张三&quot;</code> 就是键值对，<code>name</code> 叫 <code>key</code>，<code>张三</code> 叫 <code>value</code><br>其中，<strong><code>key</code>，必须用引号包裹</strong>，单双引号都可，键值对之间用逗号<code>,</code>隔开</p>
+<hr>
+<p>字典无法同字符、列表、元组一样做到翻倍输出，即：str * 2 这样的操作；<br>字符、列表、元组不能对空目标通过下标添加元素的操作，字典可以；<br>输出时，会自动去重；</p>
+<hr>
+<h2 id="获取键（key）"><a href="#获取键（key）" class="headerlink" title="获取键（key）"></a>获取键（key）</h2><p>方法：dict.keys()<br>返回值：dict_keys，是一个含有列表的元组</p>
+<pre><code>x = &#123; &quot;name&quot;: &quot;张三&quot;, &quot;age&quot;: 20 &#125;
+for item_key in x.keys():
+    print(&quot;key：&quot;, item_key)
+
+print(x.keys(), type(x.keys()))
+
+## 输出
+key： name
+key： age
+dict_keys([&#39;name&#39;, &#39;age&#39;]) &lt;class &#39;dict_keys&#39;&gt;
+</code></pre>
+<p>注意：key 不能重复，如果重复了呢？</p>
+<pre><code>x = &#123; &quot;name&quot;: &quot;张三&quot;, &quot;name&quot;: 20 &#125;
+print(x)
+
+## 输出
+&#123;&#39;name&#39;: 20&#125;
+</code></pre>
+<p><strong>如果重复</strong>了，那么<strong>后者覆盖前者</strong></p>
+<pre><code>    x = &#123; &quot;name&quot;: &quot;张三&quot;, &quot;age&quot;: 20 &#125;
+    for item in x:
+        print(&quot;item：&quot;, item)
+</code></pre>
 <blockquote>
-<p>追加元素</p>
+<p>Q：该断代码的打印结果是？</p>
 </blockquote>
-<p><code>list.append(&quot;efg&quot;)</code> 向列表的末尾（正向的下标的末尾）添加追加一个元素</p>
-<h2 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h2><p><code>list.pop()</code> 删除列表的最后一个元素，是影响列表本身的删除，会返回被移除的元素</p>
-<p><code>list.pop(index)</code> 通过提供指定的下标，移除指定位置处的元素</p>
-<p><code>list.remove(3)</code> 从列表中移除第一个是 3 的元素，且该方法没有返回值</p>
-<p><code>list.clear()</code> 清空列表</p>
-<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><p><code>list.sort()</code> 升序排序，无返回值</p>
-<p><code>list.sort(reverse=True)</code> 降序排序，无返回值</p>
-<p><code>lista.reverse()</code> 反转列表，无返回值</p>
-<pre><code>lista = [1,2,3,4,5]
-lista.reverse()
-print(lista) # [5, 4, 3, 2, 1]
+<pre><code>item: name
+item: age
 </code></pre>
-<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><p><code>list.count(5)</code> 统计5这个元素出现的次数</p>
-<pre><code>x = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1]
-y = x.count(5)
-print(y)
-</code></pre>
-<p><code>list.index(元素[, 起始下标][, 结束下标])</code>获取目标元素下标，返回目标元素下标</p>
-<p><code>list.copy()</code> 拷贝列表，属于浅拷贝，返回的是一个新列表，该列表是一个新的存储地址</p>
-<pre><code># x.cpoy()
-x = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1]
-y = x.copy()
-y[0] = 1
-print(&quot;x&quot;, x) # x 111
-print(&quot;y&quot;, y) # y 112
-</code></pre>
-<p>注意：如果是以赋值形式的完成的类似于复制的操作，它和源对象是同一个存储地址</p>
-<pre><code>x = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1]
-z = y
+<p>换言之，for in 循环时，dict.keys 或者 字典本身都可获得 key</p>
+<h2 id="获取值（value）"><a href="#获取值（value）" class="headerlink" title="获取值（value）"></a>获取值（value）</h2><p>方法：dict.values()<br>返回值：dict_values，是一个含有列表的元组</p>
+<pre><code>x = &#123; &quot;name&quot;: &quot;张三&quot;, &quot;age&quot;: 20 &#125;
+for item_value in x.values():
+    print(&quot;value：&quot;, item_value)
 
-print(&quot;x: &quot;id(x))
-print(&quot;z: &quot;id(z))
+print(x.values(), type(x.values()))
+
+## 输出
+value： 张三
+value： 20
+dict_values([&#39;张三&#39;, 20]) &lt;class &#39;dict_values&#39;&gt;
 </code></pre>
+<h2 id="同时获取-key-value"><a href="#同时获取-key-value" class="headerlink" title="同时获取 key, value"></a>同时获取 key, value</h2><p>方法：dict.items()<br>返回值：dict_items, </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> item_key, item_value <span class="hljs-keyword">in</span> x.items():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;key: &quot;</span>, item_key)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;value: &quot;</span>, item_value)<br><br><span class="hljs-built_in">print</span>(x.items())<br><span class="hljs-comment">## [(&#x27;name&#x27;, &#x27;runoob&#x27;), (&#x27;code&#x27;, 1), (&#x27;site&#x27;, &#x27;www.runoob.com&#x27;)]</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(x.items())) <span class="hljs-comment">## &lt;class &#x27;dict_items&#x27;&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="构造函数-dict"><a href="#构造函数-dict" class="headerlink" title="构造函数 dict()"></a>构造函数 dict()</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">## [(key, value), (key_1, value)]</span><br>x=<span class="hljs-built_in">dict</span>([(<span class="hljs-string">&#x27;Runoob&#x27;</span>, <span class="hljs-number">1</span>), (<span class="hljs-string">&#x27;Google&#x27;</span>, <span class="hljs-number">2</span>), (<span class="hljs-string">&#x27;Taobao&#x27;</span>, <span class="hljs-number">3</span>)])<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;x：&quot;</span>, x)<br><br>y=<span class="hljs-built_in">dict</span>(Runoob=<span class="hljs-number">1</span>, Google=<span class="hljs-number">2</span>, Taobao=<span class="hljs-number">3</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;y：&quot;</span>, y)<br><br>x：&#123;<span class="hljs-string">&#x27;Runoob&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Google&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;Taobao&#x27;</span>: <span class="hljs-number">3</span>&#125;<br>y：&#123;<span class="hljs-string">&#x27;Runoob&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Google&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;Taobao&#x27;</span>: <span class="hljs-number">3</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>x，通过列表元组的方式存放key, value，字典构造函数会对其进行处理，输出一份字典</p>
+<p>用构造方法创建字典，若遇到重复key，是怎么处理的：</p>
+<pre><code>z=dict([(&#39;Runoob&#39;, 1), (&#39;Runoob&#39;, 2), (&#39;Taobao&#39;, 3)])
+</code></pre>
+<p>正常输出一份字典，自动剔除重复的，以后者覆盖前者的方式<br>不一定拘泥于列表元组的形式，可以是</p>
+<pre><code>字典元组
+&#123;(&#39;a&#39;,1),(&#39;b&#39;,2),(&#39;c&#39;,3)&#125;
+列表列表
+[[&#39;a&#39;,1],[&#39;b&#39;,2],[&#39;c&#39;,3]]
+元组元组
+((&#39;a&#39;,1),(&#39;b&#39;,2),(&#39;c&#39;,3))
+</code></pre>
+<p>只要内部满足 key:value 即可</p>
+<hr>
+<pre><code>z=dict(Runoob=1, Runoob=2, Taobao=3)
+</code></pre>
+<p>运行时，终端报错</p>
+<h2 id="推导构造字典"><a href="#推导构造字典" class="headerlink" title="推导构造字典"></a>推导构造字典</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">&#123; x: x**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> (<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>) &#125;<br><br><span class="hljs-comment"># &#123; 2: 4, 4: 16, 6: 36 &#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>python 推导(<a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python-comprehensions.html">https://www.runoob.com/python3/python-comprehensions.html</a>)</p>
+<h2 id="添加、修改"><a href="#添加、修改" class="headerlink" title="添加、修改"></a>添加、修改</h2><pre><code>dict\[index] = value
+</code></pre>
+<p>既是添加也是修改</p>
+<pre><code>dict.setdefault(key, value)
+</code></pre>
+<p><code>setdefault</code>，若 key 不存在，则以键值对的形式添加进入字典，若存在则返回该 key 的 value</p>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p><code>dict.pop(key)</code>：指定删除<br><code>dict.popitem()</code>：随机删除</p>
 
     </div>
     <!-- 文章：声明 -->
     <!-- 文章的声明 -->
-<div id="copy-icon-Python-列表" style="word-wrap: break-word">
+<div id="copy-icon-Python-dict" style="word-wrap: break-word">
     <p>
         <strong>作者</strong>：
         <span>粥记捣蛋</span>
     </p>
     <p>
         <strong>文章链接</strong>：
-        <span>https://zexuisme.github.io/2025/09/07/Python/Python-%E5%88%97%E8%A1%A8/</span>
+        <span
+                id="article-link-span"
+                data-text="https://zexuisme.github.io/2025/09/04/Python/%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B/Python-%E5%AD%97%E5%85%B8/"
+        ></span>
     </p>
     <p>
         <strong>版权声明</strong>：
         <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
     </p>
 </div>
+
+<script>
+    console.log(document.getElementById("article-link-span"))
+    const linkDOM = document.getElementById("article-link-span")
+    if (linkDOM) {
+        let linkText = linkDOM.getAttribute("data-text")
+        linkDOM.innerHTML = `<a href="${linkText}" target="_blank">${ decodeURI(linkText)}</a>`
+    }
+</script>
     <!-- 文章：文章切换 -->
     <div style="margin-top: 48px">
 <!-- 文章阅读页的切换按钮 -->
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/09/08/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/')"
+            onclick="postToggleEjs.onclickLink('/2025/09/04/Python/Python-%E6%9D%A1%E4%BB%B6%E6%8E%A7%E5%88%B6/')"
             
-    >上一篇: 微信小程序测试</button>
+    >上一篇: Python-条件控制</button>
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/09/07/Python/Python-%E5%88%87%E7%89%87/')"
+            onclick="postToggleEjs.onclickLink('/2025/09/04/Python/%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B/Python-%E9%9B%86%E5%90%88/')"
             
-    >下一篇: Python-切片</button>
+    >下一篇: Python-set集合</button>
 </div>
 
 <script>

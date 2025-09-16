@@ -522,6 +522,8 @@
     
         <a class="tag is-info is-light" href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 0.875rem">软件测试</a>
     
+        <a class="tag is-info is-light" href="/tags/%E5%90%88%E5%B9%B6/" style="font-size: 0.875rem">合并</a>
+    
         <a class="tag is-info is-light" href="/tags/SQL/" style="font-size: 0.875rem">SQL</a>
     
         <a class="tag is-info is-light" href="/tags/%E7%BB%84%E5%90%88%E6%9F%A5%E8%AF%A2/" style="font-size: 0.875rem">组合查询</a>
@@ -529,8 +531,6 @@
         <a class="tag is-info is-light" href="/tags/JOIN/" style="font-size: 0.875rem">JOIN</a>
     
         <a class="tag is-info is-light" href="/tags/UNION/" style="font-size: 0.875rem">UNION</a>
-    
-        <a class="tag is-info is-light" href="/tags/%E5%90%88%E5%B9%B6/" style="font-size: 0.875rem">合并</a>
     
 </span>
             <span>
@@ -694,13 +694,25 @@
     </p>
     <p>
         <strong>文章链接</strong>：
-        <span>https://zexuisme.github.io/2025/08/03/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL-%E8%81%94%E6%9F%A5/</span>
+        <span
+                id="article-link-span"
+                data-text="https://zexuisme.github.io/2025/08/03/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL-%E8%81%94%E6%9F%A5/"
+        ></span>
     </p>
     <p>
         <strong>版权声明</strong>：
         <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
     </p>
 </div>
+
+<script>
+    console.log(document.getElementById("article-link-span"))
+    const linkDOM = document.getElementById("article-link-span")
+    if (linkDOM) {
+        let linkText = linkDOM.getAttribute("data-text")
+        linkDOM.innerHTML = `<a href="${linkText}" target="_blank">${ decodeURI(linkText)}</a>`
+    }
+</script>
     <!-- 文章：文章切换 -->
     <div style="margin-top: 48px">
 <!-- 文章阅读页的切换按钮 -->

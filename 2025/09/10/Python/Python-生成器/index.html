@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-14 16:51
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-15 22:21
                     </p>
                 </div>
             </div>
@@ -541,6 +541,8 @@
         <!-- Content -->
         <ol>
 <li><p>生成器对象是一个可迭代对象</p>
+</li>
+<li><p><strong>生成器创建后，如果不 next() 或 for in 或 list等操作，生成器中的函数不会被执行</strong>。</p>
 </li>
 <li><p><mark>直接获取生成器对象中的元素，每获取一次，长度 -1</mark></p>
 <p> score &#x3D; map(float, “85 90 100 60”.split())<br> print(“1”, tuple(score))  # (85, 90, 100, 60)<br> print(“2”, tuple(score))  # 它已经是一个空对象了</p>
@@ -575,13 +577,25 @@
     </p>
     <p>
         <strong>文章链接</strong>：
-        <span>https://zexuisme.github.io/2025/09/10/Python/Python-%E7%94%9F%E6%88%90%E5%99%A8/</span>
+        <span
+                id="article-link-span"
+                data-text="https://zexuisme.github.io/2025/09/10/Python/Python-%E7%94%9F%E6%88%90%E5%99%A8/"
+        ></span>
     </p>
     <p>
         <strong>版权声明</strong>：
         <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
     </p>
 </div>
+
+<script>
+    console.log(document.getElementById("article-link-span"))
+    const linkDOM = document.getElementById("article-link-span")
+    if (linkDOM) {
+        let linkText = linkDOM.getAttribute("data-text")
+        linkDOM.innerHTML = `<a href="${linkText}" target="_blank">${ decodeURI(linkText)}</a>`
+    }
+</script>
     <!-- 文章：文章切换 -->
     <div style="margin-top: 48px">
 <!-- 文章阅读页的切换按钮 -->

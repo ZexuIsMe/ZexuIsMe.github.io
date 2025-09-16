@@ -604,6 +604,165 @@
                     <!-- 文章预览时用 -->
 <section class="post-card box mbl py-6">
     <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Thu Jun 05 2025 15:38:35 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        Theme
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        没有摘要，点进来看看吧
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/05/Siemens/Theme/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Thu Jun 05 2025 15:34:53 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        西门子-构筑类API
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        <p>每次都向FB块中传入全局DB或者全局PLC编号变量，随着嵌入深度的增加，想要向外传递更改变量参数，会变得十分困难</p>
+<p>因此，构筑一个模块专门用来完成参数的修改，于是我想到了前后端接口的调用，所以尝试弄了一个简易版的传参，类似于前端的inject</p>
+<h2 id="创建对应API文件"><a href="#创建对应API文件" class="headerlink" title="创建对应API文件"></a>创建对应API文件</h2><ol>
+<li><p><strong>程序块 &gt; 右击程序块 &gt; “新增块”</strong><br>会创建一个文件夹，将其命名为API，之后这个文件夹只负责创建用于修改全局变量的FB块或者FC块</p>
+</li>
+<li><p><strong>PLC 数据类型 &gt; 右击PLC 数据类型 &gt; “新增块”</strong>：会创建一个文件夹，将其命名为 API，之后这个文件夹只负责创建用于修改全局变量的UDT</p>
+</li>
+</ol>
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/05/Siemens/%E8%A5%BF%E9%97%A8%E5%AD%90-%E6%9E%84%E7%AD%91%E7%B1%BBAPI/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Thu Jun 05 2025 09:05:57 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        Markdown语法
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        <p>[toc]</p>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><h3 id="插入本地图片"><a href="#插入本地图片" class="headerlink" title="插入本地图片"></a>插入本地图片</h3><pre><code>![avatar](/home/picture/1.png)  
+</code></pre>
+<p>只需要在基础语法的括号中填入图片的位置路径即可，支持绝对路径和相对路径。</p>
+<p><strong>Remark：</strong><br>不灵活不好分享，本地图片的路径更改或丢失都会造成markdown文件调不出图。</p>
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/05/Markdown/Markdown%E8%AF%AD%E6%B3%95/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Thu Jun 05 2025 09:05:06 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        Markdown渲染解析（测试：代码解析）
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        <h2 id="Markdown解析：showdown-js"><a href="#Markdown解析：showdown-js" class="headerlink" title="Markdown解析：showdown.js"></a>Markdown解析：<a target="_blank" rel="noopener" href="https://github.com/showdownjs/showdown">showdown.js</a></h2><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Showdown</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;showdown&#x27;</span><br><br><span class="hljs-keyword">const</span> converter = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Showdown</span>.<span class="hljs-title class_">Converter</span>(&#123;<br>  <span class="hljs-attr">tables</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">tasklists</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">smoothLivePreview</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">emoji</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// see https://github.com/showdownjs/showdown/wiki/Emojis (since v.1.8.0)</span><br>&#125;)<br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;markdown-content&#x27;</span>).<span class="hljs-property">innerHTML</span> = converter.<span class="hljs-title function_">makeHtml</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;payload.data&#125;</span><span class="hljs-subst">$&#123;text&#125;</span>`</span>)<br></code></pre></td></tr></table></figure>
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/05/Markdown/Markdown%E6%B8%B2%E6%9F%93%E8%A7%A3%E6%9E%90/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
         <span style="color: #adadad; font-size: 0.875rem">Wed Jun 04 2025 17:27:01 GMT+0800</span>
     </div>
     <div class="title is-5">
@@ -867,6 +1026,9 @@
     
         <!--\% console.log(item.name, item.parent) %\-->
         <div class="py-4 px-5" onclick="listArticleEjs.createALink('categories/碧海苍云录/', '_self')">碧海苍云录</div>
+    
+        <!--\% console.log(item.name, item.parent) %\-->
+        <div class="py-4 px-5" onclick="listArticleEjs.createALink('categories/自动化测试/', '_self')">自动化测试</div>
     
         <!--\% console.log(item.name, item.parent) %\-->
         <div class="py-4 px-5" onclick="listArticleEjs.createALink('categories/软件测试/', '_self')">软件测试</div>

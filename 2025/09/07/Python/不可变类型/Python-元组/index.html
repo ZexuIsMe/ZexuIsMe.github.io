@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>Python-float | 粥记捣蛋</title>
+    <title>Python-元组（tuple） | 粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -507,11 +507,11 @@
             <div class="media">
                 <div class="media-content">
                     <h1 class="title is-4 modify-post-title">
-                        <span class="has-text-info">Python-float</span>
+                        <span class="has-text-info">Python-元组（tuple）</span>
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-14 16:20
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-15 22:21
                     </p>
                 </div>
             </div>
@@ -522,7 +522,11 @@
     
         <a class="tag is-info is-light" href="/tags/Python/" style="font-size: 0.875rem">Python</a>
     
-        <a class="tag is-info is-light" href="/tags/float/" style="font-size: 0.875rem">float</a>
+        <a class="tag is-info is-light" href="/tags/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 0.875rem">基本数据类型</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E5%85%83%E7%BB%84/" style="font-size: 0.875rem">元组</a>
+    
+        <a class="tag is-info is-light" href="/tags/tuple/" style="font-size: 0.875rem">tuple</a>
     
 </span>
             <span>
@@ -536,78 +540,105 @@
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E5%9E%8B%E6%95%B0%E5%AD%97-0-00%EF%BC%8C%E5%AE%83%E6%98%AF%E5%8F%AF%E4%BB%A5%E6%9C%89%C2%B1"><span class="toc-number">1.</span> <span class="toc-text">浮点型数字 0.00，它是可以有±</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E7%A7%91%E5%AD%A6%E8%AE%A1%E6%95%B0%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">支持科学计数法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E6%96%AD"><span class="toc-number">3.</span> <span class="toc-text">判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%BA%E5%88%B6%E8%BD%AC%E6%8D%A2%EF%BC%9A%E6%B5%AE%E7%82%B9-%E3%80%8B-%E6%95%B4%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">强制转换：浮点 》 整数</span></a></li></ol></div>
+    <div></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
-        <p>用很少的存储空间可以保存很长的位数；<br>但精度不准，整体位长到16位开始精度开始不准；</p>
-<h2 id="浮点型数字-0-00，它是可以有±"><a href="#浮点型数字-0-00，它是可以有±" class="headerlink" title="浮点型数字 0.00，它是可以有±"></a>浮点型数字 <code>0.00</code>，它是可以有<code>±</code></h2><p>计算机中浮点数（如 Python 的 float 类型，遵循 IEEE 754 标准）用单独的符号位表示正负，即使数值为 0，符号位也可被设置为负（即 -0.0）。<br>在 Python 中，-0 会被解析为 -0.0（浮点数），其符号位为负，但数值部分与 0.0 相同。</p>
-<p>当直接打印 -0.0 时，Python 会保留其符号位，显示为 -0.0（或简化为 -0）。<br>这是因为虽然 -0.0 和 0.0 在数值上等价（-0.0 &#x3D;&#x3D; 0.0 结果为 True），但底层存储的符号位不同，Python 选择如实展示这一特性。</p>
-<pre><code>print(-0.00 == 0.00) True
-</code></pre>
-<p>数值<code>-0.00</code> 是数值 <code>-0.0</code><br>数值<code>+0.00</code> 是数值 <code>0.0</code></p>
-<blockquote>
-<p><strong>Q：明明就是 0.0，非得整个 -0.0，那么如何解决这个问题呢？</strong> </p>
-</blockquote>
-<p>解决方法就是<strong>加一个尾巴</strong>，比如这样</p>
-<pre><code>print(-0.0 + 0.000001) # 输出：0.000001
-</code></pre>
-<p>然后再保留需要的小数位，比如保留两位小数：</p>
-<pre><code>print(f&quot;&#123;(-0.0 + 0.000001):.2f&#125;&quot;)
-# 输出还是 0.00
-</code></pre>
-<p>所以，饶了一圈……</p>
-<h2 id="支持科学计数法"><a href="#支持科学计数法" class="headerlink" title="支持科学计数法"></a>支持科学计数法</h2><pre><code># 格式
-mE(e)n
-</code></pre>
-<ul>
-<li>m 表示底数</li>
-<li>n 表示指数</li>
-<li>mEn&#x3D;m*10 的n次方</li>
-</ul>
-<p>Eg:</p>
-<pre><code>print(-2e3) # -2000.00 》 -2*10*10*10
-print(-2e-3) # - 0.002 》 -2*0.1*0.1*0.1
-</code></pre>
-<h2 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-number">1</span> == <span class="hljs-number">1.0</span>) <span class="hljs-comment"># True</span><br></code></pre></td></tr></table></figure>
+        <p>与字符串一样，<strong><mark>元组</mark>通过下标修改元素是非法的，除非该元素是引用数据类型</strong><br>是 iterable 可迭代对象，<strong>支持切片</strong>；</p>
+<p><strong>若元组只有参数，需要在屁股后面添加一个逗号</strong>，表示这是一个元组：<code>(20,)</code><br><strong>只读数据类型</strong><br><strong>元组的访问速度比列表更快</strong>，因为元组的不可变性，让元组天生比列表少了很多代码，<strong>少即是快</strong></p>
+<span id="more"></span>
 
-<h2 id="强制转换：浮点-》-整数"><a href="#强制转换：浮点-》-整数" class="headerlink" title="强制转换：浮点 》 整数"></a>强制转换：浮点 》 整数</h2><p>直接取整，尾巴不要</p>
-<pre><code>print(int(1.5)) # 1
-print(int(-1.5)) # -1
+<p>方法：<br>count: 同 list.count<br>index: 同 list.index</p>
+<blockquote>
+<p>元组，特别的引用数据类型</p>
+</blockquote>
+<p>若元组内<mark>不存在</mark>引用数据类型，且存在相同的元组，那么它的存储地址是<mark>一样</mark>的</p>
+<pre><code>x = (1, 2, 3)
+y = (1, 2, 3)
+print(id(x), id(y))
+# 2239728983744 2239728983744
+</code></pre>
+<p>若元组内<mark>存在</mark>引用数据类型，且存在相同的元组，那么它的存储地址是<mark>不一样</mark>的</p>
+<pre><code>x = (1, [2, 3])
+y = (1, [2, 3])
+print(id(x), id(y))
+# 2510646136448 2510646136384
+</code></pre>
+<p>这里的代码涉及到<mark>深拷贝</mark>与<mark>浅拷贝</mark>相关知识</p>
+<blockquote>
+<p>元组遇到乘法：翻倍输出</p>
+</blockquote>
+<pre><code>x = (1, 2, 3)
+print(x * 2) # (1, 2, 3, 1, 2, 3)
+print(2 * x) # (1, 2, 3, 1, 2, 3)
+print(*x) # 1 2 3
+print(x*) # 非法输出
+print(**x) # 非法输出
+print(2**x) # 非法输出
+</code></pre>
+<p>注意：<code>print(*x)</code> 仅用于输出，不能用于变量赋值，用于变量赋值属于非法</p>
+<blockquote>
+<p>元组遇到加法（+）：合并</p>
+</blockquote>
+<pre><code>tuple = (123, &#39;runoob&#39;)
+tinytuple = (&#39;abcd&#39;, 786 )
+print(tuple + tinytuple) # 拼接
+## (123, &#39;runoob&#39;, &#39;abcd&#39;, 786 )
+</code></pre>
+<blockquote>
+<p>通过索引访问时不可超出范围</p>
+</blockquote>
+<pre><code>x = (1, 2, 3)
+print(x[3:]) # ()
+print(x[3])
+# IndexError: tuple index out of range
+# 索引错误：元组索引超出范围
 </code></pre>
 
     </div>
     <!-- 文章：声明 -->
     <!-- 文章的声明 -->
-<div id="copy-icon-Python-float" style="word-wrap: break-word">
+<div id="copy-icon-Python-元组（tuple）" style="word-wrap: break-word">
     <p>
         <strong>作者</strong>：
         <span>粥记捣蛋</span>
     </p>
     <p>
         <strong>文章链接</strong>：
-        <span>https://zexuisme.github.io/2025/09/14/Python/Python-float/</span>
+        <span
+                id="article-link-span"
+                data-text="https://zexuisme.github.io/2025/09/07/Python/%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B/Python-%E5%85%83%E7%BB%84/"
+        ></span>
     </p>
     <p>
         <strong>版权声明</strong>：
         <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
     </p>
 </div>
+
+<script>
+    console.log(document.getElementById("article-link-span"))
+    const linkDOM = document.getElementById("article-link-span")
+    if (linkDOM) {
+        let linkText = linkDOM.getAttribute("data-text")
+        linkDOM.innerHTML = `<a href="${linkText}" target="_blank">${ decodeURI(linkText)}</a>`
+    }
+</script>
     <!-- 文章：文章切换 -->
     <div style="margin-top: 48px">
 <!-- 文章阅读页的切换按钮 -->
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/')"
-            disabled
-    >上一篇: 无</button>
+            onclick="postToggleEjs.onclickLink('/2025/09/07/Python/Python-%E5%88%87%E7%89%87/')"
+            
+    >上一篇: Python-切片</button>
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/09/13/Python/Python-%E5%87%BD%E6%95%B0-%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0/')"
+            onclick="postToggleEjs.onclickLink('/2025/09/05/Python/Python-%E5%87%BD%E6%95%B0/')"
             
-    >下一篇: Python-内置函数</button>
+    >下一篇: Python-函数</button>
 </div>
 
 <script>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>Python-dict | 粥记捣蛋</title>
+    <title>粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -344,10 +344,10 @@
                             
                             <div
                                     class="px-8 menu-label d-flex align-center
-                                    "
+                                    v-bg-primary"
                                     style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
                             >
-                                <a href="/archives" style="color: #00586d ">归档</a>
+                                <a href="/archives" style="color: #EEE ">归档</a>
                             </div>
                         
                             
@@ -481,214 +481,136 @@
     }
 </style>
     <div id="blog-body">
-        <!-- 渲染：阅读整篇文章 -->
+        <!-- Archive: 归档页 -->
 <style>
-    #read-post {
-        min-height: calc(100% - 210px);
-        max-width: 85%;
-        margin: auto;
-    }
-
-    @media (max-width: 768px) {
-        #read-post {
-            max-width: 85%;
-        }
+    #article-table tbody td {
+        padding: 12px;
     }
 </style>
 
 
+<div class="container " style="padding: 0 24px">
+    <!-- 一般用于 section 标题 -->
+<h1 class="title is-4 d-flex align-center" style="padding: 120px 0 60px 0; font-family: 'ZiHunLongTengKaiShu', serif">
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+    <span style="white-space: nowrap; color: black" class="mx-4">
+                <i class="fas fa-boxes"></i>
+                <span class="ml-4">归档 - 元组</span>
+            </span>
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+</h1>
 
-<div style="height: 80px"></div>
+<!--<script>-->
+<!--    console.log({-->
+<!--        icon: '', // 这里的图标需要是完整的-->
+<!--        name: '', // 标题的名字-->
+<!--        color: '', // 字体颜色-->
+<!--    })-->
+<!--</script>-->
 
-<article id="read-post">
-    <!-- Title -->
-    <div class="level">
-        <div class="level-left">
-            <div class="media">
-                <div class="media-content">
-                    <h1 class="title is-4 modify-post-title">
-                        <span class="has-text-info">Python-dict</span>
-                    </h1>
-                    <p class="subtitle is-6">
-                        <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-07 21:13
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- 文章标签 -->
-        <div class="pt-4">
-            <span>
+    <div id="article-table" class="table-wrapper">
+        <table class="table is-striped is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th style=""></th>
+                    <th style="">标签</th>
+                    <th style="" class="d-flex align-center">分类 </th>
+                    <th style="text-align: center">创作时间</th>
+                    <th style="text-align: center">更新时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+
+            <tbody style="font-size: 1rem">
+                
+                    <tr>
+                        <td style="max-width: 180px">
+                            <a href="/2025/09/07/Python/%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B/Python-%E5%85%83%E7%BB%84/">
+                                Python-元组（tuple）
+                            </a>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
     
         <a class="tag is-info is-light" href="/tags/Python/" style="font-size: 0.875rem">Python</a>
     
         <a class="tag is-info is-light" href="/tags/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 0.875rem">基本数据类型</a>
     
-        <a class="tag is-info is-light" href="/tags/dict/" style="font-size: 0.875rem">dict</a>
+        <a class="tag is-info is-light" href="/tags/%E5%85%83%E7%BB%84/" style="font-size: 0.875rem">元组</a>
     
-        <a class="tag is-info is-light" href="/tags/%E5%AD%97%E5%85%B8/" style="font-size: 0.875rem">字典</a>
+        <a class="tag is-info is-light" href="/tags/tuple/" style="font-size: 0.875rem">tuple</a>
     
-</span>
-            <span>
+
+                            </div>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
     
         <a class="tag is-warning is-light" href="/categories/Python/" style="font-size: 0.875rem">Python</a>
     
         <a class="tag is-warning is-light" href="/categories/Python/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 0.875rem">数据类型</a>
     
-</span>
-        </div>
+
+                            </div>
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-09-07 21:04
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-09-15 22:21
+                        </td>
+
+                        <td style="vertical-align: middle">
+                            <a href="/2025/09/07/Python/%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B/Python-%E5%85%83%E7%BB%84/">
+                                <i class="far fa-hand-point-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                
+            </tbody>
+        </table>
     </div>
 
-    <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%94%AE%EF%BC%88key%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">获取键（key）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%80%BC%EF%BC%88value%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">获取值（value）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%97%B6%E8%8E%B7%E5%8F%96-key-value"><span class="toc-number">3.</span> <span class="toc-text">同时获取 key, value</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-dict"><span class="toc-number">4.</span> <span class="toc-text">构造函数 dict()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC%E6%9E%84%E9%80%A0%E5%AD%97%E5%85%B8"><span class="toc-number">5.</span> <span class="toc-text">推导构造字典</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E3%80%81%E4%BF%AE%E6%94%B9"><span class="toc-number">6.</span> <span class="toc-text">添加、修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-number">7.</span> <span class="toc-text">删除</span></a></li></ol></div>
-    <!-- 文章：内容 -->
-    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
-        <hr />
-        <!-- Content -->
-        <blockquote>
-<p>Q：字典长什么样</p>
-</blockquote>
-<p>字典，被花括号包裹的且是以键值对形式出现的就是字典</p>
-<pre><code>&#123; &quot;name&quot;: &quot;张三&quot;, &quot;age&quot;: 20 &#125;
-</code></pre>
-<p><code>&quot;name&quot;: &quot;张三&quot;</code> 就是键值对，<code>name</code> 叫 <code>key</code>，<code>张三</code> 叫 <code>value</code><br>其中，<strong><code>key</code>，必须用引号包裹</strong>，单双引号都可，键值对之间用逗号<code>,</code>隔开</p>
-<hr>
-<p>字典无法同字符、列表、元组一样做到翻倍输出，即：str * 2 这样的操作；<br>字符、列表、元组不能对空目标通过下标添加元素的操作，字典可以；<br>输出时，会自动去重；</p>
-<hr>
-<h2 id="获取键（key）"><a href="#获取键（key）" class="headerlink" title="获取键（key）"></a>获取键（key）</h2><p>方法：dict.keys()<br>返回值：dict_keys，是一个含有列表的元组</p>
-<pre><code>x = &#123; &quot;name&quot;: &quot;张三&quot;, &quot;age&quot;: 20 &#125;
-for item_key in x.keys():
-    print(&quot;key：&quot;, item_key)
+    
 
-print(x.keys(), type(x.keys()))
-
-## 输出
-key： name
-key： age
-dict_keys([&#39;name&#39;, &#39;age&#39;]) &lt;class &#39;dict_keys&#39;&gt;
-</code></pre>
-<p>注意：key 不能重复，如果重复了呢？</p>
-<pre><code>x = &#123; &quot;name&quot;: &quot;张三&quot;, &quot;name&quot;: 20 &#125;
-print(x)
-
-## 输出
-&#123;&#39;name&#39;: 20&#125;
-</code></pre>
-<p><strong>如果重复</strong>了，那么<strong>后者覆盖前者</strong></p>
-<pre><code>    x = &#123; &quot;name&quot;: &quot;张三&quot;, &quot;age&quot;: 20 &#125;
-    for item in x:
-        print(&quot;item：&quot;, item)
-</code></pre>
-<blockquote>
-<p>Q：该断代码的打印结果是？</p>
-</blockquote>
-<pre><code>item: name
-item: age
-</code></pre>
-<p>换言之，for in 循环时，dict.keys 或者 字典本身都可获得 key</p>
-<h2 id="获取值（value）"><a href="#获取值（value）" class="headerlink" title="获取值（value）"></a>获取值（value）</h2><p>方法：dict.values()<br>返回值：dict_values，是一个含有列表的元组</p>
-<pre><code>x = &#123; &quot;name&quot;: &quot;张三&quot;, &quot;age&quot;: 20 &#125;
-for item_value in x.values():
-    print(&quot;value：&quot;, item_value)
-
-print(x.values(), type(x.values()))
-
-## 输出
-value： 张三
-value： 20
-dict_values([&#39;张三&#39;, 20]) &lt;class &#39;dict_values&#39;&gt;
-</code></pre>
-<h2 id="同时获取-key-value"><a href="#同时获取-key-value" class="headerlink" title="同时获取 key, value"></a>同时获取 key, value</h2><p>方法：dict.items()<br>返回值：dict_items, </p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> item_key, item_value <span class="hljs-keyword">in</span> x.items():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;key: &quot;</span>, item_key)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;value: &quot;</span>, item_value)<br><br><span class="hljs-built_in">print</span>(x.items())<br><span class="hljs-comment">## [(&#x27;name&#x27;, &#x27;runoob&#x27;), (&#x27;code&#x27;, 1), (&#x27;site&#x27;, &#x27;www.runoob.com&#x27;)]</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(x.items())) <span class="hljs-comment">## &lt;class &#x27;dict_items&#x27;&gt;</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="构造函数-dict"><a href="#构造函数-dict" class="headerlink" title="构造函数 dict()"></a>构造函数 dict()</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">## [(key, value), (key_1, value)]</span><br>x=<span class="hljs-built_in">dict</span>([(<span class="hljs-string">&#x27;Runoob&#x27;</span>, <span class="hljs-number">1</span>), (<span class="hljs-string">&#x27;Google&#x27;</span>, <span class="hljs-number">2</span>), (<span class="hljs-string">&#x27;Taobao&#x27;</span>, <span class="hljs-number">3</span>)])<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;x：&quot;</span>, x)<br><br>y=<span class="hljs-built_in">dict</span>(Runoob=<span class="hljs-number">1</span>, Google=<span class="hljs-number">2</span>, Taobao=<span class="hljs-number">3</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;y：&quot;</span>, y)<br><br>x：&#123;<span class="hljs-string">&#x27;Runoob&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Google&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;Taobao&#x27;</span>: <span class="hljs-number">3</span>&#125;<br>y：&#123;<span class="hljs-string">&#x27;Runoob&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Google&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;Taobao&#x27;</span>: <span class="hljs-number">3</span>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>x，通过列表元组的方式存放key, value，字典构造函数会对其进行处理，输出一份字典</p>
-<p>用构造方法创建字典，若遇到重复key，是怎么处理的：</p>
-<pre><code>z=dict([(&#39;Runoob&#39;, 1), (&#39;Runoob&#39;, 2), (&#39;Taobao&#39;, 3)])
-</code></pre>
-<p>正常输出一份字典，自动剔除重复的，以后者覆盖前者的方式<br>不一定拘泥于列表元组的形式，可以是</p>
-<pre><code>字典元组
-&#123;(&#39;a&#39;,1),(&#39;b&#39;,2),(&#39;c&#39;,3)&#125;
-列表列表
-[[&#39;a&#39;,1],[&#39;b&#39;,2],[&#39;c&#39;,3]]
-元组元组
-((&#39;a&#39;,1),(&#39;b&#39;,2),(&#39;c&#39;,3))
-</code></pre>
-<p>只要内部满足 key:value 即可</p>
-<hr>
-<pre><code>z=dict(Runoob=1, Runoob=2, Taobao=3)
-</code></pre>
-<p>运行时，终端报错</p>
-<h2 id="推导构造字典"><a href="#推导构造字典" class="headerlink" title="推导构造字典"></a>推导构造字典</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">&#123; x: x**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> (<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>) &#125;<br><br><span class="hljs-comment"># &#123; 2: 4, 4: 16, 6: 36 &#125;</span><br></code></pre></td></tr></table></figure>
-
-<p>python 推导(<a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python-comprehensions.html">https://www.runoob.com/python3/python-comprehensions.html</a>)</p>
-<h2 id="添加、修改"><a href="#添加、修改" class="headerlink" title="添加、修改"></a>添加、修改</h2><pre><code>dict\[index] = value
-</code></pre>
-<p>既是添加也是修改</p>
-<pre><code>dict.setdefault(key, value)
-</code></pre>
-<p><code>setdefault</code>，若 key 不存在，则以键值对的形式添加进入字典，若存在则返回该 key 的 value</p>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p><code>dict.pop(key)</code>：指定删除<br><code>dict.popitem()</code>：随机删除</p>
-
-    </div>
-    <!-- 文章：声明 -->
-    <!-- 文章的声明 -->
-<div id="copy-icon-Python-dict" style="word-wrap: break-word">
-    <p>
-        <strong>作者</strong>：
-        <span>粥记捣蛋</span>
-    </p>
-    <p>
-        <strong>文章链接</strong>：
-        <span>https://zexuisme.github.io/2025/09/04/Python/Python-%E5%AD%97%E5%85%B8/</span>
-    </p>
-    <p>
-        <strong>版权声明</strong>：
-        <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
-    </p>
-</div>
-    <!-- 文章：文章切换 -->
-    <div style="margin-top: 48px">
-<!-- 文章阅读页的切换按钮 -->
-<div class="post-toggle d-flex justify-between flex-wrap gap-3">
-    <button
-            class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/09/04/Python/Python-%E6%9D%A1%E4%BB%B6%E6%8E%A7%E5%88%B6/')"
-            
-    >上一篇: Python-条件控制</button>
-    <button
-            class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/09/04/Python/Python-%E9%9B%86%E5%90%88/')"
-            
-    >下一篇: Python-set集合</button>
-</div>
 
 <script>
-    class PostToggleEjs extends Blog {
-        constructor() {
-            super()
-        }
-
-        onclickLink (url) {
-            this.createALink(url, '_self')
-        }
-    }
-
-    const postToggleEjs = new PostToggleEjs()
-</script></div>
-
-</article>
-
-<div style="height: 80px"></div>
-
-<script>
-    class PostEjs extends Blog{
+    class Pagination extends Blog{
         constructor() {
             super();
+            // ...
+        }
+
+        onclickPage (url) {
+            this.createALink(url + '#home-post-list', '_self')
         }
     }
-    const postEjs = new PostEjs();
+
+    const pagination = new Pagination();
+</script>
+</div>
+
+<script>
+    const archiveEjs = {
+        handleChoose (event) {
+            const value = event.target.value
+
+            if (!value) {
+                console.error('分类参数异常！')
+                return
+            }
+
+            const blog = new Blog()
+
+            blog.createALink(value, '_self')
+        }
+    }
 </script>
     </div>
 

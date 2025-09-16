@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>Python-元祖（tuple） | 粥记捣蛋</title>
+    <title>Python-列表 | 粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -507,11 +507,11 @@
             <div class="media">
                 <div class="media-content">
                     <h1 class="title is-4 modify-post-title">
-                        <span class="has-text-info">Python-元祖（tuple）</span>
+                        <span class="has-text-info">Python-列表</span>
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-14 09:43
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-15 22:21
                     </p>
                 </div>
             </div>
@@ -522,9 +522,9 @@
     
         <a class="tag is-info is-light" href="/tags/Python/" style="font-size: 0.875rem">Python</a>
     
-        <a class="tag is-info is-light" href="/tags/%E5%85%83%E7%A5%96/" style="font-size: 0.875rem">元祖</a>
+        <a class="tag is-info is-light" href="/tags/list/" style="font-size: 0.875rem">list</a>
     
-        <a class="tag is-info is-light" href="/tags/tuple/" style="font-size: 0.875rem">tuple</a>
+        <a class="tag is-info is-light" href="/tags/%E5%88%97%E8%A1%A8/" style="font-size: 0.875rem">列表</a>
     
         <a class="tag is-info is-light" href="/tags/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 0.875rem">基本数据类型</a>
     
@@ -540,93 +540,113 @@
     </div>
 
     <!-- 目录  -->
-    <div></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%85%83%E7%B4%A0"><span class="toc-number">1.</span> <span class="toc-text">修改元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0"><span class="toc-number">2.</span> <span class="toc-text">添加元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-number">3.</span> <span class="toc-text">删除元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">4.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">其他方法</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
-        <p>与字符串一样，<strong><mark>元组</mark>通过下标修改元素是非法的，除非该元素是引用数据类型</strong><br>是 iterable 可迭代对象，<strong>支持切片</strong>；</p>
-<p><strong>若元组只有参数，需要在屁股后面添加一个逗号</strong>，表示这是一个元组：<code>(20,)</code><br><strong>只读数据类型</strong><br><strong>元组的访问速度比列表更快</strong>，因为元组的不可变性，让元组天生比列表少了很多代码，<strong>少即是快</strong></p>
-<span id="more"></span>
+        <ul>
+<li>可变数据类型，属于<strong>引用数据类型</strong>，<ul>
+<li>引用数据类型的特点就是，一般情况下，即便元素相同，存储地址也是不同的</li>
+<li>链式赋值型的列表除外</li>
+</ul>
+</li>
+<li>修改、追加、删除都是针对列表内部，不会影响到存储地址，存储地址不会变</li>
+<li>支持切片，若切片超出索引范围，返回空列表（[]）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">list</span> = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]<br><br><span class="hljs-built_in">list</span>[<span class="hljs-number">2</span>:<span class="hljs-number">5</span>] = [<span class="hljs-number">13</span>, <span class="hljs-number">14</span>, <span class="hljs-number">15</span>]<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>) <span class="hljs-comment"># [1, 2, 13, 14, 15, 6]</span><br><br><span class="hljs-built_in">list</span>[<span class="hljs-number">2</span>:<span class="hljs-number">5</span>] = []<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>) <span class="hljs-comment"># [1, 2, 6]</span><br></code></pre></td></tr></table></figure>
 
-<p>方法：<br>count: 同 list.count<br>index: 同 list.index</p>
-<blockquote>
-<p>元组，特别的引用数据类型</p>
-</blockquote>
-<p>若元组内<mark>不存在</mark>引用数据类型，且存在相同的元组，那么它的存储地址是<mark>一样</mark>的</p>
-<pre><code>x = (1, 2, 3)
-y = (1, 2, 3)
-print(id(x), id(y))
-# 2239728983744 2239728983744
+<p><mark><code>list[2:5]</code>：可看做 [2, 5)，也就是下标 2,3,4</mark></p>
+<h2 id="修改元素"><a href="#修改元素" class="headerlink" title="修改元素"></a>修改元素</h2><pre><code>list = [1, 2, 3, 4, 5, 6]
+list[0] = 9
+print(list) # [9, 2, 3, 4, 5, 6]
 </code></pre>
-<p>若元组内<mark>存在</mark>引用数据类型，且存在相同的元组，那么它的存储地址是<mark>不一样</mark>的</p>
-<pre><code>x = (1, [2, 3])
-y = (1, [2, 3])
-print(id(x), id(y))
-# 2510646136448 2510646136384
-</code></pre>
-<p>这里的代码涉及到<mark>深拷贝</mark>与<mark>浅拷贝</mark>相关知识</p>
-<blockquote>
-<p>元组遇到乘法：翻倍输出</p>
+<p>若列表是空列表，空列表没有填充物，也就是没有下标<br>或者目标下标根本不存在，这样的无法通过下标进行赋值或修改</p>
+<h2 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h2><blockquote>
+<p>插入元素</p>
 </blockquote>
-<pre><code>x = (1, 2, 3)
-print(x * 2) # (1, 2, 3, 1, 2, 3)
-print(2 * x) # (1, 2, 3, 1, 2, 3)
-print(*x) # 1 2 3
-print(x*) # 非法输出
-print(**x) # 非法输出
-print(2**x) # 非法输出
-</code></pre>
-<p>注意：<code>print(*x)</code> 仅用于输出，不能用于变量赋值，用于变量赋值属于非法</p>
+<p><code>list.insert(1, &#39;abc&#39;)</code> 向列表的索引位置的<mark>右侧</mark>插入一个元素</p>
+<p><code>list.insert(-2, &#39;abc&#39;)</code> 向列表的索引位置的<mark>左侧</mark>插入一个元素</p>
 <blockquote>
-<p>元组遇到加法（+）：合并</p>
+<p>追加元素</p>
 </blockquote>
-<pre><code>tuple = (123, &#39;runoob&#39;)
-tinytuple = (&#39;abcd&#39;, 786 )
-print(tuple + tinytuple) # 拼接
-## (123, &#39;runoob&#39;, &#39;abcd&#39;, 786 )
+<p><code>list.append(&quot;efg&quot;)</code> 向列表的末尾（正向的下标的末尾）添加追加一个元素</p>
+<h2 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h2><p><code>list.pop()</code> 删除列表的最后一个元素，是影响列表本身的删除，会返回被移除的元素</p>
+<p><code>list.pop(index)</code> 通过提供指定的下标，移除指定位置处的元素</p>
+<p><code>list.remove(3)</code> 从列表中移除第一个是 3 的元素，且该方法没有返回值</p>
+<p><code>list.clear()</code> 清空列表</p>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><p><code>list.sort()</code> 升序排序，无返回值</p>
+<p><code>list.sort(reverse=True)</code> 降序排序，无返回值</p>
+<p><code>lista.reverse()</code> 反转列表，无返回值</p>
+<pre><code>lista = [1,2,3,4,5]
+lista.reverse()
+print(lista) # [5, 4, 3, 2, 1]
 </code></pre>
-<blockquote>
-<p>通过索引访问时不可超出范围</p>
-</blockquote>
-<pre><code>x = (1, 2, 3)
-print(x[3:]) # ()
-print(x[3])
-# IndexError: tuple index out of range
-# 索引错误：元组索引超出范围
+<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><p><code>list.count(5)</code> 统计5这个元素出现的次数</p>
+<pre><code>x = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1]
+y = x.count(5)
+print(y)
+</code></pre>
+<p><code>list.index(元素[, 起始下标][, 结束下标])</code>获取目标元素下标，返回目标元素下标</p>
+<p><code>list.copy()</code> 拷贝列表，属于浅拷贝，返回的是一个新列表，该列表是一个新的存储地址</p>
+<pre><code># x.cpoy()
+x = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1]
+y = x.copy()
+y[0] = 1
+print(&quot;x&quot;, x) # x 111
+print(&quot;y&quot;, y) # y 112
+</code></pre>
+<p>注意：如果是以赋值形式的完成的类似于复制的操作，它和源对象是同一个存储地址</p>
+<pre><code>x = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1]
+z = y
+
+print(&quot;x: &quot;id(x))
+print(&quot;z: &quot;id(z))
 </code></pre>
 
     </div>
     <!-- 文章：声明 -->
     <!-- 文章的声明 -->
-<div id="copy-icon-Python-元祖（tuple）" style="word-wrap: break-word">
+<div id="copy-icon-Python-列表" style="word-wrap: break-word">
     <p>
         <strong>作者</strong>：
         <span>粥记捣蛋</span>
     </p>
     <p>
         <strong>文章链接</strong>：
-        <span>https://zexuisme.github.io/2025/09/07/Python/Python-%E5%85%83%E7%A5%96/</span>
+        <span
+                id="article-link-span"
+                data-text="https://zexuisme.github.io/2025/09/07/Python/%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B/Python-%E5%88%97%E8%A1%A8/"
+        ></span>
     </p>
     <p>
         <strong>版权声明</strong>：
         <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
     </p>
 </div>
+
+<script>
+    console.log(document.getElementById("article-link-span"))
+    const linkDOM = document.getElementById("article-link-span")
+    if (linkDOM) {
+        let linkText = linkDOM.getAttribute("data-text")
+        linkDOM.innerHTML = `<a href="${linkText}" target="_blank">${ decodeURI(linkText)}</a>`
+    }
+</script>
     <!-- 文章：文章切换 -->
     <div style="margin-top: 48px">
 <!-- 文章阅读页的切换按钮 -->
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/09/07/Python/Python-%E5%88%87%E7%89%87/')"
+            onclick="postToggleEjs.onclickLink('/2025/09/08/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/')"
             
-    >上一篇: Python-切片</button>
+    >上一篇: 微信小程序测试</button>
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/09/05/Python/Python-%E5%87%BD%E6%95%B0/')"
+            onclick="postToggleEjs.onclickLink('/2025/09/07/Python/Python-%E5%88%87%E7%89%87/')"
             
-    >下一篇: Python-函数</button>
+    >下一篇: Python-切片</button>
 </div>
 
 <script>

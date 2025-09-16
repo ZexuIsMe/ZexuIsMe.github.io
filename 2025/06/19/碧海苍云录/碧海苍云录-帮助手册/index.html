@@ -656,13 +656,25 @@
     </p>
     <p>
         <strong>文章链接</strong>：
-        <span>https://zexuisme.github.io/2025/06/19/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95-%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/</span>
+        <span
+                id="article-link-span"
+                data-text="https://zexuisme.github.io/2025/06/19/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95-%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/"
+        ></span>
     </p>
     <p>
         <strong>版权声明</strong>：
         <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
     </p>
 </div>
+
+<script>
+    console.log(document.getElementById("article-link-span"))
+    const linkDOM = document.getElementById("article-link-span")
+    if (linkDOM) {
+        let linkText = linkDOM.getAttribute("data-text")
+        linkDOM.innerHTML = `<a href="${linkText}" target="_blank">${ decodeURI(linkText)}</a>`
+    }
+</script>
     <!-- 文章：文章切换 -->
     <div style="margin-top: 48px">
 <!-- 文章阅读页的切换按钮 -->

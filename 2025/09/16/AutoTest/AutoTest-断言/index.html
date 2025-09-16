@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>Python-set集合 | 粥记捣蛋</title>
+    <title>AutoTest-断言 | 粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -507,11 +507,11 @@
             <div class="media">
                 <div class="media-content">
                     <h1 class="title is-4 modify-post-title">
-                        <span class="has-text-info">Python-set集合</span>
+                        <span class="has-text-info">AutoTest-断言</span>
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-07 21:37
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-16 23:18
                     </p>
                 </div>
             </div>
@@ -520,151 +520,139 @@
         <div class="pt-4">
             <span>
     
-        <a class="tag is-info is-light" href="/tags/Python/" style="font-size: 0.875rem">Python</a>
+        <a class="tag is-info is-light" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" style="font-size: 0.875rem">自动化测试</a>
     
-        <a class="tag is-info is-light" href="/tags/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 0.875rem">基本数据类型</a>
+        <a class="tag is-info is-light" href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 0.875rem">软件测试</a>
     
-        <a class="tag is-info is-light" href="/tags/set/" style="font-size: 0.875rem">set</a>
+        <a class="tag is-info is-light" href="/tags/%E6%96%AD%E8%A8%80/" style="font-size: 0.875rem">断言</a>
     
 </span>
             <span>
     
-        <a class="tag is-warning is-light" href="/categories/Python/" style="font-size: 0.875rem">Python</a>
+        <a class="tag is-warning is-light" href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" style="font-size: 0.875rem">自动化测试</a>
     
-        <a class="tag is-warning is-light" href="/categories/Python/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 0.875rem">基本数据类型</a>
+        <a class="tag is-warning is-light" href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/%E6%96%AD%E8%A8%80/" style="font-size: 0.875rem">断言</a>
     
 </span>
         </div>
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97"><span class="toc-number">1.</span> <span class="toc-text">集合运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">方法</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E4%B8%A4%E4%B8%AA%E5%80%BC%E6%98%AF%E5%90%A6%E7%9B%B8%E7%AD%89%EF%BC%9Aself-assertEqual"><span class="toc-number">1.</span> <span class="toc-text">检查两个值是否相等：self.assertEqual()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E4%B8%A4%E4%B8%AA%E5%80%BC%E6%98%AF%E5%90%A6%E4%B8%8D%E7%9B%B8%E7%AD%89%EF%BC%9Aself-assertNotEqual"><span class="toc-number">2.</span> <span class="toc-text">检查两个值是否不相等：self.assertNotEqual()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%EF%BC%88-%EF%BC%89%EF%BC%9Aself-assertLess"><span class="toc-number">3.</span> <span class="toc-text">比较（ &lt; ）：self.assertLess()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%EF%BC%88-%EF%BC%89%EF%BC%9Aself-assertGreater"><span class="toc-number">4.</span> <span class="toc-text">比较（ &gt; ）：self.assertGreater()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%EF%BC%88Bool-%E4%B8%BA-True%EF%BC%89-self-assertTrue"><span class="toc-number">5.</span> <span class="toc-text">布尔（Bool 为 True）: self.assertTrue()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%EF%BC%88Bool-%E4%B8%BA-True%EF%BC%89-self-assertFalse"><span class="toc-number">6.</span> <span class="toc-text">布尔（Bool 为 True）: self.assertFalse()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E5%90%8E%E8%80%85%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E5%89%8D%E8%80%85%EF%BC%9Aself-assertIn"><span class="toc-number">7.</span> <span class="toc-text">判断后者是否包含前者：self.assertIn()</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
-        <pre><code>sites = &#123;&#39;Google&#39;, &#39;Taobao&#39;, &#39;Runoob&#39;, &#39;Facebook&#39;, &#39;Zhihu&#39;, &#39;Baidu&#39;&#125;
-</code></pre>
-<p>集合使用大括号 <code>&#123;&#125;</code> 表示，元素之间用逗号隔开，或使用 <code>set()</code> 函数创建集合；<br><strong>自动去重</strong></p>
+        <p>【适用场景】</p>
+<ul>
+<li>检查函数参数的有效性</li>
+<li>验证程序内部状态的正确性</li>
+<li>作为开发文档，明确表达代码的假设条件</li>
+<li>调试时快速定位问题</li>
+</ul>
+<p>断言是提高代码可靠性的有效工具，但要注意它不能替代 proper（恰当的、合适的、规范的）错误处理机制，比如 <code>try except</code>，参数校验函数等等。</p>
+<p>但是话又说回来，对测试来说就是 proper（恰当的、合适的、规范的）错误处理机制</p>
 <blockquote>
-<p>空集合</p>
+<p>语法格式</p>
 </blockquote>
-<p>正确写法：x &#x3D; set()</p>
-<p>错误写法：x &#x3D; {} # 这是一个空字典</p>
-<blockquote>
-<p>快捷拆分字符串</p>
-</blockquote>
-<pre><code>x = &quot;string&quot;
-a = set(x)
-print(a) # &#123;&#39;s&#39;, &#39;t&#39;, &#39;i&#39;, &#39;g&#39;, &#39;n&#39;, &#39;r&#39;&#125;
+<pre><code>assert expression
 </code></pre>
-<h2 id="集合运算"><a href="#集合运算" class="headerlink" title="集合运算"></a>集合运算</h2><p>集合运算都<strong>有返回值</strong>且<strong>不会修改原集合</strong><br><strong>集合运算仅使用与集合类型</strong>，不能直接与列表、元组等其他类型运算，除非转集合或拼接成集合<br>集合中的元素是无序且唯一的，<strong>集合运算结果也会自动去重</strong></p>
-<blockquote>
-<p><strong>差</strong>（ - 或 difference() ）</p>
-</blockquote>
-<p><strong>第一个集合有，第二个集合却没有的元素，就是差值</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>&#125;<br>b = &#123;<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;<br><span class="hljs-built_in">print</span>(a - b)  <span class="hljs-comment"># 输出：&#123;1, 2&#125;（a中有而b中没有的元素）</span><br><span class="hljs-built_in">print</span>(b - a)  <span class="hljs-comment"># 输出：&#123;5&#125;（b中有而a中没有的元素）</span><br><span class="hljs-built_in">print</span>(a.difference(b))  <span class="hljs-comment"># 输出：&#123;1, 2&#125;</span><br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>交集</strong>（ &amp; 或 intersection() ）</p>
-</blockquote>
-<p>输出两个集合<mark>共同拥有</mark>的元素</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>&#125;<br>b = &#123;<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>&#125;<br><span class="hljs-built_in">print</span>(a &amp; b)  <span class="hljs-comment"># 输出：&#123;3, 4&#125;</span><br><span class="hljs-built_in">print</span>(a.intersection(b))  <span class="hljs-comment"># 输出：&#123;3, 4&#125;</span><br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>并集</strong>（ | 或者 union() ）</p>
-</blockquote>
-<p>对两个集合进行合并，如同 str + str，合并时<strong>自动去重</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>&#125;<br>b = &#123;<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;<br><span class="hljs-built_in">print</span>(a | b)  <span class="hljs-comment"># 输出：&#123;1, 2, 3, 4, 5&#125;</span><br><span class="hljs-built_in">print</span>(a.union(b))  <span class="hljs-comment"># 输出：&#123;1, 2, 3, 4, 5&#125;</span><br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>对称差集</strong>（ ^ 或 symmetric_difference() ）</p>
-</blockquote>
-<p>输出<mark>两个集合都不存在的</mark>元素</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>&#125;<br>b = &#123;<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>&#125;<br><span class="hljs-built_in">print</span>(a ^ b)  <span class="hljs-comment"># 输出：&#123;1, 2, 5, 6&#125;</span><br><span class="hljs-built_in">print</span>(a.symmetric_difference(b))  <span class="hljs-comment"># 输出：&#123;1, 2, 5, 6&#125;</span><br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>集合包含关系判断</strong></p>
-</blockquote>
-<p><code>set_1.issubset(set_2)</code>：判断 1 是否是 2 的<strong>子集</strong><br>即集合1所有的元素在集合2中是不是都能找到<br><strong>集合1和集合2做交集操作，若交集输出结果和<mark>集合1</mark>的元素一模一样，那么集合1就是集合2的子集</strong></p>
-<p><code>set_1.issuperset(set_2)</code>：判断 1 是否是 2 的<strong>超集</strong><br><strong>集合1和集合2做交集操作，若交集输出结果和<mark>集合2</mark>的元素一模一样，那么集合1就是集合2的超集</strong></p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><blockquote>
-<p>添加</p>
-</blockquote>
-<p>添加元素到集合，如果元素已存在，则不进行任何操作</p>
-<pre><code>set.add(x)
-# 是随机插入元素，可能在最后一个，也有可能在第一个
+<p>等价于</p>
+<pre><code>if not expression:
+    raise AssertionError
 </code></pre>
-<p>另一种添加方式：update，效果同 add 一样，随机插入，若存在同元素则跳过</p>
-<pre><code>set.update(x)
+<p>举例:</p>
+<pre><code>assert True # 条件为 True 正常执行
+assert False # 条件为 False 触发异常
 </code></pre>
-<p>不同的是，update 可以是列表、元组、字典、字符；</p>
-<p>如果是字典</p>
-<pre><code>thisset = set((&quot;Google&quot;, &quot;Runoob&quot;, &quot;Taobao&quot;))
-thisset.update(&#123;&quot;name&quot;: &quot;123&quot;&#125;)
-print(thisset, type(thisset))
-## 输出结果：&#123;&#39;Taobao&#39;, &#39;Runoob&#39;, &#39;Google&#39;, &#39;name&#39;&#125;
+<p>也可以紧跟参数</p>
+<pre><code>assert expression [, arguments]
 </code></pre>
-<p>只会取 key 写入</p>
-<p>如果是字符，那么也是一样的，只不过会将字符进行拆分，拆分成元组、列表、集合，再塞进去</p>
-<pre><code>thisset = set((&quot;Google&quot;, &quot;Runoob&quot;, &quot;Taobao&quot;))
-thisset.update(&quot;string&quot;)
-print(thisset, type(thisset))
-## 输出结果：
-## &#123;&#39;t&#39;, &#39;i&#39;, &#39;r&#39;, &#39;Runoob&#39;, &#39;Google&#39;, &#39;n&#39;, &#39;s&#39;, &#39;Taobao&#39;, &#39;g&#39;&#125;
+<p>等价于</p>
+<pre><code>if not expression:
+    raise AssertionError(arguments)
 </code></pre>
-<blockquote>
-<p>删除</p>
-</blockquote>
-<pre><code>set.remove(x)
+<p>举例：</p>
+<pre><code>y = -5
+assert y &gt; 0, &#39;y 必须是正整数&#39;
 </code></pre>
-<p>将元素 x 从集合中移除，如果元素不存在，则会发生错误；</p>
-<p>如果元素不存在时，不希望出现错误：discard</p>
-<pre><code>set.discard(x)
-</code></pre>
-<p>随机删除，有返回值，返回的是被删除的元素</p>
-<pre><code>set.pop()
-</code></pre>
+<p>y &gt; 0 结果为 False，触发异常，抛出异常 <code>AssertionError：y 必须是正整数</code></p>
+<p><img src="https://origin.picgo.net/2025/09/16/python__d4f201a2655530a8.png" alt="python 断言 带参断言"></p>
 <hr>
-<blockquote>
-<p>获取长度：len()<br>清空集合：set.clear()</p>
-</blockquote>
-<blockquote>
-<p>复制：set.copy()</p>
-</blockquote>
-<p>同其他拷贝一样，复制后与原件的存储地址是不一样的，复制体是一个新的存储地址</p>
+<h2 id="检查两个值是否相等：self-assertEqual"><a href="#检查两个值是否相等：self-assertEqual" class="headerlink" title="检查两个值是否相等：self.assertEqual()"></a>检查两个值是否相等：self.assertEqual()</h2><p>【语法】 <code>self.assertEqual(a, b, msg=None)</code><br>【描述】 检查两个值是否相等，不匹配则抛出 <code>msg</code>参数传入的异常信息</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_equal</span>(<span class="hljs-params">self</span>):<br>    <span class="hljs-variable language_">self</span>.assertEqual(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>)  <span class="hljs-comment"># 成功</span><br>    <span class="hljs-variable language_">self</span>.assertEqual(<span class="hljs-string">&quot;hello&quot;</span>, <span class="hljs-string">&quot;hello&quot;</span>)  <span class="hljs-comment"># 成功</span><br>    <span class="hljs-variable language_">self</span>.assertEqual(<span class="hljs-number">1</span> + <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)  <span class="hljs-comment"># 成功</span><br>    <span class="hljs-variable language_">self</span>.assertEqual([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>])  <span class="hljs-comment"># 成功</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="检查两个值是否不相等：self-assertNotEqual"><a href="#检查两个值是否不相等：self-assertNotEqual" class="headerlink" title="检查两个值是否不相等：self.assertNotEqual()"></a>检查两个值是否不相等：self.assertNotEqual()</h2><p>【语法】 <code>self.assertNotEqual(a, b, msg=None)</code><br>【描述】 检查两个值是否不相等，不匹配则抛出 <code>msg</code>参数传入的异常信息</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_not_equal</span>(<span class="hljs-params">self</span>):<br>    <span class="hljs-variable language_">self</span>.assertNotEqual(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>)  <span class="hljs-comment"># 成功</span><br>    <span class="hljs-variable language_">self</span>.assertNotEqual(<span class="hljs-string">&quot;hello&quot;</span>, <span class="hljs-string">&quot;world&quot;</span>)  <span class="hljs-comment"># 成功</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="比较（-）：self-assertLess"><a href="#比较（-）：self-assertLess" class="headerlink" title="比较（ &lt; ）：self.assertLess()"></a>比较（ &lt; ）：self.assertLess()</h2><p>【语法】 <code>self.assertLess(a, b, msg=None)</code><br>【描述】 判断 a 是否小于 b，不匹配则抛出 <code>msg</code>参数传入的异常信息</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_less</span>(<span class="hljs-params">self</span>):<br>    <span class="hljs-variable language_">self</span>.assertLess(<span class="hljs-number">5</span>, <span class="hljs-number">10</span>)  <span class="hljs-comment"># 成功（5 &lt; 10）</span><br>    <span class="hljs-variable language_">self</span>.assertLess(<span class="hljs-string">&quot;apple&quot;</span>, <span class="hljs-string">&quot;banana&quot;</span>)  <span class="hljs-comment"># 成功（字符串按字典序比较）</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="比较（-）：self-assertGreater"><a href="#比较（-）：self-assertGreater" class="headerlink" title="比较（ &gt; ）：self.assertGreater()"></a>比较（ &gt; ）：self.assertGreater()</h2><p>【语法】 <code>self.assertGreater(a, b, msg=None)</code><br>【描述】 判断 a 是否大于 b，不匹配则抛出 <code>msg</code>参数传入的异常信息</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_greater</span>(<span class="hljs-params">self</span>):<br>    <span class="hljs-variable language_">self</span>.assertGreater(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>)  <span class="hljs-comment"># 成功（10 &gt; 5）</span><br>    <span class="hljs-variable language_">self</span>.assertGreater(<span class="hljs-built_in">len</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]), <span class="hljs-number">2</span>)  <span class="hljs-comment"># 成功（3 &gt; 2）</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="布尔（Bool-为-True）-self-assertTrue"><a href="#布尔（Bool-为-True）-self-assertTrue" class="headerlink" title="布尔（Bool 为 True）: self.assertTrue()"></a>布尔（Bool 为 True）: self.assertTrue()</h2><p>【语法】 <code>self.assertTrue(a, b, msg=None)</code><br>【描述】 判断返回的布尔值是否为真（True），不匹配则抛出 <code>msg</code>参数传入的异常信息</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_true</span>(<span class="hljs-params">self</span>):<br>    <span class="hljs-variable language_">self</span>.assertTrue(<span class="hljs-number">5</span> &gt; <span class="hljs-number">3</span>)  <span class="hljs-comment"># 成功</span><br>    <span class="hljs-variable language_">self</span>.assertTrue(<span class="hljs-built_in">bool</span>(<span class="hljs-string">&quot;hello&quot;</span>))  <span class="hljs-comment"># 成功（非空字符串为 True）</span><br>    <span class="hljs-variable language_">self</span>.assertTrue(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 成功（非 0 数字为 True）</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="布尔（Bool-为-True）-self-assertFalse"><a href="#布尔（Bool-为-True）-self-assertFalse" class="headerlink" title="布尔（Bool 为 True）: self.assertFalse()"></a>布尔（Bool 为 True）: self.assertFalse()</h2><p>【语法】 <code>self.assertFalse(a, b, msg=None)</code><br>【描述】 判断返回的布尔值是否为假（False），不匹配则抛出 <code>msg</code>参数传入的异常信息</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_false</span>(<span class="hljs-params">self</span>):<br>    <span class="hljs-variable language_">self</span>.assertFalse(<span class="hljs-number">5</span> &lt; <span class="hljs-number">3</span>)  <span class="hljs-comment"># 成功</span><br>    <span class="hljs-variable language_">self</span>.assertFalse(<span class="hljs-built_in">bool</span>(<span class="hljs-string">&quot;&quot;</span>))  <span class="hljs-comment"># 成功（空字符串为 False）</span><br>    <span class="hljs-variable language_">self</span>.assertFalse(<span class="hljs-number">0</span>)  <span class="hljs-comment"># 成功（0 为 False）</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="判断后者是否包含前者：self-assertIn"><a href="#判断后者是否包含前者：self-assertIn" class="headerlink" title="判断后者是否包含前者：self.assertIn()"></a>判断后者是否包含前者：self.assertIn()</h2><p>【语法】 <code>self.assertIn(a, b, msg=None)</code><br>【描述】 判断 a 是否在 b 中，不匹配则抛出 <code>msg</code>参数传入的异常信息<br>【适用场景】 字符串、列表、元组、字典（检查键是否存在）等可迭代对象</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_in</span>(<span class="hljs-params">self</span>):<br>    <span class="hljs-variable language_">self</span>.assertIn(<span class="hljs-number">2</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])  <span class="hljs-comment"># 成功（2 在列表中）</span><br>    <span class="hljs-variable language_">self</span>.assertIn(<span class="hljs-string">&quot;ell&quot;</span>, <span class="hljs-string">&quot;hello&quot;</span>)  <span class="hljs-comment"># 成功（子字符串在字符串中）</span><br>    <span class="hljs-variable language_">self</span>.assertIn(<span class="hljs-string">&quot;name&quot;</span>, &#123;<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-string">&quot;age&quot;</span>: <span class="hljs-number">30</span>&#125;)  <span class="hljs-comment"># 成功（键在字典中）</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>断言铁律</strong>：</p>
+<ol>
+<li>断言不是用于处理运行时错误的，它主要用于调试阶段检查程序的内部一致性；</li>
+<li><strong>生产环境</strong>中可能被禁用，当 Python 解释器使用 <code>-o</code> 优化选项运行时，所有断言都会被忽略；</li>
+<li>不要用断言验证用户输入，应该使用常规的异常处理 <code>try-except</code></li>
+<li>断言错误不应该被捕获，如果断言失败，说明程序存在 bug，应该修复而不是忽略；</li>
+<li>对于测试人员来说不存在以上铁律</li>
+</ol>
 
     </div>
     <!-- 文章：声明 -->
     <!-- 文章的声明 -->
-<div id="copy-icon-Python-set集合" style="word-wrap: break-word">
+<div id="copy-icon-AutoTest-断言" style="word-wrap: break-word">
     <p>
         <strong>作者</strong>：
         <span>粥记捣蛋</span>
     </p>
     <p>
         <strong>文章链接</strong>：
-        <span>https://zexuisme.github.io/2025/09/04/Python/Python-%E9%9B%86%E5%90%88/</span>
+        <span
+                id="article-link-span"
+                data-text="https://zexuisme.github.io/2025/09/16/AutoTest/AutoTest-%E6%96%AD%E8%A8%80/"
+        ></span>
     </p>
     <p>
         <strong>版权声明</strong>：
         <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
     </p>
 </div>
+
+<script>
+    console.log(document.getElementById("article-link-span"))
+    const linkDOM = document.getElementById("article-link-span")
+    if (linkDOM) {
+        let linkText = linkDOM.getAttribute("data-text")
+        linkDOM.innerHTML = `<a href="${linkText}" target="_blank">${ decodeURI(linkText)}</a>`
+    }
+</script>
     <!-- 文章：文章切换 -->
     <div style="margin-top: 48px">
 <!-- 文章阅读页的切换按钮 -->
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/09/04/Python/Python-%E5%AD%97%E5%85%B8/')"
-            
-    >上一篇: Python-dict</button>
+            onclick="postToggleEjs.onclickLink('/')"
+            disabled
+    >上一篇: 无</button>
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/09/04/Python/Python-%E5%AD%97%E7%AC%A6%E4%B8%B2/')"
+            onclick="postToggleEjs.onclickLink('/2025/09/16/AutoTest/AutoTest-unittest/')"
             
-    >下一篇: Python-字符串</button>
+    >下一篇: Auto-test-unittest</button>
 </div>
 
 <script>

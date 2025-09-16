@@ -806,20 +806,32 @@ print([10, 20, 30, [1, 2, 3, 4]])
     </p>
     <p>
         <strong>文章链接</strong>：
-        <span>https://zexuisme.github.io/2025/09/03/Python/Python-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</span>
+        <span
+                id="article-link-span"
+                data-text="https://zexuisme.github.io/2025/09/03/Python/Python-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"
+        ></span>
     </p>
     <p>
         <strong>版权声明</strong>：
         <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
     </p>
 </div>
+
+<script>
+    console.log(document.getElementById("article-link-span"))
+    const linkDOM = document.getElementById("article-link-span")
+    if (linkDOM) {
+        let linkText = linkDOM.getAttribute("data-text")
+        linkDOM.innerHTML = `<a href="${linkText}" target="_blank">${ decodeURI(linkText)}</a>`
+    }
+</script>
     <!-- 文章：文章切换 -->
     <div style="margin-top: 48px">
 <!-- 文章阅读页的切换按钮 -->
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/09/04/Python/Python-%E5%AD%97%E7%AC%A6%E4%B8%B2/')"
+            onclick="postToggleEjs.onclickLink('/2025/09/04/Python/%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B/Python-%E5%AD%97%E7%AC%A6%E4%B8%B2/')"
             
     >上一篇: Python-字符串</button>
     <button

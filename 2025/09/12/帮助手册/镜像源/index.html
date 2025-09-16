@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-12 23:08
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-15 22:21
                     </p>
                 </div>
             </div>
@@ -591,6 +591,9 @@
 <td><code>https://pypi.mirrors.ustc.edu.cn/simple/</code></td>
 </tr>
 </tbody></table>
+<p>也可以单独对某个包进行镜像源设置</p>
+<pre><code>pip install selenium -i https://pypi.tuna.tsinghua.edu.cn/simple
+</code></pre>
 
     </div>
     <!-- 文章：声明 -->
@@ -602,13 +605,25 @@
     </p>
     <p>
         <strong>文章链接</strong>：
-        <span>https://zexuisme.github.io/2025/09/12/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/%E9%95%9C%E5%83%8F%E6%BA%90/</span>
+        <span
+                id="article-link-span"
+                data-text="https://zexuisme.github.io/2025/09/12/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/%E9%95%9C%E5%83%8F%E6%BA%90/"
+        ></span>
     </p>
     <p>
         <strong>版权声明</strong>：
         <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
     </p>
 </div>
+
+<script>
+    console.log(document.getElementById("article-link-span"))
+    const linkDOM = document.getElementById("article-link-span")
+    if (linkDOM) {
+        let linkText = linkDOM.getAttribute("data-text")
+        linkDOM.innerHTML = `<a href="${linkText}" target="_blank">${ decodeURI(linkText)}</a>`
+    }
+</script>
     <!-- 文章：文章切换 -->
     <div style="margin-top: 48px">
 <!-- 文章阅读页的切换按钮 -->
