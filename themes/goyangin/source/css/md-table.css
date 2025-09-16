@@ -4,6 +4,10 @@
     margin-bottom: 24px;
 }
 
+.table-wrapper th:first-child {
+    max-width: 200px
+}
+
 .table-wrapper th,
 .table-wrapper td {
     vertical-align: middle !important;
