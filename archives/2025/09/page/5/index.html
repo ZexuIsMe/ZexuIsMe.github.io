@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>Github：快搭博客 | 粥记捣蛋</title>
+    <title>粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -344,10 +344,10 @@
                             
                             <div
                                     class="px-8 menu-label d-flex align-center
-                                    "
+                                    v-bg-primary"
                                     style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
                             >
-                                <a href="/archives" style="color: #00586d ">归档</a>
+                                <a href="/archives" style="color: #EEE ">归档</a>
                             </div>
                         
                             
@@ -481,205 +481,266 @@
     }
 </style>
     <div id="blog-body">
-        <!-- 渲染：阅读整篇文章 -->
+        <!-- Archive: 归档页 -->
 <style>
-    #read-post {
-        min-height: calc(100% - 210px);
-        max-width: 85%;
-        margin: auto;
-    }
-
-    @media (max-width: 768px) {
-        #read-post {
-            max-width: 85%;
-        }
+    #article-table tbody td {
+        padding: 12px;
     }
 </style>
 
 
+<div class="container " style="padding: 0 24px">
+    <!-- 一般用于 section 标题 -->
+<h1 class="title is-4 d-flex align-center" style="padding: 120px 0 60px 0; font-family: 'ZiHunLongTengKaiShu', serif">
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+    <span style="white-space: nowrap; color: black" class="mx-4">
+                <i class="fas fa-boxes"></i>
+                <span class="ml-4">归档 - All</span>
+            </span>
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+</h1>
 
-<div style="height: 80px"></div>
+<!--<script>-->
+<!--    console.log({-->
+<!--        icon: '', // 这里的图标需要是完整的-->
+<!--        name: '', // 标题的名字-->
+<!--        color: '', // 字体颜色-->
+<!--    })-->
+<!--</script>-->
 
-<article id="read-post">
-    <!-- Title -->
-    <div class="level">
-        <div class="level-left">
-            <div class="media">
-                <div class="media-content">
-                    <h1 class="title is-4 modify-post-title">
-                        <span class="has-text-info">Github：快搭博客</span>
-                    </h1>
-                    <p class="subtitle is-6">
-                        <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-08-28 22:37
-                    </p>
-                </div>
+    <div id="article-table" class="table-wrapper">
+        <table class="table is-striped is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th style=""></th>
+                    <th style="">标签</th>
+                    <th style="" class="d-flex align-center">分类 </th>
+                    <th style="text-align: center">创作时间</th>
+                    <th style="text-align: center">更新时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+
+            <tbody style="font-size: 1rem">
+                
+                    <tr>
+                        <td style="max-width: 180px">
+                            <a href="/2025/09/01/Shell/Shell-%E9%87%8D%E5%AE%9A%E5%90%91/">
+                                Shell-重定向
+                            </a>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
+    
+        <a class="tag is-info is-light" href="/tags/Shell/" style="font-size: 0.875rem">Shell</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E9%87%8D%E5%AE%9A%E5%90%91/" style="font-size: 0.875rem">重定向</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
+    
+        <a class="tag is-warning is-light" href="/categories/Shell/" style="font-size: 0.875rem">Shell</a>
+    
+        <a class="tag is-warning is-light" href="/categories/Shell/%E9%87%8D%E5%AE%9A%E5%90%91/" style="font-size: 0.875rem">重定向</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-09-01 11:26
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-09-01 23:24
+                        </td>
+
+                        <td style="vertical-align: middle">
+                            <a href="/2025/09/01/Shell/Shell-%E9%87%8D%E5%AE%9A%E5%90%91/">
+                                <i class="far fa-hand-point-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td style="max-width: 180px">
+                            <a href="/2025/09/01/Shell/Shell-%E5%87%BD%E6%95%B0/">
+                                Shell-函数
+                            </a>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
+    
+        <a class="tag is-info is-light" href="/tags/%E5%87%BD%E6%95%B0/" style="font-size: 0.875rem">函数</a>
+    
+        <a class="tag is-info is-light" href="/tags/Shell/" style="font-size: 0.875rem">Shell</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
+    
+        <a class="tag is-warning is-light" href="/categories/Shell/" style="font-size: 0.875rem">Shell</a>
+    
+        <a class="tag is-warning is-light" href="/categories/Shell/%E5%87%BD%E6%95%B0/" style="font-size: 0.875rem">函数</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-09-01 10:03
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-09-01 23:24
+                        </td>
+
+                        <td style="vertical-align: middle">
+                            <a href="/2025/09/01/Shell/Shell-%E5%87%BD%E6%95%B0/">
+                                <i class="far fa-hand-point-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td style="max-width: 180px">
+                            <a href="/2025/09/01/Shell/Shell-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/">
+                                Shell-流程控制
+                            </a>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
+    
+        <a class="tag is-info is-light" href="/tags/Shell/" style="font-size: 0.875rem">Shell</a>
+    
+        <a class="tag is-info is-light" href="/tags/if%E8%AF%AD%E5%8F%A5/" style="font-size: 0.875rem">if语句</a>
+    
+        <a class="tag is-info is-light" href="/tags/for%E5%BE%AA%E7%8E%AF/" style="font-size: 0.875rem">for循环</a>
+    
+        <a class="tag is-info is-light" href="/tags/case%E8%AF%AD%E5%8F%A5/" style="font-size: 0.875rem">case语句</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
+    
+        <a class="tag is-warning is-light" href="/categories/Shell/" style="font-size: 0.875rem">Shell</a>
+    
+        <a class="tag is-warning is-light" href="/categories/Shell/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" style="font-size: 0.875rem">流程控制</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-09-01 09:02
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-09-01 23:24
+                        </td>
+
+                        <td style="vertical-align: middle">
+                            <a href="/2025/09/01/Shell/Shell-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/">
+                                <i class="far fa-hand-point-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                
+            </tbody>
+        </table>
+    </div>
+
+    
+
+    <section class="d-flex justify-between my-8" >
+        <button
+                class="button"
+                style="border-radius: 24px"
+                onclick="pagination.onclickPage(`/archives/2025/09/page/4/`)"
+                
+        >
+            <span>
+                <i class="fas fa-angle-left"></i>
+                <span class="mr-2"></span>
+                上一页
+            </span>
+        </button>
+
+        <div class="d-flex" style="width: 100%">
+            <div style="width: 100%; height: 1px"></div>
+            <div class="mx-1 d-flex ">
+                <span>5</span>
+                <span class="mx-1">/</span>
+                <span>5</span>
             </div>
+            <div style="width: 100%; height: 1px"></div>
         </div>
-        <!-- 文章标签 -->
-        <div class="pt-4">
+
+        <button
+                class="button"
+                style="border-radius: 24px"
+                onclick="pagination.onclickPage(`/`)"
+                disabled
+        >
             <span>
-    
-        <a class="tag is-info is-light" href="/tags/Github/" style="font-size: 0.875rem">Github</a>
-    
-        <a class="tag is-info is-light" href="/tags/Github-Clone-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/" style="font-size: 0.875rem">Github Clone 准备工作</a>
-    
-</span>
-            <span>
-    
-        <a class="tag is-warning is-light" href="/categories/Github/" style="font-size: 0.875rem">Github</a>
-    
-</span>
-        </div>
-    </div>
+                下一页
+                <span class="mr-2"></span>
+                <i class="fas fa-angle-right"></i>
+            </span>
+        </button>
+    </section>
 
-    <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-Github"><span class="toc-number">1.</span> <span class="toc-text">0. Github</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Node-js"><span class="toc-number">2.</span> <span class="toc-text">1. Node.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Git"><span class="toc-number">3.</span> <span class="toc-text">2. Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-SSH"><span class="toc-number">4.</span> <span class="toc-text">3. SSH</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E7%94%9F%E6%88%90-SSH"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 生成 SSH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E4%BD%BF%E7%94%A8-SSH"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 使用 SSH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Hexo"><span class="toc-number">5.</span> <span class="toc-text">4. Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%AE%89%E8%A3%85-hexo"><span class="toc-number">5.1.</span> <span class="toc-text">4.1 安装 hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%88%9D%E5%A7%8B%E5%8C%96-hexo"><span class="toc-number">5.2.</span> <span class="toc-text">4.2 初始化 hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%E6%8F%92%E4%BB%B6"><span class="toc-number">5.3.</span> <span class="toc-text">4.3 安装部署插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF"><span class="toc-number">5.4.</span> <span class="toc-text">4.4 修改配置信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E9%83%A8%E7%BD%B2"><span class="toc-number">5.5.</span> <span class="toc-text">4.5 部署</span></a></li></ol></li></ol></div>
-    <!-- 文章：内容 -->
-    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
-        <hr />
-        <!-- Content -->
-        <ol>
-<li>想要一个属于自己的个人网站</li>
-<li>不想弄服务器</li>
-<li>Hexo 就很适合</li>
-</ol>
-<h2 id="0-Github"><a href="#0-Github" class="headerlink" title="0. Github"></a>0. Github</h2><p>创建一个新的项目，名字为 <code>Username.github.io</code></p>
-<p>比如我的名字 ZexuIsMe，那么我的这个仓库命就是<code>ZexuIsMe.github.io</code></p>
-<span id="more"></span> 
-
-<h2 id="1-Node-js"><a href="#1-Node-js" class="headerlink" title="1. Node.js"></a>1. Node.js</h2><p>下载并安装它</p>
-<h2 id="2-Git"><a href="#2-Git" class="headerlink" title="2. Git"></a>2. Git</h2><p>下载并安装它</p>
-<h2 id="3-SSH"><a href="#3-SSH" class="headerlink" title="3. SSH"></a>3. SSH</h2><p><b>注意：</b>如果有用加速器，比如 Steam++，则关掉加速器</p>
-<h3 id="3-1-生成-SSH"><a href="#3-1-生成-SSH" class="headerlink" title="3.1 生成 SSH"></a>3.1 生成 SSH</h3><p>桌面右击，弹窗中选择：“Git Bash Here”</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">ssh-keygen -t rsa -C <span class="hljs-string">&quot;你的邮箱地址&quot;</span><br></code></pre></td></tr></table></figure>
-<p>接着敲4下键盘，一般不会出意外</p>
-<h3 id="3-2-使用-SSH"><a href="#3-2-使用-SSH" class="headerlink" title="3.2 使用 SSH"></a>3.2 使用 SSH</h3><ol>
-<li>C盘 &gt; 用户(User) &gt; MSI（我的电脑名字叫MSI） &gt; .ssh &gt; id_rsa.pub</li>
-<li>用记事本打开它并复制里面的内容</li>
-<li>进入你的 Github 账号</li>
-<li>点击你的头像 &gt; 点击 “Setting” &gt; 页面左侧目录处找到<code>SSH and GPG keys</code></li>
-<li>点击 SSH Keys 出的 “New SSH key”</li>
-<li>title 名称任意填写</li>
-<li>把前面复制的 SSH 粘贴到 <code>Key</code>的输入框中，点击 <code>Add SSH key</code></li>
-<li>进入终端输入命令，检测是否连通<br>（注意：如果有用加速器，比如 Steam++，则关掉加速器）<br>（操作完毕后，等待一段时间，给 Github 一些处理的时间）</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">ssh -T git@github.com<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>出现以下内容，表示通过</p>
-<p>Hi XXX! You’ve successfully authenticated, but GitHub does not provide shell access</p>
-</blockquote>
-<h2 id="4-Hexo"><a href="#4-Hexo" class="headerlink" title="4. Hexo"></a>4. Hexo</h2><p>找一个Hexo创建点，比如在 D盘根目录下，使用任意一种编辑器或者直接操作终端</p>
-<h3 id="4-1-安装-hexo"><a href="#4-1-安装-hexo" class="headerlink" title="4.1 安装 hexo"></a>4.1 安装 hexo</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">npm install -g hexo-cli<br></code></pre></td></tr></table></figure>
-
-<h3 id="4-2-初始化-hexo"><a href="#4-2-初始化-hexo" class="headerlink" title="4.2 初始化 hexo"></a>4.2 初始化 hexo</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">hexo init Blog<br></code></pre></td></tr></table></figure>
-<p>Blog是你的项目名</p>
-<p>进入项目，运行 npm install，并运行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">hexo cl; hexo g; hexo s<br></code></pre></td></tr></table></figure>
-<p>点击终端给出的链接，即可查看当前操作是否正确</p>
-<h3 id="4-3-安装部署插件"><a href="#4-3-安装部署插件" class="headerlink" title="4.3 安装部署插件"></a>4.3 安装部署插件</h3><ul>
-<li>一键部署官方文档：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/one-command-deployment">https://hexo.io/zh-cn/docs/one-command-deployment</a></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">npm install hexo-deployer-git --save<br></code></pre></td></tr></table></figure>
-
-<h3 id="4-4-修改配置信息"><a href="#4-4-修改配置信息" class="headerlink" title="4.4 修改配置信息"></a>4.4 修改配置信息</h3><p>进入 <code>_config.yml</code> ，翻到最后替换一下内容</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">deploy:<br>    type: git<br>    repository: git@github.com:Username/Username.github.io.git<br>    branch: main<br></code></pre></td></tr></table></figure>
-
-<ul>
-<li><code>type</code>：类型设置为 git</li>
-<li><code>repository</code>，复制 Github 上的 SSH 码即可 </li>
-<li><code>branch</code>：表示分支为 main</li>
-</ul>
-<h3 id="4-5-部署"><a href="#4-5-部署" class="headerlink" title="4.5 部署"></a>4.5 部署</h3><ul>
-<li><b>注意：</b>如果有用加速器，比如 Steam++，则关掉加速器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">hexo cl; hexo g; hexo d<br></code></pre></td></tr></table></figure>
-
-<p>部署完毕后，等待几分钟，输入 “你的Github Username + .github.io” 访问即可，比如：<a href="https://zexuisme.github.io/">https://ZexuIsMe.github.io</a></p>
-<p>可能会遇到无法访问的问题</p>
-<ol>
-<li>换一个浏览器，比如 Edge、夸克</li>
-<li>或者关掉你的加速器</li>
-<li>或者搭梯子</li>
-</ol>
-<blockquote>
-<p>Q：为什么仓库中代码只有一点点，只有 public 中的内容 ?</p>
-</blockquote>
-<blockquote>
-<p>A：因为 <code>hexo d</code> 的缘故，只传静态资源，也就是 <code>hexo g</code> 生成的 public 文件的内容</p>
-</blockquote>
-
-    </div>
-    <!-- 文章：声明 -->
-    <!-- 文章的声明 -->
-<div id="copy-icon-Github：快搭博客" style="word-wrap: break-word">
-    <p>
-        <strong>作者</strong>：
-        <span>粥记捣蛋</span>
-    </p>
-    <p>
-        <strong>文章链接</strong>：
-        <span
-                id="article-link-span"
-                data-text="https://zexuisme.github.io/2025/06/04/Github/Github%E6%89%98%E7%AE%A1/"
-        ></span>
-    </p>
-    <p>
-        <strong>版权声明</strong>：
-        <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
-    </p>
-</div>
 
 <script>
-    console.log(document.getElementById("article-link-span"))
-    const linkDOM = document.getElementById("article-link-span")
-    if (linkDOM) {
-        let linkText = linkDOM.getAttribute("data-text")
-        linkDOM.innerHTML = `<a href="${linkText}" target="_blank">${ decodeURI(linkText)}</a>`
-    }
-</script>
-    <!-- 文章：文章切换 -->
-    <div style="margin-top: 48px">
-<!-- 文章阅读页的切换按钮 -->
-<div class="post-toggle d-flex justify-between flex-wrap gap-3">
-    <button
-            class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/06/04/HEXO/Hexo-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BC%82%E5%B8%B8/')"
-            
-    >上一篇: Hexo-图片加载异常</button>
-    <button
-            class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/06/03/HEXO/hello-world/')"
-            
-    >下一篇: Hello World</button>
-</div>
-
-<script>
-    class PostToggleEjs extends Blog {
-        constructor() {
-            super()
-        }
-
-        onclickLink (url) {
-            this.createALink(url, '_self')
-        }
-    }
-
-    const postToggleEjs = new PostToggleEjs()
-</script></div>
-
-</article>
-
-<div style="height: 80px"></div>
-
-<script>
-    class PostEjs extends Blog{
+    class Pagination extends Blog{
         constructor() {
             super();
+            // ...
+        }
+
+        onclickPage (url) {
+            this.createALink(url + '#home-post-list', '_self')
         }
     }
-    const postEjs = new PostEjs();
+
+    const pagination = new Pagination();
+</script>
+</div>
+
+<script>
+    const archiveEjs = {
+        handleChoose (event) {
+            const value = event.target.value
+
+            if (!value) {
+                console.error('分类参数异常！')
+                return
+            }
+
+            const blog = new Blog()
+
+            blog.createALink(value, '_self')
+        }
+    }
 </script>
     </div>
 

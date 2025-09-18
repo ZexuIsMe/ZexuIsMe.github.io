@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-08-06 23:58
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-18 21:58
                     </p>
                 </div>
             </div>
@@ -532,7 +532,7 @@
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MYSQL"><span class="toc-number">1.</span> <span class="toc-text">MYSQL</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MYSQL"><span class="toc-number">1.</span> <span class="toc-text">MYSQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript"><span class="toc-number">2.</span> <span class="toc-text">JavaScript</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
@@ -540,21 +540,90 @@
         <table>
 <thead>
 <tr>
+<th>No</th>
 <th>符号</th>
 <th>描述</th>
 </tr>
 </thead>
 <tbody><tr>
+<td>1</td>
 <td><code>^</code></td>
-<td>如：<code>^0</code>，表示以0开头的，且可用作取反：<code>^[^0123]</code>,表示开头只能是456789</td>
+<td>如：<code>^0</code>，表示以0开头的</td>
 </tr>
 <tr>
+<td>2</td>
 <td><code>$</code></td>
 <td>结尾符号，一般情况下结尾如果有该符号，那么只能是前面的内容</td>
 </tr>
 <tr>
+<td>3</td>
 <td><code>?</code></td>
 <td>匹配问号前面挨着的一个元素 0 次或 1 次，如123?：匹配的是数字3</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>.</code></td>
+<td>匹配任意单个字符（除了换行符）</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>*</code></td>
+<td>匹配前面的字符零次或多次（贪婪匹配）<br/> 比如 12*，星号针对2发挥效果</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>+</code></td>
+<td>匹配前面的字符一次或多次（贪婪匹配）</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>&#123;n&#125;</code></td>
+<td>匹配前面的字符恰好 n 次</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>&#123;n,&#125;</code></td>
+<td>匹配前面的字符至少出现 n 次</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>&#123;n,m&#125;</code></td>
+<td>匹配前面的字符至少出现 n 次, 最少出现 m 次</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>[]</code></td>
+<td>定义一个字符集合，按集合中的字符进行匹配</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>[^]</code></td>
+<td>取反，按集合中不存在的字符进行匹配<br/><code>^[^0123]</code>,表示开头只能是456789</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>() 括号</code></td>
+<td>定义一个捕获组，把括号内匹配的字符提取出来</td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>|</code></td>
+<td>定义选择，匹配符号前或后的字符</td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>\w</code></td>
+<td>匹配任何单词字符（字母、数字、下划线）<br/> 等价于 <code>[a-zA-Z0-9]</code></td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>\d</code></td>
+<td>用于数字的匹配<br/>等价于 <code>[0-9]</code></td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>\b</code></td>
+<td>代表单词边界</td>
 </tr>
 </tbody></table>
 <blockquote>
@@ -587,6 +656,10 @@
 </ul>
 </li>
 </ul>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><pre><code># 调用
+let regExp = new RegEXP(&#39;formhash=(.+&#123;8&#125;)&#39;)
+&#39;&#39;.match()
+</code></pre>
 
     </div>
     <!-- 文章：声明 -->

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>Github-端口22连接超时 | 粥记捣蛋</title>
+    <title>接口测试 | 粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -507,11 +507,11 @@
             <div class="media">
                 <div class="media-content">
                     <h1 class="title is-4 modify-post-title">
-                        <span class="has-text-info">Github-端口22连接超时</span>
+                        <span class="has-text-info">接口测试</span>
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-08-28 22:37
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-18 21:58
                     </p>
                 </div>
             </div>
@@ -520,49 +520,51 @@
         <div class="pt-4">
             <span>
     
-        <a class="tag is-info is-light" href="/tags/Github/" style="font-size: 0.875rem">Github</a>
+        <a class="tag is-info is-light" href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 0.875rem">软件测试</a>
     
-        <a class="tag is-info is-light" href="/tags/port22/" style="font-size: 0.875rem">port22</a>
-    
-        <a class="tag is-info is-light" href="/tags/timeout/" style="font-size: 0.875rem">timeout</a>
+        <a class="tag is-info is-light" href="/tags/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/" style="font-size: 0.875rem">接口测试</a>
     
 </span>
             <span>
     
-        <a class="tag is-warning is-light" href="/categories/Github/" style="font-size: 0.875rem">Github</a>
+        <a class="tag is-warning is-light" href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 0.875rem">软件测试</a>
+    
+        <a class="tag is-warning is-light" href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/" style="font-size: 0.875rem">接口测试</a>
     
 </span>
         </div>
     </div>
 
     <!-- 目录  -->
-    <div></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">接口测试流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">编写测试用例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E6%B5%8B%E8%AF%95%E7%82%B9%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">接口测试测试点：</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
-        <blockquote>
-<p>ssh:connect to host github.com port 22: Connection timed out</p>
+        <h2 id="接口测试流程"><a href="#接口测试流程" class="headerlink" title="接口测试流程"></a>接口测试流程</h2><ol>
+<li>获取接口文档</li>
+<li>分析、调试接口信息</li>
+<li>设计编辑接口测试用例</li>
+<li>使用接口测试工具，编写测试脚本</li>
+<li>执行接口测试</li>
+<li>分析结果，提交缺陷报告</li>
+<li>测试报告</li>
+</ol>
+<blockquote>
+<p>Q：没有接口文档，怎么办呢？</p>
 </blockquote>
 <ol>
-<li>右击桌面：Git Bash here<br>输入：<code>ssh -T git@github.com </code></li>
-<li>检查与Github的连接是否正常<br>得到：<code>ssh: connect to host github.com port 22: Connection timed out</code></li>
-<li>进入：C:\Users\admin.ssh<br>创建config文件，该文件没有后缀</li>
+<li>和开发沟通</li>
+<li>抓包分析</li>
 </ol>
-<figure class="highlight txt"><table><tr><td class="code"><pre><code class="hljs txt">Host github.com<br>User git<br>Hostname ssh.github.com<br>PreferredAuthentications publickey<br>IdentityFile ~/.ssh/id_rsa<br>Port 443<br><br>Host gitlab.com<br>Hostname altssh.gitlab.com<br>User git<br>Port 443<br>PreferredAuthentications publickey<br>IdentityFile ~/.ssh/id_rsa<br></code></pre></td></tr></table></figure>
-<p>只需要第一段内容即可</p>
-<ol start="4">
-<li>回到 Bash 界面，输入：<code>ssh -T git@github.com</code></li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ ssh -T git@github.com<br>Hi ZexuIsMe! You<span class="hljs-string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br></code></pre></td></tr></table></figure>
-<ol start="5">
-<li>回到项目，尝试拉去代码</li>
-</ol>
+<h2 id="编写测试用例"><a href="#编写测试用例" class="headerlink" title="编写测试用例"></a>编写测试用例</h2><p>根据接口文档设置测试用例</p>
+<p>编写测试用的时候，通常可以采用条件组合、边界值、错误猜测法等等</p>
+<h2 id="接口测试测试点："><a href="#接口测试测试点：" class="headerlink" title="接口测试测试点："></a>接口测试测试点：</h2><p>接口的正确和一致性<br>接口的容错性<br>接口参数的边界值<br>接口的异常处理<br>接口的性能<br>安全性能等</p>
 
     </div>
     <!-- 文章：声明 -->
     <!-- 文章的声明 -->
-<div id="copy-icon-Github-端口22连接超时" style="word-wrap: break-word">
+<div id="copy-icon-接口测试" style="word-wrap: break-word">
     <p>
         <strong>作者</strong>：
         <span>粥记捣蛋</span>
@@ -571,7 +573,7 @@
         <strong>文章链接</strong>：
         <span
                 id="article-link-span"
-                data-text="https://zexuisme.github.io/2025/08/28/Github-%E7%AB%AF%E5%8F%A322%E8%BF%9E%E6%8E%A5%E8%B6%85%E6%97%B6/"
+                data-text="https://zexuisme.github.io/2025/09/18/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/"
         ></span>
     </p>
     <p>
@@ -594,14 +596,14 @@
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/08/28/Linux/Linux-%E8%AE%BE%E7%BD%AE%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/')"
+            onclick="postToggleEjs.onclickLink('/2025/09/18/Postman/')"
             
-    >上一篇: linux-设置系统环境变量</button>
+    >上一篇: Postman</button>
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/08/25/Linux/Linux/')"
+            onclick="postToggleEjs.onclickLink('/2025/09/18/Github/Github-%E5%8F%8C%E9%87%8D%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81/')"
             
-    >下一篇: linux</button>
+    >下一篇: Github-双重身份验证</button>
 </div>
 
 <script>
