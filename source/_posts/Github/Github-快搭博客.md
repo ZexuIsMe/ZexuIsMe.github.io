@@ -1,5 +1,5 @@
 ---
-title: Github：快搭博客
+title: Github-快搭博客
 date: 2025-06-04 13:48:43
 tags: [Github, Github Clone 准备工作]
 categories:
