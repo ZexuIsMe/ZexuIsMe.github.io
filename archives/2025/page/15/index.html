@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>Postman | 粥记捣蛋</title>
+    <title>粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -344,10 +344,10 @@
                             
                             <div
                                     class="px-8 menu-label d-flex align-center
-                                    "
+                                    v-bg-primary"
                                     style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
                             >
-                                <a href="/archives" style="color: #00586d ">归档</a>
+                                <a href="/archives" style="color: #EEE ">归档</a>
                             </div>
                         
                             
@@ -481,183 +481,164 @@
     }
 </style>
     <div id="blog-body">
-        <!-- 渲染：阅读整篇文章 -->
+        <!-- Archive: 归档页 -->
 <style>
-    #read-post {
-        min-height: calc(100% - 210px);
-        max-width: 85%;
-        margin: auto;
-    }
-
-    @media (max-width: 768px) {
-        #read-post {
-            max-width: 85%;
-        }
+    #article-table tbody td {
+        padding: 12px;
     }
 </style>
 
 
+<div class="container " style="padding: 0 24px">
+    <!-- 一般用于 section 标题 -->
+<h1 class="title is-4 d-flex align-center" style="padding: 120px 0 60px 0; font-family: 'ZiHunLongTengKaiShu', serif">
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+    <span style="white-space: nowrap; color: black" class="mx-4">
+                <i class="fas fa-boxes"></i>
+                <span class="ml-4">归档 - All</span>
+            </span>
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+</h1>
 
-<div style="height: 80px"></div>
+<!--<script>-->
+<!--    console.log({-->
+<!--        icon: '', // 这里的图标需要是完整的-->
+<!--        name: '', // 标题的名字-->
+<!--        color: '', // 字体颜色-->
+<!--    })-->
+<!--</script>-->
 
-<article id="read-post">
-    <!-- Title -->
-    <div class="level">
-        <div class="level-left">
-            <div class="media">
-                <div class="media-content">
-                    <h1 class="title is-4 modify-post-title">
-                        <span class="has-text-info">Postman</span>
-                    </h1>
-                    <p class="subtitle is-6">
-                        <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-18 21:58
-                    </p>
-                </div>
+    <div id="article-table" class="table-wrapper">
+        <table class="table is-striped is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th style=""></th>
+                    <th style="">标签</th>
+                    <th style="" class="d-flex align-center">分类 </th>
+                    <th style="text-align: center">创作时间</th>
+                    <th style="text-align: center">更新时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+
+            <tbody style="font-size: 1rem">
+                
+                    <tr>
+                        <td style="max-width: 180px">
+                            <a href="/2025/06/03/HEXO/hello-world/">
+                                Hello World
+                            </a>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
+    
+        <a class="tag is-info is-light" href="/tags/Hexo/" style="font-size: 0.875rem">Hexo</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
+    <span>--尚未分类--</span>
+
+                            </div>
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-06-03 13:48
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-06-29 09:37
+                        </td>
+
+                        <td style="vertical-align: middle">
+                            <a href="/2025/06/03/HEXO/hello-world/">
+                                <i class="far fa-hand-point-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                
+            </tbody>
+        </table>
+    </div>
+
+    
+
+    <section class="d-flex justify-between my-8" >
+        <button
+                class="button"
+                style="border-radius: 24px"
+                onclick="pagination.onclickPage(`/archives/2025/page/14/`)"
+                
+        >
+            <span>
+                <i class="fas fa-angle-left"></i>
+                <span class="mr-2"></span>
+                上一页
+            </span>
+        </button>
+
+        <div class="d-flex" style="width: 100%">
+            <div style="width: 100%; height: 1px"></div>
+            <div class="mx-1 d-flex ">
+                <span>15</span>
+                <span class="mx-1">/</span>
+                <span>15</span>
             </div>
+            <div style="width: 100%; height: 1px"></div>
         </div>
-        <!-- 文章标签 -->
-        <div class="pt-4">
+
+        <button
+                class="button"
+                style="border-radius: 24px"
+                onclick="pagination.onclickPage(`/`)"
+                disabled
+        >
             <span>
-    
-        <a class="tag is-info is-light" href="/tags/Postman/" style="font-size: 0.875rem">Postman</a>
-    
-        <a class="tag is-info is-light" href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 0.875rem">软件测试</a>
-    
-        <a class="tag is-info is-light" href="/tags/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/" style="font-size: 0.875rem">接口测试</a>
-    
-</span>
-            <span>
-    
-        <a class="tag is-warning is-light" href="/categories/Postman/" style="font-size: 0.875rem">Postman</a>
-    
-</span>
-        </div>
-    </div>
+                下一页
+                <span class="mr-2"></span>
+                <i class="fas fa-angle-right"></i>
+            </span>
+        </button>
+    </section>
 
-    <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">变量的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">变量设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie"><span class="toc-number">3.</span> <span class="toc-text">Cookie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC"><span class="toc-number">4.</span> <span class="toc-text">脚本</span></a></li></ol></div>
-    <!-- 文章：内容 -->
-    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
-        <hr />
-        <!-- Content -->
-        <h2 id="变量的使用"><a href="#变量的使用" class="headerlink" title="变量的使用"></a>变量的使用</h2><pre><code># 用双花括号包裹变量
-&#123;&#123;定义的变量&#125;&#125;
-</code></pre>
-<h2 id="变量设置"><a href="#变量设置" class="headerlink" title="变量设置"></a>变量设置</h2><p>【前提】 用户已成功登录软件</p>
-<blockquote>
-<p>方法一：为某项目统一设置（集合变量）</p>
-</blockquote>
-<p><img src="https://origin.picgo.net/2025/09/18/postman_30197c68ee252ad5.png" alt="postman 定义变量"></p>
-<hr>
-<blockquote>
-<p>方法三：环境变量（全局变量）</p>
-</blockquote>
-<p><img src="https://origin.picgo.net/2025/09/18/postman_c96bb4b50957a078.png" alt="postman 全局变量"></p>
-<p>Global 是统一的环境变量设置，可针对某一项目进行定制化的变量是设置</p>
-<p><img src="https://origin.picgo.net/2025/09/18/postman__f05b1173045efa42.png" alt="postman 全局变量 调用"></p>
-<p>使用的时候会有 “G” 字样，表示 Global</p>
-<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>postman 默认情况下会自动记录 Cookie 信息</p>
-<p><img src="https://origin.picgo.net/2025/09/18/postman_cookie39ab119dbb5df9e7.png" alt="postman cookie"></p>
-<p><img src="https://origin.picgo.net/2025/09/18/postman_cookie_check5d6c415f0e6d777e.png" alt="postman cookie check"><br>【1】 被记录的IP地址<br>【2】 被记录的 cookie 信息<br>【3】 点击可移除目标 cookie</p>
-<h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><p><img src="https://origin.picgo.net/2025/09/18/postman__6bebddb1c4bb4ed5.png" alt="postman 定义变量 单独设置"></p>
-<p>分两类脚本：<br>【前置】 Pre-request 该脚本在请求<strong>执行前</strong>执行<br>【后置】 Post-response 该脚本在请求<strong>执行后</strong>执行</p>
-<hr>
-<blockquote>
-<p>【设置变量】 pm.xxx.set(key, value)</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 全局</span><br>pm.<span class="hljs-property">globals</span>.<span class="hljs-title function_">set</span>(key, value)<br><span class="hljs-comment">// 集合</span><br>pm.<span class="hljs-property">collectionVariables</span>.<span class="hljs-title function_">set</span>(key, value)<br><span class="hljs-comment">// 环境</span><br>pm.<span class="hljs-property">environment</span>.<span class="hljs-title function_">set</span>(key, value)<br></code></pre></td></tr></table></figure>
-
-<p>【key】 变量名<br>【value】 参数</p>
-<p>修改定义的变量后，也就意味着若要用该变量，需留意参数是否是当前接口需要的参数内容；<br>若目标变量没有被设置，执行后会自动在对应的集合&#x2F;环境&#x2F;全局变量</p>
-<hr>
-<blockquote>
-<p>【读取变量】 pm.xxx.get(key)</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 全局</span><br>pm.<span class="hljs-property">globals</span>.<span class="hljs-title function_">get</span>(key)<br><span class="hljs-comment">// 集合</span><br>pm.<span class="hljs-property">collectionVariables</span>.<span class="hljs-title function_">get</span>(key)<br><span class="hljs-comment">// 环境</span><br>pm.<span class="hljs-property">environment</span>.<span class="hljs-title function_">get</span>(key)<br></code></pre></td></tr></table></figure>
-
-<hr>
-<blockquote>
-<p>【提取】 提取响应的内容</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 以 JSON 文档的方式获取响应</span><br>pm.<span class="hljs-property">response</span>.<span class="hljs-title function_">json</span>()<br><span class="hljs-comment">// 以 text 文本的方式获取响应</span><br>pm.<span class="hljs-property">response</span>.<span class="hljs-title function_">text</span>()<br></code></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-    </div>
-    <!-- 文章：声明 -->
-    <!-- 文章的声明 -->
-<div id="copy-icon-Postman" style="word-wrap: break-word">
-    <p>
-        <strong>作者</strong>：
-        <span>粥记捣蛋</span>
-    </p>
-    <p>
-        <strong>文章链接</strong>：
-        <span
-                id="article-link-span"
-                data-text="https://zexuisme.github.io/2025/09/18/Postman/"
-        ></span>
-    </p>
-    <p>
-        <strong>版权声明</strong>：
-        <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
-    </p>
-</div>
 
 <script>
-    console.log(document.getElementById("article-link-span"))
-    const linkDOM = document.getElementById("article-link-span")
-    if (linkDOM) {
-        let linkText = linkDOM.getAttribute("data-text")
-        linkDOM.innerHTML = `<a href="${linkText}" target="_blank">${ decodeURI(linkText)}</a>`
-    }
-</script>
-    <!-- 文章：文章切换 -->
-    <div style="margin-top: 48px">
-<!-- 文章阅读页的切换按钮 -->
-<div class="post-toggle d-flex justify-between flex-wrap gap-3">
-    <button
-            class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/')"
-            disabled
-    >上一篇: 无</button>
-    <button
-            class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/09/18/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/')"
-            
-    >下一篇: 接口测试</button>
-</div>
-
-<script>
-    class PostToggleEjs extends Blog {
-        constructor() {
-            super()
-        }
-
-        onclickLink (url) {
-            this.createALink(url, '_self')
-        }
-    }
-
-    const postToggleEjs = new PostToggleEjs()
-</script></div>
-
-</article>
-
-<div style="height: 80px"></div>
-
-<script>
-    class PostEjs extends Blog{
+    class Pagination extends Blog{
         constructor() {
             super();
+            // ...
+        }
+
+        onclickPage (url) {
+            this.createALink(url + '#home-post-list', '_self')
         }
     }
-    const postEjs = new PostEjs();
+
+    const pagination = new Pagination();
+</script>
+</div>
+
+<script>
+    const archiveEjs = {
+        handleChoose (event) {
+            const value = event.target.value
+
+            if (!value) {
+                console.error('分类参数异常！')
+                return
+            }
+
+            const blog = new Blog()
+
+            blog.createALink(value, '_self')
+        }
+    }
 </script>
     </div>
 

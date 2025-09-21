@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-18 21:58
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-21 20:48
                     </p>
                 </div>
             </div>
@@ -536,7 +536,7 @@
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">接口测试流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">编写测试用例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E6%B5%8B%E8%AF%95%E7%82%B9%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">接口测试测试点：</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">接口测试流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E6%B5%8B%E8%AF%95%E7%82%B9%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">接口测试测试点：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B"><span class="toc-number">3.</span> <span class="toc-text">编写测试用例</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
@@ -556,10 +556,20 @@
 <ol>
 <li>和开发沟通</li>
 <li>抓包分析</li>
+<li>自个儿收集</li>
 </ol>
+<h2 id="接口测试测试点："><a href="#接口测试测试点：" class="headerlink" title="接口测试测试点："></a>接口测试测试点：</h2><p>接口的正确和一致性<br>接口的容错性<br>接口参数的边界值<br>接口的异常处理<br>接口的性能<br>安全性能等</p>
 <h2 id="编写测试用例"><a href="#编写测试用例" class="headerlink" title="编写测试用例"></a>编写测试用例</h2><p>根据接口文档设置测试用例</p>
 <p>编写测试用的时候，通常可以采用条件组合、边界值、错误猜测法等等</p>
-<h2 id="接口测试测试点："><a href="#接口测试测试点：" class="headerlink" title="接口测试测试点："></a>接口测试测试点：</h2><p>接口的正确和一致性<br>接口的容错性<br>接口参数的边界值<br>接口的异常处理<br>接口的性能<br>安全性能等</p>
+<p>从接口功能，性能，安全性等多个角度设计用例；</p>
+<blockquote>
+<p>以接口功能为主：</p>
+</blockquote>
+<p>从接口输入参数，接口处理逻辑，接口返回的参数</p>
+<blockquote>
+<p>AI 辅助输出测试用例，把接口文档交给AI：</p>
+<p>你是一个资深的测试工程师，针对discuz论坛项目，参照上述接口文档，设计编写回帖接口的接口测试用例，主要从接口的输入参数、处理逻辑、返回响应等角度来设计，用例格式:编号，测试项，标题，优先级，请求方式，url参数，请求头参数，请求体参数，预期响应</p>
+</blockquote>
 
     </div>
     <!-- 文章：声明 -->
@@ -596,7 +606,7 @@
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/09/18/Postman/')"
+            onclick="postToggleEjs.onclickLink('/2025/09/18/Postman/Postman/')"
             
     >上一篇: Postman</button>
     <button
