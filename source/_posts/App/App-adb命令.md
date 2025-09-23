@@ -37,7 +37,7 @@ categories:
 | abd shell            | 从 windows 远程进入安卓系统                 |
 |                      | 设备列表只有一个时可用                        |
 |                      | 进入后，敲两下回车进入安卓系统                    |
-| add -s ip:port shell | 设备列表存在多个时可用                        |
+| adb -s ip:port shell | 设备列表存在多个时可用                        |
 |                      | 进入后，敲两下回车进入安卓系统                    |
 | exit                 | 退出安卓系统                             |
 | adb install 地址.apk   | 安装                                 |
@@ -188,6 +188,7 @@ C:\Users\admin>
 `abd logcat | find "F"`: 输出含有“F”的日志行，
 - `grep`是不支持的
 - 若从windows远程进入安卓系统，执行 logcat，可使用`grep`，但不可用`find`
+- 若一定要在CMD中使用 grep 应：`adb logcat | adb shell grep "***"`
 
 ## 稳定性测试：monkey
 
