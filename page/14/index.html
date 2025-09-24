@@ -604,6 +604,47 @@
                     <!-- 文章预览时用 -->
 <section class="post-card box mbl py-6">
     <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Fri Jun 13 2025 09:31:37 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        AE-让椭圆随音频的振幅抖动
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        <ol>
+<li>将目标音频转为关键帧：选中音频并右击 &gt; 关键帧辅助 &gt; 将音频转换为关键帧</li>
+<li>找到椭圆所在图层，打开【缩放】的表达式</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs Javascript"><span class="hljs-comment">// 将椭圆蒙版的缩放属性与音频振幅的强度关联，实现椭圆随音乐节奏同步放大缩小。</span><br>value+(<span class="hljs-title function_">comp</span>(<span class="hljs-string">&quot;频谱&quot;</span>).<span class="hljs-title function_">layer</span>(<span class="hljs-string">&quot;音频振幅&quot;</span>).<span class="hljs-title function_">effect</span>(<span class="hljs-string">&quot;两个通道&quot;</span>)(<span class="hljs-string">&quot;滑块&quot;</span>))/<span class="hljs-number">6</span><br></code></pre></td></tr></table></figure>
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/13/AE/AE-%E8%AE%A9%E6%A4%AD%E5%9C%86%E9%9A%8F%E9%9F%B3%E9%A2%91%E7%9A%84%E6%8C%AF%E5%B9%85%E6%8A%96%E5%8A%A8/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
         <span style="color: #adadad; font-size: 0.875rem">Sun Jun 08 2025 12:03:37 GMT+0800</span>
     </div>
     <div class="title is-5">
@@ -977,49 +1018,6 @@
     }
 </style>
                 
-                    <!-- 文章预览时用 -->
-<section class="post-card box mbl py-6">
-    <div class="subtitle">
-        <span style="color: #adadad; font-size: 0.875rem">Wed Jun 04 2025 13:48:43 GMT+0800</span>
-    </div>
-    <div class="title is-5">
-        Github-快搭博客
-    </div>
-
-    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
-        <ol>
-<li>想要一个属于自己的个人网站</li>
-<li>不想弄服务器</li>
-<li>Hexo 就很适合</li>
-</ol>
-<h2 id="0-Github"><a href="#0-Github" class="headerlink" title="0. Github"></a>0. Github</h2><p>创建一个新的项目，名字为 <code>Username.github.io</code></p>
-<p>比如我的名字 ZexuIsMe，那么我的这个仓库命就是<code>ZexuIsMe.github.io</code></p>
-    </div>
-
-    <div class="post-card-mask d-flex justify-center align-end">
-        <a class="py-4 " href="/2025/06/04/Github/Github-%E5%BF%AB%E6%90%AD%E5%8D%9A%E5%AE%A2/">
-            <span style="color: #00586d">加载更多</span>
-        </a>
-    </div>
-</section>
-
-<style>
-    .post-card {
-        width: 100%;
-        min-width: 300px;
-        border-radius: 36px;
-        overflow: hidden
-    }
-    .post-card-mask {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: transparent;
-    }
-</style>
-                
             </div>
         </section>
         <!-- section：分页信息 -->
@@ -1127,6 +1125,9 @@
     
         <!--\% console.log(item.name, item.parent) %\-->
         <div class="py-4 px-5" onclick="listArticleEjs.createALink('categories/App/', '_self')">App</div>
+    
+        <!--\% console.log(item.name, item.parent) %\-->
+        <div class="py-4 px-5" onclick="listArticleEjs.createALink('categories/CMD/', '_self')">CMD</div>
     
         <!--\% console.log(item.name, item.parent) %\-->
         <div class="py-4 px-5" onclick="listArticleEjs.createALink('categories/CSS/', '_self')">CSS</div>

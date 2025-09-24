@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-08-23 19:49
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-24 22:05
                     </p>
                 </div>
             </div>
@@ -600,23 +600,131 @@ netstat -an
 </code></pre>
 <h3 id="GET、POST"><a href="#GET、POST" class="headerlink" title="GET、POST"></a>GET、POST</h3><p>区别？</p>
 <p>GET参数在ULR当中，POST参数在被封装在请求体中，不在URL<br>GET安全性低，POST相对安全<br>GET有大小限制（1-2kb）,POST无大小限制</p>
-<h2 id="网络模型：OSI参考模型的-7层模型"><a href="#网络模型：OSI参考模型的-7层模型" class="headerlink" title="网络模型：OSI参考模型的 7层模型"></a>网络模型：OSI参考模型的 7层模型</h2><ol start="7">
-<li><strong>应用层</strong>：提供应用程序间通信<br> 通过取件码取得包裹</li>
-<li><strong>表示层</strong>：处理数据格式、数据加密<br> 向客户发送取件码</li>
-<li><strong>会话层</strong>：建立、维护、管理会话<br> 菜鸟驿站接收包裹</li>
-<li><strong>传输层</strong>：建立端到端的连接<br> 分拣完毕后，向目标地址派送包裹</li>
-<li><strong>网络层</strong>：负责寻址和路由选择<br> 分拣中心根据目标分拣数据地址</li>
-<li><strong>数据链路层</strong>：提供介质访问、链路管理<br> 快递点打包数据，发往分拣中心</li>
-<li><strong>物理层</strong>：位流传输<br> 准备好数据，前往快递点寄送</li>
-</ol>
-<h2 id="网络模型：TCP-IP"><a href="#网络模型：TCP-IP" class="headerlink" title="网络模型：TCP&#x2F;IP"></a>网络模型：TCP&#x2F;IP</h2><p><strong>应用层</strong>：5,6,7<br>    Fiddler或者开发者工具（F12）<br>    Fiddler只能抓应用层的包，无法抓取应用层以下的包<br><strong>传出层</strong>：4<br><strong>网络层</strong>：3<br>    wireshark 抓包：<br>    （这句不用看）可以抓取应用层的包，但是分析工具不如Fiddler方便，所以一般不抓；<br>    可以配合winpcap可以抓取物理层~传出层的包<br><strong>网络访问&#x2F;接口层</strong>：1,2<br>（数字表示上一段OSI 7层模型的编号）</p>
+<h2 id="网络模型：OSI参考模型的-7层模型"><a href="#网络模型：OSI参考模型的-7层模型" class="headerlink" title="网络模型：OSI参考模型的 7层模型"></a>网络模型：OSI参考模型的 7层模型</h2><table>
+<thead>
+<tr>
+<th align="center">NO.</th>
+<th>–</th>
+<th>DESC</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">7</td>
+<td><strong>应用层</strong></td>
+<td>：提供应用程序间通信</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td></td>
+<td>通过取件码取得包裹</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td><strong>表示层</strong></td>
+<td>：处理数据格式、数据加密</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td></td>
+<td>向客户发送取件码</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td><strong>会话层</strong></td>
+<td>：建立、维护、管理会话</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td></td>
+<td>菜鸟驿站接收包裹</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td><strong>传输层</strong></td>
+<td>：建立端到端的连接</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td></td>
+<td>分拣完毕后，向目标地址派送包裹</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td><strong>网络层</strong></td>
+<td>：负责寻址和路由选择</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td></td>
+<td>分拣中心根据目标分拣数据地址</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td><strong>数据链路层</strong></td>
+<td>：提供介质访问、链路管理</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td></td>
+<td>快递点打包数据，发往分拣中心</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td><strong>物理层</strong></td>
+<td>：位流传输</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td></td>
+<td>准备好数据，前往快递点寄送</td>
+</tr>
+</tbody></table>
+<h2 id="网络模型：TCP-IP"><a href="#网络模型：TCP-IP" class="headerlink" title="网络模型：TCP&#x2F;IP"></a>网络模型：TCP&#x2F;IP</h2><table>
+<thead>
+<tr>
+<th>—</th>
+<th>DESC</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>应用层</strong></td>
+<td>5,6,7</td>
+</tr>
+<tr>
+<td></td>
+<td>Fiddler或者开发者工具（F12）</td>
+</tr>
+<tr>
+<td></td>
+<td>Fiddler只能抓应用层的包，无法抓取应用层以下的包</td>
+</tr>
+<tr>
+<td><strong>传出层</strong></td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>网络层</strong></td>
+<td>3</td>
+</tr>
+<tr>
+<td></td>
+<td>wireshark 抓包：（这句不用看）可以抓取应用层的包，但是分析工具不如Fiddler方便，所以一般不抓；</td>
+</tr>
+<tr>
+<td></td>
+<td>可以配合winpcap可以抓取物理层~传出层的包</td>
+</tr>
+<tr>
+<td><strong>链路层</strong></td>
+<td>1,2</td>
+</tr>
+</tbody></table>
+<p>（数字表示上一段OSI 7层模型的编号）</p>
 <blockquote>
 <p>Q：应用层用什么抓包工具？网络层用什么抓包工具？</p>
 </blockquote>
 <h3 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h3><p>获取IP地址的方式：<br>自动获取：DHCP服务器自动分配地址，每次开机重新分配<br>手动：手动设置</p>
-<h3 id="Q：TCP与UPD区别？"><a href="#Q：TCP与UPD区别？" class="headerlink" title="Q：TCP与UPD区别？"></a>Q：TCP与UPD区别？</h3><p>TCP协议：可靠的传输控制协议<br>UDP：用户数据包协议&#x2F;数据报传输控制协议</p>
-<p>TCP：有短联接、可靠的、有序的、端到端的、安全的、全双工的<br>UPD：无联接、不可靠的、无需的、不安全的、传输速度快</p>
-<p><strong>本质区别在于有无三次握手和挥手</strong>，握手和挥手的目的就是为了建立安全数据传输。握手和挥手的过程需要消耗资源，导致传输速度在一定程度下降变慢。</p>
+<h3 id="Q：TCP与UPD区别？"><a href="#Q：TCP与UPD区别？" class="headerlink" title="Q：TCP与UPD区别？"></a>Q：TCP与UPD区别？</h3><p><strong>连接方式</strong>：<br>TCP 是面向连接的协议，在传输数据前需通过三次握手建立连接，传输完成后通过四次挥手断开连接 ；<br>UDP 是无连接的，发送数据前无需建立连接，可直接发送。<br><strong>可靠性</strong>：<br>TCP 提供可靠的数据传输，有重传机制，能确保数据无丢失、无重复且按序到达；<br>UDP 不保证数据传输的可靠性，可能出现丢包、乱序情况。<br><strong>传输效率</strong>：<br>由于 TCP 有连接建立、维护及复杂的可靠性机制，开销较大，传输效率相对较低；<br>UDP 无连接建立过程，也无复杂的确认、重传等机制，传输效率高，速度快 。<br><strong>传输形式</strong>：<br>TCP 是流式传输，数据无边界；<br>UDP 是数据报传输，每个 UDP 数据包都有明确边界。<br><strong>应用场景</strong>：<br>TCP 适用于对数据准确性要求高的场景，如文件传输（FTP ）、网页浏览（HTTP&#x2F;HTTPS）、邮件发送（SMTP） 等；<br>UDP 适用于对实时性要求高、能容忍一定丢包的场景，如视频直播、在线游戏、语音通话等。</p>
 <h3 id="抓包工具：Wireshark"><a href="#抓包工具：Wireshark" class="headerlink" title="抓包工具：Wireshark"></a>抓包工具：Wireshark</h3><blockquote>
 <p>Q：界面中五颜六色的背景块分别是什么意思？<br>A：每个颜色块都有属于自己的含义，一般情况下，黑底的属于情况比较糟糕的，比如请求资源失败这样的，剩下的基本是安全可用的；即背景色越深越糟糕。</p>
 </blockquote>
