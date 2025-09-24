@@ -1,7 +1,7 @@
 ---
 title: AutoTest-断言
 date: 2025-09-16 18:16:40
-tags: [软件测试, 自动化测试, 断言]
+tags: [软件测试, 自动化测试, 断言, assert, unittest]
 categories:
   - 自动化测试
   - 断言

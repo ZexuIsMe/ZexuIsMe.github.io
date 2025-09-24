@@ -1,7 +1,7 @@
 ---
-title: Python-文件读取
+title: Python-文件操作
 date: 2025-09-12 13:39:49
-tags: [Python, 文件读取, open, with]
+tags: [Python, 文件操作, open, with]
 categories:
   - Python 
 ---
@@ -154,4 +154,14 @@ with open("file.txt", "r") as f:
         if not chunk:
             break
         print(chunk)
+```
+
+
+## 生成一个指定大小的文件
+
+```python
+def create_tile(file_path):
+    x_byte = 1024 # 默认 1024字节 = 1K
+    with open(file_path, 'w', encode='utf-8') as f:
+        f.write(' ' * x_byte)
 ```

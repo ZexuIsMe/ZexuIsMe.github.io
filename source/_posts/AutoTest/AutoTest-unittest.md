@@ -81,8 +81,10 @@ class TestGoogleSearch(unittest.TestCase):
         # 定义一个变量接受浏览器,并打开
         browser = webdriver.Edge()
         cls.browser = browser
-        # 设置隐式等待，等待时间为10S
+        # 设置一个等待器，等待时间为10S
         cls.wait = WebDriverWait(browser, 10)
+        # 浏览器窗口最大化
+        cls.browser.maximize_window()
     
     ## test_xxx 启动器前调用
     def setUp(self):
@@ -111,7 +113,26 @@ if __name__ == "__main__":
     unittest.main()
 ```
 
-## 设置等待
+## 设置等待：隐式等待
+
+```python
+browser = webdriver.Edge()
+
+browser.implicitly_wait(5)
+```
+
+隐式等待，查找元素时，其工作机制是：
+**如果没有立即找到目标元素，不会立即抛出异常**；
+在规定的时间内寻找目标元素，单位秒；
+在规定的时间内没有找到目标元素，抛出 `NoSuchElementException` 异常；
+
+隐式等待是一种全局设置，一旦设置后，会对整个 WebDriver 实例的生命周期的所有元素查找操作都生效，无需对每个元素的查找进行单独设置。
+但有一点需留意，隐式等待虽然好用，但是，一定要留意目标元素是否已经存在于当前页面结构，
+因为这样会立即找到，可能会得到意料之外的结果，可能会让后续操作出现异常。
+
+> 简言之，**<mark>隐式等待</mark>并非等待页面加载完成，而是<mark>针对元素查找操作的等待机制</mark>**。
+
+## 设置等待：显示等待
 
 > 导入模块
 
@@ -119,7 +140,7 @@ if __name__ == "__main__":
     from selenium.webdriver.support.ui import WebDriverWait
     from selenium.webdriver.support import expected_conditions as EC
 
-> setUpClass 中定义 隐式等待
+> setUpClass 中定义 显示等待
 
 ```python
     # ...
@@ -133,7 +154,7 @@ if __name__ == "__main__":
     # ...
 ```
 
-> 使用隐式等待
+> 使用显示等待
 
     self.wait.until(EC.title_is('百度一下，你就知道'))
 
@@ -157,50 +178,6 @@ if __name__ == "__main__":
 
 > **Q：为什么不用 sleep ？**
 
-因为它是强制等待设置的时长，时长没到不会走下去，若使用频繁，会导致测试时间时长增加的很明显。
+因为`sleep`是强制等待设置的时长，时长没到不会走下去，若使用频繁，会导致测试时间时长增加的很明显，
 
-## 断言
-
-移步：https://zexuisme.github.io/2025/09/16/AutoTest/AutoTest-断言/
-
-## 生成报告
-
-> 准备工作
-
-```python
-import os
-import unittest
-import time
-from HTMLTestRunner import HTMLTestRunner   
-
-# 设置测试目标路径
-target_dir = os.path.abspath("auto_test/test_xxx")
-
-suite = unittest.defaultTestLoader.discover(
-    start_dir=target_dir,
-    pattern="test*.py"
-)
-
-timestamp = time.strftime("%Y-%m-%d %H_%M_%S")
-```
-
-`start_dir`: 运行指定目录下
-`pattern`：指定目标文件
-
-> 生成报告
-
-```python
-report_file_path = os.path.abspath(f"auto_test/report/我的回归测试报告_{timestamp}.html")
-with open(
-    file=report_file_path, 
-    mode="wb"
-) as report_file:
-    runner = HTMLTestRunner(
-        report_file, 
-        verbosity=2, 
-        title="测试报告", 
-        description="测试结果" 
-    )
-    runner.run(suite)
-print(time.strftime("%Y-%m-%d %H_%M_%S"))
-```
+所以应是根据需要合理选用sleep, 隐式等待，显示等待
