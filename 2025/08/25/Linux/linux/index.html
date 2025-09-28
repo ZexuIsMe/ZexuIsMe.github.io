@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-11 21:03
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-28 20:14
                     </p>
                 </div>
             </div>
@@ -558,12 +558,14 @@
 <li><code>cp</code>：复制 <code>cp a.txt File_Document</code>, 把a.txt复制一份到 File_Document 文件夹中</li>
 </ul>
 <h2 id="ls：获取当前目录信息"><a href="#ls：获取当前目录信息" class="headerlink" title="ls：获取当前目录信息"></a>ls：获取当前目录信息</h2><ul>
+<li><code>-l</code>: 以长文本格式输出目录信息</li>
+<li><code>-a</code>: 显示所有文件，包含隐藏文件</li>
 <li><code>-h</code>: 没有隐藏文件的<code>-a</code></li>
 <li><code>-R</code>: 显示目录路径且显示目录下的内容，约等于显示路径且在该路径下执行了<code>-h</code></li>
 </ul>
 <p><img src="https://origin.picgo.net/2025/08/26/linux_ls_R3e866d153dcb07dc.png" alt="linux ls R"></p>
 <blockquote>
-<p>drwxr-xr-x. 2 root root   18 Aug 26 11:04 20250806</p>
+<p>&#x2F;&#x2F; ls -l<br>drwxr-xr-x. 2 root root   18 Aug 26 11:04 20250806</p>
 </blockquote>
 <p>d: 表示当前对象是一个目录</p>
 <table>
@@ -632,15 +634,16 @@
 </ol>
 </li>
 </ul>
-<h2 id="rm：删除"><a href="#rm：删除" class="headerlink" title="rm：删除"></a>rm：删除</h2><p><code>-f</code>: 强制删除<br><code>-r</code>：目录删除<br><code>-i</code>：删除确认</p>
+<h2 id="rm：删除"><a href="#rm：删除" class="headerlink" title="rm：删除"></a>rm：删除</h2><p><code>-f</code>：强制删除<br><code>-r</code>：目录删除<br><code>-i</code>：删除确认</p>
 <p><code>rm -rf *</code>：删除当前目录所有内容且不会有提示<br><code>rm -rf * -i</code>：删除当前目录所有内容且有提示，会逐个提示你某某是否要进行删除</p>
+<p>如果删除目录，但没有选项 <code>r</code>，则目录不会被删除，且会给无法删除的原因</p>
 <h2 id="vm：编辑模式"><a href="#vm：编辑模式" class="headerlink" title="vm：编辑模式"></a>vm：编辑模式</h2><p>语法：<code>vi 目标文件</code></p>
 <ol>
 <li>输入完指令后，回车进入编辑状态</li>
-<li>若文件不存在，进入编辑状态会主动创建目标文件</li>
+<li>若文件不存在，会主动创建目标文件并进入编辑状态</li>
 <li>vm 操作属于对内容的追加，与<code>cat</code>的录入即覆盖正好相反（一般而言的情况，也就是单个见头晕）</li>
 </ol>
-<p><strong>编辑模式下：</strong><br><code>i</code>：按下字母<code>i</code>进入插入模式，<code>ESC</code>退出编辑模式；<br><code>s</code>：按下字母<code>s</code>进入插入模式，<code>ESC</code>退出编辑模式；<br><code>R</code>：按下字母<code>R</code>进入替换模式，<code>ESC</code>退出编辑模式<br><code>:wq</code>：保存并退出编辑；<br><code>:q!</code>：不保存且退出编辑；<br><code>dd</code>：删除当前行<br><code>df</code>：连续删除</p>
+<p><strong>编辑模式下：</strong><br><code>i</code>：按下字母<code>i</code>进入插入模式，<code>ESC</code>退出编辑模式；<br><code>s</code>：按下字母<code>s</code>进入插入模式，<code>ESC</code>退出编辑模式；<br><code>R</code>：按下字母<code>R</code>进入替换模式，<code>ESC</code>退出编辑模式<br><code>:w</code>：保存；<br><code>:wq</code>：保存并退出编辑；<br><code>:q!</code>：不保存且退出编辑；<br><code>dd</code>：删除当前行<br><code>df</code>：连续删除</p>
 <ul>
 <li><code>4df</code>: 表示从光标处开始连续删除4行，</li>
 <li><code>1:10df</code>: 与光标无关，表示移除从第一行到第十行的内容<br><code>u</code>: 撤销</li>

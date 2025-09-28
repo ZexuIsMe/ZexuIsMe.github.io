@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-18 21:58
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-28 20:14
                     </p>
                 </div>
             </div>
@@ -522,9 +522,9 @@
     
         <a class="tag is-info is-light" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" style="font-size: 0.875rem">自动化测试</a>
     
-        <a class="tag is-info is-light" href="/tags/unittest/" style="font-size: 0.875rem">unittest</a>
-    
         <a class="tag is-info is-light" href="/tags/%E6%96%AD%E8%A8%80/" style="font-size: 0.875rem">断言</a>
+    
+        <a class="tag is-info is-light" href="/tags/unittest/" style="font-size: 0.875rem">unittest</a>
     
 </span>
             <span>
@@ -538,7 +538,7 @@
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">基本结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-number">2.</span> <span class="toc-text">执行顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF"><span class="toc-number">3.</span> <span class="toc-text">模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%AD%89%E5%BE%85"><span class="toc-number">4.</span> <span class="toc-text">设置等待</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%AD%E8%A8%80"><span class="toc-number">5.</span> <span class="toc-text">断言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E6%8A%A5%E5%91%8A"><span class="toc-number">6.</span> <span class="toc-text">生成报告</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">基本结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-number">2.</span> <span class="toc-text">执行顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF"><span class="toc-number">3.</span> <span class="toc-text">模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%AD%89%E5%BE%85%EF%BC%9A%E9%9A%90%E5%BC%8F%E7%AD%89%E5%BE%85"><span class="toc-number">4.</span> <span class="toc-text">设置等待：隐式等待</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%AD%89%E5%BE%85%EF%BC%9A%E6%98%BE%E7%A4%BA%E7%AD%89%E5%BE%85"><span class="toc-number">5.</span> <span class="toc-text">设置等待：显示等待</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
@@ -550,9 +550,16 @@
 <h2 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> unittest<br><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver<br><span class="hljs-keyword">from</span> selenium.webdriver.common.by <span class="hljs-keyword">import</span> By<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TestGoogleSearch</span>(unittest.TestCase):<br>    <span class="hljs-comment"># 类级：在整个 TestCase 启动前，以及结束时</span><br>    <span class="hljs-comment">## 两个方法被自动调用</span><br><span class="hljs-meta">    @classmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">setUpClass</span>(<span class="hljs-params">cls</span>):<br>        <span class="hljs-comment"># 如加载或是打开浏览器，设置全局隐士等待时间</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;测试即将开始！&#x27;</span>)<br><br><span class="hljs-meta">    @classmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">tearDownClass</span>(<span class="hljs-params">cls</span>):<br>        <span class="hljs-comment"># 如关闭浏览器</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;所有测试结束！&#x27;</span>)<br><br>    <span class="hljs-comment"># 对象级：类中每个 test_xxx 方法启动前，以及结束时</span><br>    <span class="hljs-comment">## 两个方法被自动调用</span><br>    <br>    <span class="hljs-comment">## test_xxx 启动器前调用</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">setUp</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-comment"># 如打开固定的入口地址（或昨晚登录，预置为登录状态）</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;开始测试&#x27;</span>)<br><br>    <span class="hljs-comment">## test_xx 结束时调用</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">tearDown</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-comment"># 如退出登录，或清理数据库中的测试数据</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;结束测试&#x27;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    unittest.main()<br></code></pre></td></tr></table></figure>
 
 <h2 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h2><p><img src="https://origin.picgo.net/2025/09/16/Python_unittest_cbd6c4cd0557e047.md.jpg" alt="Python unittest 执行顺序"></p>
-<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 导入 webdriver</span><br><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver<br><span class="hljs-comment"># 导入 unittest</span><br><span class="hljs-keyword">import</span> unittest<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TestGoogleSearch</span>(unittest.TestCase):<br><span class="hljs-meta">    @classmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">setUpClass</span>(<span class="hljs-params">cls</span>):<br>        <span class="hljs-comment"># 定义一个变量接受浏览器,并打开</span><br>        browser = webdriver.Edge()<br>        cls.browser = browser<br>        <span class="hljs-comment"># 设置隐式等待，等待时间为10S</span><br>        cls.wait = WebDriverWait(browser, <span class="hljs-number">10</span>)<br>    <br>    <span class="hljs-comment">## test_xxx 启动器前调用</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">setUp</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-comment"># 如打开固定的入口地址（或昨晚登录，预置为登录状态）</span><br>        <span class="hljs-variable language_">self</span>.browser.get(<span class="hljs-string">&#x27;http://172.xxx.111/selenium/myForm.html&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;开始测试&#x27;</span>)<br>        <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">test_xxx_01</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;开始测试：test_xxx_01&#x27;</span>)<br>        <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">test_xxx_02</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;开始测试：test_xxx_01&#x27;</span>)<br><br>    <span class="hljs-comment">## test_xx 结束时调用</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">tearDown</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-comment"># 如退出登录，或清理数据库中的测试数据</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;结束测试&#x27;</span>)<br><br><span class="hljs-meta">    @classmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">tearDownClass</span>(<span class="hljs-params">cls</span>):<br>        <span class="hljs-comment"># 关闭浏览器</span><br>        cls.browser.close()<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;所有测试结束！&#x27;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    unittest.main()<br></code></pre></td></tr></table></figure>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 导入 webdriver</span><br><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver<br><span class="hljs-comment"># 导入 unittest</span><br><span class="hljs-keyword">import</span> unittest<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TestGoogleSearch</span>(unittest.TestCase):<br><span class="hljs-meta">    @classmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">setUpClass</span>(<span class="hljs-params">cls</span>):<br>        <span class="hljs-comment"># 定义一个变量接受浏览器,并打开</span><br>        browser = webdriver.Edge()<br>        cls.browser = browser<br>        <span class="hljs-comment"># 设置一个等待器，等待时间为10S</span><br>        cls.wait = WebDriverWait(browser, <span class="hljs-number">10</span>)<br>        <span class="hljs-comment"># 浏览器窗口最大化</span><br>        cls.browser.maximize_window()<br>    <br>    <span class="hljs-comment">## test_xxx 启动器前调用</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">setUp</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-comment"># 如打开固定的入口地址（或昨晚登录，预置为登录状态）</span><br>        <span class="hljs-variable language_">self</span>.browser.get(<span class="hljs-string">&#x27;http://172.xxx.111/selenium/myForm.html&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;开始测试&#x27;</span>)<br>        <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">test_xxx_01</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;开始测试：test_xxx_01&#x27;</span>)<br>        <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">test_xxx_02</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;开始测试：test_xxx_01&#x27;</span>)<br><br>    <span class="hljs-comment">## test_xx 结束时调用</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">tearDown</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-comment"># 如退出登录，或清理数据库中的测试数据</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;结束测试&#x27;</span>)<br><br><span class="hljs-meta">    @classmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">tearDownClass</span>(<span class="hljs-params">cls</span>):<br>        <span class="hljs-comment"># 关闭浏览器</span><br>        cls.browser.close()<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;所有测试结束！&#x27;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    unittest.main()<br></code></pre></td></tr></table></figure>
 
-<h2 id="设置等待"><a href="#设置等待" class="headerlink" title="设置等待"></a>设置等待</h2><blockquote>
+<h2 id="设置等待：隐式等待"><a href="#设置等待：隐式等待" class="headerlink" title="设置等待：隐式等待"></a>设置等待：隐式等待</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">browser = webdriver.Edge()<br><br>browser.implicitly_wait(<span class="hljs-number">5</span>)<br></code></pre></td></tr></table></figure>
+
+<p>隐式等待，查找元素时，其工作机制是：<br><strong>如果没有立即找到目标元素，不会立即抛出异常</strong>；<br>在规定的时间内寻找目标元素，单位秒；<br>在规定的时间内没有找到目标元素，抛出 <code>NoSuchElementException</code> 异常；</p>
+<p>隐式等待是一种全局设置，一旦设置后，会对整个 WebDriver 实例的生命周期的所有元素查找操作都生效，无需对每个元素的查找进行单独设置。<br>但有一点需留意，隐式等待虽然好用，但是，一定要留意目标元素是否已经存在于当前页面结构，<br>因为这样会立即找到，可能会得到意料之外的结果，可能会让后续操作出现异常。</p>
+<blockquote>
+<p>简言之，<strong><mark>隐式等待</mark>并非等待页面加载完成，而是<mark>针对元素查找操作的等待机制</mark></strong>。</p>
+</blockquote>
+<h2 id="设置等待：显示等待"><a href="#设置等待：显示等待" class="headerlink" title="设置等待：显示等待"></a>设置等待：显示等待</h2><blockquote>
 <p>导入模块</p>
 </blockquote>
 <pre><code># 带入等待模块
@@ -560,12 +567,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 </code></pre>
 <blockquote>
-<p>setUpClass 中定义 隐式等待</p>
+<p>setUpClass 中定义 显示等待</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># ...</span><br><span class="hljs-meta">@classmethod</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">setUpClass</span>(<span class="hljs-params">cls</span>):<br>    <span class="hljs-comment"># 定义一个变量接受浏览器,并打开</span><br>    browser = webdriver.Edge()<br>    cls.browser = browser<br>    <span class="hljs-comment"># 设置隐式等待，等待时间为10S</span><br>    cls.wait = WebDriverWait(browser, <span class="hljs-number">10</span>)<br><span class="hljs-comment"># ...</span><br></code></pre></td></tr></table></figure>
 
 <blockquote>
-<p>使用隐式等待</p>
+<p>使用显示等待</p>
 </blockquote>
 <pre><code>self.wait.until(EC.title_is(&#39;百度一下，你就知道&#39;))
 </code></pre>
@@ -574,18 +581,8 @@ from selenium.webdriver.support import expected_conditions as EC
 <blockquote>
 <p><strong>Q：为什么不用 sleep ？</strong></p>
 </blockquote>
-<p>因为它是强制等待设置的时长，时长没到不会走下去，若使用频繁，会导致测试时间时长增加的很明显。</p>
-<h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><p>移步：<a href="https://zexuisme.github.io/2025/09/16/AutoTest/AutoTest-%E6%96%AD%E8%A8%80/">https://zexuisme.github.io/2025/09/16/AutoTest/AutoTest-断言/</a></p>
-<h2 id="生成报告"><a href="#生成报告" class="headerlink" title="生成报告"></a>生成报告</h2><blockquote>
-<p>准备工作</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> unittest<br><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">from</span> HTMLTestRunner <span class="hljs-keyword">import</span> HTMLTestRunner   <br><br><span class="hljs-comment"># 设置测试目标路径</span><br>target_dir = os.path.abspath(<span class="hljs-string">&quot;auto_test/test_xxx&quot;</span>)<br><br>suite = unittest.defaultTestLoader.discover(<br>    start_dir=target_dir,<br>    pattern=<span class="hljs-string">&quot;test*.py&quot;</span><br>)<br><br>timestamp = time.strftime(<span class="hljs-string">&quot;%Y-%m-%d %H_%M_%S&quot;</span>)<br></code></pre></td></tr></table></figure>
-
-<p><code>start_dir</code>: 运行指定目录下<br><code>pattern</code>：指定目标文件</p>
-<blockquote>
-<p>生成报告</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">report_file_path = os.path.abspath(<span class="hljs-string">f&quot;auto_test/report/我的回归测试报告_<span class="hljs-subst">&#123;timestamp&#125;</span>.html&quot;</span>)<br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<br>    file=report_file_path, <br>    mode=<span class="hljs-string">&quot;wb&quot;</span><br>) <span class="hljs-keyword">as</span> report_file:<br>    runner = HTMLTestRunner(<br>        report_file, <br>        verbosity=<span class="hljs-number">2</span>, <br>        title=<span class="hljs-string">&quot;测试报告&quot;</span>, <br>        description=<span class="hljs-string">&quot;测试结果&quot;</span> <br>    )<br>    runner.run(suite)<br><span class="hljs-built_in">print</span>(time.strftime(<span class="hljs-string">&quot;%Y-%m-%d %H_%M_%S&quot;</span>))<br></code></pre></td></tr></table></figure>
+<p>因为<code>sleep</code>是强制等待设置的时长，时长没到不会走下去，若使用频繁，会导致测试时间时长增加的很明显，</p>
+<p>所以应是根据需要合理选用sleep, 隐式等待，显示等待</p>
 
     </div>
     <!-- 文章：声明 -->
