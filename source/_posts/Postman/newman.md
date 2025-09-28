@@ -4,6 +4,7 @@ date: 2025-09-19 18:59:15
 tags: [Postman, newman, 软件测试, 自动化测试]
 categories:
   - Postman
+  - newman
 ---
 
 需要 **nodejs** 支持，安装后执行 `newman -v` 能看到版本信息则表示 `newman` 是正常的。

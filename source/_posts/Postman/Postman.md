@@ -6,11 +6,6 @@ categories:
   - Postman 
 ---
 
-## 变量的使用
-
-    # 用双花括号包裹变量
-    {{定义的变量}}
-
 ## 变量设置
 
 【前提】 用户已成功登录软件
@@ -37,6 +32,22 @@ Global 是统一的环境变量设置，可针对某一项目进行定制化的�
     a = pm.variables.get("xxx")
     // 写入
     pm.collectionVariables.set("subject1", a)
+
+## 变量的使用
+
+    # 用双花括号包裹变量
+    {{定义的变量}}
+
+### Q：若变量重命，用的是谁？
+
+> 就近原则
+
+准寻就近原则，全局变量最远，最近为局部变量
+
+【4】 局部变量（最近）
+【3】 集合变量
+【2】 环境变量
+【1】 全局变量（最远）
 
 ## Postman: Cookie
 
@@ -68,7 +79,7 @@ allCookies.forEach(cookie => {
 });
 ```
 
-## 脚本
+## Postman：脚本
 
 ![postman 定义变量 单独设置](https://origin.picgo.net/2025/09/18/postman__6bebddb1c4bb4ed5.png)
 
@@ -174,14 +185,6 @@ subject,message
 ![postman 参数化 04](https://origin.picgo.net/2025/09/19/postman__04572cdf05c6575ae8.png)
 
 通过 `pm.variables.get("xxx")` 获取标题，比如前面提到的 `subject`
-
-
-
-
-
-
-
-
 
 ## Postman：导出
 
