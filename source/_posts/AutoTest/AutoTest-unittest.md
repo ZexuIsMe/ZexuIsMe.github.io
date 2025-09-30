@@ -67,6 +67,8 @@ if __name__ == "__main__":
 
 ![Python unittest 执行顺序](https://origin.picgo.net/2025/09/16/Python_unittest_cbd6c4cd0557e047.md.jpg)
 
+get打开同一页面，你以为每次打开都是全新的页面，其实不然，它只是再次进入指定网页而已，若前面用例做了登录操作，后续操作无需再执行登录操作。
+
 ## 模板
 
 ```python
@@ -81,11 +83,13 @@ class TestGoogleSearch(unittest.TestCase):
         # 定义一个变量接受浏览器,并打开
         browser = webdriver.Edge()
         cls.browser = browser
+        # 设置一个 隐式等待器：implicitly_wait，设定为10秒
+        cls.browser.implicitly_wait(10)
         # 设置一个等待器，等待时间为10S
         cls.wait = WebDriverWait(browser, 10)
         # 浏览器窗口最大化
         cls.browser.maximize_window()
-    
+
     ## test_xxx 启动器前调用
     def setUp(self):
         # 如打开固定的入口地址（或昨晚登录，预置为登录状态）

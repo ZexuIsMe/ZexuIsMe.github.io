@@ -41,6 +41,22 @@ browser = webdriver.Firefox()
 browser = webdriver.Edge()
 ```
 
+### 加载驱动器
+
+> 安装驱动器
+
+    pip install webdriver-manager
+
+> 调用
+
+```python
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chorme import ChormeDriverManager 
+
+browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+```
+
 ## 拿到元素后，如何操作元素
 
 | 获取             | 描述       |
@@ -178,7 +194,9 @@ select.select_by_value("1")
 select.select_by_index(0)
 ```
 
-## 复选框
+## 单选框、复选框
+
+【is_selected()】 返回布尔，表示是否选中 
 
 ```python
 # 定位复选框元素
@@ -187,17 +205,6 @@ checkbox_element = driver.find_element(By.id, "checkbox-id")
 # 如果复选框未被选中，则点击选中
 if not checkbox_element.is_selected():
     checkbox_element.click()
-```
-
-## 单选框
-
-```python
-# 定位单选框元素
-radio_button_element = driver.find_element(By.id, "radio-button-id")
-
-# 如果单选框未被选中，则点击选中
-if not radio_button_element.is_selected():
-    radio_button_element.click()
 ```
 
 ## 弹窗：switch_to
@@ -220,6 +227,29 @@ sleep(2)
 
 ```
 
-## 测试版
+## 清空 Cookie
+
+    # 删除所有的cookie信息
+    browser.delete_all_cookies()
+
+> SessionStorage 和 LocalStorage 呢？ 没有相关的方法，但可以这样：
+
+```python
+# 清理 localStorage
+driver.execute_script("window.localStorage.clear();")
+
+# 清理 sessionStorage
+driver.execute_script("window.sessionStorage.clear();")
+
+# 验证清理结果
+local_storage = driver.execute_script("return window.localStorage.length;")
+session_storage = driver.execute_script("return window.sessionStorage.length;")
+print(f"localStorage 剩余项数: {local_storage}")
+print(f"sessionStorage 剩余项数: {session_storage}")
+```
+
+【execute_script】 运行JS脚本文件
+
+## Selenium 练习地址
 
     https://seleniumbase.io/demo_page
