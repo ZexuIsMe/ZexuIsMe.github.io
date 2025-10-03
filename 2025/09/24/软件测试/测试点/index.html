@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-28 20:14
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-10-03 08:34
                     </p>
                 </div>
             </div>
@@ -561,13 +561,13 @@
 </tr>
 <tr>
 <td align="center"></td>
-<td align="left">若存在父级，那么父级参数是随便给的情况，</td>
-<td align="left">比如：ccc</td>
+<td align="left">若存在父级</td>
+<td align="left">那么父级参数是随便给的情况</td>
 </tr>
 <tr>
 <td align="center"></td>
-<td align="left">若存在父级，那么父级参数符合父级参数格式的，但个别参数被修改的情况</td>
-<td align="left"></td>
+<td align="left">若存在父级</td>
+<td align="left">那么父级参数符合父级参数格式的，但个别参数被修改的情况</td>
 </tr>
 <tr>
 <td align="center"><strong>文件类</strong></td>
@@ -576,12 +576,17 @@
 </tr>
 <tr>
 <td align="center"></td>
-<td align="left">若存在父级，那么父级参数是随便给的情况，</td>
-<td align="left">比如：ccc</td>
+<td align="left">若存在父级</td>
+<td align="left">那么父级参数是随便给的情况</td>
 </tr>
 <tr>
 <td align="center"></td>
-<td align="left">若存在父级，那么父级参数符合父级参数格式的，但个别参数被修改的情况</td>
+<td align="left">若存在父级</td>
+<td align="left">那么父级参数符合父级参数格式的，但个别参数被修改的情况</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">空间不足</td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -591,8 +596,8 @@
 </tr>
 <tr>
 <td align="center"></td>
-<td align="left">反斜杠：<code>\</code><br/>书写时不可 <code>const name = &#39;\&#39;</code><br/>应该是 <code>const name = &#39;\\&#39;</code></td>
-<td align="left"></td>
+<td align="left">反斜杠：<code>\</code></td>
+<td align="left">书写时不可 <code>const name = &#39;\&#39;</code><br/>应该是 <code>const name = &#39;\\&#39;</code></td>
 </tr>
 <tr>
 <td align="center"></td>
@@ -671,6 +676,16 @@
 </tr>
 <tr>
 <td align="center"></td>
+<td align="left">输入内容，前后空格的测试</td>
+<td align="left">检测是否有做前后去空格</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">输入内容，内容中含有空格的测试</td>
+<td align="left">需求允许，则看空格是否还在；<br/>若需求不允许，则看空格是否消失或给出相应的提示信息</td>
+</tr>
+<tr>
+<td align="center"></td>
 <td align="left">+ 空<br/> + 唯一类</td>
 <td align="left"></td>
 </tr>
@@ -688,6 +703,41 @@
 <td align="center"></td>
 <td align="left">+ 输入类</td>
 <td align="left"></td>
+</tr>
+<tr>
+<td align="center"><strong>接口测试类</strong></td>
+<td align="left"></td>
+<td align="left">除了常规的参数用例外，还应考虑实施对象关联的影响，类似于回归测试中的周边影响</td>
+</tr>
+<tr>
+<td align="center"><strong>权限类</strong></td>
+<td align="left">跨权限操作</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center"><strong>多人类</strong></td>
+<td align="left">有权限操作</td>
+<td align="left">无人正在查看、编辑、阅读 时的编辑操作</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">有权限操作</td>
+<td align="left">但别人正在查看</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">有权限操作</td>
+<td align="left">但别人正在编辑</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">有权限操作</td>
+<td align="left">但别人正在删除</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">无权限操作</td>
+<td align="left">是否可以操作，比如编辑</td>
 </tr>
 </tbody></table>
 <h2 id="路径类"><a href="#路径类" class="headerlink" title="路径类"></a>路径类</h2><blockquote>
@@ -719,6 +769,30 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">DOMPurify</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;dompurify&#x27;</span>;<br><br><span class="hljs-comment">// 解码后先过滤再渲染</span><br><span class="hljs-keyword">const</span> safeHtml = <span class="hljs-title class_">DOMPurify</span>.<span class="hljs-title function_">sanitize</span>(decoded);<br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;content&quot;</span>).<span class="hljs-property">innerHTML</span> = safeHtml;<br></code></pre></td></tr></table></figure>
 
 <h2 id="密码类"><a href="#密码类" class="headerlink" title="密码类"></a>密码类</h2><p>关于密码的验证是否需要验证其长度限制或是输入限制的问题，这是需要验证的，若长度不满足，直接返回错误信息，就不同调用数据库查询在匹配；<br>输入方面的验证，是为了检测SQL注入</p>
+<p>基础：1724<br>84敏捷 1766<br>168敏捷 1808<br>236敏捷 1842<br>一点敏捷0.5攻击力加成</p>
+<p>基础攻击：1842<br>基础木桩：14374<br>物理伤害：80%<br>全体伤害：26.3  14374<br>全体伤害：2.8   11654</p>
+<table>
+<thead>
+<tr>
+<th>装备</th>
+<th>属性</th>
+<th>词条</th>
+<th>预期：攻击力</th>
+<th>实际：攻击力</th>
+<th>预期：伤害</th>
+<th>实际：伤害</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>项链</td>
+<td>84敏捷</td>
+<td>全防御</td>
+<td>1884</td>
+<td>符合预期</td>
+<td></td>
+<td>14702</td>
+</tr>
+</tbody></table>
 
     </div>
     <!-- 文章：声明 -->
