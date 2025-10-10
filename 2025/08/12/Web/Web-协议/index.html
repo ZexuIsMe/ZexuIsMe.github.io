@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-24 22:05
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-10-10 23:45
                     </p>
                 </div>
             </div>
@@ -715,7 +715,7 @@ netstat -an
 <td>可以配合winpcap可以抓取物理层~传出层的包</td>
 </tr>
 <tr>
-<td><strong>链路层</strong></td>
+<td><strong>数据链路层</strong></td>
 <td>1,2</td>
 </tr>
 </tbody></table>
@@ -794,13 +794,19 @@ netstat -an
 <li>三次握手仅在建立新连接时执行一次，而非每次请求都重复</li>
 </ul>
 <blockquote>
+<p>简单记忆：<br>客户端发起请求 SYN &#x3D; 1<br>服务端接收请求并返回 SYN &#x3D; 1, ACK &#x3D; 1<br>客户端收到响应，于是连接确立，连接成功 ACK &#x3D; 1</p>
+</blockquote>
+<blockquote>
 <p>Q：为什么要三次握手？</p>
 </blockquote>
-<p>第一次握手：客户端确认 “服务器能收到我的消息”。<br>第二次握手：服务器确认 “客户端能收到我的消息，且客户端能发消息给我”。<br>第三次握手：客户端确认 “服务器能收到我的消息，且服务器能发消息给我”。<br>三次握手后，双方才能确保双向通信通道的可靠性，避免因网络延迟导致的 “失效连接请求” 被误处理（例如客户端早先发的 SYN 因延迟到达服务器，此时客户端已放弃连接，但服务器仍误以为是新请求）</p>
+<p>第一次握手：客户端确认 “服务器能收到我的消息”。<br>第二次握手：服务器确认 “客户端能收到我的消息，且客户端能发消息给我”。<br>第三次握手：客户端确认 “服务器能收到我的消息，且服务器能发消息给我”。<br>三次握手后，双方才能确保双向通信通道是稳定且可靠的，避免因网络延迟导致的 “失效连接请求” 被误处理（例如客户端早先发的 SYN 因延迟到达服务器，此时客户端已放弃连接，但服务器仍误以为是新请求）</p>
 <p><img src="https://origin.picgo.net/2025/08/14/_2025-08-13_101015_8297bc17fad6af881a7.png" alt="四次挥手"><br><strong>四次挥手</strong><br>客户端打算断开连接，向服务器挥手（FIN），说自己要离开了（ACK）<br>》服务器看到挥手信息（FIN）后，点头示意并返回ACK确认信息<br>》同时，服务器向客户端也表示自己要断开连接，向客户端挥手（FIN），说下次再见（ACK）<br>》客户端看到挥手信息（FIN）后，点头示意并返回ACK确认信息。<br>》至此四次挥手完成。</p>
 <ul>
 <li>TCP 四次挥手是断开连接时双方确认资源释放的过程，确保数据传输完整</li>
 </ul>
+<blockquote>
+<p>简单记忆：<br>客户端发起断开请求， FIN &#x3D; 1<br>服务端接收到请求， ACK &#x3D; 1<br>服务端发起断开请求， FIN &#x3D; 1<br>客户端确认，于是双方都确认断开，此时连接断开， ACK &#x3D; 1</p>
+</blockquote>
 <blockquote>
 <p>Q：为什么要四次挥手？</p>
 </blockquote>

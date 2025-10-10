@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-10-06 21:18
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-10-10 23:43
                     </p>
                 </div>
             </div>
@@ -894,7 +894,7 @@ top
 <blockquote>
 <p>因为 SQL 遵循 “单值规则”，即 GROUP BY 分组后每个组只能返回一个结果。如果 SELECT 后出现未分组且非聚合的字段，数据库无法确定应该返回该字段的哪个值（组内可能有多个不同值）</p>
 </blockquote>
-<h2 id="（Linux）若要查看-file-log-文件中包含-“error”-关键字的所有行，命令应如何编写？"><a href="#（Linux）若要查看-file-log-文件中包含-“error”-关键字的所有行，命令应如何编写？" class="headerlink" title="（Linux）若要查看 file.log 文件中包含 “error” 关键字的所有行，命令应如何编写？"></a>（Linux）若要查看 file.log 文件中包含 “error” 关键字的所有行，命令应如何编写？</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">## 01</span><br>grep <span class="hljs-string">&quot;error&quot;</span> file.log<br><span class="hljs-comment">## 02</span><br>find -name <span class="hljs-string">&quot;file.log&quot;</span> -<span class="hljs-built_in">type</span> f | grep <span class="hljs-string">&quot;error&quot;</span><br></code></pre></td></tr></table></figure>
+<h2 id="（Linux）若要查看-file-log-文件中包含-“error”-关键字的所有行，命令应如何编写？"><a href="#（Linux）若要查看-file-log-文件中包含-“error”-关键字的所有行，命令应如何编写？" class="headerlink" title="（Linux）若要查看 file.log 文件中包含 “error” 关键字的所有行，命令应如何编写？"></a>（Linux）若要查看 file.log 文件中包含 “error” 关键字的所有行，命令应如何编写？</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">## 01</span><br>grep <span class="hljs-string">&quot;error&quot;</span> file.log<br><span class="hljs-comment">## 02</span><br><span class="hljs-built_in">cat</span> file.log | grep <span class="hljs-string">&quot;error&quot;</span><br><span class="hljs-comment">## 03</span><br>grep -i <span class="hljs-string">&quot;error&quot;</span> file.log<br></code></pre></td></tr></table></figure>
 
 <h2 id="（Python）print-r”Hello-nWorld”-输出结果是什么？"><a href="#（Python）print-r”Hello-nWorld”-输出结果是什么？" class="headerlink" title="（Python）print(r”Hello\nWorld”) 输出结果是什么？"></a>（Python）print(r”Hello\nWorld”) 输出结果是什么？</h2><p>字符串不会换行，且原样输出，其结果为：<code>Hello\nWorld</code></p>
 <h2 id="（APP）APP-测试中，“冷启动”-和-“热启动”-的区别是什么？测试时为什么需要关注这两种启动方式？"><a href="#（APP）APP-测试中，“冷启动”-和-“热启动”-的区别是什么？测试时为什么需要关注这两种启动方式？" class="headerlink" title="（APP）APP 测试中，“冷启动” 和 “热启动” 的区别是什么？测试时为什么需要关注这两种启动方式？"></a>（APP）APP 测试中，“冷启动” 和 “热启动” 的区别是什么？测试时为什么需要关注这两种启动方式？</h2><p>【区别】<br>启动方式不同；<br>启动消失时间的不同；</p>

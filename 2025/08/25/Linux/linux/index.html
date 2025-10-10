@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-28 20:14
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-10-10 23:45
                     </p>
                 </div>
             </div>
@@ -777,7 +777,7 @@
 <li>执行权限（x）对目录尤为重要，没有它无法进入该目录</li>
 </ol>
 <p>语法：<code>chmod [选项] 权限 文件/目录</code></p>
-<p><code>R</code>：递归修改目录及其字内容的权限<br><code>chmod -R 755 /path/to/directory</code></p>
+<p><code>R</code>：递归修改目录及其子内容的权限<br><code>chmod -R 755 /path/to/directory</code></p>
 <h3 id="chmod：数字表示法"><a href="#chmod：数字表示法" class="headerlink" title="chmod：数字表示法"></a>chmod：数字表示法</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext"># 所有者: rwx(7), 所属组: r-x(5), 其他: r-x(5)<br>chmod 755 file.txt  <br><br># 所有者: rw-(6), 所属组: r--(4), 其他: r--(4)<br>chmod 644 document.pdf  <br></code></pre></td></tr></table></figure>
 <p>常见组合：<br>777：读写+执行（rwx、rwx、rwx）<br>755：常用于可执行文件或目录（rwx、r-x、r-x）<br>644：常用于普通文件（rw-、r–、r–）</p>
 <h3 id="chmod：符号表示法"><a href="#chmod：符号表示法" class="headerlink" title="chmod：符号表示法"></a>chmod：符号表示法</h3><p>通过符号精确指定权限的变更</p>
@@ -810,7 +810,7 @@
 </li>
 <li><p>参数：<code>-v</code>：显示复制过程，详细输出</p>
 </li>
-<li><p>参数：<code>-a</code>：归档模式，常用用于份（保留文件权限、时间戳等所有属性且递归复制目录）<br><code>cp -a data/ data_backup</code>：将data备份一份到 <code>data_backup</code> 中，若 <code>data/*</code>，则表示将 <code>data</code> 目录下的所有文件备份一份到 <code>data_backup</code> 中<br>  若重复执行，会提醒是否覆盖</p>
+<li><p>参数：<code>-a</code>：归档模式，常用用于份（保留文件权限、时间戳等所有属性且递归复制目录）<mark>（待验证）</mark><br><code>cp -a data/ data_backup</code>：将data备份一份到 <code>data_backup</code> 中，若 <code>data/*</code>，则表示将 <code>data</code> 目录下的所有文件备份一份到 <code>data_backup</code> 中<br>  若重复执行，会提醒是否覆盖</p>
 </li>
 <li><p>参数：<code>-u</code>：仅复制源文件比目标文件新或目标文件不存在的情况，更新复制（翻译：通过-u 复制的内容会跳过没有变动的文件，即目标目录中永远是最新的内容）</p>
 <ol>

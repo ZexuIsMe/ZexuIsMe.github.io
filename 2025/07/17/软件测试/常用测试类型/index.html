@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-09-02 22:26
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-10-10 23:45
                     </p>
                 </div>
             </div>
@@ -536,7 +536,7 @@
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">1.</span> <span class="toc-text">功能测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">2.</span> <span class="toc-text">性能测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UI%E6%B5%8B%E8%AF%95-%EF%BC%88User-Interface%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">UI测试 （User Interface）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95"><span class="toc-number">4.</span> <span class="toc-text">压力测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">5.</span> <span class="toc-text">负载测试</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">1.</span> <span class="toc-text">功能测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">2.</span> <span class="toc-text">性能测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UI%E6%B5%8B%E8%AF%95-%EF%BC%88User-Interface%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">UI测试 （User Interface）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95"><span class="toc-number">4.</span> <span class="toc-text">压力测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">5.</span> <span class="toc-text">负载测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E9%87%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">6.</span> <span class="toc-text">容量测试</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
@@ -621,17 +621,19 @@
 <blockquote>
 <p>分割线</p>
 </blockquote>
-<h2 id="功能测试"><a href="#功能测试" class="headerlink" title="功能测试"></a>功能测试</h2><h2 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h2><p>负载测试：<br>压力测试：是破坏性测试，但是现在一般情况下会认为是性能测试<br>稳定性测试：<br>配置测试：<br>容量测试：</p>
+<h2 id="功能测试"><a href="#功能测试" class="headerlink" title="功能测试"></a>功能测试</h2><h2 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h2><p>【按平台分】 前端性能测试、后端性能测试<br>一般情况下常说的性能测试专指<strong>后端</strong>性能测试。</p>
+<p>【从测试关注点分】 基准测试、负载测试、压力测试、容量测试、配置测试、可靠性测试</p>
 <h2 id="UI测试-（User-Interface）"><a href="#UI测试-（User-Interface）" class="headerlink" title="UI测试 （User Interface）"></a>UI测试 （User Interface）</h2><p>检验软件和使用者之间交互操作、传递信息的测试</p>
 <p>也会检测产品的美观性、易于学习、易于使用的也行</p>
 <p>UI分类：CLI（命令行接口）、GUI（图形化用户接口）</p>
-<h2 id="压力测试"><a href="#压力测试" class="headerlink" title="压力测试"></a>压力测试</h2><ul>
+<h2 id="压力测试"><a href="#压力测试" class="headerlink" title="压力测试"></a>压力测试</h2><p>是破坏性测试，但是现在一般情况下会认为是性能测试</p>
+<ul>
 <li>超出预期负载</li>
 </ul>
-<h2 id="负载测试"><a href="#负载测试" class="headerlink" title="负载测试"></a>负载测试</h2><ul>
-<li>预期负载</li>
-<li>峰值负载</li>
-</ul>
+<p>巨量情况下做的负载测试是压力测试，但常说的压测是指基准测试</p>
+<h2 id="负载测试"><a href="#负载测试" class="headerlink" title="负载测试"></a>负载测试</h2><p>是不同情况下的基准测试，比如一辆车，在空车，车载1吨、车载2吨、车载5吨等等情况下<br>负载越大，性能越低，越容易出错</p>
+<p>最佳负载？<br>最大负载？</p>
+<h2 id="容量测试"><a href="#容量测试" class="headerlink" title="容量测试"></a>容量测试</h2><p>不追求负载、压力，比如登录，某网站20万用户全部登录，不管登录过程的耗时</p>
 
     </div>
     <!-- 文章：声明 -->
