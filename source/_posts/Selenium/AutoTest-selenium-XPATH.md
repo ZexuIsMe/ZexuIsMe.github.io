@@ -7,7 +7,34 @@ categories:
   - 定位
 ---
 
-## contains()
+## 轴
+
+### child::节点
+
+`child::` 是可省略的
+`前者/child::后者`：表示后者是前者的子节点，前者是后者的父节点
+
+    /child::class/child::student
+
+student 是 class 的子节点
+class 是 根节点的子节点
+
+## parent::节点
+
+    //lesson[@name="语文"][@score="70"]/parent::scores
+
+## 模拟定位
+
+| 方法          | 描述                      |
+|:------------|:------------------------|
+| contains    | 模糊匹配定位元素                |
+|             | 类似于：input[name*="user"] |
+| starts-with | 匹配以 xx 开头的元素            |
+|             | 类似于：input[name^="user"] |
+| substr      | 匹配以 xx 结尾的元素            |
+|             | 类似于：input[name$="user"] |
+
+## 模糊定位：contains()
 
 【描述】 字符串匹配函数
 【作用】 检查一个字符串是否包含另一个子字符串
@@ -85,7 +112,9 @@ except:
 前半句满足前段需求：用于定位提交按钮
 后半句用于满足后段需求：寻找到提交按钮，在显示等待时间内容等待 disabled 的消失
 
+## 模拟定位：以 xx 开头 starts-with
 
+## 模拟定位：以 xx 结尾 substr()
 
 
 
