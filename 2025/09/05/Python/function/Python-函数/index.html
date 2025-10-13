@@ -1,0 +1,1378 @@
+<html lang="">
+<!-- Head tag -->
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="">
+    <meta name="author" content="">
+     
+    <title>Python-函数 | 粥记捣蛋</title>
+
+    
+<script src="/js/index.js" type="module"></script>
+
+    <!-- 这里的是全局通用的方法 -->
+
+<script type="text/javascript">
+    // // 使用示例
+    // const detector = new DeviceDetector();
+    // console.log('是否是移动设备:', detector.isMobile());
+    // console.log('是否是平板:', detector.isTablet());
+    // console.log('是否是触摸屏设备:', detector.isTouchDevice());
+    // console.log('浏览器:', detector.getBrowserInfo());
+    // console.log('设备信息:', detector.getDeviceInfo());
+    class DeviceDetector {
+        constructor() {
+            this.userAgent = navigator.userAgent.toLowerCase();
+            this.platform = navigator.platform.toLowerCase();
+            this.isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        }
+
+        // 判断是否为移动设备（包括平板）
+        isMobile() {
+            return /mobile|android|iphone|ipad|ipod|blackberry|windows phone/i.test(this.userAgent);
+        }
+
+        // 判断是否为桌面设备
+        isDesktop() {
+            return !this.isMobile();
+        }
+
+        // 判断是否为iOS设备
+        isIOS() {
+            return /iphone|ipad|ipod/i.test(this.userAgent);
+        }
+
+        // 判断是否为Android设备
+        isAndroid() {
+            return /android/i.test(this.userAgent);
+        }
+
+        // 判断是否为平板设备
+        isTablet() {
+            return /tablet|ipad|android(?!.*mobile)|kindle/i.test(this.userAgent);
+        }
+
+        // 判断是否为手机设备
+        isPhone() {
+            return this.isMobile() && !this.isTablet();
+        }
+
+        // 判断是否为触摸屏设备
+        isTouchDevice() {
+            return this.isTouchDevice;
+        }
+
+        // 判断是否为Chrome浏览器
+        isChrome() {
+            return /chrome/i.test(this.userAgent) && !this.isEdge();
+        }
+
+        // 判断是否为Firefox浏览器
+        isFirefox() {
+            return /firefox/i.test(this.userAgent);
+        }
+
+        // 判断是否为Safari浏览器
+        isSafari() {
+            return /safari/i.test(this.userAgent) && !/chrome|chromium/i.test(this.userAgent);
+        }
+
+        // 判断是否为Edge浏览器
+        isEdge() {
+            return /edge|edg/i.test(this.userAgent);
+        }
+
+        // 判断是否为IE浏览器
+        isIE() {
+            return /msie|trident/i.test(this.userAgent);
+        }
+
+        // 获取设备信息摘要
+        getDeviceInfo() {
+            return {
+                userAgent: this.userAgent,
+                isMobile: this.isMobile(),
+                isDesktop: this.isDesktop(),
+                isIOS: this.isIOS(),
+                isAndroid: this.isAndroid(),
+                isTablet: this.isTablet(),
+                isPhone: this.isPhone(),
+                isTouchDevice: this.isTouchDevice,
+                browser: this.getBrowserInfo()
+            };
+        }
+
+        // 获取浏览器信息
+        getBrowserInfo() {
+            if (this.isChrome()) return 'Chrome';
+            if (this.isFirefox()) return 'Firefox';
+            if (this.isSafari()) return 'Safari';
+            if (this.isEdge()) return 'Edge';
+            if (this.isIE()) return 'Internet Explorer';
+            return 'Unknown';
+        }
+    }
+
+    class Blog extends DeviceDetector {
+        constructor() {
+            super();
+            this.messageMap = new Map();
+            this.messageMap.set("info", "has-background-info-light");
+            this.messageMap.set("success", "has-background-success-light");
+            this.messageMap.set("warning", "has-background-warning-light");
+            this.messageMap.set("error", "has-background-danger-light");
+        }
+
+        createALink (url, target = '_self') {
+            if (!url) {
+                console.error('没有链接')
+                return
+            }
+            if (url.startsWith('http')) target = '_blank'
+            const aLink = document.createElement('a')
+            aLink.href = url
+            aLink.target = target;
+            aLink.click()
+        }
+
+        /**
+         *
+         * @param url 图片链接
+         * @param id 你给 loading.ejs 添加的 id
+         */
+        imagesHideLoading (url, id) {
+            const img = new Image()
+            img.src = url
+            document.getElementById(id).classList.add('c-show-loading')
+            img.onload = () => {
+                console.log('加载完毕')
+                setTimeout(() => {
+                    console.log('已执行')
+                    document.getElementById(id).classList.remove('c-show-loading')
+                    document.getElementById(id).classList.add('c-hide-loading')
+                }, 2000)
+            }
+        }
+
+        getMessageParent () {
+            let DOMParent = document.getElementById('blog-message')
+            if (!DOMParent) {
+                DOMParent = document.createElement('div')
+                DOMParent.id = 'blog-message'
+                DOMParent.classList.add('d-flex')
+                DOMParent.classList.add('align-center')
+                DOMParent.classList.add('flex-column')
+                Object.assign(DOMParent.style, {
+                    width: '100%',
+                    height: 'auto',
+                    position: 'fixed',
+                    top: '7.5rem',
+                    left: 0,
+                    zIndex: 999999999999999999,
+                    transition: 'height 0.3s ease'
+                })
+
+                document.body.appendChild(DOMParent)
+            }
+            return DOMParent
+        }
+
+        showMessage ({
+                         type = 'info', // info、success、warning、error
+                         message = '还没有投放文本呢~~',
+                     }) {
+            const parentDOM = this.getMessageParent()
+
+            const DOM = document.createElement('div')
+            DOM.classList.add('py-2')
+            DOM.classList.add('px-4')
+            DOM.classList.add('box')
+            DOM.classList.add(this.messageMap.get(type))
+            Object.assign(DOM.style, {
+                width: 'fit-content',
+                opacity: '0',
+                visibility: 'hidden',
+                transition: 'opacity 0.3s ease, transform 0.3s ease, visibility 0.3s'
+            })
+
+            DOM.innerHTML = message
+            DOM.style.opacity = '1'
+            DOM.style.visibility = 'visible'
+            parentDOM.appendChild(DOM)
+
+            setTimeout(() => {
+                DOM.style.opacity = '0'
+                DOM.style.visibility = 'hidden'
+                setTimeout(() => {
+                    parentDOM.removeChild(DOM)
+                }, 500)
+            }, 1500)
+        }
+
+        onclickCopy (targetName) {
+            const targetDOM = document.querySelector(targetName)
+            if (!targetDOM) {
+                throw new Error('复制的目标不存在！用的是 querySelector，可能是名字用错了呀~')
+            }
+            // 选中文本
+            const range = document.createRange();
+            range.selectNodeContents(targetDOM);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            // 执行复制命令
+            const successful = document.execCommand('copy');
+            // 清理
+            selection.removeAllRanges();
+
+            if (successful) {
+                this.showMessage({ type: 'success', message: '复制成功' });
+            } else {
+                throw new Error('复制失败')
+            }
+        }
+    }
+</script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- 浏览器图标 -->
+    <link rel="shortcut icon" href="/logo/%E9%AB%98%E6%B8%85Logo/%E9%80%8F%E6%98%8E%E5%BA%95logo.png">
+
+    <!-- framework CSS -->
+    
+<link rel="stylesheet" href="/css/bulma/index.css">
+
+    
+<link rel="stylesheet" href="/css/index.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- section 1：顶部菜单 -->
+    <div class="index-menu px-4">
+    <div id="no-mobile-menu" >
+        <div class="d-flex justify-center align-center gap-4 v-full">
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/"
+                    >首页</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/bhcyl"
+                    >碧海苍云录</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/life"
+                    >生活大爆炸</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/archives"
+                    >归档</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/about-me"
+                    >关于我</a>
+                </div>
+            
+        </div>
+    </div>
+    <div id="mobile-menu">
+        <div class="v-full d-flex justify-end align-center">
+            <div style="width: fit-content; position: relative">
+                <i
+                        class="fas fa-list"
+                        style="color: #00586d"
+                        onclick="event.stopPropagation(); menuEjs.onclickMobileMenu(event)"
+                ></i>
+                <div
+                        id="nav-mobile"
+                        class="py-4"
+                        style=" opacity: 0; visibility: hidden"
+                        onclick="event.stopPropagation();"
+                >
+                    <aside class="menu">
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/" style="color: #00586d ">首页</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/bhcyl" style="color: #00586d ">碧海苍云录</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/life" style="color: #00586d ">生活大爆炸</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/archives" style="color: #00586d ">归档</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/about-me" style="color: #00586d ">关于我</a>
+                            </div>
+                        
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .menu-label:hover {
+        background-color: #EEEEEE;
+        color: #00586d;
+    }
+</style>
+
+<script>
+    // 导航栏吸顶功能实现
+    document.addEventListener('DOMContentLoaded', function() {
+        const navbar = document.querySelector('.index-menu');
+        let lastScrollTop = 0;
+        const threshold = 50; // 滚动阈值，越小越敏感
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // 页面顶部始终显示
+            if (scrollTop <= threshold) {
+                navbar.classList.remove('fixed-header-hidden');
+            }
+            // 向下滚动且超过阈值
+            else if (scrollTop > lastScrollTop && scrollTop > threshold) {
+                navbar.classList.add('fixed-header-hidden');
+            }
+            // 向上滚动
+            else {
+                navbar.classList.remove('fixed-header-hidden');
+            }
+
+            lastScrollTop = scrollTop;
+
+            // 无论是向上还是向下滚动，如果音乐播放器处于展现状态，都要收起来
+            const musicPlayer = document.getElementById('music-player')
+            if(musicPlayer) musicPlayer.style.left = -100 + '%'
+        });
+    });
+
+    const menuEjs = {
+        onclickMobileMenu: event => {
+            console.log('onclickMobileMenu')
+            const targetDOM = document.getElementById('nav-mobile')
+            targetDOM.style.opacity = 1
+            targetDOM.style.visibility = 'visible'
+        }
+    }
+
+    window.addEventListener('click', function() {
+        const targetDOM = document.getElementById('nav-mobile')
+        if (!targetDOM || !targetDOM.style.opacity) return
+        if (targetDOM.style.opacity) {
+            targetDOM.style.opacity = 0
+            targetDOM.style.visibility = 'hidden'
+        }
+    })
+</script>
+
+<style>
+    .index-menu {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 80px;
+        backdrop-filter: blur(10px);
+        background-color: transparent;
+        z-index: 99999;
+        transition: transform 0.3s linear, opacity 0.3s linear; /* 线性过渡 */
+    }
+    .index-menu > div {
+        cursor: pointer;
+    }
+
+    .fixed-header-hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    #no-mobile-menu {
+        display: none;
+        width: 100%;
+    }
+    #mobile-menu {
+        display: none;
+        height: 100%;
+    }
+    #nav-mobile {
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        position: absolute;
+        top: 100%;
+        background-color: white;
+        z-index: 2;
+        right: 0;
+    }
+
+    /* 屏幕宽度小于等于400px时 */
+    @media (max-width: 400px) {
+        #mobile-menu {
+            display: block;
+        }
+        #no-mobile-menu {
+            display: none;
+        }
+    }
+
+    /* 屏幕宽度大于400px时 */
+    @media (min-width: 401px) {
+        #mobile-menu {
+            display: none;
+        }
+        #no-mobile-menu {
+            display: block;
+        }
+    }
+</style>
+    <div id="blog-body">
+        <!-- 渲染：阅读整篇文章 -->
+<style>
+    #read-post {
+        min-height: calc(100% - 210px);
+        max-width: 85%;
+        margin: auto;
+    }
+
+    @media (max-width: 768px) {
+        #read-post {
+            max-width: 85%;
+        }
+    }
+</style>
+
+
+
+<div style="height: 80px"></div>
+
+<article id="read-post">
+    <!-- Title -->
+    <div class="level">
+        <div class="level-left">
+            <div class="media">
+                <div class="media-content">
+                    <h1 class="title is-4 modify-post-title">
+                        <span class="has-text-info">Python-函数</span>
+                    </h1>
+                    <p class="subtitle is-6">
+                        <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-10-13 19:39
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- 文章标签 -->
+        <div class="pt-4">
+            <span>
+    
+        <a class="tag is-info is-light" href="/tags/Python/" style="font-size: 0.875rem">Python</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E5%87%BD%E6%95%B0/" style="font-size: 0.875rem">函数</a>
+    
+        <a class="tag is-info is-light" href="/tags/def/" style="font-size: 0.875rem">def</a>
+    
+</span>
+            <span>
+    
+        <a class="tag is-warning is-light" href="/categories/Python/" style="font-size: 0.875rem">Python</a>
+    
+        <a class="tag is-warning is-light" href="/categories/Python/%E5%87%BD%E6%95%B0/" style="font-size: 0.875rem">函数</a>
+    
+</span>
+        </div>
+    </div>
+
+    <!-- 目录  -->
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">关于函数的参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0%EF%BC%8C%E4%B8%8D%E5%9B%BA%E5%AE%9A%E6%95%B0%E9%87%8F%E7%9A%84%E4%BC%A0%E5%8F%82"><span class="toc-number">2.</span> <span class="toc-text">可变参数，不固定数量的传参</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#args"><span class="toc-number">2.1.</span> <span class="toc-text">*args</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kwargs"><span class="toc-number">2.2.</span> <span class="toc-text">**kwargs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0%EF%BC%8C%E5%BF%85%E9%A1%BB%E6%94%BE%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">3.</span> <span class="toc-text">默认参数，必须放在最后</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text">指定数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">递归函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">6.</span> <span class="toc-text">变量作用域</span></a></li></ol></div>
+    <!-- 文章：内容 -->
+    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
+        <hr />
+        <!-- Content -->
+        <p><img src="https://www.runoob.com/wp-content/uploads/2014/05/py-tup-10-26-1.png" alt="函数介绍"></p>
+<p>def 》 define 定义</p>
+<h2 id="关于函数的参数"><a href="#关于函数的参数" class="headerlink" title="关于函数的参数"></a>关于函数的参数</h2><p>变量本身不具备任何类型，只是说通过赋值，赋值的值是有数据类型的，让变量拥有了数据类型</p>
+<pre><code>x # 定义了一个变量x
+x = &quot;123&quot; 
+# 字符串 123，通过赋值的方式，让 x 成为了一个字符类型
+x = 123
+# 此时，数字123 被赋值给 x，这时 x 是一个数字类型
+</code></pre>
+<p>具有引用数据类型特点的数据类型在函数内被修改后，会影响到源对象</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python3</span><br><br><span class="hljs-comment"># 可写函数说明</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">changeme</span>(<span class="hljs-params"> mylist </span>):<br>    mylist.append([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>])<br>    <span class="hljs-built_in">print</span> (<span class="hljs-string">&quot;函数内取值: &quot;</span>, mylist)<br>    <span class="hljs-keyword">return</span><br><br><span class="hljs-comment"># 调用changeme函数</span><br>mylist = [<span class="hljs-number">10</span>,<span class="hljs-number">20</span>,<span class="hljs-number">30</span>]<br>changeme( mylist )<br><span class="hljs-built_in">print</span> (<span class="hljs-string">&quot;函数外取值: &quot;</span>, mylist)<br></code></pre></td></tr></table></figure>
+
+<pre><code>函数内取值: [10, 20, 30, [1,2,3,4]]
+函数外取值: [10, 20, 30, [1,2,3,4]]
+</code></pre>
+<h2 id="可变参数，不固定数量的传参"><a href="#可变参数，不固定数量的传参" class="headerlink" title="可变参数，不固定数量的传参"></a><strong>可变参数</strong>，不固定数量的传参</h2><ol>
+<li>可变参数与默认参数之间没有位置顺序，随便入座</li>
+<li>可变参数后常规传参必须是关键字</li>
+<li>可变参数不能使用关键字调用，只能标准调用</li>
+</ol>
+<h3 id="args"><a href="#args" class="headerlink" title="*args"></a>*args</h3><p><strong>单个星号的参数会以元组(tuple)的形式导入，存放所有未命名的变量参数</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 可写函数说明</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">printinfo</span>(<span class="hljs-params">arg1, *vartuple</span>):<br>    <span class="hljs-string">&quot;打印任何传入的参数&quot;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;输出: &quot;</span>)<br>    <span class="hljs-built_in">print</span>(arg1) <span class="hljs-comment"># 70</span><br>    <span class="hljs-built_in">print</span>(vartuple) <span class="hljs-comment"># (60, 50)</span><br><br><span class="hljs-comment"># 调用printinfo 函数</span><br>printinfo(<span class="hljs-number">70</span>, <span class="hljs-number">60</span>, <span class="hljs-number">50</span>)<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>传参类型</th>
+<th>*args</th>
+<th>打印结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>元组(tuple)</td>
+<td>x&#x3D;(1, 2, 3)<br/>print(*x)</td>
+<td>1, 2, 3</td>
+</tr>
+<tr>
+<td>列表(list)</td>
+<td>x&#x3D;[1, 2, 3]<br/>print(*x)</td>
+<td>1, 2, 3</td>
+</tr>
+<tr>
+<td>集合(set)</td>
+<td>x&#x3D;{1, 2, 3}<br/>print(*x)</td>
+<td>1, 2, 3</td>
+</tr>
+<tr>
+<td><mark>字典(dict)</mark></td>
+<td>x&#x3D;{ “a”: 1, “b”: 2, “c”: 3 }<br/>print(*x)</td>
+<td><mark>a, b, c</mark></td>
+</tr>
+</tbody></table>
+<h3 id="kwargs"><a href="#kwargs" class="headerlink" title="**kwargs"></a>**kwargs</h3><p><strong>两个星号</strong>的参数会以字典(dict)的形式导入**</p>
+<p><mark>这样形式的书写，至多一个，且必须在最后</mark></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python3</span><br>  <br><span class="hljs-comment"># 可写函数说明</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">printinfo</span>(<span class="hljs-params"> arg1, **vardict </span>):<br>   <span class="hljs-string">&quot;打印任何传入的参数&quot;</span><br>   <span class="hljs-built_in">print</span> (<span class="hljs-string">&quot;输出: &quot;</span>)<br>   <span class="hljs-built_in">print</span> (arg1) <span class="hljs-comment"># 1</span><br>   <span class="hljs-built_in">print</span> (vardict) <span class="hljs-comment"># &#123;&quot;a&quot;: 2, &quot;b&quot;: 3&#125;</span><br> <br><span class="hljs-comment"># 调用printinfo 函数</span><br>printinfo(<span class="hljs-number">1</span>, a=<span class="hljs-number">2</span>,b=<span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="默认参数，必须放在最后"><a href="#默认参数，必须放在最后" class="headerlink" title="默认参数，必须放在最后"></a>默认参数，必须放在最后</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 可写函数说明</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">printinfo</span>(<span class="hljs-params"> age=<span class="hljs-number">35</span>,name </span>):   <span class="hljs-comment"># 默认参数不在最后，会报错</span><br>    <span class="hljs-string">&quot;打印任何传入的字符串&quot;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;名字: &quot;</span>, name)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;年龄: &quot;</span>, age)<br>    <span class="hljs-keyword">return</span><br></code></pre></td></tr></table></figure>
+
+<p>需要更改为：<code>printinfo( name, age=35 )</code></p>
+<h2 id="指定数据类型"><a href="#指定数据类型" class="headerlink" title="指定数据类型"></a>指定数据类型</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">abc</span>(<span class="hljs-params">a:<span class="hljs-built_in">str</span>=<span class="hljs-string">&quot;123&quot;</span></span>)-&gt;<span class="hljs-built_in">str</span>:<br>    <span class="hljs-built_in">print</span>(a)<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;333&quot;</span><br><br>abc()<br>abc(<span class="hljs-string">&quot;456&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><code>a:str=&quot;123&quot;</code> 规定参数a是一个字符串类型，且有默认值，默认值为 123<br><code>-&gt;str</code> 规定该函数的返回类型是字符串类型</p>
+<p>规定参数数据类型，非强制数据类型，只是告诉你我设定的这个函数所需要的参数需要的数据类型，即便数据类型不一样，或许也能运行，但结果和预期不一样就不要怪函数有问题</p>
+<h2 id="递归函数"><a href="#递归函数" class="headerlink" title="递归函数"></a>递归函数</h2><p>函数自己调用自己，Python 对函数的自调用有层级限制（&lt;1000）</p>
+<h2 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h2><p>定义一个全局变量</p>
+<pre><code>x = 123
+</code></pre>
+<p>定义一个方法：</p>
+<pre><code>def aaa():
+    print(x)
+aaa()
+</code></pre>
+<p>打印：123</p>
+<blockquote>
+<p>Q：为什么？</p>
+</blockquote>
+<p>因为 <code>x = 123</code> 是一个全局变量，<br>调用函数时，函数内部需要用到变量 x，但是函数内部没有定义变量x，<br>此时，函数会在全局变量字典中寻找是否存在变量 x，若存在则打印，否则返回 None</p>
+<p>这说明什么，说明了<mark>全局变量可以在任何地方调用</mark></p>
+<p>若函数内部定义的有变量 x, 则会优先调用函数内部</p>
+<pre><code>def aaa():
+    x = 555
+    print(x)
+aaa()
+</code></pre>
+<p>打印：555</p>
+<blockquote>
+<p>函数内部和全局变量同名了，该局部变量会影响全局变量吗？</p>
+</blockquote>
+<p><strong>不会</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">x = <span class="hljs-number">123</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;1&quot;</span>, x) <span class="hljs-comment"># 123</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">aaa</span>():<br>    x = <span class="hljs-number">555</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;2&quot;</span>, x) <span class="hljs-comment"># 555</span><br>aaa()<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;3&quot;</span>, x) <span class="hljs-comment"># 123</span><br></code></pre></td></tr></table></figure>
+
+<p>除非函数内部使用<code>global</code>关键字</p>
+<pre><code>def aaa():
+    global x
+    x = 555
+    print(&quot;2&quot;, x) # 555
+aaa()
+</code></pre>
+<p>该关键字表示在函数内部表示声明或引用全局变量</p>
+
+    </div>
+    <!-- 文章：声明 -->
+    <!-- 文章的声明 -->
+<div id="copy-icon-Python-函数" style="word-wrap: break-word">
+    <p>
+        <strong>作者</strong>：
+        <span>粥记捣蛋</span>
+    </p>
+    <p>
+        <strong>文章链接</strong>：
+        <span
+                id="article-link-span"
+                data-text="https://zexuisme.github.io/2025/09/05/Python/function/Python-%E5%87%BD%E6%95%B0/"
+        ></span>
+    </p>
+    <p>
+        <strong>版权声明</strong>：
+        <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
+    </p>
+</div>
+
+<script>
+    console.log(document.getElementById("article-link-span"))
+    const linkDOM = document.getElementById("article-link-span")
+    if (linkDOM) {
+        let linkText = linkDOM.getAttribute("data-text")
+        linkDOM.innerHTML = `<a href="${linkText}" target="_blank">${ decodeURI(linkText)}</a>`
+    }
+</script>
+    <!-- 文章：文章切换 -->
+    <div style="margin-top: 48px">
+<!-- 文章阅读页的切换按钮 -->
+<div class="post-toggle d-flex justify-between flex-wrap gap-3">
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/2025/09/07/Python/data_type/Python-%E5%85%83%E7%BB%84/')"
+            
+    >上一篇: Python-元组（tuple）</button>
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/2025/09/04/Python/Python-%E6%8E%A8%E5%AF%BC/')"
+            
+    >下一篇: Python-推导</button>
+</div>
+
+<script>
+    class PostToggleEjs extends Blog {
+        constructor() {
+            super()
+        }
+
+        onclickLink (url) {
+            this.createALink(url, '_self')
+        }
+    }
+
+    const postToggleEjs = new PostToggleEjs()
+</script></div>
+
+</article>
+
+<div style="height: 80px"></div>
+
+<script>
+    class PostEjs extends Blog{
+        constructor() {
+            super();
+        }
+    }
+    const postEjs = new PostEjs();
+</script>
+    </div>
+
+    
+        <!-- 悬浮操作按钮 -->
+        <div
+        class="post-flex d-flex flex-wrap gap-4"
+        style="position: fixed; bottom: 10%; right: 10px; width: 48px; mix-blend-mode: difference;"
+>
+    <div
+            class="mbl d-flex justify-center align-center"
+            style="border-radius: 50%; width: 48px; height: 48px; border: none"
+            onclick="postFlexMenu.onclickFlexBtn(event)"
+    >
+        <a href="/">
+            <i class="fas fa-home" style="font-size: 24px"></i>
+        </a>
+    </div>
+
+    <div
+            class="mbl d-flex justify-center align-center"
+            style="border-radius: 50%; width: 48px; height: 48px; border: none"
+            onclick="postFlexMenu.onclickFlexBtn(event)"
+    >
+        <a href="#blog-body">
+            <i class="fas fa-angle-up" style="font-size: 24px"></i>
+        </a>
+    </div>
+
+    <div
+            id="flex-music-btn"
+            class="mbl d-flex justify-center align-center"
+            style="border-radius: 50%; width: 48px; height: 48px; border: none"
+            onclick="postFlexMenu.onclickMusicBtn()"
+    >
+        <i class="fas fa-music text-primary" style="font-size: 24px; cursor: pointer"></i>
+    </div>
+</div>
+
+<script>
+    class PostFlexMenu extends DeviceDetector{
+        constructor() {
+            super();
+            // ...
+        }
+
+        onclickFlexBtn (event) {
+            const aLink = event.target.querySelector('a')
+            if (!aLink) return;
+            aLink.click()
+        }
+
+        onclickMusicBtn () {
+            const musicPlay = document.getElementById('music-player')
+            if (musicPlay.style.left === '0px') musicPlay.style.left = -100 + '%'
+            else musicPlay.style.left = 0
+        }
+    }
+
+    const postFlexMenu = new PostFlexMenu();
+    if (postFlexMenu.isMobile()) {
+        document.getElementById('flex-music-btn').classList.remove('d-flex');
+        document.getElementById('flex-music-btn').style.display = 'none';
+    }
+</script>
+        <!-- 音乐播放器 -->
+        <div id="music-player" class="px-6 py-4">
+    <div class="d-flex v-full">
+        <div class="v-full d-flex align-center gap-4" style="max-width: 310px">
+            <div id="music-avatar" style="position: relative">
+                <figure>
+                    <img src="/img/bhcyl/bhcyl.jpg" alt="" style="height: 100%; object-fit: cover">
+                </figure>
+                <div class="v-absolute-center bg-white" style="height: 32px; border-radius: 50%; width: 32px"></div>
+                <div class="v-absolute-center border-grey-50" style="height: 40px; border-radius: 50%; width: 40px; border: 2px solid"></div>
+            </div>
+            <div style="width: 200px">
+                <div id="music-title" class="text-secondary">歌曲名</div>
+                <div id="music-author" class="text-secondary">作者</div>
+            </div>
+        </div>
+
+        <div id="music-state" class="v-full d-flex flex-column justify-center align-center gap-5">
+            <div class="d-flex gap-6">
+                <i id="prev-btn" class="fas fa-step-backward" onclick="musicPlayer.onclickPreMusic(event)"></i>
+                <i id="play-btn" class="fas fa-play-circle" onclick="musicPlayer.onclickTogglePlayerState()"></i>
+                <i id="next-btn" class="fas fa-step-forward" onclick="musicPlayer.onclickNextMusic(event)"></i>
+            </div>
+            <div id="music-progress" class="d-flex justify-center" >
+                <div onclick="musicPlayer.onclickPosition(event)">
+                    <div id="default-progress" class="bg-grey-300"></div>
+                    <div id="player-progress"></div>
+                    <div class="progress-text"></div>
+                    <audio
+                            style="display: none"
+                            controls
+                            src="/music/净坛遗恨.mp3"
+                            onloadedmetadata="musicPlayer.onloadedmetadata(event)"
+                            ontimeupdate="musicPlayer.ontimeupdate(event)"
+                            onended="musicPlayer.onended()"
+                    ></audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="v-full d-flex align-center justify-around" style="max-width: 310px">
+            <div class="d-flex gap-3 align-center">
+                <!-- 喇叭 -->
+                <i
+                        id="la-ba"
+                        class="fas fa-volume-down text-secondary"
+                        onclick="musicPlayer.onclickToggleLaBaIcon(event)"
+                        data-muted="false"
+                ></i>
+                <!-- 音量调节 -->
+                <div id="voice-progress" style="position: relative">
+                    <span id="voice-bg" class="bg-grey-300"></span>
+                    <span id="voice-modify"></span>
+                    <div id="voice-mask" class="v-absolute" onclick="musicPlayer.onclickControlVolume(event)"></div>
+                </div>
+            </div>
+            <!-- 歌曲列表-->
+            <div id="music-list">
+                <i class="fas fa-list" onclick="event.stopPropagation(); musicPlayer.showMusicListCard(event)"></i>
+                <div id="music-list-card" class="p-4" onclick="event.stopPropagation()" data-list="[{&#34;path&#34;:&#34;music/净坛遗恨.mp3&#34;,&#34;name&#34;:&#34;净坛遗恨&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/末日旅人的独白.mp3&#34;,&#34;name&#34;:&#34;末日旅人的独白&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/灯芯上的七彩霜A.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-A&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/灯芯上的七彩霜B.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-B&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/王权情劫.mp3&#34;,&#34;name&#34;:&#34;王权情劫&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/白骨谣.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 女声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/白骨谣_男声版.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 男声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/纯音乐001.mp3&#34;,&#34;name&#34;:&#34;Darkness Nocturne&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}]">
+                    
+                        <div
+                                id="music-list-0"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/净坛遗恨.mp3&#34;,&#34;name&#34;:&#34;净坛遗恨&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `0`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">净坛遗恨</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-1"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/末日旅人的独白.mp3&#34;,&#34;name&#34;:&#34;末日旅人的独白&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `1`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">末日旅人的独白</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-2"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/灯芯上的七彩霜A.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-A&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `2`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">灯芯上的七彩霜-A</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-3"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/灯芯上的七彩霜B.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-B&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `3`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">灯芯上的七彩霜-B</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-4"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/王权情劫.mp3&#34;,&#34;name&#34;:&#34;王权情劫&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `4`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">王权情劫</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-5"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/白骨谣.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 女声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `5`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">白骨哀歌 - 女声</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-6"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/白骨谣_男声版.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 男声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `6`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">白骨哀歌 - 男声</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-7"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/纯音乐001.mp3&#34;,&#34;name&#34;:&#34;Darkness Nocturne&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `7`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">Darkness Nocturne</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+class MusicPlayer extends DeviceDetector {
+    constructor() {
+        super();
+        this.musicInfo = { index: 0 }
+        this.musicList = []
+
+        this.totalTime = ''
+        this.currentTime = ''
+        this.progress = 0
+        this.defaultVolume = 0.2 // # 默认音量为 20%
+        this.cacheVolume = 0 // 暂存音量大小
+
+        const playBtnIcon = new Map()
+        playBtnIcon.set('play', 'fa-play-circle')
+        playBtnIcon.set('pause', 'fa-pause-circle')
+        this.playBtnIcon = playBtnIcon
+
+        const laBaIcon = new Map()
+        laBaIcon.set("小喇叭", 'fa-volume-down')
+        laBaIcon.set("大喇叭", 'fa-volume-up')
+        laBaIcon.set("静音", 'fa-volume-mute')
+        this.laBaIcon = laBaIcon
+    }
+
+    setMusicList () {
+        if (this.musicList.length > 0) return
+        const dom = this.getMusicListCard()
+        this.musicList = JSON.parse(dom.dataset.list)
+        dom.setAttribute('data-list', [])
+    }
+    getAvatarDOM () {
+        return document.getElementById('music-avatar')
+    }
+    getMusicListCard () {
+        return document.getElementById("music-list-card")
+    }
+    modifyMusicInfo () {
+        const { name, author } = this.musicInfo
+        // 修改歌曲头像
+        // 修改歌曲标题
+        const titleDOM = document.getElementById("music-title")
+        titleDOM.innerHTML = name
+        // 修改歌曲作者
+        const authorDOM = document.getElementById("music-author")
+        authorDOM.innerHTML = author
+    }
+    hideMusicListCard () {
+        const card = this.getMusicListCard();
+        card.style.opacity = 0;
+        card.style.visibility = 'hidden';
+    }
+    showMusicListCard () {
+        const card = this.getMusicListCard();
+        card.style.opacity = 1;
+        card.style.visibility = 'visible';
+    }
+    // 播放前一首
+    onclickPreMusic(event) {
+        this.setMusicList()
+        const { musicInfo, musicList } = this
+        // * 1 是为了把字符洗掉
+        let prevIndex = musicInfo.index * 1 - 1
+        if (prevIndex <= 0) prevIndex = musicList.length - 1
+        document.getElementById(`music-list-${prevIndex}`).click()
+    }
+    // 播放下一首
+    onclickNextMusic(event) {
+        this.setMusicList()
+        const { musicInfo, musicList } = this
+        // * 1 是为了把字符洗掉
+        let nextIndex = musicInfo.index * 1 + 1
+        if (nextIndex > musicList.length - 1) nextIndex = 0
+        document.getElementById(`music-list-${nextIndex}`).click()
+    }
+
+    // 获取 audio 图标
+    getVoiceDOM () {
+        return document.querySelector("#music-progress audio");
+    }
+    getPlayBtnDOM () {
+        return document.getElementById("play-btn");
+    }
+    getPreBtnDOM () {
+        return document.getElementById("play-btn");
+    }
+    getNextBtnDOM () {
+        return document.getElementById("next-btn");
+    }
+    setMuted (dom, val) {
+        dom.setAttribute('data-muted', val)
+    }
+    // 设置喇叭图标
+    setLaBaIcon (dom, { add, remove, muted }) {
+        dom.classList.remove(remove)
+        dom.classList.add(add)
+        this.setMuted(dom, muted)
+    }
+    // 设置播放键按钮图标
+    setPlayBtnIcon ({ add, remove }) {
+        const playBtnDOM = this.getPlayBtnDOM()
+        playBtnDOM.classList.remove(remove)
+        playBtnDOM.classList.add(add)
+    }
+    // 调整音量的位置
+    modifyVolume (volume) {
+        const targetDOM = document.getElementById('voice-modify')
+        targetDOM.style.left = -100 + volume * 100 + '%'
+    }
+    // 选择音乐
+    onclickMusic (val, index) {
+        const config = JSON.parse(val);
+        this.musicInfo = Object.assign(config, { index })
+        this.setMusicList()
+        this.modifyMusicInfo()
+
+        const voiceDOM = this.getVoiceDOM()
+        voiceDOM.src = `/${config.path}`
+
+        // 切换歌曲时暂停播放
+        this.getVoiceDOM().pause()
+        // 切换歌曲时把播放按钮的状态还原
+        const playBtnIcon = this.playBtnIcon
+        this.setPlayBtnIcon({ add: playBtnIcon.get('play'), remove: playBtnIcon.get('pause') })
+        this.onclickTogglePlayerState()
+    }
+    // 点击播放按钮时：切换音频状态
+    onclickTogglePlayerState () {
+        // 如果不存在歌曲信息说明是第一次播放，
+        if (!Object.keys(this.musicInfo).find(key => key === 'path')) {
+            document.getElementById(`music-list-0`).click()
+            return
+        }
+
+        const voiceDOM = this.getVoiceDOM()
+        const avatarImgDOM = this.getAvatarDOM().querySelector('img')
+        // 判断是否处于播放状态，如果处于播放状态，那么 paused 参数为 false
+        if (voiceDOM.paused) {
+            voiceDOM.play()
+            // 让音乐头像旋转起来
+            avatarImgDOM.classList.add('music-avatar-img')
+            this.setPlayBtnIcon({
+                add: this.playBtnIcon.get('pause'),
+                remove: this.playBtnIcon.get('play')
+            })
+        } else {
+            voiceDOM.pause()
+            avatarImgDOM.classList.remove('music-avatar-img')
+            this.setPlayBtnIcon({
+                add: this.playBtnIcon.get('play'),
+                remove: this.playBtnIcon.get('pause')
+            })
+        }
+    }
+    // 调整音量大小
+    onclickControlVolume (event) {
+        const voice = this.getVoiceDOM()
+        const { offsetX, target } = event
+
+        const volume = offsetX/target.clientWidth
+        this.modifyVolume(volume)
+
+        const laBa = document.querySelector(`#la-ba`)
+        if (laBa.dataset.muted === 'true') {
+            this.setLaBaIcon(laBa, {
+                muted: 'false',
+                add: this.laBaIcon.get('小喇叭'),
+                remove: this.laBaIcon.get('静音')
+            })
+        }
+
+        voice.volume = volume
+    }
+    // 播放完毕
+    onended () {
+        // 切下一首曲子
+        this.onclickNextMusic()
+    }
+
+    // 音频本身的操作
+    handleTimeFormat (second) {
+        // 秒数格式化
+        let mm = Math.floor(second / 60)
+        let ss = Math.floor(second % 60)
+        if (mm < 10) mm = '0' + mm
+        if (ss < 10) ss = '0' + ss
+        return `${mm}:${ss}`
+    }
+    // 获取音频的第一手信息
+    onloadedmetadata (event) {
+        console.log('歌曲已填充')
+        const voice = event.target
+        const { duration } = voice;
+        this.duration = duration;
+        this.totalTime = this.handleTimeFormat(duration)
+        // 设置默认音量
+        voice.volume = this.defaultVolume
+        // 修改音量状态
+        this.modifyVolume(this.defaultVolume)
+    }
+    ontimeupdate (event) {
+        // 当音频处于播放状态时触发
+        const { currentTime, duration } = event.target
+        this.currentTime = this.handleTimeFormat(currentTime)
+        document.querySelector('.progress-text').innerHTML = this.currentTime
+        // 操作进度条
+        // 把秒数切割为100份
+        const progress = currentTime / duration * 100
+        document.getElementById('player-progress').style.left = -100 + progress + '%'
+    }
+    onclickPosition (event) {
+        // TODO 定位有问题：设置currentTime会重新播放
+        // 有提过 seekable，说length = 1表示可以做定位的，该音频是有的，结果嘛就是依然不能做定位
+        const voiceDOM = this.getVoiceDOM()
+        const paused = voiceDOM.paused
+
+        voiceDOM.pause()
+        this.setPlayBtnIcon({
+            add: this.playBtnIcon.get('play'),
+            remove: this.playBtnIcon.get('pause')
+        })
+        const { offsetX, target } = event
+        voiceDOM.currentTime = Math.floor(offsetX/target.clientWidth * voiceDOM.duration)
+
+        if (paused === false) {
+            voiceDOM.play()
+            this.setPlayBtnIcon({
+                add: this.playBtnIcon.get('pause'),
+                remove: this.playBtnIcon.get('play')
+            })
+        }
+    }
+
+    // 按键操作：喇叭
+    onclickToggleLaBaIcon (event) {
+        // 点击切换喇叭状态
+        // 逻辑为：点击静音，如果是静音则回恢复状态
+        // ['fa-volume-down']
+        const laBaIconDOM = event.target
+        const { muted } = event.target.dataset
+        const laBaIcon = this.laBaIcon
+        if (muted === 'false') {
+            // 非静音状态，需要切换到静音
+            this.setLaBaIcon(laBaIconDOM, {
+                muted: 'true',
+                add: laBaIcon.get('静音'),
+                remove: laBaIcon.get('小喇叭')
+            })
+            // 把音量存起来
+            this.cacheVolume = this.getVoiceDOM().volume
+            // 修改音量
+            this.modifyVolume(0)
+            this.getVoiceDOM().volume = 0
+        } else {
+            // 静音状态，需要切换到正常状态
+            this.setLaBaIcon(laBaIconDOM, {
+                muted: 'false',
+                add: laBaIcon.get('小喇叭'),
+                remove: laBaIcon.get('静音')
+            })
+            // 修改音量
+            this.modifyVolume(this.cacheVolume)
+            this.getVoiceDOM().volume = this.cacheVolume
+        }
+    }
+}
+const musicPlayer = new MusicPlayer();
+if (musicPlayer.isMobile()) {
+    const dom = document.getElementById('music-player')
+    dom.style.display = 'none'
+}
+
+window.addEventListener('click', () => {
+    const target = musicPlayer.getMusicListCard()
+    if (target?.style.opacity) {
+        musicPlayer.hideMusicListCard()
+    }
+});
+</script>
+
+<style>
+    #music-player {
+        position: fixed;
+        width: 100%;
+        height: 128px;
+        bottom: 0;
+        left: -100%;
+        z-index: 9;
+        backdrop-filter: blur(10px);
+        background: transparent;
+        transition: left 0.5s ease;
+    }
+    #music-player i { font-size: 32px; }
+
+    #music-avatar {
+        width: 96px;
+        height: 100%;
+        border-radius:50%;
+        overflow: hidden;
+    }
+    @keyframes avatar-rotate {
+        0% { transform: rotate(0) }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* 按键区：上一首、播放、下一首 */
+    #music-state>div:first-child>i {
+        cursor: pointer;
+        color: var(--secondary);
+        transform: scale(1);
+        transition: color 0.3s ease;
+    }
+    #music-state>div:first-child>i:hover {
+        color: var(--primary);
+    }
+
+    /* 进度条 */
+    #music-progress {
+        width: 100%;
+    }
+    #music-progress>div {
+        width: 80%;
+        margin: auto;
+        max-width: 500px;
+        position: relative;
+        overflow: hidden;
+    }
+    #default-progress, #player-progress {
+        border: 6px;
+        width: 100%;
+        height: 5px;
+    }
+    #player-progress {
+        background: linear-gradient(to left, #c1d5d3, var(--primary), #c1d5d3);
+        position: absolute;
+        top: 0;
+        left: -100%;
+        background-size: 200%;
+        animation: musicPlayerProgress 3s linear infinite;
+    }
+    @keyframes musicPlayerProgress {
+        0% {
+            background-position: -100% 0;
+        }
+        100% {
+            background-position: 100% 0;
+        }
+    }
+
+    /* 音量 */
+    #voice-progress {
+        overflow: hidden;
+        padding: 12px 0;
+    }
+    #voice-progress::before {
+        content: "";
+        width: 100%;
+        height: 10px;
+        background-color: var(--primary);
+    }
+    #voice-bg, #voice-modify {
+        display: inline-block;
+        width: 100px;
+        height: 5px;
+        border-radius: 6px;
+    }
+    #voice-modify {
+        /*  音量的调节  */
+        position: absolute;
+        top: 50%;
+        left: -100%;
+        background-color: var(--primary);
+        transition: left 0.3s ease;
+        transform: translateY(-50%);
+    }
+    #voice-mask {
+        background-color: rgba(255,0,0,0);
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    /* 歌曲列表 */
+    #music-list {
+        position: relative;
+    }
+    #music-list-card {
+        cursor: pointer;
+        position: absolute;
+        width: 256px;
+        max-height: 512px;
+        overflow: auto;
+        bottom: calc(100% + .5rem);
+        right: -65px;
+        background-color: #00586d12;
+        opacity: 0;
+        visibility: hidden;
+        transition: visibility 0.3s ease, opacity 0.3s ease;
+    }
+    #music-list-card>div:nth-child(2n-1) {
+        background-color: var(--grey-100);
+    }
+    #music-list-card>div:nth-child(2n) {
+        background-color: var(--white);
+    }
+    #music-list-card>div:hover {
+        cursor: pointer;
+        background-color: var(--grey-300);
+    }
+</style>
+
+        <!-- 页脚：一些说明 -->
+        <div style="height: 10rem"></div>
+<section style="width: 100%; height: 20rem; background-color: var(--grey-100)">
+    <div class="container d-flex align-center px-4" style="height: 100%; color: var(--grey-500)">
+        <div style="line-height: 2">
+            <!-- config.yml footer -->
+            
+                <div>
+                    <span>【技术支持】Hexo</span>
+                    
+                        <sup>
+                            <a target="_blank" rel="noopener" href="https://hexo.io/">[1]</a>
+                        </sup>
+                    
+                </div>
+            
+                <div>
+                    <span>【主题支持】Goyangin</span>
+                    
+                        <sup>
+                            <a target="_blank" rel="noopener" href="http://g3xdev.com">[2]</a>
+                        </sup>
+                    
+                </div>
+            
+                <div>
+                    <span>【源码授权】麻省理工学院</span>
+                    
+                        <sup>
+                            <a target="_blank" rel="noopener" href="http://opensource.org/licenses/mit-license.php">[3]</a>
+                        </sup>
+                    
+                </div>
+            
+        </div>
+    </div>
+</section>
+    
+</body>
+</html>

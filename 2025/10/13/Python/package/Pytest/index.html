@@ -1,0 +1,1403 @@
+<html lang="">
+<!-- Head tag -->
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="">
+    <meta name="author" content="">
+     
+    <title>Pytest | 粥记捣蛋</title>
+
+    
+<script src="/js/index.js" type="module"></script>
+
+    <!-- 这里的是全局通用的方法 -->
+
+<script type="text/javascript">
+    // // 使用示例
+    // const detector = new DeviceDetector();
+    // console.log('是否是移动设备:', detector.isMobile());
+    // console.log('是否是平板:', detector.isTablet());
+    // console.log('是否是触摸屏设备:', detector.isTouchDevice());
+    // console.log('浏览器:', detector.getBrowserInfo());
+    // console.log('设备信息:', detector.getDeviceInfo());
+    class DeviceDetector {
+        constructor() {
+            this.userAgent = navigator.userAgent.toLowerCase();
+            this.platform = navigator.platform.toLowerCase();
+            this.isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        }
+
+        // 判断是否为移动设备（包括平板）
+        isMobile() {
+            return /mobile|android|iphone|ipad|ipod|blackberry|windows phone/i.test(this.userAgent);
+        }
+
+        // 判断是否为桌面设备
+        isDesktop() {
+            return !this.isMobile();
+        }
+
+        // 判断是否为iOS设备
+        isIOS() {
+            return /iphone|ipad|ipod/i.test(this.userAgent);
+        }
+
+        // 判断是否为Android设备
+        isAndroid() {
+            return /android/i.test(this.userAgent);
+        }
+
+        // 判断是否为平板设备
+        isTablet() {
+            return /tablet|ipad|android(?!.*mobile)|kindle/i.test(this.userAgent);
+        }
+
+        // 判断是否为手机设备
+        isPhone() {
+            return this.isMobile() && !this.isTablet();
+        }
+
+        // 判断是否为触摸屏设备
+        isTouchDevice() {
+            return this.isTouchDevice;
+        }
+
+        // 判断是否为Chrome浏览器
+        isChrome() {
+            return /chrome/i.test(this.userAgent) && !this.isEdge();
+        }
+
+        // 判断是否为Firefox浏览器
+        isFirefox() {
+            return /firefox/i.test(this.userAgent);
+        }
+
+        // 判断是否为Safari浏览器
+        isSafari() {
+            return /safari/i.test(this.userAgent) && !/chrome|chromium/i.test(this.userAgent);
+        }
+
+        // 判断是否为Edge浏览器
+        isEdge() {
+            return /edge|edg/i.test(this.userAgent);
+        }
+
+        // 判断是否为IE浏览器
+        isIE() {
+            return /msie|trident/i.test(this.userAgent);
+        }
+
+        // 获取设备信息摘要
+        getDeviceInfo() {
+            return {
+                userAgent: this.userAgent,
+                isMobile: this.isMobile(),
+                isDesktop: this.isDesktop(),
+                isIOS: this.isIOS(),
+                isAndroid: this.isAndroid(),
+                isTablet: this.isTablet(),
+                isPhone: this.isPhone(),
+                isTouchDevice: this.isTouchDevice,
+                browser: this.getBrowserInfo()
+            };
+        }
+
+        // 获取浏览器信息
+        getBrowserInfo() {
+            if (this.isChrome()) return 'Chrome';
+            if (this.isFirefox()) return 'Firefox';
+            if (this.isSafari()) return 'Safari';
+            if (this.isEdge()) return 'Edge';
+            if (this.isIE()) return 'Internet Explorer';
+            return 'Unknown';
+        }
+    }
+
+    class Blog extends DeviceDetector {
+        constructor() {
+            super();
+            this.messageMap = new Map();
+            this.messageMap.set("info", "has-background-info-light");
+            this.messageMap.set("success", "has-background-success-light");
+            this.messageMap.set("warning", "has-background-warning-light");
+            this.messageMap.set("error", "has-background-danger-light");
+        }
+
+        createALink (url, target = '_self') {
+            if (!url) {
+                console.error('没有链接')
+                return
+            }
+            if (url.startsWith('http')) target = '_blank'
+            const aLink = document.createElement('a')
+            aLink.href = url
+            aLink.target = target;
+            aLink.click()
+        }
+
+        /**
+         *
+         * @param url 图片链接
+         * @param id 你给 loading.ejs 添加的 id
+         */
+        imagesHideLoading (url, id) {
+            const img = new Image()
+            img.src = url
+            document.getElementById(id).classList.add('c-show-loading')
+            img.onload = () => {
+                console.log('加载完毕')
+                setTimeout(() => {
+                    console.log('已执行')
+                    document.getElementById(id).classList.remove('c-show-loading')
+                    document.getElementById(id).classList.add('c-hide-loading')
+                }, 2000)
+            }
+        }
+
+        getMessageParent () {
+            let DOMParent = document.getElementById('blog-message')
+            if (!DOMParent) {
+                DOMParent = document.createElement('div')
+                DOMParent.id = 'blog-message'
+                DOMParent.classList.add('d-flex')
+                DOMParent.classList.add('align-center')
+                DOMParent.classList.add('flex-column')
+                Object.assign(DOMParent.style, {
+                    width: '100%',
+                    height: 'auto',
+                    position: 'fixed',
+                    top: '7.5rem',
+                    left: 0,
+                    zIndex: 999999999999999999,
+                    transition: 'height 0.3s ease'
+                })
+
+                document.body.appendChild(DOMParent)
+            }
+            return DOMParent
+        }
+
+        showMessage ({
+                         type = 'info', // info、success、warning、error
+                         message = '还没有投放文本呢~~',
+                     }) {
+            const parentDOM = this.getMessageParent()
+
+            const DOM = document.createElement('div')
+            DOM.classList.add('py-2')
+            DOM.classList.add('px-4')
+            DOM.classList.add('box')
+            DOM.classList.add(this.messageMap.get(type))
+            Object.assign(DOM.style, {
+                width: 'fit-content',
+                opacity: '0',
+                visibility: 'hidden',
+                transition: 'opacity 0.3s ease, transform 0.3s ease, visibility 0.3s'
+            })
+
+            DOM.innerHTML = message
+            DOM.style.opacity = '1'
+            DOM.style.visibility = 'visible'
+            parentDOM.appendChild(DOM)
+
+            setTimeout(() => {
+                DOM.style.opacity = '0'
+                DOM.style.visibility = 'hidden'
+                setTimeout(() => {
+                    parentDOM.removeChild(DOM)
+                }, 500)
+            }, 1500)
+        }
+
+        onclickCopy (targetName) {
+            const targetDOM = document.querySelector(targetName)
+            if (!targetDOM) {
+                throw new Error('复制的目标不存在！用的是 querySelector，可能是名字用错了呀~')
+            }
+            // 选中文本
+            const range = document.createRange();
+            range.selectNodeContents(targetDOM);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            // 执行复制命令
+            const successful = document.execCommand('copy');
+            // 清理
+            selection.removeAllRanges();
+
+            if (successful) {
+                this.showMessage({ type: 'success', message: '复制成功' });
+            } else {
+                throw new Error('复制失败')
+            }
+        }
+    }
+</script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- 浏览器图标 -->
+    <link rel="shortcut icon" href="/logo/%E9%AB%98%E6%B8%85Logo/%E9%80%8F%E6%98%8E%E5%BA%95logo.png">
+
+    <!-- framework CSS -->
+    
+<link rel="stylesheet" href="/css/bulma/index.css">
+
+    
+<link rel="stylesheet" href="/css/index.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- section 1：顶部菜单 -->
+    <div class="index-menu px-4">
+    <div id="no-mobile-menu" >
+        <div class="d-flex justify-center align-center gap-4 v-full">
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/"
+                    >首页</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/bhcyl"
+                    >碧海苍云录</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/life"
+                    >生活大爆炸</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/archives"
+                    >归档</a>
+                </div>
+            
+                <div>
+                    <a
+                            style="color: #00586d"
+                            href="/about-me"
+                    >关于我</a>
+                </div>
+            
+        </div>
+    </div>
+    <div id="mobile-menu">
+        <div class="v-full d-flex justify-end align-center">
+            <div style="width: fit-content; position: relative">
+                <i
+                        class="fas fa-list"
+                        style="color: #00586d"
+                        onclick="event.stopPropagation(); menuEjs.onclickMobileMenu(event)"
+                ></i>
+                <div
+                        id="nav-mobile"
+                        class="py-4"
+                        style=" opacity: 0; visibility: hidden"
+                        onclick="event.stopPropagation();"
+                >
+                    <aside class="menu">
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/" style="color: #00586d ">首页</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/bhcyl" style="color: #00586d ">碧海苍云录</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/life" style="color: #00586d ">生活大爆炸</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/archives" style="color: #00586d ">归档</a>
+                            </div>
+                        
+                            
+                            <div
+                                    class="px-8 menu-label d-flex align-center
+                                    "
+                                    style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
+                            >
+                                <a href="/about-me" style="color: #00586d ">关于我</a>
+                            </div>
+                        
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .menu-label:hover {
+        background-color: #EEEEEE;
+        color: #00586d;
+    }
+</style>
+
+<script>
+    // 导航栏吸顶功能实现
+    document.addEventListener('DOMContentLoaded', function() {
+        const navbar = document.querySelector('.index-menu');
+        let lastScrollTop = 0;
+        const threshold = 50; // 滚动阈值，越小越敏感
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // 页面顶部始终显示
+            if (scrollTop <= threshold) {
+                navbar.classList.remove('fixed-header-hidden');
+            }
+            // 向下滚动且超过阈值
+            else if (scrollTop > lastScrollTop && scrollTop > threshold) {
+                navbar.classList.add('fixed-header-hidden');
+            }
+            // 向上滚动
+            else {
+                navbar.classList.remove('fixed-header-hidden');
+            }
+
+            lastScrollTop = scrollTop;
+
+            // 无论是向上还是向下滚动，如果音乐播放器处于展现状态，都要收起来
+            const musicPlayer = document.getElementById('music-player')
+            if(musicPlayer) musicPlayer.style.left = -100 + '%'
+        });
+    });
+
+    const menuEjs = {
+        onclickMobileMenu: event => {
+            console.log('onclickMobileMenu')
+            const targetDOM = document.getElementById('nav-mobile')
+            targetDOM.style.opacity = 1
+            targetDOM.style.visibility = 'visible'
+        }
+    }
+
+    window.addEventListener('click', function() {
+        const targetDOM = document.getElementById('nav-mobile')
+        if (!targetDOM || !targetDOM.style.opacity) return
+        if (targetDOM.style.opacity) {
+            targetDOM.style.opacity = 0
+            targetDOM.style.visibility = 'hidden'
+        }
+    })
+</script>
+
+<style>
+    .index-menu {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 80px;
+        backdrop-filter: blur(10px);
+        background-color: transparent;
+        z-index: 99999;
+        transition: transform 0.3s linear, opacity 0.3s linear; /* 线性过渡 */
+    }
+    .index-menu > div {
+        cursor: pointer;
+    }
+
+    .fixed-header-hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    #no-mobile-menu {
+        display: none;
+        width: 100%;
+    }
+    #mobile-menu {
+        display: none;
+        height: 100%;
+    }
+    #nav-mobile {
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        position: absolute;
+        top: 100%;
+        background-color: white;
+        z-index: 2;
+        right: 0;
+    }
+
+    /* 屏幕宽度小于等于400px时 */
+    @media (max-width: 400px) {
+        #mobile-menu {
+            display: block;
+        }
+        #no-mobile-menu {
+            display: none;
+        }
+    }
+
+    /* 屏幕宽度大于400px时 */
+    @media (min-width: 401px) {
+        #mobile-menu {
+            display: none;
+        }
+        #no-mobile-menu {
+            display: block;
+        }
+    }
+</style>
+    <div id="blog-body">
+        <!-- 渲染：阅读整篇文章 -->
+<style>
+    #read-post {
+        min-height: calc(100% - 210px);
+        max-width: 85%;
+        margin: auto;
+    }
+
+    @media (max-width: 768px) {
+        #read-post {
+            max-width: 85%;
+        }
+    }
+</style>
+
+
+
+<div style="height: 80px"></div>
+
+<article id="read-post">
+    <!-- Title -->
+    <div class="level">
+        <div class="level-left">
+            <div class="media">
+                <div class="media-content">
+                    <h1 class="title is-4 modify-post-title">
+                        <span class="has-text-info">Pytest</span>
+                    </h1>
+                    <p class="subtitle is-6">
+                        <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-10-13 19:39
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- 文章标签 -->
+        <div class="pt-4">
+            <span>
+    
+        <a class="tag is-info is-light" href="/tags/AutoTest/" style="font-size: 0.875rem">AutoTest</a>
+    
+        <a class="tag is-info is-light" href="/tags/Python/" style="font-size: 0.875rem">Python</a>
+    
+        <a class="tag is-info is-light" href="/tags/package/" style="font-size: 0.875rem">package</a>
+    
+        <a class="tag is-info is-light" href="/tags/Pytest/" style="font-size: 0.875rem">Pytest</a>
+    
+</span>
+            <span>
+    
+        <a class="tag is-warning is-light" href="/categories/Python/" style="font-size: 0.875rem">Python</a>
+    
+        <a class="tag is-warning is-light" href="/categories/Python/package/" style="font-size: 0.875rem">package</a>
+    
+</span>
+        </div>
+    </div>
+
+    <!-- 目录  -->
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text">安装库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A5%E9%97%A8%E4%B8%BE%E4%BE%8B"><span class="toc-number">3.</span> <span class="toc-text">入门举例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E5%A5%97"><span class="toc-number">4.</span> <span class="toc-text">测试套</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C-pytest-%E6%89%A7%E8%A1%8C%E6%B5%8B%E8%AF%95%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">如何运行 pytest 执行测试？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%8A%A5%E5%91%8A"><span class="toc-number">6.</span> <span class="toc-text">关于报告</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%EF%BC%88ddt%EF%BC%89%EF%BC%88%E6%A0%B8%E5%BF%83%E6%8E%8C%E6%8F%A1%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">数据驱动（ddt）（核心掌握）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ddt-%E5%8D%95%E4%B8%AA%E5%8F%82%E6%95%B0"><span class="toc-number">8.</span> <span class="toc-text">ddt: 单个参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ddt%EF%BC%9A%E5%A4%9A%E5%8F%82%E6%95%B0"><span class="toc-number">9.</span> <span class="toc-text">ddt：多参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pytest-ini"><span class="toc-number">10.</span> <span class="toc-text">pytest.ini</span></a></li></ol></div>
+    <!-- 文章：内容 -->
+    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
+        <hr />
+        <!-- Content -->
+        <p><code>pytest</code> 以简洁的语法，强大的功能和灵活的扩展性而被广泛使用。</p>
+<p>相比 Python 内置的 unittest 框架，pytest 编写测试用例更加简洁，支持更多的高级特性。</p>
+<p>比如参数化测试、fixture依赖注入、插件扩展等等。</p>
+<p><strong>相对于 unittest 而言，pytest 语法更简洁，无需使用特定类，自带报告，以数据驱动执行用例</strong></p>
+<h2 id="安装库"><a href="#安装库" class="headerlink" title="安装库"></a>安装库</h2><pre><code>pip install pytest
+# 安装指定版本
+pip install pytest==版本号
+</code></pre>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://docs.pytest.org/en/stable/">https://docs.pytest.org/en/stable/</a></p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><blockquote>
+<p>语法简洁</p>
+</blockquote>
+<p>测试函数无需集成特定类，以 <code>test_</code> 开头即可被识别，测试类以 <code>Test</code> 开头，方法以 <code>test_</code> 开头。</p>
+<p>简洁的报告；</p>
+<blockquote>
+<p>自动发现测试用例</p>
+</blockquote>
+<p>递归查找当前目录及子目录中符合命名规范的测试文件</p>
+<p>比如 <code>test_*.py</code> 或 <code>*_test.py</code></p>
+<blockquote>
+<p>丰富的断言</p>
+</blockquote>
+<p>直接使原生断言（比如：<code>assert a == b, &#39;不等于&#39;</code>），pytest会自动优化错误提示</p>
+<blockquote>
+<p>fixture 机制</p>
+</blockquote>
+<p>用于管理测试依赖，如初始化资源、前置条件，比如 unittest 的 setup&#x2F;teardown 更灵活</p>
+<blockquote>
+<p><mark>参数化测试</mark>（ddt）</p>
+</blockquote>
+<p>通过 <code>@pytest.mark.parametrize</code> 实现多组输入的测试，避免重复代码；<br>（用 pytest库 的核心需求：数据驱动，也就是 ddt）</p>
+<blockquote>
+<p>插件生态</p>
+</blockquote>
+<p>支持数百个插件，如 pytest-cov 生成覆盖率报告、pytest-xdist 并执行测试 </p>
+<h2 id="入门举例"><a href="#入门举例" class="headerlink" title="入门举例"></a>入门举例</h2><p>创建一个名为 test_example.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_add</span>():<br>    <span class="hljs-keyword">assert</span> <span class="hljs-number">1</span>+<span class="hljs-number">2</span>==<span class="hljs-number">3</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_multiply</span>():<br>    <span class="hljs-keyword">assert</span> <span class="hljs-number">3</span>*<span class="hljs-number">4</span>==<span class="hljs-number">12</span><br></code></pre></td></tr></table></figure>
+
+<p>运行测试</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">pytest test_example.py<br></code></pre></td></tr></table></figure>
+
+<h2 id="测试套"><a href="#测试套" class="headerlink" title="测试套"></a>测试套</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">TestLogin</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">setup_class</span>(<span class="hljs-params">cls</span>):<br>        <span class="hljs-keyword">pass</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">setup_method</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">pass</span><br></code></pre></td></tr></table></figure>
+
+<p>pytest8以前无需 <code>method</code>，之后需要 <code>_method</code>;<br><code>setup_class</code> 等同于 <code>unittest</code> 中的 <code>setUpClass</code>;<br><code>setup_method</code> 等同于 <code>unittest</code> 中的 <code>setUp</code>;</p>
+<h2 id="如何运行-pytest-执行测试？"><a href="#如何运行-pytest-执行测试？" class="headerlink" title="如何运行 pytest 执行测试？"></a>如何运行 pytest 执行测试？</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pytest<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    <span class="hljs-comment">## 运行并输出报告</span><br>    pytest.main([<span class="hljs-string">&quot;test_用例.py&quot;</span>])<br></code></pre></td></tr></table></figure>
+
+<h2 id="关于报告"><a href="#关于报告" class="headerlink" title="关于报告"></a>关于报告</h2><p>pytest 默认是精简报告</p>
+<table>
+<thead>
+<tr>
+<th align="center">option</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-v</td>
+<td>显示详细输出</td>
+</tr>
+<tr>
+<td align="center">-s</td>
+<td>支持输出测试日志信息</td>
+</tr>
+</tbody></table>
+<p>pytest.main([‘-v’, ‘-s’, ‘test__用例.py’])</p>
+<blockquote>
+<p>关于报告的举例</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">## 当前文件为 jw55.py</span><br><br><span class="hljs-keyword">import</span> pytest<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TestLearn</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">test_a</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">assert</span> <span class="hljs-number">1</span>==<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;1&#x27;</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">test_b</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">assert</span> <span class="hljs-number">1</span>==<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;不等&#x27;</span><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    pytest.main([<span class="hljs-string">&#x27;jw55.py&#x27;</span>])<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://origin.picgo.net/2025/10/13/pytest_report_result3d7537861f3edc69.md.png" alt="pytest report result"></p>
+<h2 id="数据驱动（ddt）（核心掌握）"><a href="#数据驱动（ddt）（核心掌握）" class="headerlink" title="数据驱动（ddt）（核心掌握）"></a><mark>数据驱动（ddt）（核心掌握）</mark></h2><blockquote>
+<p>基本结构</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pytest<br><br><span class="hljs-meta">@pytest.mark.parametrize(<span class="hljs-params"><span class="hljs-string">&quot;参数1, 参数2, ...&quot;</span>, [(<span class="hljs-params">值<span class="hljs-number">1</span>, 值<span class="hljs-number">2</span>, ...</span>), (<span class="hljs-params">值<span class="hljs-number">1</span>, 值<span class="hljs-number">2</span>, ...</span>), ...]</span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_func</span>(<span class="hljs-params">参数<span class="hljs-number">1</span>, 参数<span class="hljs-number">2</span>, ...</span>):<br>    <span class="hljs-comment"># assert ...</span><br>    <span class="hljs-keyword">pass</span><br></code></pre></td></tr></table></figure>
+
+<p>注意：<br><strong>参数装饰器中的参数要与函数的形参一致</strong>;<br><strong>列表中的数据个数决定了用例的执行次数</strong>;</p>
+<blockquote>
+<p>关于如何获取其中参数，等同于如下操作：</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> param <span class="hljs-keyword">in</span> [<span class="hljs-string">&quot;张三&quot;</span>, <span class="hljs-string">&quot;李四&quot;</span>, <span class="hljs-string">&quot;王五&quot;</span>]:<br>    test_print_username(param)<br></code></pre></td></tr></table></figure>
+
+<p>如果没有理解到，请看【ddt：单个参数】的理解，可以加深理解</p>
+<h2 id="ddt-单个参数"><a href="#ddt-单个参数" class="headerlink" title="ddt: 单个参数"></a>ddt: 单个参数</h2><blockquote>
+<p>常规1</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pytest<br><br><span class="hljs-meta">@pytest.mark.parametrize(<span class="hljs-params"><span class="hljs-string">&quot;username&quot;</span>, [<span class="hljs-string">&quot;张三&quot;</span>, <span class="hljs-string">&quot;李四&quot;</span>, <span class="hljs-string">&quot;王五&quot;</span>]</span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_print_username</span>(<span class="hljs-params">username</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;当前用户：<span class="hljs-subst">&#123;username&#125;</span>&quot;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    pytest.main([<span class="hljs-string">&#x27;jw55.py&#x27;</span>])<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">C:\Users\admin\AppData\Local\Programs\Python\Python313\python.exe C:/Users/admin/AppData/Local/Programs/PyCharm/plugins/python-ce/helpers/pycharm/_jb_pytest_runner.py --path D:\py_work\PythonProject\Seafile\learn\jw55.py <br>Testing started at 10:36 ...<br>Launching pytest with arguments D:\py_work\PythonProject\Seafile\learn\jw55.py --no-header --no-summary -q <span class="hljs-keyword">in</span> D:\py_work\PythonProject\Seafile<br><br>============================= <span class="hljs-built_in">test</span> session starts =============================<br>collecting ... collected 3 items<br><br>learn/jw55.py::test_print_username[\u5f20\u4e09] PASSED                  [ 33%]当前用户：张三<br><br>learn/jw55.py::test_print_username[\u674e\u56db] PASSED                  [ 66%]当前用户：李四<br><br>learn/jw55.py::test_print_username[\u738b\u4e94] PASSED                  [100%]当前用户：王五<br><br><br>============================== 3 passed <span class="hljs-keyword">in</span> 0.02s ==============================<br><br>进程已结束，退出代码为 0<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>常规2</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pytest<br><span class="hljs-meta">@pytest.mark.parametrize(<span class="hljs-params"><span class="hljs-string">&quot;username, password, expect_res&quot;</span>, [(<span class="hljs-params"><span class="hljs-string">&quot;zs@126.com&quot;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>, <span class="hljs-literal">True</span></span>)]</span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_login</span>(<span class="hljs-params">username, password, expect_res</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;用户：<span class="hljs-subst">&#123;username&#125;</span>，密码：<span class="hljs-subst">&#123;password&#125;</span>，有效用户：<span class="hljs-subst">&#123;expect_res&#125;</span>&quot;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    pytest.main([<span class="hljs-string">&#x27;jw55.py&#x27;</span>])<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">C:\Users\admin\AppData\Local\Programs\Python\Python313\python.exe C:/Users/admin/AppData/Local/Programs/PyCharm/plugins/python-ce/helpers/pycharm/_jb_pytest_runner.py --path D:\py_work\PythonProject\Seafile\learn\jw55.py <br>Testing started at 10:59 ...<br>Launching pytest with arguments D:\py_work\PythonProject\Seafile\learn\jw55.py --no-header --no-summary -q <span class="hljs-keyword">in</span> D:\py_work\PythonProject\Seafile<br><br>============================= <span class="hljs-built_in">test</span> session starts =============================<br>collecting ... collected 1 item<br><br>learn/jw55.py::test_login[zs@126.com-123456-True] PASSED                 [100%]用户：zs@126.com，密码：123456，有效用户：True<br><br><br>============================== 1 passed <span class="hljs-keyword">in</span> 0.02s ==============================<br><br>进程已结束，退出代码为 0<br></code></pre></td></tr></table></figure>
+<pre><code>learn/jw55.py::test_login[zs@126.com-123456-True]
+</code></pre>
+<p>执行时会将用到的参数在输出出来，如上用例执行的是列表中<code>(zs@126.com,123456,True)</code>元素</p>
+<blockquote>
+<p>常规3：标记参数</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pytest<br><span class="hljs-meta">@pytest.mark.parametrize(<span class="hljs-params"><span class="hljs-string">&quot;num, expected&quot;</span>, [</span></span><br><span class="hljs-params"><span class="hljs-meta">    pytest.param(<span class="hljs-params"><span class="hljs-number">2</span>, <span class="hljs-literal">True</span>, <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;positive_even&quot;</span></span>),</span></span><br><span class="hljs-params"><span class="hljs-meta">    pytest.param(<span class="hljs-params"><span class="hljs-number">3</span>, <span class="hljs-literal">False</span>, <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;positive_odd&quot;</span></span>),</span></span><br><span class="hljs-params"><span class="hljs-meta">    pytest.param(<span class="hljs-params"><span class="hljs-number">0</span>, <span class="hljs-literal">False</span>, <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;zero&quot;</span></span>)</span></span><br><span class="hljs-params"><span class="hljs-meta">]</span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_is_even</span>(<span class="hljs-params">num, expected</span>):<br>    <span class="hljs-keyword">assert</span> num == expected<br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    pytest.main([<span class="hljs-string">&#x27;jw55.py&#x27;</span>])<br></code></pre></td></tr></table></figure>
+<p>运行时会携带ID，若未通过断言，则会输出参数对应的值，方便排查</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">C:\Users\admin\AppData\Local\Programs\Python\Python313\python.exe C:/Users/admin/AppData/Local/Programs/PyCharm/plugins/python-ce/helpers/pycharm/_jb_pytest_runner.py --path D:\py_work\PythonProject\Seafile\learn\jw55.py <br>Testing started at 11:26 ...<br>Launching pytest with arguments D:\py_work\PythonProject\Seafile\learn\jw55.py --no-header --no-summary -q <span class="hljs-keyword">in</span> D:\py_work\PythonProject\Seafile<br><br>============================= <span class="hljs-built_in">test</span> session starts =============================<br>collecting ... collected 3 items<br><br>learn/jw55.py::test_is_even[positive_even] <br>learn/jw55.py::test_is_even[positive_odd] <br>learn/jw55.py::test_is_even[zero] <br><br>========================= 2 failed, 1 passed <span class="hljs-keyword">in</span> 0.14s =========================<br>FAILED                        [ 33%]<br>learn\jw55.py:1 (test_is_even[positive_even])<br>2 != True<br><br>预期:True<br>实际:2<br>&lt;点击以查看差异&gt;<br><br>num = 2, expected = True<br><br>    @pytest.mark.parametrize(<span class="hljs-string">&quot;num, expected&quot;</span>, [<br>        pytest.param(2, True, <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;positive_even&quot;</span>),<br>        pytest.param(3, False, <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;positive_odd&quot;</span>),<br>        pytest.param(0, False, <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;zero&quot;</span>)<br>    ])<br>    def test_is_even(num, expected):<br>&gt;       assert num == expected<br>E       assert 2 == True<br><br>learn\jw55.py:8: AssertionError<br>FAILED                         [ 66%]<br>learn\jw55.py:1 (test_is_even[positive_odd])<br>3 != False<br><br>预期:False<br>实际:3<br>&lt;点击以查看差异&gt;<br><br>num = 3, expected = False<br><br>    @pytest.mark.parametrize(<span class="hljs-string">&quot;num, expected&quot;</span>, [<br>        pytest.param(2, True, <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;positive_even&quot;</span>),<br>        pytest.param(3, False, <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;positive_odd&quot;</span>),<br>        pytest.param(0, False, <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;zero&quot;</span>)<br>    ])<br>    def test_is_even(num, expected):<br>&gt;       assert num == expected<br>E       assert 3 == False<br><br>learn\jw55.py:8: AssertionError<br>PASSED                                 [100%]<br>进程已结束，退出代码为 1<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="ddt：多参数"><a href="#ddt：多参数" class="headerlink" title="ddt：多参数"></a>ddt：多参数</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pytest<br><span class="hljs-meta">@pytest.mark.parametrize(<span class="hljs-params"><span class="hljs-string">&quot;username&quot;</span>, [<span class="hljs-string">&quot;zs@126.com&quot;</span>, <span class="hljs-string">&quot;ls@126.com&quot;</span>, <span class="hljs-string">&quot;ww@126.com&quot;</span>]</span>)</span><br><span class="hljs-meta">@pytest.mark.parametrize(<span class="hljs-params"><span class="hljs-string">&quot;password&quot;</span>, [<span class="hljs-string">&#x27;123&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>, <span class="hljs-string">&#x27;123456789&#x27;</span>]</span>)</span><br><span class="hljs-meta">@pytest.mark.parametrize(<span class="hljs-params"><span class="hljs-string">&quot;expect_res&quot;</span>, [<span class="hljs-literal">True</span>, <span class="hljs-literal">False</span>, <span class="hljs-literal">True</span>]</span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_login</span>(<span class="hljs-params">username, password, expect_res</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;用户：<span class="hljs-subst">&#123;username&#125;</span>，密码：<span class="hljs-subst">&#123;password&#125;</span>，有效用户：<span class="hljs-subst">&#123;expect_res&#125;</span>&quot;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    pytest.main([<span class="hljs-string">&#x27;jw55.py&#x27;</span>])<br></code></pre></td></tr></table></figure>
+
+<p>多参数时是笛卡尔积形式的执行，如上，有 3<em>3</em>3 合计 27 条用例</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">C:\Users\admin\AppData\Local\Programs\Python\Python313\python.exe C:/Users/admin/AppData/Local/Programs/PyCharm/plugins/python-ce/helpers/pycharm/_jb_pytest_runner.py --target learn/jw55.py::test_login <br>Testing started at 11:03 ...<br>Launching pytest with arguments learn/jw55.py::test_login --no-header --no-summary -q <span class="hljs-keyword">in</span> D:\py_work\PythonProject\Seafile<br><br>============================= <span class="hljs-built_in">test</span> session starts =============================<br>collecting ... collected 27 items<br><br>learn/jw55.py::test_login[True0-123-zs@126.com] PASSED                   [  3%]用户：zs@126.com，密码：123，有效用户：True<br><br>learn/jw55.py::test_login[True0-123-<span class="hljs-built_in">ls</span>@126.com] PASSED                   [  7%]用户：<span class="hljs-built_in">ls</span>@126.com，密码：123，有效用户：True<br><br>learn/jw55.py::test_login[True0-123-ww@126.com] PASSED                   [ 11%]用户：ww@126.com，密码：123，有效用户：True<br><br>learn/jw55.py::test_login[True0-123456-zs@126.com] PASSED                [ 14%]用户：zs@126.com，密码：123456，有效用户：True<br><br>learn/jw55.py::test_login[True0-123456-<span class="hljs-built_in">ls</span>@126.com] PASSED                [ 18%]用户：<span class="hljs-built_in">ls</span>@126.com，密码：123456，有效用户：True<br><br>learn/jw55.py::test_login[True0-123456-ww@126.com] PASSED                [ 22%]用户：ww@126.com，密码：123456，有效用户：True<br><br>learn/jw55.py::test_login[True0-123456789-zs@126.com] PASSED             [ 25%]用户：zs@126.com，密码：123456789，有效用户：True<br><br>learn/jw55.py::test_login[True0-123456789-<span class="hljs-built_in">ls</span>@126.com] PASSED             [ 29%]用户：<span class="hljs-built_in">ls</span>@126.com，密码：123456789，有效用户：True<br><br>learn/jw55.py::test_login[True0-123456789-ww@126.com] PASSED             [ 33%]用户：ww@126.com，密码：123456789，有效用户：True<br><br>learn/jw55.py::test_login[False-123-zs@126.com] PASSED                   [ 37%]用户：zs@126.com，密码：123，有效用户：False<br><br>learn/jw55.py::test_login[False-123-<span class="hljs-built_in">ls</span>@126.com] PASSED                   [ 40%]用户：<span class="hljs-built_in">ls</span>@126.com，密码：123，有效用户：False<br><br>learn/jw55.py::test_login[False-123-ww@126.com] PASSED                   [ 44%]用户：ww@126.com，密码：123，有效用户：False<br><br>learn/jw55.py::test_login[False-123456-zs@126.com] PASSED                [ 48%]用户：zs@126.com，密码：123456，有效用户：False<br><br>learn/jw55.py::test_login[False-123456-<span class="hljs-built_in">ls</span>@126.com] PASSED                [ 51%]用户：<span class="hljs-built_in">ls</span>@126.com，密码：123456，有效用户：False<br><br>learn/jw55.py::test_login[False-123456-ww@126.com] PASSED                [ 55%]用户：ww@126.com，密码：123456，有效用户：False<br><br>learn/jw55.py::test_login[False-123456789-zs@126.com] PASSED             [ 59%]用户：zs@126.com，密码：123456789，有效用户：False<br><br>learn/jw55.py::test_login[False-123456789-<span class="hljs-built_in">ls</span>@126.com] PASSED             [ 62%]用户：<span class="hljs-built_in">ls</span>@126.com，密码：123456789，有效用户：False<br><br>learn/jw55.py::test_login[False-123456789-ww@126.com] PASSED             [ 66%]用户：ww@126.com，密码：123456789，有效用户：False<br><br>learn/jw55.py::test_login[True1-123-zs@126.com] PASSED                   [ 70%]用户：zs@126.com，密码：123，有效用户：True<br><br>learn/jw55.py::test_login[True1-123-<span class="hljs-built_in">ls</span>@126.com] PASSED                   [ 74%]用户：<span class="hljs-built_in">ls</span>@126.com，密码：123，有效用户：True<br><br>learn/jw55.py::test_login[True1-123-ww@126.com] PASSED                   [ 77%]用户：ww@126.com，密码：123，有效用户：True<br><br>learn/jw55.py::test_login[True1-123456-zs@126.com] PASSED                [ 81%]用户：zs@126.com，密码：123456，有效用户：True<br><br>learn/jw55.py::test_login[True1-123456-<span class="hljs-built_in">ls</span>@126.com] PASSED                [ 85%]用户：<span class="hljs-built_in">ls</span>@126.com，密码：123456，有效用户：True<br><br>learn/jw55.py::test_login[True1-123456-ww@126.com] PASSED                [ 88%]用户：ww@126.com，密码：123456，有效用户：True<br><br>learn/jw55.py::test_login[True1-123456789-zs@126.com] PASSED             [ 92%]用户：zs@126.com，密码：123456789，有效用户：True<br><br>learn/jw55.py::test_login[True1-123456789-<span class="hljs-built_in">ls</span>@126.com] PASSED             [ 96%]用户：<span class="hljs-built_in">ls</span>@126.com，密码：123456789，有效用户：True<br><br>learn/jw55.py::test_login[True1-123456789-ww@126.com] PASSED             [100%]用户：ww@126.com，密码：123456789，有效用户：True<br><br><br>============================= 27 passed <span class="hljs-keyword">in</span> 0.09s ==============================<br><br>进程已结束，退出代码为 0<br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="pytest-ini"><a href="#pytest-ini" class="headerlink" title="pytest.ini"></a>pytest.ini</h2><p><strong>文件名字必须是 pytest.ini</strong>；<br><strong>该文件只能放在项目更目录下，不能在包文件下</strong>；<br>pytest.ini 是用来声明要执行的用例，产出什么报告；<br><strong>文件中不能有注释</strong>；</p>
+<blockquote>
+<p>配置如何编写</p>
+</blockquote>
+<p>testpath &#x3D; 用例所在包<br>python_files &#x3D; 用例所在文件<br>python_classes &#x3D; 指定用例类所在位置<br>python_functions &#x3D; 指定用例所在的位置<br>addopts &#x3D; 执行报告的位置，比如将报告输出到 report 目录下</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[pytest]</span><br><span class="hljs-attr">addopts</span> = -s -v --html=report.html<br><span class="hljs-attr">testpath</span> = learn<br><span class="hljs-attr">python_files</span> = jw55.py<br></code></pre></td></tr></table></figure>
+<p>需要执行 <code>pip install pytest-html</code></p>
+<p><code>--html=report.html</code> 报告输出的位置是但当前所在的位置，如下图所示，配置文件位于 learn目录，但是当前处于 Seafile项目目录下，因此生成的报告位于 Seafile 目录下</p>
+<p><img src="https://origin.picgo.net/2025/10/13/pytest_ini_report3963ceb6206060f2.png" alt="pytest ini report"></p>
+<p>如果要位于 learn 目录下，则是按当前所在项目位置开始写路径：<code>./learn/report.html</code></p>
+
+    </div>
+    <!-- 文章：声明 -->
+    <!-- 文章的声明 -->
+<div id="copy-icon-Pytest" style="word-wrap: break-word">
+    <p>
+        <strong>作者</strong>：
+        <span>粥记捣蛋</span>
+    </p>
+    <p>
+        <strong>文章链接</strong>：
+        <span
+                id="article-link-span"
+                data-text="https://zexuisme.github.io/2025/10/13/Python/package/Pytest/"
+        ></span>
+    </p>
+    <p>
+        <strong>版权声明</strong>：
+        <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
+    </p>
+</div>
+
+<script>
+    console.log(document.getElementById("article-link-span"))
+    const linkDOM = document.getElementById("article-link-span")
+    if (linkDOM) {
+        let linkText = linkDOM.getAttribute("data-text")
+        linkDOM.innerHTML = `<a href="${linkText}" target="_blank">${ decodeURI(linkText)}</a>`
+    }
+</script>
+    <!-- 文章：文章切换 -->
+    <div style="margin-top: 48px">
+<!-- 文章阅读页的切换按钮 -->
+<div class="post-toggle d-flex justify-between flex-wrap gap-3">
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/2025/10/13/Python/package/logging/')"
+            
+    >上一篇: logging</button>
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/2025/10/12/AutoTest/AutoTest-%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/')"
+            
+    >下一篇: AutoTest-接口测试</button>
+</div>
+
+<script>
+    class PostToggleEjs extends Blog {
+        constructor() {
+            super()
+        }
+
+        onclickLink (url) {
+            this.createALink(url, '_self')
+        }
+    }
+
+    const postToggleEjs = new PostToggleEjs()
+</script></div>
+
+</article>
+
+<div style="height: 80px"></div>
+
+<script>
+    class PostEjs extends Blog{
+        constructor() {
+            super();
+        }
+    }
+    const postEjs = new PostEjs();
+</script>
+    </div>
+
+    
+        <!-- 悬浮操作按钮 -->
+        <div
+        class="post-flex d-flex flex-wrap gap-4"
+        style="position: fixed; bottom: 10%; right: 10px; width: 48px; mix-blend-mode: difference;"
+>
+    <div
+            class="mbl d-flex justify-center align-center"
+            style="border-radius: 50%; width: 48px; height: 48px; border: none"
+            onclick="postFlexMenu.onclickFlexBtn(event)"
+    >
+        <a href="/">
+            <i class="fas fa-home" style="font-size: 24px"></i>
+        </a>
+    </div>
+
+    <div
+            class="mbl d-flex justify-center align-center"
+            style="border-radius: 50%; width: 48px; height: 48px; border: none"
+            onclick="postFlexMenu.onclickFlexBtn(event)"
+    >
+        <a href="#blog-body">
+            <i class="fas fa-angle-up" style="font-size: 24px"></i>
+        </a>
+    </div>
+
+    <div
+            id="flex-music-btn"
+            class="mbl d-flex justify-center align-center"
+            style="border-radius: 50%; width: 48px; height: 48px; border: none"
+            onclick="postFlexMenu.onclickMusicBtn()"
+    >
+        <i class="fas fa-music text-primary" style="font-size: 24px; cursor: pointer"></i>
+    </div>
+</div>
+
+<script>
+    class PostFlexMenu extends DeviceDetector{
+        constructor() {
+            super();
+            // ...
+        }
+
+        onclickFlexBtn (event) {
+            const aLink = event.target.querySelector('a')
+            if (!aLink) return;
+            aLink.click()
+        }
+
+        onclickMusicBtn () {
+            const musicPlay = document.getElementById('music-player')
+            if (musicPlay.style.left === '0px') musicPlay.style.left = -100 + '%'
+            else musicPlay.style.left = 0
+        }
+    }
+
+    const postFlexMenu = new PostFlexMenu();
+    if (postFlexMenu.isMobile()) {
+        document.getElementById('flex-music-btn').classList.remove('d-flex');
+        document.getElementById('flex-music-btn').style.display = 'none';
+    }
+</script>
+        <!-- 音乐播放器 -->
+        <div id="music-player" class="px-6 py-4">
+    <div class="d-flex v-full">
+        <div class="v-full d-flex align-center gap-4" style="max-width: 310px">
+            <div id="music-avatar" style="position: relative">
+                <figure>
+                    <img src="/img/bhcyl/bhcyl.jpg" alt="" style="height: 100%; object-fit: cover">
+                </figure>
+                <div class="v-absolute-center bg-white" style="height: 32px; border-radius: 50%; width: 32px"></div>
+                <div class="v-absolute-center border-grey-50" style="height: 40px; border-radius: 50%; width: 40px; border: 2px solid"></div>
+            </div>
+            <div style="width: 200px">
+                <div id="music-title" class="text-secondary">歌曲名</div>
+                <div id="music-author" class="text-secondary">作者</div>
+            </div>
+        </div>
+
+        <div id="music-state" class="v-full d-flex flex-column justify-center align-center gap-5">
+            <div class="d-flex gap-6">
+                <i id="prev-btn" class="fas fa-step-backward" onclick="musicPlayer.onclickPreMusic(event)"></i>
+                <i id="play-btn" class="fas fa-play-circle" onclick="musicPlayer.onclickTogglePlayerState()"></i>
+                <i id="next-btn" class="fas fa-step-forward" onclick="musicPlayer.onclickNextMusic(event)"></i>
+            </div>
+            <div id="music-progress" class="d-flex justify-center" >
+                <div onclick="musicPlayer.onclickPosition(event)">
+                    <div id="default-progress" class="bg-grey-300"></div>
+                    <div id="player-progress"></div>
+                    <div class="progress-text"></div>
+                    <audio
+                            style="display: none"
+                            controls
+                            src="/music/净坛遗恨.mp3"
+                            onloadedmetadata="musicPlayer.onloadedmetadata(event)"
+                            ontimeupdate="musicPlayer.ontimeupdate(event)"
+                            onended="musicPlayer.onended()"
+                    ></audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="v-full d-flex align-center justify-around" style="max-width: 310px">
+            <div class="d-flex gap-3 align-center">
+                <!-- 喇叭 -->
+                <i
+                        id="la-ba"
+                        class="fas fa-volume-down text-secondary"
+                        onclick="musicPlayer.onclickToggleLaBaIcon(event)"
+                        data-muted="false"
+                ></i>
+                <!-- 音量调节 -->
+                <div id="voice-progress" style="position: relative">
+                    <span id="voice-bg" class="bg-grey-300"></span>
+                    <span id="voice-modify"></span>
+                    <div id="voice-mask" class="v-absolute" onclick="musicPlayer.onclickControlVolume(event)"></div>
+                </div>
+            </div>
+            <!-- 歌曲列表-->
+            <div id="music-list">
+                <i class="fas fa-list" onclick="event.stopPropagation(); musicPlayer.showMusicListCard(event)"></i>
+                <div id="music-list-card" class="p-4" onclick="event.stopPropagation()" data-list="[{&#34;path&#34;:&#34;music/净坛遗恨.mp3&#34;,&#34;name&#34;:&#34;净坛遗恨&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/末日旅人的独白.mp3&#34;,&#34;name&#34;:&#34;末日旅人的独白&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/灯芯上的七彩霜A.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-A&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/灯芯上的七彩霜B.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-B&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/王权情劫.mp3&#34;,&#34;name&#34;:&#34;王权情劫&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/白骨谣.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 女声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/白骨谣_男声版.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 男声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;},{&#34;path&#34;:&#34;music/纯音乐001.mp3&#34;,&#34;name&#34;:&#34;Darkness Nocturne&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}]">
+                    
+                        <div
+                                id="music-list-0"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/净坛遗恨.mp3&#34;,&#34;name&#34;:&#34;净坛遗恨&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `0`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">净坛遗恨</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-1"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/末日旅人的独白.mp3&#34;,&#34;name&#34;:&#34;末日旅人的独白&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `1`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">末日旅人的独白</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-2"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/灯芯上的七彩霜A.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-A&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `2`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">灯芯上的七彩霜-A</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-3"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/灯芯上的七彩霜B.mp3&#34;,&#34;name&#34;:&#34;灯芯上的七彩霜-B&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `3`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">灯芯上的七彩霜-B</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-4"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/王权情劫.mp3&#34;,&#34;name&#34;:&#34;王权情劫&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `4`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">王权情劫</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-5"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/白骨谣.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 女声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `5`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">白骨哀歌 - 女声</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-6"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/白骨谣_男声版.mp3&#34;,&#34;name&#34;:&#34;白骨哀歌 - 男声&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `6`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">白骨哀歌 - 男声</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                        <div
+                                id="music-list-7"
+                                class="d-flex align-center justify-between px-4"
+                                style="height: 48px"
+                                onclick="musicPlayer.onclickMusic(`{&#34;path&#34;:&#34;music/纯音乐001.mp3&#34;,&#34;name&#34;:&#34;Darkness Nocturne&#34;,&#34;author&#34;:&#34;粥记捣蛋&#34;}`, `7`)"
+                        >
+                            <div class="text-secondary" style="font-size: 14px">Darkness Nocturne</div>
+                            <div class="text-grey-500" style="font-size: 12px">粥记捣蛋</div>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+class MusicPlayer extends DeviceDetector {
+    constructor() {
+        super();
+        this.musicInfo = { index: 0 }
+        this.musicList = []
+
+        this.totalTime = ''
+        this.currentTime = ''
+        this.progress = 0
+        this.defaultVolume = 0.2 // # 默认音量为 20%
+        this.cacheVolume = 0 // 暂存音量大小
+
+        const playBtnIcon = new Map()
+        playBtnIcon.set('play', 'fa-play-circle')
+        playBtnIcon.set('pause', 'fa-pause-circle')
+        this.playBtnIcon = playBtnIcon
+
+        const laBaIcon = new Map()
+        laBaIcon.set("小喇叭", 'fa-volume-down')
+        laBaIcon.set("大喇叭", 'fa-volume-up')
+        laBaIcon.set("静音", 'fa-volume-mute')
+        this.laBaIcon = laBaIcon
+    }
+
+    setMusicList () {
+        if (this.musicList.length > 0) return
+        const dom = this.getMusicListCard()
+        this.musicList = JSON.parse(dom.dataset.list)
+        dom.setAttribute('data-list', [])
+    }
+    getAvatarDOM () {
+        return document.getElementById('music-avatar')
+    }
+    getMusicListCard () {
+        return document.getElementById("music-list-card")
+    }
+    modifyMusicInfo () {
+        const { name, author } = this.musicInfo
+        // 修改歌曲头像
+        // 修改歌曲标题
+        const titleDOM = document.getElementById("music-title")
+        titleDOM.innerHTML = name
+        // 修改歌曲作者
+        const authorDOM = document.getElementById("music-author")
+        authorDOM.innerHTML = author
+    }
+    hideMusicListCard () {
+        const card = this.getMusicListCard();
+        card.style.opacity = 0;
+        card.style.visibility = 'hidden';
+    }
+    showMusicListCard () {
+        const card = this.getMusicListCard();
+        card.style.opacity = 1;
+        card.style.visibility = 'visible';
+    }
+    // 播放前一首
+    onclickPreMusic(event) {
+        this.setMusicList()
+        const { musicInfo, musicList } = this
+        // * 1 是为了把字符洗掉
+        let prevIndex = musicInfo.index * 1 - 1
+        if (prevIndex <= 0) prevIndex = musicList.length - 1
+        document.getElementById(`music-list-${prevIndex}`).click()
+    }
+    // 播放下一首
+    onclickNextMusic(event) {
+        this.setMusicList()
+        const { musicInfo, musicList } = this
+        // * 1 是为了把字符洗掉
+        let nextIndex = musicInfo.index * 1 + 1
+        if (nextIndex > musicList.length - 1) nextIndex = 0
+        document.getElementById(`music-list-${nextIndex}`).click()
+    }
+
+    // 获取 audio 图标
+    getVoiceDOM () {
+        return document.querySelector("#music-progress audio");
+    }
+    getPlayBtnDOM () {
+        return document.getElementById("play-btn");
+    }
+    getPreBtnDOM () {
+        return document.getElementById("play-btn");
+    }
+    getNextBtnDOM () {
+        return document.getElementById("next-btn");
+    }
+    setMuted (dom, val) {
+        dom.setAttribute('data-muted', val)
+    }
+    // 设置喇叭图标
+    setLaBaIcon (dom, { add, remove, muted }) {
+        dom.classList.remove(remove)
+        dom.classList.add(add)
+        this.setMuted(dom, muted)
+    }
+    // 设置播放键按钮图标
+    setPlayBtnIcon ({ add, remove }) {
+        const playBtnDOM = this.getPlayBtnDOM()
+        playBtnDOM.classList.remove(remove)
+        playBtnDOM.classList.add(add)
+    }
+    // 调整音量的位置
+    modifyVolume (volume) {
+        const targetDOM = document.getElementById('voice-modify')
+        targetDOM.style.left = -100 + volume * 100 + '%'
+    }
+    // 选择音乐
+    onclickMusic (val, index) {
+        const config = JSON.parse(val);
+        this.musicInfo = Object.assign(config, { index })
+        this.setMusicList()
+        this.modifyMusicInfo()
+
+        const voiceDOM = this.getVoiceDOM()
+        voiceDOM.src = `/${config.path}`
+
+        // 切换歌曲时暂停播放
+        this.getVoiceDOM().pause()
+        // 切换歌曲时把播放按钮的状态还原
+        const playBtnIcon = this.playBtnIcon
+        this.setPlayBtnIcon({ add: playBtnIcon.get('play'), remove: playBtnIcon.get('pause') })
+        this.onclickTogglePlayerState()
+    }
+    // 点击播放按钮时：切换音频状态
+    onclickTogglePlayerState () {
+        // 如果不存在歌曲信息说明是第一次播放，
+        if (!Object.keys(this.musicInfo).find(key => key === 'path')) {
+            document.getElementById(`music-list-0`).click()
+            return
+        }
+
+        const voiceDOM = this.getVoiceDOM()
+        const avatarImgDOM = this.getAvatarDOM().querySelector('img')
+        // 判断是否处于播放状态，如果处于播放状态，那么 paused 参数为 false
+        if (voiceDOM.paused) {
+            voiceDOM.play()
+            // 让音乐头像旋转起来
+            avatarImgDOM.classList.add('music-avatar-img')
+            this.setPlayBtnIcon({
+                add: this.playBtnIcon.get('pause'),
+                remove: this.playBtnIcon.get('play')
+            })
+        } else {
+            voiceDOM.pause()
+            avatarImgDOM.classList.remove('music-avatar-img')
+            this.setPlayBtnIcon({
+                add: this.playBtnIcon.get('play'),
+                remove: this.playBtnIcon.get('pause')
+            })
+        }
+    }
+    // 调整音量大小
+    onclickControlVolume (event) {
+        const voice = this.getVoiceDOM()
+        const { offsetX, target } = event
+
+        const volume = offsetX/target.clientWidth
+        this.modifyVolume(volume)
+
+        const laBa = document.querySelector(`#la-ba`)
+        if (laBa.dataset.muted === 'true') {
+            this.setLaBaIcon(laBa, {
+                muted: 'false',
+                add: this.laBaIcon.get('小喇叭'),
+                remove: this.laBaIcon.get('静音')
+            })
+        }
+
+        voice.volume = volume
+    }
+    // 播放完毕
+    onended () {
+        // 切下一首曲子
+        this.onclickNextMusic()
+    }
+
+    // 音频本身的操作
+    handleTimeFormat (second) {
+        // 秒数格式化
+        let mm = Math.floor(second / 60)
+        let ss = Math.floor(second % 60)
+        if (mm < 10) mm = '0' + mm
+        if (ss < 10) ss = '0' + ss
+        return `${mm}:${ss}`
+    }
+    // 获取音频的第一手信息
+    onloadedmetadata (event) {
+        console.log('歌曲已填充')
+        const voice = event.target
+        const { duration } = voice;
+        this.duration = duration;
+        this.totalTime = this.handleTimeFormat(duration)
+        // 设置默认音量
+        voice.volume = this.defaultVolume
+        // 修改音量状态
+        this.modifyVolume(this.defaultVolume)
+    }
+    ontimeupdate (event) {
+        // 当音频处于播放状态时触发
+        const { currentTime, duration } = event.target
+        this.currentTime = this.handleTimeFormat(currentTime)
+        document.querySelector('.progress-text').innerHTML = this.currentTime
+        // 操作进度条
+        // 把秒数切割为100份
+        const progress = currentTime / duration * 100
+        document.getElementById('player-progress').style.left = -100 + progress + '%'
+    }
+    onclickPosition (event) {
+        // TODO 定位有问题：设置currentTime会重新播放
+        // 有提过 seekable，说length = 1表示可以做定位的，该音频是有的，结果嘛就是依然不能做定位
+        const voiceDOM = this.getVoiceDOM()
+        const paused = voiceDOM.paused
+
+        voiceDOM.pause()
+        this.setPlayBtnIcon({
+            add: this.playBtnIcon.get('play'),
+            remove: this.playBtnIcon.get('pause')
+        })
+        const { offsetX, target } = event
+        voiceDOM.currentTime = Math.floor(offsetX/target.clientWidth * voiceDOM.duration)
+
+        if (paused === false) {
+            voiceDOM.play()
+            this.setPlayBtnIcon({
+                add: this.playBtnIcon.get('pause'),
+                remove: this.playBtnIcon.get('play')
+            })
+        }
+    }
+
+    // 按键操作：喇叭
+    onclickToggleLaBaIcon (event) {
+        // 点击切换喇叭状态
+        // 逻辑为：点击静音，如果是静音则回恢复状态
+        // ['fa-volume-down']
+        const laBaIconDOM = event.target
+        const { muted } = event.target.dataset
+        const laBaIcon = this.laBaIcon
+        if (muted === 'false') {
+            // 非静音状态，需要切换到静音
+            this.setLaBaIcon(laBaIconDOM, {
+                muted: 'true',
+                add: laBaIcon.get('静音'),
+                remove: laBaIcon.get('小喇叭')
+            })
+            // 把音量存起来
+            this.cacheVolume = this.getVoiceDOM().volume
+            // 修改音量
+            this.modifyVolume(0)
+            this.getVoiceDOM().volume = 0
+        } else {
+            // 静音状态，需要切换到正常状态
+            this.setLaBaIcon(laBaIconDOM, {
+                muted: 'false',
+                add: laBaIcon.get('小喇叭'),
+                remove: laBaIcon.get('静音')
+            })
+            // 修改音量
+            this.modifyVolume(this.cacheVolume)
+            this.getVoiceDOM().volume = this.cacheVolume
+        }
+    }
+}
+const musicPlayer = new MusicPlayer();
+if (musicPlayer.isMobile()) {
+    const dom = document.getElementById('music-player')
+    dom.style.display = 'none'
+}
+
+window.addEventListener('click', () => {
+    const target = musicPlayer.getMusicListCard()
+    if (target?.style.opacity) {
+        musicPlayer.hideMusicListCard()
+    }
+});
+</script>
+
+<style>
+    #music-player {
+        position: fixed;
+        width: 100%;
+        height: 128px;
+        bottom: 0;
+        left: -100%;
+        z-index: 9;
+        backdrop-filter: blur(10px);
+        background: transparent;
+        transition: left 0.5s ease;
+    }
+    #music-player i { font-size: 32px; }
+
+    #music-avatar {
+        width: 96px;
+        height: 100%;
+        border-radius:50%;
+        overflow: hidden;
+    }
+    @keyframes avatar-rotate {
+        0% { transform: rotate(0) }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* 按键区：上一首、播放、下一首 */
+    #music-state>div:first-child>i {
+        cursor: pointer;
+        color: var(--secondary);
+        transform: scale(1);
+        transition: color 0.3s ease;
+    }
+    #music-state>div:first-child>i:hover {
+        color: var(--primary);
+    }
+
+    /* 进度条 */
+    #music-progress {
+        width: 100%;
+    }
+    #music-progress>div {
+        width: 80%;
+        margin: auto;
+        max-width: 500px;
+        position: relative;
+        overflow: hidden;
+    }
+    #default-progress, #player-progress {
+        border: 6px;
+        width: 100%;
+        height: 5px;
+    }
+    #player-progress {
+        background: linear-gradient(to left, #c1d5d3, var(--primary), #c1d5d3);
+        position: absolute;
+        top: 0;
+        left: -100%;
+        background-size: 200%;
+        animation: musicPlayerProgress 3s linear infinite;
+    }
+    @keyframes musicPlayerProgress {
+        0% {
+            background-position: -100% 0;
+        }
+        100% {
+            background-position: 100% 0;
+        }
+    }
+
+    /* 音量 */
+    #voice-progress {
+        overflow: hidden;
+        padding: 12px 0;
+    }
+    #voice-progress::before {
+        content: "";
+        width: 100%;
+        height: 10px;
+        background-color: var(--primary);
+    }
+    #voice-bg, #voice-modify {
+        display: inline-block;
+        width: 100px;
+        height: 5px;
+        border-radius: 6px;
+    }
+    #voice-modify {
+        /*  音量的调节  */
+        position: absolute;
+        top: 50%;
+        left: -100%;
+        background-color: var(--primary);
+        transition: left 0.3s ease;
+        transform: translateY(-50%);
+    }
+    #voice-mask {
+        background-color: rgba(255,0,0,0);
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    /* 歌曲列表 */
+    #music-list {
+        position: relative;
+    }
+    #music-list-card {
+        cursor: pointer;
+        position: absolute;
+        width: 256px;
+        max-height: 512px;
+        overflow: auto;
+        bottom: calc(100% + .5rem);
+        right: -65px;
+        background-color: #00586d12;
+        opacity: 0;
+        visibility: hidden;
+        transition: visibility 0.3s ease, opacity 0.3s ease;
+    }
+    #music-list-card>div:nth-child(2n-1) {
+        background-color: var(--grey-100);
+    }
+    #music-list-card>div:nth-child(2n) {
+        background-color: var(--white);
+    }
+    #music-list-card>div:hover {
+        cursor: pointer;
+        background-color: var(--grey-300);
+    }
+</style>
+
+        <!-- 页脚：一些说明 -->
+        <div style="height: 10rem"></div>
+<section style="width: 100%; height: 20rem; background-color: var(--grey-100)">
+    <div class="container d-flex align-center px-4" style="height: 100%; color: var(--grey-500)">
+        <div style="line-height: 2">
+            <!-- config.yml footer -->
+            
+                <div>
+                    <span>【技术支持】Hexo</span>
+                    
+                        <sup>
+                            <a target="_blank" rel="noopener" href="https://hexo.io/">[1]</a>
+                        </sup>
+                    
+                </div>
+            
+                <div>
+                    <span>【主题支持】Goyangin</span>
+                    
+                        <sup>
+                            <a target="_blank" rel="noopener" href="http://g3xdev.com">[2]</a>
+                        </sup>
+                    
+                </div>
+            
+                <div>
+                    <span>【源码授权】麻省理工学院</span>
+                    
+                        <sup>
+                            <a target="_blank" rel="noopener" href="http://opensource.org/licenses/mit-license.php">[3]</a>
+                        </sup>
+                    
+                </div>
+            
+        </div>
+    </div>
+</section>
+    
+</body>
+</html>
