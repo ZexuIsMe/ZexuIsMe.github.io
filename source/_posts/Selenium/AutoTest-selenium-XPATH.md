@@ -1,7 +1,7 @@
 ---
 title: AutoTest-selenium-XPATH
 date: 2025-09-30 13:10:34
-tags: [AutoTest, 软件测试, 定位,XPATH]
+tags: [AutoTest, 定位, XPATH]
 categories:
   - AutoTest
   - 定位

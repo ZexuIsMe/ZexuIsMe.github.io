@@ -1,9 +1,9 @@
 ---
 title: 自动化测试-selenium
 date: 2025-09-15 16:34:28
-tags: [自动化测试, 软件测试, AutoTest]
+tags: [软件测试, AutoTest, selenium]
 categories:
-  - 自动化测试
+  - AutoTest
   - selenium
 ---
 

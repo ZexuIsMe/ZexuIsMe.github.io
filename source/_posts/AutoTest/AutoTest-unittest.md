@@ -1,9 +1,9 @@
 ---
 title: Auto-test-unittest
 date: 2025-09-16 15:27:50
-tags: [自动化测试, unittest, 断言]
+tags: [AutoTest, unittest, 断言]
 categories:
-  - 自动化测试
+  - AutoTest
   - unittest
 ---
 

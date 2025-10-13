@@ -1,9 +1,9 @@
 ---
-title: AutoTest-unittest-断言
+title: Python-断言
 date: 2025-09-16 18:16:40
-tags: [软件测试, 自动化测试, 断言, assert, unittest]
+tags: [Python, 断言, assert, unittest]
 categories:
-  - 自动化测试
+  - Python
   - 断言
 ---
 
@@ -50,7 +50,7 @@ y > 0 结果为 False，触发异常，抛出异常 `AssertionError：y 必须�
 
 -----
 
-## 检查两个值是否相等：self.assertEqual()
+## unittest: 检查两个值是否相等：self.assertEqual()
     
 【语法】 `self.assertEqual(a, b, msg=None)`
 【描述】 检查两个值是否相等，不匹配则抛出 `msg`参数传入的异常信息
@@ -63,7 +63,7 @@ def test_equal(self):
     self.assertEqual([1, 2], [1, 2])  # 成功
 ```
 
-## 检查两个值是否不相等：self.assertNotEqual()
+## unittest: 检查两个值是否不相等：self.assertNotEqual()
 
 【语法】 `self.assertNotEqual(a, b, msg=None)`
 【描述】 检查两个值是否不相等，不匹配则抛出 `msg`参数传入的异常信息
@@ -74,7 +74,7 @@ def test_not_equal(self):
     self.assertNotEqual("hello", "world")  # 成功
 ```
 
-## 比较（ < ）：self.assertLess()
+## unittest: 比较（ < ）：self.assertLess()
 
 【语法】 `self.assertLess(a, b, msg=None)`
 【描述】 判断 a 是否小于 b，不匹配则抛出 `msg`参数传入的异常信息
@@ -85,7 +85,7 @@ def test_less(self):
     self.assertLess("apple", "banana")  # 成功（字符串按字典序比较）
 ```
 
-## 比较（ > ）：self.assertGreater()
+## unittest: 比较（ > ）：self.assertGreater()
 
 【语法】 `self.assertGreater(a, b, msg=None)`
 【描述】 判断 a 是否大于 b，不匹配则抛出 `msg`参数传入的异常信息
@@ -96,7 +96,7 @@ def test_greater(self):
     self.assertGreater(len([1,2,3]), 2)  # 成功（3 > 2）
 ```
 
-## 布尔（Bool 为 True）: self.assertTrue()
+## unittest: 布尔（Bool 为 True）: self.assertTrue()
 
 【语法】 `self.assertTrue(a, b, msg=None)`
 【描述】 判断返回的布尔值是否为真（True），不匹配则抛出 `msg`参数传入的异常信息
@@ -108,7 +108,7 @@ def test_true(self):
     self.assertTrue(1)  # 成功（非 0 数字为 True）
 ```
 
-## 布尔（Bool 为 True）: self.assertFalse()
+## unittest: 布尔（Bool 为 True）: self.assertFalse()
 
 【语法】 `self.assertFalse(a, b, msg=None)`
 【描述】 判断返回的布尔值是否为假（False），不匹配则抛出 `msg`参数传入的异常信息
@@ -120,7 +120,7 @@ def test_false(self):
     self.assertFalse(0)  # 成功（0 为 False）
 ```
 
-## 判断后者是否包含前者：self.assertIn()
+## unittest: 判断后者是否包含前者：self.assertIn()
 
 【语法】 `self.assertIn(a, b, msg=None)`
 【描述】 判断 a 是否在 b 中，不匹配则抛出 `msg`参数传入的异常信息

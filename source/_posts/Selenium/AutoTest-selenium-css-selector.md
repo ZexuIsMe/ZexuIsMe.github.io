@@ -1,7 +1,7 @@
 ---
 title: AutoTest-selenium-css-selector
 date: 2025-09-30 11:00:17
-tags: [AutoTest, 软件测试, 定位, CSS_SELECTOR]
+tags: [AutoTest, 定位, CSS_SELECTOR]
 categories:
   - AutoTest
   - 定位

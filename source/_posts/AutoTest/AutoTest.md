@@ -1,9 +1,9 @@
 ---
-title: 自动化测试
+title: AutoTest-自动测试
 date: 2025-09-15 09:50:27
-tags: [自动化测试, 软件测试]
+tags: [AutoTest]
 categories:
-  - 自动化测试
+  - AutoTest
 ---
 
 ## 自动化测试的分类：

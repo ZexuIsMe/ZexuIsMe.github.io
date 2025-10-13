@@ -98,7 +98,6 @@ categories:
 
 统计结果集的记录数，即查询结果有多少行数据，主要用来快速获取结果集的规模信息
 
-
 ## Question：根据结果保存的参数明明是数值，为什么使用的时候会是字符串?
 
 检查 Handle ResultSet 选项是否为 `Store as String`，因为该选项会想结果统一处理成字符串，如需原始类型，可将选项更改为 `Store as Object`
