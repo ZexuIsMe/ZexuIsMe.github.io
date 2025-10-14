@@ -1,5 +1,5 @@
 ---
-title: Python-异常处理
+title: Python-try
 date: 2025-09-10 17:51:58
 tags: [Python, 异常处理, try]
 categories:

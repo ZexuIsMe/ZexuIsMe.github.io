@@ -90,3 +90,32 @@ jwdd = pymysql.cursor(pymql.cursors.DictCursor)
 
 推荐使用字典游标替代 pymysql.cursor()
 
+## 变更类操作
+
+```python
+sql = "update user set val = val+1"
+jwcursor.execute(sql)
+
+jwdd.commit()
+```
+
+需要 commit 提交变动操作
+
+## 回滚操作
+
+当SQL语句执行错误的时候，要撤销本次和前面的SQL操作，就需要用的 rollback
+
+```python
+try:
+    sql = "update user set val = val+1"
+    jwcursor.execute(sql)
+
+    jwdd.commit()
+excpet:
+    print("语句错误，触发回滚操作！")
+    jwdd.rollback()
+else:
+    print("如果没有发生任何异常，会执行这里的代码（可选）")
+finally:
+    print("无论是否发生异常，都会执行这里的代码")
+```
