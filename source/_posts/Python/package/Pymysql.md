@@ -45,6 +45,8 @@ jwdd = pymsql.connect(
 
 ## 创建游标
 jwcursor = pymysql.cursor()
+
+## 通过游标去执行 SQL 语句
 sql = "select * from user"
 jwcursor.execute(sql)
 
@@ -60,7 +62,7 @@ jwdd.close()
 
 ## 游标.fetchxx()
 
-游标执行的SQL结果，通过 fetchxx() 获取数据需要留意，它只能从上往下获取，获取过的数据就无法再次获取，文字描述可能略显苍白，如下代码所示：
+游标执行的SQL结果，**通过 fetchxx() 获取数据需要留意，它只能从上往下获取，获取过的数据就无法再次获取**，文字描述可能略显苍白，如下代码所示：
 
 ```python
 jwcursor.fetchone()
@@ -94,6 +96,7 @@ jwdd = pymysql.cursor(pymql.cursors.DictCursor)
 
 ```python
 sql = "update user set val = val+1"
+
 jwcursor.execute(sql)
 
 jwdd.commit()

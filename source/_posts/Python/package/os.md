@@ -8,15 +8,29 @@ categories:
 ---
 
 `__file__`: （魔法变量）获取当前文件的地址
-`os.path.dirname(__file__)`: 获取父级目录路径
-`os.sep`: 表示 /
-`os.path.join(file_path, "路径")`：路径拼接
-`os.path.abspath()`: 输出绝对路径，可以利用它来纠正斜杠和相对定位，输出正确的地址
+
+## os
+
+| 方法          | 描述                                     |
+|-------------|----------------------------------------|
+| os.sep      | 表示 /                                   |
+| os.getcwd() | 获取当前目录，约等于 `os.ptah.dirname(__file__)` |
+
+## os.path
+
+    from os import path
+
+| 方法                       | 描述                             |
+|--------------------------|--------------------------------|
+| path.dirname(\_\_file__) | 获取当前目录                         |
+| path.join()              | 路径拼接                           |
+| path.abspath()           | 输出绝对路径，可以利用它来纠正斜杠和相对定位，输出正确的地址 |
 
 ```python
 from os import path
 
-parent_dir = path.dirname(__file__)
-target_path = path.abspath(parent_dir, "../abc.log")
-
+def get_path(val):
+    path_join = os.path.join(os.getcwd(), val)
+    return os.path.abspath(path_join)
 ```
+

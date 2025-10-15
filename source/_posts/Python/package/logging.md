@@ -86,7 +86,7 @@ logger.setLevel(logging.DEBUG)
 # 创建控制台实例
 sh = logging.StreamHandler()
 # 设置控制台输出的日志级别
-sh.setLevel(logging.DEBUG)
+sh.setLevel(logging.INFO)
 # 设置向控制台输出的日志格式
 sh.setFormatter(formatter)
 # 加载控制台实例到 logger 对象中
@@ -103,7 +103,7 @@ logger.addHandler(sh)
 '''
 fh = logging.FileHandler('api.log',mode='a',encoding='utf-8')
 # 设置向文件输出的日志级别
-fh.setLevel(logging.DEBUG)
+fh.setLevel(logging.INFO)
 # 设置向文件输出的日志格式
 fh.setFormatter(formatter)
 # 加载文件实例到 logger 对象中
@@ -161,7 +161,8 @@ class TestLogging:
         sh.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
 
         ## 日志文件
-        fh=logging.FileHandler("tl.log", encoding="utf-8")
+        fh_name = "./log/fh_{}.log".format(datetime.now().strftime("%Y-%m-%d %H-%M-%S"))
+        fh=logging.FileHandler(fh_name, encoding="utf-8")
         fh.setLevel(logging.WARNING)
         fh.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
 
@@ -176,9 +177,8 @@ class TestLogging:
 ## 代替 print 完成日志终端的分发
 ## 日志级别的划分
 ## 日志支持离线
-logger = TestLogging().log()
-
 if __name__ == "__main__":
+    logger = TestLogging().log()
     logger.debug('----- 调试信息 [debug]-----')
     logger.info('----- 有用的信息 [info]-----')
     logger.warning('----- 警告信息 [warning]-----')

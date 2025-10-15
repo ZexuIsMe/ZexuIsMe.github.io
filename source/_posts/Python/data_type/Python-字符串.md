@@ -7,9 +7,15 @@ categories:
   - 数据类型
 ---
 
-基础信息翻阅：Python-基本语法
-
 字符串无法通过索引访问进行赋值，因为字符串是不可变类型；
+
+## f-string
+
+```python
+name = "张三"
+print(f"123 {name} 456")
+print("123 {} 456".format(name))
+```
 
 ## 方法
 
@@ -124,7 +130,6 @@ x = ['I', 'have', 'a', 'pen']
     
     print('20250914' > '20250913') # True
 
-
 ## 自定义验证：仅包含字母（大小写都允许）
 
 ```python
@@ -135,3 +140,59 @@ valid_alpha = lambda x_str : all(map(lambda i: "a" <= i <= "z" or "A" <= i <= "Z
 2. 字母比较：是ASCII码值的比较
 3. map函数
 4. all函数：同JS的 every() 函数，如果元素都为真，则为真，否则为假
+
+## 字符模板：Template()
+
+```python
+from string import Template
+
+str_x="123${name}789"
+str_y={"name": "张三"}
+
+"""
+创建一个字符串模板
+其中，参数必须是字符串，
+且用于模板替换的地方必须被 ${} 包裹
+"""
+temp=Template(str_x)
+
+"""
+使用该模板
+① 参数必须是字典
+② 替换目标必须和 ${} 中包过的一致
+比如 str_x 的 name 和 str_y 的 name 是一致的
+"""
+replace_str = temp.safe_substitute(str_y)
+"""打印结果：123张三789"""
+print(replace_str)
+```
+
+## 字符串与字典之间的转换
+
+> 字符串字典转字典
+
+① json.loads()返回一个字典
+② eval() 返回一个字典
+
+```python
+
+str_x = "{"name": "张三", "pwd": 123456}"
+
+print(eval(str_x))
+
+## {"name": "张三", "pwd": 123456}
+
+```
+
+> 字典转字符串
+
+① json.dumps()  返回一个字符串
+② str()  返回一个字符串
+
+```python
+
+str_x = {"name": "张三", "pwd": 123456}
+
+print(str(str_x))
+## "{"name": "张三", "pwd": 123456}"
+```
