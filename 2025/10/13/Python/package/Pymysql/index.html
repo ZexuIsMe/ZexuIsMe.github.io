@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-10-13 19:39
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-10-15 23:31
                     </p>
                 </div>
             </div>
@@ -538,7 +538,7 @@
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#API"><span class="toc-number">1.</span> <span class="toc-text">API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B8%E6%A0%87-fetchxx"><span class="toc-number">2.</span> <span class="toc-text">游标.fetchxx()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E5%85%B8%E6%B8%B8%E6%A0%87%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">字典游标（推荐）</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#API"><span class="toc-number">1.</span> <span class="toc-text">API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B8%E6%A0%87-fetchxx"><span class="toc-number">2.</span> <span class="toc-text">游标.fetchxx()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E5%85%B8%E6%B8%B8%E6%A0%87%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">字典游标（推荐）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E6%9B%B4%E7%B1%BB%E6%93%8D%E4%BD%9C"><span class="toc-number">4.</span> <span class="toc-text">变更类操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E6%BB%9A%E6%93%8D%E4%BD%9C"><span class="toc-number">5.</span> <span class="toc-text">回滚操作</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
@@ -586,9 +586,9 @@
 <td>关闭连接</td>
 </tr>
 </tbody></table>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pymysql<br><br>jwdd = pymsql.connect(<br>    host=<span class="hljs-string">&quot;127.0.0.1&quot;</span>,<br>    port=<span class="hljs-string">&quot;3306&quot;</span>,<br>    user=<span class="hljs-string">&quot;root&quot;</span>,<br>    password=<span class="hljs-string">&quot;123456&quot;</span>,<br>    charset=<span class="hljs-string">&quot;utf8&quot;</span>,<br>    database=<span class="hljs-string">&quot;数据库名&quot;</span>    <br>)<br><br><span class="hljs-comment">## 创建游标</span><br>jwcursor = pymysql.cursor()<br>sql = <span class="hljs-string">&quot;select * from user&quot;</span><br>jwcursor.execute(sql)<br><br><span class="hljs-comment">## 获取一行数据</span><br>jwcursor.fechone()<br><br><span class="hljs-comment">## 关闭游标</span><br>jwcursor.close()<br><br><span class="hljs-comment">## 再关闭数据库</span><br>jwdd.close()<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pymysql<br><br>jwdd = pymsql.connect(<br>    host=<span class="hljs-string">&quot;127.0.0.1&quot;</span>,<br>    port=<span class="hljs-string">&quot;3306&quot;</span>,<br>    user=<span class="hljs-string">&quot;root&quot;</span>,<br>    password=<span class="hljs-string">&quot;123456&quot;</span>,<br>    charset=<span class="hljs-string">&quot;utf8&quot;</span>,<br>    database=<span class="hljs-string">&quot;数据库名&quot;</span>    <br>)<br><br><span class="hljs-comment">## 创建游标</span><br>jwcursor = pymysql.cursor()<br><br><span class="hljs-comment">## 通过游标去执行 SQL 语句</span><br>sql = <span class="hljs-string">&quot;select * from user&quot;</span><br>jwcursor.execute(sql)<br><br><span class="hljs-comment">## 获取一行数据</span><br>jwcursor.fechone()<br><br><span class="hljs-comment">## 关闭游标</span><br>jwcursor.close()<br><br><span class="hljs-comment">## 再关闭数据库</span><br>jwdd.close()<br></code></pre></td></tr></table></figure>
 
-<h2 id="游标-fetchxx"><a href="#游标-fetchxx" class="headerlink" title="游标.fetchxx()"></a>游标.fetchxx()</h2><p>游标执行的SQL结果，通过 fetchxx() 获取数据需要留意，它只能从上往下获取，获取过的数据就无法再次获取，文字描述可能略显苍白，如下代码所示：</p>
+<h2 id="游标-fetchxx"><a href="#游标-fetchxx" class="headerlink" title="游标.fetchxx()"></a>游标.fetchxx()</h2><p>游标执行的SQL结果，<strong>通过 fetchxx() 获取数据需要留意，它只能从上往下获取，获取过的数据就无法再次获取</strong>，文字描述可能略显苍白，如下代码所示：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">jwcursor.fetchone()<br>jwcursor.fetchmany(<span class="hljs-number">2</span>)<br>jwcursor.fetchone()<br></code></pre></td></tr></table></figure>
 <p>第二个 fetchone() 获取的数据是第四行的数据</p>
 <blockquote>
@@ -601,6 +601,11 @@
 <h2 id="字典游标（推荐）"><a href="#字典游标（推荐）" class="headerlink" title="字典游标（推荐）"></a>字典游标（推荐）</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">jwdd = pymysql.cursor(pymql.cursors.DictCursor)<br></code></pre></td></tr></table></figure>
 
 <p>推荐使用字典游标替代 pymysql.cursor()</p>
+<h2 id="变更类操作"><a href="#变更类操作" class="headerlink" title="变更类操作"></a>变更类操作</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">sql = <span class="hljs-string">&quot;update user set val = val+1&quot;</span><br><br>jwcursor.execute(sql)<br><br>jwdd.commit()<br></code></pre></td></tr></table></figure>
+
+<p>需要 commit 提交变动操作</p>
+<h2 id="回滚操作"><a href="#回滚操作" class="headerlink" title="回滚操作"></a>回滚操作</h2><p>当SQL语句执行错误的时候，要撤销本次和前面的SQL操作，就需要用的 rollback</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">try</span>:<br>    sql = <span class="hljs-string">&quot;update user set val = val+1&quot;</span><br>    jwcursor.execute(sql)<br><br>    jwdd.commit()<br>excpet:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;语句错误，触发回滚操作！&quot;</span>)<br>    jwdd.rollback()<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;如果没有发生任何异常，会执行这里的代码（可选）&quot;</span>)<br><span class="hljs-keyword">finally</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;无论是否发生异常，都会执行这里的代码&quot;</span>)<br></code></pre></td></tr></table></figure>
 
     </div>
     <!-- 文章：声明 -->
@@ -637,9 +642,9 @@
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/')"
-            disabled
-    >上一篇: 无</button>
+            onclick="postToggleEjs.onclickLink('/2025/10/15/Python/package/request/')"
+            
+    >上一篇: request</button>
     <button
             class="button is-info is-light"
             onclick="postToggleEjs.onclickLink('/2025/10/13/Python/package/os/')"
