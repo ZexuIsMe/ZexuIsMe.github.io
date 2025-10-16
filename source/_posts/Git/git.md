@@ -35,4 +35,6 @@ CMD 中键入 ssh-keygen 接着敲4下键盘，一般不会出意外
 
 ## 设置公钥
 
+> linux + gitee
 
+![接口自动化测试流程](https://cdn.atstudy.com/lab/manual/16453423549248651.png)
