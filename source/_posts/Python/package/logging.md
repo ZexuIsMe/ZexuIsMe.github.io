@@ -147,43 +147,49 @@ logger.critical('这是一条CRITICAL级别的日志')
 
 ```python
 import logging
+from datetime import datetime
+from config.setting import get_log_path
 
-class TestLogging:
+
+class LogUntil:
     def __init__(self):
-        ## 创建日志对象
+        # 创建日志对象
         self.logger = logging.getLogger("坤坤")
-        ## 总级别
+        # 总级别
         self.logger.setLevel(logging.DEBUG)
 
-        ## 子级别，是控制台的，是实时日志
-        sh=logging.StreamHandler()
-        sh.setLevel(logging.INFO) # 子级别的等级不能低于总级别
-        sh.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
+        # 防止重复添加
+        if not self.logger.handlers:
+            # 子级别，是控制台的，是实时日志
+            sh=logging.StreamHandler()
+            sh.setLevel(logging.INFO)  # 子级别的等级不能低于总级别
+            sh.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
 
-        ## 日志文件
-        fh_name = "./log/fh_{}.log".format(datetime.now().strftime("%Y-%m-%d %H-%M-%S"))
-        fh=logging.FileHandler(fh_name, encoding="utf-8")
-        fh.setLevel(logging.WARNING)
-        fh.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
+            # 日志文件
+            fh_name = "fh_{}.log".format(datetime.now().strftime("%Y-%m-%d"))
+            fh = logging.FileHandler(get_log_path(fh_name), encoding="utf-8")
+            fh.setLevel(logging.INFO)
+            fh.setFormatter(logging.Formatter("%(asctime)s - %(filename)s - %(lineno)d - %(levelname)s - %(message)s"))
 
-        ## 添加
-        self.logger.addHandler(sh)
-        self.logger.addHandler(fh)
+            # 添加
+            self.logger.addHandler(sh)
+            self.logger.addHandler(fh)
 
     def log(self):
         return self.logger
 
-## 日志
-## 代替 print 完成日志终端的分发
-## 日志级别的划分
-## 日志支持离线
+# 日志
+# 代替 print 完成日志终端的分发
+# 日志级别的划分
+# 日志支持离线
 if __name__ == "__main__":
-    logger = TestLogging().log()
+    logger = LogUntil().log()
     logger.debug('----- 调试信息 [debug]-----')
     logger.info('----- 有用的信息 [info]-----')
     logger.warning('----- 警告信息 [warning]-----')
     logger.error('----- 错误信息 [error]-----')
     logger.critical('----- 严重错误信息 [critical]-----')
+
 ```
 
 其中文件名字，可以通过 datetime 标记日志文件名字
@@ -194,5 +200,14 @@ from datetime import datetime
 now_time = datetime.now.strftime(""%Y-%m-%d")
 
 file_name = nowtime + '_tl.log'
+```
+
+语句：`if not self.logger.handlers:` 用于防止重复添加，若不添加，容易出现如下情况
+
+```python
+2025-10-16 11:34:22,268 - test_run.py - 21 - INFO - --------------------------------------------------
+2025-10-16 11:34:22,268 - test_run.py - 21 - INFO - --------------------------------------------------
+2025-10-16 11:34:22,269 - test_run.py - 22 - INFO - 正在执行：密码错误用例
+2025-10-16 11:34:22,269 - test_run.py - 22 - INFO - 正在执行：密码错误用例
 ```
 

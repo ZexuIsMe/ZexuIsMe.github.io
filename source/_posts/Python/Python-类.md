@@ -155,6 +155,44 @@ print("外部访问", p.__weight) ## 100
 `**param` 返回的是一个字典类型`<class 'dict'>`
 动态赋值时，需留意私有属性，避免出现**类属性**、**实例属性**同名的情况
 
+### 另一种动态赋值
+
+创建一个类，用于动态存放参数
+
+```python
+class DynamicParam:
+    pass
+```
+
+#### 使用
+
+```python
+p = DynamicParam()
+
+# 设置
+p.name = "张三"
+# 获取
+print(p.name)
+```
+
+> setattr(类实例/类本身, attr, value)
+
+    setattr(p, "age", 18)
+    # 等同于 p.age = 18
+
+> getattr(类实例/类本身, attr, default)
+
+    getattr(p, "age", -1)
+
+该方式属于**安全获取**，default 表示若 age 不存在，则返回参数 -1，防止获取不存在的参数时出异常
+
+------
+
+    DynamicParam.gender = "男"
+
+该方式直接作用于类本身，后续的实例化都会有 gender 属性
+
+
 ## 继承
 
 ```python

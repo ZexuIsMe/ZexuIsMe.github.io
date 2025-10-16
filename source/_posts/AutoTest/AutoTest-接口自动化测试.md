@@ -9,9 +9,16 @@ categories:
 ## 库
 
 【Requests】 Python 发出接口访问请求的库
+https://zexuisme.github.io/2025/10/15/Python/package/request/
+
 【Pytest】 以数据驱动的方式测试用例
+https://zexuisme.github.io/2025/10/13/Python/package/Pytest/
+
 【logging】 日志库
+https://zexuisme.github.io/2025/10/13/Python/package/logging/
+
 【Pymysql】 用 Python 读取 mysql 中的数据
+https://zexuisme.github.io/2025/10/13/Python/package/Pymysql/
 
 ## Question：测试开发？
 
@@ -266,3 +273,31 @@ if __name__ == '__main__':
 
 
 
+
+
+## 动态属性
+
+创建一个类，用于动态存放参数
+
+```python
+class DynamicParam:
+    pass
+    
+p = DynamicParam()
+
+# 设置
+p.name = "张三"
+# 获取
+print(p.name)
+```
+
+> setattr(类实例, attr, value)
+
+    setattr(p, "age", 18)
+    # 等同于 p.age = 18
+
+> getattr(类实例, attr, default)
+
+    getattr(p, "age", -1)
+
+该方式属于**安全获取**，default 表示若 age 不存在，则返回参数 -1，防止获取不存在的参数时出异常

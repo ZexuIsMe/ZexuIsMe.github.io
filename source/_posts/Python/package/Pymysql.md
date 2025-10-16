@@ -19,24 +19,12 @@ Excel 中的 SQL 语句，方便 Python 实现自动化；
 
 -------------------
 
-## API
-
-| API          | 描述               |
-|--------------|------------------|
-| connect      | 链接数据库            |
-| fetchone()   | 提取一行数据           |
-| fetchmany(n) | 获取指定行数的数据，n 表示行数 |
-| fetchall()   | 获取所有行数           |
-| commit()     | 提交保存和修改          |
-| rollback()   | 回滚               |
-| close()      | 关闭连接             |
-
 ```python
 import pymysql
 
 jwdd = pymsql.connect(
     host="127.0.0.1",
-    port="3306",
+    port=3306,
     user="root",
     password="123456",
     charset="utf8",
@@ -44,7 +32,7 @@ jwdd = pymsql.connect(
 )
 
 ## 创建游标
-jwcursor = pymysql.cursor()
+jwcursor = jwdd.cursor()
 
 ## 通过游标去执行 SQL 语句
 sql = "select * from user"
@@ -59,6 +47,20 @@ jwcursor.close()
 ## 再关闭数据库
 jwdd.close()
 ```
+
+注意：port 是数字
+
+## API
+
+| API          | 描述               |
+|--------------|------------------|
+| connect      | 链接数据库            |
+| fetchone()   | 提取一行数据           |
+| fetchmany(n) | 获取指定行数的数据，n 表示行数 |
+| fetchall()   | 获取所有行数           |
+| commit()     | 提交保存和修改          |
+| rollback()   | 回滚               |
+| close()      | 关闭连接             |
 
 ## 游标.fetchxx()
 
@@ -87,7 +89,7 @@ print(data[2])
 ## 字典游标（推荐）
 
 ```python
-jwdd = pymysql.cursor(pymql.cursors.DictCursor)
+jwdd = jwcursor.cursor(pymql.cursors.DictCursor)
 ```
 
 推荐使用字典游标替代 pymysql.cursor()
