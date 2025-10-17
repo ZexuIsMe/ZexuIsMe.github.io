@@ -34,3 +34,10 @@ def get_path(val):
     return os.path.abspath(path_join)
 ```
 
+有的时候，需要用到相对路径，如 `./a/b/c.txt`
+
+可以通过传入多参数的方式得到路径：
+
+    os.ptah.join(os.getcwd(), 'a', 'b', 'c.txt')
+
+会得到：`路径\a\b\c.txt`
