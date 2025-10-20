@@ -63,6 +63,9 @@ if __name__ == "__main__":
     unittest.main()
 ```
 
+方法前置：setUp
+类方法前置：setUpClass
+
 ## 执行顺序
 
 ![Python unittest 执行顺序](https://origin.picgo.net/2025/09/16/Python_unittest_cbd6c4cd0557e047.md.jpg)

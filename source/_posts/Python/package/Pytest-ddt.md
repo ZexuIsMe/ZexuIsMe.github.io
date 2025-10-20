@@ -6,6 +6,7 @@ categories:
   - Python
   - package
   - Pytest
+  - ddt
 ---
 
 ## <mark>数据驱动（ddt）（核心掌握）</mark>

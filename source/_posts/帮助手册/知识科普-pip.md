@@ -17,3 +17,8 @@ categories:
 > 包更新到最新版本
 
     pip install -U 包    
+
+> 查看包的版本号（windows）
+
+    pip list | findstr /I "selenium"
+

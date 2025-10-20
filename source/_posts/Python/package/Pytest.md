@@ -12,7 +12,7 @@ categories:
 
 相比 Python 内置的 unittest 框架，pytest 编写测试用例更加简洁，支持更多的高级特性。
 
-比如参数化测试、fixture依赖注入、插件扩展等等。
+比如参数化测试、fixture（夹具）依赖注入、插件扩展等等。
 
 **相对于 unittest 而言，pytest 语法更简洁，无需使用特定类，自带报告，以数据驱动执行用例**，一个函数就是一个测试用例
 
@@ -173,7 +173,6 @@ def test_4():
     # 或者
     pytest -vsm 'a and not b' test_1.py
 
-
 ## pytest.ini
 
 **文件名字必须是 pytest.ini**；
@@ -202,3 +201,29 @@ python_files = jw55.py
 ![pytest ini report](https://origin.picgo.net/2025/10/13/pytest_ini_report3963ceb6206060f2.png)
 
 如果要位于 learn 目录下，则是按当前所在项目位置开始写路径：`./learn/report.html`
+
+
+## Question：Pytest 运行方式，用过哪些选项？
+
+- -vs
+- --html
+- -m
+- -n
+- --ff 先执行上次失败的，再执行正常的
+- --lf 只执行上次失败的，现在的不管。
+
+## Question: Pytest 数据驱动怎么做？
+
+    @pytest.mark.paramterize
+
+> 数据来自哪里呢？
+
+CSV或者是数据库中的
+
+## Question：Pytest 夹具（fixture）是否用过？
+
+function < class < module < session < conftest
+（函数最小， session 第二大，conftest 最大）
+
+conftest.py 用于配置各级的夹具
+

@@ -1,17 +1,54 @@
 ---
 title: appium
 date: 2025-10-18 16:30:28
-tags: [appium, 自动化测试, App]
+tags: [Appium, 自动化测试, App]
 categories:
-  - appium 
+  - Appium 
 ---
 
 本质上可以说是 Selenium 的扩展，或者说是移动版的 Selenium
 
-【查看元素信息的工具】
-① appium Inspetor
-② uiautomatorviewer
-这两个工具都是用来查看元素信息的
+## 怎么安装的
+
+【前提】 需要 java 1.8
+
+下载地址（阿里云盘）：https://www.alipan.com/s/ZLk5Fbf7h2D
+提取码：ae45
+
+安装后，打开软件（软件的打开速度有些慢，耐心等待一下）
+》 点击 "Edit Configurations"
+》 "Save and Restart"
+》 "Restart Now"
+》 执行后，软件不会重新运行，需要手动关闭软件（是整个软件关闭掉）
+
+## 举例
+
+```python
+import time
+from appium import webdriver
+from appium.options.android import UiAutomator2Options
+from appium.options.common import AppiumOptions
+
+url='http://127.0.0.1:4723/wd/hub'
+opts = UiAutomator2Options()
+opts.platform_name = 'Android'  #appium运行的设备是安卓，另一个值'iOS'
+opts.automation_name = 'UiAutomator2'  #appium运行引擎是UiAutomator2
+opts.app_package = 'com.insthub.ecmobile'   #appium运行应用程序的包名
+opts.app_activity = '.activity.EcmobileMainActivity'  #appium启动应用程序的活动名
+
+driver = webdriver.Remote(url, options=opts)
+time.sleep(10)
+driver.quit()
+```
+
+> 这串代码完成了一件什么事儿？
+
+① 规定了URL
+② 设置设备为安卓
+③ 设置引擎：UiAutomator2
+④ 运行指定包
+⑤ 打开指定的窗口组件
+⑥ 退出
 
 ## abd 的抢占问题
 
@@ -23,8 +60,52 @@ categories:
 
 Eg：Python 自动化安装且在被测app指定次数，比如3次
 
+```python
+from appium import webdriver
 
+REMOTECONFIG = {
+    "platformName": "Android",
+    "platformVersion": "9",
+    "deviceName": "127.0.0.1:100027",
+    "app": "app的安装包路径/xxx.apk",
+    "appPackage": "com.tal.kaoyan",
+    "appActivity": "com.tal.kaoyan.ui.activity.SplashActivity",
+    "noReset": False
+}
 
+webdriver.Remote(
+    "appium server 地址",
+    REMOTECONFIG
+)
+```
+
+> 这串代码完成了一件什么事儿？
+
+① 从指定目录安装指定的apk文件，
+② 安装完毕后，由于 noReset 设置为False，表示非首次启动，跳过首次启动。
+③ 接着调用指定窗口的代码，让对应窗口出现在界面上。
+
+## API
+
+| appium.webdriver          | 返回       | 描述        |
+|---------------------------|----------|-----------|
+| `.Remote(字典)`             | appium对象 | 创建        |
+| `.is_app_installed("包名")` | Bool     | 判断手机是否已安装 |
+| `.remove_app("包名")`       | --       | 卸载安装包     |
+
+### appium.webdriver.Remote()
+
+【参数类型】 字典
+
+| ...Remote()     | 类型   | 描述                    |
+|-----------------|------|-----------------------|
+| platformName    | str  | 手机的操作系统，比如：Android    |
+| platformVersion | str  | 手机操作系统的版本，比如：9        |
+| deviceName      | str  | 手机或模拟器类型              |
+| app             | str  | 安装包的绝对路径              |
+| appPackage      | str  | 要运行的 android package  |
+| appActivity     | str  | 要启动的 android activity |
+| noReset         | bool | 是否首次启动，True，表示是       |
 
 
 
