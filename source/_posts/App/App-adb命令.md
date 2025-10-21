@@ -190,6 +190,12 @@ C:\Users\admin>
 - 若从windows远程进入安卓系统，执行 logcat，可使用`grep`，但不可用`find`
 - 若一定要在CMD中使用 grep 应：`adb logcat | adb shell grep "***"`
 
+### 通过日志查看包名或是组件信息
+
+    adb logcat -d | find "Displayed"
+    # 或者
+    adb logcat -d | find "包名"
+
 ## 稳定性测试：monkey
 
     # 格式：

@@ -141,6 +141,32 @@ valid_alpha = lambda x_str : all(map(lambda i: "a" <= i <= "z" or "A" <= i <= "Z
 3. map函数
 4. all函数：同JS的 every() 函数，如果元素都为真，则为真，否则为假
 
+## 字符模板 format
+
+> 常规
+
+    "123{}456".format("张三")
+
+> 索引（不推荐）
+
+```python
+x = "姓名：{1}；年龄：{0}".format("张三", 18)
+print(x)
+# 姓名：18；年龄：张三
+```
+
+如代码所示，按下标位置填入参数
+
+> 命名
+
+```python
+x = "姓名：{name}；年龄：{age}".format("张三", 18)
+print(x)
+# 姓名：张三；年龄：18
+```
+
+通过命名的方式稳定填参，且该方式可以解决索引填参带来的问题
+
 ## 字符模板：Template()
 
 ```python

@@ -1,5 +1,5 @@
 ---
-title: appium
+title: Appium
 date: 2025-10-18 16:30:28
 tags: [Appium, 自动化测试, App]
 categories:
@@ -7,6 +7,8 @@ categories:
 ---
 
 本质上可以说是 Selenium 的扩展，或者说是移动版的 Selenium
+
+【Appium 文档】 https://www.kancloud.cn/testerhome/appium_docs_cn/3209426
 
 ## 怎么安装的
 
@@ -36,6 +38,13 @@ opts.automation_name = 'UiAutomator2'  #appium运行引擎是UiAutomator2
 opts.app_package = 'com.insthub.ecmobile'   #appium运行应用程序的包名
 opts.app_activity = '.activity.EcmobileMainActivity'  #appium启动应用程序的活动名
 
+# 该写法兼容性很高
+# opts = AppiumOptions()
+# opts.load_capabilities({
+#     'platformName': 'Android',
+#     'platformVersion': '7.1.2',
+# })
+
 driver = webdriver.Remote(url, options=opts)
 time.sleep(10)
 driver.quit()
@@ -50,40 +59,15 @@ driver.quit()
 ⑤ 打开指定的窗口组件
 ⑥ 退出
 
+## 如何获取包名
+
+    aapt dump badging apk路径
+
 ## abd 的抢占问题
 
 因为 Appium 需要用到 adb 工具来帮助代码的运行
 
 【解决方案】 关掉其他占用 adb 软件
-
-## Appium 疲劳性测试
-
-Eg：Python 自动化安装且在被测app指定次数，比如3次
-
-```python
-from appium import webdriver
-
-REMOTECONFIG = {
-    "platformName": "Android",
-    "platformVersion": "9",
-    "deviceName": "127.0.0.1:100027",
-    "app": "app的安装包路径/xxx.apk",
-    "appPackage": "com.tal.kaoyan",
-    "appActivity": "com.tal.kaoyan.ui.activity.SplashActivity",
-    "noReset": False
-}
-
-webdriver.Remote(
-    "appium server 地址",
-    REMOTECONFIG
-)
-```
-
-> 这串代码完成了一件什么事儿？
-
-① 从指定目录安装指定的apk文件，
-② 安装完毕后，由于 noReset 设置为False，表示非首次启动，跳过首次启动。
-③ 接着调用指定窗口的代码，让对应窗口出现在界面上。
 
 ## API
 
@@ -93,11 +77,11 @@ webdriver.Remote(
 | `.is_app_installed("包名")` | Bool     | 判断手机是否已安装 |
 | `.remove_app("包名")`       | --       | 卸载安装包     |
 
-### appium.webdriver.Remote()
+### appium.webdriver.Remote(url, options=opts)
 
 【参数类型】 字典
 
-| ...Remote()     | 类型   | 描述                    |
+| opts            | 类型   | 描述                    |
 |-----------------|------|-----------------------|
 | platformName    | str  | 手机的操作系统，比如：Android    |
 | platformVersion | str  | 手机操作系统的版本，比如：9        |
@@ -107,5 +91,10 @@ webdriver.Remote(
 | appActivity     | str  | 要启动的 android activity |
 | noReset         | bool | 是否首次启动，True，表示是       |
 
+#### Question：关于 deviceName 如何获取的问题
 
+    C:\Users\admin>adb devices
+    List of devices attached
+    127.0.0.1:59865 device
 
+127.0.0.1:59865 就是你的 deviceName
