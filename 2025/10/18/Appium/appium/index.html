@@ -511,7 +511,7 @@
                     </h1>
                     <p class="subtitle is-6">
                         <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-10-18 20:11
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-10-25 00:20
                     </p>
                 </div>
             </div>
@@ -536,16 +536,129 @@
     </div>
 
     <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#abd-%E7%9A%84%E6%8A%A2%E5%8D%A0%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">abd 的抢占问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Appium-%E7%96%B2%E5%8A%B3%E6%80%A7%E6%B5%8B%E8%AF%95"><span class="toc-number">2.</span> <span class="toc-text">Appium 疲劳性测试</span></a></li></ol></div>
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85%E7%9A%84"><span class="toc-number">1.</span> <span class="toc-text">怎么安装的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">举例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%8C%85%E5%90%8D"><span class="toc-number">3.</span> <span class="toc-text">如何获取包名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#abd-%E7%9A%84%E6%8A%A2%E5%8D%A0%E9%97%AE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">abd 的抢占问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%90%E5%8F%B8-toast"><span class="toc-number">5.</span> <span class="toc-text">吐司 toast</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webdriver-API"><span class="toc-number">6.</span> <span class="toc-text">webdriver API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#appium-webdriver-Remote-url-options-opts"><span class="toc-number">6.1.</span> <span class="toc-text">appium.webdriver.Remote(url, options&#x3D;opts)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APP-%E5%88%87%E6%8D%A2"><span class="toc-number">7.</span> <span class="toc-text">APP 切换</span></a></li></ol></div>
     <!-- 文章：内容 -->
     <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
         <hr />
         <!-- Content -->
         <p>本质上可以说是 Selenium 的扩展，或者说是移动版的 Selenium</p>
-<p>【查看元素信息的工具】<br>① appium Inspetor<br>② uiautomatorviewer<br>这两个工具都是用来查看元素信息的</p>
+<p>【Appium 文档】 <a target="_blank" rel="noopener" href="https://www.kancloud.cn/testerhome/appium_docs_cn/3209426">https://www.kancloud.cn/testerhome/appium_docs_cn/3209426</a></p>
+<h2 id="怎么安装的"><a href="#怎么安装的" class="headerlink" title="怎么安装的"></a>怎么安装的</h2><p>【前提】 需要 java 1.8</p>
+<p>下载地址（阿里云盘）：<a target="_blank" rel="noopener" href="https://www.alipan.com/s/ZLk5Fbf7h2D">https://www.alipan.com/s/ZLk5Fbf7h2D</a><br>提取码：ae45</p>
+<p>安装后，打开软件（软件的打开速度有些慢，耐心等待一下）<br>》 点击 “Edit Configurations”<br>》 “Save and Restart”<br>》 “Restart Now”<br>》 执行后，软件不会重新运行，需要手动关闭软件（是整个软件关闭掉）</p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">from</span> appium <span class="hljs-keyword">import</span> webdriver<br><span class="hljs-keyword">from</span> appium.options.android <span class="hljs-keyword">import</span> UiAutomator2Options<br><span class="hljs-keyword">from</span> appium.options.common <span class="hljs-keyword">import</span> AppiumOptions<br><br>url=<span class="hljs-string">&#x27;http://127.0.0.1:4723/wd/hub&#x27;</span><br>opts = UiAutomator2Options()<br>opts.platform_name = <span class="hljs-string">&#x27;Android&#x27;</span>  <span class="hljs-comment">#appium运行的设备是安卓，另一个值&#x27;iOS&#x27;</span><br>opts.automation_name = <span class="hljs-string">&#x27;UiAutomator2&#x27;</span>  <span class="hljs-comment">#appium运行引擎是UiAutomator2</span><br>opts.app_package = <span class="hljs-string">&#x27;com.insthub.ecmobile&#x27;</span>   <span class="hljs-comment">#appium运行应用程序的包名</span><br>opts.app_activity = <span class="hljs-string">&#x27;.activity.EcmobileMainActivity&#x27;</span>  <span class="hljs-comment">#appium启动应用程序的活动名</span><br><br><span class="hljs-comment"># 该写法兼容性很高</span><br><span class="hljs-comment"># opts = AppiumOptions()</span><br><span class="hljs-comment"># opts.load_capabilities(&#123;</span><br><span class="hljs-comment">#     &#x27;platformName&#x27;: &#x27;Android&#x27;,</span><br><span class="hljs-comment">#     &#x27;platformVersion&#x27;: &#x27;7.1.2&#x27;,</span><br><span class="hljs-comment"># &#125;)</span><br><br>driver = webdriver.Remote(url, options=opts)<br>time.sleep(<span class="hljs-number">10</span>)<br>driver.quit()<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这串代码完成了一件什么事儿？</p>
+</blockquote>
+<p>① 规定了URL<br>② 设置设备为安卓<br>③ 设置引擎：UiAutomator2<br>④ 运行指定包<br>⑤ 打开指定的窗口组件<br>⑥ 退出</p>
+<h2 id="如何获取包名"><a href="#如何获取包名" class="headerlink" title="如何获取包名"></a>如何获取包名</h2><pre><code>aapt dump badging apk路径
+</code></pre>
 <h2 id="abd-的抢占问题"><a href="#abd-的抢占问题" class="headerlink" title="abd 的抢占问题"></a>abd 的抢占问题</h2><p>因为 Appium 需要用到 adb 工具来帮助代码的运行</p>
 <p>【解决方案】 关掉其他占用 adb 软件</p>
-<h2 id="Appium-疲劳性测试"><a href="#Appium-疲劳性测试" class="headerlink" title="Appium 疲劳性测试"></a>Appium 疲劳性测试</h2><p>Eg：Python 自动化安装且在被测app指定次数，比如3次</p>
+<h2 id="吐司-toast"><a href="#吐司-toast" class="headerlink" title="吐司 toast"></a>吐司 toast</h2><p>翻译：页面上显示的提示信息<br>比如 “用户名或密码错误” 就是 toast</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> appium.webdriver.common.appiumby <span class="hljs-keyword">import</span> AppiumBy<br><br><span class="hljs-keyword">try</span>:<br>    driver.find_element(AppiumBy.XPATH, <span class="hljs-string">&#x27;//*[@text=&quot;用户名或密码错误&quot;]&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;成功&quot;</span>)<br>excpet:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;失败&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="webdriver-API"><a href="#webdriver-API" class="headerlink" title="webdriver API"></a>webdriver API</h2><table>
+<thead>
+<tr>
+<th>appium.webdriver</th>
+<th>返回</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.Remote(字典)</code></td>
+<td>appium对象</td>
+<td>创建</td>
+</tr>
+<tr>
+<td><code>.is_app_installed(&quot;包名&quot;)</code></td>
+<td>Bool</td>
+<td>判断手机是否已安装</td>
+</tr>
+<tr>
+<td><code>.remove_app(&quot;包名&quot;)</code></td>
+<td>–</td>
+<td>卸载安装包</td>
+</tr>
+</tbody></table>
+<h3 id="appium-webdriver-Remote-url-options-opts"><a href="#appium-webdriver-Remote-url-options-opts" class="headerlink" title="appium.webdriver.Remote(url, options&#x3D;opts)"></a>appium.webdriver.Remote(url, options&#x3D;opts)</h3><p>【参数类型】 字典</p>
+<table>
+<thead>
+<tr>
+<th>opts</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>platformName</td>
+<td>str</td>
+<td>手机的操作系统，比如：Android</td>
+</tr>
+<tr>
+<td>platformVersion</td>
+<td>str</td>
+<td>手机操作系统的版本，比如：9</td>
+</tr>
+<tr>
+<td>deviceName</td>
+<td>str</td>
+<td>手机或模拟器类型</td>
+</tr>
+<tr>
+<td>app</td>
+<td>str</td>
+<td>安装包的绝对路径</td>
+</tr>
+<tr>
+<td>appPackage</td>
+<td>str</td>
+<td>要运行的 android package</td>
+</tr>
+<tr>
+<td>appActivity</td>
+<td>str</td>
+<td>要启动的 android activity</td>
+</tr>
+<tr>
+<td>noReset</td>
+<td>bool</td>
+<td>是否首次启动，True，表示是</td>
+</tr>
+</tbody></table>
+<h4 id="Question：关于-deviceName-如何获取的问题"><a href="#Question：关于-deviceName-如何获取的问题" class="headerlink" title="Question：关于 deviceName 如何获取的问题"></a>Question：关于 deviceName 如何获取的问题</h4><pre><code>C:\Users\admin&gt;adb devices
+List of devices attached
+127.0.0.1:59865 device
+</code></pre>
+<p>127.0.0.1:59865 就是你的 deviceName</p>
+<h2 id="APP-切换"><a href="#APP-切换" class="headerlink" title="APP 切换"></a>APP 切换</h2><table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>close_app()</td>
+<td>关闭app</td>
+</tr>
+<tr>
+<td>launch_app()</td>
+<td>启动app</td>
+</tr>
+<tr>
+<td>background_app(时间)</td>
+<td>app后台运行，当满足时间 app自动出现</td>
+</tr>
+<tr>
+<td>start_activity(切换app的报名, activity名)</td>
+<td>切换</td>
+</tr>
+</tbody></table>
+<p>冷启动：先 close_app，再 launch_app<br>热启动：background_app(时间)</p>
 
     </div>
     <!-- 文章：声明 -->
@@ -559,7 +672,7 @@
         <strong>文章链接</strong>：
         <span
                 id="article-link-span"
-                data-text="https://zexuisme.github.io/2025/10/18/Appium/appium/"
+                data-text="https://zexuisme.github.io/2025/10/18/Appium/Appium/"
         ></span>
     </p>
     <p>
@@ -582,9 +695,9 @@
 <div class="post-toggle d-flex justify-between flex-wrap gap-3">
     <button
             class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/')"
-            disabled
-    >上一篇: 无</button>
+            onclick="postToggleEjs.onclickLink('/2025/10/20/Python/package/Pytest-fixture-%E5%A4%B9%E5%85%B7/')"
+            
+    >上一篇: Pytest-fixture_夹具</button>
     <button
             class="button is-info is-light"
             onclick="postToggleEjs.onclickLink('/2025/10/18/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E7%95%8C%E9%9D%A2%E6%B5%8B%E8%AF%95/')"

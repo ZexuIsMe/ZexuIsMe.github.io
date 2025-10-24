@@ -604,24 +604,22 @@
                     <!-- 文章预览时用 -->
 <section class="post-card box mbl py-6">
     <div class="subtitle">
-        <span style="color: #adadad; font-size: 0.875rem">Wed Jun 04 2025 13:48:43 GMT+0800</span>
+        <span style="color: #adadad; font-size: 0.875rem">Fri Jun 13 2025 09:31:37 GMT+0800</span>
     </div>
     <div class="title is-5">
-        Github-快搭博客
+        AE-让椭圆随音频的振幅抖动
     </div>
 
     <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
         <ol>
-<li>想要一个属于自己的个人网站</li>
-<li>不想弄服务器</li>
-<li>Hexo 就很适合</li>
+<li>将目标音频转为关键帧：选中音频并右击 &gt; 关键帧辅助 &gt; 将音频转换为关键帧</li>
+<li>找到椭圆所在图层，打开【缩放】的表达式</li>
 </ol>
-<h2 id="0-Github"><a href="#0-Github" class="headerlink" title="0. Github"></a>0. Github</h2><p>创建一个新的项目，名字为 <code>Username.github.io</code></p>
-<p>比如我的名字 ZexuIsMe，那么我的这个仓库命就是<code>ZexuIsMe.github.io</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs Javascript"><span class="hljs-comment">// 将椭圆蒙版的缩放属性与音频振幅的强度关联，实现椭圆随音乐节奏同步放大缩小。</span><br>value+(<span class="hljs-title function_">comp</span>(<span class="hljs-string">&quot;频谱&quot;</span>).<span class="hljs-title function_">layer</span>(<span class="hljs-string">&quot;音频振幅&quot;</span>).<span class="hljs-title function_">effect</span>(<span class="hljs-string">&quot;两个通道&quot;</span>)(<span class="hljs-string">&quot;滑块&quot;</span>))/<span class="hljs-number">6</span><br></code></pre></td></tr></table></figure>
     </div>
 
     <div class="post-card-mask d-flex justify-center align-end">
-        <a class="py-4 " href="/2025/06/04/Github/Github-%E5%BF%AB%E6%90%AD%E5%8D%9A%E5%AE%A2/">
+        <a class="py-4 " href="/2025/06/13/AE/AE-%E8%AE%A9%E6%A4%AD%E5%9C%86%E9%9A%8F%E9%9F%B3%E9%A2%91%E7%9A%84%E6%8C%AF%E5%B9%85%E6%8A%96%E5%8A%A8/">
             <span style="color: #00586d">加载更多</span>
         </a>
     </div>
@@ -647,10 +645,190 @@
                     <!-- 文章预览时用 -->
 <section class="post-card box mbl py-6">
     <div class="subtitle">
-        <span style="color: #adadad; font-size: 0.875rem">Tue Jun 03 2025 13:48:43 GMT+0800</span>
+        <span style="color: #adadad; font-size: 0.875rem">Sun Jun 08 2025 12:03:37 GMT+0800</span>
     </div>
     <div class="title is-5">
-        Hello World
+        Hexo-文章摘要
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        <p>Hexo 会自动提取文章的前一部分内容作为 excerpt，并保留 HTML 格式</p>
+<ul>
+<li>操作</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs ejs">&lt;!-- 直接使用内置的 excerpt 属性 --&gt;<br>&lt;%- item.excerpt %&gt;<br><br>&lt;!-- 如果 excerpt 为空，使用 content （但可能会显示全文） --&gt;<br>&lt;%- item.excerpt || item.content %&gt;<br></code></pre></td></tr></table></figure>
+<p><strong>注意</strong></p>
+<ul>
+<li>Hexo 默认会提取文章的前 140 个字符作为 excerpt，不会截断 HTML 标签，因此格式会保留。</li>
+<li>如果文章中包含
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/08/HEXO/Hexo-%E6%96%87%E7%AB%A0%E6%91%98%E8%A6%81/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Thu Jun 05 2025 16:01:11 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        西门子-纬控习题（测试：图片渲染）
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        <h2 id="1-起保停"><a href="#1-起保停" class="headerlink" title="1. 起保停"></a>1. 起保停</h2><p><strong><code>I0.0</code> 接通 <code>I0.1</code> 断开 <code>Q0.0</code> 输出，<code>I0.1</code> 接通时，<code>Q0.0</code> 关断输出，即 <code>I0.0</code> 为启动按钮 <code>I0.1</code> 为停止按钮 <code>Q0.0</code> 为输出；</strong></p>
+<p><img src="/../../images/%E8%A5%BF%E9%97%A8%E5%AD%90-%E7%BA%AC%E6%8E%A7%E4%B9%A0%E9%A2%98/101.png" alt="第一题.png"></p>
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/05/Siemens/%E8%A5%BF%E9%97%A8%E5%AD%90-%E7%BA%AC%E6%8E%A7%E4%B9%A0%E9%A2%98/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Thu Jun 05 2025 15:56:30 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        西门子_名词
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        <h2 id="上位机"><a href="#上位机" class="headerlink" title="上位机"></a>上位机</h2><p>上位机是指用于监控和控制下位设备的具有强大计算能力和数据处理能力的计算机系统。<br>上位机在多个领域有广泛应用：</p>
+<ol>
+<li>工业控制：监控生产过程。</li>
+<li>自动化系统：协调各设备的运行。</li>
+<li>实验室设备：控制实验仪器。</li>
+<li>智能家居：实现家居设备的集中管理。</li>
+</ol>
+<p>上位机作为控制和管理下位设备的核心部分，提高了系统的智能化和自动化水平。</p>
+<p>其主要特点和功能包括：</p>
+<ol>
+<li>数据采集与监测：实时获取下位设备的数据信息。</li>
+<li>控制与操作：发送指令来控制下位设备的运行。</li>
+<li>数据处理与分析：对采集的数据进行处理和分析。</li>
+<li>人机交互：提供友好的用户界面，方便操作和监控。</li>
+<li>通信功能：与下位设备进行数据通信。</li>
+<li>系统管理：包括用户管理、权限设置等。</li>
+<li>数据存储：存储相关数据，便于查询和追溯。</li>
+</ol>
+<blockquote>
+<p>上位机所做的事情同前端工作及其相似，通过可视化界面去控制和监控程序的运行，负责数据的增删改查和人机交互工作</p>
+<p>假设现在的我写的没有让现在的你理解到</p>
+<p>比如触摸屏就算作是上位机中一种，且是最常见的上位机，<br>日常生活中时常容易听到的或看到的：智能家居系统、自动化停车场系统<br>典型设备类型：电脑，手机，平板，面板，触摸屏</p>
+</blockquote>
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/05/Siemens/%E8%A5%BF%E9%97%A8%E5%AD%90-%E5%90%8D%E8%AF%8D/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Thu Jun 05 2025 15:43:36 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        西门子-Question-01（测试：布局调试）
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        <p><span style="color: #cc0033">Q：Question？</span><br>A：Answer</p>
+<h5 id="Q：有的时候一直连接不上设备，明明网口连接正常，却总是搜索不到设备？"><a href="#Q：有的时候一直连接不上设备，明明网口连接正常，却总是搜索不到设备？" class="headerlink" title="Q：有的时候一直连接不上设备，明明网口连接正常，却总是搜索不到设备？"></a><span style="color: #cc0033">Q：有的时候一直连接不上设备，明明网口连接正常，却总是搜索不到设备？</span></h5><p>第一种尝试：设备断电<br>第二种尝试：保存软件内容后，关闭软件，重新打开软件<br>第三种尝试：重启电脑</p>
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/05/Siemens/%E8%A5%BF%E9%97%A8%E5%AD%90-Question-01/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Thu Jun 05 2025 15:38:35 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        Theme
     </div>
 
     <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
@@ -658,7 +836,166 @@
     </div>
 
     <div class="post-card-mask d-flex justify-center align-end">
-        <a class="py-4 " href="/2025/06/03/HEXO/hello-world/">
+        <a class="py-4 " href="/2025/06/05/Siemens/Theme/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Thu Jun 05 2025 15:34:53 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        西门子-构筑类API
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        <p>每次都向FB块中传入全局DB或者全局PLC编号变量，随着嵌入深度的增加，想要向外传递更改变量参数，会变得十分困难</p>
+<p>因此，构筑一个模块专门用来完成参数的修改，于是我想到了前后端接口的调用，所以尝试弄了一个简易版的传参，类似于前端的inject</p>
+<h2 id="创建对应API文件"><a href="#创建对应API文件" class="headerlink" title="创建对应API文件"></a>创建对应API文件</h2><ol>
+<li><p><strong>程序块 &gt; 右击程序块 &gt; “新增块”</strong><br>会创建一个文件夹，将其命名为API，之后这个文件夹只负责创建用于修改全局变量的FB块或者FC块</p>
+</li>
+<li><p><strong>PLC 数据类型 &gt; 右击PLC 数据类型 &gt; “新增块”</strong>：会创建一个文件夹，将其命名为 API，之后这个文件夹只负责创建用于修改全局变量的UDT</p>
+</li>
+</ol>
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/05/Siemens/%E8%A5%BF%E9%97%A8%E5%AD%90-%E6%9E%84%E7%AD%91%E7%B1%BBAPI/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Thu Jun 05 2025 09:05:57 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        Markdown语法
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        <p>[toc]</p>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><h3 id="插入本地图片"><a href="#插入本地图片" class="headerlink" title="插入本地图片"></a>插入本地图片</h3><pre><code>![avatar](/home/picture/1.png)  
+</code></pre>
+<p>只需要在基础语法的括号中填入图片的位置路径即可，支持绝对路径和相对路径。</p>
+<p><strong>Remark：</strong><br>不灵活不好分享，本地图片的路径更改或丢失都会造成markdown文件调不出图。</p>
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/05/Markdown/Markdown%E8%AF%AD%E6%B3%95/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Thu Jun 05 2025 09:05:06 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        Markdown渲染解析（测试：代码解析）
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        <h2 id="Markdown解析：showdown-js"><a href="#Markdown解析：showdown-js" class="headerlink" title="Markdown解析：showdown.js"></a>Markdown解析：<a target="_blank" rel="noopener" href="https://github.com/showdownjs/showdown">showdown.js</a></h2><figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Showdown</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;showdown&#x27;</span><br><br><span class="hljs-keyword">const</span> converter = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Showdown</span>.<span class="hljs-title class_">Converter</span>(&#123;<br>  <span class="hljs-attr">tables</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">tasklists</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">smoothLivePreview</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">emoji</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// see https://github.com/showdownjs/showdown/wiki/Emojis (since v.1.8.0)</span><br>&#125;)<br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;markdown-content&#x27;</span>).<span class="hljs-property">innerHTML</span> = converter.<span class="hljs-title function_">makeHtml</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;payload.data&#125;</span><span class="hljs-subst">$&#123;text&#125;</span>`</span>)<br></code></pre></td></tr></table></figure>
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/05/Markdown/Markdown%E6%B8%B2%E6%9F%93%E8%A7%A3%E6%9E%90/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Wed Jun 04 2025 17:27:01 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        Hexo-图片加载异常
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        没有摘要，点进来看看吧
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/04/HEXO/Hexo-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BC%82%E5%B8%B8/">
             <span style="color: #00586d">加载更多</span>
         </a>
     </div>
@@ -705,7 +1042,7 @@
             <div class="mx-1 d-flex ">
                 <span>18</span>
                 <span class="mx-1">/</span>
-                <span>18</span>
+                <span>19</span>
             </div>
             <div style="width: 100%; height: 1px"></div>
         </div>
@@ -713,8 +1050,8 @@
         <button
                 class="button"
                 style="border-radius: 24px"
-                onclick="pagination.onclickPage(`/`)"
-                disabled
+                onclick="pagination.onclickPage(`/page/19/`)"
+                
         >
             <span>
                 下一页
@@ -790,6 +1127,9 @@
         <div class="py-4 px-5" onclick="listArticleEjs.createALink('categories/App/', '_self')">App</div>
     
         <!--\% console.log(item.name, item.parent) %\-->
+        <div class="py-4 px-5" onclick="listArticleEjs.createALink('categories/Appium/', '_self')">Appium</div>
+    
+        <!--\% console.log(item.name, item.parent) %\-->
         <div class="py-4 px-5" onclick="listArticleEjs.createALink('categories/AutoTest/', '_self')">AutoTest</div>
     
         <!--\% console.log(item.name, item.parent) %\-->
@@ -832,6 +1172,9 @@
         <div class="py-4 px-5" onclick="listArticleEjs.createALink('categories/Shell/', '_self')">Shell</div>
     
         <!--\% console.log(item.name, item.parent) %\-->
+        <div class="py-4 px-5" onclick="listArticleEjs.createALink('categories/XPATH/', '_self')">XPATH</div>
+    
+        <!--\% console.log(item.name, item.parent) %\-->
         <div class="py-4 px-5" onclick="listArticleEjs.createALink('categories/appium/', '_self')">appium</div>
     
         <!--\% console.log(item.name, item.parent) %\-->
@@ -854,6 +1197,9 @@
     
         <!--\% console.log(item.name, item.parent) %\-->
         <div class="py-4 px-5" onclick="listArticleEjs.createALink('categories/额外补充/', '_self')">额外补充</div>
+    
+        <!--\% console.log(item.name, item.parent) %\-->
+        <div class="py-4 px-5" onclick="listArticleEjs.createALink('categories/鸿蒙/', '_self')">鸿蒙</div>
     
 </div>
 
