@@ -104,6 +104,37 @@ driver.swipe(start_x, start_y, end_x, end_y, 500)
 
 以上API  形成运动轨迹，`perform()` 执行轨迹 
 
+```python
+from appium import webdriver
+from appium.webdriver.common.touch_action import TouchAction
+
+"""
+九宫格
+(x1, y1)   (x2, y1)   (x3, y1)
+(x1, y2)   (x2, y2)   (x3, y2)
+(x1, y3)   (x2, y3)   (x3, y3)
+"""
+x1 = 208
+x2 = 360
+x3 = 500
+y1 = 290
+y2 = 433
+y3 = 580
+
+
+(
+    TouchAction(webdriver)
+     .press(x=x1, y=y1).wait(2000)
+     .move_to(x=x3, y=y1).wait(2000)
+     .move_to(x=x3, y=y3).wait(2000)
+     .move_to(x=x1, y=y3).wait(2000)
+     .release()
+     .perform()
+)
+
+```
+
+【测试包】 随手记.apk
 
 ## 拖动操作-多点触控
 

@@ -41,7 +41,7 @@ Python 自带的日志库，用于产出日志信息
 
     logging.basicConfig(level=logging.INFO)
 
-> 设置输出格式
+### 设置：带时间的输出格式
 
     logging.basicConfig(
         level=logging.INFO,

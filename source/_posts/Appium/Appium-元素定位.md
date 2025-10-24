@@ -52,6 +52,19 @@ driver.quit()
 
 比如：By.ID
 
+
+> 那么 appium 中的定位是怎么样的呢？
+
+```python
+from appium.webdriver.common.appiumby import AppiumBy
+
+# ...
+
+driver.find_element(AppiumBy.XPATH, "//*[@text='用户名或密码错误']")
+
+```
+
+
 ① 对应安卓应用的 `resource-id` 
 ② 对应苹果应用的 `accessibilityIdentifier`（需开发者预先设置）
 

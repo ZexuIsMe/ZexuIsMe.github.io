@@ -69,7 +69,23 @@ driver.quit()
 
 【解决方案】 关掉其他占用 adb 软件
 
-## API
+## 吐司 toast
+
+翻译：页面上显示的提示信息
+比如 “用户名或密码错误” 就是 toast
+
+```python
+from appium.webdriver.common.appiumby import AppiumBy
+
+try:
+    driver.find_element(AppiumBy.XPATH, '//*[@text="用户名或密码错误"]')
+    print("成功")
+excpet:
+    print("失败")
+```
+
+
+## webdriver API
 
 | appium.webdriver          | 返回       | 描述        |
 |---------------------------|----------|-----------|
@@ -98,3 +114,15 @@ driver.quit()
     127.0.0.1:59865 device
 
 127.0.0.1:59865 就是你的 deviceName
+
+## APP 切换
+
+| -                                   | -                     |
+|-------------------------------------|-----------------------|
+| close_app()                         | 关闭app                 |
+| launch_app()                        | 启动app                 |
+| background_app(时间)                  | app后台运行，当满足时间 app自动出现 |
+| start_activity(切换app的报名, activity名) | 切换                    |
+
+冷启动：先 close_app，再 launch_app
+热启动：background_app(时间)
