@@ -270,11 +270,6 @@ if __name__ == '__main__':
 ① with 的使用前提是对象同时具有 `__enter__` 和 `__exit__` 两个方法方可使用。
 ② pymysql.cursors.DictCursor 可将其存起来 `self.dc = pymysql.cursors.DictCursor`
 
-
-
-
-
-
 ## 动态属性
 
 创建一个类，用于动态存放参数

@@ -1,7 +1,7 @@
 ---
 title: Appium-滑动
 date: 2025-10-21 16:19:02
-tags: [Appium, swipe, 滑动]
+tags: [Appium, swipe, 滑动, 单双指滑动]
 categories:
   - Appium 
   - swipe

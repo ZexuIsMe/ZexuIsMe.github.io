@@ -1,7 +1,7 @@
 ---
 title: Appium-元素定位
 date: 2025-10-20 15:29:03
-tags: [Appium, 定位]
+tags: [Appium, 定位, toast]
 categories:
   - Appium
 ---
@@ -70,6 +70,23 @@ driver.find_element(AppiumBy.XPATH, "//*[@text='用户名或密码错误']")
 
 需要留意的是，移动端元素的 resource-id 通常要包含前缀，完整的：com.ecshop.app:id/id值
 （已验证，是该说法是正确的）
+
+## 关于 吐司 toast 定位
+
+翻译：页面上显示的提示信息
+比如 “用户名或密码错误” 就是 toast
+
+一般情况下这类消息提示都是一闪而过，该怎么捕捉它呢？
+
+```python
+from appium.webdriver.common.appiumby import AppiumBy
+
+try:
+    driver.find_element(AppiumBy.XPATH, '//*[@text="用户名或密码错误"]')
+    print("成功")
+excpet:
+    print("失败")
+```
 
 ## 按键
 

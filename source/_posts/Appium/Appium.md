@@ -69,21 +69,6 @@ driver.quit()
 
 【解决方案】 关掉其他占用 adb 软件
 
-## 吐司 toast
-
-翻译：页面上显示的提示信息
-比如 “用户名或密码错误” 就是 toast
-
-```python
-from appium.webdriver.common.appiumby import AppiumBy
-
-try:
-    driver.find_element(AppiumBy.XPATH, '//*[@text="用户名或密码错误"]')
-    print("成功")
-excpet:
-    print("失败")
-```
-
 
 ## webdriver API
 
@@ -117,6 +102,8 @@ excpet:
 
 ## APP 切换
 
+比如关于app中途退出，app是否恢复的测试点，就需要考虑到 app 切换的问题。
+
 | -                                   | -                     |
 |-------------------------------------|-----------------------|
 | close_app()                         | 关闭app                 |
@@ -126,3 +113,12 @@ excpet:
 
 冷启动：先 close_app，再 launch_app
 热启动：background_app(时间)
+
+## 测试架构
+
+![测试框架](https://origin.picgo.net/2025/10/25/d84c26b9d280e2f62f9f9ad4d8e8754ccb26ce2568a2e60a.png)
+
+所谓的测试结构就是项目结构，还是那一套操作，将常用的代码和操作，封装成通用类或者是通用方法类，方便调用。
+
+![测试框架](https://cdn.atstudy.com/question/16202928692566101.jpg)
+
