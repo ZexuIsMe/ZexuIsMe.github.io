@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>粥记捣蛋</title>
+    <title>鸿蒙 | 粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -344,10 +344,10 @@
                             
                             <div
                                     class="px-8 menu-label d-flex align-center
-                                    v-bg-primary"
+                                    "
                                     style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
                             >
-                                <a href="/archives" style="color: #EEE ">归档</a>
+                                <a href="/archives" style="color: #00586d ">归档</a>
                             </div>
                         
                             
@@ -481,172 +481,137 @@
     }
 </style>
     <div id="blog-body">
-        <!-- Archive: 归档页 -->
+        <!-- 渲染：阅读整篇文章 -->
 <style>
-    #article-table tbody td {
-        padding: 12px;
+    #read-post {
+        min-height: calc(100% - 210px);
+        max-width: 85%;
+        margin: auto;
+    }
+
+    @media (max-width: 768px) {
+        #read-post {
+            max-width: 85%;
+        }
     }
 </style>
 
 
-<div class="container " style="padding: 0 24px">
-    <!-- 一般用于 section 标题 -->
-<h1 class="title is-4 d-flex align-center" style="padding: 120px 0 60px 0; font-family: 'ZiHunLongTengKaiShu', serif">
-    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
-    <span style="white-space: nowrap; color: black" class="mx-4">
-                <i class="fas fa-boxes"></i>
-                <span class="ml-4">归档 - All</span>
-            </span>
-    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
-</h1>
 
-<!--<script>-->
-<!--    console.log({-->
-<!--        icon: '', // 这里的图标需要是完整的-->
-<!--        name: '', // 标题的名字-->
-<!--        color: '', // 字体颜色-->
-<!--    })-->
-<!--</script>-->
+<div style="height: 80px"></div>
 
-    <div id="article-table" class="table-wrapper">
-        <table class="table is-striped is-hoverable is-fullwidth">
-            <thead>
-                <tr>
-                    <th style=""></th>
-                    <th style="">标签</th>
-                    <th style="" class="d-flex align-center">分类 </th>
-                    <th style="text-align: center">创作时间</th>
-                    <th style="text-align: center">更新时间</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-
-            <tbody style="font-size: 1rem">
-                
-                    <tr>
-                        <td style="max-width: 180px">
-                            <a href="/2025/10/07/JMeter/JMeter-%E5%B7%A5%E5%85%B7%E6%9C%AC%E8%BA%AB/">
-                                JMeter-工具本身
-                            </a>
-                        </td>
-
-                        <td style="max-width: 260px">
-                            <div class="d-flex flex-wrap gap-2">
-                                
+<article id="read-post">
+    <!-- Title -->
+    <div class="level">
+        <div class="level-left">
+            <div class="media">
+                <div class="media-content">
+                    <h1 class="title is-4 modify-post-title">
+                        <span class="has-text-info">鸿蒙</span>
+                    </h1>
+                    <p class="subtitle is-6">
+                        <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-10-26 19:51
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- 文章标签 -->
+        <div class="pt-4">
+            <span>
     
-        <a class="tag is-info is-light" href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 0.875rem">软件测试</a>
+        <a class="tag is-info is-light" href="/tags/%E9%B8%BF%E8%92%99/" style="font-size: 0.875rem">鸿蒙</a>
     
-        <a class="tag is-info is-light" href="/tags/JMeter/" style="font-size: 0.875rem">JMeter</a>
+</span>
+            <span>
     
-        <a class="tag is-info is-light" href="/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" style="font-size: 0.875rem">性能测试</a>
+        <a class="tag is-warning is-light" href="/categories/%E9%B8%BF%E8%92%99/" style="font-size: 0.875rem">鸿蒙</a>
     
-        <a class="tag is-info is-light" href="/tags/JSON-Path/" style="font-size: 0.875rem">JSON Path</a>
-    
-
-                            </div>
-                        </td>
-
-                        <td style="max-width: 260px">
-                            <div class="d-flex flex-wrap gap-2">
-                                
-    
-        <a class="tag is-warning is-light" href="/categories/JMeter/" style="font-size: 0.875rem">JMeter</a>
-    
-
-                            </div>
-                        </td>
-
-                        <td style="text-align: center">
-                            2025-10-07 10:13
-                        </td>
-
-                        <td style="text-align: center">
-                            2025-10-13 19:39
-                        </td>
-
-                        <td style="vertical-align: middle">
-                            <a href="/2025/10/07/JMeter/JMeter-%E5%B7%A5%E5%85%B7%E6%9C%AC%E8%BA%AB/">
-                                <i class="far fa-hand-point-right"></i>
-                            </a>
-                        </td>
-                    </tr>
-                
-            </tbody>
-        </table>
+</span>
+        </div>
     </div>
 
-    
+    <!-- 目录  -->
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HarmonyOS%EF%BC%9A%E5%90%AF%E5%8A%A8%E9%B8%BF%E8%92%99%E6%A8%A1%E6%8B%9F%E5%99%A8%EF%BC%8C%E8%A6%81%E6%B1%82%E6%89%93%E5%BC%80-Hyper-%E5%8A%9F%E8%83%BD%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">HarmonyOS：启动鸿蒙模拟器，要求打开 Hyper 功能？</span></a></li></ol></div>
+    <!-- 文章：内容 -->
+    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
+        <hr />
+        <!-- Content -->
+        <p>IDE下载：<a target="_blank" rel="noopener" href="https://developer.huawei.com/consumer/cn/deveco-studio/">https://developer.huawei.com/consumer/cn/deveco-studio/</a></p>
+<p>网盘下载：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/17IhqyKxy3kk4OvzYlLRHhg">https://pan.baidu.com/s/17IhqyKxy3kk4OvzYlLRHhg</a> 提取码: qf8p </p>
+<h2 id="HarmonyOS：启动鸿蒙模拟器，要求打开-Hyper-功能？"><a href="#HarmonyOS：启动鸿蒙模拟器，要求打开-Hyper-功能？" class="headerlink" title="HarmonyOS：启动鸿蒙模拟器，要求打开 Hyper 功能？"></a>HarmonyOS：启动鸿蒙模拟器，要求打开 Hyper 功能？</h2><p>大前提：需要确认 CPU 星号是否支持虚拟化技术，如果不支持，则无法使用模拟器</p>
+<p>① win 搜索 “启用或关闭 Windows功能”<br>② 找到 “Hyper-V” 并勾选<br>③ 找到 “Windows 虚拟机监控程序平台” 并勾选</p>
 
-    <section class="d-flex justify-between my-8" >
-        <button
-                class="button"
-                style="border-radius: 24px"
-                onclick="pagination.onclickPage(`/archives/2025/10/page/3/`)"
-                
-        >
-            <span>
-                <i class="fas fa-angle-left"></i>
-                <span class="mr-2"></span>
-                上一页
-            </span>
-        </button>
-
-        <div class="d-flex" style="width: 100%">
-            <div style="width: 100%; height: 1px"></div>
-            <div class="mx-1 d-flex ">
-                <span>4</span>
-                <span class="mx-1">/</span>
-                <span>4</span>
-            </div>
-            <div style="width: 100%; height: 1px"></div>
-        </div>
-
-        <button
-                class="button"
-                style="border-radius: 24px"
-                onclick="pagination.onclickPage(`/`)"
-                disabled
-        >
-            <span>
-                下一页
-                <span class="mr-2"></span>
-                <i class="fas fa-angle-right"></i>
-            </span>
-        </button>
-    </section>
-
-
-<script>
-    class Pagination extends Blog{
-        constructor() {
-            super();
-            // ...
-        }
-
-        onclickPage (url) {
-            this.createALink(url + '#home-post-list', '_self')
-        }
-    }
-
-    const pagination = new Pagination();
-</script>
+    </div>
+    <!-- 文章：声明 -->
+    <!-- 文章的声明 -->
+<div id="copy-icon-鸿蒙" style="word-wrap: break-word">
+    <p>
+        <strong>作者</strong>：
+        <span>粥记捣蛋</span>
+    </p>
+    <p>
+        <strong>文章链接</strong>：
+        <span
+                id="article-link-span"
+                data-text="https://zexuisme.github.io/2025/10/26/%E9%B8%BF%E8%92%99%E5%9F%BA%E7%A1%80%E7%AF%87/%E9%B8%BF%E8%92%99/"
+        ></span>
+    </p>
+    <p>
+        <strong>版权声明</strong>：
+        <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
+    </p>
 </div>
 
 <script>
-    const archiveEjs = {
-        handleChoose (event) {
-            const value = event.target.value
+    console.log(document.getElementById("article-link-span"))
+    const linkDOM = document.getElementById("article-link-span")
+    if (linkDOM) {
+        let linkText = linkDOM.getAttribute("data-text")
+        linkDOM.innerHTML = `<a href="${linkText}" target="_blank">${ decodeURI(linkText)}</a>`
+    }
+</script>
+    <!-- 文章：文章切换 -->
+    <div style="margin-top: 48px">
+<!-- 文章阅读页的切换按钮 -->
+<div class="post-toggle d-flex justify-between flex-wrap gap-3">
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/')"
+            disabled
+    >上一篇: 无</button>
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/2025/10/26/Appium/Appium-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/')"
+            
+    >下一篇: Appium-环境搭建</button>
+</div>
 
-            if (!value) {
-                console.error('分类参数异常！')
-                return
-            }
+<script>
+    class PostToggleEjs extends Blog {
+        constructor() {
+            super()
+        }
 
-            const blog = new Blog()
-
-            blog.createALink(value, '_self')
+        onclickLink (url) {
+            this.createALink(url, '_self')
         }
     }
+
+    const postToggleEjs = new PostToggleEjs()
+</script></div>
+
+</article>
+
+<div style="height: 80px"></div>
+
+<script>
+    class PostEjs extends Blog{
+        constructor() {
+            super();
+        }
+    }
+    const postEjs = new PostEjs();
 </script>
     </div>
 

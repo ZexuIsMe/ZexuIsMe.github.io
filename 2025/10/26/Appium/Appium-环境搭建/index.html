@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>粥记捣蛋</title>
+    <title>Appium-环境搭建 | 粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -344,10 +344,10 @@
                             
                             <div
                                     class="px-8 menu-label d-flex align-center
-                                    v-bg-primary"
+                                    "
                                     style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
                             >
-                                <a href="/archives" style="color: #EEE ">归档</a>
+                                <a href="/archives" style="color: #00586d ">归档</a>
                             </div>
                         
                             
@@ -481,218 +481,189 @@
     }
 </style>
     <div id="blog-body">
-        <!-- Archive: 归档页 -->
+        <!-- 渲染：阅读整篇文章 -->
 <style>
-    #article-table tbody td {
-        padding: 12px;
+    #read-post {
+        min-height: calc(100% - 210px);
+        max-width: 85%;
+        margin: auto;
+    }
+
+    @media (max-width: 768px) {
+        #read-post {
+            max-width: 85%;
+        }
     }
 </style>
 
 
-<div class="container " style="padding: 0 24px">
-    <!-- 一般用于 section 标题 -->
-<h1 class="title is-4 d-flex align-center" style="padding: 120px 0 60px 0; font-family: 'ZiHunLongTengKaiShu', serif">
-    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
-    <span style="white-space: nowrap; color: black" class="mx-4">
-                <i class="fas fa-boxes"></i>
-                <span class="ml-4">归档 - 帮助手册</span>
-            </span>
-    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
-</h1>
 
-<!--<script>-->
-<!--    console.log({-->
-<!--        icon: '', // 这里的图标需要是完整的-->
-<!--        name: '', // 标题的名字-->
-<!--        color: '', // 字体颜色-->
-<!--    })-->
-<!--</script>-->
+<div style="height: 80px"></div>
 
-    <div id="article-table" class="table-wrapper">
-        <table class="table is-striped is-hoverable is-fullwidth">
-            <thead>
-                <tr>
-                    <th style=""></th>
-                    <th style="">标签</th>
-                    <th style="" class="d-flex align-center">分类 </th>
-                    <th style="text-align: center">创作时间</th>
-                    <th style="text-align: center">更新时间</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-
-            <tbody style="font-size: 1rem">
-                
-                    <tr>
-                        <td style="max-width: 180px">
-                            <a href="/2025/06/19/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95-%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/">
-                                碧海苍云录-帮助手册
-                            </a>
-                        </td>
-
-                        <td style="max-width: 260px">
-                            <div class="d-flex flex-wrap gap-2">
-                                
+<article id="read-post">
+    <!-- Title -->
+    <div class="level">
+        <div class="level-left">
+            <div class="media">
+                <div class="media-content">
+                    <h1 class="title is-4 modify-post-title">
+                        <span class="has-text-info">Appium-环境搭建</span>
+                    </h1>
+                    <p class="subtitle is-6">
+                        <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
+                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-10-26 19:22
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- 文章标签 -->
+        <div class="pt-4">
+            <span>
     
-        <a class="tag is-info is-light" href="/tags/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/" style="font-size: 0.875rem">帮助手册</a>
+        <a class="tag is-info is-light" href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" style="font-size: 0.875rem">环境搭建</a>
     
-        <a class="tag is-info is-light" href="/tags/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/" style="font-size: 0.875rem">碧海苍云录</a>
+        <a class="tag is-info is-light" href="/tags/Appium/" style="font-size: 0.875rem">Appium</a>
     
-
-                            </div>
-                        </td>
-
-                        <td style="max-width: 260px">
-                            <div class="d-flex flex-wrap gap-2">
-                                
+</span>
+            <span>
     
-        <a class="tag is-warning is-light" href="/categories/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/" style="font-size: 0.875rem">帮助手册</a>
+        <a class="tag is-warning is-light" href="/categories/Appium/" style="font-size: 0.875rem">Appium</a>
     
-
-                            </div>
-                        </td>
-
-                        <td style="text-align: center">
-                            2025-06-19 01:55
-                        </td>
-
-                        <td style="text-align: center">
-                            2025-08-23 19:49
-                        </td>
-
-                        <td style="vertical-align: middle">
-                            <a href="/2025/06/19/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95-%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/">
-                                <i class="far fa-hand-point-right"></i>
-                            </a>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <td style="max-width: 180px">
-                            <a href="/2025/06/05/Markdown/Markdown%E8%AF%AD%E6%B3%95/">
-                                Markdown语法
-                            </a>
-                        </td>
-
-                        <td style="max-width: 260px">
-                            <div class="d-flex flex-wrap gap-2">
-                                
-    
-        <a class="tag is-info is-light" href="/tags/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/" style="font-size: 0.875rem">帮助手册</a>
-    
-        <a class="tag is-info is-light" href="/tags/Markdown/" style="font-size: 0.875rem">Markdown</a>
-    
-        <a class="tag is-info is-light" href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 0.875rem">语法</a>
-    
-
-                            </div>
-                        </td>
-
-                        <td style="max-width: 260px">
-                            <div class="d-flex flex-wrap gap-2">
-                                
-    
-        <a class="tag is-warning is-light" href="/categories/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/" style="font-size: 0.875rem">帮助手册</a>
-    
-        <a class="tag is-warning is-light" href="/categories/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/Markdown/" style="font-size: 0.875rem">Markdown</a>
-    
-        <a class="tag is-warning is-light" href="/categories/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/Markdown/%E8%AF%AD%E6%B3%95/" style="font-size: 0.875rem">语法</a>
-    
-
-                            </div>
-                        </td>
-
-                        <td style="text-align: center">
-                            2025-06-05 09:05
-                        </td>
-
-                        <td style="text-align: center">
-                            2025-09-02 23:19
-                        </td>
-
-                        <td style="vertical-align: middle">
-                            <a href="/2025/06/05/Markdown/Markdown%E8%AF%AD%E6%B3%95/">
-                                <i class="far fa-hand-point-right"></i>
-                            </a>
-                        </td>
-                    </tr>
-                
-            </tbody>
-        </table>
+</span>
+        </div>
     </div>
 
-    
+    <!-- 目录  -->
+    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JDK%EF%BC%88windows%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">JDK（windows）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-SDK"><span class="toc-number">2.</span> <span class="toc-text">Android SDK</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Appium-%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-number">3.</span> <span class="toc-text">安装 Appium 服务端</span></a></li></ol></div>
+    <!-- 文章：内容 -->
+    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
+        <hr />
+        <!-- Content -->
+        <blockquote>
+<p>① JDK<br>② Python<br>③ Android SDK</p>
+</blockquote>
+<p><img src="https://s21.ax1x.com/2025/10/26/pVvohlR.jpg" alt="环境搭建.jpg"></p>
+<h2 id="JDK（windows）"><a href="#JDK（windows）" class="headerlink" title="JDK（windows）"></a>JDK（windows）</h2><p>下载地址（JDK8）：<a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html</a></p>
+<p><img src="https://s21.ax1x.com/2025/10/26/pVvoom6.png" alt="选包"></p>
+<ul>
+<li>本地双击执行 exe 文件，进行安装</li>
+<li>本机环境变量中配置 JAVA_HOME</li>
+</ul>
+<p><img src="https://s21.ax1x.com/2025/10/26/pVvo7TO.png" alt="环境变量"></p>
+<ul>
+<li>环境变量 path 中，设置 JDK 和 JRE 的 bin 路径</li>
+</ul>
+<p><img src="https://s21.ax1x.com/2025/10/26/pVvoj1A.png" alt="环境变量"></p>
+<h2 id="Android-SDK"><a href="#Android-SDK" class="headerlink" title="Android SDK"></a>Android SDK</h2><p>到 <a target="_blank" rel="noopener" href="https://www.androiddevtools.cn/">https://www.androiddevtools.cn</a> 下载最新版的SDK tools，下载exe版本</p>
+<p><img src="https://s21.ax1x.com/2025/10/26/pVvov6I.png" alt="环境变量"></p>
+<blockquote>
+<p>进入安装后的 SDK 目录，双击 <code>SDK Manager.exe</code> 文件，在弹出的界面中选择需要安装的内容</p>
+</blockquote>
+<p><img src="https://s21.ax1x.com/2025/10/26/pVvTSnP.png" alt="01"></p>
+<p><img src="https://s21.ax1x.com/2025/10/26/pVvT978.png" alt="02"></p>
+<blockquote>
+<p>选中后点击右下方的安装按钮进行安装，此步骤耗时相对比较长，如下图：</p>
+</blockquote>
+<p><img src="https://s21.ax1x.com/2025/10/26/pVvTPAS.png" alt="03"></p>
+<blockquote>
+<p>环境变量</p>
+</blockquote>
+<p><img src="https://pic1.imgdb.cn/item/68fe033e3203f7be00a0a37e.png" alt="SDK 环境变量"></p>
+<p>在环境变量path中增加三项：</p>
+<pre><code>%ANDROID_HOME%\platform-tools
 
-    <section class="d-flex justify-between my-8" >
-        <button
-                class="button"
-                style="border-radius: 24px"
-                onclick="pagination.onclickPage(`/categories/%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/`)"
-                
-        >
-            <span>
-                <i class="fas fa-angle-left"></i>
-                <span class="mr-2"></span>
-                上一页
-            </span>
-        </button>
+%ANDROID_HOME%\build-tools\29.0.3
 
-        <div class="d-flex" style="width: 100%">
-            <div style="width: 100%; height: 1px"></div>
-            <div class="mx-1 d-flex ">
-                <span>2</span>
-                <span class="mx-1">/</span>
-                <span>2</span>
-            </div>
-            <div style="width: 100%; height: 1px"></div>
-        </div>
+%ANDROID_HOME%\tools
+</code></pre>
+<p><img src="https://pic1.imgdb.cn/item/68fe03b33203f7be00a0a3ba.png"></p>
+<h2 id="安装-Appium-服务端"><a href="#安装-Appium-服务端" class="headerlink" title="安装 Appium 服务端"></a>安装 Appium 服务端</h2><p>进入appium官网：<a target="_blank" rel="noopener" href="http://appium.io/">http://appium.io/</a></p>
+<p><img src="https://pic1.imgdb.cn/item/68fe040d3203f7be00a0a3cb.png"></p>
+<blockquote>
+<p>在下载页面中，点击exe文件的下载链接，下载安装包</p>
+</blockquote>
+<p><img src="https://pic1.imgdb.cn/item/68fe04343203f7be00a0a3dd.png"></p>
+<p>双击执行exe文件进行安装</p>
+<blockquote>
+<p>在cmd命令行中执行以下语句：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">pip install selenium<br><br>pip install Appium-Python-Client<br></code></pre></td></tr></table></figure>
 
-        <button
-                class="button"
-                style="border-radius: 24px"
-                onclick="pagination.onclickPage(`/`)"
-                disabled
-        >
-            <span>
-                下一页
-                <span class="mr-2"></span>
-                <i class="fas fa-angle-right"></i>
-            </span>
-        </button>
-    </section>
+<blockquote>
+<p>其他软件：yaml</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">pip install pyyaml<br></code></pre></td></tr></table></figure>
 
-
-<script>
-    class Pagination extends Blog{
-        constructor() {
-            super();
-            // ...
-        }
-
-        onclickPage (url) {
-            this.createALink(url + '#home-post-list', '_self')
-        }
-    }
-
-    const pagination = new Pagination();
-</script>
+    </div>
+    <!-- 文章：声明 -->
+    <!-- 文章的声明 -->
+<div id="copy-icon-Appium-环境搭建" style="word-wrap: break-word">
+    <p>
+        <strong>作者</strong>：
+        <span>粥记捣蛋</span>
+    </p>
+    <p>
+        <strong>文章链接</strong>：
+        <span
+                id="article-link-span"
+                data-text="https://zexuisme.github.io/2025/10/26/Appium/Appium-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"
+        ></span>
+    </p>
+    <p>
+        <strong>版权声明</strong>：
+        <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
+    </p>
 </div>
 
 <script>
-    const archiveEjs = {
-        handleChoose (event) {
-            const value = event.target.value
+    console.log(document.getElementById("article-link-span"))
+    const linkDOM = document.getElementById("article-link-span")
+    if (linkDOM) {
+        let linkText = linkDOM.getAttribute("data-text")
+        linkDOM.innerHTML = `<a href="${linkText}" target="_blank">${ decodeURI(linkText)}</a>`
+    }
+</script>
+    <!-- 文章：文章切换 -->
+    <div style="margin-top: 48px">
+<!-- 文章阅读页的切换按钮 -->
+<div class="post-toggle d-flex justify-between flex-wrap gap-3">
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/2025/10/26/%E9%B8%BF%E8%92%99%E5%9F%BA%E7%A1%80%E7%AF%87/%E9%B8%BF%E8%92%99/')"
+            
+    >上一篇: 鸿蒙</button>
+    <button
+            class="button is-info is-light"
+            onclick="postToggleEjs.onclickLink('/2025/10/21/Appium/Appium-%E6%BB%91%E5%8A%A8/')"
+            
+    >下一篇: Appium-滑动</button>
+</div>
 
-            if (!value) {
-                console.error('分类参数异常！')
-                return
-            }
+<script>
+    class PostToggleEjs extends Blog {
+        constructor() {
+            super()
+        }
 
-            const blog = new Blog()
-
-            blog.createALink(value, '_self')
+        onclickLink (url) {
+            this.createALink(url, '_self')
         }
     }
+
+    const postToggleEjs = new PostToggleEjs()
+</script></div>
+
+</article>
+
+<div style="height: 80px"></div>
+
+<script>
+    class PostEjs extends Blog{
+        constructor() {
+            super();
+        }
+    }
+    const postEjs = new PostEjs();
 </script>
     </div>
 

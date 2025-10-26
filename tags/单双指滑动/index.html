@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
      
-    <title>竞赛三级-鸿蒙-03 | 粥记捣蛋</title>
+    <title>粥记捣蛋</title>
 
     
 <script src="/js/index.js" type="module"></script>
@@ -344,10 +344,10 @@
                             
                             <div
                                     class="px-8 menu-label d-flex align-center
-                                    "
+                                    v-bg-primary"
                                     style="text-wrap: nowrap; font-size: 24px; height: 48px; margin: 0"
                             >
-                                <a href="/archives" style="color: #00586d ">归档</a>
+                                <a href="/archives" style="color: #EEE ">归档</a>
                             </div>
                         
                             
@@ -481,188 +481,136 @@
     }
 </style>
     <div id="blog-body">
-        <!-- 渲染：阅读整篇文章 -->
+        <!-- Archive: 归档页 -->
 <style>
-    #read-post {
-        min-height: calc(100% - 210px);
-        max-width: 85%;
-        margin: auto;
-    }
-
-    @media (max-width: 768px) {
-        #read-post {
-            max-width: 85%;
-        }
+    #article-table tbody td {
+        padding: 12px;
     }
 </style>
 
 
+<div class="container " style="padding: 0 24px">
+    <!-- 一般用于 section 标题 -->
+<h1 class="title is-4 d-flex align-center" style="padding: 120px 0 60px 0; font-family: 'ZiHunLongTengKaiShu', serif">
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+    <span style="white-space: nowrap; color: black" class="mx-4">
+                <i class="fas fa-boxes"></i>
+                <span class="ml-4">归档 - 单双指滑动</span>
+            </span>
+    <span style="width: 100%; height: 2px; background: #b4b0b0; display: inline-block"></span>
+</h1>
 
-<div style="height: 80px"></div>
+<!--<script>-->
+<!--    console.log({-->
+<!--        icon: '', // 这里的图标需要是完整的-->
+<!--        name: '', // 标题的名字-->
+<!--        color: '', // 字体颜色-->
+<!--    })-->
+<!--</script>-->
 
-<article id="read-post">
-    <!-- Title -->
-    <div class="level">
-        <div class="level-left">
-            <div class="media">
-                <div class="media-content">
-                    <h1 class="title is-4 modify-post-title">
-                        <span class="has-text-info">竞赛三级-鸿蒙-03</span>
-                    </h1>
-                    <p class="subtitle is-6">
-                        <span class="icon is-small"><i class="far fa-user"></i></span> 粥记捣蛋
-                        <span class="icon is-small"><i class="far fa-clock"></i></span> 2025-10-25 00:18
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- 文章标签 -->
-        <div class="pt-4">
-            <span>
-    <span>--尚未指定标签--</span>
-</span>
-            <span>
+    <div id="article-table" class="table-wrapper">
+        <table class="table is-striped is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th style=""></th>
+                    <th style="">标签</th>
+                    <th style="" class="d-flex align-center">分类 </th>
+                    <th style="text-align: center">创作时间</th>
+                    <th style="text-align: center">更新时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+
+            <tbody style="font-size: 1rem">
+                
+                    <tr>
+                        <td style="max-width: 180px">
+                            <a href="/2025/10/21/Appium/Appium-%E6%BB%91%E5%8A%A8/">
+                                Appium-滑动
+                            </a>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
     
-        <a class="tag is-warning is-light" href="/categories/%E9%B8%BF%E8%92%99/" style="font-size: 0.875rem">鸿蒙</a>
+        <a class="tag is-info is-light" href="/tags/Appium/" style="font-size: 0.875rem">Appium</a>
     
-</span>
-        </div>
+        <a class="tag is-info is-light" href="/tags/swipe/" style="font-size: 0.875rem">swipe</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E6%BB%91%E5%8A%A8/" style="font-size: 0.875rem">滑动</a>
+    
+        <a class="tag is-info is-light" href="/tags/%E5%8D%95%E5%8F%8C%E6%8C%87%E6%BB%91%E5%8A%A8/" style="font-size: 0.875rem">单双指滑动</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="max-width: 260px">
+                            <div class="d-flex flex-wrap gap-2">
+                                
+    
+        <a class="tag is-warning is-light" href="/categories/Appium/" style="font-size: 0.875rem">Appium</a>
+    
+        <a class="tag is-warning is-light" href="/categories/Appium/swipe/" style="font-size: 0.875rem">swipe</a>
+    
+
+                            </div>
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-10-21 16:19
+                        </td>
+
+                        <td style="text-align: center">
+                            2025-10-25 17:23
+                        </td>
+
+                        <td style="vertical-align: middle">
+                            <a href="/2025/10/21/Appium/Appium-%E6%BB%91%E5%8A%A8/">
+                                <i class="far fa-hand-point-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                
+            </tbody>
+        </table>
     </div>
 
-    <!-- 目录  -->
-    <div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Step0-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E7%94%A8%E4%BA%8E%E6%90%9C%E7%B4%A2"><span class="toc-number">1.</span> <span class="toc-text">Step0: 创建一个静态变量用于搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step1-%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%80%E4%B8%AA%E6%90%9C%E7%B4%A2%E6%A1%86%E5%92%8C%E6%90%9C%E7%B4%A2%E6%8C%89%E9%92%AE"><span class="toc-number">2.</span> <span class="toc-text">Step1: 页面渲染一个搜索框和搜索按钮</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-3-%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%E5%88%97%E8%A1%A8"><span class="toc-number">3.</span> <span class="toc-text">Step 3: 模糊查询员工信息列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-4-%E6%90%9C%E7%B4%A2%E6%8C%89%E9%92%AE%E7%BB%91%E5%AE%9A%E8%B0%83%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">Step 4: 搜索按钮绑定调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-5-%E6%B8%B2%E6%9F%93%E5%88%97%E8%A1%A8%E6%B7%BB%E5%8A%A0%E5%88%A0%E9%99%A4%E6%8C%89%E9%92%AE"><span class="toc-number">5.</span> <span class="toc-text">Step 5 : 渲染列表添加删除按钮</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-6-%E9%80%9A%E8%BF%87ID%E5%88%A0%E9%99%A4%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF"><span class="toc-number">6.</span> <span class="toc-text">Step 6: 通过ID删除员工信息</span></a></li></ol></div>
-    <!-- 文章：内容 -->
-    <div class="content pb-3" style="line-height: 2.86rem; font-size: 1.125rem">
-        <hr />
-        <!-- Content -->
-        <p>整体业务为为页面添加搜索框，搜索按钮和删除按钮，并添加对应的逻辑操作</p>
-<p>① src &gt; main &gt; ets &gt; pages &gt; index.ets</p>
-<h2 id="Step0-创建一个静态变量用于搜索"><a href="#Step0-创建一个静态变量用于搜索" class="headerlink" title="Step0: 创建一个静态变量用于搜索"></a>Step0: 创建一个静态变量用于搜索</h2><pre><code>@state searchText: string = &quot;&quot;
-</code></pre>
-<h2 id="Step1-页面渲染一个搜索框和搜索按钮"><a href="#Step1-页面渲染一个搜索框和搜索按钮" class="headerlink" title="Step1: 页面渲染一个搜索框和搜索按钮"></a>Step1: 页面渲染一个搜索框和搜索按钮</h2><figure class="highlight ts"><table><tr><td class="code"><pre><code class="hljs ts"><span class="hljs-title function_">build</span> () &#123;<br>    <span class="hljs-title class_">Column</span> () &#123;<br>        <span class="hljs-title class_">Row</span>() &#123;<br>            <span class="hljs-title class_">Search</span>(&#123; <span class="hljs-attr">placehoder</span>: <span class="hljs-string">&quot;输入商品名&quot;</span> &#125;).<span class="hljs-title function_">layoutWeight</span>(<span class="hljs-number">1</span>)<br>                .<span class="hljs-title function_">onChange</span>(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> &#123;<br>                    <span class="hljs-variable language_">this</span>.<span class="hljs-property">searchText</span> = val<br>                &#125;)<br>            <span class="hljs-title class_">Button</span>(<span class="hljs-string">&quot;搜索&quot;</span>).<span class="hljs-title function_">margin</span>(&#123; <span class="hljs-attr">left</span>: <span class="hljs-number">5</span> &#125;)<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h2 id="Step-3-模糊查询员工信息列表"><a href="#Step-3-模糊查询员工信息列表" class="headerlink" title="Step 3: 模糊查询员工信息列表"></a>Step 3: 模糊查询员工信息列表</h2><p>复制页面下方的 getAllEmployees 方法，做如下修改</p>
-<pre><code class="hljs text"># 第一处修改
-    await this.rdbStore.querySql(&quot;select * from employees where name like ?&quot;, [&quot;%&quot;+name + &quot;%&quot;])
     
-# 第二处修改
-## 函数添加形参 name, 顺带修改函数名
-async getLikeEmployees(name: String) &#123;
-    ...
-&#125;
 
-# 第三处修改
-## 将 resultSet.goToFirstRow() 注释掉</code></pre>
-
-<h2 id="Step-4-搜索按钮绑定调用"><a href="#Step-4-搜索按钮绑定调用" class="headerlink" title="Step 4: 搜索按钮绑定调用"></a>Step 4: 搜索按钮绑定调用</h2><p>回到index.ets，对搜索按钮进行点击事件的处理</p>
-<pre><code class="hljs text">Button(&quot;搜索&quot;).margin(&#123;left: 5&#125;)
-  .onClick(() =&gt; &#123;
-    rdb.getLikeEmployees(this.searchText).then(data =&gt; &#123;
-      this.employees = data
-    &#125;)
-  &#125;)</code></pre>
-
-<h2 id="Step-5-渲染列表添加删除按钮"><a href="#Step-5-渲染列表添加删除按钮" class="headerlink" title="Step 5 : 渲染列表添加删除按钮"></a>Step 5 : 渲染列表添加删除按钮</h2><p>要求：内容为删除，高度为20，字体大小为10</p>
-<pre><code class="hljs text">//用列表容器显示员工列表
-List(&#123; space: 20 &#125;) &#123;
-  ForEach(this.employees, (item, index) =&gt; &#123;
-    ListItem() &#123;
-      Row() &#123;
-        Text((index+1)+&quot; &quot;).fontSize(18).width(&#x27;10%&#x27;)
-        Text(item.name).fontSize(18).width(&#x27;25%&#x27;)
-        Text(`￥$&#123;item.salary&#125;`).fontSize(18).fontColor(Color.Gray).padding(&#123;right:10&#125;).width(&#x27;20%&#x27;)
-        Text(item.dept).fontSize(18).width(&#x27;30%&#x27;)
-        // 添加删除按钮
-        Button(&quot;删除&quot;).height(20).fontSize(10)
-      &#125;
-    &#125;
-  &#125;, (item) =&gt; JSON.stringify(item))
-&#125;</code></pre>
-<h2 id="Step-6-通过ID删除员工信息"><a href="#Step-6-通过ID删除员工信息" class="headerlink" title="Step 6: 通过ID删除员工信息"></a>Step 6: 通过ID删除员工信息</h2><pre><code class="hljs text">async deleteEmployeeById(id: number) &#123;
-  try &#123;
-    this.rdbStore.executeSql(&quot;delete from employees where id=?&quot;, [id])
-  &#125; catch (err) &#123;
-    console.log(&quot;删除失败&quot;, JSON.stringify(err));
-  &#125;
-&#125;</code></pre>
-
-<p>方法写好后，对删除按钮进行函数绑定，删除成功后查询所有数据</p>
-<pre><code class="hljs text">Button(&quot;删除&quot;).height(20).fontSize(10).onClick(async () =&gt; &#123;
-  await rdb.deleteEmployeeById(item.id)
-  await rdb.getAllEmployees().then(data =&gt; &#123;
-    this.employees = data
-  &#125;)
-&#125;)</code></pre>
-    </div>
-    <!-- 文章：声明 -->
-    <!-- 文章的声明 -->
-<div id="copy-icon-竞赛三级-鸿蒙-03" style="word-wrap: break-word">
-    <p>
-        <strong>作者</strong>：
-        <span>粥记捣蛋</span>
-    </p>
-    <p>
-        <strong>文章链接</strong>：
-        <span
-                id="article-link-span"
-                data-text="https://zexuisme.github.io/2025/10/24/%E7%AB%9E%E8%B5%9B%E4%B8%89%E7%BA%A7-%E9%B8%BF%E8%92%99-03/"
-        ></span>
-    </p>
-    <p>
-        <strong>版权声明</strong>：
-        <span>本网站所有文章除特别声明外,均采用 CC BY-NC 4.0 许可协议。转载请注明出处!</span>
-    </p>
-</div>
 
 <script>
-    console.log(document.getElementById("article-link-span"))
-    const linkDOM = document.getElementById("article-link-span")
-    if (linkDOM) {
-        let linkText = linkDOM.getAttribute("data-text")
-        linkDOM.innerHTML = `<a href="${linkText}" target="_blank">${ decodeURI(linkText)}</a>`
-    }
-</script>
-    <!-- 文章：文章切换 -->
-    <div style="margin-top: 48px">
-<!-- 文章阅读页的切换按钮 -->
-<div class="post-toggle d-flex justify-between flex-wrap gap-3">
-    <button
-            class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/10/24/%E7%AB%9E%E8%B5%9B%E4%B8%89%E7%BA%A7-%E9%B8%BF%E8%92%99-04/')"
-            
-    >上一篇: 竞赛三级-鸿蒙-03</button>
-    <button
-            class="button is-info is-light"
-            onclick="postToggleEjs.onclickLink('/2025/10/24/%E7%AB%9E%E8%B5%9B%E4%B8%89%E7%BA%A7-%E9%B8%BF%E8%92%99-02/')"
-            
-    >下一篇: 竞赛三级-鸿蒙-02</button>
-</div>
-
-<script>
-    class PostToggleEjs extends Blog {
-        constructor() {
-            super()
-        }
-
-        onclickLink (url) {
-            this.createALink(url, '_self')
-        }
-    }
-
-    const postToggleEjs = new PostToggleEjs()
-</script></div>
-
-</article>
-
-<div style="height: 80px"></div>
-
-<script>
-    class PostEjs extends Blog{
+    class Pagination extends Blog{
         constructor() {
             super();
+            // ...
+        }
+
+        onclickPage (url) {
+            this.createALink(url + '#home-post-list', '_self')
         }
     }
-    const postEjs = new PostEjs();
+
+    const pagination = new Pagination();
+</script>
+</div>
+
+<script>
+    const archiveEjs = {
+        handleChoose (event) {
+            const value = event.target.value
+
+            if (!value) {
+                console.error('分类参数异常！')
+                return
+            }
+
+            const blog = new Blog()
+
+            blog.createALink(value, '_self')
+        }
+    }
 </script>
     </div>
 
