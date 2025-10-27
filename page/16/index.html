@@ -604,6 +604,225 @@
                     <!-- 文章预览时用 -->
 <section class="post-card box mbl py-6">
     <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Fri Jun 27 2025 11:16:13 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        DOM-标签定位
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        <p>利用 <code>a</code> 标签，可快速制作定位</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span></span><br><span class="hljs-tag">        <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;dom-position&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;d-flex align-end&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;height: 120vh; width: 100%; scroll-behavior: smooth; border: 1px dashed red&quot;</span></span><br><span class="hljs-tag">&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#dom-position&quot;</span>&gt;</span><br>        点击试一下吧~<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>注意：这样的标签定位，href 需要 #，请务必加上！</li>
+</ul>
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/27/DOM/DOM-%E6%A0%87%E7%AD%BE%E5%AE%9A%E4%BD%8D/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Fri Jun 27 2025 09:35:21 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        CSS-骨架
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        <style>
+    @keyframes css-skeleton-loading {
+        0% {
+            background-position-x: 100% ;
+        }
+        100% {
+            background-position-x: -100% ;
+        }
+    }
+
+    @keyframes css-skeleton-loading-2 {
+        0% {
+            background-position-x: 100% ;
+        }
+        100% {
+            background-position-x: -50% ;
+        }
+    }
+    .css-skeleton, .css-skeleton-2 {
+        height: 100%;
+        width: 100%;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        background-image: linear-gradient(to right, whitesmoke, #8a7f7f, #e38484);
+        background-size: 200%;
+        background-position-x: 0 ;
+    }
+    .css-skeleton {
+        animation: css-skeleton-loading 1.5s linear infinite;
+    }
+    .css-skeleton-2 {
+        animation: css-skeleton-loading-2 1.5s linear infinite;
+    }
+</style>
+
+<blockquote>
+<p>实现一个简单骨架效果</p>
+</blockquote>
+<div style="width: 100%; height: 200px" class="my-8">
+    <div class="css-skeleton"></div>
+</div>
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/27/CSS/CSS-%E9%AA%A8%E6%9E%B6/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Thu Jun 26 2025 12:59:51 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        毛玻璃
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        <style>
+    .el-mbl {
+        backdrop-filter: blur(10px);
+        background-color: transparent;
+        position: absolute;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        height: 200px;
+        color: white;
+    }
+</style>
+
+<div id="css-mbl" class="text-center" style="position: relative; width: 100%; height: 300px;">
+    <div class="el-mbl d-flex align-center justify-center">
+        backdrop-filter: blur(10px);
+        <br />
+        background-color: transparent;
+    </div>
+    <img src="https://picsum.photos/600/300" alt="演示图片" style="width: 600px; height: 300px" class="skeleton"/>
+</div>
+
+<blockquote>
+<p>backdrop: blur(10px)</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.el-mbl</span> &#123;<br>    <span class="hljs-attribute">backdrop-filter</span>: <span class="hljs-built_in">blur</span>(<span class="hljs-number">10px</span>);<br>    <span class="hljs-attribute">background-color</span>: transparent;<br>    <span class="hljs-attribute">position</span>: absolute;<br>    <span class="hljs-attribute">top</span>:<span class="hljs-number">50%</span>;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(-<span class="hljs-number">50%</span>, -<span class="hljs-number">50%</span>);<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">color</span>: white;<br>&#125;<br></code></pre></td></tr></table></figure>
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/26/CSS/CSS-%E6%AF%9B%E7%8E%BB%E7%92%83/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
+        <span style="color: #adadad; font-size: 0.875rem">Wed Jun 25 2025 14:57:29 GMT+0800</span>
+    </div>
+    <div class="title is-5">
+        JavaScript-大数字格式化
+    </div>
+
+    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
+        没有摘要，点进来看看吧
+    </div>
+
+    <div class="post-card-mask d-flex justify-center align-end">
+        <a class="py-4 " href="/2025/06/25/JS/JavaScript-%E5%A4%A7%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%8C%96/">
+            <span style="color: #00586d">加载更多</span>
+        </a>
+    </div>
+</section>
+
+<style>
+    .post-card {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 36px;
+        overflow: hidden
+    }
+    .post-card-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+</style>
+                
+                    <!-- 文章预览时用 -->
+<section class="post-card box mbl py-6">
+    <div class="subtitle">
         <span style="color: #adadad; font-size: 0.875rem">Wed Jun 25 2025 11:30:06 GMT+0800</span>
     </div>
     <div class="title is-5">
@@ -877,173 +1096,6 @@
     }
 </style>
                 
-                    <!-- 文章预览时用 -->
-<section class="post-card box mbl py-6">
-    <div class="subtitle">
-        <span style="color: #adadad; font-size: 0.875rem">Thu Jun 19 2025 11:48:08 GMT+0800</span>
-    </div>
-    <div class="title is-5">
-        DOM-居中
-    </div>
-
-    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
-        没有摘要，点进来看看吧
-    </div>
-
-    <div class="post-card-mask d-flex justify-center align-end">
-        <a class="py-4 " href="/2025/06/19/DOM/DOM-%E5%B1%85%E4%B8%AD/">
-            <span style="color: #00586d">加载更多</span>
-        </a>
-    </div>
-</section>
-
-<style>
-    .post-card {
-        width: 100%;
-        min-width: 300px;
-        border-radius: 36px;
-        overflow: hidden
-    }
-    .post-card-mask {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: transparent;
-    }
-</style>
-                
-                    <!-- 文章预览时用 -->
-<section class="post-card box mbl py-6">
-    <div class="subtitle">
-        <span style="color: #adadad; font-size: 0.875rem">Thu Jun 19 2025 11:40:28 GMT+0800</span>
-    </div>
-    <div class="title is-5">
-        DOM-追加元素 appendChild
-    </div>
-
-    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
-        <p>使用 innerHtml 追加元素，很好使，但是又不那么好使，</p>
-<blockquote>
-<p>Q：为什么？</p>
-</blockquote>
-<p>A：innerHtml 会破坏页面的正常运作，比如通过 addEventListener 绑定了一个点击事件，当对该DOM所在位置进行处理后，会发现DOM结构发生变化，点击事件不在生效了</p>
-<p>有时追加的DOM元素是以字符串的形式出现的，比如</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> tempFunc = <span class="hljs-keyword">function</span> (<span class="hljs-params">obj</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">`</span><br><span class="hljs-string">        &lt;label for=&quot;<span class="hljs-subst">$&#123;obj.eg&#125;</span>&quot;&gt;</span><br><span class="hljs-string">            &lt;span&gt;<span class="hljs-subst">$&#123;obj.name&#125;</span>&lt;/span&gt;</span><br><span class="hljs-string">            &lt;input type=&quot;<span class="hljs-subst">$&#123;obj.inputType&#125;</span>&quot; name=&quot;<span class="hljs-subst">$&#123;obj.eg&#125;</span>&quot; id=&quot;<span class="hljs-subst">$&#123;obj.eg&#125;</span>&quot; value=&quot;<span class="hljs-subst">$&#123;obj.defaultValue&#125;</span>&quot;/&gt;</span><br><span class="hljs-string">        &lt;/label&gt;`</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<p>接着使用 appendChild 进行元素的追加，控制台报错，appendChild 的参数必须是一个 Node。</p>
-    </div>
-
-    <div class="post-card-mask d-flex justify-center align-end">
-        <a class="py-4 " href="/2025/06/19/DOM/DOM-%E8%BF%BD%E5%8A%A0%E5%85%83%E7%B4%A0%20appendChild/">
-            <span style="color: #00586d">加载更多</span>
-        </a>
-    </div>
-</section>
-
-<style>
-    .post-card {
-        width: 100%;
-        min-width: 300px;
-        border-radius: 36px;
-        overflow: hidden
-    }
-    .post-card-mask {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: transparent;
-    }
-</style>
-                
-                    <!-- 文章预览时用 -->
-<section class="post-card box mbl py-6">
-    <div class="subtitle">
-        <span style="color: #adadad; font-size: 0.875rem">Thu Jun 19 2025 09:28:37 GMT+0800</span>
-    </div>
-    <div class="title is-5">
-        Hexo-导入JS
-    </div>
-
-    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
-        没有摘要，点进来看看吧
-    </div>
-
-    <div class="post-card-mask d-flex justify-center align-end">
-        <a class="py-4 " href="/2025/06/19/HEXO/Hexo-%E5%AF%BC%E5%85%A5JS/">
-            <span style="color: #00586d">加载更多</span>
-        </a>
-    </div>
-</section>
-
-<style>
-    .post-card {
-        width: 100%;
-        min-width: 300px;
-        border-radius: 36px;
-        overflow: hidden
-    }
-    .post-card-mask {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: transparent;
-    }
-</style>
-                
-                    <!-- 文章预览时用 -->
-<section class="post-card box mbl py-6">
-    <div class="subtitle">
-        <span style="color: #adadad; font-size: 0.875rem">Thu Jun 19 2025 01:55:50 GMT+0800</span>
-    </div>
-    <div class="title is-5">
-        碧海苍云录-帮助手册
-    </div>
-
-    <div style="max-height: 300px; overflow-y: hidden; cursor: pointer;" class="content">
-        <p>游玩过程中对于一些词汇或者描述的个人理解</p>
-<h2 id="器纹解析"><a href="#器纹解析" class="headerlink" title="器纹解析"></a>器纹解析</h2><table>
-<thead>
-<tr>
-<th>器纹</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>减伤玉佩</td>
-<td>独立乘区</td>
-</tr>
-</tbody></table>
-    </div>
-
-    <div class="post-card-mask d-flex justify-center align-end">
-        <a class="py-4 " href="/2025/06/19/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95/%E7%A2%A7%E6%B5%B7%E8%8B%8D%E4%BA%91%E5%BD%95-%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/">
-            <span style="color: #00586d">加载更多</span>
-        </a>
-    </div>
-</section>
-
-<style>
-    .post-card {
-        width: 100%;
-        min-width: 300px;
-        border-radius: 36px;
-        overflow: hidden
-    }
-    .post-card-mask {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: transparent;
-    }
-</style>
-                
             </div>
         </section>
         <!-- section：分页信息 -->
@@ -1068,7 +1120,7 @@
             <div class="mx-1 d-flex ">
                 <span>16</span>
                 <span class="mx-1">/</span>
-                <span>18</span>
+                <span>19</span>
             </div>
             <div style="width: 100%; height: 1px"></div>
         </div>
