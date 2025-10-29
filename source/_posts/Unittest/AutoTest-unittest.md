@@ -112,13 +112,16 @@ class TestGoogleSearch(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        # 关闭浏览器
+        # close 关闭当前页面，若只有一个页面，则浏览器关闭
         cls.browser.close()
         print('所有测试结束！')
 
 if __name__ == "__main__":
     unittest.main()
 ```
+
+- `cls.browser.close()` close 关闭当前页面，若只有一个页面，则浏览器关闭
+- `cls.browser.quit()` 关闭浏览器
 
 ## 设置等待：隐式等待
 
