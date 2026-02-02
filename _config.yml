@@ -107,5 +107,5 @@ theme: pixel-theme
 deploy:
   type: git
   repository: git@github.com:ZexuIsMe/ZexuIsMe.github.io.git
-  branch: main
+  branch: main2
 
