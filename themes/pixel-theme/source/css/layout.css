@@ -1,0 +1,138 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+body {
+    font-family: 'VT323', monospace;
+    color: #F7E6D0;
+    background-color: #2D1B00;
+    position: relative;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Press Start 2P', cursive;
+    color: #D48E3B;
+}
+
+.pixel-button {
+    background-color: #D48E3B;
+    color: #2D1B00;
+    padding: 10px 20px;
+    border: 4px solid #000;
+    box-shadow: 4px 4px 0px #000;
+    transition: all 0.2s;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.pixel-button:hover {
+    background-color: #F4B466;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000;
+}
+
+.pixel-button:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+}
+
+.nav-link {
+    position: relative;
+    transition: all 0.3s;
+    color: #F7E6D0;
+}
+
+.nav-link:hover {
+    color: #F4B466;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #F4B466;
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    color: #F4B466;
+}
+
+.pixel-card {
+    background-color: #3D2500;
+    border: 4px solid #000;
+    box-shadow: 8px 8px 0px #000;
+    transition: all 0.3s;
+}
+
+.pixel-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px #000;
+}
+
+/* 暗色模式 */
+.dark-mode {
+    background-color: #2D1B00;
+    color: #F7E6D0;
+}
+
+.dark-mode .pixel-card {
+    background-color: #3D2500;
+}
+
+/* 暗色模式代码高亮 */
+.dark-mode .hljs {
+    background-color: #311e00;
+}
+
+/* 亮色模式 */
+.light-mode {
+    background-color: #FFF9F0;
+    color: #3D2500;
+}
+
+.light-mode h1, .light-mode h2, .light-mode h3, .light-mode h4, .light-mode h5, .light-mode h6 {
+    color: #B87333;
+}
+
+.light-mode .pixel-card {
+    background-color: #FFEEDD;
+}
+
+.light-mode .pixel-button {
+    background-color: #B87333;
+    color: #FFF9F0;
+}
+
+.light-mode .pixel-button:hover {
+    background-color: #D48E3B;
+}
+
+.light-mode .nav-link {
+    color: #3D2500;
+}
+
+.light-mode .nav-link:hover {
+    color: #D48E3B;
+}
+
+.light-mode .nav-link::after {
+    background-color: #D48E3B;
+}
+
+.light-mode .nav-link.active {
+    color: #D48E3B;
+}
+
+/* 亮色模式代码高亮 */
+.light-mode .hljs {
+    background-color: #fae2c9;
+}

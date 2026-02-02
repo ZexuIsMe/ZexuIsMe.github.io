@@ -1,0 +1,26 @@
+# Pixel Theme Configuration
+
+# Writing Settings
+## 自动摘要设置
+excerpt_depth: 5  # 自动摘要的标题层级
+auto_excerpt:
+  enable: true    # 启用自动摘要
+  length: 150     # 自动摘要的长度（字符数）
+
+# Article Display
+article:
+  show_excerpt: true  # 在首页显示文章摘要
+  show_date: true     # 显示文章日期
+  show_categories: true  # 显示文章分类
+  show_tags: true      # 显示文章标签
+
+# Navigation
+nav:
+  home: 首页
+  articles: 文章
+  about: 关于
+
+# Comments
+comments:
+  disqus_shortname:  # Disqus 评论系统短名称
+  enable: false      # 是否启用评论功能

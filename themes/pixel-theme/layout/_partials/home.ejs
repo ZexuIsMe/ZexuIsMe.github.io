@@ -1,0 +1,46 @@
+<section id="home" class="min-h-screen pt-16">
+    <div class="container mx-auto px-4">
+        <div class="relative mb-12">
+            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/33bd01abf9ca4a529341d122bdfa4104~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=20260202192528FF625BE2146F4D36E478&rrcfp=f06b921b&x-expires=1772623632&x-signature=7NWhx5n0EdrTyCjnqkWvN0dMAdo%3D" alt="Banner" class="w-full h-auto pixel-art pixel-border">
+        </div>
+
+        <h2 class="text-3xl font-bold mb-8 text-pixel-pink text-shadow">最新文章</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <% site.posts.slice(0, 3).forEach(post => { %>
+                <div class="pixel-card p-6">
+                    <h3 class="text-xl font-bold mb-4 text-pixel-blue"><%= post.title %></h3>
+                    <p class="excerpt">
+                        <!-- 如果摘要长度超过配置项长度，截取并添加省略号 -->
+                        <% if (post.excerpt) { %>
+                            <%- post.excerpt.length > theme.auto_excerpt.length 
+                                ? post.excerpt.substring(0, theme.auto_excerpt.length) + '<span class="excerpt-ellipsis">...</span>' 
+                                : post.excerpt %>
+                        <% } else { %>
+                            没有摘要，要不点进来看看吧 :）
+                        <% } %>
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-note"><%= post.date.format('YYYY-MM-DD') %></span>
+                        <a href="<%- url_for(post.path) %>" class="pixel-button">点击阅读更多了解详情...</a>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+
+        <div class="mt-16">
+            <h2 class="text-3xl font-bold mb-8 text-pixel-pink text-shadow">特色内容</h2>
+            <div class="bg-dark p-8 pixel-border">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
+                        <h3 class="text-2xl font-bold mb-4 text-pixel-blue">像素艺术教程系列</h3>
+                        <p class="mb-6">跟随我们的教程系列，从基础到高级，逐步掌握像素艺术的创作技巧。无论你是完全的初学者，还是想要提升技能的艺术家，这里都有适合你的内容。</p>
+                        <a href="#" class="pixel-button">开始学习</a>
+                    </div>
+                    <div class="md:w-1/2">
+                        <div id="featured-component" class="pixel-border"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

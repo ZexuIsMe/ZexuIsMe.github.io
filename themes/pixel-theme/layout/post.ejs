@@ -1,0 +1,78 @@
+<section class="py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+        <!-- 文章头部信息 -->
+        <div class="mb-12 text-center">
+            <h1 class="text-3xl md:text-4xl font-pixel mb-6 text-primary"><%= page.title %></h1>
+            <div class="flex flex-wrap justify-center items-center gap-4 text-sm text-note">
+                <span class="flex items-center">
+                    <i class="fa fa-calendar mr-2"></i>
+                    <%= date(page.date, config.date_format) %>
+                </span>
+                <% if (page.categories && page.categories.length) { %>
+                    <span class="flex items-center">
+                        <i class="fa fa-folder mr-2"></i>
+                        <% page.categories.forEach(function(category, index) { %>
+                            <a href="<%= url_for(category.path) %>" class="hover:text-secondary transition-colors">
+                                <%= category.name %>
+                            </a>
+                            <% if (index < page.categories.length - 1) { %>, <% } %>
+                        <% }) %>
+                    </span>
+                <% } %>
+                <% if (page.tags && page.tags.length) { %>
+                    <span class="flex items-center">
+                        <i class="fa fa-tags mr-2"></i>
+                        <% page.tags.forEach(function(tag, index) { %>
+                            <a href="<%= url_for(tag.path) %>" class="hover:text-secondary transition-colors">
+                                <%= tag.name %>
+                            </a>
+                            <% if (index < page.tags.length - 1) { %>, <% } %>
+                        <% }) %>
+                    </span>
+                <% } %>
+            </div>
+        </div>
+
+        <!-- 文章内容 -->
+        <article class="markdown-body pixel-card bg-dark p-6 mb-12">
+            <%- page.content %>
+        </article>
+
+        <!-- 文章底部 -->
+        <div class="flex justify-between items-center mt-8">
+            <!-- 上一篇/下一篇导航 -->
+            <div class="flex flex-col gap-4 w-full">
+                <% if (page.prev) { %>
+                    <a href="<%= url_for(page.prev.path) %>" class="pixel-button w-fit hover:bg-secondary transition-colors">
+                        <i class="fa fa-arrow-left mr-2"></i> 上一篇
+                    </a>
+                <% } %>
+                <% if (page.next) { %>
+                    <a href="<%= url_for(page.next.path) %>" class="pixel-button w-fit ml-auto hover:bg-secondary transition-colors">
+                        下一篇 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                <% } %>
+            </div>
+        </div>
+
+        <!-- 评论区（如果启用） -->
+        <% if (config.disqus_shortname && page.comments !== false) { %>
+            <div class="mt-16">
+                <div id="disqus_thread"></div>
+                <script>
+                    var disqus_config = function () {
+                        this.page.url = '<%= page.permalink %>';
+                        this.page.identifier = '<%= page.path %>';
+                    };
+                    (function() {
+                        var d = document, s = d.createElement('script');
+                        s.src = '//<%= config.disqus_shortname %>.disqus.com/embed.js';
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            </div>
+        <% } %>
+    </div>
+</section>

@@ -1,0 +1,96 @@
+/* 摘要样式 */
+.excerpt {
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #F7E6D0;
+    margin-bottom: 1rem;
+}
+
+.excerpt code {
+    font-family: 'VT323', monospace;
+    background-color: #4A3000;
+    color: #FFC87C;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    border: 2px solid #000;
+}
+
+.excerpt a {
+    color: #F4B466;
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+
+.excerpt a:hover {
+    color: #E6A045;
+}
+
+.excerpt em {
+    font-style: italic;
+    color: #B87333;
+}
+
+.excerpt strong {
+    font-weight: bold;
+    color: #FFC87C;
+}
+
+.excerpt ul,
+.excerpt ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+.excerpt li {
+    margin-bottom: 0.5rem;
+}
+
+.excerpt blockquote {
+    border-left: 4px solid #F4B466;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+    font-style: italic;
+    color: #D1B894;
+}
+
+/* 摘要省略号样式 */
+.excerpt-ellipsis {
+    color: #F4B466;
+    font-weight: bold;
+}
+
+/* 亮色模式下的摘要样式 */
+.light-mode .excerpt {
+    color: #3D2500;
+}
+
+.light-mode .excerpt code {
+    background-color: #FFF2E0;
+    color: #B87333;
+}
+
+.light-mode .excerpt a {
+    color: #D48E3B;
+}
+
+.light-mode .excerpt a:hover {
+    color: #B87333;
+}
+
+.light-mode .excerpt em {
+    color: #C9843C;
+}
+
+.light-mode .excerpt strong {
+    color: #E6A045;
+}
+
+.light-mode .excerpt blockquote {
+    border-left: 4px solid #D48E3B;
+    color: #5D3A00;
+}
+
+.light-mode .excerpt-ellipsis {
+    color: #D48E3B;
+}

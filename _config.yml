@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://zexuisme.github.io/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -32,6 +32,8 @@ skip_render:
 
 # Writing
 new_post_name: :title.md # File name of new posts
+# 文章默认布局，默认是 post，主要是用来设置文章的默认显示方式
+## 参数 post 是 layout 下的 post.ejs 文件, 只要修改它你就可以自定义文章的显示方式
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link:
@@ -40,20 +42,21 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: true
+post_asset_folder: false
 relative_link: false
 future: true
-syntax_highlighter: highlight.js
+# syntax_highlighter: highlight.js
 highlight:
-  line_number: true
+  line_number: false
   auto_detect: false
   tab_replace: ''
-  wrap: true
-  hljs: false
-prismjs:
-  preprocess: true
-  line_number: true
-  tab_replace: ''
+  wrap: false
+  hljs: true
+  enable: true
+#prismjs:
+#  preprocess: true
+#  line_number: true
+#  tab_replace: ''
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -96,7 +99,8 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+#theme: landscape
+theme: pixel-theme
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
