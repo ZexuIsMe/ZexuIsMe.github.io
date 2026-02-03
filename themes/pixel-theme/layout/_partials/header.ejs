@@ -5,10 +5,10 @@
                 <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/045d52041e0640dbba5b55b00bcffd70~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=20260202192528FF625BE2146F4D36E478&rrcfp=f06b921b&x-expires=1772623642&x-signature=tTj5R5wpKcuVun%2BC4uGNbeXo1bc%3D" alt="Logo" class="w-12 h-12 pixel-art pixel-border">
                 <span class="nav-title text-2xl font-bold text-white text-shadow-pixel"><%= config.title %></span>
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link active text-white hover:text-pixel-pink text-lg">首页</a>
-                <a href="#articles" class="nav-link text-white hover:text-pixel-pink text-lg">文章</a>
-                <a href="#about" class="nav-link text-white hover:text-pixel-pink text-lg">关于我</a>
+            <div id="menu" class="hidden md:flex space-x-8">
+                <a href="<%= page.path === 'index.html' ? '#home' : url_for('index') + '/#home' %>" class="nav-link active text-white hover:text-pixel-pink text-lg">首页</a>
+                <a href="<%= page.path === 'index.html' ? '#articles' : url_for('index') + '/#articles' %>" class="nav-link text-white hover:text-pixel-pink text-lg">文章</a>
+                <a href="<%= page.path === 'index.html' ? '#about' : url_for('index') + '/#about' %>" class="nav-link text-white hover:text-pixel-pink text-lg">关于我</a>
             </div>
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-text">
@@ -17,9 +17,76 @@
             </div>
         </div>
         <div id="mobile-menu" class="md:hidden hidden pb-4">
-            <a href="#home" class="block py-2 text-white hover:text-pixel-pink">首页</a>
-            <a href="#articles" class="block py-2 text-white hover:text-pixel-pink">文章</a>
-            <a href="#about" class="block py-2 text-white hover:text-pixel-pink">关于我</a>
+            <a href="<%= page.path === 'index.html' ? '#home' : url_for('index') + '/#home' %>" class="block py-2 text-white hover:text-pixel-pink">首页</a>
+            <a href="<%= page.path === 'index.html' ? '#articles' : url_for('index') + '/#articles' %>" class="block py-2 text-white hover:text-pixel-pink">文章</a>
+            <a href="<%= page.path === 'index.html' ? '#about' : url_for('index') + '/#about' %>" class="block py-2 text-white hover:text-pixel-pink">关于我</a>
         </div>
     </div>
 </nav>
+
+<script>
+// 导航栏功能初始化
+(function() {
+    // 获取导航链接元素
+    var navLinks = document.querySelectorAll('.nav-link');
+    var mobileLinks = document.querySelectorAll('#mobile-menu a');
+
+    /**
+     * 设置激活的链接
+     * @param {HTMLElement} clickedLink - 被点击的链接元素
+     * @param {NodeList} allLinks - 所有链接元素列表
+     */
+    function setActiveLink(clickedLink, allLinks) {
+        // 移除所有链接的 active 类
+        allLinks.forEach(function(link) {
+            link.classList.remove('active');
+        });
+        // 为被点击的链接添加 active 类
+        clickedLink.classList.add('active');
+    }
+
+    /**
+     * 平滑滚动到目标元素
+     * @param {HTMLElement} target - 目标元素
+     */
+    function smoothScrollTo(target) {
+        if (target) {
+            // 使用 scrollIntoView 方法实现平滑滚动
+            target.scrollIntoView({
+                behavior: 'smooth', // 平滑滚动效果
+                block: 'start' // 滚动到元素顶部
+            });
+        }
+    }
+
+    // 为桌面端导航链接添加点击事件监听
+    navLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            var href = this.getAttribute('href');
+            // 检查是否为锚点链接
+            if (href.startsWith('#')) {
+                e.preventDefault(); // 阻止默认跳转行为
+                var targetId = href.substring(1); // 提取目标元素 ID
+                var targetElement = document.getElementById(targetId); // 获取目标元素
+                smoothScrollTo(targetElement); // 执行平滑滚动
+            }
+            setActiveLink(this, navLinks); // 更新激活状态
+        });
+    });
+
+    // 为移动端导航链接添加点击事件监听
+    mobileLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            var href = this.getAttribute('href');
+            // 检查是否为锚点链接
+            if (href.startsWith('#')) {
+                e.preventDefault(); // 阻止默认跳转行为
+                var targetId = href.substring(1); // 提取目标元素 ID
+                var targetElement = document.getElementById(targetId); // 获取目标元素
+                smoothScrollTo(targetElement); // 执行平滑滚动
+            }
+            setActiveLink(this, mobileLinks); // 更新激活状态
+        });
+    });
+})();
+</script>

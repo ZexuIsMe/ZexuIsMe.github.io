@@ -1,0 +1,123 @@
+<section class="fixed-box fixed bottom-8 right-8 z-50 grid gap-4">
+    <!-- 回到顶部按钮 -->
+    <div class="relative">
+        <button id="back-to-top" class="bg-pixel-pink text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300">
+            <i class="fa fa-arrow-up text-xl"></i>
+        </button>
+        <span class="tooltip absolute top-[-40px] left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-3 py-2 rounded opacity-0 invisible transition-all duration-300 whitespace-nowrap">
+            回到顶部
+        </span>
+    </div>
+    
+    <!-- 主题切换按钮 -->
+    <div class="relative">
+        <button id="theme-toggle" class="bg-pixel-pink text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
+            <i id="theme-icon" class="fa fa-moon-o text-xl"></i>
+        </button>
+        <span class="tooltip absolute top-[-40px] left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-3 py-2 rounded opacity-0 invisible transition-all duration-300 whitespace-nowrap">
+            切换主题
+        </span>
+    </div>
+</section>
+
+<script>
+    (function() {
+        // 主题切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 检查本地存储中的主题设置，默认使用亮色模式
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.className = `scanline ${savedTheme}-mode`;
+            
+            // 更新主题图标
+            const themeIcon = document.getElementById('theme-icon');
+            if (themeIcon) {
+                themeIcon.className = savedTheme === 'dark' ? 'fa fa-sun-o text-xl' : 'fa fa-moon-o text-xl';
+            }
+            
+            // 切换主题
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                    document.body.className = `scanline ${newTheme}-mode`;
+                    
+                    // 更新主题图标
+                    if (themeIcon) {
+                        themeIcon.className = newTheme === 'dark' ? 'fa fa-sun-o text-xl' : 'fa fa-moon-o text-xl';
+                    }
+                
+                    // 保存主题设置到本地存储
+                    localStorage.setItem('theme', newTheme);
+                });
+            }
+        });
+    
+        var backToTopButton = document.getElementById('back-to-top');
+
+        // 监听滚动事件
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                // 当滚动距离超过 300px 时显示按钮
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                // 当滚动距离小于 300px 时隐藏按钮
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+
+        // 为按钮添加点击事件
+        backToTopButton.addEventListener('click', function() {
+            // 平滑滚动到页面顶部
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    })();
+</script>
+
+<style>
+    .relative:hover .tooltip {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .tooltip {
+        pointer-events: none;
+    }
+    
+    /* 暗色模式下的气泡样式 */
+    .dark-mode .tooltip {
+        background-color: #3D2500;
+        color: #F7E6D0;
+    }
+    
+    .dark-mode .tooltip::after {
+        border-top-color: #3D2500;
+    }
+    
+    /* 亮色模式下的气泡样式 */
+    .light-mode .tooltip {
+        background-color: #E6D3B8;
+        color: #3D2500;
+    }
+    
+    .light-mode .tooltip::after {
+        border-top-color: #E6D3B8;
+    }
+    
+    .tooltip::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent transparent transparent;
+    }
+</style>

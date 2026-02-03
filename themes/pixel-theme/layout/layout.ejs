@@ -150,32 +150,9 @@
 
     <%- partial('_partials/footer') %>
 
+    <!-- 固定到顶部按钮和主题切换按钮 -->
+    <%- partial('_partials/component/fixedBox.ejs') %>
+
     <script src="<%- url_for('/js/main.js') %>"></script>
-    <script>
-        // 主题切换功能
-        document.addEventListener('DOMContentLoaded', function() {
-            // 检查本地存储中的主题设置，默认使用亮色模式
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.body.className = `scanline ${savedTheme}-mode`;
-            
-            // 创建主题切换按钮
-            const themeToggle = document.createElement('button');
-            themeToggle.className = 'pixel-button fixed bottom-4 right-4 z-50';
-            themeToggle.textContent = savedTheme === 'dark' ? '🌞 亮色' : '🌙 暗色';
-            document.body.appendChild(themeToggle);
-            
-            // 切换主题
-            themeToggle.addEventListener('click', function() {
-                const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                
-                document.body.className = `scanline ${newTheme}-mode`;
-                themeToggle.textContent = newTheme === 'dark' ? '🌞 亮色' : '🌙 暗色';
-                
-                // 保存主题设置到本地存储
-                localStorage.setItem('theme', newTheme);
-            });
-        });
-    </script>
 </body>
 </html>
