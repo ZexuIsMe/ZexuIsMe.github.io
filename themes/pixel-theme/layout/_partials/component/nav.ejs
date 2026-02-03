@@ -7,7 +7,7 @@
             </div>
             <div id="menu" class="hidden md:flex space-x-8">
                 <a href="<%= url_for('index') %>" class="nav-link active text-white hover:text-pixel-pink text-lg">首页</a>
-                <a href="<%= url_for('archive') %>" class="nav-link text-white hover:text-pixel-pink text-lg">归档</a>
+                <a href="<%= url_for('archives') %>" class="nav-link text-white hover:text-pixel-pink text-lg">归档</a>
                 <a href="<%= url_for('about') %>" class="nav-link text-white hover:text-pixel-pink text-lg">关于我</a>
             </div>
             <div class="md:hidden">
@@ -18,7 +18,7 @@
         </div>
         <div id="mobile-menu" class="md:hidden hidden pb-4">
             <a href="<%= url_for('index') %>" class="block py-2 text-white hover:text-pixel-pink">首页</a>
-            <a href="<%= url_for('archive') %>" class="block py-2 text-white hover:text-pixel-pink">归档</a>
+            <a href="<%= url_for('archives') %>" class="block py-2 text-white hover:text-pixel-pink">归档</a>
             <a href="<%= url_for('about') %>" class="block py-2 text-white hover:text-pixel-pink">关于我</a>
         </div>
     </div>
@@ -44,20 +44,6 @@
         });
         // 为被点击的链接添加 active 类
         clickedLink.classList.add('active');
-    }
-
-    /**
-     * 平滑滚动到目标元素
-     * @param {HTMLElement} target - 目标元素
-     */
-    function smoothScrollTo(target) {
-        if (target) {
-            // 使用 scrollIntoView 方法实现平滑滚动
-            target.scrollIntoView({
-                behavior: 'smooth', // 平滑滚动效果
-                block: 'start' // 滚动到元素顶部
-            });
-        }
     }
 
     /**
@@ -97,13 +83,6 @@
     navLinks.forEach(function(link) {
         link.addEventListener('click', function(e) {
             var href = this.getAttribute('href');
-            // 检查是否为锚点链接
-            if (href.startsWith('#')) {
-                e.preventDefault(); // 阻止默认跳转行为
-                var targetId = href.substring(1); // 提取目标元素 ID
-                var targetElement = document.getElementById(targetId); // 获取目标元素
-                smoothScrollTo(targetElement); // 执行平滑滚动
-            }
             // 存储选中的链接到本地存储
             localStorage.setItem(STORAGE_KEY, href);
             setActiveLink(this, navLinks); // 更新激活状态
@@ -114,13 +93,6 @@
     mobileLinks.forEach(function(link) {
         link.addEventListener('click', function(e) {
             var href = this.getAttribute('href');
-            // 检查是否为锚点链接
-            if (href.startsWith('#')) {
-                e.preventDefault(); // 阻止默认跳转行为
-                var targetId = href.substring(1); // 提取目标元素 ID
-                var targetElement = document.getElementById(targetId); // 获取目标元素
-                smoothScrollTo(targetElement); // 执行平滑滚动
-            }
             // 存储选中的链接到本地存储
             localStorage.setItem(STORAGE_KEY, href);
             setActiveLink(this, mobileLinks); // 更新激活状态
