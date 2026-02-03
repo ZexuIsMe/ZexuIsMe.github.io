@@ -6,10 +6,10 @@
 
         <h2 class="text-3xl font-bold mb-8 text-pixel-pink text-shadow">最新文章</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <% site.posts.slice(0, 3).forEach(post => { %>
+            <% site.posts.sort('date', -1).slice(0, 3).forEach(post => { %>
                 <div class="pixel-card p-6">
                     <h3 class="text-xl font-bold mb-4 text-pixel-blue"><%= post.title %></h3>
-                    <p class="excerpt">
+                    <p class="excerpt markdown-body">
                         <!-- 如果摘要长度超过配置项长度，截取并添加省略号 -->
                         <% if (post.excerpt) { %>
                             <%- post.excerpt.length > theme.auto_excerpt.length 
@@ -25,22 +25,6 @@
                     </div>
                 </div>
             <% }); %>
-        </div>
-
-        <div class="mt-16">
-            <h2 class="text-3xl font-bold mb-8 text-pixel-pink text-shadow">特色内容</h2>
-            <div class="bg-dark p-8 pixel-border">
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
-                        <h3 class="text-2xl font-bold mb-4 text-pixel-blue">像素艺术教程系列</h3>
-                        <p class="mb-6">跟随我们的教程系列，从基础到高级，逐步掌握像素艺术的创作技巧。无论你是完全的初学者，还是想要提升技能的艺术家，这里都有适合你的内容。</p>
-                        <a href="#" class="pixel-button">开始学习</a>
-                    </div>
-                    <div class="md:w-1/2">
-                        <div id="featured-component" class="pixel-border"></div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>

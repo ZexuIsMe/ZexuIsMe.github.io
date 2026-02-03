@@ -9,7 +9,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Press Start 2P', cursive;
+    font-family: cursive;
     color: #D48E3B;
 }
 
@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 4px solid #000;
     box-shadow: 4px 4px 0px #000;
     transition: all 0.2s;
-    font-family: 'Press Start 2P', cursive;
+    font-family: cursive;
     font-size: 12px;
     text-transform: uppercase;
 }

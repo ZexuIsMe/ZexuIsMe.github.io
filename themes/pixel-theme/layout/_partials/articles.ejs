@@ -17,7 +17,16 @@
             <% site.posts.forEach(post => { %>
                 <div class="article-item pixel-card p-6" data-category="<%= post.categories[0] %>">
                     <h3 class="text-2xl font-bold mb-4 text-pixel-blue"><%= post.title %></h3>
-                    <p class="mb-4"><%= post.excerpt %></p>
+                    <p class="excerpt markdown-body">
+                        <!-- 如果摘要长度超过配置项长度，截取并添加省略号 -->
+                        <% if (post.excerpt) { %>
+                            <%- post.excerpt.length > theme.auto_excerpt.length 
+                                ? post.excerpt.substring(0, theme.auto_excerpt.length) + '<span class="excerpt-ellipsis">...</span>' 
+                                : post.excerpt %>
+                        <% } else { %>
+                            没有摘要，要不点进来看看吧 :）
+                        <% } %>
+                    </p>
                     <div class="flex justify-between items-center">
                         <div class="flex items-center space-x-4">
                             <span class="bg-pixel-blue text-white px-3 py-1 text-sm"><%= post.categories[0] %></span>

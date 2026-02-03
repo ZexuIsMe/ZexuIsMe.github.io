@@ -7,19 +7,6 @@
 const { createElement: e } = React;
 
 /**
- * 特色内容组件
- * 用于显示博客首页的特色图片
- * @returns {React.ReactElement} 特色图片元素
- */
-function FeaturedComponent() {
-  return e('img', {
-    src: 'https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/045d52041e0640dbba5b55b00bcffd70~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=20260202192528FF625BE2146F4D36E478&rrcfp=f06b921b&x-expires=1772623642&x-signature=tTj5R5wpKcuVun%2BC4uGNbeXo1bc%3D',
-    alt: 'Featured',
-    className: 'w-full h-auto pixel-art'
-  });
-}
-
-/**
  * 联系表单组件
  * 提供用户与博主联系的表单界面
  * @returns {React.ReactElement} 联系表单元素
@@ -103,12 +90,6 @@ function ContactForm() {
  * 负责渲染组件和绑定事件监听器
  */
 document.addEventListener('DOMContentLoaded', () => {
-  // 渲染特色内容组件
-  const featuredComponent = document.getElementById('featured-component');
-  if (featuredComponent) {
-    ReactDOM.render(e(FeaturedComponent), featuredComponent);
-  }
-
   // 渲染联系表单组件
   const contactFormContainer = document.getElementById('contact-form-container');
   if (contactFormContainer) {
