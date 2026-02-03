@@ -1,60 +1,61 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+@import './variables.css';
 
 body {
-    font-family: 'VT323', monospace;
-    color: #F7E6D0;
-    background-color: #2D1B00;
-    position: relative;
+    font-family: var(--font-family-base);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+    position: var(--position-relative);
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: cursive;
-    color: #D48E3B;
+    font-family: var(--font-family-heading);
+    color: var(--color-text-secondary);
 }
 
 .pixel-button {
-    background-color: #D48E3B;
-    color: #2D1B00;
-    padding: 10px 20px;
-    border: 4px solid #000;
-    box-shadow: 4px 4px 0px #000;
-    transition: all 0.2s;
-    font-family: cursive;
-    font-size: 12px;
+    background-color: var(--color-button-primary);
+    color: var(--color-button-text);
+    padding: var(--size-padding-button);
+    border: var(--border-pixel);
+    box-shadow: var(--shadow-pixel);
+    transition: var(--transition-default);
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-button);
     text-transform: uppercase;
 }
 
 .pixel-button:hover {
-    background-color: #F4B466;
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0px #000;
+    background-color: var(--color-button-hover);
+    transform: var(--transform-button-hover);
+    box-shadow: var(--shadow-pixel-hover);
 }
 
 .pixel-button:active {
-    transform: translate(4px, 4px);
+    transform: var(--transform-button-active);
     box-shadow: none;
 }
 
 .nav-link {
-    position: relative;
-    transition: all 0.3s;
-    color: #F7E6D0;
+    position: var(--position-relative);
+    transition: var(--transition-nav);
+    color: var(--color-text-primary);
 }
 
 .nav-link:hover {
-    color: #F4B466;
+    color: var(--color-text-accent);
 }
 
 .nav-link::after {
     content: '';
-    position: absolute;
-    bottom: -5px;
+    position: var(--position-absolute);
+    bottom: calc(0px - var(--size-margin-bottom-nav));
     left: 0;
     width: 0;
-    height: 2px;
-    background-color: #F4B466;
-    transition: width 0.3s;
+    height: var(--size-border-thin);
+    background-color: var(--color-text-accent);
+    transition: var(--transition-width);
 }
 
 .nav-link:hover::after,
@@ -63,93 +64,93 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-link.active {
-    color: #F4B466;
+    color: var(--color-text-accent);
 }
 
 .pixel-card {
-    background-color: #3D2500;
-    border: 4px solid #000;
-    box-shadow: 8px 8px 0px #000;
-    transition: all 0.3s;
+    background-color: var(--color-bg-secondary);
+    border: var(--border-pixel);
+    box-shadow: var(--shadow-pixel-large);
+    transition: var(--transition-card);
 }
 
 .pixel-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 12px 12px 0px #000;
+    transform: var(--transform-card-hover);
+    box-shadow: var(--shadow-pixel-card-hover);
 }
 
 .nav-bg {
-    background-color: #2D1B00;
-    color: #F7E6D0;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
 }
 .nav-title {
-    color: #F7E6D0;
+    color: var(--color-text-primary);
 }
 
 /* 暗色模式 */
 .dark-mode {
-    background-color: #2D1B00;
-    color: #F7E6D0;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
 }
 
 .dark-mode .pixel-card {
-    background-color: #3D2500;
+    background-color: var(--color-bg-secondary);
 }
 
 /* 暗色模式代码高亮 */
 .dark-mode .hljs {
-    background-color: #311e00;
+    background-color: var(--color-bg-tertiary);
 }
 
 
 /* 亮色模式 */
 .light-mode {
-    background-color: #FFF9F0;
-    color: #3D2500;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
 }
 
 .light-mode h1, .light-mode h2, .light-mode h3, .light-mode h4, .light-mode h5, .light-mode h6 {
-    color: #B87333;
+    color: var(--color-text-secondary);
 }
 
 .light-mode .pixel-card {
-    background-color: #FFEEDD;
+    background-color: var(--color-bg-secondary);
 }
 
 .light-mode .pixel-button {
-    background-color: #B87333;
-    color: #FFF9F0;
+    background-color: var(--color-button-primary);
+    color: var(--color-button-text);
 }
 
 .light-mode .pixel-button:hover {
-    background-color: #D48E3B;
+    background-color: var(--color-button-hover);
 }
 
 .light-mode .nav-link {
-    color: #3D2500;
+    color: var(--color-text-primary);
 }
 
 .light-mode .nav-link:hover {
-    color: #D48E3B;
+    color: var(--color-text-accent);
 }
 
 .light-mode .nav-link::after {
-    background-color: #D48E3B;
+    background-color: var(--color-text-accent);
 }
 
 .light-mode .nav-link.active {
-    color: #D48E3B;
+    color: var(--color-text-accent);
 }
 
 .light-mode .nav-bg{
-    background-color: #FFF9F0;
-    color: #3D2500;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
 }
 .light-mode .nav-title {
-    color: #3D2500;
+    color: var(--color-text-primary);
 }
 
 /* 亮色模式代码高亮 */
 .light-mode .hljs {
-    background-color: #fae2c9;
+    background-color: var(--color-bg-tertiary);
 }
