@@ -4,142 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= config.title %></title>
-<!--    <script src="https://cdn.tailwindcss.com"></script>-->
-    <%- js(['/js/tailwindcss_3.4.17.js']) %>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <%- js(['/js/tailwindcss_3.4.17.js', '/js/pixel-theme.js']) %>
+    <%- css([
+        '/css/layout.css',
+        '/css/excerpt.css',
+        '/css/atom-one-dark.min.css'
+    ]) %>
+    <link href="<%- url_for('/css/pixel-theme.css') %>" rel="stylesheet" type="text/tailwindcss">
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="<%- url_for('/css/excerpt.css') %>" rel="stylesheet">
-    <link href="<%- url_for('/css/layout.css') %>" rel="stylesheet">
-    <link href="<%- url_for('/css/atom-one-dark.min.css') %>" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        // Dark 模式（暖色调）
-                        dark: {
-                            // 主背景 - 深棕色调
-                            bg: '#2D1B00',
-                            // 卡片/次背景 - 中棕色调
-                            card: '#3D2500',
-                            // 主品牌色 - 暖棕色
-                            primary: '#D48E3B',
-                            // 次要强调色 - 暖橙色
-                            secondary: '#F4B466',
-                            // 功能强调色 - 棕色
-                            success: '#B87333',
-                            // 暖强调色 - 橙色
-                            warning: '#E6A045',
-                            // 活力强调色 - 亮黄色
-                            warn: '#FFC87C',
-                            // 正文主色 - 暖白色
-                            text: '#F7E6D0',
-                            // 次要文本 - 浅棕色
-                            note: '#D1B894',
-                            // 分割线 / 边框 - 暗棕色
-                            border: '#5D3A00',
-                            // 高亮背景 - 深棕色
-                            lightCode: '#4A3000'
-                        },
-                        // Light 模式（暖色调）
-                        light: {
-                            // 主背景 - 暖白色
-                            bg: '#FFF9F0',
-                            // 卡片/次背景 - 浅米色
-                            card: '#FFEEDD',
-                            // 主品牌色 - 棕色
-                            primary: '#B87333',
-                            // 次要强调色 - 暖棕色
-                            secondary: '#D48E3B',
-                            // 功能强调色 - 棕橙色
-                            success: '#C9843C',
-                            // 暖强调色 - 橙色
-                            warning: '#E6A045',
-                            // 活力强调色 - 亮黄色
-                            warn: '#FFC87C',
-                            // 正文主色 - 深棕色
-                            text: '#3D2500',
-                            // 次要文本 - 暗棕色
-                            note: '#5D3A00',
-                            // 分割线 / 边框 - 浅棕色
-                            border: '#E6D3B8',
-                            // 高亮背景 - 浅米色
-                            lightCode: '#FFF2E0'
-                        },
-                        // 当前使用的颜色（默认使用dark模式）
-                        primary: '#D48E3B',
-                        secondary: '#F4B466',
-                        success: '#B87333',
-                        warning: '#E6A045',
-                        warn: '#FFC87C',
-                        text: '#F7E6D0',
-                        note: '#D1B894',
-                        border: '#5D3A00',
-                        lightCode: '#4A3000',
-                        pixel: {
-                            blue: '#D48E3B',
-                            pink: '#F4B466',
-                            purple: '#B87333',
-                            green: '#C9843C'
-                        }
-                    },
-                    fontFamily: {
-                        pixel: ['VT323', 'monospace', 'cursive']
-                    },
-                    animation: {
-                        'pixel-bounce': 'bounce 2s infinite',
-                        'pixel-pulse': 'pulse 3s infinite',
-                        'glitch': 'glitch 1s linear infinite',
-                        'scanline': 'scanline 6s linear infinite'
-                    },
-                    keyframes: {
-                        glitch: {
-                            '0%, 100%': { transform: 'translate(0)' },
-                            '20%': { transform: 'translate(-2px, 2px)' },
-                            '40%': { transform: 'translate(-2px, -2px)' },
-                            '60%': { transform: 'translate(2px, 2px)' },
-                            '80%': { transform: 'translate(2px, -2px)' }
-                        },
-                        scanline: {
-                            '0%': { transform: 'translateY(-100%)' },
-                            '100%': { transform: 'translateY(100%)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .text-shadow {
-                text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
-            }
-            .text-shadow-pixel {
-                text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
-            }
-            .pixel-border {
-                box-shadow:
-                    -4px 0 0 0 #000,
-                    4px 0 0 0 #000,
-                    0 -4px 0 0 #000,
-                    0 4px 0 0 #000;
-            }
-            .pixel-art {
-                image-rendering: pixelated;
-                image-rendering: crisp-edges;
-            }
-            .scanline::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 4px;
-                background: rgba(0, 0, 0, 0.1);
-                animation: scanline 6s linear infinite;
-            }
-        }
-    </style>
+
 </head>
 <body class="scanline light-mode">
     <%- partial('_partials/header') %>
