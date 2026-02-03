@@ -70,6 +70,7 @@ h1, h2, h3, h4, h5, h6 {
 .pixel-card {
     background-color: var(--color-bg-secondary);
     border: var(--border-pixel);
+    border-radius: 6px;
     box-shadow: var(--shadow-pixel-large);
     transition: var(--transition-card);
 }
