@@ -15,7 +15,7 @@
 
 </head>
 <body class="scanline light-mode">
-    <%- partial('_partials/component/nav.ejs') %>
+    <%- partial('_partials/component/nav') %>
 
     <main>
         <%- body %>
@@ -24,7 +24,7 @@
     <%- partial('_partials/footer') %>
 
     <!-- 固定到顶部按钮和主题切换按钮 -->
-    <%- partial('_partials/component/fixedBox.ejs') %>
+    <%- partial('_partials/component/fixedBox') %>
 
     <script src="<%- url_for('/js/main.js') %>"></script>
 </body>
