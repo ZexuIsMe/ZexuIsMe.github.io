@@ -78,6 +78,14 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 12px 12px 0px #000;
 }
 
+.nav-bg {
+    background-color: #2D1B00;
+    color: #F7E6D0;
+}
+.nav-title {
+    color: #F7E6D0;
+}
+
 /* 暗色模式 */
 .dark-mode {
     background-color: #2D1B00;
@@ -92,6 +100,7 @@ h1, h2, h3, h4, h5, h6 {
 .dark-mode .hljs {
     background-color: #311e00;
 }
+
 
 /* 亮色模式 */
 .light-mode {
@@ -130,6 +139,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .light-mode .nav-link.active {
     color: #D48E3B;
+}
+
+.light-mode .nav-bg{
+    background-color: #FFF9F0;
+    color: #3D2500;
+}
+.light-mode .nav-title {
+    color: #3D2500;
 }
 
 /* 亮色模式代码高亮 */
