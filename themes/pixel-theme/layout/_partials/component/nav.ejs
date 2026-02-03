@@ -6,9 +6,9 @@
                 <span class="nav-title text-2xl font-bold text-white text-shadow-pixel"><%= config.title %></span>
             </div>
             <div id="menu" class="hidden md:flex space-x-8">
-                <a href="<%= page.path === 'index.html' ? '#home' : url_for('index') + '/#home' %>" class="nav-link active text-white hover:text-pixel-pink text-lg">首页</a>
-                <a href="<%= page.path === 'index.html' ? '#articles' : url_for('index') + '/#articles' %>" class="nav-link text-white hover:text-pixel-pink text-lg">文章</a>
-                <a href="<%= page.path === 'index.html' ? '#about' : url_for('index') + '/#about' %>" class="nav-link text-white hover:text-pixel-pink text-lg">关于我</a>
+                <a href="<%= url_for('index') %>" class="nav-link active text-white hover:text-pixel-pink text-lg">首页</a>
+                <a href="<%= url_for('archive') %>" class="nav-link text-white hover:text-pixel-pink text-lg">归档</a>
+                <a href="<%= url_for('about') %>" class="nav-link text-white hover:text-pixel-pink text-lg">关于我</a>
             </div>
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-text">
@@ -17,9 +17,9 @@
             </div>
         </div>
         <div id="mobile-menu" class="md:hidden hidden pb-4">
-            <a href="<%= page.path === 'index.html' ? '#home' : url_for('index') + '/#home' %>" class="block py-2 text-white hover:text-pixel-pink">首页</a>
-            <a href="<%= page.path === 'index.html' ? '#articles' : url_for('index') + '/#articles' %>" class="block py-2 text-white hover:text-pixel-pink">文章</a>
-            <a href="<%= page.path === 'index.html' ? '#about' : url_for('index') + '/#about' %>" class="block py-2 text-white hover:text-pixel-pink">关于我</a>
+            <a href="<%= url_for('index') %>" class="block py-2 text-white hover:text-pixel-pink">首页</a>
+            <a href="<%= url_for('archive') %>" class="block py-2 text-white hover:text-pixel-pink">归档</a>
+            <a href="<%= url_for('about') %>" class="block py-2 text-white hover:text-pixel-pink">关于我</a>
         </div>
     </div>
 </nav>
@@ -30,6 +30,7 @@
     // 获取导航链接元素
     var navLinks = document.querySelectorAll('.nav-link');
     var mobileLinks = document.querySelectorAll('#mobile-menu a');
+    const STORAGE_KEY = 'activeNavLink';
 
     /**
      * 设置激活的链接
@@ -59,6 +60,39 @@
         }
     }
 
+    /**
+     * 从本地存储初始化激活的链接
+     */
+    function initActiveLinkFromStorage() {
+        var storedLink = localStorage.getItem(STORAGE_KEY);
+        if (storedLink) {
+            // 为桌面端导航链接设置激活状态
+            navLinks.forEach(function(link) {
+                if (link.getAttribute('href') === storedLink) {
+                    setActiveLink(link, navLinks);
+                }
+            });
+            // 为移动端导航链接设置激活状态
+            mobileLinks.forEach(function(link) {
+                if (link.getAttribute('href') === storedLink) {
+                    setActiveLink(link, mobileLinks);
+                }
+            });
+        } else {
+            // 默认选中首页
+            navLinks.forEach(function(link) {
+                if (link.textContent === '首页') {
+                    setActiveLink(link, navLinks);
+                }
+            });
+            mobileLinks.forEach(function(link) {
+                if (link.textContent === '首页') {
+                    setActiveLink(link, mobileLinks);
+                }
+            });
+        }
+    }
+
     // 为桌面端导航链接添加点击事件监听
     navLinks.forEach(function(link) {
         link.addEventListener('click', function(e) {
@@ -70,6 +104,8 @@
                 var targetElement = document.getElementById(targetId); // 获取目标元素
                 smoothScrollTo(targetElement); // 执行平滑滚动
             }
+            // 存储选中的链接到本地存储
+            localStorage.setItem(STORAGE_KEY, href);
             setActiveLink(this, navLinks); // 更新激活状态
         });
     });
@@ -85,8 +121,13 @@
                 var targetElement = document.getElementById(targetId); // 获取目标元素
                 smoothScrollTo(targetElement); // 执行平滑滚动
             }
+            // 存储选中的链接到本地存储
+            localStorage.setItem(STORAGE_KEY, href);
             setActiveLink(this, mobileLinks); // 更新激活状态
         });
     });
+
+    // 页面加载时初始化激活的链接
+    initActiveLinkFromStorage();
 })();
 </script>
