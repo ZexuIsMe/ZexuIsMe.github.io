@@ -1,0 +1,153 @@
+/* 全局表格样式 */
+
+/* 表格容器 */
+.table-container {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+/* 基础表格样式 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-family-base);
+}
+
+/* 表格头部 */
+table thead {
+    background-color: var(--color-bg-primary);
+}
+
+/* 表格头部行 */
+table thead tr {
+    background-color: var(--color-bg-primary);
+}
+
+/* 表格头部单元格 */
+table thead th {
+    padding: 16px;
+    text-align: left;
+    border: 1px solid var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    font-weight: bold;
+    white-space: nowrap;
+    min-width: 150px;
+    max-width: 300px;
+}
+
+/* 表格主体 */
+table tbody {
+    background-color: var(--color-bg-primary);
+}
+
+/* 表格行 */
+table tbody tr {
+    background-color: var(--color-bg-primary);
+    transition: all 0.3s ease;
+}
+
+/* 表格偶数行 */
+table tbody tr:nth-child(even) {
+    background-color: var(--color-bg-secondary);
+}
+
+/* 表格单元格 */
+table tbody td {
+    padding: 16px;
+    border: 1px solid var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    min-width: 150px;
+    max-width: 300px;
+    overflow-y: auto;
+    max-height: 150px;
+}
+
+/* 表格行悬浮效果 */
+table tr:hover {
+    background-color: var(--color-bg-tertiary) !important;
+    transform: scale(1.01);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 暗色模式下的悬浮效果 */
+.dark-mode table tr:hover {
+    border-color: var(--color-dark-text-accent);
+    box-shadow: 0 0 10px rgba(244, 180, 102, 0.3);
+}
+
+/* 亮色模式下的悬浮效果 */
+.light-mode table tr:hover {
+    border-color: var(--color-light-text-accent);
+    box-shadow: 0 0 10px rgba(212, 142, 59, 0.3);
+}
+
+/* 表格单元格内容悬浮效果 */
+table tr:hover td {
+    color: var(--color-text-accent);
+}
+
+/* 表格链接样式 */
+table td a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* 表格链接悬浮效果 */
+table tr:hover td a {
+    color: var(--color-text-accent);
+    text-decoration: underline;
+}
+
+/* 表格分类和标签容器 */
+table td .flex {
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* 表格分类和标签样式 */
+table td .flex span {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-primary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* 表格无数据状态 */
+table tbody tr.empty-row td {
+    text-align: center;
+    padding: 32px;
+}
+
+/* 响应式表格样式 */
+@media (max-width: 768px) {
+    table {
+        font-size: 14px;
+    }
+    
+    table th,
+    table td {
+        padding: 8px;
+    }
+    
+    table th {
+        min-width: 100px;
+    }
+    
+    table td {
+        min-width: 100px;
+    }
+}
+
+/* 为表格单元格添加滚动条 */
+table td {
+    overflow-y: auto;
+    max-height: 150px;
+}
+
+/* 为分类和标签卡片添加样式 */
+table td .flex {
+    flex-wrap: wrap;
+}
