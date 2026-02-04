@@ -1,8 +1,8 @@
 ---
 title: Hexo注入数据
 date: 2026-02-04 16:00:17
-tags: [HEXO, 注入数据]
-categories: [HEXO]
+tags: [Hexo, 注入数据]
+categories: [Hexo]
 ---
 
 本文主要介绍如何通过注入的方式拿取服务器数据

@@ -1,7 +1,7 @@
 ---
 title: Hexo 博客自定义文章渲染模板指南
 date: 2026-02-02 22:00:00
-categories: 技术
+categories: [技术]
 tags: [Hexo, 自定义渲染模板]
 ---
 

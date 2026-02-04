@@ -6,7 +6,7 @@ tags:
   - 归档（Archive）
   - 自定义
   - 分页
-categories: Hexo
+categories: [Hexo]
 ---
 
 本文主要讲解我在使用HEXO做归档页时遇到的问题以及解决方案。

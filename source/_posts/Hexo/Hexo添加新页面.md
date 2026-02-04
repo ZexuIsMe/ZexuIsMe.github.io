@@ -1,7 +1,7 @@
 ---
 title: Hexo 添加新页面
 date: 2026-02-03 12:39:00
-categories: 技术
+categories: [技术]
 tags: [Hexo, Page]
 ---
 
