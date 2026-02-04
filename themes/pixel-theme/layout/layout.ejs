@@ -15,17 +15,21 @@
 
 </head>
 <body class="scanline light-mode">
-    <%- partial('_partials/component/nav') %>
+    <% if (page.layout !== '404') { %>
+        <%- partial('_partials/component/nav') %>
 
-    <main>
+        <main>
+            <%- body %>
+        </main>
+
+        <%- partial('_partials/footer') %>
+
+        <!-- 固定到顶部按钮和主题切换按钮 -->
+        <%- partial('_partials/component/fixedBox') %>
+
+        <script src="<%- url_for('/js/main.js') %>"></script>
+    <% } else { %>
         <%- body %>
-    </main>
-
-    <%- partial('_partials/footer') %>
-
-    <!-- 固定到顶部按钮和主题切换按钮 -->
-    <%- partial('_partials/component/fixedBox') %>
-
-    <script src="<%- url_for('/js/main.js') %>"></script>
+    <% } %>
 </body>
 </html>

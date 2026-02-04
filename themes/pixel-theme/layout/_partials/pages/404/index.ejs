@@ -1,0 +1,73 @@
+<!-- 404错误页面 -->
+<section class="min-h-screen pt-16 bg-dark flex items-center justify-center">
+    <div class="container mx-auto px-4 py-12 text-center">
+        <!-- 404像素艺术图标 -->
+        <div class="mb-8">
+            <div class="text-9xl font-pixel text-pixel-pink text-shadow-pixel animate-bounce">404</div>
+        </div>
+
+        <!-- 错误信息 -->
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-pixel-blue text-shadow-pixel">
+            页面未找到
+        </h1>
+        
+        <p class="text-xl md:text-2xl mb-8 text-note max-w-2xl mx-auto">
+            哎呀！这个页面好像掉进了像素黑洞里...
+        </p>
+
+        <!-- 像素装饰 -->
+        <div class="flex justify-center space-x-4 mb-12">
+            <div class="w-8 h-8 bg-pixel-pink pixel-border"></div>
+            <div class="w-8 h-8 bg-pixel-blue pixel-border"></div>
+            <div class="w-8 h-8 bg-pixel-green pixel-border"></div>
+            <div class="w-8 h-8 bg-pixel-purple pixel-border"></div>
+            <div class="w-8 h-8 bg-pixel-yellow pixel-border"></div>
+        </div>
+
+        <!-- 返回按钮 -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="<%= url_for('index') %>" class="pixel-button bg-pixel-pink hover:bg-pixel-purple transition-colors text-white px-8 py-4 text-lg">
+                <i class="fa fa-home mr-2"></i> 返回首页
+            </a>
+            <a href="<%= url_for('archives') %>" class="pixel-button bg-pixel-blue hover:bg-pixel-green transition-colors text-white px-8 py-4 text-lg">
+                <i class="fa fa-archive mr-2"></i> 浏览归档
+            </a>
+        </div>
+
+        <!-- 可爱的像素角色 -->
+        <div class="mt-16">
+            <div class="inline-block pixel-art pixel-border p-4 bg-gray-800">
+                <div class="text-6xl mb-2">👾</div>
+                <p class="text-sm text-note">这个像素怪物正在寻找丢失的页面...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* 404数字动画 */
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+
+    .animate-bounce {
+        animation: bounce 2s ease-in-out infinite;
+    }
+
+    /* 像素边框效果 */
+    .pixel-border {
+        border: 4px solid;
+        border-image: repeating-linear-gradient(
+            90deg,
+            #ff6b9d,
+            #ff6b9d 2px,
+            #4ecdc4 2px,
+            #4ecdc4 4px
+        ) 4;
+    }
+</style>
