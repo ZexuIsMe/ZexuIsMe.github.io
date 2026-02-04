@@ -15,8 +15,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% if (site.posts && site.posts.length > 0) { %>
-                        <% site.posts.each(function(post, index) { %>
+                    <% if (page.posts && page.posts.length > 0) { %>
+                        <% page.posts.each(function(post, index) { %>
                             <tr>
                                 <td><a href="<%= url_for(post.path) %>"><%= post.title %></a></td>
                                 <td>
