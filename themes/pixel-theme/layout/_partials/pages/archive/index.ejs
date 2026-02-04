@@ -24,7 +24,7 @@
                                         <% if (post.categories && post.categories.length > 0) { %>
                                             <% post.categories.each(function(category) { %>
                                                 <span>
-                                                    <%= category.name %>
+                                                    <a href="<%= url_for(category.path) %>"><%= category.name %></a>
                                                 </span>
                                             <% }); %>
                                         <% } else { %>
@@ -37,7 +37,7 @@
                                         <% if (post.tags && post.tags.length > 0) { %>
                                             <% post.tags.each(function(tag) { %>
                                                 <span>
-                                                    <%= tag.name %>
+                                                    <a href="<%= url_for(tag.path) %>"><%= tag.name %></a>
                                                 </span>
                                             <% }); %>
                                         <% } else { %>
