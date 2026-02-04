@@ -2,7 +2,7 @@
     const getItems = function(target) {
         return JSON.stringify(site[target].map(item => {
                 return {
-                    name: item.name,
+                    name: target === 'posts' ? item.title : item.name,
                     path: item.path
                 }
             }))
@@ -14,7 +14,7 @@
         <!-- 左侧：搜索类型下拉框 -->
         <div class="relative flex-shrink-0">
             <select id="search-type" class="w-full px-4 py-2 bg-dark-card border border-dark-border rounded-md text-dark-text focus:outline-none focus:ring-2 focus:ring-dark-primary appearance-none pr-8">
-                <option value="title" selected>标题</option>
+                <option value="title">标题</option>
                 <option value="category">分类</option>
                 <option value="tag">标签</option>
             </select>
@@ -57,6 +57,10 @@
     const categories = JSON.parse(`<%- getItems('categories') %>`);
     const posts = JSON.parse(`<%- getItems('posts') %>`);
 
+    localStorage.setItem('tags', JSON.stringify(tags));
+    localStorage.setItem('categories', JSON.stringify(categories));
+    localStorage.setItem('posts', JSON.stringify(posts));
+
     // 页面加载完成后初始化
     document.addEventListener('DOMContentLoaded', function() {
         const searchType = document.getElementById('search-type');
@@ -67,6 +71,7 @@
         
         // 切换搜索类型时清空输入框并触发空查询
         searchType.addEventListener('change', function() {
+            console.log('切换搜索类型:', this.value);
             searchInput.value = '';
             clearInput.classList.add('hidden');
             searchDropdown.classList.add('hidden');
@@ -222,15 +227,15 @@
         // 根据类型获取过滤数据
         if (type === 'title') {
             filteredItems = posts.filter(item => 
-                item && item.name && item.name.toLowerCase().includes(lowercaseValue)
+                item.name.toLowerCase().includes(lowercaseValue)
             );
         } else if (type === 'category') {
             filteredItems = categories.filter(item => 
-                item && item.name && item.name.toLowerCase().includes(lowercaseValue)
+                item.name.toLowerCase().includes(lowercaseValue)
             );
         } else if (type === 'tag') {
             filteredItems = tags.filter(item => 
-                item && item.name && item.name.toLowerCase().includes(lowercaseValue)
+                item.name.toLowerCase().includes(lowercaseValue)
             );
         }
         

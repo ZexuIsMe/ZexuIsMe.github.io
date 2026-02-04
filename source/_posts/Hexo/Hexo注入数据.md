@@ -71,4 +71,36 @@ console.log(JSON.parse(tags))
     console.log('tags', tags)
 </script>
 ```
+另外需要注意的是：
 
+```ejs
+<%
+    <!-- √ 正确写法-->
+    let searchType, searchValue
+    if (page.category) {
+        searchType = 'category';
+        searchValue = page.category;
+    } else if (page.tag) {
+        searchType = 'tag';
+        searchValue = page.tag;
+    } else {
+        searchType = 'title';
+        searchValue = '';
+    }
+
+    <!-- × 错误写法 -->
+    if (page.category) {
+        let searchType2 = 'category';
+        let searchValue2 = page.category;
+    } else if (page.tag) {
+        let searchType2 = 'tag';
+        let searchValue2 = page.tag;
+    } else {
+        let searchType2 = 'title';
+        let searchValue2 = '';
+    }
+    console.log(222, searchType2, searchValue2);
+%>
+```
+
+错误写法中，作用域不会提升，导致获取不到参数，控制台报错

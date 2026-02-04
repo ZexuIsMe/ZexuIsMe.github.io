@@ -27,7 +27,7 @@
                                     <div class="flex">
                                         <% if (post.categories && post.categories.length > 0) { %>
                                             <% post.categories.each(function(category) { %>
-                                                <span onclick="handleCategoryClick('<%= category.name %>')"><%= category.name %></span>
+                                                <span onclick="handleCategoryClick('category', '<%= category.name %>')"><%= category.name %></span>
                                             <% }); %>
                                         <% } else { %>
                                             <span>无</span>
@@ -38,7 +38,7 @@
                                     <div class="flex">
                                         <% if (post.tags && post.tags.length > 0) { %>
                                             <% post.tags.each(function(tag) { %>
-                                                <span><%= tag.name %></span>
+                                                <span onclick="handleCategoryClick('tag', '<%= tag.name %>')"><%= tag.name %></span>
                                             <% }); %>
                                         <% } else { %>
                                             <span>无</span>
@@ -79,10 +79,21 @@
         } else {
             console.warn('checkAndUpdateNavState 函数未定义，无法更新导航菜单状态');
         }
+
+        // 从 localStorage 获取搜索参数
+        const searchOptions = localStorage.getItem('search-options');
+        if (searchOptions) {
+            const options = JSON.parse(searchOptions);
+            if (options.isUse) {
+                // TODO 查询会有一闪而过的闪缩，可通过调整table的数据来避免
+                // 具体做法是，先设一个空值数组，判断是否有 search-options，存在则触发搜索，不存在则正常加载数据
+                handleCategoryClick(options.type, options.value);
+            }
+        }
     });
     
     // 处理分类点击事件
-    function handleCategoryClick(categoryName) {
+    function handleCategoryClick(type, name) {
         // 找到搜索组件的DOM元素
         const searchType = document.getElementById('search-type');
         const searchInput = document.getElementById('search-input');
@@ -90,9 +101,9 @@
         
         if (searchType && searchInput) {
             // 设置搜索类型为分类
-            searchType.value = 'category';
+            searchType.value = type;
             // 填充分类名称到输入框
-            searchInput.value = categoryName;
+            searchInput.value = name;
             // 显示清空按钮
             if (clearInput) {
                 clearInput.classList.remove('hidden');
@@ -102,13 +113,12 @@
             const searchEvent = new CustomEvent('search', {
                 bubbles: true,
                 detail: {
-                    type: 'category',
-                    value: categoryName
+                    type: type,
+                    value: name
                 }
             });
             document.dispatchEvent(searchEvent);
-            
-            console.log('分类点击触发搜索:', { type: 'category', value: categoryName });
+            console.log('触发搜索:', { type: type, value: name });
         }
     }
     
