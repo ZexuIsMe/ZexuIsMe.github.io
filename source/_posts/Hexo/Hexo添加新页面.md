@@ -2,7 +2,7 @@
 title: Hexo 添加新页面
 date: 2026-02-03 12:39:00
 categories: 技术
-tags: Hexo, Page
+tags: [Hexo, Page]
 ---
 
 如何在 Hexo 中新开一个页面的操作方法

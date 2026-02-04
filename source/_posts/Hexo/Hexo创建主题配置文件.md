@@ -2,7 +2,7 @@
 title: Hexo 创建主题配置文件
 date: 2026-02-02 23:00:00
 categories: 技术
-tags: Hexo, 主题配置
+tags: [Hexo, 主题配置]
 ---
 
 

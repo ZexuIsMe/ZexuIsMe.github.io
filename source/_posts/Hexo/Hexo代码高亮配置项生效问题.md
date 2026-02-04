@@ -2,9 +2,7 @@
 title: Hexo 代码块高亮生效情况
 date: 2026-02-02 22:00:00
 categories: 技术
-tags: 
-  - Hexo
-  - highlight
+tags: [Hexo, highlight.js]
 ---
 
 解决 Hexo 代码块高亮异常的问题。
