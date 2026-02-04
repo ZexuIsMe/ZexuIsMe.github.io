@@ -2,7 +2,7 @@
 title: Hexo Github Pages 部署
 date: 2026-02-02 22:00:00
 categories: 技术
-tags: Hexo, GitHubPages
+tags: [Hexo, GitHubPages]
 ---
 
 提供手动部署和自动部署两种方案
