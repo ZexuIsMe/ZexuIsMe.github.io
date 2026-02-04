@@ -1,0 +1,27 @@
+<div class="breadcrumb">
+  <script>
+    // 从本地存储加载面包屑数据
+    let breadcrumbItems = JSON.parse(localStorage.getItem('breadcrumbItems') || '[]');
+    if (breadcrumbItems.length === 0) {
+      // 默认添加首页
+      breadcrumbItems = [{ name: '首页', path: '<%= url_for("index") %>' }];
+      localStorage.setItem('breadcrumbItems', JSON.stringify(breadcrumbItems));
+    }
+    // 渲染面包屑
+    let breadcrumbContainer = document.querySelector('.breadcrumb');
+    breadcrumbContainer.innerHTML = '';
+    breadcrumbItems.forEach(function(item, index) {
+      let itemElement = document.createElement('a');
+      itemElement.href = item.path;
+      itemElement.className = 'breadcrumb-item' + (index === 0 ? ' root' : '');
+      itemElement.textContent = item.name;
+      breadcrumbContainer.appendChild(itemElement);
+      if (index < breadcrumbItems.length - 1) {
+        let separatorElement = document.createElement('span');
+        separatorElement.className = 'breadcrumb-separator';
+        separatorElement.textContent = '>';
+        breadcrumbContainer.appendChild(separatorElement);
+      }
+    });
+  </script>
+</div>

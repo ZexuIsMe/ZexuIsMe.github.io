@@ -1,0 +1,267 @@
+<%
+    const getItems = function(target) {
+        return JSON.stringify(site[target].map(item => {
+                return {
+                    name: item.name,
+                    path: item.path
+                }
+            }))
+    }
+%>
+
+<div id="archive-search" class="mb-8">
+    <div class="flex items-center gap-4">
+        <!-- 左侧：搜索类型下拉框 -->
+        <div class="relative flex-shrink-0">
+            <select id="search-type" class="w-full px-4 py-2 bg-dark-card border border-dark-border rounded-md text-dark-text focus:outline-none focus:ring-2 focus:ring-dark-primary appearance-none pr-8">
+                <option value="title" selected>标题</option>
+                <option value="category">分类</option>
+                <option value="tag">标签</option>
+            </select>
+            <!-- 下拉箭头 -->
+            <div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-dark-text" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </div>
+        </div>
+        
+        <!-- 中间：搜索输入框 -->
+        <div class="relative flex-grow">
+            <input type="text" id="search-input" placeholder="请输入搜索内容" class="w-full px-4 py-2 bg-dark-card border border-dark-border rounded-md text-dark-text focus:outline-none focus:ring-2 focus:ring-dark-primary pr-10">
+            <!-- 清空按钮 -->
+            <button id="clear-input" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-dark-text hover:text-dark-primary hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <!-- 搜索结果下拉框 -->
+            <div id="search-dropdown" class="absolute z-10 w-full mt-1 bg-dark-card border border-dark-border rounded-md shadow-lg max-h-60 overflow-y-auto hidden">
+                <!-- 下拉选项将通过 JS 动态生成 -->
+            </div>
+        </div>
+        
+        <!-- 右侧：搜索按钮 -->
+        <div class="flex-shrink-0">
+            <button id="search-button" class="px-4 py-2 bg-dark-primary text-dark-bg rounded-md hover:bg-opacity-90 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const tags = JSON.parse(`<%- getItems('tags') %>`);
+    const categories = JSON.parse(`<%- getItems('categories') %>`);
+    const posts = JSON.parse(`<%- getItems('posts') %>`);
+
+    // 页面加载完成后初始化
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchType = document.getElementById('search-type');
+        const searchInput = document.getElementById('search-input');
+        const clearInput = document.getElementById('clear-input');
+        const searchButton = document.getElementById('search-button');
+        const searchDropdown = document.getElementById('search-dropdown');
+        
+        // 切换搜索类型时清空输入框并触发空查询
+        searchType.addEventListener('change', function() {
+            searchInput.value = '';
+            clearInput.classList.add('hidden');
+            searchDropdown.classList.add('hidden');
+            
+            // 触发空查询，重置表格数据
+            const searchEvent = new CustomEvent('search', {
+                bubbles: true,
+                detail: {
+                    type: this.value,
+                    value: ''
+                }
+            });
+            document.dispatchEvent(searchEvent);
+            console.log('触发空查询，类型:', this.value);
+        });
+        
+        // 输入事件：显示/隐藏清空按钮，处理搜索逻辑
+        searchInput.addEventListener('input', function() {
+            const value = this.value.trim();
+            
+            // 显示/隐藏清空按钮
+            if (value) {
+                clearInput.classList.remove('hidden');
+            } else {
+                clearInput.classList.add('hidden');
+                searchDropdown.classList.add('hidden');
+                return;
+            }
+            
+            // 处理搜索逻辑
+            handleSearch(value, searchType.value, searchDropdown, searchInput);
+        });
+        
+        // 键盘事件：上下按键选择，回车键确认
+        searchInput.addEventListener('keydown', function(event) {
+            const dropdown = searchDropdown;
+            if (dropdown.classList.contains('hidden')) return;
+            
+            const options = dropdown.querySelectorAll('.cursor-pointer');
+            if (options.length === 0) return;
+            
+            // 找到当前选中的选项
+            let selectedIndex = -1;
+            options.forEach((option, index) => {
+                if (option.classList.contains('bg-dark-primary')) {
+                    selectedIndex = index;
+                }
+            });
+            
+            // 处理上下按键
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex + 1) % options.length;
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                selectedIndex = selectedIndex <= 0 ? options.length - 1 : selectedIndex - 1;
+            } else if (event.key === 'Enter') {
+                event.preventDefault();
+                if (selectedIndex >= 0) {
+                    options[selectedIndex].click();
+                }
+                return;
+            } else {
+                // 其他按键，不处理
+                return;
+            }
+            
+            // 移除所有选项的选中状态
+            options.forEach(option => {
+                option.classList.remove('bg-dark-primary', 'text-dark-bg');
+                option.classList.add('text-dark-text');
+            });
+            
+            // 添加当前选项的选中状态
+            options[selectedIndex].classList.remove('text-dark-text');
+            options[selectedIndex].classList.add('bg-dark-primary', 'text-dark-bg');
+            
+            // 滚动到选中的选项
+            options[selectedIndex].scrollIntoView({ block: 'nearest' });
+        });
+        
+        // 清空输入框并触发空查询
+        clearInput.addEventListener('click', function() {
+            searchInput.value = '';
+            this.classList.add('hidden');
+            searchDropdown.classList.add('hidden');
+            
+            // 触发空查询，重置表格数据
+            const searchEvent = new CustomEvent('search', {
+                bubbles: true,
+                detail: {
+                    type: searchType.value,
+                    value: ''
+                }
+            });
+            document.dispatchEvent(searchEvent);
+            console.log('触发空查询，类型:', searchType.value);
+        });
+        
+        // 搜索按钮点击事件
+        searchButton.addEventListener('click', function() {
+            const value = searchInput.value.trim();
+            const type = searchType.value;
+            
+            // 触发自定义事件，将搜索参数传递给父组件
+            const searchEvent = new CustomEvent('search', {
+                bubbles: true,
+                detail: {
+                    type: type,
+                    value: value
+                }
+            });
+            document.dispatchEvent(searchEvent);
+            
+            // 这里可以添加搜索提交逻辑
+            console.log('搜索:', value, '类型:', type);
+            searchDropdown.classList.add('hidden');
+        });
+        
+        // 回车键直接搜索（当输入框有内容且下拉框隐藏时）
+        searchInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter' && searchDropdown.classList.contains('hidden')) {
+                const value = this.value.trim();
+                const type = searchType.value;
+                
+                // 触发自定义事件，将搜索参数传递给父组件
+                const searchEvent = new CustomEvent('search', {
+                    bubbles: true,
+                    detail: {
+                        type: type,
+                        value: value
+                    }
+                });
+                document.dispatchEvent(searchEvent);
+                
+                console.log('搜索:', value, '类型:', type);
+            }
+        });
+        
+        // 点击外部关闭下拉框
+        document.addEventListener('click', function(event) {
+            if (searchDropdown && !searchDropdown.contains(event.target) && !event.target.closest('input') && !event.target.closest('select')) {
+                searchDropdown.classList.add('hidden');
+            }
+        });
+    });
+    
+    // 处理搜索逻辑
+    function handleSearch(value, type, dropdown, inputElement) {
+        const lowercaseValue = value.toLowerCase();
+        let filteredItems = [];
+        
+        // 根据类型获取过滤数据
+        if (type === 'title') {
+            filteredItems = posts.filter(item => 
+                item && item.name && item.name.toLowerCase().includes(lowercaseValue)
+            );
+        } else if (type === 'category') {
+            filteredItems = categories.filter(item => 
+                item && item.name && item.name.toLowerCase().includes(lowercaseValue)
+            );
+        } else if (type === 'tag') {
+            filteredItems = tags.filter(item => 
+                item && item.name && item.name.toLowerCase().includes(lowercaseValue)
+            );
+        }
+        
+        // 渲染下拉框内容
+        renderDropdown(dropdown, filteredItems, inputElement);
+    }
+    
+    // 渲染下拉框内容
+    function renderDropdown(dropdown, items, inputElement) {
+        dropdown.innerHTML = '';
+        
+        if (items.length === 0) {
+            const noResult = document.createElement('div');
+            noResult.className = 'px-4 py-2 text-dark-text';
+            noResult.textContent = '无匹配结果';
+            dropdown.appendChild(noResult);
+        } else {
+            items.forEach(item => {
+                const option = document.createElement('div');
+                option.className = 'px-4 py-2 text-dark-text hover:bg-dark-primary hover:text-dark-bg cursor-pointer';
+                option.textContent = item.name;
+                option.addEventListener('click', function() {
+                    inputElement.value = item.name;
+                    dropdown.classList.add('hidden');
+                    // 显示清空按钮
+                    document.getElementById('clear-input').classList.remove('hidden');
+                });
+                dropdown.appendChild(option);
+            });
+        }
+        
+        dropdown.classList.remove('hidden');
+    }
+</script>

@@ -68,3 +68,19 @@
         </div>
     </div>
 </section>
+
+<script>
+    // 页面加载时检查是否为归档页面，如果是则更新导航菜单状态
+    document.addEventListener('DOMContentLoaded', function() {
+        // 检查当前页面是否为归档页面
+        const currentPath = window.location.pathname;
+        const archivesPath = '<%= url_for("about") %>';
+        
+        // 使用全局函数更新导航菜单状态
+        if (typeof checkAndUpdateNavState === 'function') {
+            checkAndUpdateNavState(currentPath, archivesPath);
+        } else {
+            console.warn('checkAndUpdateNavState 函数未定义，无法更新导航菜单状态');
+        }
+    });
+</script>

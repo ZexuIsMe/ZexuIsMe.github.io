@@ -28,8 +28,8 @@
 // 导航栏功能初始化
 (function() {
     // 获取导航链接元素
-    var navLinks = document.querySelectorAll('.nav-link');
-    var mobileLinks = document.querySelectorAll('#mobile-menu a');
+    let navLinks = document.querySelectorAll('.nav-link');
+    let mobileLinks = document.querySelectorAll('#mobile-menu a');
     const STORAGE_KEY = 'activeNavLink';
 
     /**
@@ -50,7 +50,7 @@
      * 从本地存储初始化激活的链接
      */
     function initActiveLinkFromStorage() {
-        var storedLink = localStorage.getItem(STORAGE_KEY);
+        let storedLink = localStorage.getItem(STORAGE_KEY);
         if (storedLink) {
             // 为桌面端导航链接设置激活状态
             navLinks.forEach(function(link) {
@@ -79,23 +79,34 @@
         }
     }
 
+    // 更新面包屑数据
+    function updateBreadcrumb(link) {
+        let href = link.getAttribute('href');
+        let text = link.textContent;
+        // 清空面包屑并添加当前菜单
+        let breadcrumbItems = [{ name: text, path: href }];
+        localStorage.setItem('breadcrumbItems', JSON.stringify(breadcrumbItems));
+    }
+
     // 为桌面端导航链接添加点击事件监听
     navLinks.forEach(function(link) {
         link.addEventListener('click', function(e) {
-            var href = this.getAttribute('href');
+            let href = this.getAttribute('href');
             // 存储选中的链接到本地存储
             localStorage.setItem(STORAGE_KEY, href);
             setActiveLink(this, navLinks); // 更新激活状态
+            updateBreadcrumb(this); // 更新面包屑
         });
     });
 
     // 为移动端导航链接添加点击事件监听
     mobileLinks.forEach(function(link) {
         link.addEventListener('click', function(e) {
-            var href = this.getAttribute('href');
+            let href = this.getAttribute('href');
             // 存储选中的链接到本地存储
             localStorage.setItem(STORAGE_KEY, href);
             setActiveLink(this, mobileLinks); // 更新激活状态
+            updateBreadcrumb(this); // 更新面包屑
         });
     });
 

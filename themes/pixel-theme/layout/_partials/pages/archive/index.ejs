@@ -1,7 +1,11 @@
 <section class="archive min-h-screen py-12">
     <div class="container mx-auto px-4">
+
         <h1 class="text-4xl font-bold text-center mb-12 text-white">文章归档</h1>
-        
+
+        <!-- 搜索框 -->
+        <%- partial('search') %>
+
         <div class="table-container">
             <table>
                 <thead>
@@ -23,9 +27,7 @@
                                     <div class="flex">
                                         <% if (post.categories && post.categories.length > 0) { %>
                                             <% post.categories.each(function(category) { %>
-                                                <span>
-                                                    <a href="<%= url_for(category.path) %>"><%= category.name %></a>
-                                                </span>
+                                                <span onclick="handleCategoryClick('<%= category.name %>')"><%= category.name %></span>
                                             <% }); %>
                                         <% } else { %>
                                             <span>无</span>
@@ -36,9 +38,7 @@
                                     <div class="flex">
                                         <% if (post.tags && post.tags.length > 0) { %>
                                             <% post.tags.each(function(tag) { %>
-                                                <span>
-                                                    <a href="<%= url_for(tag.path) %>"><%= tag.name %></a>
-                                                </span>
+                                                <span><%= tag.name %></span>
                                             <% }); %>
                                         <% } else { %>
                                             <span>无</span>
@@ -65,3 +65,108 @@
         <%- partial('../../component/pagination') %>
     </div>
 </section>
+
+<script>
+    // 页面加载时检查是否为归档页面，如果是则更新导航菜单状态
+    document.addEventListener('DOMContentLoaded', function() {
+        // 检查当前页面是否为归档页面
+        const currentPath = window.location.pathname;
+        const archivesPath = '<%= url_for("archives") %>';
+        
+        // 使用全局函数更新导航菜单状态
+        if (typeof checkAndUpdateNavState === 'function') {
+            checkAndUpdateNavState(currentPath, archivesPath);
+        } else {
+            console.warn('checkAndUpdateNavState 函数未定义，无法更新导航菜单状态');
+        }
+    });
+    
+    // 处理分类点击事件
+    function handleCategoryClick(categoryName) {
+        // 找到搜索组件的DOM元素
+        const searchType = document.getElementById('search-type');
+        const searchInput = document.getElementById('search-input');
+        const clearInput = document.getElementById('clear-input');
+        
+        if (searchType && searchInput) {
+            // 设置搜索类型为分类
+            searchType.value = 'category';
+            // 填充分类名称到输入框
+            searchInput.value = categoryName;
+            // 显示清空按钮
+            if (clearInput) {
+                clearInput.classList.remove('hidden');
+            }
+            
+            // 触发搜索事件
+            const searchEvent = new CustomEvent('search', {
+                bubbles: true,
+                detail: {
+                    type: 'category',
+                    value: categoryName
+                }
+            });
+            document.dispatchEvent(searchEvent);
+            
+            console.log('分类点击触发搜索:', { type: 'category', value: categoryName });
+        }
+    }
+    
+    // 监听搜索事件
+    document.addEventListener('search', function(event) {
+        const { type, value } = event.detail;
+        console.log('接收到搜索参数:', { type, value });
+        
+        // 过滤表格数据
+        filterTable(type, value);
+    });
+    
+    // 过滤表格数据
+    function filterTable(searchType, searchValue) {
+        const table = document.querySelector('.table-container table');
+        const rows = table.querySelectorAll('tbody tr:not(.empty-row)');
+        const searchTerm = searchValue.toLowerCase();
+        let hasMatch = false;
+        
+        // 遍历表格行，根据搜索类型和值进行过滤
+        rows.forEach(row => {
+            // 如果搜索值为空，显示所有行
+            if (!searchTerm) {
+                row.style.display = '';
+                hasMatch = true;
+                return;
+            }
+            
+            let cellText = '';
+            
+            // 根据搜索类型获取对应的单元格文本
+            if (searchType === 'title') {
+                // 标题列
+                const titleCell = row.querySelector('td:nth-child(1)');
+                cellText = titleCell ? titleCell.textContent.toLowerCase() : '';
+            } else if (searchType === 'category') {
+                // 分类列
+                const categoryCell = row.querySelector('td:nth-child(2)');
+                cellText = categoryCell ? categoryCell.textContent.toLowerCase() : '';
+            } else if (searchType === 'tag') {
+                // 标签列
+                const tagCell = row.querySelector('td:nth-child(3)');
+                cellText = tagCell ? tagCell.textContent.toLowerCase() : '';
+            }
+            
+            // 检查是否匹配
+            if (cellText.includes(searchTerm)) {
+                row.style.display = '';
+                hasMatch = true;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+        
+        // 显示或隐藏"暂无文章"提示
+        const emptyRow = table.querySelector('tbody tr.empty-row');
+        if (emptyRow) {
+            emptyRow.style.display = hasMatch ? 'none' : '';
+        }
+    }
+</script>
