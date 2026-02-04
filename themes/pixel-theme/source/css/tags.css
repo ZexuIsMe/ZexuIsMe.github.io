@@ -1,0 +1,86 @@
+/* 全局标签样式 */
+
+/* 标签容器样式 */
+.tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* 标签样式 */
+.tag-container span {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-primary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+/* 标签悬浮效果 */
+.tag-container span:hover {
+    background-color: var(--color-button-primary);
+    color: var(--color-button-text);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-pixel);
+    cursor: pointer;
+}
+
+/* 暗色模式下的标签悬浮效果 */
+.dark-mode .tag-container span:hover {
+    background-color: var(--color-dark-button-primary);
+    color: var(--color-dark-button-text);
+    box-shadow: 0 0 8px rgba(244, 180, 102, 0.5);
+    cursor: pointer;
+}
+
+/* 亮色模式下的标签悬浮效果 */
+.light-mode .tag-container span:hover {
+    background-color: var(--color-light-button-primary);
+    color: var(--color-light-button-text);
+    box-shadow: 0 0 8px rgba(212, 142, 59, 0.5);
+    cursor: pointer;
+}
+
+/* 表格中的标签容器样式 */
+table td .flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* 表格中的标签样式 */
+table td .flex span {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-primary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* 表格中的标签悬浮效果 */
+table td .flex span:hover {
+    background-color: var(--color-button-primary);
+    color: var(--color-button-text);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-pixel);
+    cursor: pointer;
+}
+
+/* 暗色模式下的表格标签悬浮效果 */
+.dark-mode table td .flex span:hover {
+    background-color: var(--color-dark-button-primary);
+    color: var(--color-dark-button-text);
+    box-shadow: 0 0 8px rgba(244, 180, 102, 0.5);
+    cursor: pointer;
+}
+
+/* 亮色模式下的表格标签悬浮效果 */
+.light-mode table td .flex span:hover {
+    background-color: var(--color-light-button-primary);
+    color: var(--color-light-button-text);
+    box-shadow: 0 0 8px rgba(212, 142, 59, 0.5);
+    cursor: pointer;
+}

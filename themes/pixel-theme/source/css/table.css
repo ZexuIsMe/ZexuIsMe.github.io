@@ -100,21 +100,6 @@ table tr:hover td a {
     /*text-decoration: underline;*/
 }
 
-/* 表格分类和标签容器 */
-table td .flex {
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-/* 表格分类和标签样式 */
-table td .flex span {
-    background-color: var(--color-bg-tertiary);
-    color: var(--color-text-primary);
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
 /* 表格无数据状态 */
 table tbody tr.empty-row td {
     text-align: center;
