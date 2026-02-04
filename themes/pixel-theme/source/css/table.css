@@ -65,7 +65,7 @@ table tbody td {
 /* 表格行悬浮效果 */
 table tr:hover {
     background-color: var(--color-bg-tertiary) !important;
-    transform: scale(1.01);
+    transform: scale(0.99);
     transition: all 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -97,7 +97,7 @@ table td a {
 /* 表格链接悬浮效果 */
 table tr:hover td a {
     color: var(--color-text-accent);
-    text-decoration: underline;
+    /*text-decoration: underline;*/
 }
 
 /* 表格分类和标签容器 */
