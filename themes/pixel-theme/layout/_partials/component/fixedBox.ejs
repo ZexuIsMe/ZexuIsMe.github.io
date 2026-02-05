@@ -54,7 +54,13 @@
             }
         });
     
-        var backToTopButton = document.getElementById('back-to-top');
+        let backToTopButton = document.getElementById('back-to-top');
+        let backToTopTooltip = backToTopButton ? backToTopButton.nextElementSibling : null;
+        let themeToggleButton = document.getElementById('theme-toggle');
+        let themeToggleTooltip = themeToggleButton ? themeToggleButton.nextElementSibling : null;
+        
+        // 存储定时器
+        let tooltipTimers = {};
 
         // 监听滚动事件
         window.addEventListener('scroll', function() {
@@ -66,6 +72,12 @@
                 // 当滚动距离小于 300px 时隐藏按钮
                 backToTopButton.classList.remove('opacity-100', 'visible');
                 backToTopButton.classList.add('opacity-0', 'invisible');
+                
+                // 同步隐藏 tooltip
+                if (backToTopTooltip) {
+                    backToTopTooltip.classList.remove('opacity-100', 'visible');
+                    backToTopTooltip.classList.add('opacity-0', 'invisible');
+                }
             }
         });
 
@@ -77,14 +89,59 @@
                 behavior: 'smooth'
             });
         });
+        
+        // 显示 tooltip 函数
+        function showTooltip(tooltip, buttonId) {
+            // 清除之前的定时器
+            if (tooltipTimers[buttonId]) {
+                clearTimeout(tooltipTimers[buttonId]);
+            }
+            
+            // 显示 tooltip
+            tooltip.classList.remove('opacity-0', 'invisible');
+            tooltip.classList.add('opacity-100', 'visible');
+            
+            // 设置 3 秒后自动隐藏
+            tooltipTimers[buttonId] = setTimeout(function() {
+                hideTooltip(tooltip);
+            }, 3000);
+        }
+        
+        // 隐藏 tooltip 函数
+        function hideTooltip(tooltip) {
+            tooltip.classList.remove('opacity-100', 'visible');
+            tooltip.classList.add('opacity-0', 'invisible');
+        }
+        
+        // 为回到顶部按钮添加鼠标事件
+        if (backToTopButton && backToTopTooltip) {
+            backToTopButton.addEventListener('mouseenter', function() {
+                // 检查按钮是否可见
+                if (backToTopButton.classList.contains('visible')) {
+                    showTooltip(backToTopTooltip, 'back-to-top');
+                }
+            });
+            
+            backToTopButton.addEventListener('mouseleave', function() {
+                hideTooltip(backToTopTooltip);
+            });
+        }
+        
+        // 为主题切换按钮添加鼠标事件
+        if (themeToggleButton && themeToggleTooltip) {
+            themeToggleButton.addEventListener('mouseenter', function() {
+                showTooltip(themeToggleTooltip, 'theme-toggle');
+            });
+            
+            themeToggleButton.addEventListener('mouseleave', function() {
+                hideTooltip(themeToggleTooltip);
+            });
+        }
     })();
 </script>
 
 <style>
-    .relative:hover .tooltip {
-        opacity: 1;
-        visibility: visible;
-    }
+    /* 移除 hover 样式，改为通过 JavaScript 控制 */
     
     .tooltip {
         pointer-events: none;
