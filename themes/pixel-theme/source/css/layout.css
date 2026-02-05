@@ -3,6 +3,7 @@
 @import './variables.css';
 @import './table.css';
 @import './tags.css';
+@import './nav.css';
 
 body {
     font-family: var(--font-family-base);
@@ -39,36 +40,6 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: none;
 }
 
-.nav-link {
-    position: var(--position-relative);
-    transition: var(--transition-nav);
-    color: var(--color-text-primary);
-}
-
-.nav-link:hover {
-    color: var(--color-text-accent);
-}
-
-.nav-link::after {
-    content: '';
-    position: var(--position-absolute);
-    bottom: calc(0px - var(--size-margin-bottom-nav));
-    left: 0;
-    width: 0;
-    height: var(--size-border-thin);
-    background-color: var(--color-text-accent);
-    transition: var(--transition-width);
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 100%;
-}
-
-.nav-link.active {
-    color: var(--color-text-accent);
-}
-
 .pixel-card {
     background-color: var(--color-bg-secondary);
     border: var(--border-pixel);
@@ -80,14 +51,6 @@ h1, h2, h3, h4, h5, h6 {
 .pixel-card:hover {
     transform: var(--transform-card-hover);
     box-shadow: var(--shadow-pixel-card-hover);
-}
-
-.nav-bg {
-    background-color: var(--color-bg-primary);
-    color: var(--color-text-primary);
-}
-.nav-title {
-    color: var(--color-text-primary);
 }
 
 /* 暗色模式 */
@@ -127,30 +90,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .light-mode .pixel-button:hover {
     background-color: var(--color-button-hover);
-}
-
-.light-mode .nav-link {
-    color: var(--color-text-primary);
-}
-
-.light-mode .nav-link:hover {
-    color: var(--color-text-accent);
-}
-
-.light-mode .nav-link::after {
-    background-color: var(--color-text-accent);
-}
-
-.light-mode .nav-link.active {
-    color: var(--color-text-accent);
-}
-
-.light-mode .nav-bg{
-    background-color: var(--color-bg-primary);
-    color: var(--color-text-primary);
-}
-.light-mode .nav-title {
-    color: var(--color-text-primary);
 }
 
 /* 亮色模式代码高亮 */

@@ -3,23 +3,25 @@
         <div class="flex justify-between items-center py-4">
             <div class="flex items-center space-x-4">
                 <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/045d52041e0640dbba5b55b00bcffd70~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=20260202192528FF625BE2146F4D36E478&rrcfp=f06b921b&x-expires=1772623642&x-signature=tTj5R5wpKcuVun%2BC4uGNbeXo1bc%3D" alt="Logo" class="w-12 h-12 pixel-art pixel-border">
-                <span class="nav-title text-2xl font-bold text-white text-shadow-pixel"><%= config.title %></span>
+                <span class="nav-title text-2xl font-bold text-text-primary text-shadow-pixel"><%= config.title %></span>
             </div>
             <div id="menu" class="hidden md:flex space-x-8">
-                <a href="<%= url_for('index') %>" class="nav-link active text-white hover:text-pixel-pink text-lg">首页</a>
-                <a href="<%= url_for('archives') %>" class="nav-link text-white hover:text-pixel-pink text-lg">归档</a>
-                <a href="<%= url_for('about') %>" class="nav-link text-white hover:text-pixel-pink text-lg">关于我</a>
+                <a href="<%= url_for('index') %>" class="nav-link active text-text-primary hover:text-text-accent text-lg">首页</a>
+                <a href="<%= url_for('archives') %>" class="nav-link text-text-primary hover:text-text-accent text-lg">归档</a>
+                <a href="<%= url_for('about') %>" class="nav-link text-text-primary hover:text-text-accent text-lg">关于我</a>
             </div>
             <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-text">
-                    <i class="fa fa-bars text-2xl"></i>
+                <button id="mobile-menu-button" class="text-text-primary hover:text-text-accent">
+                    <i id="menu-icon" class="fa fa-bars text-2xl transition-transform duration-300"></i>
                 </button>
             </div>
         </div>
-        <div id="mobile-menu" class="md:hidden hidden pb-4">
-            <a href="<%= url_for('index') %>" class="block py-2 text-white hover:text-pixel-pink">首页</a>
-            <a href="<%= url_for('archives') %>" class="block py-2 text-white hover:text-pixel-pink">归档</a>
-            <a href="<%= url_for('about') %>" class="block py-2 text-white hover:text-pixel-pink">关于我</a>
+        <div id="mobile-menu" class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out opacity-0 absolute right-4 mt-2 rounded-md shadow-lg min-w-40">
+            <div class="py-2 px-4" style="background-color: var(--color-bg-secondary);">
+                <a href="<%= url_for('index') %>" class="nav-link block py-2 text-text-primary hover:text-text-accent">首页</a>
+                <a href="<%= url_for('archives') %>" class="nav-link block py-2 text-text-primary hover:text-text-accent">归档</a>
+                <a href="<%= url_for('about') %>" class="nav-link block py-2 text-text-primary hover:text-text-accent">关于我</a>
+            </div>
         </div>
     </div>
 </nav>
@@ -31,6 +33,52 @@
     let navLinks = document.querySelectorAll('.nav-link');
     let mobileLinks = document.querySelectorAll('#mobile-menu a');
     const STORAGE_KEY = 'activeNavLink';
+
+    // 移动端菜单切换
+    let mobileMenuButton = document.getElementById('mobile-menu-button');
+    let mobileMenu = document.getElementById('mobile-menu');
+    let menuIcon = document.getElementById('menu-icon');
+    let isMenuOpen = false;
+    
+    // 收起菜单函数
+    function closeMobileMenu() {
+        if (isMenuOpen) {
+            isMenuOpen = false;
+            mobileMenu.classList.remove('max-h-64', 'opacity-100');
+            mobileMenu.classList.add('max-h-0', 'opacity-0');
+            menuIcon.classList.remove('rotate-90');
+        }
+    }
+    
+    if (mobileMenuButton && mobileMenu && menuIcon) {
+        mobileMenuButton.addEventListener('click', function() {
+            isMenuOpen = !isMenuOpen;
+            
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('max-h-0', 'opacity-0');
+                mobileMenu.classList.add('max-h-64', 'opacity-100');
+                menuIcon.classList.add('rotate-90');
+            } else {
+                mobileMenu.classList.remove('max-h-64', 'opacity-100');
+                mobileMenu.classList.add('max-h-0', 'opacity-0');
+                menuIcon.classList.remove('rotate-90');
+            }
+        });
+        
+        // 点击非菜单区域时收起菜单
+        document.addEventListener('click', function(event) {
+            if (isMenuOpen && !mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                closeMobileMenu();
+            }
+        });
+        
+        // 滚动时收起菜单
+        window.addEventListener('scroll', function() {
+            if (isMenuOpen) {
+                closeMobileMenu();
+            }
+        });
+    }
 
     /**
      * 设置激活的链接
@@ -107,6 +155,8 @@
             localStorage.setItem(STORAGE_KEY, href);
             setActiveLink(this, mobileLinks); // 更新激活状态
             updateBreadcrumb(this); // 更新面包屑
+            // 点击链接后关闭移动端菜单
+            closeMobileMenu();
         });
     });
 
