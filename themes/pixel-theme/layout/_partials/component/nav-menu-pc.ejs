@@ -1,0 +1,64 @@
+<div id="menu" class="hidden md:flex space-x-8">
+    <a href="<%= url_for('index') %>" class="nav-link active text-text-primary hover:text-text-accent text-lg">首页</a>
+    <a href="<%= url_for('archives') %>" class="nav-link text-text-primary hover:text-text-accent text-lg">归档</a>
+    <a href="<%= url_for('about') %>" class="nav-link text-text-primary hover:text-text-accent text-lg">关于我</a>
+</div>
+
+<script>
+
+    // 获取桌面端导航链接元素
+    let navLinks = document.querySelectorAll('#menu .nav-link');
+    const STORAGE_KEY = 'activeNavLink';
+
+    /**
+     * 设置激活的链接
+     * @param {HTMLElement} clickedLink - 被点击的链接元素
+     * @param {NodeList} allLinks - 所有链接元素列表
+     */
+    function setActiveLink(clickedLink, allLinks) {
+        //移除所有链接的 active 类
+        allLinks.forEach(function(link) {
+            link.classList.remove('active');
+        });
+        // 为被点击的链接添加 active 类
+        clickedLink.classList.add('active');
+    }
+
+    /**
+     * 从本地存储初始化激活的链接
+     */
+    function initActiveLinkFromStorage() {
+        let storedLink = localStorage.getItem(STORAGE_KEY);
+        if (storedLink) {
+            // 为桌面端导航链接设置激活状态
+            navLinks.forEach(function(link) {
+                if (link.getAttribute('href') === storedLink) {
+                    setActiveLink(link, navLinks);
+                }
+            });
+        } else {
+            // 默认选中首页
+            navLinks.forEach(function(link) {
+                if (link.textContent === '首页') {
+                    setActiveLink(link, navLinks);
+                }
+            });
+        }
+    }
+
+    // 为桌面端导航链接添加点击事件监听
+    navLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            let href = this.getAttribute('href');
+            // 存储选中的链接到本地存储
+            localStorage.setItem(STORAGE_KEY, href);
+            setActiveLink(this, navLinks); // 更新激活状态
+        });
+    });
+
+    // 页面加载时初始化激活的链接
+    document.addEventListener('DOMContentLoaded', function() {
+        // 初始化导航菜单
+        initActiveLinkFromStorage();
+    });
+</script>

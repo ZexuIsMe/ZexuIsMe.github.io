@@ -1,0 +1,121 @@
+<div class="md:hidden">
+    <button id="mobile-menu-button" class="text-text-primary hover:text-text-accent">
+        <i id="menu-icon" class="fas fa-bars text-2xl transition-transform duration-300"></i>
+    </button>
+</div>
+<div id="mobile-menu" class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out opacity-0 absolute right-4 mt-2 rounded-md shadow-lg min-w-40">
+    <div class="py-2 px-4" style="background-color: var(--color-bg-secondary);">
+        <a href="<%= url_for('index') %>" class="nav-link block py-2 text-text-primary hover:text-text-accent">首页</a>
+        <a href="<%= url_for('archives') %>" class="nav-link block py-2 text-text-primary hover:text-text-accent">归档</a>
+        <a href="<%= url_for('about') %>" class="nav-link block py-2 text-text-primary hover:text-text-accent">关于我</a>
+    </div>
+</div>
+
+<script>
+// 移动端导航菜单逻辑
+(function() {
+    // 获取移动端导航链接元素
+    let mobileLinks = document.querySelectorAll('#mobile-menu a');
+    const STORAGE_KEY = 'activeNavLink';
+
+    // 移动端菜单切换
+    let mobileMenuButton = document.getElementById('mobile-menu-button');
+    let mobileMenu = document.getElementById('mobile-menu');
+    let menuIcon = document.getElementById('menu-icon');
+    let isMenuOpen = false;
+
+    /**
+     * 收起菜单函数
+     */
+    function closeMobileMenu() {
+        if (isMenuOpen) {
+            isMenuOpen = false;
+            mobileMenu.classList.remove('max-h-64', 'opacity-100');
+            mobileMenu.classList.add('max-h-0', 'opacity-0');
+            menuIcon.classList.remove('rotate-90');
+        }
+    }
+
+    if (mobileMenuButton && mobileMenu && menuIcon) {
+        // 移动端菜单按钮点击事件
+        mobileMenuButton.addEventListener('click', function() {
+            isMenuOpen = !isMenuOpen;
+
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('max-h-0', 'opacity-0');
+                mobileMenu.classList.add('max-h-64', 'opacity-100');
+                menuIcon.classList.add('rotate-90');
+            } else {
+                mobileMenu.classList.remove('max-h-64', 'opacity-100');
+                mobileMenu.classList.add('max-h-0', 'opacity-0');
+                menuIcon.classList.remove('rotate-90');
+            }
+        });
+
+        // 点击非菜单区域时收起菜单
+        document.addEventListener('click', function(event) {
+            if (isMenuOpen && !mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // 滚动时收起菜单
+        window.addEventListener('scroll', function() {
+            if (isMenuOpen) {
+                closeMobileMenu();
+            }
+        });
+    }
+
+    /**
+     * 设置激活的链接
+     * @param {HTMLElement} clickedLink - 被点击的链接元素
+     * @param {NodeList} allLinks - 所有链接元素列表
+     */
+    function setActiveLink(clickedLink, allLinks) {
+        // 移除所有链接的 active 类
+        allLinks.forEach(function(link) {
+            link.classList.remove('active');
+        });
+        // 为被点击的链接添加 active 类
+        clickedLink.classList.add('active');
+    }
+
+    /**
+     * 从本地存储初始化激活的链接
+     */
+    function initActiveLinkFromStorage() {
+        let storedLink = localStorage.getItem(STORAGE_KEY);
+        if (storedLink) {
+            // 为移动端导航链接设置激活状态
+            mobileLinks.forEach(function(link) {
+                if (link.getAttribute('href') === storedLink) {
+                    setActiveLink(link, mobileLinks);
+                }
+            });
+        } else {
+            // 默认选中首页
+            mobileLinks.forEach(function(link) {
+                if (link.textContent === '首页') {
+                    setActiveLink(link, mobileLinks);
+                }
+            });
+        }
+    }
+
+    // 为移动端导航链接添加点击事件监听
+    mobileLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            let href = this.getAttribute('href');
+            // 存储选中的链接到本地存储
+            localStorage.setItem(STORAGE_KEY, href);
+            setActiveLink(this, mobileLinks); // 更新激活状态
+            // 点击链接后关闭移动端菜单
+            closeMobileMenu();
+        });
+    });
+
+    // 页面加载时初始化激活的链接
+    initActiveLinkFromStorage();
+})();
+</script>
