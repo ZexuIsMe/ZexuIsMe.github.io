@@ -16,9 +16,15 @@ article:
 
 # Navigation
 nav:
-  home: 首页
-  articles: 文章
-  about: 关于
+  home: 
+    - text: 首页
+    - url: /index
+  articles: 
+    - text: 文章
+    - url: /articles
+  about: 
+    - text: 关于
+    - url: /about
 
 # Comments
 comments:

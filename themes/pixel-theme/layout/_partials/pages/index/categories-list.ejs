@@ -34,5 +34,6 @@
             isUse: true // 是否使用搜索参数
         }));
         card.querySelector('a').click();
+        localStorage.setItem('activeNavLink', "<%= url_for('archives') %>");
     }
 </script>
