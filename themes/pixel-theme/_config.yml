@@ -1,8 +1,15 @@
 # Pixel Theme Configuration
 
-pixel:
-  dark-logo: /source/images/dark-logo.webp
-  light-logo: /source/images/light-logo.webp
+logo: /images/pixel-logo.webp
+email:
+  126: he_zexu@126.com
+  qq: 529904017@qq.com
+vx:
+  id: HTGoodBoy
+  image: /images/vx.jpg
+tiktok:
+  id: 1570554360
+  image: /images/tiktok.png
 
 
 # Writing Settings
