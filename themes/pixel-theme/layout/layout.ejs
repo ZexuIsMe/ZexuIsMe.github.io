@@ -18,22 +18,33 @@
 
 </head>
 <body class="scanline light-mode">
-    <% if (page.layout !== '404') { %>
+    <% /* 非404和非bhcyl页面显示完整布局 */ %>
+    <% if (page.layout !== '404' && page.layout !== 'bhcyl') { %>
+        <!-- 导航栏组件 -->
         <%- partial('_partials/component/nav') %>
 
+        <!-- 主内容区域 -->
         <main>
+            <!-- 全局点击调用链接 -->
             <a id="global-link" href="" style="display: none;">全局点击调用时可用</a>
+            <!-- 页面主体内容 -->
             <%- body %>
         </main>
 
+        <!-- 页脚组件 -->
         <%- partial('_partials/footer') %>
 
         <!-- 固定到顶部按钮和主题切换按钮 -->
         <%- partial('_partials/component/fixedBox') %>
-
-        <script src="<%- url_for('/js/main.js') %>"></script>
     <% } else { %>
+        <!-- 404或bhcyl页面只显示主体内容 -->
         <%- body %>
+    <% } %>
+    
+    <% /* 非404页面加载主脚本 */ %>
+    <% if (page.layout !== '404') { %>
+        <!-- defer属性使脚本在HTML解析完成后执行，提高页面加载性能 -->
+        <script src="<%- url_for('/js/main.js') %>" defer></script>
     <% } %>
 </body>
 </html>
