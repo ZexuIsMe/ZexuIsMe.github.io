@@ -16,15 +16,12 @@ article:
 
 # Navigation
 nav:
-  home: 
-    - text: 首页
-    - url: /index
-  articles: 
-    - text: 文章
-    - url: /articles
-  about: 
-    - text: 关于
-    - url: /about
+  - text: 首页  # 数组的第一个元素
+    path: /index  # 数组的第二个元素
+  - text: 归档  # 数组的第一个元素
+    path: /archives  # 数组的第二个元素
+  - text: 关于  # 数组的第一个元素
+    path: /about  # 数组的第二个元素
 
 # Comments
 comments:

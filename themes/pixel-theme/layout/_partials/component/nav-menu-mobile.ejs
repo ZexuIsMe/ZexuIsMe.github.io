@@ -4,9 +4,9 @@
     </button>
     <div id="mobile-menu" class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out opacity-0 absolute right-0 mt-2 rounded-md shadow-lg min-w-40">
         <div class="py-2 px-4" style="background-color: var(--color-bg-secondary);">
-            <a href="<%= url_for('index') %>" class="nav-link block py-2 text-text-primary hover:text-text-accent">首页</a>
-            <a href="<%= url_for('archives') %>" class="nav-link block py-2 text-text-primary hover:text-text-accent">归档</a>
-            <a href="<%= url_for('about') %>" class="nav-link block py-2 text-text-primary hover:text-text-accent">关于我</a>
+            <% theme.nav.forEach(item => { %>
+                <a href="<%= item.path %>" class="nav-link block py-2 text-text-primary hover:text-text-accent"><%= item.text %></a>
+            <% }) %>
         </div>
     </div>
 </div>
@@ -109,6 +109,7 @@
             let href = this.getAttribute('href');
             // 存储选中的链接到本地存储
             localStorage.setItem(STORAGE_KEY, href);
+            localStorage.removeItem('search-options');
             setActiveLink(this, mobileLinks); // 更新激活状态
             // 点击链接后关闭移动端菜单
             closeMobileMenu();

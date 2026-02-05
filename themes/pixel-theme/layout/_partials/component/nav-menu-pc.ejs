@@ -1,7 +1,7 @@
 <div id="menu" class="hidden md:flex space-x-8">
-    <a href="<%= url_for('index') %>" class="nav-link active text-text-primary hover:text-text-accent text-lg">首页</a>
-    <a href="<%= url_for('archives') %>" class="nav-link text-text-primary hover:text-text-accent text-lg">归档</a>
-    <a href="<%= url_for('about') %>" class="nav-link text-text-primary hover:text-text-accent text-lg">关于我</a>
+    <% theme.nav.forEach(item => { %>
+        <a href="<%= item.path %>" class="nav-link text-text-primary hover:text-text-accent text-lg"><%= item.text %></a>
+    <% }) %>
 </div>
 
 <script>
@@ -36,12 +36,10 @@
                 }
             });
         } else {
-            // 默认选中首页
-            navLinks.forEach(function(link) {
-                if (link.textContent === '首页') {
-                    setActiveLink(link, navLinks);
-                }
-            });
+            // 默认选中第一个导航项
+            if (navLinks.length > 0) {
+                setActiveLink(navLinks[0], navLinks);
+            }
         }
     }
 
@@ -49,8 +47,10 @@
     navLinks.forEach(function(link) {
         link.addEventListener('click', function(e) {
             let href = this.getAttribute('href');
+            console.log(this);
             // 存储选中的链接到本地存储
             localStorage.setItem(STORAGE_KEY, href);
+            localStorage.removeItem('search-options');
             setActiveLink(this, navLinks); // 更新激活状态
         });
     });
