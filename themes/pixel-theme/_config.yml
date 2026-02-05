@@ -1,5 +1,17 @@
 # Pixel Theme Configuration
 
+logo: /images/pixel-logo.webp
+email:
+  126: he_zexu@126.com
+  qq: 529904017@qq.com
+vx:
+  id: HTGoodBoy
+  image: /images/vx.jpg
+tiktok:
+  id: 1570554360
+  image: /images/tiktok.png
+author: 粥记捣蛋
+
 # Writing Settings
 ## 自动摘要设置
 excerpt_depth: 5  # 自动摘要的标题层级
@@ -13,6 +25,7 @@ article:
   show_date: true     # 显示文章日期
   show_categories: true  # 显示文章分类
   show_tags: true      # 显示文章标签
+  show_copyright: true  # 显示文章版权声明
 
 # Navigation
 nav:

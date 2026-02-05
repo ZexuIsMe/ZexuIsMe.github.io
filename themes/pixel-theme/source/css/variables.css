@@ -4,27 +4,27 @@
     --font-family-heading: cursive;
     --font-family-pixel: 'Press Start 2P', cursive;
     
-    /* 暗色模式 - 颜色变量 */
-    --color-dark-bg-primary: #2D1B00;        /* 暗色模式主背景 */
-    --color-dark-bg-secondary: #3D2500;      /* 暗色模式次要背景 */
-    --color-dark-bg-tertiary: #311e00;       /* 暗色模式第三级背景（代码高亮） */
-    --color-dark-text-primary: #F7E6D0;      /* 暗色模式主文本 */
-    --color-dark-text-secondary: #D48E3B;    /* 暗色模式次要文本（标题） */
-    --color-dark-text-accent: #F4B466;       /* 暗色模式强调文本 */
-    --color-dark-button-primary: #D48E3B;    /* 暗色模式按钮主色 */
-    --color-dark-button-hover: #F4B466;      /* 暗色模式按钮悬停色 */
-    --color-dark-button-text: #2D1B00;       /* 暗色模式按钮文本色 */
+    /* 暗色模式 - 颜色变量（Trae风格） */
+    --color-dark-bg-primary: #1A1A2E;        /* 暗色模式主背景 - Trae深蓝色 */
+    --color-dark-bg-secondary: #16213E;      /* 暗色模式次要背景 - 稍浅深蓝色 */
+    --color-dark-bg-tertiary: #0F3460;       /* 暗色模式第三级背景（代码高亮） */
+    --color-dark-text-primary: #E1E1E1;      /* 暗色模式主文本 - 浅灰色 */
+    --color-dark-text-secondary: #FFFFFF;    /* 暗色模式次要文本（标题） - 白色 */
+    --color-dark-text-accent: #5390D9;       /* 暗色模式强调文本 - Trae蓝色 */
+    --color-dark-button-primary: #2A3F5F;    /* 暗色模式按钮主色 - 中蓝色 */
+    --color-dark-button-hover: #3A4F6F;      /* 暗色模式按钮悬停色 - 浅蓝色 */
+    --color-dark-button-text: #FFFFFF;       /* 暗色模式按钮文本色 - 白色 */
     
-    /* 亮色模式 - 颜色变量 */
-    --color-light-bg-primary: #FFF9F0;       /* 亮色模式主背景 */
-    --color-light-bg-secondary: #FFEEDD;     /* 亮色模式次要背景 */
-    --color-light-bg-tertiary: #fae2c9;      /* 亮色模式第三级背景（代码高亮） */
-    --color-light-text-primary: #3D2500;     /* 亮色模式主文本 */
-    --color-light-text-secondary: #B87333;   /* 亮色模式次要文本（标题） */
-    --color-light-text-accent: #D48E3B;      /* 亮色模式强调文本 */
-    --color-light-button-primary: #B87333;   /* 亮色模式按钮主色 */
-    --color-light-button-hover: #D48E3B;     /* 亮色模式按钮悬停色 */
-    --color-light-button-text: #FFF9F0;      /* 亮色模式按钮文本色 */
+    /* 亮色模式 - 颜色变量（极简风格） */
+    --color-light-bg-primary: #FFFFFF;       /* 亮色模式主背景 - 白色 */
+    --color-light-bg-secondary: #F8F9FA;     /* 亮色模式次要背景 - 极浅灰色 */
+    --color-light-bg-tertiary: #E9ECEF;      /* 亮色模式第三级背景（代码高亮） */
+    --color-light-text-primary: #212529;     /* 亮色模式主文本 - 深灰色 */
+    --color-light-text-secondary: #000000;   /* 亮色模式次要文本（标题） - 黑色 */
+    --color-light-text-accent: #343A40;      /* 亮色模式强调文本 - 深灰色 */
+    --color-light-button-primary: #DEE2E6;   /* 亮色模式按钮主色 - 浅灰色 */
+    --color-light-button-hover: #CED4DA;     /* 亮色模式按钮悬停色 - 中灰色 */
+    --color-light-button-text: #212529;      /* 亮色模式按钮文本色 - 深灰色 */
     
     /* 通用颜色变量 */
     --color-black: #000000;                  /* 黑色 */
@@ -32,15 +32,15 @@
     --color-black-alpha-50: rgba(0, 0, 0, 0.5);  /* 50%透明度黑色 */
     
     /* 尺寸变量 */
-    --size-border-thick: 4px;                /* 粗边框 */
-    --size-border-thin: 2px;                 /* 细边框 */
-    --size-shadow-pixel: 4px 4px 0px;        /* 像素风格阴影 */
-    --size-shadow-pixel-large: 8px 8px 0px;  /* 大像素风格阴影 */
-    --size-shadow-pixel-hover: 2px 2px 0px;  /* 悬停时的像素风格阴影 */
-    --size-shadow-pixel-card-hover: 12px 12px 0px;  /* 卡片悬停时的像素风格阴影 */
-    --size-padding-button: 10px 20px;        /* 按钮内边距 */
-    --size-margin-bottom-nav: 5px;           /* 导航链接下划线距离 */
-    --size-scanline-height: 4px;             /* 扫描线高度 */
+    --size-border-thick: 6px;                /* 16-bit风格粗边框 */
+    --size-border-thin: 3px;                 /* 16-bit风格细边框 */
+    --size-shadow-pixel: 5px 5px 0px;        /* 16-bit风格像素阴影 */
+    --size-shadow-pixel-large: 10px 10px 0px;  /* 16-bit风格大像素阴影 */
+    --size-shadow-pixel-hover: 3px 3px 0px;  /* 16-bit风格悬停像素阴影 */
+    --size-shadow-pixel-card-hover: 15px 15px 0px;  /* 16-bit风格卡片悬停像素阴影 */
+    --size-padding-button: 12px 24px;        /* 按钮内边距 */
+    --size-margin-bottom-nav: 6px;           /* 导航链接下划线距离 */
+    --size-scanline-height: 5px;             /* 扫描线高度 */
     
     /* 字体大小变量 */
     --font-size-button: 12px;                /* 按钮字体大小 */
@@ -69,20 +69,25 @@
     --z-index-tooltip: 1070;                 /* 提示层级 */
     
     /* 边框变量 */
-    --border-pixel: var(--size-border-thick) solid var(--color-black);  /* 像素风格边框 */
+    --border-pixel: var(--size-border-thick) solid var(--color-black);  /* 16-bit风格像素边框 */
+    --border-16bit: var(--size-border-thick) solid var(--color-black);  /* 16-bit专用边框 */
+    --border-16bit-light: var(--size-border-thin) solid var(--color-black);  /* 16-bit风格细边框 */
     
     /* 阴影变量 */
-    --shadow-pixel: var(--size-shadow-pixel) var(--color-black);  /* 像素风格阴影 */
-    --shadow-pixel-large: var(--size-shadow-pixel-large) var(--color-black);  /* 大像素风格阴影 */
-    --shadow-pixel-hover: var(--size-shadow-pixel-hover) var(--color-black);  /* 悬停时的像素风格阴影 */
-    --shadow-pixel-card-hover: var(--size-shadow-pixel-card-hover) var(--color-black);  /* 卡片悬停时的像素风格阴影 */
-    --shadow-text: 2px 2px 0px var(--color-black-alpha-50);  /* 文本阴影 */
-    --shadow-text-pixel: 4px 4px 0px var(--color-black-alpha-50);  /* 像素风格文本阴影 */
+    --shadow-pixel: var(--size-shadow-pixel) var(--color-black);  /* 16-bit风格像素阴影 */
+    --shadow-pixel-large: var(--size-shadow-pixel-large) var(--color-black);  /* 16-bit风格大像素阴影 */
+    --shadow-pixel-hover: var(--size-shadow-pixel-hover) var(--color-black);  /* 16-bit风格悬停像素阴影 */
+    --shadow-pixel-card-hover: var(--size-shadow-pixel-card-hover) var(--color-black);  /* 16-bit风格卡片悬停像素阴影 */
+    --shadow-text: 3px 3px 0px var(--color-black-alpha-50);  /* 16-bit风格文本阴影 */
+    --shadow-text-pixel: 6px 6px 0px var(--color-black-alpha-50);  /* 16-bit风格像素文本阴影 */
     --shadow-border: 
-        -4px 0 0 0 var(--color-black),
-        4px 0 0 0 var(--color-black),
-        0 -4px 0 0 var(--color-black),
-        0 4px 0 0 var(--color-black);  /* 边框阴影效果 */
+        -6px 0 0 0 var(--color-black),
+        6px 0 0 0 var(--color-black),
+        0 -6px 0 0 var(--color-black),
+        0 6px 0 0 var(--color-black);  /* 16-bit风格边框阴影效果 */
+    --shadow-16bit: 
+        0 0 0 var(--size-border-thick) var(--color-black),
+        var(--size-shadow-pixel) var(--color-black);  /* 16-bit风格双重阴影效果 */
     
     /* 变换变量 */
     --transform-button-hover: translate(2px, 2px);  /* 按钮悬停变换 */
@@ -127,4 +132,14 @@
     --color-button-primary: var(--color-dark-button-primary);
     --color-button-hover: var(--color-dark-button-hover);
     --color-button-text: var(--color-dark-button-text);
+}
+
+/* 16-bit风格阴影效果 */
+:root {
+    --shadow-pixel: var(--size-shadow-pixel) var(--color-black);  /* 16-bit风格像素阴影 */
+    --shadow-pixel-large: var(--size-shadow-pixel-large) var(--color-black);  /* 16-bit风格大像素阴影 */
+    --shadow-pixel-hover: var(--size-shadow-pixel-hover) var(--color-black);  /* 16-bit风格悬停像素阴影 */
+    --shadow-pixel-card-hover: var(--size-shadow-pixel-card-hover) var(--color-black);  /* 16-bit风格卡片悬停像素阴影 */
+    --shadow-text: 3px 3px 0px var(--color-black-alpha-50);  /* 16-bit风格文本阴影 */
+    --shadow-text-pixel: 6px 6px 0px var(--color-black-alpha-50);  /* 16-bit风格像素文本阴影 */
 }

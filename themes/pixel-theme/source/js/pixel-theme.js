@@ -2,71 +2,71 @@ tailwind.config = {
     theme: {
         extend: {
             colors: {
-                // Dark 模式（暖色调）
+                // Dark 模式（Trae风格）
                 dark: {
-                    // 主背景 - 深棕色调
-                    bg: '#2D1B00',
-                    // 卡片/次背景 - 中棕色调
-                    card: '#3D2500',
-                    // 主品牌色 - 暖棕色
-                    primary: '#D48E3B',
-                    // 次要强调色 - 暖橙色
-                    secondary: '#F4B466',
-                    // 功能强调色 - 棕色
-                    success: '#B87333',
+                    // 主背景 - Trae深蓝色
+                    bg: '#1A1A2E',
+                    // 卡片/次背景 - 稍浅深蓝色
+                    card: '#16213E',
+                    // 主品牌色 - Trae蓝色
+                    primary: '#5390D9',
+                    // 次要强调色 - 浅蓝色
+                    secondary: '#64B5F6',
+                    // 功能强调色 - 深蓝色
+                    success: '#48BFE3',
                     // 暖强调色 - 橙色
-                    warning: '#E6A045',
-                    // 活力强调色 - 亮黄色
-                    warn: '#FFC87C',
-                    // 正文主色 - 暖白色
-                    text: '#F7E6D0',
-                    // 次要文本 - 浅棕色
-                    note: '#D1B894',
-                    // 分割线 / 边框 - 暗棕色
-                    border: '#5D3A00',
-                    // 高亮背景 - 深棕色
-                    lightCode: '#4A3000'
+                    warning: '#FF9800',
+                    // 活力强调色 - 黄色
+                    warn: '#FFC107',
+                    // 正文主色 - 浅灰色
+                    text: '#E1E1E1',
+                    // 次要文本 - 中灰色
+                    note: '#ADB5BD',
+                    // 分割线 / 边框 - 深蓝色
+                    border: '#2A3F5F',
+                    // 高亮背景 - 深蓝色
+                    lightCode: '#0F3460'
                 },
-                // Light 模式（暖色调）
+                // Light 模式（极简风格）
                 light: {
-                    // 主背景 - 暖白色
-                    bg: '#FFF9F0',
-                    // 卡片/次背景 - 浅米色
-                    card: '#FFEEDD',
-                    // 主品牌色 - 棕色
-                    primary: '#B87333',
-                    // 次要强调色 - 暖棕色
-                    secondary: '#D48E3B',
-                    // 功能强调色 - 棕橙色
-                    success: '#C9843C',
+                    // 主背景 - 白色
+                    bg: '#FFFFFF',
+                    // 卡片/次背景 - 极浅灰色
+                    card: '#F8F9FA',
+                    // 主品牌色 - 深灰色
+                    primary: '#343A40',
+                    // 次要强调色 - 中灰色
+                    secondary: '#6C757D',
+                    // 功能强调色 - 浅灰色
+                    success: '#ADB5BD',
                     // 暖强调色 - 橙色
-                    warning: '#E6A045',
-                    // 活力强调色 - 亮黄色
-                    warn: '#FFC87C',
-                    // 正文主色 - 深棕色
-                    text: '#3D2500',
-                    // 次要文本 - 暗棕色
-                    note: '#5D3A00',
-                    // 分割线 / 边框 - 浅棕色
-                    border: '#E6D3B8',
-                    // 高亮背景 - 浅米色
-                    lightCode: '#FFF2E0'
+                    warning: '#FF9800',
+                    // 活力强调色 - 黄色
+                    warn: '#FFC107',
+                    // 正文主色 - 深灰色
+                    text: '#212529',
+                    // 次要文本 - 中灰色
+                    note: '#6C757D',
+                    // 分割线 / 边框 - 浅灰色
+                    border: '#DEE2E6',
+                    // 高亮背景 - 浅灰色
+                    lightCode: '#E9ECEF'
                 },
                 // 当前使用的颜色（默认使用dark模式）
-                primary: '#D48E3B',
-                secondary: '#F4B466',
-                success: '#B87333',
-                warning: '#E6A045',
-                warn: '#FFC87C',
-                text: '#F7E6D0',
-                note: '#D1B894',
-                border: '#5D3A00',
-                lightCode: '#4A3000',
+                primary: '#5390D9',
+                secondary: '#64B5F6',
+                success: '#48BFE3',
+                warning: '#FF9800',
+                warn: '#FFC107',
+                text: '#E1E1E1',
+                note: '#ADB5BD',
+                border: '#2A3F5F',
+                lightCode: '#0F3460',
                 pixel: {
-                    blue: '#D48E3B',
-                    pink: '#F4B466',
-                    purple: '#B87333',
-                    green: '#C9843C'
+                    blue: '#5390D9',
+                    pink: '#FF4081',
+                    purple: '#9C27B0',
+                    green: '#4CAF50'
                 }
             },
             fontFamily: {
