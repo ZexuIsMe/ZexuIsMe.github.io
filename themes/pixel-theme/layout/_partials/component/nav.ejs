@@ -2,7 +2,7 @@
     <div class="container mx-auto px-4">
         <div class="flex justify-between items-center py-4">
             <div class="flex items-center space-x-4">
-                <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/045d52041e0640dbba5b55b00bcffd70~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=20260202192528FF625BE2146F4D36E478&rrcfp=f06b921b&x-expires=1772623642&x-signature=tTj5R5wpKcuVun%2BC4uGNbeXo1bc%3D" alt="Logo" class="w-12 h-12 pixel-art pixel-border">
+                <img src="<%- url_for('/images/pixel-logo.webp') %>" alt="Logo" class="w-12 h-12 pixel-art pixel-border">
                 <span class="nav-title text-2xl font-bold text-text-primary text-shadow-pixel"><%= config.title %></span>
             </div>
             <div id="menu" class="hidden md:flex space-x-8">
@@ -12,7 +12,7 @@
             </div>
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-text-primary hover:text-text-accent">
-                    <i id="menu-icon" class="fa fa-bars text-2xl transition-transform duration-300"></i>
+                    <i id="menu-icon" class="fas fa-bars text-2xl transition-transform duration-300"></i>
                 </button>
             </div>
         </div>

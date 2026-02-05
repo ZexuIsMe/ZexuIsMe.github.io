@@ -4,11 +4,11 @@
         <div class="pagination-prev">
             <% if (page.current === 1) { %>
                 <button class="pixel-button cursor-not-allowed opacity-50" disabled>
-                    <i class="fa fa-arrow-left mr-2"></i> 上一页
+                    <i class="fas fa-arrow-left mr-2"></i> 上一页
                 </button>
             <% } else { %>
                 <a href="<%= url_for(page.prev_link) %>" class="pixel-button hover:bg-secondary transition-colors">
-                    <i class="fa fa-arrow-left mr-2"></i> 上一页
+                    <i class="fas fa-arrow-left mr-2"></i> 上一页
                 </a>
             <% } %>
         </div>
@@ -22,11 +22,11 @@
         <div class="pagination-next">
             <% if (page.current === page.total) { %>
                 <button class="pixel-button cursor-not-allowed opacity-50" disabled>
-                    下一页 <i class="fa fa-arrow-right ml-2"></i>
+                    下一页 <i class="fas fa-arrow-right ml-2"></i>
                 </button>
             <% } else { %>
                 <a href="<%= url_for(page.next_link) %>" class="pixel-button hover:bg-secondary transition-colors">
-                    下一页 <i class="fa fa-arrow-right ml-2"></i>
+                    下一页 <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             <% } %>
         </div>

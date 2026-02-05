@@ -3,13 +3,14 @@
 ## 源码: https://github.com/hexojs/hexo/
 
 # 站点
-title: Hexo
+title: 粥记捣蛋 | ZeXuIsMe
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
-language: en
-timezone: ''
+author: 粥记捣蛋
+language: zh-CN
+## 时区
+timezone: Asia/Shanghai
 
 # 网址
 ## 在此设置你的站点网址。例如，如果你使用 GitHub Page，请将 url 设置为 'https://username.github.io/project'

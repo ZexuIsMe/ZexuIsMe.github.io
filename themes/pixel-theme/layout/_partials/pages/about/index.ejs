@@ -1,86 +1,53 @@
 <!-- 关于我 -->
+
+<%
+    const myDescItems = [
+        '大家好呀～ 我是 [粥记捣蛋]，一个热爱游戏，还总忍不住记录些什么的 “随笔爱好者”。​',
+        '日常要么在虚拟世界闯关探宝，研究角色构筑；要么对着数位板涂涂画画，用像素块拼凑心中的小天地。而 “记录” 早已成为我的习惯 —— 游戏里灵光一闪的构筑思路、通关后的感悟随笔，生活中踩过的坑、工作里沉淀的实用经验，都想一一写下来留存​',
+        '如果你也愿意在文字里交换心事，欢迎常来坐坐～ 期待在这里认识更多温暖有趣的灵魂，一起在时光里慢慢沉淀，慢慢成长。'
+    ]
+%>
+
 <section id="about" class="min-h-screen pt-16 bg-dark">
     <div class="container mx-auto px-4 py-12">
         <h2 class="text-3xl font-bold mb-8 text-pixel-pink text-shadow">关于我</h2>
 
         <div class="flex flex-col md:flex-row items-center mb-12">
             <div class="md:w-1/3 mb-6 md:mb-0">
-                <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/045d52041e0640dbba5b55b00bcffd70~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=20260202192528FF625BE2146F4D36E478&rrcfp=f06b921b&x-expires=1772623642&x-signature=tTj5R5wpKcuVun%2BC4uGNbeXo1bc%3D" alt="About Me" class="w-64 h-64 mx-auto pixel-art pixel-border">
+                <img src="<%- url_for('/images/pixel-logo.webp') %>" alt="About Me" class="w-64 h-64 mx-auto pixel-art pixel-border">
             </div>
             <div class="md:w-2/3 md:pl-12">
-                <h3 class="text-2xl font-bold mb-4 text-pixel-blue">像素艺术家</h3>
-                <p class="mb-6 text-lg">你好！我是一名热爱像素艺术和二次元文化的创作者。从2018年开始接触像素画，从此便深深爱上了这种独特的艺术形式。我喜欢将现代二次元美学与复古像素风格相结合，创造出既有怀旧感又不失时尚的作品。</p>
-                <p class="mb-6 text-lg">这个博客是我分享像素艺术创作、教程和心得的地方。希望能通过这个平台，结识更多志同道合的朋友，一起探索像素艺术的无限可能。</p>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-pixel-pink hover:text-pixel-purple text-2xl"><i class="fa fa-twitter"></i></a>
-                    <a href="#" class="text-pixel-pink hover:text-pixel-purple text-2xl"><i class="fa fa-instagram"></i></a>
-                    <a href="#" class="text-pixel-pink hover:text-pixel-purple text-2xl"><i class="fa fa-pinterest"></i></a>
-                    <a href="#" class="text-pixel-pink hover:text-pixel-purple text-2xl"><i class="fa fa-youtube-play"></i></a>
+                <h3 class="text-2xl font-bold mb-4 text-pixel-blue">Undefined</h3>
+                <div id="my-desc-container">
+                    <% myDescItems.forEach(item => { %>
+                        <p class="mb-4 text-lg leading-relaxed"><%= item %></p>
+                    <% }) %>
+                </div>
+                
+                <div class="flex space-x-4 mt-6">
+                    <a href="#" class="text-pixel-pink hover:text-pixel-purple text-2xl" title="微信"><i class="fab fa-weixin"></i></a>
+                    <a href="#" class="text-pixel-pink hover:text-pixel-purple text-2xl" title="抖音"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="text-pixel-pink hover:text-pixel-purple text-2xl" title="哔哩哔哩"><i class="fab fa-bilibili"></i></a>
+                    <a href="mailto:your-email@126.com" class="text-pixel-pink hover:text-pixel-purple text-2xl" title="126邮箱"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
-        </div>
-
-        <div class="mb-12">
-            <h3 class="text-2xl font-bold mb-6 text-pixel-green">我的技能</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <div class="flex justify-between mb-2">
-                        <span class="text-pixel-blue">像素画创作</span>
-                        <span>95%</span>
-                    </div>
-                    <div class="w-full bg-gray-700 h-4 pixel-border">
-                        <div class="bg-pixel-blue h-4" style="width: 95%"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="flex justify-between mb-2">
-                        <span class="text-pixel-green">游戏美术设计</span>
-                        <span>85%</span>
-                    </div>
-                    <div class="w-full bg-gray-700 h-4 pixel-border">
-                        <div class="bg-pixel-green h-4" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="flex justify-between mb-2">
-                        <span class="text-pixel-purple">动画制作</span>
-                        <span>75%</span>
-                    </div>
-                    <div class="w-full bg-gray-700 h-4 pixel-border">
-                        <div class="bg-pixel-purple h-4" style="width: 75%"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="flex justify-between mb-2">
-                        <span class="text-pixel-pink">UI/UX设计</span>
-                        <span>80%</span>
-                    </div>
-                    <div class="w-full bg-gray-700 h-4 pixel-border">
-                        <div class="bg-pixel-pink h-4" style="width: 80%"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div style="display: none">
-            <h3 class="text-2xl font-bold mb-6 text-pixel-purple">联系我</h3>
-            <div id="contact-form-container" class="max-w-lg mx-auto"></div>
         </div>
     </div>
 </section>
 
 <script>
-    // 页面加载时检查是否为归档页面，如果是则更新导航菜单状态
-    document.addEventListener('DOMContentLoaded', function() {
-        // 检查当前页面是否为归档页面
+
+    const funcLoaded = function() {
         const currentPath = window.location.pathname;
         const archivesPath = '<%= url_for("about") %>';
         
-        // 使用全局函数更新导航菜单状态
         if (typeof checkAndUpdateNavState === 'function') {
             checkAndUpdateNavState(currentPath, archivesPath);
         } else {
             console.warn('checkAndUpdateNavState 函数未定义，无法更新导航菜单状态');
         }
-    });
+    }
+
+    // 页面加载时检查是否为归档页面，如果是则更新导航菜单状态
+    document.addEventListener('DOMContentLoaded', funcLoaded);
 </script>

@@ -2,7 +2,7 @@
     <!-- 回到顶部按钮 -->
     <div class="relative">
         <button id="back-to-top" class="bg-pixel-pink text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300">
-            <i class="fa fa-arrow-up text-xl"></i>
+            <i class="fas fa-arrow-up text-xl"></i>
         </button>
         <span class="tooltip absolute top-[-40px] left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-3 py-2 rounded opacity-0 invisible transition-all duration-300 whitespace-nowrap">
             回到顶部
@@ -12,7 +12,7 @@
     <!-- 主题切换按钮 -->
     <div class="relative">
         <button id="theme-toggle" class="bg-pixel-pink text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
-            <i id="theme-icon" class="fa fa-moon-o text-xl"></i>
+            <i id="theme-icon" class="fas fa-moon text-xl"></i>
         </button>
         <span class="tooltip absolute top-[-40px] left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-3 py-2 rounded opacity-0 invisible transition-all duration-300 whitespace-nowrap">
             切换主题
@@ -31,7 +31,7 @@
             // 更新主题图标
             const themeIcon = document.getElementById('theme-icon');
             if (themeIcon) {
-                themeIcon.className = savedTheme === 'dark' ? 'fa fa-sun-o text-xl' : 'fa fa-moon-o text-xl';
+                themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun text-xl' : 'fas fa-moon text-xl';
             }
             
             // 切换主题
@@ -45,7 +45,7 @@
                     
                     // 更新主题图标
                     if (themeIcon) {
-                        themeIcon.className = newTheme === 'dark' ? 'fa fa-sun-o text-xl' : 'fa fa-moon-o text-xl';
+                        themeIcon.className = newTheme === 'dark' ? 'fas fa-sun text-xl' : 'fas fa-moon text-xl';
                     }
                 
                     // 保存主题设置到本地存储
