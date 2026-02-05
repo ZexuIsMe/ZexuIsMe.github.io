@@ -1,13 +1,13 @@
-<div class="md:hidden">
+<div class="md:hidden" style="position: relative;">
     <button id="mobile-menu-button" class="text-text-primary hover:text-text-accent">
         <i id="menu-icon" class="fas fa-bars text-2xl transition-transform duration-300"></i>
     </button>
-</div>
-<div id="mobile-menu" class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out opacity-0 absolute right-4 mt-2 rounded-md shadow-lg min-w-40">
-    <div class="py-2 px-4" style="background-color: var(--color-bg-secondary);">
-        <a href="<%= url_for('index') %>" class="nav-link block py-2 text-text-primary hover:text-text-accent">首页</a>
-        <a href="<%= url_for('archives') %>" class="nav-link block py-2 text-text-primary hover:text-text-accent">归档</a>
-        <a href="<%= url_for('about') %>" class="nav-link block py-2 text-text-primary hover:text-text-accent">关于我</a>
+    <div id="mobile-menu" class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out opacity-0 absolute right-0 mt-2 rounded-md shadow-lg min-w-40">
+        <div class="py-2 px-4" style="background-color: var(--color-bg-secondary);">
+            <a href="<%= url_for('index') %>" class="nav-link block py-2 text-text-primary hover:text-text-accent">首页</a>
+            <a href="<%= url_for('archives') %>" class="nav-link block py-2 text-text-primary hover:text-text-accent">归档</a>
+            <a href="<%= url_for('about') %>" class="nav-link block py-2 text-text-primary hover:text-text-accent">关于我</a>
+        </div>
     </div>
 </div>
 
