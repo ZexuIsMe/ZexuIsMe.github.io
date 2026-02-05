@@ -31,12 +31,12 @@ article:
 nav:
   - text: 首页  # 数组的第一个元素
     path: /index  # 数组的第二个元素
+  - text: 碧海苍云录
+    path: /bhcyl
   - text: 归档  # 数组的第一个元素
     path: /archives  # 数组的第二个元素
   - text: 关于我  # 数组的第一个元素
     path: /about  # 数组的第二个元素
-  - text: 碧海苍云录
-    path: /bhcyl
 
 # Comments
 comments:
