@@ -10,7 +10,7 @@ vx:
 tiktok:
   id: 1570554360
   image: /images/tiktok.png
-
+author: 粥记捣蛋
 
 # Writing Settings
 ## 自动摘要设置
@@ -25,6 +25,7 @@ article:
   show_date: true     # 显示文章日期
   show_categories: true  # 显示文章分类
   show_tags: true      # 显示文章标签
+  show_copyright: true  # 显示文章版权声明
 
 # Navigation
 nav:
