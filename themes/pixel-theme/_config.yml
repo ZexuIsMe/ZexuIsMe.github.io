@@ -1,5 +1,10 @@
 # Pixel Theme Configuration
 
+pixel:
+  dark-logo: /source/images/dark-logo.webp
+  light-logo: /source/images/light-logo.webp
+
+
 # Writing Settings
 ## 自动摘要设置
 excerpt_depth: 5  # 自动摘要的标题层级
