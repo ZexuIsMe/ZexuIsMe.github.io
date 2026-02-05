@@ -28,15 +28,27 @@
      */
     function initActiveLinkFromStorage() {
         let storedLink = localStorage.getItem(STORAGE_KEY);
-        if (storedLink) {
-            // 为桌面端导航链接设置激活状态
+        let currentPath = window.location.pathname;
+
+        let matchedLink = null;
+
+        navLinks.forEach(function(link) {
+            let href = link.getAttribute('href');
+            if (currentPath === href || currentPath.startsWith(href)) {
+                matchedLink = link;
+            }
+        });
+
+        if (matchedLink) {
+            setActiveLink(matchedLink, navLinks);
+            localStorage.setItem(STORAGE_KEY, matchedLink.getAttribute('href'));
+        } else if (storedLink) {
             navLinks.forEach(function(link) {
                 if (link.getAttribute('href') === storedLink) {
                     setActiveLink(link, navLinks);
                 }
             });
         } else {
-            // 默认选中第一个导航项
             if (navLinks.length > 0) {
                 setActiveLink(navLinks[0], navLinks);
             }

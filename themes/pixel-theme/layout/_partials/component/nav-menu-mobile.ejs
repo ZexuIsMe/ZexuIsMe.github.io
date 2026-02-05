@@ -86,15 +86,27 @@
      */
     function initActiveLinkFromStorage() {
         let storedLink = localStorage.getItem(STORAGE_KEY);
-        if (storedLink) {
-            // 为移动端导航链接设置激活状态
+        let currentPath = window.location.pathname;
+
+        let matchedLink = null;
+
+        mobileLinks.forEach(function(link) {
+            let href = link.getAttribute('href');
+            if (currentPath === href || currentPath.startsWith(href)) {
+                matchedLink = link;
+            }
+        });
+
+        if (matchedLink) {
+            setActiveLink(matchedLink, mobileLinks);
+            localStorage.setItem(STORAGE_KEY, matchedLink.getAttribute('href'));
+        } else if (storedLink) {
             mobileLinks.forEach(function(link) {
                 if (link.getAttribute('href') === storedLink) {
                     setActiveLink(link, mobileLinks);
                 }
             });
         } else {
-            // 默认选中首页
             mobileLinks.forEach(function(link) {
                 if (link.textContent === '首页') {
                     setActiveLink(link, mobileLinks);
