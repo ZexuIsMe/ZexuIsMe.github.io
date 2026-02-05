@@ -268,9 +268,61 @@ const handleTagClick = function(tagName) {
     aLink.click();
 }
 
+// 为文章中的图片添加点击放大效果
+const handleImageClick = function() {
+    // 创建图片预览模态框
+    const modal = document.createElement('div');
+    modal.id = 'image-preview-modal';
+    modal.className = 'fixed inset-0 z-50 flex items-center justify-center hidden';
+    modal.innerHTML = `
+        <div class="absolute inset-0 bg-black bg-opacity-80 modal-overlay"></div>
+        <div class="relative bg-white p-4 rounded-lg max-w-4xl max-h-[90vh] w-full mx-4 flex items-center justify-center modal-content">
+            <img id="preview-image" src="" alt="预览图片" class="max-w-full max-h-[85vh] object-contain">
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    // 获取所有文章中的图片
+    const images = document.querySelectorAll('.markdown-body img');
+    
+    images.forEach(image => {
+        // 添加点击事件
+        image.addEventListener('click', function() {
+            const imgSrc = this.src;
+            const previewImg = document.getElementById('preview-image');
+            
+            if (previewImg) {
+                previewImg.src = imgSrc;
+                // 显示模态框
+                modal.classList.remove('hidden');
+                // 添加过渡效果
+                setTimeout(() => {
+                    modal.querySelector('.modal-overlay').style.opacity = '1';
+                    modal.querySelector('.modal-content').style.transform = 'scale(1)';
+                }, 10);
+            }
+        });
+    });
+
+    // 点击遮罩关闭模态框
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal || e.target.classList.contains('modal-overlay')) {
+            // 添加过渡效果
+            modal.querySelector('.modal-overlay').style.opacity = '0';
+            modal.querySelector('.modal-content').style.transform = 'scale(0.9)';
+            
+            // 延迟后隐藏模态框
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     setNavSelect();
     handleCodeBox();
+    handleImageClick();
 });
 
 </script>
@@ -386,5 +438,31 @@ document.addEventListener('DOMContentLoaded', () => {
     .dark-mode .copy-button:hover {
         background: rgba(255, 255, 255, 0.1);
         color: #fff;
+    }
+    
+    /* 图片预览模态框样式 */
+    #image-preview-modal {
+        transition: all 0.3s ease;
+    }
+    
+    #image-preview-modal .modal-overlay {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    #image-preview-modal .modal-content {
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* 为文章中的图片添加点击提示 */
+    .markdown-body img {
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+    
+    .markdown-body img:hover {
+        transform: scale(1.02);
     }
 </style>
