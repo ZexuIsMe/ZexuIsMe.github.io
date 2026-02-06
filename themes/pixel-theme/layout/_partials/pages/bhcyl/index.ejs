@@ -104,10 +104,10 @@
                 踏入仙境，一剑斩尽红尘事，一笑忘却万古愁
             </p>
             <div class="flex flex-col md:flex-row justify-center gap-4">
-                <button class="bg-ancient-gold hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
-                    开始游戏
-                </button>
-                <button class="bg-transparent border-2 border-ancient-gold hover:bg-ancient-gold/20 text-ancient-gold font-bold py-3 px-8 rounded-lg transition-all duration-300">
+                <button
+                    class="bg-ancient-gold hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
+                    onclick="window.location.href=`<%= theme.bhcyl.website %>`"
+                >
                     了解更多
                 </button>
             </div>
@@ -139,29 +139,6 @@
                         <img src="https://p11-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/f981dfca2f924dfd998a7aafb72be8cc~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=202602052337540D3F64686579370B2CC5&rrcfp=f06b921b&x-expires=1772897948&x-signature=u5e1yifVUw%2BikBxn3gHIC%2BE%2B1xY%3D" 
                              alt="角色1" 
                              class="w-full h-80 object-contain bg-black/50 p-4">
-                        <div class="absolute top-4 left-4 bg-ancient-gold text-black px-3 py-1 rounded-full text-sm font-bold">
-                            剑修
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-ancient-gold mb-2">凌霄</h3>
-                        <p class="text-gray-300 mb-4">
-                            凌霄是一位年轻的剑修，天赋异禀，曾在昆仑山上修行千年。他手持一把名为"青霜"的仙剑，剑法飘逸如仙，能够引动天地灵气。
-                        </p>
-                        <div class="flex justify-between text-sm text-gray-400">
-                            <div>
-                                <span class="text-ancient-gold">攻击:</span> 95
-                            </div>
-                            <div>
-                                <span class="text-ancient-gold">速度:</span> 90
-                            </div>
-                            <div>
-                                <span class="text-ancient-gold">防御:</span> 75
-                            </div>
-                        </div>
-                        <button class="mt-4 w-full bg-ancient-gold/20 hover:bg-ancient-gold/30 text-ancient-gold py-2 rounded transition-colors duration-300">
-                            查看详情
-                        </button>
                     </div>
                 </div>
                 
@@ -171,29 +148,6 @@
                         <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/5c3e0fbe09654ad2866e9cbe180a07fa.png~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=202602052337540D3F64686579370B2CC5&rrcfp=8a172a1a&x-expires=1770910674&x-signature=sv9I1PEMaosDOHo4JfVPaD6tIXQ%3D" 
                              alt="角色2" 
                              class="w-full h-80 object-contain bg-black/50 p-4">
-                        <div class="absolute top-4 left-4 bg-ancient-blue text-white px-3 py-1 rounded-full text-sm font-bold">
-                            法修
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-ancient-gold mb-2">青云</h3>
-                        <p class="text-gray-300 mb-4">
-                            青云是蓬莱岛的传人，擅长法术攻击，能够操控五行元素。她性格清冷，却有着一颗救世之心，誓要斩尽世间妖魔。
-                        </p>
-                        <div class="flex justify-between text-sm text-gray-400">
-                            <div>
-                                <span class="text-ancient-gold">攻击:</span> 90
-                            </div>
-                            <div>
-                                <span class="text-ancient-gold">速度:</span> 85
-                            </div>
-                            <div>
-                                <span class="text-ancient-gold">防御:</span> 80
-                            </div>
-                        </div>
-                        <button class="mt-4 w-full bg-ancient-gold/20 hover:bg-ancient-gold/30 text-ancient-gold py-2 rounded transition-colors duration-300">
-                            查看详情
-                        </button>
                     </div>
                 </div>
                 
@@ -203,51 +157,7 @@
                         <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/fe676d4ba7d04367be1fda0e867b4d7c.png~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=202602052337540D3F64686579370B2CC5&rrcfp=8a172a1a&x-expires=1770910674&x-signature=G3BH3i5A49ho4SYY9S5o3k7021U%3D" 
                              alt="角色3" 
                              class="w-full h-80 object-contain bg-black/50 p-4">
-                        <div class="absolute top-4 left-4 bg-ancient-red text-white px-3 py-1 rounded-full text-sm font-bold">
-                            体修
-                        </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-ancient-gold mb-2">无痕</h3>
-                        <p class="text-gray-300 mb-4">
-                            无痕是一位神秘的体修，练就了金刚不坏之身。他曾是凡人，因奇遇获得了修仙之法，从此踏上了逆天改命之路。
-                        </p>
-                        <div class="flex justify-between text-sm text-gray-400">
-                            <div>
-                                <span class="text-ancient-gold">攻击:</span> 85
-                            </div>
-                            <div>
-                                <span class="text-ancient-gold">速度:</span> 75
-                            </div>
-                            <div>
-                                <span class="text-ancient-gold">防御:</span> 100
-                            </div>
-                        </div>
-                        <button class="mt-4 w-full bg-ancient-gold/20 hover:bg-ancient-gold/30 text-ancient-gold py-2 rounded transition-colors duration-300">
-                            查看详情
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 角色切换器 -->
-            <div class="mt-12 text-center">
-                <div class="inline-flex rounded-md shadow-sm" role="group">
-                    <button type="button" class="px-4 py-2 text-sm font-medium text-white bg-ancient-gold rounded-l-lg hover:bg-yellow-600 focus:z-10 focus:ring-2 focus:ring-yellow-300">
-                        上一个
-                    </button>
-                    <button type="button" class="px-4 py-2 text-sm font-medium text-white bg-gray-700 hover:bg-gray-600 focus:z-10 focus:ring-2 focus:ring-gray-400">
-                        1
-                    </button>
-                    <button type="button" class="px-4 py-2 text-sm font-medium text-white bg-gray-700 hover:bg-gray-600 focus:z-10 focus:ring-2 focus:ring-gray-400">
-                        2
-                    </button>
-                    <button type="button" class="px-4 py-2 text-sm font-medium text-white bg-gray-700 hover:bg-gray-600 focus:z-10 focus:ring-2 focus:ring-gray-400">
-                        3
-                    </button>
-                    <button type="button" class="px-4 py-2 text-sm font-medium text-white bg-ancient-gold rounded-r-lg hover:bg-yellow-600 focus:z-10 focus:ring-2 focus:ring-yellow-300">
-                        下一个
-                    </button>
                 </div>
             </div>
         </div>
@@ -270,12 +180,6 @@
                     <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/24d75858cfd74db7b29267e80f1037c9.png~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=202602052337540D3F64686579370B2CC5&rrcfp=8a172a1a&x-expires=1770910674&x-signature=MiuXIjfoet8KtUXS3cr6wRH4tY4%3D" 
                          alt="Gameplay" 
                          class="w-full rounded-lg shadow-2xl border border-ancient-gold/30">
-                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-ancient-gold/20 rounded-lg backdrop-blur-sm border border-ancient-gold/30 flex items-center justify-center floating">
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-ancient-gold">3D</div>
-                            <div class="text-sm text-gray-300">沉浸式体验</div>
-                        </div>
-                    </div>
                 </div>
                 
                 <!-- 右侧特色列表 -->
@@ -379,33 +283,16 @@
                     
                     <div class="flex flex-col md:flex-row justify-center gap-6">
                         <button class="flex items-center justify-center gap-3 bg-black hover:bg-gray-800 text-white py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
-                            <i class="fa fa-apple text-2xl"></i>
+                            <i class="fa-brands fa-android"></i>
                             <div class="text-left">
-                                <div class="text-xs">下载</div>
-                                <div class="text-lg font-semibold">App Store</div>
-                            </div>
-                        </button>
-                        
-                        <button class="flex items-center justify-center gap-3 bg-black hover:bg-gray-800 text-white py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
-                            <i class="fa fa-android text-2xl"></i>
-                            <div class="text-left">
-                                <div class="text-xs">下载</div>
-                                <div class="text-lg font-semibold">Google Play</div>
-                            </div>
-                        </button>
-                        
-                        <button class="flex items-center justify-center gap-3 bg-black hover:bg-gray-800 text-white py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
-                            <i class="fa fa-windows text-2xl"></i>
-                            <div class="text-left">
-                                <div class="text-xs">下载</div>
-                                <div class="text-lg font-semibold">PC 客户端</div>
+                                <div class="text-lg">TapTap</div>
                             </div>
                         </button>
                     </div>
                     
                     <div class="mt-10 text-center">
                         <p class="text-gray-400 text-sm">
-                            版本：1.0.0 | 大小：1.2GB | 适龄提示：16+
+                            版本：0.24.1 | 大小：555MB | 适龄提示：16+
                         </p>
                     </div>
                 </div>
