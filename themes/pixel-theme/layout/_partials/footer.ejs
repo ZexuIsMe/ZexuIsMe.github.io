@@ -1,13 +1,113 @@
-<footer class="bg-dark py-8">
+<footer class="py-8" style="background-color: var(--color-bg-secondary); color: var(--color-text-primary);">
+    <div class="py-8" style="visibility: hidden;">填充物</div>
+
     <div class="container mx-auto px-4">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0">
-                <img src="<%= theme['logo'] %>" alt="Logo" class="w-12 h-12 pixel-art pixel-border">
-            </div>
-            <div class="text-center md:text-left text-pixel-pink">
-                <p class="">&copy; <%= new Date().getFullYear() %> <%= config.title %>. 保留所有权利.</p>
-                <p class="text-gray-400"><%= config.subtitle %></p>
+        <div class="container mx-auto px-4 mb-12">
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-4/12 flex flex-col gap-8">
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="text-2xl mr-4"><i class="fa-solid fa-gamepad"></i></div>
+                            <div>
+                                <span class="text-lg font-bold">TapTap：</span>
+                                <span class="text-lg">43433339</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="text-2xl mr-4"><i class="fa-brands fa-weixin"></i></div>
+                            <div>
+                                <span class="text-lg font-bold">微信：</span>
+                                <span class="text-lg"><%= theme.vx.id %></span>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="text-2xl mr-4"><i class="fa-brands fa-tiktok"></i></div>
+                            <div>
+                                <span class="text-lg font-bold">抖音：</span>
+                                <span class="text-lg"><%= theme.tiktok.id %></span>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="text-2xl mr-4"><i class="fa-solid fa-at"></i></div>
+                            <div>
+                                <span class="text-lg font-bold">邮箱：</span>
+                                <span class="text-lg"><%= theme.email['126'] %></span>
+                                <span> | </span>
+                                <span class="text-lg"><%= theme.email['qq'] %></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:text-left">
+                        <p class="">&copy; <%= new Date().getFullYear() %> <%= config.title %>. 保留所有权利.</p>
+                        <p class="text-gray-400"><%= config.subtitle %></p>
+                    </div>
+                </div>
+
+                <div class="md:w-4/12 flex flex-col gap-8">
+                    <!-- 等待填充 -->
+                </div>
+                <!-- 联系方式：微信二维码 -->
+                <div class="md:w-4/12 flex flex-col gap-8">
+                    <img src="<%= theme.vx.image %>" alt="Contact Me" class="h-64 mx-auto pixel-art pixel-border contact-image cursor-pointer">
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- 图片放大模态框 -->
+    <div id="image-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-80 modal-overlay"></div>
+        <div class="relative bg-white p-4 rounded-lg max-w-4xl max-h-[90vh] w-full mx-4 flex items-center justify-center modal-content">
+            <img id="modal-image" src="" alt="放大图片" class="max-w-full max-h-[85vh] object-contain pixel-art">
+        </div>
+    </div>
 </footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('image-modal');
+        const modalContent = document.querySelector('.modal-content');
+        const modalOverlay = document.querySelector('.modal-overlay');
+        const modalImage = document.getElementById('modal-image');
+        const contactImages = document.querySelectorAll('.contact-image');
+        
+        // 打开模态框
+        contactImages.forEach(image => {
+            image.addEventListener('click', function() {
+                modalImage.src = this.src;
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        // 关闭模态框
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        
+        // 点击遮罩关闭
+        modalOverlay.addEventListener('click', closeModal);
+        
+        // 点击内容区域关闭
+        modalContent.addEventListener('click', closeModal);
+    });
+</script>
+
+<style>
+    .contact-image {
+        transition: transform 0.2s ease;
+    }
+    
+    .contact-image:hover {
+        transform: scale(1.05);
+    }
+    
+    .modal-content {
+        transition: all 0.2s ease-in-out;
+    }
+    
+    .modal-overlay {
+        transition: all 0.2s ease-in-out;
+    }
+</style>
