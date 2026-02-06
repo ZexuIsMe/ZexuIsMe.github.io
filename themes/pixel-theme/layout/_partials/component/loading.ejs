@@ -1,0 +1,51 @@
+<!-- Loading动画组件 -->
+<div id="loading-animation" class="fixed inset-0 flex items-center justify-center z-50" style="background-color: var(--loading-bg-color);">
+    <div class="loading-spinner w-16 h-16 border-4 rounded-full animate-spin" style="border-top-color: var(--loading-spinner-color); border-color: var(--loading-spinner-border-color);"></div>
+</div>
+
+<style>
+    /* Loading动画样式 */
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    .animate-spin {
+        animation: spin 1s linear infinite;
+    }
+    
+    /* 暗色模式loading颜色 */
+    .dark-mode #loading-animation {
+        --loading-bg-color: rgba(26, 26, 46, 0.95);
+        --loading-spinner-color: #5390D9;
+        --loading-spinner-border-color: #2A3F5F;
+    }
+    
+    /* 亮色模式loading颜色 */
+    .light-mode #loading-animation {
+        --loading-bg-color: rgba(255, 255, 255, 0.95);
+        --loading-spinner-color: #343A40;
+        --loading-spinner-border-color: #DEE2E6;
+    }
+    
+    /* 默认暗色模式 */
+    #loading-animation {
+        --loading-bg-color: rgba(26, 26, 46, 0.95);
+        --loading-spinner-color: #5390D9;
+        --loading-spinner-border-color: #2A3F5F;
+    }
+</style>
+
+<script>
+    // 隐藏loading动画
+    setTimeout(() => {
+        const loadingAnimation = document.getElementById('loading-animation');
+        if (loadingAnimation) {
+            loadingAnimation.style.opacity = '0';
+            loadingAnimation.style.transition = 'opacity 0.3s ease';
+            setTimeout(() => {
+                loadingAnimation.style.display = 'none';
+            }, 300);
+        }
+    }, 500);
+</script>

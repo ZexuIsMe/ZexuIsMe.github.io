@@ -6,6 +6,9 @@
     <title><%= config.title %></title>
 
     <%- js(['/js/tailwindcss_3.4.17.js']) %>
+    <%- css([
+        '/css/excerpt.css'
+    ]) %>
 
     <% if (page.layout !== 'bhcyl') { %>
         <%- js(['/js/pixel-theme.js']) %>

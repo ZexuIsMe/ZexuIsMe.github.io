@@ -6,11 +6,12 @@
             <h1 class="ml-3 text-2xl font-bold text-ancient-gold"><%= config.title %></h1>
         </div>
         <div class="hidden md:flex space-x-8">
-            <a href="#home" class="text-light hover:text-ancient-gold transition-colors duration-300">首页</a>
-            <a href="#characters" class="text-light hover:text-ancient-gold transition-colors duration-300">角色</a>
-            <a href="#features" class="text-light hover:text-ancient-gold transition-colors duration-300">特色</a>
-            <a href="#download" class="text-light hover:text-ancient-gold transition-colors duration-300">下载</a>
-            <a href="#news" class="text-light hover:text-ancient-gold transition-colors duration-300">新闻</a>
+            <% page.nav.forEach((item) => { %>
+                <a 
+                    href="<%= item.path %>" 
+                    class="text-light hover:text-ancient-gold transition-colors duration-300"
+                ><%= item.text %></a>
+            <% }) %>
         </div>
         <div class="md:hidden">
             <button id="mobile-menu-button" class="text-light focus:outline-none">

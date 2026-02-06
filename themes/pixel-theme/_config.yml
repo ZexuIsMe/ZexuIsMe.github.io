@@ -43,8 +43,3 @@ nav:
 comments:
   disqus_shortname:  # Disqus 评论系统短名称
   enable: false      # 是否启用评论功能
-
-
-# bhcyl 碧海苍云录
-bhcyl:
-  website: https://www.taptap.cn/app/324395?os=android

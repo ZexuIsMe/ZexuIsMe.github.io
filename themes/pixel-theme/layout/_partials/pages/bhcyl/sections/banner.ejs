@@ -2,25 +2,21 @@
 <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
     <!-- 背景图 -->
     <div class="absolute inset-0 z-0">
-        <img src="<%= url_for('images/bhcyl/banner/0.24.webp') %>" 
+        <img src="<%= url_for(page.banner) %>"
              alt="Background" 
              class="w-full h-full object-cover opacity-70">
         <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-black/80"></div>
     </div>
-    
+
     <!-- 中央内容 -->
     <div class="container mx-auto px-4 z-10 text-center" data-aos="fade-up" data-aos-duration="1000">
-        <h1 class="text-5xl md:text-7xl font-bold text-ancient-gold mb-4 text-shadow-lg">碧海苍云录</h1>
-        <p class="text-xl md:text-2xl my-8 max-w-2xl mx-auto text-shadow">
-            水墨寻仙 无卡修真 御空纵览山海境
-        </p>
+        <h1 class="text-5xl md:text-7xl font-bold text-ancient-gold mb-4 text-shadow-lg"><%= page.title %></h1>
+        <p class="text-xl md:text-2xl my-8 max-w-2xl mx-auto text-shadow"><%= page.subtitle %></p>
         <div class="flex flex-col md:flex-row justify-center gap-4">
             <button
                 class="bg-ancient-gold hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
-                onclick="window.location.href=`<%= theme.bhcyl.website %>`"
-            >
-                了解更多
-            </button>
+                onclick="window.location.href=`<%= page.website %>`"
+            ><%= page.button.more %></button>
         </div>
     </div>
     

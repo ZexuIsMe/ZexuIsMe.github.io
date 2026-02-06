@@ -1,5 +1,7 @@
 <!-- 页面：文章详情 -->
 <section id="post-detail" class="py-16 px-4">
+    <!-- Loading动画 -->
+    <%- partial('../../component/loading') %>
     <div class="max-w-4xl mx-auto">
         <!-- 文章头部信息 -->
         <div id="post-header" class="mb-12 text-center">
@@ -323,7 +325,26 @@ document.addEventListener('DOMContentLoaded', () => {
     setNavSelect();
     handleCodeBox();
     handleImageClick();
+    handleTables();
 });
+
+// 为表格添加容器，使其在溢出时显示滚动条
+const handleTables = function() {
+    const tables = document.querySelectorAll('.markdown-body table');
+    
+    tables.forEach(table => {
+        // 检查表格是否已经有容器
+        if (!table.parentElement.classList.contains('table-container')) {
+            // 创建容器
+            const container = document.createElement('div');
+            container.className = 'table-container';
+            
+            // 将表格移动到容器中
+            table.parentNode.insertBefore(container, table);
+            container.appendChild(table);
+        }
+    });
+};
 
 </script>
 

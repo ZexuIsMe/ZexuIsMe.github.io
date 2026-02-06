@@ -1,43 +1,5 @@
 <%
-    const characterItems = [
-        {
-            name: '小师弟',
-            image: 'images/bhcyl/characters/小师弟.png',
-            element: '五行齐灵根',
-            weapon: '剑修',
-            position: '齐灵宗',
-        }, {
-            name: '大师姐',
-            image: 'images/bhcyl/characters/大师姐.png',
-            element: '五行灵根',
-            weapon: '枪修',
-            position: '齐灵宗',
-        }, {
-            name: '师傅',
-            image: 'images/bhcyl/characters/师傅.png',
-            element: '五行齐灵根',
-            weapon: '气修',
-            position: '齐灵宗',
-        }, {
-            name: '龙枪',
-            image: 'images/bhcyl/characters/龙枪.png',
-            element: '土灵根',
-            weapon: '枪修',
-            position: '磐龙门',
-        }, {
-            name: '洛师姐',
-            image: 'images/bhcyl/characters/洛师姐.png',      
-            element: '水灵根',
-            weapon: '剑修',
-            position: '汐云宫',
-        }, {
-            name: '水剑',
-            image: 'images/bhcyl/characters/水剑.png',
-            element: '水灵根',
-            weapon: '剑修',
-            position: '汐云宫',
-        }
-    ]
+    const characterItems = page.characterItems
 %>
 
 <!-- 角色展示区域 -->
@@ -52,8 +14,8 @@
         <!-- 底层：角色立绘（水平垂直居中） -->
         <div class="absolute inset-0 flex justify-center items-center z-10" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
             <img 
-                src="<%= url_for(characterItems[0].image) %>" 
-                alt="<%= characterItems[0].name %>" 
+                src="<%= url_for(characterItems[0].image) %>"
+                alt="<%= characterItems[0].name %>"
                 class="max-h-[80vh] max-w-[80vw] object-contain" 
                 id="character-image"
                 style="scale: 1.25"
