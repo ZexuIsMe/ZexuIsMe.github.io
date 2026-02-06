@@ -86,13 +86,13 @@
      */
     function initActiveLinkFromStorage() {
         let storedLink = localStorage.getItem(STORAGE_KEY);
-        let currentPath = window.location.pathname;
+        let currentPath = '/<%= page.path %>';
 
         let matchedLink = null;
 
         mobileLinks.forEach(function(link) {
             let href = link.getAttribute('href');
-            if (currentPath === href || currentPath.startsWith(href)) {
+            if (currentPath.startsWith(href)) {
                 matchedLink = link;
             }
         });

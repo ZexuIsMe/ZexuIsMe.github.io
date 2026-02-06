@@ -4,6 +4,10 @@
     <% }) %>
 </div>
 
+<%
+console.log(page);
+%>
+
 <script>
     // 获取桌面端导航链接元素
     let navLinks = document.querySelectorAll('#menu .nav-link');
@@ -28,13 +32,12 @@
      */
     function initActiveLinkFromStorage() {
         let storedLink = localStorage.getItem(STORAGE_KEY);
-        let currentPath = window.location.pathname;
+        let currentPath = '/<%= page.path %>';
 
         let matchedLink = null;
-
         navLinks.forEach(function(link) {
             let href = link.getAttribute('href');
-            if (currentPath === href || currentPath.startsWith(href)) {
+            if (currentPath.startsWith(href)) {
                 matchedLink = link;
             }
         });
