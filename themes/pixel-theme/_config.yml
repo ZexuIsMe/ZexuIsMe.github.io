@@ -1,5 +1,6 @@
 # Pixel Theme Configuration
 
+image_base: ''  ## 图片前缀
 logo: /images/pixel-logo.webp
 email:
   126: he_zexu@126.com
