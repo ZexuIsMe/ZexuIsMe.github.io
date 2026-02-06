@@ -1,14 +1,14 @@
 <!-- 首页banner -->
 <section id="home" class="pt-16">
     <div class="container mx-auto px-4">
-        <div class="relative mb-12">
+        <div class="relative mb-12" data-aos="fade-up">
             <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/33bd01abf9ca4a529341d122bdfa4104~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=20260202192528FF625BE2146F4D36E478&rrcfp=f06b921b&x-expires=1772623632&x-signature=7NWhx5n0EdrTyCjnqkWvN0dMAdo%3D" alt="Banner" class="w-full h-auto pixel-art pixel-border">
         </div>
 
-        <h2 class="text-3xl font-bold mb-8 text-pixel-pink text-shadow">最新文章</h2>
+        <h2 class="text-3xl font-bold mb-8 text-pixel-pink text-shadow" data-aos="fade-right">最新文章</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <% site.posts.sort('date', -1).slice(0, 3).forEach(post => { %>
-                <div class="pixel-card p-6 markdown-body ">
+            <% site.posts.sort('date', -1).slice(0, 3).forEach((post, index) => { %>
+                <div class="pixel-card p-6 markdown-body " data-aos="fade-up" data-aos-delay="<%= index * 200 %>">
                     <h3 class="text-xl font-bold mb-4 text-pixel-blue"><%= post.title %></h3>
                     <!-- 如果摘要长度超过配置项长度，截取并添加省略号 -->
                      <div class="excerpt">
@@ -28,6 +28,10 @@
     </div>
 </section>
 <!-- 文章列表 -->
-<%- partial('./categories-list') %>
+<section data-aos="fade-up">
+    <%- partial('./categories-list') %>
+</section>
 <!-- 关于我 -->
-<%- partial('../about/index') %>
+<section data-aos="fade-up">
+    <%- partial('../about/index') %>
+</section>
