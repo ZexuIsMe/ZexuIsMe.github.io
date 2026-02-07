@@ -53,7 +53,20 @@
     <!-- 引入必要的CSS和JS -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        var useGlobalLink = (href) => {
+            const globalLink = document.getElementById('global-link');
+            globalLink.href = href;
+            if (!href) {
+                console.error("缺少必要的 href 参数");
+                return;
+            }
+            console.log(href);
+            globalLink.click();
+        };
+    </script>
 </head>
+
 <body class="scanline light-mode">
     <% /* 非404和非bhcyl页面显示完整布局 */ %>
     <% if (page.layout !== '404' && page.layout !== 'bhcyl') { %>
@@ -63,7 +76,7 @@
         <!-- 主内容区域 -->
         <main>
             <!-- 全局点击调用链接 -->
-            <a id="global-link" href="" style="display: none;">全局点击调用时可用</a>
+            <a id="global-link" href="#" style="display: none;">全局点击调用时可用</a>
             <!-- 页面主体内容 -->
             <%- body %>
         </main>

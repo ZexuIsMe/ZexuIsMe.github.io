@@ -1,12 +1,14 @@
 <%
-    const getItems = function(target) {
+    const getItems = function(target, type) {
         return JSON.stringify(site[target].map(item => {
                 return {
                     name: target === 'posts' ? item.title : item.name,
-                    path: item.path
+                    path: item.path,
+                    type
                 }
             }))
     }
+    const { search_404 } = theme.archives;
 %>
 
 <div id="archive-search" class="mb-8">
@@ -14,7 +16,7 @@
         <!-- 左侧：搜索类型下拉框 -->
         <div class="relative flex-shrink-0">
             <select id="search-type" class="w-full px-4 py-2 bg-dark-card border border-dark-border rounded-md text-dark-text focus:outline-none focus:ring-2 focus:ring-dark-primary appearance-none pr-8">
-                <option value="title">标题</option>
+                <!-- <option value="title">标题</option> -->
                 <option value="category">分类</option>
                 <option value="tag">标签</option>
             </select>
@@ -40,22 +42,13 @@
                 <!-- 下拉选项将通过 JS 动态生成 -->
             </div>
         </div>
-        
-        <!-- 右侧：搜索按钮 -->
-        <div class="flex-shrink-0">
-            <button id="search-button" class="px-4 py-2 bg-dark-primary text-dark-bg rounded-md hover:bg-opacity-90 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-            </button>
-        </div>
     </div>
 </div>
 
 <script>
-    const tags = JSON.parse(`<%- getItems('tags') %>`);
-    const categories = JSON.parse(`<%- getItems('categories') %>`);
-    const posts = JSON.parse(`<%- getItems('posts') %>`);
+    const tags = JSON.parse(`<%- getItems('tags', 'tag') %>`);
+    const categories = JSON.parse(`<%- getItems('categories', 'category') %>`);
+    const posts = JSON.parse(`<%- getItems('posts', 'title') %>`);
 
     localStorage.setItem('tags', JSON.stringify(tags));
     localStorage.setItem('categories', JSON.stringify(categories));
@@ -66,7 +59,6 @@
         const searchType = document.getElementById('search-type');
         const searchInput = document.getElementById('search-input');
         const clearInput = document.getElementById('clear-input');
-        const searchButton = document.getElementById('search-button');
         const searchDropdown = document.getElementById('search-dropdown');
         
         // 切换搜索类型时清空输入框并触发空查询
@@ -75,17 +67,6 @@
             searchInput.value = '';
             clearInput.classList.add('hidden');
             searchDropdown.classList.add('hidden');
-            
-            // 触发空查询，重置表格数据
-            const searchEvent = new CustomEvent('search', {
-                bubbles: true,
-                detail: {
-                    type: this.value,
-                    value: ''
-                }
-            });
-            document.dispatchEvent(searchEvent);
-            console.log('触发空查询，类型:', this.value);
         });
         
         // 输入事件：显示/隐藏清空按钮，处理搜索逻辑
@@ -153,62 +134,11 @@
             options[selectedIndex].scrollIntoView({ block: 'nearest' });
         });
         
-        // 清空输入框并触发空查询
+        // 清空输入框并隐藏清空和下拉框
         clearInput.addEventListener('click', function() {
             searchInput.value = '';
             this.classList.add('hidden');
             searchDropdown.classList.add('hidden');
-            
-            // 触发空查询，重置表格数据
-            const searchEvent = new CustomEvent('search', {
-                bubbles: true,
-                detail: {
-                    type: searchType.value,
-                    value: ''
-                }
-            });
-            document.dispatchEvent(searchEvent);
-            console.log('触发空查询，类型:', searchType.value);
-        });
-        
-        // 搜索按钮点击事件
-        searchButton.addEventListener('click', function() {
-            const value = searchInput.value.trim();
-            const type = searchType.value;
-            
-            // 触发自定义事件，将搜索参数传递给父组件
-            const searchEvent = new CustomEvent('search', {
-                bubbles: true,
-                detail: {
-                    type: type,
-                    value: value
-                }
-            });
-            document.dispatchEvent(searchEvent);
-            
-            // 这里可以添加搜索提交逻辑
-            console.log('搜索:', value, '类型:', type);
-            searchDropdown.classList.add('hidden');
-        });
-        
-        // 回车键直接搜索（当输入框有内容且下拉框隐藏时）
-        searchInput.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter' && searchDropdown.classList.contains('hidden')) {
-                const value = this.value.trim();
-                const type = searchType.value;
-                
-                // 触发自定义事件，将搜索参数传递给父组件
-                const searchEvent = new CustomEvent('search', {
-                    bubbles: true,
-                    detail: {
-                        type: type,
-                        value: value
-                    }
-                });
-                document.dispatchEvent(searchEvent);
-                
-                console.log('搜索:', value, '类型:', type);
-            }
         });
         
         // 点击外部关闭下拉框
@@ -250,18 +180,22 @@
         if (items.length === 0) {
             const noResult = document.createElement('div');
             noResult.className = 'px-4 py-2 text-dark-text';
-            noResult.textContent = '无匹配结果';
+            noResult.textContent = "<%= search_404 %>";
             dropdown.appendChild(noResult);
         } else {
             items.forEach(item => {
+                console.log(item);
                 const option = document.createElement('div');
                 option.className = 'px-4 py-2 text-dark-text hover:bg-dark-primary hover:text-dark-bg cursor-pointer';
                 option.textContent = item.name;
                 option.addEventListener('click', function() {
                     inputElement.value = item.name;
-                    dropdown.classList.add('hidden');
-                    // 显示清空按钮
-                    document.getElementById('clear-input').classList.remove('hidden');
+                    localStorage.setItem('search-options', JSON.stringify({
+                        type: item.type,
+                        value: item.name,
+                        path: '/'+item.path
+                    }));
+                    useGlobalLink('/'+item.path);
                 });
                 dropdown.appendChild(option);
             });

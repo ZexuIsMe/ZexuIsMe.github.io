@@ -5,7 +5,8 @@
         check: checkText,
         title: titleText,
     } = theme.archives;
-    const { posts } = page;
+
+    const { posts: postItems } = page;
 %>
 <section class="archive min-h-screen py-12">
     <div class="container mx-auto px-4">
@@ -25,15 +26,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% if (posts && posts.length > 0) { %>
-                        <% posts.each(function(post, index) { %>
+                    <% if (postItems && postItems.length > 0) { %>
+                        <% postItems.each(function(post, index) { %>
                             <tr>
                                 <td><a href="<%= url_for(post.path) %>"><%= post.title %></a></td>
                                 <td>
                                     <div class="flex">
                                         <% if (post.categories && post.categories.length > 0) { %>
                                             <% post.categories.each(function(category) { %>
-                                                <span onclick="handleCategoryClick('category', '<%= category.name %>')"><%= category.name %></span>
+                                                <a href="<%= url_for(category.path) %>" onclick="handleCategoryClick('category', '<%= category.name %>', '<%= url_for(category.path) %>')"><%= category.name %></a>
                                             <% }); %>
                                         <% } else { %>
                                             <span>--</span>
@@ -44,7 +45,7 @@
                                     <div class="flex">
                                         <% if (post.tags && post.tags.length > 0) { %>
                                             <% post.tags.each(function(tag) { %>
-                                                <span onclick="handleCategoryClick('tag', '<%= tag.name %>')"><%= tag.name %></span>
+                                                <a href="<%= url_for(tag.path) %>" onclick="handleCategoryClick('tag', '<%= tag.name %>', '<%= url_for(tag.path) %>')"><%= tag.name %></a>
                                             <% }); %>
                                         <% } else { %>
                                             <span>--</span>
@@ -84,126 +85,17 @@
 
 <script>
     // 处理分类点击事件
-    function handleCategoryClick(type, name) {
-        // 找到搜索组件的DOM元素
-        const searchType = document.getElementById('search-type');
-        const searchInput = document.getElementById('search-input');
-        const clearInput = document.getElementById('clear-input');
-        
-        if (searchType && searchInput) {
-            // 设置搜索类型为分类
-            searchType.value = type;
-            // 填充分类名称到输入框
-            searchInput.value = name;
-            // 显示清空按钮
-            if (clearInput) {
-                clearInput.classList.remove('hidden');
-            }
-            
-            // 触发搜索事件
-            const searchEvent = new CustomEvent('search', {
-                bubbles: true,
-                detail: {
-                    type: type,
-                    value: name
-                }
-            });
-            document.dispatchEvent(searchEvent);
-            console.log('触发搜索:', { type: type, value: name });
-        }
+    const handleCategoryClick = (type, name, path) => {
+        localStorage.setItem('search-options', JSON.stringify({
+            type: type,
+            value: name,
+            path: path
+        }));
     }
     
     // 监听搜索事件
     document.addEventListener('search', function(event) {
         const { type, value } = event.detail;
         console.log('接收到搜索参数:', { type, value });
-        
-        // 高亮对应列
-        highlightColumn(type);
-        
-        // 过滤表格数据
-        filterTable(type, value);
     });
-    
-    // 高亮对应列
-    function highlightColumn(searchType) {
-        const table = document.querySelector('.table-container table');
-        if (!table) return;
-        
-        // 清除所有列的高亮
-        const allCells = table.querySelectorAll('td, th');
-        allCells.forEach(cell => {
-            cell.classList.remove('highlight-column');
-        });
-        
-        // 根据搜索类型确定要高亮的列索引
-        let columnIndex = -1;
-        if (searchType === 'title') {
-            columnIndex = 0;
-        } else if (searchType === 'category') {
-            columnIndex = 1;
-        } else if (searchType === 'tag') {
-            columnIndex = 2;
-        }
-        
-        // 如果有对应的列，则高亮该列
-        if (columnIndex >= 0) {
-            const rows = table.querySelectorAll('tr');
-            rows.forEach(row => {
-                const cells = row.querySelectorAll('td, th');
-                if (cells[columnIndex]) {
-                    cells[columnIndex].classList.add('highlight-column');
-                }
-            });
-        }
-    }
-    
-    // 过滤表格数据
-    function filterTable(searchType, searchValue) {
-        const table = document.querySelector('.table-container table');
-        const rows = table.querySelectorAll('tbody tr:not(.empty-row)');
-        const searchTerm = searchValue.toLowerCase();
-        let hasMatch = false;
-        
-        // 遍历表格行，根据搜索类型和值进行过滤
-        rows.forEach(row => {
-            // 如果搜索值为空，显示所有行
-            if (!searchTerm) {
-                row.style.display = '';
-                hasMatch = true;
-                return;
-            }
-            
-            let cellText = '';
-            
-            // 根据搜索类型获取对应的单元格文本
-            if (searchType === 'title') {
-                // 标题列
-                const titleCell = row.querySelector('td:nth-child(1)');
-                cellText = titleCell ? titleCell.textContent.toLowerCase() : '';
-            } else if (searchType === 'category') {
-                // 分类列
-                const categoryCell = row.querySelector('td:nth-child(2)');
-                cellText = categoryCell ? categoryCell.textContent.toLowerCase() : '';
-            } else if (searchType === 'tag') {
-                // 标签列
-                const tagCell = row.querySelector('td:nth-child(3)');
-                cellText = tagCell ? tagCell.textContent.toLowerCase() : '';
-            }
-            
-            // 检查是否匹配
-            if (cellText.includes(searchTerm)) {
-                row.style.display = '';
-                hasMatch = true;
-            } else {
-                row.style.display = 'none';
-            }
-        });
-        
-        // 显示或隐藏"暂无文章"提示
-        const emptyRow = table.querySelector('tbody tr.empty-row');
-        if (emptyRow) {
-            emptyRow.style.display = hasMatch ? 'none' : '';
-        }
-    }
 </script>

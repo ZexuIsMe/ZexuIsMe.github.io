@@ -61,6 +61,7 @@ archives:
     - 更新时间
     - 操作
   check: '查看' # 查看按钮文本
+  search_404: '无匹配结果' # 搜索结果为空时显示的提示
   
 # Comments
 comments:
