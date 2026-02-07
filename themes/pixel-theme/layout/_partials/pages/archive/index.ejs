@@ -34,7 +34,9 @@
                                     <div class="flex">
                                         <% if (post.categories && post.categories.length > 0) { %>
                                             <% post.categories.each(function(category) { %>
-                                                <a href="<%= url_for(category.path) %>" onclick="handleCategoryClick('category', '<%= category.name %>', '<%= url_for(category.path) %>')"><%= category.name %></a>
+                                                <span onclick="handleCategoryClick('category', '<%= category.name %>', '<%= url_for(category.path) %>')">
+                                                    <%= category.name %>
+                                                </span>
                                             <% }); %>
                                         <% } else { %>
                                             <span>--</span>
@@ -45,7 +47,9 @@
                                     <div class="flex">
                                         <% if (post.tags && post.tags.length > 0) { %>
                                             <% post.tags.each(function(tag) { %>
-                                                <a href="<%= url_for(tag.path) %>" onclick="handleCategoryClick('tag', '<%= tag.name %>', '<%= url_for(tag.path) %>')"><%= tag.name %></a>
+                                                <span onclick="handleCategoryClick('tag', '<%= tag.name %>', '<%= url_for(tag.path) %>')">
+                                                    <%= tag.name %>
+                                                </span>
                                             <% }); %>
                                         <% } else { %>
                                             <span>--</span>
@@ -81,21 +85,104 @@
     .table-container table thead tr th.highlight-column {
         background-color: rgba(59, 130, 246, 0.3) !important;
     }
+    
+    /* 创建时间、更新时间、操作列居中 */
+    .table-container table tbody tr td:nth-child(4),
+    .table-container table tbody tr td:nth-child(5),
+    .table-container table tbody tr td:nth-child(6) {
+        text-align: center;
+    }
+    
+    .table-container table thead tr th:nth-child(4),
+    .table-container table thead tr th:nth-child(5),
+    .table-container table thead tr th:nth-child(6) {
+        text-align: center;
+    }
 </style>
 
 <script>
     // 处理分类点击事件
     const handleCategoryClick = (type, name, path) => {
-        localStorage.setItem('search-options', JSON.stringify({
-            type: type,
-            value: name,
-            path: path
-        }));
+        const options = localStorage.getItem('search-options');
+        if (!options) {
+            // localStorage.setItem('search-options', JSON.stringify({
+            //     type: type,
+            //     value: name,
+            //     path: path
+            // }));
+            useGlobalLink(path);
+            return;
+        }
+        const searchOptions = JSON.parse(options);
+        if (searchOptions.type === type && searchOptions.value === name) {
+            // localStorage.removeItem('search-options');
+            useGlobalLink("<%= url_for('archives') %>");
+        } else {
+            // localStorage.setItem('search-options', JSON.stringify({
+            //     type: type,
+            //     value: name,
+            //     path: path
+            // }));
+            useGlobalLink(path);
+        }
     }
     
-    // 监听搜索事件
-    document.addEventListener('search', function(event) {
-        const { type, value } = event.detail;
-        console.log('接收到搜索参数:', { type, value });
+    // 页面加载时高亮显示对应类型的标签卡片
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchOptions = localStorage.getItem('search-options');
+        if (searchOptions) {
+            const { type, value } = JSON.parse(searchOptions);
+            console.log('高亮显示:', { type, value });
+            
+            // 高亮对应的标签卡片
+            const links = document.querySelectorAll(`span[onclick*="${type}"][onclick*="${value}"]`);
+            links.forEach(link => {
+                link.classList.add('highlight-tag');
+            });
+        }
     });
 </script>
+
+<style>
+    /* 分类和标签容器样式 */
+    .table-container table tbody tr td div.flex {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    /* 分类和标签链接样式 */
+    .table-container table tbody tr td div.flex span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.25rem 0.5rem;
+        background-color: rgba(59, 130, 246, 0.1);
+        border-radius: 0.25rem;
+        color: #94a3b8;
+        text-decoration: none;
+        font-size: 14px;
+        height: 24px;
+    }
+    
+    /* 分类和标签链接 hover 样式 */
+    .table-container table tbody tr td div.flex span:hover {
+        background-color: rgba(59, 130, 246, 0.2);
+        color: #3b82f6;
+    }
+    
+    /* 高亮标签样式 */
+    .highlight-tag {
+        background-color: rgba(59, 130, 246, 0.3) !important;
+        color: #3b82f6 !important;
+        font-weight: 500;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 24px;
+    }
+</style>

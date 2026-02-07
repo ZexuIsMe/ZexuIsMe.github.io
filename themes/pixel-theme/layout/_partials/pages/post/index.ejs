@@ -24,7 +24,7 @@
                         <% page.categories.forEach(function(category, index) { %>
                             <span
                                 class="hover:text-secondary transition-colors" 
-                                onclick="handleTagClick('<%- url_for(category.path) %>')"
+                                onclick="handleTagClick('category', '<%= category.name %>', '<%- url_for(category.path) %>')"
                                 style="cursor: pointer;"
                             >
                                 <%= category.name %>
@@ -40,7 +40,7 @@
                         <% page.tags.forEach(function(tag, index) { %>
                             <span
                                 class="hover:text-secondary transition-colors" 
-                                onclick="handleTagClick('<%- url_for(tag.path) %>')"
+                                onclick="handleTagClick('tag', '<%= tag.name %>', '<%- url_for(tag.path) %>')"
                                 style="cursor: pointer;"
                             >
                                 <%= tag.name %>
@@ -243,13 +243,13 @@ const handleCodeBox = function() {
     });
 }
 
-const handleTagClick = function(navPath) {
+const handleTagClick = function(type, name, path) {
     const aLink = document.getElementById('global-link');
     if (!aLink) {
         console.error("<%= theme.article.link_404 %>");
         return;
     };
-    aLink.href = navPath;
+    aLink.href = path;
     localStorage.setItem('activeNavLink', aLink.href);
     aLink.click();
 }
