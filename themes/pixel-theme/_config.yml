@@ -27,6 +27,12 @@ article:
   show_categories: true  # 显示文章分类
   show_tags: true      # 显示文章标签
   show_copyright: true  # 显示文章版权声明
+  copyright: '. 保留所有权利' # 文章版权声明文本
+  copyright_subtext: '本文为原创内容，未经授权禁止转载或用于商业用途。' # 文章版权声明子文本
+  link_404: '啊咧咧~，global-link 不见了！' # 用于链接跳转的全局元素不见了
+  pre_link: '上一篇' # 上一篇链接文本
+  next_link: '下一篇' # 下一篇链接文本
+
 
 # Navigation
 nav:
@@ -38,7 +44,24 @@ nav:
     path: /archives  # 数组的第二个元素
   - text: 关于我  # 数组的第一个元素
     path: /about  # 数组的第二个元素
-
+index:
+  latest_posts: '最新文章' # 首页最新文章标题
+  read_more: '点击阅读' # 首页阅读更多按钮文本
+  now_card_link_404: '啊咧咧~，链接标签不见了！' # 用于卡片的链接的元素不见了
+  no_excerpt: '没有摘要，要不点进来看看吧 :）' # 首页摘要为空时显示的提示
+  category_number: ' 篇文章' # 文章分类标题
+archives:
+  title: '文章归档' # 归档页面标题
+  no_posts_found: '暂无文章' # 归档页面暂无文章时显示的提示
+  table_headers:
+    - 标题
+    - 分类
+    - 标签
+    - 创建时间
+    - 更新时间
+    - 操作
+  check: '查看' # 查看按钮文本
+  
 # Comments
 comments:
   disqus_shortname:  # Disqus 评论系统短名称

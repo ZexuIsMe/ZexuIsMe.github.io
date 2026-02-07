@@ -54,7 +54,7 @@ characterItems:
 
 # 随笔
 news:
-  title: '佛系玩家的随笔'
+  title: '随笔'
   sort: '-date'
   limit: 6
   imgDefault: images/bhcyl/news-default.png

@@ -24,7 +24,7 @@
                         <% page.categories.forEach(function(category, index) { %>
                             <span
                                 class="hover:text-secondary transition-colors" 
-                                onclick="handleCategoryClick('<%= category.name %>')"
+                                onclick="handleTagClick('<%- url_for(category.path) %>')"
                                 style="cursor: pointer;"
                             >
                                 <%= category.name %>
@@ -40,7 +40,7 @@
                         <% page.tags.forEach(function(tag, index) { %>
                             <span
                                 class="hover:text-secondary transition-colors" 
-                                onclick="handleTagClick('<%= tag.name %>')"
+                                onclick="handleTagClick('<%- url_for(tag.path) %>')"
                                 style="cursor: pointer;"
                             >
                                 <%= tag.name %>
@@ -58,14 +58,14 @@
             
             <!-- 版权声明 -->
             <% if (theme.article.show_copyright && (page.author || config.author) === theme.author) { %>
-            <div class="copyright-notice mt-12 pt-6 border-t border-gray-700">
-                <p class="text-sm text-gray-500">
-                    © <%= new Date().getFullYear() %> <%= config.author %>. 保留所有权利。
-                </p>
-                <p class="text-sm text-gray-500 mt-2">
-                    本文为原创内容，未经授权禁止转载或用于商业用途。
-                </p>
-            </div>
+                <div class="copyright-notice mt-12 pt-6 border-t border-gray-700">
+                    <p class="text-sm text-gray-500">
+                        © <%= new Date().getFullYear() %> <%= config.author %>. <%= theme.article.copyright %>
+                    </p>
+                    <p class="text-sm text-gray-500 mt-2">
+                        <%= theme.article.copyright_subtext %>
+                    </p>
+                </div>
             <% } %>
         </article>
 
@@ -75,12 +75,12 @@
             <div class="flex flex-col gap-4 w-full">
                 <% if (page.prev) { %>
                     <a href="<%= url_for(page.prev.path) %>" class="pixel-button w-fit hover:bg-secondary transition-colors">
-                        <i class="fas fa-arrow-left mr-2"></i> 上一篇
+                        <i class="fas fa-arrow-left mr-2"></i> <%= theme.article.pre_link %>
                     </a>
                 <% } %>
                 <% if (page.next) { %>
                     <a href="<%= url_for(page.next.path) %>" class="pixel-button w-fit ml-auto hover:bg-secondary transition-colors">
-                        下一篇 <i class="fas fa-arrow-right ml-2"></i>
+                        <%= theme.article.next_link %> <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 <% } %>
             </div>
@@ -243,29 +243,13 @@ const handleCodeBox = function() {
     });
 }
 
-const handleCategoryClick = function(categoryName) {
+const handleTagClick = function(navPath) {
     const aLink = document.getElementById('global-link');
-    if (!aLink) return;
-    aLink.href = "<%= url_for('archives') %>";
-
-    localStorage.setItem('search-options', JSON.stringify({
-        type: 'category',
-        value: categoryName,
-        isUse: true // 是否使用搜索参数
-    }));
-    localStorage.setItem('activeNavLink', aLink.href);
-    aLink.click();
-}
-const handleTagClick = function(tagName) {
-    const aLink = document.getElementById('global-link');
-    if (!aLink) return;
-    aLink.href = "<%= url_for('archives') %>";
-
-    localStorage.setItem('search-options', JSON.stringify({
-        type: 'tag',
-        value: tagName,
-        isUse: true // 是否使用搜索参数
-    }));
+    if (!aLink) {
+        console.error("<%= theme.article.link_404 %>");
+        return;
+    };
+    aLink.href = navPath;
     localStorage.setItem('activeNavLink', aLink.href);
     aLink.click();
 }

@@ -7,19 +7,20 @@
             <% site.categories.forEach(category => { %>
                 <div
                   class="pixel-card p-6 flex items-center hover:scale-105 transition-transform duration-300 cursor-pointer"
-                  onclick="handleCategoryCardClick(this, '<%= category.name %>')"
+                  onclick="handleCategoryCardClick(this)"
                 >
                     <div style="display: none" class="w-16 h-16 mr-6 flex items-center justify-center rounded-full bg-pixel-blue bg-opacity-20">
                         <i class="fas fa-folder text-2xl text-pixel-blue"></i>
                     </div>
                     <div class="flex-1">
                         <h3 class="text-xl font-bold mb-1 text-white"><%= category.name %></h3>
-                        <p class="text-sm text-note"><%= category.length %> 篇文章</p>
+                        <p class="text-sm text-note"><%= category.length %><%= theme.index.category_number %></p>
                     </div>
-                    <a href="<%= url_for('archives') %>"
+                    <!-- 查看全部按钮 -->
+                    <a href="<%= url_for(category.path) %>"
                         class="pixel-button ml-4"
                         style="display: none;"
-                    >查看全部</a>
+                    ><%= theme.index.read_more %></a>
                 </div>
             <% }); %>
         </div>
@@ -27,13 +28,13 @@
 </section>
 
 <script>
-    function handleCategoryCardClick(card, categoryName) {;
-        localStorage.setItem('search-options', JSON.stringify({
-            type: 'category',
-            value: categoryName,
-            isUse: true // 是否使用搜索参数
-        }));
-        card.querySelector('a').click();
-        localStorage.setItem('activeNavLink', "<%= url_for('archives') %>");
+    function handleCategoryCardClick(card) {
+        const a = card.querySelector('a');
+        if (!a) {
+            console.error("<%= theme.index.now_card_link_404 %>");
+            return;
+        };
+        localStorage.setItem('activeNavLink', a.href);
+        a.click();
     }
 </script>

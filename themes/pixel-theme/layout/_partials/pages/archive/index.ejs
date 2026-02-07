@@ -1,7 +1,16 @@
+<%
+    const {
+        table_headers: headers, 
+        no_posts_found: noPostsFound, 
+        check: checkText,
+        title: titleText,
+    } = theme.archives;
+    const { posts } = page;
+%>
 <section class="archive min-h-screen py-12">
     <div class="container mx-auto px-4">
 
-        <h1 class="text-4xl font-bold text-center mb-12 text-white">文章归档</h1>
+        <h1 class="text-4xl font-bold text-center mb-12 text-white"><%= titleText %></h1>
 
         <!-- 搜索框 -->
         <%- partial('search') %>
@@ -10,17 +19,14 @@
             <table>
                 <thead>
                     <tr>
-                        <th>标题</th>
-                        <th>分类</th>
-                        <th>标签</th>
-                        <th>创建时间</th>
-                        <th>更新时间</th>
-                        <th>操作</th>
+                        <% headers.forEach(item => { %>
+                            <th><%= item %></th>
+                        <% }) %>
                     </tr>
                 </thead>
                 <tbody>
-                    <% if (page.posts && page.posts.length > 0) { %>
-                        <% page.posts.each(function(post, index) { %>
+                    <% if (posts && posts.length > 0) { %>
+                        <% posts.each(function(post, index) { %>
                             <tr>
                                 <td><a href="<%= url_for(post.path) %>"><%= post.title %></a></td>
                                 <td>
@@ -30,7 +36,7 @@
                                                 <span onclick="handleCategoryClick('category', '<%= category.name %>')"><%= category.name %></span>
                                             <% }); %>
                                         <% } else { %>
-                                            <span>无</span>
+                                            <span>--</span>
                                         <% } %>
                                     </div>
                                 </td>
@@ -41,20 +47,19 @@
                                                 <span onclick="handleCategoryClick('tag', '<%= tag.name %>')"><%= tag.name %></span>
                                             <% }); %>
                                         <% } else { %>
-                                            <span>无</span>
+                                            <span>--</span>
                                         <% } %>
                                     </div>
                                 </td>
                                 <td><%= date(post.date, 'YYYY-MM-DD') %></td>
                                 <td><%= date(post.updated, 'YYYY-MM-DD') %></td>
-                                <td><a href="<%= url_for(post.path) %>">查看</a></td>
+                                <td><a href="<%= url_for(post.path) %>"><%= checkText %></a></td>
                             </tr>
                         <% }); %>
                     <% } else { %>
                         <tr class="empty-row">
-                            <td colspan="6">
-                                暂无文章
-                            </td>
+                            <!-- 暂无文章提示 -->
+                            <td colspan="6"><%= noPostsFound %></td>
                         </tr>
                     <% } %>
                 </tbody>
@@ -78,20 +83,6 @@
 </style>
 
 <script>
-    // 页面加载时检查是否为归档页面，如果是则更新导航菜单状态
-    document.addEventListener('DOMContentLoaded', function() {
-        // 从 localStorage 获取搜索参数
-        const searchOptions = localStorage.getItem('search-options');
-        if (searchOptions) {
-            const options = JSON.parse(searchOptions);
-            if (options.isUse) {
-                // TODO 查询会有一闪而过的闪缩，可通过调整table的数据来避免
-                // 具体做法是，先设一个空值数组，判断是否有 search-options，存在则触发搜索，不存在则正常加载数据
-                handleCategoryClick(options.type, options.value);
-            }
-        }
-    });
-    
     // 处理分类点击事件
     function handleCategoryClick(type, name) {
         // 找到搜索组件的DOM元素

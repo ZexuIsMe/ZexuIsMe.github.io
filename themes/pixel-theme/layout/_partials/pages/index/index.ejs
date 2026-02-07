@@ -4,23 +4,25 @@
         <div class="relative mb-12" data-aos="fade-up">
             <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/33bd01abf9ca4a529341d122bdfa4104~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=20260202192528FF625BE2146F4D36E478&rrcfp=f06b921b&x-expires=1772623632&x-signature=7NWhx5n0EdrTyCjnqkWvN0dMAdo%3D" alt="Banner" class="w-full h-auto pixel-art pixel-border">
         </div>
-
-        <h2 class="text-3xl font-bold mb-8 text-pixel-pink text-shadow" data-aos="fade-right">最新文章</h2>
+        <!-- 最新文章列表 -->
+        <h2 class="text-3xl font-bold mb-8 text-pixel-pink text-shadow" data-aos="fade-right"><%= theme.index.latest_posts %></h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <% site.posts.sort('date', -1).slice(0, 3).forEach((post, index) => { %>
                 <div class="pixel-card p-6" data-aos="fade-up" data-aos-delay="<%= index * 200 %>">
+                    <!-- 文章标题 -->
                     <h3 class="text-xl font-bold mb-4 text-pixel-blue"><%= post.title %></h3>
-                    <!-- 如果摘要长度超过配置项长度，截取并添加省略号 -->
+                    <!-- 文章摘要 -->
                      <div class="excerpt">
                         <% if (post.excerpt) { %>
                             <%- post.excerpt %>
                         <% } else { %>
-                            没有摘要，要不点进来看看吧 :）
+                            <%= theme.index.no_excerpt %>
                         <% } %>
                      </div>
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-note"><%= post.date.format('YYYY-MM-DD') %></span>
-                        <a href="<%- url_for(post.path) %>" class="pixel-button">点击阅读</a>
+                        <!-- 阅读更多按钮 -->
+                        <a href="<%- url_for(post.path) %>" class="pixel-button"><%= theme.index.read_more %></a>
                     </div>
                 </div>
             <% }); %>
