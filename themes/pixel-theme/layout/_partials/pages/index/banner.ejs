@@ -17,7 +17,8 @@
                             alt="<%= item.alt || 'Banner ' + (index + 1) %>" 
                             class="w-full h-full object-cover"
                             style="object-position: center top;"
-                        >
+                            onclick="window.location.href = `<%- url_for(item.src || 'index.html') %>`"
+                        />
                     </div>
                 <% }) %>
                 <!-- 添加第一张图片的副本，实现无缝轮播 -->
@@ -28,7 +29,7 @@
                             alt="<%= bannerItems[0].alt || 'Banner 1' %>" 
                             class="w-full h-full object-cover"
                             style="object-position: center top;"
-                        >
+                        />
                     </div>
                 <% } %>
             </div>

@@ -54,7 +54,7 @@ index:
     - title: 繁花拍摄
       subtitle: 摄影、化妆老师太给力了！
       image: images/home_banner/ZC__2091.JPG
-      src: about/#shots
+      src: about/#my-picture
     - title: 碧海苍云录
       subtitle: 一个不肝不氪，弱联网的单机休闲小游，游戏立绘方面真的直接吹爆好吧。
       image: images/home_banner/0.01.webp
@@ -72,6 +72,40 @@ archives:
   check: '查看' # 查看按钮文本
   search_404: '无匹配结果' # 搜索结果为空时显示的提示
   
+# About
+about:
+  title: '关于我' # 关于我页面标题
+  subtitle: '关于我' # 关于我页面副标题
+  pictures:
+    - name: '繁花拍摄'
+      time: '2025-08-01'
+      images: 
+        - images/about/ZC__1756.JPG
+        - images/about/ZC__1758.JPG
+        - images/about/ZC__1796.JPG
+        - images/about/ZC__1802.JPG
+        - images/about/ZC__1802.JPG
+        - images/about/ZC__1807.JPG
+        - images/about/ZC__1809.JPG
+        - images/about/ZC__1821_10寸水晶相册 0P.JPG
+        - images/about/ZC__1825.JPG
+        - images/about/ZC__1829.JPG
+        - images/about/ZC__1831.JPG
+        - images/about/ZC__1839.JPG
+        - images/about/ZC__2007.JPG
+        - images/about/ZC__2008.JPG
+        - images/about/ZC__2012.JPG
+        - images/about/ZC__2015.JPG
+        - images/about/ZC__2030.JPG
+        - images/about/ZC__2031.JPG
+        - images/about/ZC__2035_10寸蕾蒙娜.JPG
+        - images/about/ZC__2052.JPG
+        - images/about/ZC__2057.JPG
+        - images/about/ZC__2079.JPG
+        - images/about/ZC__2080.JPG
+        - images/about/ZC__2091.JPG
+        - images/about/ZC__2092.JPG
+
 # Comments
 comments:
   disqus_shortname:  # Disqus 评论系统短名称
