@@ -9,13 +9,12 @@
             title: s.title || ''
         }));
     }
+    const randomIndex = Math.floor(Math.random() * screenshotsArray.length);
 %>
 
-<section class="min-h-screen py-24 bg-ink-gradient relative overflow-hidden">
-    <!-- 背景视频 -->
-    <video class="w-full h-full object-cover absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 opacity-30" autoplay muted loop playsinline>
-        <source src="<%= url_for('images/bhcyl/壁纸/z_bg.mp4') %>" type="video/mp4">
-    </video>
+<section class="py-24 bg-ink-gradient relative overflow-hidden">
+    <!-- 背景图片层 -->
+    <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: url('<%= screenshotsArray[randomIndex].src %>'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
     <!-- 标题和副标题 -->
     <div class="mx-auto px-4 z-10 relative">
         <div class="text-center mb-16">
@@ -30,17 +29,30 @@
     </div>
     <!-- 游戏截图网格 -->
     <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="screenshotsGrid">
             <% screenshotsArray.forEach((item, index) => { %>
                 <div 
-                    class="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer" 
+                    id="screenshots-<%= index %>"
+                    class="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer screenshot-item" 
                     data-index="<%= index %>" 
                     onclick="openLightbox('<%= index %>')"
+                    style="display: none;"
                 >
                     <img src="<%= item.src %>" alt="<%= item.title || '场景' + (index + 1) %>" class="w-full h-64 object-cover">
                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
                 </div>
             <% }) %>
+        </div>
+        
+        <!-- 加载更多按钮 -->
+        <div class="text-center mt-12" id="loadMoreContainer">
+            <button 
+                class="bg-ink-accent hover:bg-ink-accent/80 text-white font-bold py-3 px-8 rounded-full transition-all duration-300"
+                onclick="loadMoreScreenshots()"
+                id="loadMoreBtn"
+            >
+                加载更多
+            </button>
         </div>
     </div>
 
@@ -74,6 +86,7 @@
         const prevImage = document.getElementById('prevImage');
         const currentImage = document.getElementById('currentImage');
         const nextImage = document.getElementById('nextImage');
+        console.log(items[prevIndex]);
         
         prevImage.querySelector('img').src = items[prevIndex].src;
         prevImage.querySelector('.absolute.bottom-3.left-3').textContent = items[prevIndex].title || `场景${prevIndex + 1}`;
@@ -171,9 +184,46 @@
         }
     });
 
+    let visibleCount = 3;
+    const itemsPerLoad = 3;
+
+    const loadMoreScreenshots = () => {
+        const items = document.querySelectorAll('.screenshot-item');
+        const totalItems = items.length;
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        const loadMoreContainer = document.getElementById('loadMoreContainer');
+
+        // 计算需要显示的下一批项目的结束索引
+        const endIndex = Math.min(visibleCount + itemsPerLoad, totalItems);
+
+        // 显示从当前可见数到结束索引的项目
+        for (let i = visibleCount; i < endIndex; i++) {
+            if (items[i]) {
+                items[i].style.display = '';
+            }
+        }
+
+        // 更新当前可见项目数
+        visibleCount = endIndex;
+
+        // 如果所有项目都已显示，隐藏加载更多按钮
+        if (visibleCount >= totalItems) {
+            loadMoreContainer.style.display = 'none';
+        }
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
-        if (totalSlides > 0) {
-            updateGallery();
+        // 检查是否需要显示加载更多按钮
+        const items = document.querySelectorAll('.screenshot-item');
+        const loadMoreContainer = document.getElementById('loadMoreContainer');
+        items.forEach((item, index) => {
+            if (index < 3) {
+                item.style.display = 'block';
+            }
+        });
+        
+        if (items.length <= 3) {
+            loadMoreContainer.style.display = 'none';
         }
     });
 </script>
