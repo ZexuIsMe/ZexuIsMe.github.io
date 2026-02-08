@@ -1,11 +1,11 @@
 <!-- 新闻资讯区域 -->
 <% 
-    const { sort, limit } = page.news;
+    const { sort } = page.news;
     
     const bhcylPosts = site.posts.filter(post => {
                             const categories = post.categories.toArray();
                             return categories.some(cat => cat.name === page.title);
-                        }).sort(sort).limit(limit);
+                        }).sort(sort);
 %>
 
 <section id="news" class="py-20 bg-gray-900 relative">

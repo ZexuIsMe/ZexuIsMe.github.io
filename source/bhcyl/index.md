@@ -52,6 +52,23 @@ characterItems:
     weapon: 剑修
     position: 汐云宫
 
+# 截图
+screenshots_title: '壁纸'
+screenshots_subtitle: '根据游戏版本更新收集'
+screenshots:
+  - src: images/bhcyl/壁纸/洛师姐.webp
+  - src: images/bhcyl/壁纸/0.7.webp
+  - src: images/bhcyl/壁纸/0.8.webp
+  - src: images/bhcyl/壁纸/0.10.webp
+  - src: images/bhcyl/壁纸/0.11.webp
+  - src: images/bhcyl/壁纸/0.13.webp
+  - src: images/bhcyl/壁纸/0.15.webp
+  - src: images/bhcyl/壁纸/0.19.webp
+  - src: images/bhcyl/壁纸/0.20.webp
+  - src: images/bhcyl/壁纸/0.21.webp
+  - src: images/bhcyl/壁纸/0.24.webp
+  - src: images/bhcyl/壁纸/bg03.webp
+
 # 随笔
 news:
   title: '随笔'

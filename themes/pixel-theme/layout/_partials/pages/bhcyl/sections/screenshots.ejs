@@ -1,26 +1,179 @@
 <!-- 游戏截图区域 -->
-<section class="py-20 bg-black relative">
-    <div class="container mx-auto px-4 z-10 relative">
-        <h2 class="text-4xl font-bold text-center text-ancient-gold mb-16" data-aos="fade-up">
-            游戏截图
-        </h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="overflow-hidden rounded-lg border border-ancient-gold/30" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/9494563f329f4918a02badb20a21a7bd.png~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=202602052337540D3F64686579370B2CC5&rrcfp=8a172a1a&x-expires=1770910674&x-signature=y%2FQirQfHmewyHsh7flX4G2z6sE0%3D" 
-                     alt="Screenshot 1" 
-                     class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
-            </div>
-            <div class="overflow-hidden rounded-lg border border-ancient-gold/30" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/24d75858cfd74db7b29267e80f1037c9.png~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=202602052337540D3F64686579370B2CC5&rrcfp=8a172a1a&x-expires=1770910674&x-signature=MiuXIjfoet8KtUXS3cr6wRH4tY4%3D" 
-                     alt="Screenshot 2" 
-                     class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
-            </div>
-            <div class="overflow-hidden rounded-lg border border-ancient-gold/30" data-aos="fade-up" data-aos-delay="300">
-                <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/13ac5bcc29534e61815b82eecdc77b16.png~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=202602052337540D3F64686579370B2CC5&rrcfp=8a172a1a&x-expires=1770910674&x-signature=cxawEJ4j2NWIYAeAegPfW90vzJw%3D" 
-                     alt="Screenshot 3" 
-                     class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
-            </div>
+
+<%
+    const { screenshots, screenshots_title: title, screenshots_subtitle: subtitle } = page
+    let screenshotsArray = [];
+    if (screenshots && screenshots.length > 0) {
+        screenshotsArray = screenshots.map(s => ({
+            src: url_for(s.src),
+            title: s.title || ''
+        }));
+    }
+%>
+
+<section class="min-h-screen py-24 bg-ink-gradient relative overflow-hidden">
+    <!-- 背景视频 -->
+    <video class="w-full h-full object-cover absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 opacity-30" autoplay muted loop playsinline>
+        <source src="<%= url_for('images/bhcyl/壁纸/z_bg.mp4') %>" type="video/mp4">
+    </video>
+    <!-- 标题和副标题 -->
+    <div class="mx-auto px-4 z-10 relative">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-bold text-ink-accent mb-4 animate-ink-fade" style="animation-delay: 0.1s">
+                <%= title %>
+            </h2>
+            <div class="w-32 h-1 bg-ink-accent mx-auto mb-6 animate-ink-fade" style="animation-delay: 0.2s"></div>
+            <p class="text-ink-light text-lg animate-ink-fade" style="animation-delay: 0.3s">
+                <%= subtitle %>
+            </p>
+        </div>
+    </div>
+    <!-- 游戏截图网格 -->
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <% screenshotsArray.forEach((item, index) => { %>
+                <div 
+                    class="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer" 
+                    data-index="<%= index %>" 
+                    onclick="openLightbox('<%= index %>')"
+                >
+                    <img src="<%= item.src %>" alt="<%= item.title || '场景' + (index + 1) %>" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <div class="py-20" data-desc="填充物"></div>
+
+    <!-- 游戏截图弹窗 -->
+    <div id="lightbox" class="fixed inset-0 z-50 hidden bg-black/90 flex items-center justify-center" onclick="closeLightboxOnOutsideClick(event)">
+        <button onclick="closeLightbox(); event.stopPropagation()" class="absolute top-4 right-4 text-white text-4xl hover:text-ink-accent transition-colors z-10">&times;</button>
+        <button onclick="prevLightboxImage(); event.stopPropagation()" class="absolute left-4 text-white text-4xl hover:text-ink-accent transition-colors z-10">&larr;</button>
+        <button onclick="nextLightboxImage(); event.stopPropagation()" class="absolute right-4 text-white text-4xl hover:text-ink-accent transition-colors z-10">&rarr;</button>
+        <div class="px-4" onclick="event.stopPropagation()">
+            <img id="lightboxImage" src="" alt="" class="max-w-full max-h-[85vh] object-contain">
+        </div>
+
+        <div class="absolute" style="left: 50%; bottom: 3%; transform: translateX(-50%);">
+            <i class="fa fa-download text-white text-4xl hover:text-ink-accent transition-colors z-10 cursor-pointer" onclick="downloadImage(); event.stopPropagation()"></i>
         </div>
     </div>
 </section>
+
+<script>
+    const items = JSON.parse('<%- JSON.stringify(screenshotsArray) %>');
+    let currentSlide = 0;
+    const totalSlides = items.length;
+    let currentLightboxIndex = 0;
+
+    const updateGallery = () => {
+        const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+        const nextIndex = (currentSlide + 1) % totalSlides;
+        
+        const prevImage = document.getElementById('prevImage');
+        const currentImage = document.getElementById('currentImage');
+        const nextImage = document.getElementById('nextImage');
+        
+        prevImage.querySelector('img').src = items[prevIndex].src;
+        prevImage.querySelector('.absolute.bottom-3.left-3').textContent = items[prevIndex].title || `场景${prevIndex + 1}`;
+        
+        currentImage.querySelector('img').src = items[currentSlide].src;
+        currentImage.querySelector('.absolute.bottom-3.left-3').textContent = items[currentSlide].title || `场景${currentSlide + 1}`;
+        
+        nextImage.querySelector('img').src = items[nextIndex].src;
+        nextImage.querySelector('.absolute.bottom-3.left-3').textContent = items[nextIndex].title || `场景${nextIndex + 1}`;
+        
+        document.querySelectorAll('.gallery-indicator').forEach((indicator, index) => {
+            if (index === currentSlide) {
+                indicator.classList.add('bg-ink-accent', 'w-6');
+                indicator.classList.remove('bg-ink-accent/40');
+            } else {
+                indicator.classList.remove('bg-ink-accent', 'w-6');
+                indicator.classList.add('bg-ink-accent/40');
+            }
+        });
+    };
+
+    const goToSlide = (index) => {
+        currentSlide = index;
+        updateGallery();
+    };
+
+    const nextSlide = () => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateGallery();
+    };
+
+    const prevSlide = () => {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateGallery();
+    };
+
+    const openLightbox = (index) => {
+        currentLightboxIndex = index;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        
+        lightboxImage.src = items[index].src;
+        lightboxImage.alt = items[index].title || `场景${index + 1}`;
+        
+        lightbox.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeLightbox = () => {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.add('hidden');
+        document.body.style.overflow = '';
+    };
+
+    const nextLightboxImage = () => {
+        currentLightboxIndex = (currentLightboxIndex + 1) % items.length;
+        const lightboxImage = document.getElementById('lightboxImage');
+        
+        lightboxImage.src = items[currentLightboxIndex].src;
+    };
+
+    const prevLightboxImage = () => {
+        currentLightboxIndex = (currentLightboxIndex - 1 + items.length) % items.length;
+        const lightboxImage = document.getElementById('lightboxImage');
+        
+        lightboxImage.src = items[currentLightboxIndex].src;
+    };
+
+    const downloadImage = () => {
+        const currentItem = items[currentLightboxIndex];
+        const link = document.createElement('a');
+        link.href = currentItem.src;
+        link.download = '碧海苍云录' + new Date().toLocaleString() + '.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    const closeLightboxOnOutsideClick = (event) => {
+        if (event.target === event.currentTarget) {
+            closeLightbox();
+        }
+    };
+
+    document.addEventListener('keydown', (e) => {
+        const lightbox = document.getElementById('lightbox');
+        if (lightbox.classList.contains('hidden')) return;
+        
+        if (e.key === 'Escape') {
+            closeLightbox();
+        } else if (e.key === 'ArrowRight') {
+            nextLightboxImage();
+        } else if (e.key === 'ArrowLeft') {
+            prevLightboxImage();
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        if (totalSlides > 0) {
+            updateGallery();
+        }
+    });
+</script>

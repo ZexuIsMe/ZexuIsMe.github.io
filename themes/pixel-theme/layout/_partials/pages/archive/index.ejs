@@ -105,11 +105,6 @@
     const handleCategoryClick = (type, name, path) => {
         const options = localStorage.getItem('search-options');
         if (!options) {
-            // localStorage.setItem('search-options', JSON.stringify({
-            //     type: type,
-            //     value: name,
-            //     path: path
-            // }));
             useGlobalLink(path);
             return;
         }
@@ -118,11 +113,6 @@
             // localStorage.removeItem('search-options');
             useGlobalLink("<%= url_for('archives') %>");
         } else {
-            // localStorage.setItem('search-options', JSON.stringify({
-            //     type: type,
-            //     value: name,
-            //     path: path
-            // }));
             useGlobalLink(path);
         }
     }

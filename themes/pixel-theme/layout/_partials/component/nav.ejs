@@ -1,14 +1,12 @@
-<nav class="nav-bg shadow-lg sticky top-0 z-50" data-aos="fade-down" data-aos-duration="600">
+<nav class="nav-bg shadow-lg sticky top-0 z-50">
     <div class="container mx-auto px-4">
         <div class="flex justify-between items-center py-4">
-            <div class="flex items-center space-x-4" data-aos="fade-right" data-aos-delay="100">
+            <div class="flex items-center space-x-4">
                 <img src="<%= theme['logo'] %>" alt="Logo" class="w-12 h-12 pixel-art pixel-border">
                 <span class="nav-title text-2xl font-bold text-text-primary text-shadow-pixel"><%= config.title %></span>
             </div>
-            <div data-aos="fade-left" data-aos-delay="200">
+            <div>
                 <%- include('./nav-menu-pc') %>
-            </div>
-            <div data-aos="fade-left" data-aos-delay="300">
                 <%- include('./nav-menu-mobile') %>
             </div>
         </div>
