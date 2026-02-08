@@ -50,6 +50,15 @@ index:
   now_card_link_404: '啊咧咧~，链接标签不见了！' # 用于卡片的链接的元素不见了
   no_excerpt: '没有摘要，要不点进来看看吧 :）' # 首页摘要为空时显示的提示
   category_number: ' 篇文章' # 文章分类标题
+  banner:
+    - title: 繁花拍摄
+      subtitle: 摄影、化妆老师太给力了！
+      image: images/home_banner/ZC__2091.JPG
+      src: about/#shots
+    - title: 碧海苍云录
+      subtitle: 一个不肝不氪，弱联网的单机休闲小游，游戏立绘方面真的直接吹爆好吧。
+      image: images/home_banner/0.01.webp
+      src: bhcyl
 archives:
   title: '文章归档' # 归档页面标题
   no_posts_found: '暂无文章' # 归档页面暂无文章时显示的提示

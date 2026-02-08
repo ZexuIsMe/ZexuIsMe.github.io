@@ -38,10 +38,14 @@
                                 <%- page.news.excerpt %>
                             <% } %>
                         </div>
-                        <a href="<%= url_for(post.path) %>" class="text-ancient-gold hover:text-yellow-400 transition-colors duration-300 flex items-center">
+                        <a href="<%= url_for(post.path) %>">
+                        </a>
+                        <span
+                            class="text-ancient-gold hover:text-yellow-400 transition-colors duration-300 flex items-center"
+                        >
                             阅读更多
                             <i class="fa fa-arrow-right ml-2"></i>
-                        </a>
+                        </span>
                     </div>
                 </div>
             <% }) %>

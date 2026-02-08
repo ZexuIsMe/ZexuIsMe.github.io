@@ -1,0 +1,28 @@
+<!-- 最新文章 -->
+<section id="post-lasted" data-aos="fade-up">
+    <div class="container mx-auto px-4">
+        <!-- 最新文章列表 -->
+        <h2 class="text-3xl font-bold mb-8 text-pixel-pink text-shadow" data-aos="fade-right"><%= theme.index.latest_posts %></h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <% site.posts.sort('date', -1).slice(0, 3).forEach((post, index) => { %>
+                <div class="pixel-card p-6" data-aos="fade-up" data-aos-delay="<%= index * 200 %>">
+                    <!-- 文章标题 -->
+                    <h3 class="text-xl font-bold mb-4 text-pixel-blue"><%= post.title %></h3>
+                    <!-- 文章摘要 -->
+                     <div class="excerpt">
+                        <% if (post.excerpt) { %>
+                            <%- post.excerpt %>
+                        <% } else { %>
+                            <%= theme.index.no_excerpt %>
+                        <% } %>
+                     </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-note"><%= post.date.format('YYYY-MM-DD') %></span>
+                        <!-- 阅读更多按钮 -->
+                        <a href="<%- url_for(post.path) %>" class="pixel-button"><%= theme.index.read_more %></a>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</section>
