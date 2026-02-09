@@ -122,7 +122,6 @@
         const searchOptions = localStorage.getItem('search-options');
         if (searchOptions) {
             const { type, value } = JSON.parse(searchOptions);
-            console.log('高亮显示:', { type, value });
             
             // 高亮对应的标签卡片
             const links = document.querySelectorAll(`span[onclick*="${type}"][onclick*="${value}"]`);

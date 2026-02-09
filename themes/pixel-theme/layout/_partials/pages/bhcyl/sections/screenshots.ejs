@@ -86,7 +86,6 @@
         const prevImage = document.getElementById('prevImage');
         const currentImage = document.getElementById('currentImage');
         const nextImage = document.getElementById('nextImage');
-        console.log(items[prevIndex]);
         
         prevImage.querySelector('img').src = items[prevIndex].src;
         prevImage.querySelector('.absolute.bottom-3.left-3').textContent = items[prevIndex].title || `场景${prevIndex + 1}`;

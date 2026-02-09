@@ -90,7 +90,6 @@
             dropdown.appendChild(noResult);
         } else {
             items.forEach(item => {
-                console.log(item);
                 const option = document.createElement('div');
                 option.className = 'px-4 py-2 text-dark-text hover:bg-dark-primary hover:text-dark-bg cursor-pointer';
                 option.textContent = item.name;
@@ -142,7 +141,6 @@
 
         // 切换搜索类型时清空输入框并触发空查询
         searchType.addEventListener('change', function() {
-            console.log('切换搜索类型:', this.value);
             searchInput.value = '';
             clearInput.classList.add('hidden');
             searchDropdown.classList.add('hidden');
