@@ -1,8 +1,36 @@
+/* 导入自定义字体 */
+@font-face {
+    font-family: 'ZiKuJiangHuGuFengTi';
+    src: url('../font/free/ZiKuJiangHuGuFengTi-2.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ZiKuXingQiuFeiYangTi';
+    src: url('../font/free/ZiKuXingQiuFeiYangTi-2.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PingFangLaiJiangHuFeiYangTi';
+    src: url('../font/free/PingFangLaiJiangHuFeiYangTi-2.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     /* 字体变量 */
     --font-family-base: 'VT323', monospace;
     --font-family-heading: cursive;
     --font-family-pixel: 'Press Start 2P', cursive;
+    --font-family-gufeng: 'ZiKuJiangHuGuFengTi', cursive;
+    --font-family-xingqiu: 'ZiKuXingQiuFeiYangTi', cursive;
+    --font-family-pingfang: 'PingFangLaiJiangHuFeiYangTi', cursive;
     
     /* 暗色模式 - 颜色变量（Trae风格） */
     --color-dark-bg-primary: #1A1A2E;        /* 暗色模式主背景 - Trae深蓝色 */

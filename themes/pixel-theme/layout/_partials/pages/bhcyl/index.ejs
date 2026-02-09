@@ -1,3 +1,81 @@
+<div class="bg-gray-900 font-serif text-light overflow-x-hidden min-h-screen">
+    <!-- 引入各个section -->
+    <%- partial('sections/navbar') %>
+    <!-- banner -->
+    <%- partial('sections/banner') %>
+    <!-- 角色介绍 -->
+    <%- partial('sections/characters') %>
+    <!-- 功能介绍 -->
+    <%- partial('sections/features') %>
+    <!-- 截图展示 -->
+    <%- partial('sections/screenshots') %>
+    <!-- 下载链接 -->
+    <%- partial('sections/download') %>
+    <!-- 新闻动态 -->
+    <%- partial('sections/news') %>
+    <!-- 页脚 -->
+    <%- partial('sections/footer') %>
+</div>
+
+<script>
+    // 初始化AOS动画库
+    document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // 移动端菜单切换
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 如果是移动端，点击后关闭菜单
+                    if (window.innerWidth < 768) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // 角色卡片点击效果
+        const characterCards = document.querySelectorAll('.character-card');
+        characterCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // 这里可以添加角色详情弹窗或跳转逻辑
+                console.log('Character card clicked');
+            });
+        });
+        
+        // 下载按钮点击效果
+        const downloadButtons = document.querySelectorAll('#download button');
+        downloadButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // 这里可以添加下载逻辑或跳转应用商店
+                alert('开始下载游戏客户端');
+            });
+        });
+    });
+</script>
+
 <style type="text/tailwindcss">
     @layer bhcyl-utilities {
         .text-shadow {
@@ -44,81 +122,3 @@
         }
     }
 </style>
-
-<div class="bg-gray-900 font-serif text-light overflow-x-hidden min-h-screen">
-    <!-- 引入各个section -->
-    <%- partial('sections/navbar') %>
-    <!-- banner -->
-    <%- partial('sections/banner') %>
-    <!-- 角色介绍 -->
-    <%- partial('sections/characters') %>
-    <!-- 功能介绍 -->
-    <%- partial('sections/features') %>
-    <!-- 截图展示 -->
-    <%- partial('sections/screenshots') %>
-    <!-- 下载链接 -->
-    <%- partial('sections/download') %>
-    <!-- 新闻动态 -->
-    <%- partial('sections/news') %>
-    <!-- 页脚 -->
-    <%- partial('sections/footer') %>
-
-    <script>
-        // 初始化AOS动画库
-        document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({
-                duration: 800,
-                easing: 'ease-in-out',
-                once: true
-            });
-            
-            // 移动端菜单切换
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
-            
-            // 平滑滚动
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                        
-                        // 如果是移动端，点击后关闭菜单
-                        if (window.innerWidth < 768) {
-                            mobileMenu.classList.add('hidden');
-                        }
-                    }
-                });
-            });
-            
-            // 角色卡片点击效果
-            const characterCards = document.querySelectorAll('.character-card');
-            characterCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    // 这里可以添加角色详情弹窗或跳转逻辑
-                    console.log('Character card clicked');
-                });
-            });
-            
-            // 下载按钮点击效果
-            const downloadButtons = document.querySelectorAll('#download button');
-            downloadButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // 这里可以添加下载逻辑或跳转应用商店
-                    alert('开始下载游戏客户端');
-                });
-            });
-        });
-    </script>
-</div>
