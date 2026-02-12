@@ -1,14 +1,4 @@
 <!-- 关于我 -->
-
-<%
-  const about_config = {
-    // 控制是否显示相册，参数
-    show_album: showAlbum || 'on'
-  }
-%>
-
- <%- partial('./my-desc') %>
-
-<% if (about_config.show_album === 'on') { %>
- <%- partial('./pictrue-album') %>
-<% } %>
+<%- partial('./my-desc') %>
+<!-- 我的相册 -->
+<%- partial('./pictrue-album') %>
