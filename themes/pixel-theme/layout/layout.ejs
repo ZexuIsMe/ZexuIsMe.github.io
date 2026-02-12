@@ -80,10 +80,6 @@
             <!-- 页面主体内容 -->
             <%- body %>
         </main>
-
-        <!-- 页脚组件 -->
-        <%- partial('_partials/footer') %>
-
         <!-- 固定到顶部按钮和主题切换按钮 -->
         <%- partial('_partials/component/fixedBox') %>
     <% } else { %>
@@ -96,5 +92,9 @@
         <!-- defer属性使脚本在HTML解析完成后执行，提高页面加载性能 -->
         <script src="<%- url_for('/js/main.js') %>" defer></script>
     <% } %>
+
+    <!-- 页脚组件 -->
+    <%- partial('footer') %>
+
 </body>
 </html>

@@ -1,4 +1,5 @@
 # Pixel Theme Configuration
+icp: '蜀ICP备2026006441号'
 
 image_base: ''  ## 图片前缀
 logo: /images/pixel-logo.webp

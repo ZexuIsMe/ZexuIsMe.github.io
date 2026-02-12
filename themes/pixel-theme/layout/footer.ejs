@@ -40,6 +40,17 @@
                     <div class="md:text-left">
                         <p class="">&copy; <%= new Date().getFullYear() %> <%= config.title %>. 保留所有权利.</p>
                         <p class="text-gray-400"><%= config.subtitle %></p>
+                        <p class="text-gray-400 mt-2">
+                            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
+                                ICP备案号: <%= theme.icp ? theme.icp : '请在主题配置中设置ICP备案号' %>
+                            </a>
+                            <% if (theme.gongan) { %>
+                            <span class="mx-2">|</span>
+                            <a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank" rel="noopener noreferrer">
+                                京公网安备<%= theme.gongan %>号
+                            </a>
+                            <% } %>
+                        </p>
                     </div>
                 </div>
 
