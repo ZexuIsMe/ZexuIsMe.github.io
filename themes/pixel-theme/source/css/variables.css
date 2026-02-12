@@ -15,14 +15,6 @@
     font-display: swap;
 }
 
-@font-face {
-    font-family: 'PingFangLaiJiangHuFeiYangTi';
-    src: url('../font/free/PingFangLaiJiangHuFeiYangTi-2.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
 :root {
     /* 字体变量 */
     --font-family-base: 'VT323', monospace;
