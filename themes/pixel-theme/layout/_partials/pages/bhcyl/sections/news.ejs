@@ -18,9 +18,7 @@
             <% bhcylPosts.forEach((post, index) => { %>
                 <div 
                     onclick="window.location.href=`<%= url_for(post.path) %>`"
-                    class="bg-gray-800/80 rounded-lg overflow-hidden border border-ancient-gold/30 backdrop-blur-sm hover:border-ancient-gold hover:shadow-lg hover:shadow-ancient-gold/30 hover:scale-105 transition-all duration-300 cursor-pointer" 
-                    data-aos="fade-up" 
-                    data-aos-delay="<%= (index + 1) * 100 %>"
+                    class="bg-gray-800/80 rounded-lg overflow-hidden border border-ancient-gold/30 backdrop-blur-sm hover:border-ancient-gold hover:shadow-lg hover:shadow-ancient-gold/30 hover:scale-105 transition-all duration-300 cursor-pointer"
                 >
                     <div class="h-48 bg-gray-700 relative overflow-hidden bg-[url(<%= post.cover ? url_for(post.cover) : url_for(page.news.imgDefault) %>)] bg-cover opacity-70">
                         <div class="absolute bottom-4 left-4">

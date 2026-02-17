@@ -51,6 +51,11 @@ characterItems:
     element: 水灵根
     weapon: 剑修
     position: 汐云宫
+    
+# 游戏特色
+features:
+  images:
+    - https://images.hezexu.cn/bgchy/%E6%B8%B8%E6%88%8F%E7%95%8C%E9%9D%A2%E6%88%AA%E5%9B%BE.jpg
 
 # 截图
 screenshots_title: '壁纸'
