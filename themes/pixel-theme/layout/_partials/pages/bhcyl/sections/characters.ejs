@@ -31,24 +31,24 @@
                 style="top: 7%; left: 7%;"
             >
                 <div 
-                    class="writing-vertical text-4xl md:text-6xl text-white font-gufeng" 
+                    class="writing-vertical text-4xl md:text-6xl text-white font-canlang" 
                     id="character-name"
                     style="font-size: 72px;"
                 ><%= characterItems[0].name %></div>
                 
                 <!-- 元素和武器信息 -->
                 <div 
-                    class="writing-vertical text-white text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8 font-gufeng" 
+                    class="writing-vertical text-white text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8 font-canlang" 
                     id="character-info"
                     style="font-size: 24px;"
                 ><%= characterItems[0].element %></div>
                 <div 
-                    class="writing-vertical text-white text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8 font-gufeng" 
+                    class="writing-vertical text-white text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8 font-canlang" 
                     id="character-weapon"
                     style="font-size: 24px;"
                 ><%= characterItems[0].weapon %></div>
                 <div 
-                    class="writing-vertical text-white text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8 font-gufeng" 
+                    class="writing-vertical text-white text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8 font-canlang" 
                     id="character-position"
                     style="font-size: 24px;"
                 ><%= characterItems[0].position %></div>
@@ -137,10 +137,10 @@
             // 更新移动端菜单选中状态
             if (mobileMenuItems.length > 0) {
                 mobileMenuItems.forEach(menuItem => {
-                    menuItem.classList.remove('font-bold', 'border-b-2', 'border-white');
+                    menuItem.classList.remove('font-bold', 'text-ancient-gold');
                 });
                 if (mobileMenuItems[index]) {
-                    mobileMenuItems[index].classList.add('font-bold', 'border-b-2', 'border-white', 'text-ancient-gold');
+                    mobileMenuItems[index].classList.add('font-bold', 'text-ancient-gold');
                 }
             }
             

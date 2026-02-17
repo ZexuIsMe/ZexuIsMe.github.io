@@ -3,7 +3,7 @@
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
         <div class="flex items-center" onclick="window.location.href = '/index'" style="cursor: pointer;">
             <img src="<%= theme['logo'] %>" alt="Logo" class="h-12 w-12 rounded-full border-2 border-ancient-gold">
-            <h1 class="ml-3 text-2xl font-xingqiu text-ancient-gold"><%= config.title %></h1>
+            <h1 class="ml-3 text-2xl font-canlang text-ancient-gold"><%= config.title %></h1>
         </div>
         <div class="hidden md:flex space-x-8">
             <% page.nav.forEach((item) => { %>
@@ -22,11 +22,12 @@
     <!-- 移动端菜单 -->
     <div id="mobile-menu" class="hidden md:hidden bg-black/90 w-full">
         <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
-            <a href="#home" class="text-light hover:text-ancient-gold transition-colors duration-300 py-2">首页</a>
-            <a href="#characters" class="text-light hover:text-ancient-gold transition-colors duration-300 py-2">角色</a>
-            <a href="#features" class="text-light hover:text-ancient-gold transition-colors duration-300 py-2">特色</a>
-            <a href="#download" class="text-light hover:text-ancient-gold transition-colors duration-300 py-2">下载</a>
-            <a href="#news" class="text-light hover:text-ancient-gold transition-colors duration-300 py-2">新闻</a>
+            <% page.nav.forEach((item) => { %>
+                <a 
+                    href="<%= item.path %>" 
+                    class="text-light hover:text-ancient-gold transition-colors duration-300 py-2"
+                ><%= item.text %></a>
+            <% }) %>
         </div>
     </div>
 </nav>

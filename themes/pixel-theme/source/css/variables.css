@@ -1,7 +1,7 @@
 /* 导入自定义字体 */
 @font-face {
     font-family: 'ZiKuJiangHuGuFengTi';
-    src: url('../font/free/ZiKuJiangHuGuFengTi-2.ttf') format('truetype');
+    src: url('../font/free/JingDianGuoFengYaJiXingKai-2.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -15,14 +15,29 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'ZiKuTangNanYuanXingKaiGeRenFeiShangYeBan';
+    src: url('../font/free/ZiKuTangNanYuanXingKaiGeRenFeiShangYeBan-2.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'VT323';
+    src: url('../font/free/字小魂沧浪行楷(商用需授权).ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     /* 字体变量 */
     --font-family-base: 'VT323', monospace;
     --font-family-heading: cursive;
-    --font-family-pixel: 'Press Start 2P', cursive;
     --font-family-gufeng: 'ZiKuJiangHuGuFengTi', cursive;
     --font-family-xingqiu: 'ZiKuXingQiuFeiYangTi', cursive;
-    --font-family-pingfang: 'PingFangLaiJiangHuFeiYangTi', cursive;
+    --font-family-canglang: 'ZiKuTangNanYuanXingKaiGeRenFeiShangYeBan', cursive;
     
     /* 暗色模式 - 颜色变量（Trae风格） */
     --color-dark-bg-primary: #1A1A2E;        /* 暗色模式主背景 - Trae深蓝色 */
@@ -63,7 +78,13 @@
     --size-scanline-height: 5px;             /* 扫描线高度 */
     
     /* 字体大小变量 */
+    --font-size-base: 16px;                 /* 基础字体大小 */
     --font-size-button: 12px;                /* 按钮字体大小 */
+    --font-size-small: 14px;                /* 小字体大小 */
+    --font-size-medium: 18px;               /* 中等字体大小 */
+    --font-size-large: 24px;                /* 大字体大小 */
+    --font-size-xlarge: 32px;               /* 超大字体大小 */
+    --font-size-xxlarge: 48px;              /* 特大字体大小 */
     
     /* 动画和过渡变量 */
     --transition-default: all 0.2s;          /* 默认过渡效果 */
