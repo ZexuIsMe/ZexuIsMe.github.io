@@ -3,6 +3,7 @@
 @import './table.css';
 @import './tags.css';
 @import './nav.css';
+@import './pictures.css';
 
 body {
     font-family: var(--font-family-base);

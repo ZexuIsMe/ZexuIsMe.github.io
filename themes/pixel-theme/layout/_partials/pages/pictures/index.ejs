@@ -1,0 +1,291 @@
+<!-- 相册 -->
+ <% 
+    const items = theme.album.items.sort((a, b) => {
+      return new Date(b.time) - new Date(a.time);
+    });
+%>
+<div class="album-container container mx-auto">
+  <% items.forEach((album, index) => { %>
+    <div class="album-section">
+      <div class="album-header">
+        <h2 class="album-title"><%= album.name %></h2>
+        <span class="album-date"><%= album.time %></span>
+      </div>
+      <div class="album-photos">
+        <div class="photo-grid">
+          <% album.images.forEach((image, imgIndex) => { %>
+            <div class="photo-item">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f0f0'/%3E%3C/svg%3E" 
+                data-src="<%= cosImage(image, { quality: 20 }) %>" 
+                alt="<%= album.name %> - 照片 <%= imgIndex + 1 %>" 
+                loading="lazy" 
+                data-album-index="<%= index %>" 
+                data-image-index="<%= imgIndex %>"
+            >
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>
+
+<!-- 图片预览模态框 -->
+<div id="image-preview-modal" class="image-preview-modal">
+  <div class="modal-content">
+    <button class="modal-close">&times;</button>
+    <button class="modal-prev">&larr;</button>
+    <div class="modal-image-container">
+      <img id="preview-image" src="" alt="预览图片">
+    </div>
+    <button class="modal-next">&rarr;</button>
+    <div class="modal-caption" id="preview-caption"></div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // COS配置
+    const cosConfig = JSON.parse('<%- JSON.stringify(config.cos || {}) %>');
+    const allAlbums = JSON.parse('<%- JSON.stringify(items) %>');
+    
+    // 图片路径处理函数
+    function cosImage(path) {
+      if (!cosConfig.domain) return path;
+      const prefix = cosConfig.domain + (cosConfig.bucket_path || '');
+      const imagePath = path.startsWith('/') ? path.slice(1) : path;
+      return `${prefix}${imagePath}`;
+    }
+    
+    // 懒加载初始化
+    function initLazyLoad() {
+      const lazyImages = document.querySelectorAll('img[data-src]');
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+            imageObserver.unobserve(img);
+          }
+        });
+      });
+      
+      lazyImages.forEach(img => imageObserver.observe(img));
+    }
+    
+    // 初始化懒加载
+    initLazyLoad();
+    
+    // 图片预览功能
+    const modal = document.getElementById('image-preview-modal');
+    const previewImage = document.getElementById('preview-image');
+    const previewCaption = document.getElementById('preview-caption');
+    const closeBtn = document.querySelector('.modal-close');
+    const prevBtn = document.querySelector('.modal-prev');
+    const nextBtn = document.querySelector('.modal-next');
+    
+    let currentAlbumIndex = 0;
+    let currentImageIndex = 0;
+    
+    // 打开预览
+    function openPreview(albumIndex, imageIndex) {
+      currentAlbumIndex = albumIndex;
+      currentImageIndex = imageIndex;
+      updatePreview();
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    // 更新预览内容
+    function updatePreview() {
+      const album = allAlbums[currentAlbumIndex];
+      const image = album.images[currentImageIndex];
+      previewImage.src = cosImage(image);
+      previewCaption.textContent = `${album.name} - 照片 ${currentImageIndex + 1}/${album.images.length}`;
+    }
+    
+    // 关闭预览
+    function closePreview() {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    
+    // 上一张
+    function prevImage() {
+      const album = allAlbums[currentAlbumIndex];
+      if (currentImageIndex > 0) {
+        currentImageIndex--;
+      } else {
+        // 如果是当前相册的第一张，则切换到上一个相册的最后一张
+        if (currentAlbumIndex > 0) {
+          currentAlbumIndex--;
+          currentImageIndex = allAlbums[currentAlbumIndex].images.length - 1;
+        } else {
+          // 如果是第一个相册的第一张，则循环到最后一个相册的最后一张
+          currentAlbumIndex = allAlbums.length - 1;
+          currentImageIndex = allAlbums[currentAlbumIndex].images.length - 1;
+        }
+      }
+      updatePreview();
+    }
+    
+    // 下一张
+    function nextImage() {
+      const album = allAlbums[currentAlbumIndex];
+      if (currentImageIndex < album.images.length - 1) {
+        currentImageIndex++;
+      } else {
+        // 如果是当前相册的最后一张，则切换到下一个相册的第一张
+        if (currentAlbumIndex < allAlbums.length - 1) {
+          currentAlbumIndex++;
+          currentImageIndex = 0;
+        } else {
+          // 如果是最后一个相册的最后一张，则循环到第一个相册的第一张
+          currentAlbumIndex = 0;
+          currentImageIndex = 0;
+        }
+      }
+      updatePreview();
+    }
+    
+    // 为所有图片添加点击事件
+    const photos = document.querySelectorAll('.photo-item img');
+    photos.forEach(photo => {
+      photo.addEventListener('click', function() {
+        const albumIndex = parseInt(this.dataset.albumIndex);
+        const imageIndex = parseInt(this.dataset.imageIndex);
+        openPreview(albumIndex, imageIndex);
+      });
+    });
+    
+    // 关闭按钮点击事件
+    closeBtn.addEventListener('click', closePreview);
+    
+    // 上一张按钮点击事件
+    prevBtn.addEventListener('click', prevImage);
+    
+    // 下一张按钮点击事件
+    nextBtn.addEventListener('click', nextImage);
+    
+    // 点击非图片区域退出预览
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal || e.target === this.querySelector('.modal-content')) {
+        closePreview();
+      }
+    });
+    
+    // 键盘事件
+    document.addEventListener('keydown', function(e) {
+      if (modal.style.display === 'flex') {
+        if (e.key === 'Escape') {
+          closePreview();
+        } else if (e.key === 'ArrowLeft') {
+          prevImage();
+        } else if (e.key === 'ArrowRight') {
+          nextImage();
+        }
+      }
+    });
+  });
+</script>
+
+<style>
+  /* 图片预览模态框样式 */
+  .image-preview-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 36px;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .modal-prev,
+  .modal-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: white;
+    font-size: 48px;
+    cursor: pointer;
+    z-index: 10;
+    padding: 20px;
+  }
+  
+  .modal-prev {
+    left: -60px;
+  }
+  
+  .modal-next {
+    right: -60px;
+  }
+  
+  .modal-image-container {
+    max-width: 100%;
+    max-height: 80vh;
+  }
+  
+  #preview-image {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+  }
+  
+  .modal-caption {
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+  }
+  
+  /* 响应式调整 */
+  @media (max-width: 768px) {
+    .modal-prev {
+      left: 10px;
+    }
+    
+    .modal-next {
+      right: 10px;
+    }
+    
+    .modal-close {
+      top: 10px;
+      right: 10px;
+    }
+    
+    .modal-caption {
+      bottom: 10px;
+    }
+  }
+</style>

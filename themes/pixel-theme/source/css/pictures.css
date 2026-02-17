@@ -1,0 +1,101 @@
+
+/* 相册样式 */
+.album-container {
+    padding: 20px 0;
+}
+
+.album-section {
+    background-color: var(--color-bg-secondary);
+    border: var(--border-pixel);
+    border-radius: 6px;
+    box-shadow: var(--shadow-pixel-large);
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.album-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: var(--border-16bit-light);
+}
+
+.album-title {
+    font-family: var(--font-family-heading);
+    color: var(--color-text-secondary);
+    margin: 0;
+    font-size: 24px;
+}
+
+.album-date {
+    color: var(--color-text-accent);
+    font-size: 16px;
+    font-family: var(--font-family-base);
+}
+
+.album-photos {
+    position: relative;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.photo-item {
+    aspect-ratio: 1;
+    overflow: hidden;
+    border: var(--border-16bit-light);
+    border-radius: 4px;
+    box-shadow: var(--shadow-pixel);
+    transition: var(--transition-card);
+}
+
+.photo-item:hover {
+    transform: var(--transform-card-hover);
+    box-shadow: var(--shadow-pixel-card-hover);
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.photo-item:hover img {
+    transform: scale(1.05);
+}
+
+.load-more-btn {
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .album-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .album-date {
+        align-self: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-grid {
+        grid-template-columns: 1fr;
+    }
+}

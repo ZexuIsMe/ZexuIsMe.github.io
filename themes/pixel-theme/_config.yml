@@ -41,10 +41,13 @@ nav:
     path: /index  # 数组的第二个元素
   - text: 碧海苍云录
     path: /bhcyl
+  - text: 相册  # 数组的第一个元素
+    path: /pictures  # 数组的第二个元素
   - text: 归档  # 数组的第一个元素
     path: /archives  # 数组的第二个元素
   - text: 关于我  # 数组的第一个元素
     path: /about  # 数组的第二个元素
+  
 index:
   latest_posts: '最新文章' # 首页最新文章标题
   read_more: '点击阅读' # 首页阅读更多按钮文本
@@ -55,11 +58,12 @@ index:
     - title: 繁花拍摄
       subtitle: 摄影、化妆老师太给力了！
       image: images/home_banner/ZC__2091.JPG
-      src: about/#my-picture
+      src: pictures
     - title: 碧海苍云录
       subtitle: 一个不肝不氪，弱联网的单机休闲小游，游戏立绘方面真的直接吹爆好吧。
       image: images/home_banner/0.01.webp
       src: bhcyl
+
 archives:
   title: '文章归档' # 归档页面标题
   no_posts_found: '暂无文章' # 归档页面暂无文章时显示的提示
@@ -77,14 +81,19 @@ archives:
 about:
   title: '关于我' # 关于我页面标题
   subtitle: '关于我' # 关于我页面副标题
-  pictures:
-    - name: '繁花拍摄'
+        
+
+# 相册
+album:
+  title: '相册' # 相册页面标题
+  subtitle: '相册' # 相册页面副标题
+  items:
+    - name: '繁花'
       time: '2025-08-01'
       images: 
         - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1756.JPG
         - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1758.JPG
         - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1796.JPG
-        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1802.JPG
         - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1802.JPG
         - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1807.JPG
         - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1809.JPG
@@ -106,6 +115,8 @@ about:
         - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__2080.JPG
         - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__2091.JPG
         - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__2092.JPG
+
+
 
 # Comments
 comments:
