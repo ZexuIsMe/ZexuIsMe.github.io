@@ -81,33 +81,34 @@ about:
     - name: '繁花拍摄'
       time: '2025-08-01'
       images: 
-        - images/about/ZC__1756.JPG
-        - images/about/ZC__1758.JPG
-        - images/about/ZC__1796.JPG
-        - images/about/ZC__1802.JPG
-        - images/about/ZC__1802.JPG
-        - images/about/ZC__1807.JPG
-        - images/about/ZC__1809.JPG
-        - images/about/ZC__1821_10寸水晶相册 0P.JPG
-        - images/about/ZC__1825.JPG
-        - images/about/ZC__1829.JPG
-        - images/about/ZC__1831.JPG
-        - images/about/ZC__1839.JPG
-        - images/about/ZC__2007.JPG
-        - images/about/ZC__2008.JPG
-        - images/about/ZC__2012.JPG
-        - images/about/ZC__2015.JPG
-        - images/about/ZC__2030.JPG
-        - images/about/ZC__2031.JPG
-        - images/about/ZC__2035_10寸蕾蒙娜.JPG
-        - images/about/ZC__2052.JPG
-        - images/about/ZC__2057.JPG
-        - images/about/ZC__2079.JPG
-        - images/about/ZC__2080.JPG
-        - images/about/ZC__2091.JPG
-        - images/about/ZC__2092.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1756.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1758.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1796.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1802.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1802.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1807.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1809.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1821_10寸水晶相册 0P.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1825.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1829.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1831.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__1839.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__2007.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__2008.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__2012.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__2015.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__2030.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__2031.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__2035_10寸蕾蒙娜.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__2052.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__2057.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__2079.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__2080.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__2091.JPG
+        - photos/%E7%B9%81%E5%8D%8E%E6%8B%8D%E6%91%84/ZC__2092.JPG
 
 # Comments
 comments:
   disqus_shortname:  # Disqus 评论系统短名称
   enable: false      # 是否启用评论功能
+

@@ -110,3 +110,14 @@ deploy:
   type: git
   repository: git@github.com:ZexuIsMe/ZexuIsMe.github.io.git
   branch: main2
+
+
+# COS 存储对象 腾讯云
+cos:
+  enabled: true
+  # CDN 加速域名（推荐）或 COS 默认域名
+  domain: "https://images.hezexu.cn"
+  # 存储桶路径前缀
+  bucket_path: "/"
+  # 完整图片 URL 前缀
+  image_prefix: "https://images.hezexu.cn"
