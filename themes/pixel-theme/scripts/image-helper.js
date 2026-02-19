@@ -1,7 +1,7 @@
 // scripts/helpers/cos-image.js
 hexo.extend.helper.register('cosImage', function(path, options = {}) {
   const cosConfig = hexo.config.cos || {};
-  const prefix = cosConfig.domain + cosConfig.bucket_path;
+  const prefix = cosConfig.image_prefix + cosConfig.bucket_path;
   const imagePath = path.startsWith('/') ? path.slice(1) : path;
   
   // 支持图片处理参数（腾讯云 CI）
