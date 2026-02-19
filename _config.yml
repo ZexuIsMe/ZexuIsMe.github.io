@@ -116,8 +116,8 @@ deploy:
 cos:
   enabled: true
   # CDN 加速域名（推荐）或 COS 默认域名
-  domain: "http://images.hezexu.cn"
+  domain: "https://images.hezexu.cn"
   # 存储桶路径前缀
   bucket_path: "/"
   # 完整图片 URL 前缀
-  image_prefix: "http://images.hezexu.cn"
+  image_prefix: "https://images.hezexu.cn"
