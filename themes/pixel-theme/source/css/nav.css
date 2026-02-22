@@ -1,3 +1,8 @@
+/* Tag */
+nav {
+    font-family: var(--font-family-canglang), serif;
+}
+
 /* 导航栏背景样式 */
 .nav-bg {
     background-color: var(--color-bg-primary);

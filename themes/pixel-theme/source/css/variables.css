@@ -8,22 +8,6 @@
 }
 
 @font-face {
-    font-family: 'ZiKuXingQiuFeiYangTi';
-    src: url('../font/free/ZiKuXingQiuFeiYangTi-2.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ZiKuTangNanYuanXingKaiGeRenFeiShangYeBan';
-    src: url('../font/free/ZiKuTangNanYuanXingKaiGeRenFeiShangYeBan-2.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
     font-family: 'CangLangXingKai';
     src: url('../font/free/字小魂沧浪行楷(商用需授权).ttf') format('truetype');
     font-weight: normal;
@@ -35,8 +19,6 @@
     /* 字体变量 */
     --font-family-base: 'VT323', monospace;
     --font-family-heading: 'CangLangXingKai', cursive;
-    --font-family-gufeng: 'ZiKuJiangHuGuFengTi', cursive;
-    --font-family-xingqiu: 'ZiKuXingQiuFeiYangTi', cursive;
     --font-family-canglang: 'CangLangXingKai', cursive;
     
     /* 暗色模式 - 颜色变量（Trae风格） */

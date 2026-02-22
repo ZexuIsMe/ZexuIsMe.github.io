@@ -15,8 +15,6 @@ tailwind.config = {
             fontFamily: {
                 sans: ['Inter', 'sans-serif'],
                 serif: ['Noto Serif SC', 'serif'],
-                gufeng: ['ZiKuJiangHuGuFengTi', 'cursive'],
-                xingqiu: ['ZiKuXingQiuFeiYangTi', 'cursive'],
                 canlang: ['ZiKuTangNanYuanXingKaiGeRenFeiShangYeBan', 'cursive'],
                 test: ['VT323', 'monospace'],
             },
