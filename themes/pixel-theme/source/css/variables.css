@@ -34,10 +34,10 @@
 :root {
     /* 字体变量 */
     --font-family-base: 'VT323', monospace;
-    --font-family-heading: cursive;
+    --font-family-heading: 'CangLangXingKai', cursive;
     --font-family-gufeng: 'ZiKuJiangHuGuFengTi', cursive;
     --font-family-xingqiu: 'ZiKuXingQiuFeiYangTi', cursive;
-    --font-family-canglang: 'ZiKuTangNanYuanXingKaiGeRenFeiShangYeBan', cursive;
+    --font-family-canglang: 'CangLangXingKai', cursive;
     
     /* 暗色模式 - 颜色变量（Trae风格） */
     --color-dark-bg-primary: #1A1A2E;        /* 暗色模式主背景 - Trae深蓝色 */

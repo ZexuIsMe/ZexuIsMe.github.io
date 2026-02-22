@@ -10,7 +10,7 @@ html {
 }
 
 body {
-    font-family: var(--font-family-canlang);
+    font-family: var(--font-family-canglang);
     color: var(--color-text-primary);
     background-color: var(--color-bg-primary);
     position: var(--position-relative);
@@ -21,36 +21,42 @@ h1 {
     font-family: var(--font-family-heading);
     color: var(--color-text-secondary);
     font-size: 3rem;
+    font-weight: normal;
 }
 
 h2 {
     font-family: var(--font-family-heading);
     color: var(--color-text-secondary);
     font-size: 2.25rem;
+    font-weight: normal;
 }
 
 h3 {
     font-family: var(--font-family-heading);
     color: var(--color-text-secondary);
     font-size: 1.5rem;
+    font-weight: normal;
 }
 
 h4 {
     font-family: var(--font-family-heading);
     color: var(--color-text-secondary);
     font-size: 1.25rem;
+    font-weight: normal;
 }
 
 h5 {
     font-family: var(--font-family-heading);
     color: var(--color-text-secondary);
     font-size: 1rem;
+    font-weight: normal;
 }
 
 h6 {
     font-family: var(--font-family-heading);
     color: var(--color-text-secondary);
     font-size: 0.875rem;
+    font-weight: normal;
 }
 
 .pixel-button {
@@ -63,6 +69,7 @@ h6 {
     font-family: var(--font-family-heading);
     font-size: 0.75rem;
     text-transform: uppercase;
+    font-weight: normal;
 }
 
 .pixel-button:hover {
