@@ -12,6 +12,10 @@
     height: 3rem;
 }
 
+.excerpt p {
+    font-family: 'CangLangXingKai', serif;
+}
+
 .excerpt code {
     font-family: 'VT323', monospace;
     background-color: #4A3000;

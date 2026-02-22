@@ -1,13 +1,5 @@
 /* 导入自定义字体 */
 @font-face {
-    font-family: 'ZiKuJiangHuGuFengTi';
-    src: url('../font/free/JingDianGuoFengYaJiXingKai-2.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
     font-family: 'CangLangXingKai';
     src: url('../font/free/字小魂沧浪行楷(商用需授权).ttf') format('truetype');
     font-weight: normal;

@@ -33,7 +33,7 @@
                             <% if (post.excerpt) { %>
                                 <%- post.excerpt %>
                             <% } else { %>
-                                <%- page.news.excerpt %>
+                                <%- markdown(page.news.excerpt) %>
                             <% } %>
                         </div>
                         <a href="<%= url_for(post.path) %>">
