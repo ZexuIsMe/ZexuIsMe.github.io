@@ -24,31 +24,31 @@
         <div class="absolute inset-0 z-20">
             <!-- 人物名字（垂直显示） -->
             <div 
-                class="absolute flex items-start " 
+                class="absolute flex items-start font-canglang"
                 data-aos="fade-right" 
                 data-aos-duration="800" 
                 data-aos-delay="400"
                 style="top: 7%; left: 7%;"
             >
                 <div 
-                    class="writing-vertical text-4xl md:text-6xl text-white font-canlang" 
+                    class="writing-vertical text-4xl md:text-6xl text-white "
                     id="character-name"
                     style="font-size: 72px;"
                 ><%= characterItems[0].name %></div>
                 
                 <!-- 元素和武器信息 -->
                 <div 
-                    class="writing-vertical text-white text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8 font-canlang" 
+                    class="writing-vertical text-white text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8"
                     id="character-info"
                     style="font-size: 24px;"
                 ><%= characterItems[0].element %></div>
                 <div 
-                    class="writing-vertical text-white text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8 font-canlang" 
+                    class="writing-vertical text-white text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8"
                     id="character-weapon"
                     style="font-size: 24px;"
                 ><%= characterItems[0].weapon %></div>
                 <div 
-                    class="writing-vertical text-white text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8 font-canlang" 
+                    class="writing-vertical text-white text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8"
                     id="character-position"
                     style="font-size: 24px;"
                 ><%= characterItems[0].position %></div>
@@ -71,7 +71,7 @@
                         </svg>
                     </div>
                 </div>
-                <div class="w-full flex flex-row overflow-x-auto pb-2" id="character-menu-mobile">
+                <div class="w-full flex flex-row overflow-x-auto pb-2 font-canglang" id="character-menu-mobile">
                     <% characterItems.forEach((character, index) => { %>
                         <div style="cursor: pointer;" class="hover:text-gray-300 whitespace-nowrap px-4 py-2 <%= index === 0 ? 'font-bold text-ancient-gold' : '' %>" data-index="<%= index %>"><%= character.name %></div>
                     <% }) %>
@@ -93,7 +93,15 @@
                         <!-- 角色列表 -->
                         <div class="space-y-4" id="character-menu">
                             <% characterItems.forEach((character, index) => { %>
-                                <div style="cursor: pointer;" class="hover:text-gray-300 <%= index === 0 ? 'font-bold text-ancient-gold' : '' %>" data-index="<%= index %>" data-aos="fade-left" data-aos-duration="600" data-aos-delay="<%= 700 + index * 100 %>"><%= character.name %></div>
+                                <div
+                                    style="cursor: pointer;"
+                                    class="hover:text-ancient-gold <%= index === 0 ? 'font-bold text-ancient-gold' : '' %>"
+                                    data-index="<%= index %>"
+                                    data-index="<%= index %>"
+                                    data-aos="fade-left"
+                                    data-aos-duration="600"
+                                    data-aos-delay="<%= 700 + index * 100 %>"
+                                ><%= character.name %></div>
                             <% }) %>
                         </div>
                         <!-- 下一个角色 -->

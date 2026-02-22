@@ -1,7 +1,6 @@
 /* 摘要样式 */
 .excerpt {
     font-family: 'VT323', monospace;
-    font-size: 1.1rem;
     line-height: 1.5;
     color: #F7E6D0;
     margin-bottom: 1rem;
@@ -11,6 +10,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
     height: 3rem;
+}
+
+.excerpt p {
+    font-family: 'CangLangXingKai', serif;
 }
 
 .excerpt code {

@@ -1,30 +1,6 @@
 /* 导入自定义字体 */
 @font-face {
-    font-family: 'ZiKuJiangHuGuFengTi';
-    src: url('../font/free/JingDianGuoFengYaJiXingKai-2.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ZiKuXingQiuFeiYangTi';
-    src: url('../font/free/ZiKuXingQiuFeiYangTi-2.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ZiKuTangNanYuanXingKaiGeRenFeiShangYeBan';
-    src: url('../font/free/ZiKuTangNanYuanXingKaiGeRenFeiShangYeBan-2.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'VT323';
+    font-family: 'CangLangXingKai';
     src: url('../font/free/字小魂沧浪行楷(商用需授权).ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
@@ -34,10 +10,8 @@
 :root {
     /* 字体变量 */
     --font-family-base: 'VT323', monospace;
-    --font-family-heading: cursive;
-    --font-family-gufeng: 'ZiKuJiangHuGuFengTi', cursive;
-    --font-family-xingqiu: 'ZiKuXingQiuFeiYangTi', cursive;
-    --font-family-canglang: 'ZiKuTangNanYuanXingKaiGeRenFeiShangYeBan', cursive;
+    --font-family-heading: 'CangLangXingKai', cursive;
+    --font-family-canglang: 'CangLangXingKai', cursive;
     
     /* 暗色模式 - 颜色变量（Trae风格） */
     --color-dark-bg-primary: #1A1A2E;        /* 暗色模式主背景 - Trae深蓝色 */

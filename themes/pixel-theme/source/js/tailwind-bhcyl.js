@@ -1,5 +1,8 @@
 
 tailwind.config = {
+    corePlugins: {
+        preflight: false
+    },
     theme: {
         extend: {
             colors: {
@@ -15,9 +18,7 @@ tailwind.config = {
             fontFamily: {
                 sans: ['Inter', 'sans-serif'],
                 serif: ['Noto Serif SC', 'serif'],
-                gufeng: ['ZiKuJiangHuGuFengTi', 'cursive'],
-                xingqiu: ['ZiKuXingQiuFeiYangTi', 'cursive'],
-                canlang: ['ZiKuTangNanYuanXingKaiGeRenFeiShangYeBan', 'cursive'],
+                canglang: ['CangLangXingKai', 'cursive'],
                 test: ['VT323', 'monospace'],
             },
             backgroundImage: {

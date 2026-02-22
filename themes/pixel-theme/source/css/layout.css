@@ -10,47 +10,22 @@ html {
 }
 
 body {
-    font-family: var(--font-family-canlang);
+    font-family: var(--font-family-base), serif;
     color: var(--color-text-primary);
     background-color: var(--color-bg-primary);
     position: var(--position-relative);
     font-size: 1rem;
 }
 
-h1 {
-    font-family: var(--font-family-heading);
-    color: var(--color-text-secondary);
-    font-size: 3rem;
+footer {
+    font-family: var(--font-family-canglang), serif;
 }
 
-h2 {
-    font-family: var(--font-family-heading);
+/* 基础标题样式 */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-heading), serif;
     color: var(--color-text-secondary);
-    font-size: 2.25rem;
-}
-
-h3 {
-    font-family: var(--font-family-heading);
-    color: var(--color-text-secondary);
-    font-size: 1.5rem;
-}
-
-h4 {
-    font-family: var(--font-family-heading);
-    color: var(--color-text-secondary);
-    font-size: 1.25rem;
-}
-
-h5 {
-    font-family: var(--font-family-heading);
-    color: var(--color-text-secondary);
-    font-size: 1rem;
-}
-
-h6 {
-    font-family: var(--font-family-heading);
-    color: var(--color-text-secondary);
-    font-size: 0.875rem;
+    font-weight: normal;
 }
 
 .pixel-button {
@@ -63,6 +38,7 @@ h6 {
     font-family: var(--font-family-heading);
     font-size: 0.75rem;
     text-transform: uppercase;
+    font-weight: normal;
 }
 
 .pixel-button:hover {
@@ -89,43 +65,9 @@ h6 {
     box-shadow: var(--shadow-pixel-card-hover);
 }
 
-/* 暗色模式 */
-.dark-mode {
-    background-color: var(--color-bg-primary);
-    color: var(--color-text-primary);
-}
-
-.dark-mode .pixel-card {
-    background-color: var(--color-bg-secondary);
-}
-
 /* 暗色模式代码高亮 */
 .dark-mode .hljs {
     background-color: var(--color-bg-tertiary);
-}
-
-
-/* 亮色模式 */
-.light-mode {
-    background-color: var(--color-bg-primary);
-    color: var(--color-text-primary);
-}
-
-.light-mode h1, .light-mode h2, .light-mode h3, .light-mode h4, .light-mode h5, .light-mode h6 {
-    color: var(--color-text-secondary);
-}
-
-.light-mode .pixel-card {
-    background-color: var(--color-bg-secondary);
-}
-
-.light-mode .pixel-button {
-    background-color: var(--color-button-primary);
-    color: var(--color-button-text);
-}
-
-.light-mode .pixel-button:hover {
-    background-color: var(--color-button-hover);
 }
 
 /* 亮色模式代码高亮 */

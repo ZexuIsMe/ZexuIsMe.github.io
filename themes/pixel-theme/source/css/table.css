@@ -126,12 +126,6 @@ table tbody tr.empty-row td {
     }
 }
 
-/* 为表格单元格添加滚动条 */
-table td {
-    overflow-y: auto;
-    max-height: 150px;
-}
-
 /* 为分类和标签卡片添加样式 */
 table td .flex {
     flex-wrap: wrap;
