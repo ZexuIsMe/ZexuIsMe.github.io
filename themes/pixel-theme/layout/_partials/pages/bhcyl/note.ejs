@@ -18,7 +18,7 @@
             <% bhcylPosts.forEach(post => { %>
                 <div 
                     onclick="window.location.href=`<%= url_for(post.path) %>`"
-                    class="bg-card rounded-lg overflow-hidden border border-border backdrop-blur-sm cursor-pointer flex flex-col md:flex-row"
+                    class="bhcyl-note-card bg-card rounded-lg overflow-hidden border border-border backdrop-blur-sm cursor-pointer flex flex-col md:flex-row"
                 >
                     <div class="md:w-2/5 h-48 md:h-auto bg-light-card relative overflow-hidden bg-[url(<%= post.cover ? url_for(post.cover) : url_for(imageDefault) %>)] bg-cover opacity-70 min-h-[200px]">
                         <div class="absolute bottom-4 left-4">
@@ -48,3 +48,26 @@
         </div>
     </div>
 </section>
+
+<style>
+    .bhcyl-note-card {
+        transition: var(--transition-card);
+    }
+
+    .bhcyl-note-card:hover {
+        transform: var(--transform-card-hover);
+        box-shadow: var(--shadow-pixel-card-hover);
+        background-color: var(--color-bg-tertiary);
+        border-color: var(--color-text-accent);
+    }
+
+    .bhcyl-note-card:hover h2 {
+        color: var(--color-button-primary);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
+
+    .bhcyl-note-card:hover .excerpt {
+        color: var(--color-text-secondary);
+    }
+</style>
