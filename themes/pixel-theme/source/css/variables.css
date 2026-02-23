@@ -8,12 +8,11 @@
 }
 
 :root {
-    font-family: 'CangLangXingKai', cursive;
-    
+    /* 字体定义 */
     --font-family-base: 'VT323', monospace;
     --font-family-heading: 'CangLangXingKai', cursive;
-    --font-family-canglang: 'CangLangXingKai', cursive;
     
+    /* 颜色变量 */
     --color-bg-primary: #FFFFFF;
     --color-bg-secondary: #FAFAFA;
     --color-bg-tertiary: #F5F5F5;
@@ -23,75 +22,72 @@
     --color-button-primary: #000000;
     --color-button-hover: #333333;
     --color-button-text: #FFFFFF;
-    
-    /* 通用颜色变量 */
-    --color-black: #000000;                  /* 黑色 */
-    --color-black-alpha-10: rgba(0, 0, 0, 0.1);  /* 10%透明度黑色 */
-    --color-black-alpha-50: rgba(0, 0, 0, 0.5);  /* 50%透明度黑色 */
+    --color-black: #000000;
+    --color-black-alpha-10: rgba(0, 0, 0, 0.1);
+    --color-black-alpha-50: rgba(0, 0, 0, 0.5);
     
     /* 尺寸变量 */
-    --size-border-thick: 6px;                /* 16-bit风格粗边框 */
-    --size-border-thin: 3px;                 /* 16-bit风格细边框 */
-    --size-shadow-pixel: 5px 5px 0px;        /* 16-bit风格像素阴影 */
-    --size-shadow-pixel-large: 10px 10px 0px;  /* 16-bit风格大像素阴影 */
-    --size-shadow-pixel-hover: 3px 3px 0px;  /* 16-bit风格悬停像素阴影 */
-    --size-shadow-pixel-card-hover: 15px 15px 0px;  /* 16-bit风格卡片悬停像素阴影 */
-    --size-padding-button: 12px 24px;        /* 按钮内边距 */
-    --size-margin-bottom-nav: 6px;           /* 导航链接下划线距离 */
-    --size-scanline-height: 5px;             /* 扫描线高度 */
+    --size-border-thick: 6px;
+    --size-border-thin: 3px;
+    --size-shadow-pixel: 5px 5px 0px;
+    --size-shadow-pixel-large: 10px 10px 0px;
+    --size-shadow-pixel-hover: 3px 3px 0px;
+    --size-shadow-pixel-card-hover: 15px 15px 0px;
+    --size-padding-button: 12px 24px;
+    --size-margin-bottom-nav: 6px;
+    --size-scanline-height: 5px;
     
     /* 字体大小变量 */
-    --font-size-base: 16px;                 /* 基础字体大小 */
-    --font-size-button: 12px;                /* 按钮字体大小 */
-    --font-size-small: 14px;                /* 小字体大小 */
-    --font-size-medium: 18px;               /* 中等字体大小 */
-    --font-size-large: 24px;                /* 大字体大小 */
-    --font-size-xlarge: 32px;               /* 超大字体大小 */
-    --font-size-xxlarge: 48px;              /* 特大字体大小 */
+    --font-size-base: 16px;
+    --font-size-button: 12px;
+    --font-size-small: 14px;
+    --font-size-medium: 18px;
+    --font-size-large: 24px;
+    --font-size-xlarge: 32px;
+    --font-size-xxlarge: 48px;
     
     /* 动画和过渡变量 */
-    --transition-default: all 0.2s;          /* 默认过渡效果 */
-    --transition-nav: all 0.3s;              /* 导航过渡效果 */
-    --transition-width: width 0.3s;          /* 宽度过渡效果 */
-    --transition-card: all 0.3s;             /* 卡片过渡效果 */
-    --animation-scanline: scanline 6s linear infinite;  /* 扫描线动画 */
+    --transition-default: all 0.2s;
+    --transition-nav: all 0.3s;
+    --transition-width: width 0.3s;
+    --transition-card: all 0.3s;
+    --animation-scanline: scanline 6s linear infinite;
     
     /* 位置变量 */
-    --position-relative: relative;           /* 相对定位 */
-    --position-absolute: absolute;           /* 绝对定位 */
-    --position-fixed: fixed;                 /* 固定定位 */
-    --position-static: static;               /* 静态定位 */
+    --position-relative: relative;
+    --position-absolute: absolute;
+    --position-fixed: fixed;
+    --position-static: static;
     
     /* Z-index变量 */
-    --z-index-base: 1;                       /* 基础层级 */
-    --z-index-dropdown: 1000;                /* 下拉菜单层级 */
-    --z-index-sticky: 1020;                  /* 粘性元素层级 */
-    --z-index-fixed: 1030;                   /* 固定元素层级 */
-    --z-index-modal-backdrop: 1040;          /* 模态背景层级 */
-    --z-index-modal: 1050;                   /* 模态框层级 */
-    --z-index-popover: 1060;                 /* 弹出层层级 */
-    --z-index-tooltip: 1070;                 /* 提示层级 */
+    --z-index-base: 1;
+    --z-index-dropdown: 1000;
+    --z-index-sticky: 1020;
+    --z-index-fixed: 1030;
+    --z-index-modal-backdrop: 1040;
+    --z-index-modal: 1050;
+    --z-index-popover: 1060;
+    --z-index-tooltip: 1070;
     
     /* 边框变量 */
-    --border-pixel: var(--size-border-thick) solid var(--color-black);  /* 16-bit风格像素边框 */
-    --border-16bit: var(--size-border-thick) solid var(--color-black);  /* 16-bit专用边框 */
-    --border-16bit-light: var(--size-border-thin) solid var(--color-black);  /* 16-bit风格细边框 */
+    --border-pixel: var(--size-border-thick) solid var(--color-black);
+    --border-pixel-light: var(--size-border-thin) solid var(--color-black);
     
     /* 阴影变量 */
-    --shadow-pixel: var(--size-shadow-pixel) var(--color-black);  /* 16-bit风格像素阴影 */
-    --shadow-pixel-large: var(--size-shadow-pixel-large) var(--color-black);  /* 16-bit风格大像素阴影 */
-    --shadow-pixel-hover: var(--size-shadow-pixel-hover) var(--color-black);  /* 16-bit风格悬停像素阴影 */
-    --shadow-pixel-card-hover: var(--size-shadow-pixel-card-hover) var(--color-black);  /* 16-bit风格卡片悬停像素阴影 */
-    --shadow-text: 3px 3px 0px var(--color-black-alpha-50);  /* 16-bit风格文本阴影 */
-    --shadow-text-pixel: 6px 6px 0px var(--color-black-alpha-50);  /* 16-bit风格像素文本阴影 */
+    --shadow-pixel: var(--size-shadow-pixel) var(--color-black);
+    --shadow-pixel-large: var(--size-shadow-pixel-large) var(--color-black);
+    --shadow-pixel-hover: var(--size-shadow-pixel-hover) var(--color-black);
+    --shadow-pixel-card-hover: var(--size-shadow-pixel-card-hover) var(--color-black);
+    --shadow-text: 3px 3px 0px var(--color-black-alpha-50);
+    --shadow-text-pixel: 6px 6px 0px var(--color-black-alpha-50);
     --shadow-border: 
         -6px 0 0 0 var(--color-black),
         6px 0 0 0 var(--color-black),
         0 -6px 0 0 var(--color-black),
-        0 6px 0 0 var(--color-black);  /* 16-bit风格边框阴影效果 */
+        0 6px 0 0 var(--color-black);
     --shadow-16bit: 
         0 0 0 var(--size-border-thick) var(--color-black),
-        var(--size-shadow-pixel) var(--color-black);  /* 16-bit风格双重阴影效果 */
+        var(--size-shadow-pixel) var(--color-black);
     
     /* 变换变量 */
     --transform-button-hover: translate(2px, 2px);

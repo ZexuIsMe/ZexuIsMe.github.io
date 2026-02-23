@@ -1,5 +1,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+@import './variables.css';
+@import './excerpt.css';
+@import './post.css';
 @import './table.css';
 @import './tags.css';
 @import './nav.css';

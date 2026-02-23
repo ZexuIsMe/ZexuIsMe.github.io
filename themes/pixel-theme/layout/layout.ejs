@@ -7,23 +7,14 @@
 
     <%- js(['/js/tailwindcss_3.4.17.js', '/js/pixel-theme.js']) %>
     <%- css([
-        '/css/variables.css',
-        '/css/excerpt.css',
-        '/css/post.css',
-        '/css/layout.css'
+        '/css/layout.css',
+        '/css/atom-one-dark.min.css'
     ]) %>
 
-    <% if (page.layout !== 'bhcyl') { %>
-        <%- js([]) %>
-        <link href="<%- url_for('/css/pixel-theme.css') %>" rel="stylesheet" type="text/tailwindcss">
-        <%- css([
-            '/css/atom-one-dark.min.css'
-        ]) %>
-    <% } %>
 
-    <!-- 引入必要的CSS和JS -->
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <link href="<%- url_for('/css/pixel-theme.css') %>" rel="stylesheet" type="text/tailwindcss">
+
+    <!-- 引入必要的JS -->
     <script>
         var useGlobalLink = (href) => {
             const globalLink = document.getElementById('global-link');
@@ -39,7 +30,7 @@
 
 <body class="scanline">
     <% /* 非404和非bhcyl页面显示完整布局 */ %>
-    <% if (page.layout !== '404' && page.layout !== 'bhcyl') { %>
+    <% if (page.layout !== '404') { %>
         <!-- 导航栏组件 -->
         <%- partial('_partials/component/nav') %>
 
@@ -53,7 +44,7 @@
         <!-- 固定到顶部按钮和主题切换按钮 -->
         <%- partial('_partials/component/fixedBox') %>
     <% } else { %>
-        <!-- 404或bhcyl页面只显示主体内容 -->
+        <!-- 404页面只显示主体内容 -->
         <%- body %>
     <% } %>
     
