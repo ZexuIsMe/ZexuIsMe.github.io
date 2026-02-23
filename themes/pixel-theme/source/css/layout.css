@@ -28,6 +28,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 
+a {
+    text-decoration: none;
+}
+
 .pixel-button {
     background-color: var(--color-button-primary);
     color: var(--color-button-text);
@@ -35,7 +39,7 @@ h1, h2, h3, h4, h5, h6 {
     border: var(--border-pixel);
     box-shadow: var(--shadow-pixel);
     transition: var(--transition-default);
-    font-family: var(--font-family-heading);
+    font-family: var(--font-family-heading), serif;
     font-size: 0.75rem;
     text-transform: uppercase;
     font-weight: normal;
