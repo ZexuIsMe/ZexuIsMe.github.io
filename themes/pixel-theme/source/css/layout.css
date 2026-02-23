@@ -9,6 +9,13 @@
 
 html {
     font-size: var(--font-size-base);
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
 }
 
 body {
@@ -17,6 +24,8 @@ body {
     background-color: var(--color-bg-primary);
     position: var(--position-relative);
     font-size: 1rem;
+    margin: 0;
+    padding: 0;
 }
 
 footer {

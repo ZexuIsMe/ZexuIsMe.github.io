@@ -3,7 +3,7 @@
     <div class="container mx-auto px-4">
         <!-- 最新文章列表 -->
         <h2 class="text-3xl mb-8 text-shadow"><%= theme.index.latest_posts %></h2>
-        <div class="grid gap-8">
+        <div class="grid grid-cols-1 gap-8">
             <% site.posts.sort('date', -1).slice(0, 3).forEach((post, index) => { %>
                 <div class="pixel-card p-6">
                     <!-- 文章标题 -->

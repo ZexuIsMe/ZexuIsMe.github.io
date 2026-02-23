@@ -8,6 +8,9 @@
 }
 
 :root {
+    /* 盒模型 */
+    box-sizing: border-box;
+    
     /* 字体定义 */
     --font-family-base: 'VT323', monospace;
     --font-family-heading: '字魂武林江湖体', cursive;
