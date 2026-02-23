@@ -7,8 +7,8 @@
         <div class="lg:w-3/3">
             <!-- 文章头部信息 -->
             <div id="post-header" class="mb-12 text-center">
-                <h1 class="text-3xl md:text-4xl font-pixel mb-6 text-primary"><%= page.title %></h1>
-                <div id="post-meta" class="flex flex-wrap justify-center items-center gap-4 text-sm text-note">
+                <h1 class="text-3xl md:text-4xl font-pixel mb-6 text-black"><%= page.title %></h1>
+                <div id="post-meta" class="flex flex-wrap justify-center items-center gap-4 text-sm text-gray-600">
                     <!-- 文章日期 -->
                     <span class="flex items-center">
                         <i class="fas fa-calendar mr-2"></i>
@@ -41,7 +41,7 @@
                             <i class="fas fa-tags mr-2"></i>
                             <% page.tags.forEach(function(tag, index) { %>
                                 <span
-                                    class="hover:text-secondary transition-colors" 
+                                    class="hover:text-black transition-colors" 
                                     onclick="handleTagClick('tag', '<%= tag.name %>', '<%- url_for(tag.path) %>')"
                                     style="cursor: pointer;"
                                 >
@@ -81,7 +81,7 @@
                         </a>
                     <% } %>
                     <% if (page.next) { %>
-                        <a href="<%= url_for(page.next.path) %>" class="pixel-button w-fit ml-auto hover:bg-secondary transition-colors">
+                        <a href="<%= url_for(page.next.path) %>" class="pixel-button w-fit ml-auto hover:bg-gray-800 transition-colors">
                             <%= theme.article.next_link %> <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                     <% } %>

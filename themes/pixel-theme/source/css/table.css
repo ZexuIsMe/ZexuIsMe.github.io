@@ -70,18 +70,6 @@ table tr:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* 暗色模式下的悬浮效果 */
-.dark-mode table tr:hover {
-    border-color: var(--color-dark-text-accent);
-    box-shadow: 0 0 10px rgba(244, 180, 102, 0.3);
-}
-
-/* 亮色模式下的悬浮效果 */
-.light-mode table tr:hover {
-    border-color: var(--color-light-text-accent);
-    box-shadow: 0 0 10px rgba(212, 142, 59, 0.3);
-}
-
 /* 表格单元格内容悬浮效果 */
 table tr:hover td {
     color: var(--color-text-accent);

@@ -1,79 +1,29 @@
-<section class="fixed-box fixed bottom-8 right-8 z-50 grid gap-4">
-    <!-- 回到顶部按钮 -->
+<section class="fixed-box fixed bottom-8 right-8 z-50">
     <div class="relative">
-        <button id="back-to-top" class="bg-pixel-pink text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300">
+        <button id="back-to-top" class="bg-black text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300">
             <i class="fas fa-arrow-up text-xl"></i>
         </button>
         <span class="tooltip absolute top-[-40px] left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-3 py-2 rounded opacity-0 invisible transition-all duration-300 whitespace-nowrap">
             回到顶部
         </span>
     </div>
-    
-    <!-- 主题切换按钮 -->
-    <div class="relative">
-        <button id="theme-toggle" class="bg-pixel-pink text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
-            <i id="theme-icon" class="fas fa-moon text-xl"></i>
-        </button>
-        <span class="tooltip absolute top-[-40px] left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-3 py-2 rounded opacity-0 invisible transition-all duration-300 whitespace-nowrap">
-            切换主题
-        </span>
-    </div>
 </section>
 
 <script>
     (function() {
-        // 主题切换功能
-        document.addEventListener('DOMContentLoaded', function() {
-            // 检查本地存储中的主题设置，默认使用亮色模式
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.body.className = `scanline ${savedTheme}-mode`;
-            
-            // 更新主题图标
-            const themeIcon = document.getElementById('theme-icon');
-            if (themeIcon) {
-                themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun text-xl' : 'fas fa-moon text-xl';
-            }
-            
-            // 切换主题
-            const themeToggle = document.getElementById('theme-toggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('click', function() {
-                    const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                
-                    document.body.className = `scanline ${newTheme}-mode`;
-                    
-                    // 更新主题图标
-                    if (themeIcon) {
-                        themeIcon.className = newTheme === 'dark' ? 'fas fa-sun text-xl' : 'fas fa-moon text-xl';
-                    }
-                
-                    // 保存主题设置到本地存储
-                    localStorage.setItem('theme', newTheme);
-                });
-            }
-        });
-    
         let backToTopButton = document.getElementById('back-to-top');
         let backToTopTooltip = backToTopButton ? backToTopButton.nextElementSibling : null;
-        let themeToggleButton = document.getElementById('theme-toggle');
-        let themeToggleTooltip = themeToggleButton ? themeToggleButton.nextElementSibling : null;
         
-        // 存储定时器
         let tooltipTimers = {};
 
-        // 监听滚动事件
         window.addEventListener('scroll', function() {
             if (window.pageYOffset > 300) {
-                // 当滚动距离超过 300px 时显示按钮
                 backToTopButton.classList.remove('opacity-0', 'invisible');
                 backToTopButton.classList.add('opacity-100', 'visible');
             } else {
-                // 当滚动距离小于 300px 时隐藏按钮
                 backToTopButton.classList.remove('opacity-100', 'visible');
                 backToTopButton.classList.add('opacity-0', 'invisible');
                 
-                // 同步隐藏 tooltip
                 if (backToTopTooltip) {
                     backToTopTooltip.classList.remove('opacity-100', 'visible');
                     backToTopTooltip.classList.add('opacity-0', 'invisible');
@@ -81,42 +31,33 @@
             }
         });
 
-        // 为按钮添加点击事件
         backToTopButton.addEventListener('click', function() {
-            // 平滑滚动到页面顶部
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
         
-        // 显示 tooltip 函数
         function showTooltip(tooltip, buttonId) {
-            // 清除之前的定时器
             if (tooltipTimers[buttonId]) {
                 clearTimeout(tooltipTimers[buttonId]);
             }
             
-            // 显示 tooltip
             tooltip.classList.remove('opacity-0', 'invisible');
             tooltip.classList.add('opacity-100', 'visible');
             
-            // 设置 3 秒后自动隐藏
             tooltipTimers[buttonId] = setTimeout(function() {
                 hideTooltip(tooltip);
             }, 3000);
         }
         
-        // 隐藏 tooltip 函数
         function hideTooltip(tooltip) {
             tooltip.classList.remove('opacity-100', 'visible');
             tooltip.classList.add('opacity-0', 'invisible');
         }
         
-        // 为回到顶部按钮添加鼠标事件
         if (backToTopButton && backToTopTooltip) {
             backToTopButton.addEventListener('mouseenter', function() {
-                // 检查按钮是否可见
                 if (backToTopButton.classList.contains('visible')) {
                     showTooltip(backToTopTooltip, 'back-to-top');
                 }
@@ -126,45 +67,12 @@
                 hideTooltip(backToTopTooltip);
             });
         }
-        
-        // 为主题切换按钮添加鼠标事件
-        if (themeToggleButton && themeToggleTooltip) {
-            themeToggleButton.addEventListener('mouseenter', function() {
-                showTooltip(themeToggleTooltip, 'theme-toggle');
-            });
-            
-            themeToggleButton.addEventListener('mouseleave', function() {
-                hideTooltip(themeToggleTooltip);
-            });
-        }
     })();
 </script>
 
 <style>
-    /* 移除 hover 样式，改为通过 JavaScript 控制 */
-    
     .tooltip {
         pointer-events: none;
-    }
-    
-    /* 暗色模式下的气泡样式 */
-    .dark-mode .tooltip {
-        background-color: #3D2500;
-        color: #F7E6D0;
-    }
-    
-    .dark-mode .tooltip::after {
-        border-top-color: #3D2500;
-    }
-    
-    /* 亮色模式下的气泡样式 */
-    .light-mode .tooltip {
-        background-color: #E6D3B8;
-        color: #3D2500;
-    }
-    
-    .light-mode .tooltip::after {
-        border-top-color: #E6D3B8;
     }
     
     .tooltip::after {

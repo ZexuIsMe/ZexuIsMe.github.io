@@ -68,13 +68,3 @@ a {
     transform: var(--transform-card-hover);
     box-shadow: var(--shadow-pixel-card-hover);
 }
-
-/* 暗色模式代码高亮 */
-.dark-mode .hljs {
-    background-color: var(--color-bg-tertiary);
-}
-
-/* 亮色模式代码高亮 */
-.light-mode .hljs {
-    background-color: var(--color-bg-tertiary);
-}

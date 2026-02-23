@@ -33,13 +33,13 @@
         <div class="relative flex-grow">
             <input type="text" id="search-input" placeholder="请输入搜索内容" class="w-full px-4 py-2 bg-dark-card border border-dark-border rounded-md text-dark-text focus:outline-none focus:ring-2 focus:ring-dark-primary pr-10">
             <!-- 清空按钮 -->
-            <button id="clear-input" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-dark-text hover:text-dark-primary hidden">
+            <button id="clear-input" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-black hover:text-gray-600 hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
             <!-- 搜索结果下拉框 -->
-            <div id="search-dropdown" class="absolute z-10 w-full mt-1 bg-dark-card border border-dark-border rounded-md shadow-lg max-h-60 overflow-y-auto hidden">
+            <div id="search-dropdown" class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto hidden">
                 <!-- 下拉选项将通过 JS 动态生成 -->
             </div>
         </div>
@@ -91,7 +91,7 @@
         } else {
             items.forEach(item => {
                 const option = document.createElement('div');
-                option.className = 'px-4 py-2 text-dark-text hover:bg-dark-primary hover:text-dark-bg cursor-pointer';
+                option.className = 'px-4 py-2 text-black hover:bg-gray-200 cursor-pointer';
                 option.textContent = item.name;
                 option.addEventListener('click', function() {
                     inputElement.value = item.name;
@@ -203,13 +203,12 @@
             
             // 移除所有选项的选中状态
             options.forEach(option => {
-                option.classList.remove('bg-dark-primary', 'text-dark-bg');
-                option.classList.add('text-dark-text');
+                option.classList.remove('bg-gray-200', 'text-white');
+                option.classList.add('text-black');
             });
             
-            // 添加当前选项的选中状态
-            options[selectedIndex].classList.remove('text-dark-text');
-            options[selectedIndex].classList.add('bg-dark-primary', 'text-dark-bg');
+            options[selectedIndex].classList.remove('text-black');
+            options[selectedIndex].classList.add('bg-gray-200', 'text-white');
             
             // 滚动到选中的选项
             options[selectedIndex].scrollIntoView({ block: 'nearest' });

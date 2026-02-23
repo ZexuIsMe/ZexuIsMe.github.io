@@ -8,32 +8,21 @@
 }
 
 :root {
-    /* 字体变量 */
+    font-family: 'CangLangXingKai', cursive;
+    
     --font-family-base: 'VT323', monospace;
     --font-family-heading: 'CangLangXingKai', cursive;
     --font-family-canglang: 'CangLangXingKai', cursive;
     
-    /* 暗色模式 - 颜色变量（Trae风格） */
-    --color-dark-bg-primary: #1A1A2E;        /* 暗色模式主背景 - Trae深蓝色 */
-    --color-dark-bg-secondary: #16213E;      /* 暗色模式次要背景 - 稍浅深蓝色 */
-    --color-dark-bg-tertiary: #0F3460;       /* 暗色模式第三级背景（代码高亮） */
-    --color-dark-text-primary: #E1E1E1;      /* 暗色模式主文本 - 浅灰色 */
-    --color-dark-text-secondary: #FFFFFF;    /* 暗色模式次要文本（标题） - 白色 */
-    --color-dark-text-accent: #5390D9;       /* 暗色模式强调文本 - Trae蓝色 */
-    --color-dark-button-primary: #2A3F5F;    /* 暗色模式按钮主色 - 中蓝色 */
-    --color-dark-button-hover: #3A4F6F;      /* 暗色模式按钮悬停色 - 浅蓝色 */
-    --color-dark-button-text: #FFFFFF;       /* 暗色模式按钮文本色 - 白色 */
-    
-    /* 亮色模式 - 颜色变量（极简风格） */
-    --color-light-bg-primary: #FFFFFF;       /* 亮色模式主背景 - 白色 */
-    --color-light-bg-secondary: #F8F9FA;     /* 亮色模式次要背景 - 极浅灰色 */
-    --color-light-bg-tertiary: #E9ECEF;      /* 亮色模式第三级背景（代码高亮） */
-    --color-light-text-primary: #212529;     /* 亮色模式主文本 - 深灰色 */
-    --color-light-text-secondary: #000000;   /* 亮色模式次要文本（标题） - 黑色 */
-    --color-light-text-accent: #343A40;      /* 亮色模式强调文本 - 深灰色 */
-    --color-light-button-primary: #DEE2E6;   /* 亮色模式按钮主色 - 浅灰色 */
-    --color-light-button-hover: #CED4DA;     /* 亮色模式按钮悬停色 - 中灰色 */
-    --color-light-button-text: #212529;      /* 亮色模式按钮文本色 - 深灰色 */
+    --color-bg-primary: #FFFFFF;
+    --color-bg-secondary: #FAFAFA;
+    --color-bg-tertiary: #F5F5F5;
+    --color-text-primary: #333333;
+    --color-text-secondary: #000000;
+    --color-text-accent: #000000;
+    --color-button-primary: #000000;
+    --color-button-hover: #333333;
+    --color-button-text: #FFFFFF;
     
     /* 通用颜色变量 */
     --color-black: #000000;                  /* 黑色 */
@@ -105,56 +94,7 @@
         var(--size-shadow-pixel) var(--color-black);  /* 16-bit风格双重阴影效果 */
     
     /* 变换变量 */
-    --transform-button-hover: translate(2px, 2px);  /* 按钮悬停变换 */
-    --transform-button-active: translate(4px, 4px);  /* 按钮激活变换 */
-    --transform-card-hover: translate(-4px, -4px);  /* 卡片悬停变换 */
-}
-
-/* 暗色模式变量 */
-.dark-mode {
-    --color-bg-primary: var(--color-dark-bg-primary);
-    --color-bg-secondary: var(--color-dark-bg-secondary);
-    --color-bg-tertiary: var(--color-dark-bg-tertiary);
-    --color-text-primary: var(--color-dark-text-primary);
-    --color-text-secondary: var(--color-dark-text-secondary);
-    --color-text-accent: var(--color-dark-text-accent);
-    --color-button-primary: var(--color-dark-button-primary);
-    --color-button-hover: var(--color-dark-button-hover);
-    --color-button-text: var(--color-dark-button-text);
-}
-
-/* 亮色模式变量 */
-.light-mode {
-    --color-bg-primary: var(--color-light-bg-primary);
-    --color-bg-secondary: var(--color-light-bg-secondary);
-    --color-bg-tertiary: var(--color-light-bg-tertiary);
-    --color-text-primary: var(--color-light-text-primary);
-    --color-text-secondary: var(--color-light-text-secondary);
-    --color-text-accent: var(--color-light-text-accent);
-    --color-button-primary: var(--color-light-button-primary);
-    --color-button-hover: var(--color-light-button-hover);
-    --color-button-text: var(--color-light-button-text);
-}
-
-/* 通用模式变量（根据当前模式自动切换） */
-:root {
-    --color-bg-primary: var(--color-dark-bg-primary);
-    --color-bg-secondary: var(--color-dark-bg-secondary);
-    --color-bg-tertiary: var(--color-dark-bg-tertiary);
-    --color-text-primary: var(--color-dark-text-primary);
-    --color-text-secondary: var(--color-dark-text-secondary);
-    --color-text-accent: var(--color-dark-text-accent);
-    --color-button-primary: var(--color-dark-button-primary);
-    --color-button-hover: var(--color-dark-button-hover);
-    --color-button-text: var(--color-dark-button-text);
-}
-
-/* 16-bit风格阴影效果 */
-:root {
-    --shadow-pixel: var(--size-shadow-pixel) var(--color-black);  /* 16-bit风格像素阴影 */
-    --shadow-pixel-large: var(--size-shadow-pixel-large) var(--color-black);  /* 16-bit风格大像素阴影 */
-    --shadow-pixel-hover: var(--size-shadow-pixel-hover) var(--color-black);  /* 16-bit风格悬停像素阴影 */
-    --shadow-pixel-card-hover: var(--size-shadow-pixel-card-hover) var(--color-black);  /* 16-bit风格卡片悬停像素阴影 */
-    --shadow-text: 3px 3px 0px var(--color-black-alpha-50);  /* 16-bit风格文本阴影 */
-    --shadow-text-pixel: 6px 6px 0px var(--color-black-alpha-50);  /* 16-bit风格像素文本阴影 */
+    --transform-button-hover: translate(2px, 2px);
+    --transform-button-active: translate(4px, 4px);
+    --transform-card-hover: translate(-4px, -4px);
 }
