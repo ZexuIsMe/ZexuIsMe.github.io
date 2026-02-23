@@ -3,11 +3,7 @@
 %>
 
 <!-- 角色展示区域 -->
-<section id="characters" class="bg-dark-bg-primary relative overflow-hidden h-screen">
-    <div class="absolute inset-0 " style="opacity: 0.2;">
-        <div class="absolute inset-0 bg-[url('<%= url_for('/images/bhcyl/bg.png') %>')]"></div>
-    </div>
-
+<section id="characters" class="relative h-screen">
     <div class="min-h-screen container mx-auto relative">
         <!-- 底层：角色立绘（水平垂直居中） -->
         <div class="absolute inset-0 grid place-items-center z-10" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
@@ -24,31 +20,30 @@
         <div class="absolute inset-0 z-20">
             <!-- 人物名字（垂直显示） -->
             <div 
-                class="absolute flex items-start font-canglang"
+                class="absolute flex items-start font-pixel"
                 data-aos="fade-right" 
                 data-aos-duration="800" 
                 data-aos-delay="400"
                 style="top: 7%; left: 7%;"
             >
                 <div 
-                    class="writing-vertical text-4xl md:text-6xl text-white "
+                    class="writing-vertical text-4xl md:text-6xl text-primary"
                     id="character-name"
                     style="font-size: 72px;"
                 ><%= characterItems[0].name %></div>
                 
-                <!-- 元素和武器信息 -->
                 <div 
-                    class="writing-vertical text-white text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8"
+                    class="writing-vertical text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8 text-note"
                     id="character-info"
                     style="font-size: 24px;"
                 ><%= characterItems[0].element %></div>
                 <div 
-                    class="writing-vertical text-white text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8"
+                    class="writing-vertical text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8 text-note"
                     id="character-weapon"
                     style="font-size: 24px;"
                 ><%= characterItems[0].weapon %></div>
                 <div 
-                    class="writing-vertical text-white text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8"
+                    class="writing-vertical text-sm md:text-lg ml-4 md:ml-4 mt-4 md:mt-8 text-note"
                     id="character-position"
                     style="font-size: 24px;"
                 ><%= characterItems[0].position %></div>
@@ -60,43 +55,39 @@
             <!-- 移动端菜单 -->
             <div class="md:hidden container mx-auto px-4 h-full flex flex-col items-center justify-end pb-20">
                 <div class="flex items-center justify-center w-full mb-4">
-                    <div style="cursor: pointer;" class="text-white hover:text-gray-300 mx-4" id="prev-character-mobile">
+                    <div style="cursor: pointer;" class="hover:text-note mx-4" id="prev-character-mobile">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                         </svg>
                     </div>
-                    <div style="cursor: pointer;" class="text-white hover:text-gray-300 mx-4" id="next-character-mobile">
+                    <div style="cursor: pointer;" class="hover:text-note mx-4" id="next-character-mobile">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                         </svg>
                     </div>
                 </div>
-                <div class="w-full flex flex-row overflow-x-auto pb-2 font-canglang" id="character-menu-mobile">
+                <div class="w-full flex flex-row overflow-x-auto pb-2 font-pixel" id="character-menu-mobile">
                     <% characterItems.forEach((character, index) => { %>
-                        <div style="cursor: pointer;" class="hover:text-gray-300 whitespace-nowrap px-4 py-2 <%= index === 0 ? 'font-bold text-ancient-gold' : '' %>" data-index="<%= index %>"><%= character.name %></div>
+                        <div style="cursor: pointer;" class="hover:text-note whitespace-nowrap px-4 py-2 <%= index === 0 ? 'font-bold text-primary' : '' %>" data-index="<%= index %>"><%= character.name %></div>
                     <% }) %>
                 </div>
             </div>
             
             <!-- 桌面端菜单 -->
-            <div class="hidden md:block container mx-auto px-4 h-full flex items-center justify-end" data-aos="fade-left" data-aos-duration="800" data-aos-delay="600">
+            <div class="hidden md:block container mx-auto px-4 h-full flex items-center justify-end">
                 <div class="w-full h-full flex flex-col justify-center items-end">
                     <div class="w-32 text-center">
-                        <!-- 角色类型 -->
-                        <div class="text-white">
+                        <div class="">
                             <div class="text-sm opacity-70">修士</div>
                         </div>
-                        <!-- 上一个角色 -->
-                        <div style="cursor: pointer;" class="text-white hover:text-gray-300 my-8" id="prev-character">
+                        <div style="cursor: pointer;" class="hover:text-note my-8" id="prev-character">
                             <i class="fas fa-angle-up"></i>
                         </div>
-                        <!-- 角色列表 -->
                         <div class="space-y-4" id="character-menu">
                             <% characterItems.forEach((character, index) => { %>
                                 <div
                                     style="cursor: pointer;"
-                                    class="hover:text-ancient-gold <%= index === 0 ? 'font-bold text-ancient-gold' : '' %>"
-                                    data-index="<%= index %>"
+                                    class="hover:text-primary <%= index === 0 ? 'font-bold text-primary' : '' %>"
                                     data-index="<%= index %>"
                                     data-aos="fade-left"
                                     data-aos-duration="600"
@@ -104,8 +95,7 @@
                                 ><%= character.name %></div>
                             <% }) %>
                         </div>
-                        <!-- 下一个角色 -->
-                        <div style="cursor: pointer;" class="text-white hover:text-gray-300 my-8" id="next-character">
+                        <div style="cursor: pointer;" class="hover:text-note my-8" id="next-character">
                             <i class="fas fa-angle-down"></i>
                         </div>
                     </div>
@@ -135,20 +125,20 @@
             // 更新桌面端菜单选中状态
             if (menuItems.length > 0) {
                 menuItems.forEach(menuItem => {
-                    menuItem.classList.remove('font-bold', 'text-ancient-gold');
+                    menuItem.classList.remove('font-bold', 'text-primary');
                 });
                 if (menuItems[index]) {
-                    menuItems[index].classList.add('font-bold', 'text-ancient-gold');
+                    menuItems[index].classList.add('font-bold', 'text-primary');
                 }
             }
             
             // 更新移动端菜单选中状态
             if (mobileMenuItems.length > 0) {
                 mobileMenuItems.forEach(menuItem => {
-                    menuItem.classList.remove('font-bold', 'text-ancient-gold');
+                    menuItem.classList.remove('font-bold', 'text-primary');
                 });
                 if (mobileMenuItems[index]) {
-                    mobileMenuItems[index].classList.add('font-bold', 'text-ancient-gold');
+                    mobileMenuItems[index].classList.add('font-bold', 'text-primary');
                 }
             }
             
@@ -285,7 +275,6 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
         z-index: 1;
     }
     

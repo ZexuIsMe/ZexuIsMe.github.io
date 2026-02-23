@@ -8,9 +8,9 @@
                         }).sort(sort);
 %>
 
-<section id="bhcyl-note" class="py-20 bg-gray-900 relative">
+<section id="bhcyl-note" class="py-20 relative">
     <div class="container mx-auto px-4 z-10 relative">
-        <h2 class="text-4xl text-center text-ancient-gold mb-16" data-aos="fade-up">
+        <h2 class="text-4xl text-center text-primary mb-16" data-aos="fade-up">
             <%= title %>
         </h2>
         
@@ -18,18 +18,18 @@
             <% bhcylPosts.forEach(post => { %>
                 <div 
                     onclick="window.location.href=`<%= url_for(post.path) %>`"
-                    class="bg-gray-800/80 rounded-lg overflow-hidden border border-ancient-gold/30 backdrop-blur-sm hover:border-ancient-gold hover:shadow-lg hover:shadow-ancient-gold/30 hover:scale-105 transition-all duration-300 cursor-pointer flex flex-col md:flex-row"
+                    class="bg-card rounded-lg overflow-hidden border border-border backdrop-blur-sm hover:border-primary hover:shadow-lg hover:shadow-primary/30 hover:scale-105 transition-all duration-300 cursor-pointer flex flex-col md:flex-row"
                 >
-                    <div class="md:w-2/5 h-48 md:h-auto bg-gray-700 relative overflow-hidden bg-[url(<%= post.cover ? url_for(post.cover) : url_for(imageDefault) %>)] bg-cover opacity-70 min-h-[200px]">
+                    <div class="md:w-2/5 h-48 md:h-auto bg-light-card relative overflow-hidden bg-[url(<%= post.cover ? url_for(post.cover) : url_for(imageDefault) %>)] bg-cover opacity-70 min-h-[200px]">
                         <div class="absolute bottom-4 left-4">
-                            <span class="bg-ancient-gold text-black text-xs px-2 py-1 rounded">
+                            <span class="bg-primary text-light-bg text-xs px-2 py-1 rounded">
                                 <%= date(post.date, 'YYYY-MM-DD') %>
                             </span>
                         </div>
                     </div>
                     <div class="md:w-3/5 p-6 markdown-body flex flex-col justify-center">
-                        <h3 class="text-xl text-ancient-gold mb-3"><%= post.title %></h3>
-                        <div class="excerpt mb-4" style="color: white;">
+                        <h3 class="text-xl text-primary mb-3"><%= post.title %></h3>
+                        <div class="excerpt mb-4" style="color: var(--text);">
                             <% if (post.excerpt) { %>
                                 <%- post.excerpt %>
                             <% } else { %>
@@ -39,7 +39,7 @@
                         <a href="<%= url_for(post.path) %>">
                         </a>
                         <span
-                            class="text-ancient-gold hover:text-yellow-400 transition-colors duration-300 flex items-center"
+                            class="text-primary hover:text-secondary transition-colors duration-300 flex items-center"
                         >
                             阅读更多
                             <i class="fa fa-arrow-right ml-2"></i>
