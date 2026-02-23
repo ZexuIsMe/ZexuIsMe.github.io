@@ -12,22 +12,19 @@
     const randomIndex = Math.floor(Math.random() * screenshotsArray.length);
 %>
 
-<section class="py-24 bg-ink-gradient relative overflow-hidden">
-    <!-- 背景图片层 -->
+<section class="py-24 bg-light-bg relative overflow-hidden">
     <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: url('<%= screenshotsArray[randomIndex].src %>'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
-    <!-- 标题和副标题 -->
     <div class="mx-auto px-4 z-10 relative">
         <div class="text-center mb-16">
-            <h2 class="text-5xl text-ink-accent mb-4 animate-ink-fade" style="animation-delay: 0.1s">
+            <h2 class="text-5xl mb-4 animate-ink-fade" style="animation-delay: 0.1s">
                 <%= title %>
             </h2>
-            <div class="w-32 h-1 bg-ink-accent mx-auto mb-6 animate-ink-fade" style="animation-delay: 0.2s"></div>
-            <p class="text-ink-light text-lg animate-ink-fade" style="animation-delay: 0.3s">
+            <div class="w-32 h-1 mx-auto mb-6 animate-ink-fade" style="animation-delay: 0.2s"></div>
+            <p class="text-note text-lg animate-ink-fade" style="animation-delay: 0.3s">
                 <%= subtitle %>
             </p>
         </div>
     </div>
-    <!-- 游戏截图网格 -->
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="screenshotsGrid">
             <% screenshotsArray.forEach((item, index) => { %>
@@ -44,12 +41,12 @@
             <% }) %>
         </div>
         
-        <!-- 加载更多按钮 -->
         <div class="text-center mt-12" id="loadMoreContainer">
             <button 
-                class="bg-ink-accent hover:bg-ink-accent/80 text-white font-bold py-3 px-8 rounded-full transition-all duration-300"
+                class="hover:bg-secondary font-bold py-3 px-8 rounded-full transition-all duration-300"
                 onclick="loadMoreScreenshots()"
                 id="loadMoreBtn"
+                style="cursor: pointer"
             >
                 加载更多
             </button>
@@ -58,17 +55,31 @@
 
     <div class="py-20" data-desc="填充物"></div>
 
-    <!-- 游戏截图弹窗 -->
-    <div id="lightbox" class="fixed inset-0 z-50 hidden bg-black/90 flex items-center justify-center" onclick="closeLightboxOnOutsideClick(event)">
-        <button onclick="closeLightbox(); event.stopPropagation()" class="absolute top-4 right-4 text-white text-4xl hover:text-ink-accent transition-colors z-10">&times;</button>
-        <button onclick="prevLightboxImage(); event.stopPropagation()" class="absolute left-4 text-white text-4xl hover:text-ink-accent transition-colors z-10">&larr;</button>
-        <button onclick="nextLightboxImage(); event.stopPropagation()" class="absolute right-4 text-white text-4xl hover:text-ink-accent transition-colors z-10">&rarr;</button>
+    <div id="lightbox" class="fixed inset-0 z-50 hidden bg-light-bg/90 flex items-center justify-center" onclick="closeLightboxOnOutsideClick(event)">
+        <div
+            onclick="closeLightbox(); event.stopPropagation()"
+            class="absolute top-4 right-4 text-4xl hover:text-primary z-10"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        <div
+            onclick="prevLightboxImage(); event.stopPropagation()"
+            class="absolute left-4 text-4xl hover:text-primary transition-colors z-10"
+        >
+            <i class="fa-solid fa-angle-left"></i>
+        </div>
+        <div
+            onclick="nextLightboxImage(); event.stopPropagation()"
+            class="absolute right-4 text-4xl hover:text-primary transition-colors z-10"
+        >
+            <i class="fa-solid fa-angle-right"></i>
+        </div>
         <div class="px-4" onclick="event.stopPropagation()">
             <img id="lightboxImage" src="" alt="" class="max-w-full max-h-[85vh] object-contain">
         </div>
 
         <div class="absolute" style="left: 50%; bottom: 3%; transform: translateX(-50%);">
-            <i class="fa fa-download text-white text-4xl hover:text-ink-accent transition-colors z-10 cursor-pointer" onclick="downloadImage(); event.stopPropagation()"></i>
+            <i class="fa-solid fa-download text-4xl hover:text-primary transition-colors z-10 cursor-pointer" onclick="downloadImage(); event.stopPropagation()"></i>
         </div>
     </div>
 </section>

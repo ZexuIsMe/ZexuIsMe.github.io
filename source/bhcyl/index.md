@@ -12,12 +12,8 @@ nav:
     path: /index
   - text: 角色
     path: '#characters'
-  - text: 特色
-    path: '#features'
-  - text: 下载
-    path: '#download'
   - text: 随笔
-    path: '#news'
+    path: '#bhcyl-note'
 
 # 修士信息
 characterItems:
@@ -59,7 +55,7 @@ features:
 
 # 截图
 screenshots_title: '壁纸'
-screenshots_subtitle: '根据游戏版本更新收集'
+screenshots_subtitle: ''
 screenshots:
   - src: images/bhcyl/壁纸/洛师姐.webp
   - src: images/bhcyl/壁纸/0.7.webp
@@ -75,7 +71,7 @@ screenshots:
   - src: images/bhcyl/壁纸/bg03.webp
 
 # 随笔
-news:
+note:
   title: '随笔'
   sort: '-date'
   limit: 6

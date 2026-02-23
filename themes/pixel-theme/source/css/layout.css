@@ -1,12 +1,21 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+@import './variables.css';
+@import './excerpt.css';
+@import './post.css';
 @import './table.css';
 @import './tags.css';
 @import './nav.css';
 @import './pictures.css';
+@import './responsive.css';
 
 html {
     font-size: var(--font-size-base);
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
 }
 
 body {
@@ -15,10 +24,12 @@ body {
     background-color: var(--color-bg-primary);
     position: var(--position-relative);
     font-size: 1rem;
+    margin: 0;
+    padding: 0;
 }
 
 footer {
-    font-family: var(--font-family-canglang), serif;
+    font-family: var(--font-family-heading), serif;
 }
 
 /* 基础标题样式 */
@@ -28,6 +39,14 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 
+nav {
+    font-family: 字魂武林江湖体, serif;
+}
+
+a {
+    text-decoration: none;
+}
+
 .pixel-button {
     background-color: var(--color-button-primary);
     color: var(--color-button-text);
@@ -35,7 +54,7 @@ h1, h2, h3, h4, h5, h6 {
     border: var(--border-pixel);
     box-shadow: var(--shadow-pixel);
     transition: var(--transition-default);
-    font-family: var(--font-family-heading);
+    font-family: var(--font-family-heading), serif;
     font-size: 0.75rem;
     text-transform: uppercase;
     font-weight: normal;
@@ -63,14 +82,12 @@ h1, h2, h3, h4, h5, h6 {
 .pixel-card:hover {
     transform: var(--transform-card-hover);
     box-shadow: var(--shadow-pixel-card-hover);
+    background-color: var(--color-bg-tertiary);
+    border-color: var(--color-text-accent);
 }
 
-/* 暗色模式代码高亮 */
-.dark-mode .hljs {
-    background-color: var(--color-bg-tertiary);
-}
-
-/* 亮色模式代码高亮 */
-.light-mode .hljs {
-    background-color: var(--color-bg-tertiary);
+.pixel-card:hover h3 {
+    color: var(--color-button-primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
 }

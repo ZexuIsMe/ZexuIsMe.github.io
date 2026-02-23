@@ -25,17 +25,3 @@
     transform: scale(1.05);
     box-shadow: var(--shadow-pixel);
 }
-
-/* 暗色模式下的标签悬浮效果 */
-.dark-mode .tag-container span:hover, .dark-mode table td .flex span:hover {
-    background-color: var(--color-dark-button-primary);
-    color: var(--color-dark-button-text);
-    box-shadow: 0 0 8px rgba(244, 180, 102, 0.5);
-}
-
-/* 亮色模式下的标签悬浮效果 */
-.light-mode .tag-container span:hover, .light-mode table td .flex span:hover {
-    background-color: var(--color-light-button-primary);
-    color: var(--color-light-button-text);
-    box-shadow: 0 0 8px rgba(212, 142, 59, 0.5);
-}

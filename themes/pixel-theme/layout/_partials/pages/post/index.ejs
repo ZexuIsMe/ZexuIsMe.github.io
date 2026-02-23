@@ -4,11 +4,11 @@
     <%- partial('../../component/loading') %>
     <div class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8">
         <!-- 文章内容区域 -->
-        <div class="lg:w-3/3">
+        <div class="lg:w-full">
             <!-- 文章头部信息 -->
             <div id="post-header" class="mb-12 text-center">
-                <h1 class="text-3xl md:text-4xl font-pixel mb-6 text-primary"><%= page.title %></h1>
-                <div id="post-meta" class="flex flex-wrap justify-center items-center gap-4 text-sm text-note">
+                <h1 class="text-3xl md:text-4xl font-pixel mb-6 text-black"><%= page.title %></h1>
+                <div id="post-meta" class="flex flex-wrap justify-center items-center gap-4 text-sm text-gray-600">
                     <!-- 文章日期 -->
                     <span class="flex items-center">
                         <i class="fas fa-calendar mr-2"></i>
@@ -41,7 +41,7 @@
                             <i class="fas fa-tags mr-2"></i>
                             <% page.tags.forEach(function(tag, index) { %>
                                 <span
-                                    class="hover:text-secondary transition-colors" 
+                                    class="hover:text-black transition-colors" 
                                     onclick="handleTagClick('tag', '<%= tag.name %>', '<%- url_for(tag.path) %>')"
                                     style="cursor: pointer;"
                                 >
@@ -81,7 +81,7 @@
                         </a>
                     <% } %>
                     <% if (page.next) { %>
-                        <a href="<%= url_for(page.next.path) %>" class="pixel-button w-fit ml-auto hover:bg-secondary transition-colors">
+                        <a href="<%= url_for(page.next.path) %>" class="pixel-button w-fit ml-auto hover:bg-gray-800 transition-colors">
                             <%= theme.article.next_link %> <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                     <% } %>
@@ -108,9 +108,6 @@
                 </div>
             <% } %>
         </div>
-
-        <!-- 目录组件 -->
-        <%- partial('post-menu') %>
     </div>
 </section>
 
@@ -335,5 +332,158 @@ document.addEventListener('DOMContentLoaded', () => {
     handleImageClick();
     handleTables();
 });
-
 </script>
+
+<style>
+    @media (max-width: 767px) {
+        #post-detail {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        
+        #post-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        #post-meta {
+            font-size: 0.8125rem;
+            gap: 0.5rem;
+        }
+        
+        #post-meta span {
+            font-size: 0.8125rem;
+        }
+        
+        #post-meta i {
+            font-size: 0.8125rem;
+        }
+        
+        .markdown-body {
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+        
+        .markdown-body p {
+            margin-bottom: 0.75rem;
+        }
+        
+        .markdown-body h1 {
+            font-size: 1.5rem;
+        }
+        
+        .markdown-body h2 {
+            font-size: 1.25rem;
+        }
+        
+        .markdown-body h3 {
+            font-size: 1.125rem;
+        }
+        
+        .markdown-body pre {
+            margin: 1rem 0;
+            font-size: 0.8125rem;
+        }
+        
+        .markdown-body img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .code-header {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.75rem;
+        }
+        
+        .copy-button {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.6875rem;
+        }
+        
+        .copyright-notice {
+            font-size: 0.8125rem;
+            padding-top: 0.75rem;
+        }
+        
+        .copyright-notice p {
+            margin-bottom: 0.5rem;
+        }
+        
+        #post-detail .mt-8 {
+            margin-top: 1rem;
+        }
+        
+        #post-detail .gap-4 {
+            gap: 0.75rem;
+        }
+        
+        #post-detail .pixel-button {
+            padding: 0.5rem 0.875rem;
+            font-size: 0.6875rem;
+        }
+        
+        #post-detail .mb-12 {
+            margin-bottom: 1rem;
+        }
+        
+        #post-detail .py-16 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        
+        #post-detail .px-4 {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+    }
+    
+    @media (min-width: 768px) and (max-width: 991px) {
+        #post-header h1 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        #post-meta {
+            font-size: 0.875rem;
+            gap: 0.75rem;
+        }
+        
+        .markdown-body {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        .markdown-body h1 {
+            font-size: 1.75rem;
+        }
+        
+        .markdown-body h2 {
+            font-size: 1.5rem;
+        }
+        
+        .markdown-body h3 {
+            font-size: 1.25rem;
+        }
+    }
+    
+    @media (min-width: 992px) and (max-width: 1199px) {
+        #post-header h1 {
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+        }
+        
+        .markdown-body h1 {
+            font-size: 2rem;
+        }
+        
+        .markdown-body h2 {
+            font-size: 1.75rem;
+        }
+        
+        .markdown-body h3 {
+            font-size: 1.5rem;
+        }
+    }
+</style>

@@ -1,0 +1,73 @@
+<!-- 笔记区域 -->
+<% 
+    const { sort, title, imgDefault: imageDefault, excerpt } = page.note;
+    
+    const bhcylPosts = site.posts.filter(post => {
+                            const categories = post.categories.toArray();
+                            return categories.some(cat => cat.name === page.title);
+                        }).sort(sort);
+%>
+
+<section id="bhcyl-note" class="py-20 relative">
+    <div class="container mx-auto px-4 z-10 relative">
+        <h2 class="text-4xl text-center  mb-16">
+            <%= title %>
+        </h2>
+        
+        <div class="grid gap-8">
+            <% bhcylPosts.forEach(post => { %>
+                <div 
+                    onclick="window.location.href=`<%= url_for(post.path) %>`"
+                    class="bhcyl-note-card bg-card rounded-lg overflow-hidden border border-border backdrop-blur-sm cursor-pointer flex flex-col md:flex-row"
+                >
+                    <div class="md:w-2/5 h-48 md:h-auto bg-light-card relative overflow-hidden bg-[url(<%= post.cover ? url_for(post.cover) : url_for(imageDefault) %>)] bg-cover opacity-70 min-h-[200px]">
+                        <div class="absolute bottom-4 left-4">
+                            <span class="text-xs px-2 py-1 rounded">
+                                <%= date(post.date, 'YYYY-MM-DD') %>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="md:w-3/5 p-6 markdown-body flex flex-col justify-center">
+                        <h2 class="mb-3"><%= post.title %></h2>
+                        <div class="excerpt mb-4" >
+                            <% if (post.excerpt) { %>
+                                <%- post.excerpt %>
+                            <% } else { %>
+                                <%- markdown(excerpt) %>
+                            <% } %>
+                        </div>
+                        <a href="<%= url_for(post.path) %>">
+                        </a>
+                        <span class="flex items-center">
+                            阅读更多
+                            <i class="fa fa-arrow-right ml-2"></i>
+                        </span>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
+
+<style>
+    .bhcyl-note-card {
+        transition: var(--transition-card);
+    }
+
+    .bhcyl-note-card:hover {
+        transform: var(--transform-card-hover);
+        box-shadow: var(--shadow-pixel-card-hover);
+        background-color: var(--color-bg-tertiary);
+        border-color: var(--color-text-accent);
+    }
+
+    .bhcyl-note-card:hover h2 {
+        color: var(--color-button-primary);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
+
+    .bhcyl-note-card:hover .excerpt {
+        color: var(--color-text-secondary);
+    }
+</style>

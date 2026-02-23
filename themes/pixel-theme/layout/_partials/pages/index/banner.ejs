@@ -7,7 +7,7 @@
 <section id="home">
     <div class="px-4 py-16" style="width: calc(100vw*0.9); margin: auto;">
         <!-- 轮播容器 -->
-        <div class="relative overflow-hidden rounded-lg" id="bannerCarousel" style="height: calc(100vh*0.79); ">
+        <div class="relative overflow-hidden rounded-lg" id="bannerCarousel" style="height: 500px; ">
             <!-- 轮播图片 -->
             <div class="flex transition-transform duration-500 ease-in-out h-full" id="carouselTrack">
                 <% bannerItems.forEach((item, index) => { %>
@@ -53,13 +53,13 @@
                     class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300"
                     onclick="prevSlide()"
                 >
-                    &larr;
+                    <i class="fa-solid fa-angle-left"></i>
                 </button>
                 <button 
                     class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300"
                     onclick="nextSlide()"
                 >
-                    &rarr;
+                    <i class="fa-solid fa-angle-right"></i>
                 </button>
             <% } %>
         </div>
@@ -165,9 +165,42 @@
 </script>
 
 <style>
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
+        #home .px-4 {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+        
+        #home .py-16 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        
         #bannerCarousel {
             height: calc(100vh * 0.25) !important;
+        }
+        
+        #carouselIndicators button {
+            width: 0.5rem;
+            height: 0.5rem;
+        }
+        
+        #bannerCarousel button {
+            width: 2rem;
+            height: 2rem;
+            font-size: 1rem;
+        }
+    }
+    
+    @media (min-width: 768px) and (max-width: 991px) {
+        #bannerCarousel {
+            height: calc(100vh * 0.4) !important;
+        }
+    }
+    
+    @media (min-width: 992px) and (max-width: 1199px) {
+        #bannerCarousel {
+            height: calc(100vh * 0.5) !important;
         }
     }
 </style>
