@@ -21,11 +21,10 @@
             <!-- 人物名字（垂直显示） -->
             <div 
                 class="absolute flex items-start font-pixel"
-
                 style="top: 7%; left: 7%;"
             >
                 <div 
-                    class="writing-vertical text-4xl md:text-6xl text-primary"
+                    class="writing-vertical text-4xl md:text-6xl font-wulin"
                     id="character-name"
                     style="font-size: 72px;"
                 ><%= characterItems[0].name %></div>
@@ -54,14 +53,10 @@
             <div class="md:hidden container mx-auto px-4 h-full flex flex-col items-center justify-end pb-20">
                 <div class="flex items-center justify-center w-full mb-4">
                     <div style="cursor: pointer;" class="hover:text-note mx-4" id="prev-character-mobile">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                        </svg>
+                        <i class="fa-solid fa-angle-left"></i>
                     </div>
                     <div style="cursor: pointer;" class="hover:text-note mx-4" id="next-character-mobile">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
+                        <i class="fa-solid fa-angle-right"></i>
                     </div>
                 </div>
                 <div class="w-full flex flex-row overflow-x-auto pb-2 font-pixel" id="character-menu-mobile">
@@ -79,19 +74,19 @@
                             <div class="text-sm opacity-70">修士</div>
                         </div>
                         <div style="cursor: pointer;" class="hover:text-note my-8" id="prev-character">
-                            <i class="fas fa-angle-up"></i>
+                            <i class="fa-solid fa-angle-up"></i>
                         </div>
                         <div class="space-y-4" id="character-menu">
                             <% characterItems.forEach((character, index) => { %>
                                 <div
                                     style="cursor: pointer;"
-                                    class="hover:text-primary <%= index === 0 ? 'font-bold text-primary' : '' %>"
+                                    class="hover:font-bold <%= index === 0 ? 'font-bold' : '' %>"
                                     data-index="<%= index %>"
                                 ><%= character.name %></div>
                             <% }) %>
                         </div>
                         <div style="cursor: pointer;" class="hover:text-note my-8" id="next-character">
-                            <i class="fas fa-angle-down"></i>
+                            <i class="fa-solid fa-angle-down"></i>
                         </div>
                     </div>
                 </div>
@@ -111,7 +106,7 @@
         const characterWeapon = document.getElementById('character-weapon');
         const characterPosition = document.getElementById('character-position');
         const characterImage = document.getElementById('character-image');
-        
+
         // 共享的角色切换函数
         function switchCharacter(index) {
             currentIndex = index;
@@ -275,7 +270,7 @@
     
     @media (max-width: 768px) {
         #characters::before {
-            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%);
+            /*background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%);*/
         }
     }
     

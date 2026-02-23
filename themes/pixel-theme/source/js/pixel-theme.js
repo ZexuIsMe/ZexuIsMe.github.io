@@ -74,7 +74,7 @@ tailwind.config = {
             },
             fontFamily: {
                 pixel: ['VT323', 'monospace', 'cursive'],
-                canglang: ['CangLangXingKai', 'cursive']
+                wulin: ['字魂武林江湖体', 'cursive'],
             },
             animation: {
                 'pixel-bounce': 'bounce 2s infinite',
