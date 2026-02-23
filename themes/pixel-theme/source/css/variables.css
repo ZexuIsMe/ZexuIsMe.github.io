@@ -13,20 +13,6 @@
     --font-family-heading: '字魂武林江湖体', cursive;
     --font-family-wulin: '字魂武林江湖体', cursive;
     
-    /* 颜色变量 */
-    --color-bg-primary: #FFFFFF;
-    --color-bg-secondary: #FAFAFA;
-    --color-bg-tertiary: #F5F5F5;
-    --color-text-primary: #333333;
-    --color-text-secondary: #000000;
-    --color-text-accent: #000000;
-    --color-button-primary: #000000;
-    --color-button-hover: #333333;
-    --color-button-text: #FFFFFF;
-    --color-black: #000000;
-    --color-black-alpha-10: rgba(0, 0, 0, 0.1);
-    --color-black-alpha-50: rgba(0, 0, 0, 0.5);
-    
     /* 尺寸变量 */
     --size-border-thick: 6px;
     --size-border-thin: 3px;
@@ -94,4 +80,40 @@
     --transform-button-hover: translate(2px, 2px);
     --transform-button-active: translate(4px, 4px);
     --transform-card-hover: translate(-4px, -4px);
+    
+    /* 颜色变量 - 亮色主题（白色为主，黑色为辅） */
+    --color-bg-primary: #FFFFFF;
+    --color-bg-secondary: #FAFAFA;
+    --color-bg-tertiary: #F5F5F5;
+    --color-text-primary: #333333;
+    --color-text-secondary: #000000;
+    --color-text-accent: #000000;
+    --color-button-primary: #000000;
+    --color-button-hover: #333333;
+    --color-button-text: #FFFFFF;
+    --color-black: #000000;
+    --color-black-alpha-10: rgba(0, 0, 0, 0.1);
+    --color-black-alpha-50: rgba(0, 0, 0, 0.5);
+    --color-white: #FFFFFF;
+    --color-white-alpha-10: rgba(255, 255, 255, 0.1);
+    --color-white-alpha-50: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] {
+    /* 颜色变量 - 暗色主题（黑色为主，白色为辅） */
+    --color-bg-primary: #000000;
+    --color-bg-secondary: #0A0A0A;
+    --color-bg-tertiary: #1A1A1A;
+    --color-text-primary: #E0E0E0;
+    --color-text-secondary: #FFFFFF;
+    --color-text-accent: #FFFFFF;
+    --color-button-primary: #FFFFFF;
+    --color-button-hover: #E0E0E0;
+    --color-button-text: #000000;
+    --color-black: #000000;
+    --color-black-alpha-10: rgba(0, 0, 0, 0.1);
+    --color-black-alpha-50: rgba(0, 0, 0, 0.5);
+    --color-white: #FFFFFF;
+    --color-white-alpha-10: rgba(255, 255, 255, 0.1);
+    --color-white-alpha-50: rgba(255, 255, 255, 0.5);
 }
