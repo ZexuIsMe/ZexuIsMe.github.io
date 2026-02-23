@@ -57,3 +57,48 @@
     color: var(--color-text-secondary);
     font-weight: bold;
 }
+
+/* 移动端优化 */
+@media (max-width: 767px) {
+    .excerpt {
+        font-size: 0.9375rem;
+        line-height: 1.5;
+        margin-bottom: 0.75rem;
+    }
+    
+    .excerpt p {
+        margin-bottom: 0.5rem;
+    }
+    
+    .excerpt code {
+        font-size: 0.875rem;
+        padding: 0.125rem 0.375rem;
+        border-radius: 3px;
+    }
+    
+    .excerpt a {
+        font-size: 0.9375rem;
+    }
+    
+    .excerpt ul,
+    .excerpt ol {
+        margin-bottom: 0.75rem;
+        padding-left: 1.25rem;
+    }
+    
+    .excerpt li {
+        margin-bottom: 0.375rem;
+        font-size: 0.9375rem;
+    }
+    
+    .excerpt blockquote {
+        padding-left: 0.75rem;
+        margin-bottom: 0.75rem;
+        border-left-width: 3px;
+        font-size: 0.9375rem;
+    }
+    
+    .excerpt-ellipsis {
+        font-size: 0.875rem;
+    }
+}

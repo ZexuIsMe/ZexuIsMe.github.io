@@ -165,9 +165,42 @@
 </script>
 
 <style>
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
+        #home .px-4 {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+        
+        #home .py-16 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        
         #bannerCarousel {
             height: calc(100vh * 0.25) !important;
+        }
+        
+        #carouselIndicators button {
+            width: 0.5rem;
+            height: 0.5rem;
+        }
+        
+        #bannerCarousel button {
+            width: 2rem;
+            height: 2rem;
+            font-size: 1rem;
+        }
+    }
+    
+    @media (min-width: 768px) and (max-width: 991px) {
+        #bannerCarousel {
+            height: calc(100vh * 0.4) !important;
+        }
+    }
+    
+    @media (min-width: 992px) and (max-width: 1199px) {
+        #bannerCarousel {
+            height: calc(100vh * 0.5) !important;
         }
     }
 </style>

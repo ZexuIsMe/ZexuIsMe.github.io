@@ -5,6 +5,7 @@
 @import './tags.css';
 @import './nav.css';
 @import './pictures.css';
+@import './responsive.css';
 
 html {
     font-size: var(--font-size-base);
