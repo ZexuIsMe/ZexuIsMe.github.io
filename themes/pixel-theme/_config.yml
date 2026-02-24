@@ -1,5 +1,6 @@
 # Pixel Theme Configuration
 icp: '蜀ICP备2026006441号'
+gongan: '川公网安备51092302000258号'
 
 image_base: ''  ## 图片前缀
 logo: /images/pixel-logo.webp
@@ -8,10 +9,8 @@ email:
   qq: 529904017@qq.com
 vx:
   id: HTGoodBoy
-  image: /images/vx.jpg
 tiktok:
   id: 1570554360
-  image: /images/tiktok.png
 author: 粥记捣蛋
 
 # Writing Settings

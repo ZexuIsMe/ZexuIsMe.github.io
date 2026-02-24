@@ -35,26 +35,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="md:text-left">
-                        <p class="">&copy; <%= new Date().getFullYear() %> <%= config.title %>. 保留所有权利.</p>
-                        <p class="text-gray-400"><%= config.subtitle %></p>
-                        <p class="text-gray-400 mt-2">
-                            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
-                                ICP备案号: <%= theme.icp ? theme.icp : '请在主题配置中设置ICP备案号' %>
-                            </a>
-                            <% if (theme.gongan) { %>
-                            <span class="mx-2">|</span>
-                            <a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank" rel="noopener noreferrer">
-                                京公网安备<%= theme.gongan %>号
-                            </a>
-                            <% } %>
-                        </p>
-                    </div>
                 </div>
 
-                <!-- 联系方式：微信二维码 -->
-                <div class="md:w-4/12 flex flex-col gap-8">
-                    <img src="<%= theme.vx.image %>" alt="Contact Me" class="h-64 mx-auto pixel-art">
+                <div class="md:w-4/12">
+                    <p class="">&copy; <%= new Date().getFullYear() %> <%= config.title %>. 保留所有权利.</p>
+                    <p class="text-gray-400"><%= config.subtitle %></p>
+                    <p>
+                        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
+                            ICP备案号: <%= theme.icp || '请在主题配置中设置ICP备案号' %>
+                        </a>
+                    </p>
+                    <p>
+                        <a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank" rel="noopener noreferrer">
+                            <img src="https://beian.mps.gov.cn/web/assets/logo01.6189a29f.png" alt="" width="16">
+                            <%= theme.gongan || '请在主题配置中设置京公安备案号' %>号
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
