@@ -2,7 +2,7 @@
 title: 我差点为 SSL 证书多花了 400 块：90% 的人都不知道的证书避坑指南
 date: 2026-02-22 11:34:00
 tags: [SSL, 证书, 避坑, 博客, 省钱]
-categories: [技术心得]
+categories: [技术]
 cover: /images/ssl-certificate-guide.jpg
 ---
 

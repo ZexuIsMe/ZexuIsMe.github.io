@@ -38,11 +38,11 @@
                 </div>
 
                 <div class="md:w-4/12">
-                    <p class="">&copy; <%= new Date().getFullYear() %> <%= config.title %>. 保留所有权利.</p>
+                    <p class="">&copy; <%= new Date().getFullYear() %> <%= config.title %>. 保留所有权利</p>
                     <p class="text-gray-400"><%= config.subtitle %></p>
                     <p>
                         <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
-                            ICP备案号: <%= theme.icp || '请在主题配置中设置ICP备案号' %>
+                            <%= theme.icp || '请在主题配置中设置ICP备案号' %>
                         </a>
                     </p>
                     <p>
