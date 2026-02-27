@@ -1,3 +1,5 @@
+<% const resumeData = page.resumeData; %>
+
 <div class="resume-container">
     <div class="resume-header">
         <h1>个人简历</h1>
@@ -10,125 +12,170 @@
                 <div class="info-row">
                     <div class="info-item">
                         <span class="info-label">姓名：</span>
-                        <span class="info-value">简小历</span>
+                        <span class="info-value"><%= resumeData.personalInfo.name %></span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">年龄：</span>
-                        <span class="info-value">26岁</span>
+                        <span class="info-value"><%= resumeData.personalInfo.age %></span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">电话：</span>
-                        <span class="info-value">138-0000-0001</span>
+                        <span class="info-value"><%= resumeData.personalInfo.phone %></span>
                     </div>
                 </div>
                 <div class="info-row">
                     <div class="info-item">
                         <span class="info-label">性别：</span>
-                        <span class="info-value">男</span>
+                        <span class="info-value"><%= resumeData.personalInfo.gender %></span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">学历：</span>
-                        <span class="info-value">本科</span>
+                        <span class="info-value"><%= resumeData.personalInfo.education %></span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">邮箱：</span>
-                        <span class="info-value">jianlixiazai.cn</span>
+                        <span class="info-value"><%= resumeData.personalInfo.email %></span>
                     </div>
                 </div>
                 <div class="info-row">
                     <div class="info-item">
                         <span class="info-label">籍贯：</span>
-                        <span class="info-value">北京</span>
+                        <span class="info-value"><%= resumeData.personalInfo.hometown %></span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">学历：</span>
-                        <span class="info-value">本科</span>
+                        <span class="info-value"><%= resumeData.personalInfo.education %></span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">求职意向：</span>
-                        <span class="info-value">IT互联网</span>
+                        <span class="info-value"><%= resumeData.personalInfo.jobIntent %></span>
                     </div>
                 </div>
             </div>
             
             <div class="avatar">
-                <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20portrait%20of%20a%20young%20Asian%20man%20in%20business%20suit%2C%20clean%20background%2C%20corporate%20style&image_size=square" alt="个人头像">
+                <img src="<%= resumeData.avatar %>" alt="个人头像">
             </div>
         </div>
-        
+        <!-- 工作经历 -->
+        <% if (resumeData.experience && resumeData.experience.length > 0) { %>
+        <div class="resume-section">
+            <div class="section-title">
+                <i class="fas fa-briefcase"></i>
+                <h3>工作经历</h3>
+            </div>
+            <div class="section-content">
+                <% resumeData.experience.forEach(item => { %>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="company-name"><%= item.companyName %></div>
+                        <div class="position"><%= item.position %></div>
+                        <div class="period"><%= item.period %></div>
+                    </div>
+                    <div class="experience-details">
+                        <ol>
+                            <% item.responsibilities.forEach(responsibility => { %>
+                            <li><%= responsibility %></li>
+                            <% }); %>
+                        </ol>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+        <% } %>
+        <!-- 项目经验 -->
+        <% if (resumeData.projects && resumeData.projects.length > 0) { %>
+        <div class="resume-section">
+            <div class="section-title">
+                <i class="fas fa-project-diagram"></i>
+                <h3>项目经验</h3>
+            </div>
+            <div class="section-content">
+                <% resumeData.projects.forEach(item => { %>
+                <div class="project-item">
+                    <div class="experience-header">
+                        <div class="company-name"><%= item.projectName %></div>
+                        <div class="position"><%= item.role %></div>
+                        <div class="period"><%= item.period %></div>
+                    </div>
+                    <div class="experience-details">
+                        <p style="margin-bottom: 0.5rem;"><%= item.description %></p>
+                        <p style="margin: 0.5rem 0;">主要职责：</p>
+                        <ol>
+                            <% item.achievements.forEach(achievement => { %>
+                            <li><%= achievement %></li>
+                            <% }); %>
+                        </ol>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+        <% } %>
+        <!-- 证书 -->
+        <% if (resumeData.certificates && resumeData.certificates.length > 0) { %>
+        <div class="resume-section">
+            <div class="section-title">
+                <i class="fas fa-certificate"></i>
+                <h3>证书</h3>
+            </div>
+            <div class="section-content">
+                <div class="certificate-item">
+                    <p><%= resumeData.certificates.join('、') %></p>
+                </div>
+            </div>
+        </div>
+        <% } %>
+        <!-- 技能 -->
+        <% if (resumeData.skills && resumeData.skills.length > 0) { %>
+        <div class="resume-section">
+            <div class="section-title">
+                <i class="fas fa-tools"></i>
+                <h3>技能</h3>
+            </div>
+            <div class="section-content">
+                <div class="skill-item">
+                    <ol>
+                        <% resumeData.skills.forEach(skill => { %>
+                        <li><%= skill %></li>
+                        <% }); %>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <% } %>
+        <!-- 教育经历 -->
+        <% if (resumeData.education && resumeData.education.length > 0) { %>
         <div class="resume-section">
             <div class="section-title">
                 <i class="fas fa-graduation-cap"></i>
                 <h3>教育经历</h3>
             </div>
             <div class="section-content">
+                <% resumeData.education.forEach(item => { %>
                 <div class="education-item">
                     <div class="education-header">
-                        <div class="school-name">简历大学</div>
-                        <div class="major">计算机科学与技术 | 本科</div>
-                        <div class="period">20XX.09-20XX.06</div>
+                        <div class="school-name"><%= item.schoolName %></div>
+                        <div class="major"><%= item.major %></div>
+                        <div class="period"><%= item.period %></div>
                     </div>
                     <div class="education-details">
-                        <p>主修课程：微型计算机技术、计算机系统结构、高级语言、汇编语言、计算机英语、离散数学、算法与数据结构、计算机操作系统、计算机网络基础、计算机数据库原理、C语言/c++语言、Java语言等。</p>
+                        <p><%= item.courses %></p>
                     </div>
                 </div>
+                <% }); %>
             </div>
         </div>
-        
-        <div class="resume-section">
-            <div class="section-title">
-                <i class="fas fa-briefcase"></i>
-                <h3>实践经历</h3>
-            </div>
-            <div class="section-content">
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="company-name">简历下载有限公司</div>
-                        <div class="position">Java开发工程师</div>
-                        <div class="period">20XX.01-20XX.01</div>
-                    </div>
-                    <div class="experience-details">
-                        <ol>
-                            <li>带领成员进行商城平台产品管理、研发、设计</li>
-                            <li>统筹软件项目的开发工作：包括概要设计、功能模块划分、数据库设计、关键类设计、关键算法设计等；</li>
-                            <li>指导开发人员完成项目的详细设计、编码、测试工作，担任核心代码的编写工作；</li>
-                            <li>负责组织详细设计评审、代码质量评审、jianlixiazai.cn功能测试交付；</li>
-                            <li>负责开发进度把控、开发团队成员的技能培训。</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="resume-section">
-            <div class="section-title">
-                <i class="fas fa-certificate"></i>
-                <h3>证书技能</h3>
-            </div>
-            <div class="section-content">
-                <div class="certificate-item">
-                    <h4>专业证书</h4>
-                    <p>软件评测师考试证书、LoadRunner ASP证书、软考证书、大学英语六级证书</p>
-                </div>
-                <div class="skill-item">
-                    <h4>职业技能</h4>
-                    <ol>
-                        <li>有扎实的Java基础，对Jvm原理，多线程编程，并发网络通信有丰富的经验；</li>
-                        <li>了解Html5、Javascript、Ajax、Jquery、Vue全家桶、Element-UI等Web前端技术；</li>
-                        <li>熟悉主流开源Java应用框架，如Spring、Spring Boot、Spring Cloud等技术；</li>
-                        <li>熟悉关系型数据库，如：MySql等，以及相应数据库调优技术。</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-        
+        <% } %>
+        <!-- 自我评价 -->
         <div class="resume-section">
             <div class="section-title">
                 <i class="fas fa-user"></i>
                 <h3>自我评价</h3>
             </div>
             <div class="section-content">
-                <p>本人具备良好的交流沟通能力和团队合作精神，能承受一定的工作压力，有责任心和上进心，具有很强的自驱力，执行力强，乐于分享，良好的沟通能力、协调能力、合作意识。</p>
+                <p><%= resumeData.selfEvaluation %></p>
             </div>
         </div>
     </div>
@@ -191,6 +238,7 @@
 .resume-info {
     display: flex;
     justify-content: space-between;
+    /* align-items: center; */
     margin-bottom: 2rem;
     padding-bottom: 2rem;
     border-bottom: var(--border-pixel-light);
@@ -198,15 +246,19 @@
 
 .personal-info {
     flex: 1;
+    padding-right: 2rem;
+    padding-top: 1rem;
 }
 
 .info-row {
     display: flex;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+    gap: 1.5rem;
 }
 
 .info-item {
     flex: 1;
+    min-width: 0;
     display: flex;
     align-items: center;
 }
@@ -215,18 +267,22 @@
     font-weight: bold;
     margin-right: 0.5rem;
     color: var(--color-text-secondary);
+    white-space: nowrap;
 }
 
 .info-value {
     color: var(--color-text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .avatar {
-    width: 120px;
-    height: 160px;
+    width: 140px;
+    height: 150px;
     border: var(--border-pixel);
     box-shadow: var(--shadow-pixel);
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .avatar img {
@@ -239,18 +295,53 @@
     margin-bottom: 2rem;
 }
 
+.project-item {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.project-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.experience-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.experience-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.education-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.education-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
 .section-title {
     display: flex;
     align-items: center;
     background-color: var(--color-bg-secondary);
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.25rem;
     border: var(--border-pixel-light);
     border-radius: 4px;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .section-title i {
-    margin-right: 0.5rem;
+    margin-right: 0.75rem;
     color: var(--color-button-primary);
 }
 
@@ -262,7 +353,8 @@
 }
 
 .section-content {
-    padding: 0 1rem;
+    padding: 0 1.25rem;
+    margin-top: 0.5rem;
 }
 
 .education-header,
