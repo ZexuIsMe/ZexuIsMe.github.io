@@ -1,0 +1,438 @@
+<% const resumeData = page.resumeData; %>
+
+<div class="resume-container">
+    <div class="resume-header">
+        <h1>个人简历</h1>
+        <h2>PERSONAL RESUME</h2>
+    </div>
+    
+    <div class="resume-card">
+        <div class="resume-info">
+            <div class="personal-info">
+                <div class="info-row">
+                    <div class="info-item">
+                        <span class="info-label">姓名：</span>
+                        <span class="info-value"><%= resumeData.personalInfo.name %></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">年龄：</span>
+                        <span class="info-value"><%= resumeData.personalInfo.age %></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">电话：</span>
+                        <span class="info-value"><%= resumeData.personalInfo.phone %></span>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-item">
+                        <span class="info-label">性别：</span>
+                        <span class="info-value"><%= resumeData.personalInfo.gender %></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">学历：</span>
+                        <span class="info-value"><%= resumeData.personalInfo.education %></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">邮箱：</span>
+                        <span class="info-value"><%= resumeData.personalInfo.email %></span>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-item">
+                        <span class="info-label">籍贯：</span>
+                        <span class="info-value"><%= resumeData.personalInfo.hometown %></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">学历：</span>
+                        <span class="info-value"><%= resumeData.personalInfo.education %></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">求职意向：</span>
+                        <span class="info-value"><%= resumeData.personalInfo.jobIntent %></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="avatar">
+                <img src="<%= resumeData.avatar %>" alt="个人头像">
+            </div>
+        </div>
+        <!-- 工作经历 -->
+        <% if (resumeData.experience && resumeData.experience.length > 0) { %>
+        <div class="resume-section">
+            <div class="section-title">
+                <i class="fas fa-briefcase"></i>
+                <h3>工作经历</h3>
+            </div>
+            <div class="section-content">
+                <% resumeData.experience.forEach(item => { %>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="company-name"><%= item.companyName %></div>
+                        <div class="position"><%= item.position %></div>
+                        <div class="period"><%= item.period %></div>
+                    </div>
+                    <div class="experience-details">
+                        <ol>
+                            <% item.responsibilities.forEach(responsibility => { %>
+                            <li><%= responsibility %></li>
+                            <% }); %>
+                        </ol>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+        <% } %>
+        <!-- 项目经验 -->
+        <% if (resumeData.projects && resumeData.projects.length > 0) { %>
+        <div class="resume-section">
+            <div class="section-title">
+                <i class="fas fa-project-diagram"></i>
+                <h3>项目经验</h3>
+            </div>
+            <div class="section-content">
+                <% resumeData.projects.forEach(item => { %>
+                <div class="project-item">
+                    <div class="experience-header">
+                        <div class="company-name"><%= item.projectName %></div>
+                        <div class="position"><%= item.role %></div>
+                        <div class="period"><%= item.period %></div>
+                    </div>
+                    <div class="experience-details">
+                        <p style="margin-bottom: 0.5rem;"><%= item.description %></p>
+                        <p style="margin: 0.5rem 0;">主要职责：</p>
+                        <ol>
+                            <% item.achievements.forEach(achievement => { %>
+                            <li><%= achievement %></li>
+                            <% }); %>
+                        </ol>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+        <% } %>
+        <!-- 证书 -->
+        <% if (resumeData.certificates && resumeData.certificates.length > 0) { %>
+        <div class="resume-section">
+            <div class="section-title">
+                <i class="fas fa-certificate"></i>
+                <h3>证书</h3>
+            </div>
+            <div class="section-content">
+                <div class="certificate-item">
+                    <p><%= resumeData.certificates.join('、') %></p>
+                </div>
+            </div>
+        </div>
+        <% } %>
+        <!-- 技能 -->
+        <% if (resumeData.skills && resumeData.skills.length > 0) { %>
+        <div class="resume-section">
+            <div class="section-title">
+                <i class="fas fa-tools"></i>
+                <h3>技能</h3>
+            </div>
+            <div class="section-content">
+                <div class="skill-item">
+                    <ol>
+                        <% resumeData.skills.forEach(skill => { %>
+                        <li><%= skill %></li>
+                        <% }); %>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <% } %>
+        <!-- 教育经历 -->
+        <% if (resumeData.education && resumeData.education.length > 0) { %>
+        <div class="resume-section">
+            <div class="section-title">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>教育经历</h3>
+            </div>
+            <div class="section-content">
+                <% resumeData.education.forEach(item => { %>
+                <div class="education-item">
+                    <div class="education-header">
+                        <div class="school-name"><%= item.schoolName %></div>
+                        <div class="major"><%= item.major %></div>
+                        <div class="period"><%= item.period %></div>
+                    </div>
+                    <div class="education-details">
+                        <p><%= item.courses %></p>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+        <% } %>
+        <!-- 自我评价 -->
+        <div class="resume-section">
+            <div class="section-title">
+                <i class="fas fa-user"></i>
+                <h3>自我评价</h3>
+            </div>
+            <div class="section-content">
+                <p><%= resumeData.selfEvaluation %></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.resume-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.resume-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: var(--color-bg-secondary);
+    border: var(--border-pixel);
+    border-radius: 6px;
+    box-shadow: var(--shadow-pixel-large);
+}
+
+.resume-header h1 {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-xxlarge);
+    color: var(--color-text-secondary);
+    margin: 0;
+    padding: 0;
+}
+
+.resume-header h2 {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-large);
+    color: var(--color-text-primary);
+    margin: 0.5rem 0 0 0;
+    padding: 0;
+}
+
+.resume-card {
+    background-color: var(--color-bg-primary);
+    border: var(--border-pixel);
+    border-radius: 6px;
+    box-shadow: var(--shadow-pixel-large);
+    padding: 2rem;
+    position: relative;
+}
+
+.resume-card::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: var(--border-pixel-light);
+    border-radius: 3px;
+    pointer-events: none;
+}
+
+.resume-info {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: var(--border-pixel-light);
+}
+
+.personal-info {
+    flex: 1;
+    padding-right: 2rem;
+    padding-top: 1rem;
+}
+
+.info-row {
+    display: flex;
+    margin-bottom: 0.75rem;
+    gap: 1.5rem;
+}
+
+.info-item {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+}
+
+.info-label {
+    font-weight: bold;
+    margin-right: 0.5rem;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+}
+
+.info-value {
+    color: var(--color-text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.avatar {
+    width: 140px;
+    height: 150px;
+    border: var(--border-pixel);
+    box-shadow: var(--shadow-pixel);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.resume-section {
+    margin-bottom: 2rem;
+}
+
+.project-item {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.project-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.experience-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.experience-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.education-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.education-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-bg-secondary);
+    padding: 0.75rem 1.25rem;
+    border: var(--border-pixel-light);
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+}
+
+.section-title i {
+    margin-right: 0.75rem;
+    color: var(--color-button-primary);
+}
+
+.section-title h3 {
+    margin: 0;
+    font-size: var(--font-size-medium);
+    font-family: var(--font-family-heading);
+    color: var(--color-text-secondary);
+}
+
+.section-content {
+    padding: 0 1.25rem;
+    margin-top: 0.5rem;
+}
+
+.education-header,
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.school-name,
+.company-name {
+    flex: 2;
+}
+
+.major,
+.position {
+    flex: 2;
+}
+
+.period {
+    flex: 1;
+    text-align: right;
+}
+
+.education-details p,
+.experience-details ol,
+.skill-item ol {
+    margin: 0;
+    color: var(--color-text-primary);
+    line-height: 1.6;
+}
+
+.experience-details li,
+.skill-item li {
+    margin-bottom: 0.5rem;
+}
+
+.certificate-item h4,
+.skill-item h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: var(--font-size-medium);
+    color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+    .resume-container {
+        padding: 0 1rem;
+    }
+    
+    .resume-info {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .personal-info {
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    
+    .info-row {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .info-item {
+        margin-bottom: 0.5rem;
+    }
+    
+    .education-header,
+    .experience-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .period {
+        text-align: left;
+        margin-top: 0.25rem;
+    }
+}
+</style>
