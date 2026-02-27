@@ -102,11 +102,13 @@
                     <div class="experience-details">
                         <p style="margin-bottom: 0.5rem;"><%= item.description %></p>
                         <p style="margin: 0.5rem 0;">主要职责：</p>
-                        <ol>
-                            <% item.achievements.forEach(achievement => { %>
-                            <li><%= achievement %></li>
-                            <% }); %>
-                        </ol>
+                        <% if (item.achievements && item.achievements.length > 0) { %>
+                            <ol>
+                                <% item.achievements.forEach(achievement => { %>
+                                    <li><%= achievement %></li>
+                                <% }); %>
+                            </ol>
+                        <% } %>
                     </div>
                 </div>
                 <% }); %>
