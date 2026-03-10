@@ -43,8 +43,8 @@
                         <span class="info-value"><%= resumeData.personalInfo.hometown %></span>
                     </div>
                     <div class="info-item">
-                        <span class="info-label">学历：</span>
-                        <span class="info-value"><%= resumeData.personalInfo.education %></span>
+                        <span class="info-label">专业：</span>
+                        <span class="info-value"><%= resumeData.personalInfo.zhuanYe %></span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">求职意向：</span>
@@ -102,11 +102,13 @@
                     <div class="experience-details">
                         <p style="margin-bottom: 0.5rem;"><%= item.description %></p>
                         <p style="margin: 0.5rem 0;">主要职责：</p>
-                        <ol>
-                            <% item.achievements.forEach(achievement => { %>
-                            <li><%= achievement %></li>
-                            <% }); %>
-                        </ol>
+                        <% if (item.achievements && item.achievements.length > 0) { %>
+                            <ol>
+                                <% item.achievements.forEach(achievement => { %>
+                                    <li><%= achievement %></li>
+                                <% }); %>
+                            </ol>
+                        <% } %>
                     </div>
                 </div>
                 <% }); %>
